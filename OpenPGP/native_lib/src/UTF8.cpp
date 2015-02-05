@@ -168,7 +168,7 @@ std::string ecape(std::string & sin)
             ss += tmp;
         }
     }
-    std::cout << ss << std::endl;
+  //  std::cout << ss << std::endl;
     return 0;
 }
 
@@ -278,7 +278,7 @@ std::string js_encodeURIComponent(const std::string & sSrc)
     
     for (int i=0; i<size; i++) {
         unsigned char code = sSrc[i];
-        std::cout << code << std::endl;
+        //std::cout << code << std::endl;
         if(code > 0x7f)
         {
             int charcode = code;
@@ -435,10 +435,10 @@ std::string encodeURIComponent(const std::string & sSrc)
             char a = DEC2HEX[*pSrc >> 4];
             char b = DEC2HEX[*pSrc & 0x0F];
             
-            std::cout << a << std::endl;
+           // std::cout << a << std::endl;
             //*pEnd++
             *pEnd++ = DEC2HEX[*pSrc >> 4];
-            std::cout << b << std::endl;
+           // std::cout << b << std::endl;
             
             *pEnd++ = DEC2HEX[*pSrc & 0x0F];
         }
@@ -462,7 +462,7 @@ std::string js_escape(std::string &str)
     std::wstring_convert<convert_type, wchar_t> converter;
     wcs = converter.from_bytes(str);
     
-    std::cout << wcs.length() << std::endl;
+   // std::cout << wcs.length() << std::endl;
     str = "";
     for(int i=0;i<wcs.size();i++)
     {
@@ -578,13 +578,13 @@ std::string escape(std::string& s) {
                 
             }
             
-            std::cout << hexlify(ch) << std::endl;
+          //  std::cout << hexlify(ch) << std::endl;
             
             std::string h = e_hex[(ch >> 8)];
-            std::cout << h << std::endl;
+          //  std::cout << h << std::endl;
             out += h ;
             h =  e_hex[(0x00FF & ch)];
-            std::cout << h << std::endl;
+           // std::cout << h << std::endl;
             out += h;
         }
     }
@@ -744,7 +744,7 @@ void A_to_B(const char* input)
     int ascii;           // used to store the ASCII number of a character
     int length = strlen(input);        //find the length of the user's input
     
-    std::cout << " ";
+   // std::cout << " ";
     
     for(int x = 0; x < length; x++)          //repeat until user's input have all been read
         // x < length because the last character is "\0"
@@ -792,13 +792,13 @@ void A_to_B(const char* input)
             binary[z] = binary_reverse[7 - z];
         }
         
-        std::cout << binary;   //display the 8 digit binary number
+       // std::cout << binary;   //display the 8 digit binary number
         
         delete [] binary_reverse;     //free the memory created by dynamic mem. allocation
         delete [] binary;
     }
     
-    std::cout << std::endl;
+   // std::cout << std::endl;
 }
 
 void B_to_A(const char* input)
@@ -809,7 +809,7 @@ void B_to_A(const char* input)
     int asciiNum = 0;      //the ascii number after conversion from binary
     char ascii;      //the ascii character itself
     
-    std::cout << " ";
+   // std::cout << " ";
     
     int z = 0;   //counter used
     
@@ -840,7 +840,7 @@ void B_to_A(const char* input)
         ascii = asciiNum;   //assign the asciiNum value to ascii, to change it into an actual character
         asciiNum = 0;    //reset asciiNum for next loop
         
-        std::cout << ascii;	//display the ascii character
+      //  std::cout << ascii;	//display the ascii character
     }
 }
 

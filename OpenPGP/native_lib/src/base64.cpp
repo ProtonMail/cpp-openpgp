@@ -139,17 +139,17 @@ std::string base64_decode(std::string const& encoded_string) {
 
 std::string encode_utf8_base64(std::string & in)
 {
-    std::cout << in.length() << std::endl;
-    std::cout << in<<std::endl;
+    //std::cout << in.length() << std::endl;
+   // std::cout << in<<std::endl;
     std::string aaa =  js_encodeURIComponent(in);
-    std::cout << aaa<<std::endl;
-    
+   // std::cout << aaa<<std::endl;
+    //
     std::string base_decoded = js_unescape(aaa);
-    std::cout << base_decoded<<std::endl;
+   // std::cout << base_decoded<<std::endl;
     
     std::string decoded = base64_encode((unsigned char*)base_decoded.c_str(), (int)base_decoded.size());
     
-    std::cout << decoded<<std::endl;
+  //  std::cout << decoded<<std::endl;
     optimized_trim(decoded);
     
     return decoded;
@@ -157,17 +157,17 @@ std::string encode_utf8_base64(std::string & in)
 
 std::string encode_utf8_base64_msg(std::string & in)
 {
-    std::cout << in.length() << std::endl;
-    std::cout << in<<std::endl;
+  //  std::cout << in.length() << std::endl;
+   // std::cout << in<<std::endl;
     std::string aaa =  encodeURIComponent(in);
-    std::cout << aaa<<std::endl;
+   // std::cout << aaa<<std::endl;
     
     std::string base_decoded = js_unescape(aaa);
-    std::cout << base_decoded<<std::endl;
+   // std::cout << base_decoded<<std::endl;
     
     std::string decoded = base64_encode((unsigned char*)base_decoded.c_str(), (int)base_decoded.size());
     
-    std::cout << decoded<<std::endl;
+  //  std::cout << decoded<<std::endl;
     optimized_trim(decoded);
     
     return decoded;
@@ -177,70 +177,39 @@ std::string encode_utf8_base64_msg(std::string & in)
 std::string decode_utf8_base64(std::string & in)
 {
     optimized_trim(in);
-    std::cout << in<<std::endl;
+    //std::cout << in<<std::endl;
     std::string aaa = base64_decode(in); //atob(in); //decode
-    std::cout << hexlify( aaa) <<std::endl;
-    std::cout <<  aaa <<std::endl;
+    //std::cout << hexlify( aaa) <<std::endl;
+    //std::cout <<  aaa <<std::endl;
     
     //return aaa;
     std::string base_decoded = encodeURIComponent(aaa);//js_escape(aaa);
-    std::cout << base_decoded<<std::endl;
+   // std::cout << base_decoded<<std::endl;
     
     std::string decoded = js_decodeURIComponent(base_decoded);
     
-    std::cout << decoded<<std::endl;
-    std::cout << hexlify( decoded) <<std::endl;
+   // std::cout << decoded<<std::endl;
+  //  std::cout << hexlify( decoded) <<std::endl;
     return decoded;
-    //    std::string decoded_str = base64_decode(in);
-    //
-    //    std::cout << decoded_str << std::endl;
-    //
-    //    std::string aaa = base64_decode(in);
-    //
-    //
-    //    std::string message = "a. cb的國而 ?!^ё д зыт, еюж эд&  ";
-    //
-    //    std::wstring m = L"a. cb的國而 ?!^ё д зыт, еюж эд&  ";
-    //
-    //    std::cout << message.length() << "   " << m.length() << std::endl;
-    //
-    //
-    //    std::string escape_test = js_escape(message);
-    //    std::cout << escape_test << std::endl;
-    //
-    //
-    //    std::string test = encodeURIComponent(message);
-    //    std::string test_o = decodeURIComponent("a.%20cb%E7%9A%84-%E5%9C%8B%E8%80%8C%20%3F!%5E%D1%91%20%D0%B4%20%D0%B7%D1%8B%D1%82%2C%20%D0%B5%D1%8E%D0%B6%20%D1%8D%D0%B4%26%20%20");
-    //    std::cout << test << std::endl;
-    //    std::cout << test_o << std::endl;
-    //
-    //    if (message.compare(test_o) == 0) {
-    //        std::cout<< "OK" << std::endl;
-    //    }
-    //
-    //
-    //
-    //    function decode_utf8_base64(data) { return decodeURIComponent(escape(atob(data.trim()))); }
-    return "";
 }
 
 
 std::string decode_utf8_base64_msg(std::string & in)
 {
     optimized_trim(in);
-    std::cout << in<<std::endl;
+    //std::cout << in<<std::endl;
     std::string aaa = base64_decode(in); //atob(in); //decode
-    std::cout << hexlify( aaa) <<std::endl;
-    std::cout <<  aaa <<std::endl;
+    //std::cout << hexlify( aaa) <<std::endl;
+    //std::cout <<  aaa <<std::endl;
     
     //return aaa;
     std::string base_decoded = encodeURIComponent(aaa);//js_escape(aaa);
-    std::cout << base_decoded<<std::endl;
+   // std::cout << base_decoded<<std::endl;
     
     std::string decoded = decodeURIComponent(base_decoded);
     
-    std::cout << decoded<<std::endl;
-    std::cout << hexlify( decoded) <<std::endl;
+  //  std::cout << decoded<<std::endl;
+  //  std::cout << hexlify( decoded) <<std::endl;
     return decoded;
 }
 

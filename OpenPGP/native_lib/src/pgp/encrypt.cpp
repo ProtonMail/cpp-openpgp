@@ -251,7 +251,11 @@ PGPMessage encrypt_pka(const PGPPublicKey & pub, const std::string & data, const
     // write data to output container
     PGPMessage out;
     out.set_ASCII_Armor(0);
-    out.set_Armor_Header(std::vector <std::pair <std::string, std::string> > ({std::pair <std::string, std::string> ("Version", "cc")}));
+    out.set_Armor_Header(std::vector <std::pair <std::string, std::string> > (
+    {
+        std::pair <std::string, std::string> ("Version", "v0.1.0"),
+        std::pair <std::string, std::string> ("Comment", "https://protonmail.com")
+    }));
     out.set_packets({tag1, encrypted});
     
     // clear data
