@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  Swift_Test
+//  SwiftPGP
 //
-//  Created by Yanfeng Zhang on 2/12/15.
+//  Created by Yanfeng Zhang on 1/30/15.
 //  Copyright (c) 2015 Yanfeng Zhang. All rights reserved.
 //
 
