@@ -25,6 +25,9 @@
 #include <stdexcept>
 #include <codecvt>
 
+#include <openpgp/openpgp.h>
+
+
 
 
 @implementation OpenPGP
@@ -37,6 +40,9 @@
     BOOL IsPasspharseRight;
     NSString* Passpharse;
     BOOL isDebugMode;
+    
+    pgp::openpgp test;
+    
 }
 
 
@@ -97,7 +103,7 @@
             NSString *desc = NSLocalizedString([NSString stringWithUTF8String:error.what()] , @"");
             NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
             
-            *err = [[NSError alloc] initWithDomain:domain code:10001 userInfo:userInfo];
+            *err = [NSError errorWithDomain:domain code:10001 userInfo:userInfo];
         }
     }
     catch (const std::exception& e)
@@ -108,7 +114,7 @@
             NSString *desc = NSLocalizedString([NSString stringWithUTF8String:e.what()] , @"");
             NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
             
-            *err = [[NSError alloc] initWithDomain:domain code:10002 userInfo:userInfo];
+            *err = [NSError errorWithDomain:domain code:10002 userInfo:userInfo];
         }
         
     }
@@ -120,7 +126,7 @@
             NSString *desc = NSLocalizedString(@"Unknow errors", @"");
             NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
             
-            *err = [[NSError alloc] initWithDomain:domain code:10003 userInfo:userInfo];
+            *err = [NSError errorWithDomain:domain code:10003 userInfo:userInfo];
         }
         
     }
@@ -140,7 +146,7 @@
             NSString *desc = NSLocalizedString(@"you need load public key first" , @"");
             NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
             
-            *err = [[NSError alloc] initWithDomain:domain code:10004 userInfo:userInfo];
+            *err = [NSError errorWithDomain:domain code:10004 userInfo:userInfo];
             return nil;
         }
         std::string unencrypt_msg = [unencrypt_message UTF8String];
@@ -178,7 +184,7 @@
             NSString *desc = NSLocalizedString([NSString stringWithUTF8String:error.what()] , @"");
             NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
             
-            *err = [[NSError alloc] initWithDomain:domain code:10001 userInfo:userInfo];
+            *err = [NSError errorWithDomain:domain code:10001 userInfo:userInfo];
         }
     }
     catch (const std::exception& e)
@@ -189,7 +195,7 @@
             NSString *desc = NSLocalizedString([NSString stringWithUTF8String:e.what()] , @"");
             NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
             
-            *err = [[NSError alloc] initWithDomain:domain code:10002 userInfo:userInfo];
+            *err = [NSError errorWithDomain:domain code:10002 userInfo:userInfo];
         }
         
     }
@@ -201,7 +207,7 @@
             NSString *desc = NSLocalizedString(@"Unknow errors", @"");
             NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
             
-            *err = [[NSError alloc] initWithDomain:domain code:10003 userInfo:userInfo];
+            *err = [NSError errorWithDomain:domain code:10003 userInfo:userInfo];
         }
         
     }
@@ -254,7 +260,7 @@
             NSString *desc = NSLocalizedString([NSString stringWithUTF8String:error.what()] , @"");
             NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
             
-            *err = [[NSError alloc] initWithDomain:domain code:10001 userInfo:userInfo];
+            *err = [NSError errorWithDomain:domain code:10001 userInfo:userInfo];
         }
     }
     catch (const std::exception& e)
@@ -265,7 +271,7 @@
             NSString *desc = NSLocalizedString([NSString stringWithUTF8String:e.what()] , @"");
             NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
             
-            *err = [[NSError alloc] initWithDomain:domain code:10002 userInfo:userInfo];
+            *err = [NSError errorWithDomain:domain code:10002 userInfo:userInfo];
         }
         
     }
@@ -277,7 +283,7 @@
             NSString *desc = NSLocalizedString(@"Unknow errors", @"");
             NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
             
-            *err = [[NSError alloc] initWithDomain:domain code:10003 userInfo:userInfo];
+            *err = [NSError errorWithDomain:domain code:10003 userInfo:userInfo];
         }
         
     }
@@ -299,7 +305,7 @@
                 NSString *desc = NSLocalizedString(@"The input message is not valid" , @"");
                 NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
                 
-                *err = [[NSError alloc] initWithDomain:domain code:10005 userInfo:userInfo];
+                *err = [NSError errorWithDomain:domain code:10005 userInfo:userInfo];
             }
             return nil;
             
@@ -313,7 +319,7 @@
                 NSString *desc = NSLocalizedString(@"you need load private key first" , @"");
                 NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
                 
-                *err = [[NSError alloc] initWithDomain:domain code:10004 userInfo:userInfo];
+                *err = [NSError errorWithDomain:domain code:10004 userInfo:userInfo];
             }
             return nil;
         }
@@ -331,7 +337,7 @@
                 NSString *desc = NSLocalizedString(@"Bad protonmail pgp message" , @"");
                 NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
                 
-                *err = [[NSError alloc] initWithDomain:domain code:10006 userInfo:userInfo];
+                *err = [NSError errorWithDomain:domain code:10006 userInfo:userInfo];
             }
             return nil;
         }
@@ -344,7 +350,7 @@
                 NSString *desc = NSLocalizedString(@"Bad protonmail pgp message" , @"");
                 NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
                 
-                *err = [[NSError alloc] initWithDomain:domain code:10006 userInfo:userInfo];
+                *err = [NSError errorWithDomain:domain code:10006 userInfo:userInfo];
             }
             return nil;
         }
@@ -364,7 +370,7 @@
                 NSString *desc = NSLocalizedString(@"Bad protonmail pgp message" , @"");
                 NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
                 
-                *err = [[NSError alloc] initWithDomain:domain code:10006 userInfo:userInfo];
+                *err = [NSError errorWithDomain:domain code:10006 userInfo:userInfo];
             }
             return nil;
         }
@@ -377,7 +383,7 @@
                 NSString *desc = NSLocalizedString(@"Bad protonmail pgp message" , @"");
                 NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
                 
-                *err = [[NSError alloc] initWithDomain:domain code:10006 userInfo:userInfo];
+                *err = [NSError errorWithDomain:domain code:10006 userInfo:userInfo];
             }
             return nil;
         }
@@ -431,7 +437,7 @@
             NSString *desc = NSLocalizedString([NSString stringWithUTF8String:error.what()] , @"");
             NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
             
-            *err = [[NSError alloc] initWithDomain:domain code:10001 userInfo:userInfo];
+            *err = [NSError errorWithDomain:domain code:10001 userInfo:userInfo];
         }
     }
     catch (const std::exception& e)
@@ -442,7 +448,7 @@
             NSString *desc = NSLocalizedString([NSString stringWithUTF8String:e.what()] , @"");
             NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
             
-            *err = [[NSError alloc] initWithDomain:domain code:10002 userInfo:userInfo];
+            *err = [NSError errorWithDomain:domain code:10002 userInfo:userInfo];
         }
         
     }
@@ -454,7 +460,7 @@
             NSString *desc = NSLocalizedString(@"Unknow errors", @"");
             NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
             
-            *err = [[NSError alloc] initWithDomain:domain code:10003 userInfo:userInfo];
+            *err = [NSError errorWithDomain:domain code:10003 userInfo:userInfo];
         }
     }
     return nil;
@@ -464,6 +470,11 @@
 - (void)EnableDebug:(BOOL) isDebug
 {
     isDebugMode = isDebug;
+}
+
+- (void)Test
+{
+    test.generate_new_key(2048, "123", "100");
 }
 
 @end

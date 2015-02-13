@@ -1,23 +1,18 @@
 //
 //  openpgp.h
-//  UNNetPGP
+//  OpenPGP
 //
 //  Created by Yanfeng Zhang on 1/21/15.
 //  Copyright (c) 2015 UP-NEXT. All rights reserved.
 //
 
-#ifndef __UNNetPGP__openpgp__
-#define __UNNetPGP__openpgp__
+#ifndef __OpenPGP__openpgp__
+#define __OpenPGP__openpgp__
 
 #include <utility>
 #include <string>
-//#include <fstream>
-//#include <iostream>
-//#include <memory>
-//#include <sstream>
-//#include <stdexcept>
-//#include <vector>
-//#include <utility>
+
+
 #ifdef HAVE_SYS_CDEFS_H
 #include <sys/cdefs.h>
 #endif
@@ -52,6 +47,8 @@ __RCSID("$NetBSD: openssl_crypto.c,v 1.32 2010/11/07 06:56:52 agc Exp $");
 
 
 
+namespace pgp {
+
 class openpgp {
     
 public:
@@ -61,22 +58,9 @@ public:
     void encrypt_message();
 };
 
-
-
-//Class openpgp;{
-//    
-//public:
-//    openpgp();
-//    ~openpgp(){};
-//    
-//    
-//    
-//   // void generate_new_key(int bits, std::string passphrase, std::string userid);
-//    
-//};
+    
+}
 
 
 
-
-
-#endif /* defined(__UNNetPGP__openpgp__) */
+#endif /* defined(__OpenPGP__openpgp__) */

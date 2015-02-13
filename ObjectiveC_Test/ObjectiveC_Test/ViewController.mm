@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import <openpgp/OpenPGP.h>
+#import <OpenPGP.h>
 
 
 
@@ -189,8 +189,8 @@
     NSString* decrypt = [pgp decrypt_message:encrypt_msg error:nil];
     NSLog(@"%@", decrypt);
     
-    
-    plain_text = [pgp decrypt_message:@"afdsf" error:nil];
+    NSError * error = nil;
+    plain_text = [pgp decrypt_message:@"afdsf" error:&error];
     
     encrypt_msg = [pgp encrypt_message:@"afdsf" pub_key:public_key_ error:nil];
     

@@ -104,6 +104,10 @@ write_mpi(char *output, const BIGNUM *bn)
     return write_scalar(output, bits, 2) &&
     __ops_write(output, buf, (bits + 7) / 8);
 }
+
+
+namespace pgp {
+
 openpgp::openpgp()
 {
     
@@ -363,4 +367,7 @@ void openpgp::generate_new_key(int bits, std::string passphrase, std::string use
     ssb_s2k3.reset();
     subsig.reset();
     
+}
+
+
 }
