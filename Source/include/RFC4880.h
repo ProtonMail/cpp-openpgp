@@ -9,6 +9,149 @@
 #ifndef UNNetPGP_RFC4880_h
 #define UNNetPGP_RFC4880_h
 
+/************************************/
+/** Version.
+ * OpenPGP has two different protocol versions: version 3 and version 4.
+ *
+ *  RFC4880 5.2
+************************************/
+typedef enum {
+    RFC4880_V2 = 2,		/* Version 2 (essentially the same as v3) */
+    RFC4880_V3 = 3,		/* Version 3 */
+    RFC4880_V4 = 4		/* Version 4 */
+} RFC4880_VERSION;
+
+
+/************************************/
+/* Packet Tags - RFC4880, 4.2 */
+/************************************/
+typedef enum {
+    RFC4880_PTAG_RESERVED               = 0,    /* Reserved - a packet tag MUST NOT have this value */
+    RFC4880_PTAG_PUBK_ENCED_SESSION_KEY = 1,	/* Public-Key Encrypted Session Key Packet */
+    RFC4880_PTAG_SIGNATURE              = 2,    /* Signature Packet */
+    RFC4880_PTAG_SYMK_ENCED_SESSION_KEY = 3,	/* Symmetric-Key Encrypted Session Key Packet */
+    RFC4880_PTAG_ONE_PASS_SIG           = 4,	/* One-Pass Signature Packet */
+    RFC4880_PTAG_SECRET_KEY = 5,	/* Secret Key Packet */
+    RFC4880_PTAG_PUBLIC_KEY = 6,	/* Public Key Packet */
+    RFC4880_PTAG_SECRET_SUBKEY = 7,	/* Secret Subkey Packet */
+    RFC4880_PTAG_COMPRESSED = 8,	/* Compressed Data Packet */
+    RFC4880_PTAG_SE_DATA = 9,/* Symmetrically Encrypted Data Packet */
+    RFC4880_PTAG_MARKER = 10,/* Marker Packet */
+    RFC4880_PTAG_LITDATA = 11,	/* Literal Data Packet */
+    RFC4880_PTAG_TRUST = 12,	/* Trust Packet */
+    RFC4880_PTAG_USER_ID = 13,	/* User ID Packet */
+    RFC4880_PTAG_PUBLIC_SUBKEY = 14,	/* Public Subkey Packet */
+    RFC4880_PTAG_RESERVED2 = 15,	/* reserved */
+    RFC4880_PTAG_RESERVED3 = 16,	/* reserved */
+    RFC4880_PTAG_USER_ATTR = 17,	/* User Attribute Packet */
+    RFC4880_PTAG_SE_IP_DATA = 18,	/* Sym. Encrypted and Integrity
+                                     * Protected Data Packet */
+    OPS_PTAG_CT_MDC = 19,	/* Modification Detection Code Packet */
+    
+} RFC4880_PTAG;
+
+/************************************/
+/** Signature Type.
+ * OpenPGP defines different signature types that allow giving
+ * different meanings to signatures.  Signature types include 0x10 for
+ * generitc User ID certifications (used when Ben signs Weasel's key),
+ * Subkey binding signatures, document signatures, key revocations,
+ * etc.
+ *
+ * Different types are used in different places, and most make only
+ * sense in their intended location (for instance a subkey binding has
+ * no place on a UserID).
+ *
+ * RFC4880 5.2.1
+ */
+/************************************/
+typedef enum {
+    RFC4880_SIG_BINARY = 0x00,	/* Signature of a binary document */
+    RFC4880_SIG_TEXT = 0x01,	/* Signature of a canonical text document */
+    RFC4880_SIG_STANDALONE = 0x02,	/* Standalone signature */
+    
+    RFC4880_CERT_GENERIC = 0x10,/* Generic certification of a User ID and
+                             * Public Key packet */
+    RFC4880_CERT_PERSONA = 0x11,/* Persona certification of a User ID and
+                             * Public Key packet */
+    RFC4880_CERT_CASUAL = 0x12,	/* Casual certification of a User ID and
+                             * Public Key packet */
+    RFC4880_CERT_POSITIVE = 0x13,	/* Positive certification of a
+                                 * User ID and Public Key packet */
+    
+    RFC4880_SIG_SUBKEY = 0x18,	/* Subkey Binding Signature */
+    RFC4880_SIG_PRIMARY = 0x19,	/* Primary Key Binding Signature */
+    RFC4880_SIG_DIRECT = 0x1f,	/* Signature directly on a key */
+    
+    RFC4880_SIG_REV_KEY = 0x20,	/* Key revocation signature */
+    RFC4880_SIG_REV_SUBKEY = 0x28,	/* Subkey revocation signature */
+    RFC4880_SIG_REV_CERT = 0x30,/* Certification revocation signature */
+    
+    RFC4880_SIG_TIMESTAMP = 0x40,	/* Timestamp signature */
+    
+    RFC4880_SIG_3RD_PARTY = 0x50/* Third-Party Confirmation signature */
+} RFC4880_SIG_TYPE;
+
+
+/************************************/
+/** Public Key Algorithm Numbers.
+ * OpenPGP assigns a unique Algorithm Number to each algorithm that is part of OpenPGP.
+ *
+ * This lists algorithm numbers for public key algorithms.
+ *
+ * RFC4880 9.1
+ *************************************/
+typedef enum {
+    RFC4880_PKA_NOTHING	= 0,	/* No PKA */
+    RFC4880_PKA_RSA = 1,	/* RSA (Encrypt or Sign) */
+    RFC4880_PKA_RSA_ENCRYPT_ONLY = 2,	/* RSA Encrypt-Only (deprecated -
+                                         * \see RFC4880 13.5) */
+    RFC4880_PKA_RSA_SIGN_ONLY = 3,	/* RSA Sign-Only (deprecated -
+                                     * \see RFC4880 13.5) */
+    RFC4880_PKA_ELGAMAL = 16,	/* Elgamal (Encrypt-Only) */
+    RFC4880_PKA_DSA = 17,	/* DSA (Digital Signature Algorithm) */
+    RFC4880_PKA_RESERVED_ELLIPTIC_CURVE = 18,	/* Reserved for Elliptic
+                                                 * Curve */
+    RFC4880_PKA_RESERVED_ECDSA = 19,	/* Reserved for ECDSA */
+    RFC4880_PKA_ELGAMAL_ENCRYPT_OR_SIGN = 20,	/* Deprecated. */
+    RFC4880_PKA_RESERVED_DH = 21,	/* Reserved for Diffie-Hellman
+                                     * (X9.42, as defined for
+                                     * IETF-S/MIME) */
+    RFC4880_PKA_PRIVATE00 = 100,/* Private/Experimental Algorithm */
+    RFC4880_PKA_PRIVATE01 = 101,/* Private/Experimental Algorithm */
+    RFC4880_PKA_PRIVATE02 = 102,/* Private/Experimental Algorithm */
+    RFC4880_PKA_PRIVATE03 = 103,/* Private/Experimental Algorithm */
+    RFC4880_PKA_PRIVATE04 = 104,/* Private/Experimental Algorithm */
+    RFC4880_PKA_PRIVATE05 = 105,/* Private/Experimental Algorithm */
+    RFC4880_PKA_PRIVATE06 = 106,/* Private/Experimental Algorithm */
+    RFC4880_PKA_PRIVATE07 = 107,/* Private/Experimental Algorithm */
+    RFC4880_PKA_PRIVATE08 = 108,/* Private/Experimental Algorithm */
+    RFC4880_PKA_PRIVATE09 = 109,/* Private/Experimental Algorithm */
+    RFC4880_PKA_PRIVATE10 = 110	/* Private/Experimental Algorithm */
+} RFC4880_PKA_ALG_T;
+
+/************************************/
+/** Hashing Algorithm Numbers.
+ * OpenPGP assigns a unique Algorithm Number to each algorithm that is
+ * part of OpenPGP.
+ *
+ * This lists algorithm numbers for hash algorithms.
+ *
+ * RFC4880 9.4
+ *************************************/
+typedef enum {
+    RFC4880_HASH_UNKNOWN = -1,	/* used to indicate errors */
+    RFC4880_HASH_MD5 = 1,	/* MD5 */
+    RFC4880_HASH_SHA1 = 2,	/* SHA-1 */
+    RFC4880_HASH_RIPEMD = 3,	/* RIPEMD160 */
+    
+    RFC4880_HASH_SHA256 = 8,	/* SHA256 */
+    RFC4880_HASH_SHA384 = 9,	/* SHA384 */
+    RFC4880_HASH_SHA512 = 10,	/* SHA512 */
+    RFC4880_HASH_SHA224 = 11	/* SHA224 */
+} RFC4880_HASH_ALG;
+
+
 //
 //
 ///************************************/
@@ -144,41 +287,7 @@
 //    unsigned	size;	/* number of bits */
 //} __ops_ptag_t;
 //
-/** Public Key Algorithm Numbers.
- * OpenPGP assigns a unique Algorithm Number to each algorithm that is part of OpenPGP.
- *
- * This lists algorithm numbers for public key algorithms.
- *
- * \see RFC4880 9.1
- */
-typedef enum {
-    _PKA_NOTHING	= 0,	/* No PKA */
-    RFC4880_PKA_RSA = 1,	/* RSA (Encrypt or Sign) */
-    RFC4880_PKA_RSA_ENCRYPT_ONLY = 2,	/* RSA Encrypt-Only (deprecated -
-                                     * \see RFC4880 13.5) */
-    RFC4880_PKA_RSA_SIGN_ONLY = 3,	/* RSA Sign-Only (deprecated -
-                                 * \see RFC4880 13.5) */
-    RFC4880_PKA_ELGAMAL = 16,	/* Elgamal (Encrypt-Only) */
-    RFC4880_PKA_DSA = 17,	/* DSA (Digital Signature Algorithm) */
-    RFC4880_PKA_RESERVED_ELLIPTIC_CURVE = 18,	/* Reserved for Elliptic
-                                             * Curve */
-    RFC4880_PKA_RESERVED_ECDSA = 19,	/* Reserved for ECDSA */
-    RFC4880_PKA_ELGAMAL_ENCRYPT_OR_SIGN = 20,	/* Deprecated. */
-    RFC4880_PKA_RESERVED_DH = 21,	/* Reserved for Diffie-Hellman
-                                 * (X9.42, as defined for
-                                 * IETF-S/MIME) */
-    RFC4880_PKA_PRIVATE00 = 100,/* Private/Experimental Algorithm */
-    RFC4880_PKA_PRIVATE01 = 101,/* Private/Experimental Algorithm */
-    RFC4880_PKA_PRIVATE02 = 102,/* Private/Experimental Algorithm */
-    RFC4880_PKA_PRIVATE03 = 103,/* Private/Experimental Algorithm */
-    RFC4880_PKA_PRIVATE04 = 104,/* Private/Experimental Algorithm */
-    RFC4880_PKA_PRIVATE05 = 105,/* Private/Experimental Algorithm */
-    RFC4880_PKA_PRIVATE06 = 106,/* Private/Experimental Algorithm */
-    RFC4880_PKA_PRIVATE07 = 107,/* Private/Experimental Algorithm */
-    RFC4880_PKA_PRIVATE08 = 108,/* Private/Experimental Algorithm */
-    RFC4880_PKA_PRIVATE09 = 109,/* Private/Experimental Algorithm */
-    RFC4880_PKA_PRIVATE10 = 110	/* Private/Experimental Algorithm */
-} RFC4880_PKA_ALG_T;
+
 //
 ///** Structure to hold one DSA public key params.
 // *
@@ -212,16 +321,7 @@ typedef enum {
 //                         * with x being the secret) */
 //} __ops_elgamal_pubkey_t;
 //
-/** Version.
- * OpenPGP has two different protocol versions: version 3 and version 4.
- *
- * \see RFC4880 5.2
- */
-typedef enum {
-    RFC4880_V2 = 2,		/* Version 2 (essentially the same as v3) */
-    RFC4880_V3 = 3,		/* Version 3 */
-    RFC4880_V4 = 4		/* Version 4 */
-} RFC4880_VERSION;
+
 //
 ///** Structure to hold a pgp public key */
 //typedef struct {
@@ -301,25 +401,7 @@ typedef enum {
 //
 //#define OPS_SA_DEFAULT_CIPHER	OPS_SA_CAST5
 //
-/** Hashing Algorithm Numbers.
- * OpenPGP assigns a unique Algorithm Number to each algorithm that is
- * part of OpenPGP.
- *
- * This lists algorithm numbers for hash algorithms.
- *
- * \see RFC4880 9.4
- */
-typedef enum {
-    RFC4880_HASH_UNKNOWN = -1,	/* used to indicate errors */
-    RFC4880_HASH_MD5 = 1,	/* MD5 */
-    RFC4880_HASH_SHA1 = 2,	/* SHA-1 */
-    RFC4880_HASH_RIPEMD = 3,	/* RIPEMD160 */
-    
-    RFC4880_HASH_SHA256 = 8,	/* SHA256 */
-    RFC4880_HASH_SHA384 = 9,	/* SHA384 */
-    RFC4880_HASH_SHA512 = 10,	/* SHA512 */
-    RFC4880_HASH_SHA224 = 11	/* SHA224 */
-} RFC4880_hash_alg_t;
+
 //
 //#define	OPS_DEFAULT_HASH_ALGORITHM	OPS_HASH_SHA256
 //
@@ -362,45 +444,7 @@ typedef enum {
 //    uint8_t			       *checkhash;
 //} __ops_seckey_t;
 //
-///** Signature Type.
-// * OpenPGP defines different signature types that allow giving
-// * different meanings to signatures.  Signature types include 0x10 for
-// * generitc User ID certifications (used when Ben signs Weasel's key),
-// * Subkey binding signatures, document signatures, key revocations,
-// * etc.
-// *
-// * Different types are used in different places, and most make only
-// * sense in their intended location (for instance a subkey binding has
-// * no place on a UserID).
-// *
-// * \see RFC4880 5.2.1
-// */
-//typedef enum {
-//    OPS_SIG_BINARY = 0x00,	/* Signature of a binary document */
-//    OPS_SIG_TEXT = 0x01,	/* Signature of a canonical text document */
-//    OPS_SIG_STANDALONE = 0x02,	/* Standalone signature */
-//    
-//    OPS_CERT_GENERIC = 0x10,/* Generic certification of a User ID and
-//                             * Public Key packet */
-//    OPS_CERT_PERSONA = 0x11,/* Persona certification of a User ID and
-//                             * Public Key packet */
-//    OPS_CERT_CASUAL = 0x12,	/* Casual certification of a User ID and
-//                             * Public Key packet */
-//    OPS_CERT_POSITIVE = 0x13,	/* Positive certification of a
-//                                 * User ID and Public Key packet */
-//    
-//    OPS_SIG_SUBKEY = 0x18,	/* Subkey Binding Signature */
-//    OPS_SIG_PRIMARY = 0x19,	/* Primary Key Binding Signature */
-//    OPS_SIG_DIRECT = 0x1f,	/* Signature directly on a key */
-//    
-//    OPS_SIG_REV_KEY = 0x20,	/* Key revocation signature */
-//    OPS_SIG_REV_SUBKEY = 0x28,	/* Subkey revocation signature */
-//    OPS_SIG_REV_CERT = 0x30,/* Certification revocation signature */
-//    
-//    OPS_SIG_TIMESTAMP = 0x40,	/* Timestamp signature */
-//    
-//    OPS_SIG_3RD_PARTY = 0x50/* Third-Party Confirmation signature */
-//} __ops_sig_type_t;
+
 //
 
 /************************************/
@@ -537,33 +581,6 @@ typedef enum {
 
 
 
-/************************************/
-/* Packet Tags - RFC4880, 4.2 */
-/************************************/
-typedef enum {
-    RFC4880_PTAG_RESERVED               = 0,    /* Reserved - a packet tag MUST NOT have this value */
-    RFC4880_PTAG_PUBK_ENCED_SESSION_KEY = 1,	/* Public-Key Encrypted Session Key Packet */
-    RFC4880_PTAG_SIGNATURE              = 2,    /* Signature Packet */
-    RFC4880_PTAG_SYMK_ENCED_SESSION_KEY = 3,	/* Symmetric-Key Encrypted Session Key Packet */
-    RFC4880_PTAG_ONE_PASS_SIG           = 4,	/* One-Pass Signature Packet */
-    RFC4880_PTAG_SECRET_KEY = 5,	/* Secret Key Packet */
-    RFC4880_PTAG_PUBLIC_KEY = 6,	/* Public Key Packet */
-    RFC4880_PTAG_SECRET_SUBKEY = 7,	/* Secret Subkey Packet */
-    RFC4880_PTAG_COMPRESSED = 8,	/* Compressed Data Packet */
-    RFC4880_PTAG_SE_DATA = 9,/* Symmetrically Encrypted Data Packet */
-    RFC4880_PTAG_MARKER = 10,/* Marker Packet */
-    RFC4880_PTAG_LITDATA = 11,	/* Literal Data Packet */
-    RFC4880_PTAG_TRUST = 12,	/* Trust Packet */
-    RFC4880_PTAG_USER_ID = 13,	/* User ID Packet */
-    RFC4880_PTAG_PUBLIC_SUBKEY = 14,	/* Public Subkey Packet */
-    RFC4880_PTAG_RESERVED2 = 15,	/* reserved */
-    RFC4880_PTAG_RESERVED3 = 16,	/* reserved */
-    RFC4880_PTAG_USER_ATTR = 17,	/* User Attribute Packet */
-    RFC4880_PTAG_SE_IP_DATA = 18,	/* Sym. Encrypted and Integrity
-                                     * Protected Data Packet */
-    OPS_PTAG_CT_MDC = 19,	/* Modification Detection Code Packet */
-    
-} RFC4880_PTAG;
 
 
 

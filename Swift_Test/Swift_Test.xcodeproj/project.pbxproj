@@ -298,7 +298,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(PROJECT_DIR)/../Bin/include/OpenPGP_Simulator",
+					"$(PROJECT_DIR)/../Bin/include/OpenPGP_IOS",
 				);
 				INFOPLIST_FILE = Swift_Test/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -323,7 +323,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(PROJECT_DIR)/../Bin/include/OpenPGP_Simulator",
+					"$(PROJECT_DIR)/../Bin/include/OpenPGP_IOS",
 				);
 				INFOPLIST_FILE = Swift_Test/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

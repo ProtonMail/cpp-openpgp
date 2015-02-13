@@ -79,7 +79,7 @@ class TestView: UIViewController {
         log_lable_.text = NSString(format: "%d Times(ENC->DEC) --- Total Runtime: %g s --- Avg %g s", count, total , avg)
         button.enabled = true;
     }
-    
+
     @IBAction func tiny_test_clicked(sender: AnyObject) {
         let button:UIButton = sender as UIButton;
         
@@ -114,6 +114,11 @@ class TestView: UIViewController {
         button.enabled = true;
     }
     
+    @IBAction func generate_new_key_clicked(sender: AnyObject) {
+        
+        let pgp:OpenPGP = OpenPGP()
+        pgp.Test()
+    }
     
     
 }
