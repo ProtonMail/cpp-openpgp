@@ -13,6 +13,10 @@ Tag2Sub16::Tag2Sub16(std::string & data):
 
 void Tag2Sub16::read(std::string & data){
     keyid = data;
+    //TODO cleanup
+    {
+        std::cout<< "Tag2Sub16-KeyID:" << hexlify(keyid) << std::endl;
+    }
 }
 
 std::string Tag2Sub16::show(const uint8_t indents, const uint8_t indent_size) const{

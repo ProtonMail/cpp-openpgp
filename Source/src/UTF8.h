@@ -86,6 +86,7 @@ std::string escape(std::string& sSrc);
 std::string url_encode(const std::string &value);
 
 std::string hex2bin(std::string& s_in);
+
 //good
 
 

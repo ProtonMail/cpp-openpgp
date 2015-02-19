@@ -13,6 +13,10 @@ Tag2Sub21::Tag2Sub21(std::string & data):
 
 void Tag2Sub21::read(std::string & data){
     pha = data;
+    //TODO::cleanup
+    {
+        std::cout << "Tag2Sub21-Pha: " << hexlify(pha) << std::endl;
+    }
     size = data.size();
 }
 

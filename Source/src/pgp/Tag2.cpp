@@ -40,7 +40,7 @@ Tag2::~Tag2(){
 // Extracts Subpacket data for figuring which subpacket type to create
 // Some data is consumed in the process
 std::string Tag2::read_subpacket(std::string & data){
-    uint32_t length = 0;
+    uint64_t length = 0;
     uint8_t first_octet = static_cast <unsigned char> (data[0]);
     if (first_octet < 192){
         length = first_octet;
@@ -157,7 +157,7 @@ void Tag2::read(std::string & data, const uint8_t part){
             throw std::runtime_error("Error: Length of hashed material must be 5.");
         }
         type = data[2];
-        time = toint(data.substr(3, 4), 256);
+        time = (uint32_t)toint(data.substr(3, 4), 256);
         keyid = data.substr(7, 8);
 
         pka = data[15];
@@ -192,7 +192,9 @@ void Tag2::read(std::string & data, const uint8_t part){
         unhashed_subpackets = read_subpackets(unhashed);
 
         left16 = data.substr(0, 2);
+        std::cout << "left16:" << hexlify(left16) << std::endl;
         data = data.substr(2, data.size() - 2);
+        std::cout << "data:" << hexlify(data) << std::endl;
 
         if (pka < 4)
             mpi.push_back(read_MPI(data));              // RSA m**d mod n
@@ -300,7 +302,7 @@ uint32_t Tag2::get_time() const{
             if (s -> get_type() == 2){
                 std::string data = s -> raw();
                 Tag2Sub2 sub2(data);
-                return sub2.get_time();
+                return (uint32_t)sub2.get_time();
             }
         }
     }

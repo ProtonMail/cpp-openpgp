@@ -13,6 +13,10 @@ Tag2Sub30::Tag2Sub30(std::string & data):
 
 void Tag2Sub30::read(std::string & data){
     flags = data[0];
+    //TODO::cleanup
+    {
+        std::cout << "Tag2Sub30-Flags: " << hexlify(flags) << std::endl;
+    }
     size = data.size();
 }
 

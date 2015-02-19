@@ -3,7 +3,7 @@
 #include "consts.h"
 
 std::string Packet::write_old_length(std::string data) const{
-    unsigned int length = data.size();
+    size_t length = data.size();
     std::string out(1, 0b10000000 | (tag << 2));
     if (partial){
         out[0] |= 3;                                        // partial
@@ -28,7 +28,7 @@ std::string Packet::write_old_length(std::string data) const{
 // returns formatted length string
 std::string Packet::write_new_length(std::string data) const{
     std::string out(1, 0b11000000 | tag);
-    unsigned int length = data.size();
+    size_t length = data.size();
     if (partial){                                           // partial
         uint8_t bits = 0;
         while (length > (1u << bits)){
@@ -121,7 +121,7 @@ unsigned int Packet::get_version() const{
     return version;
 }
 
-unsigned int Packet::get_size() const{
+size_t Packet::get_size() const{
     return size;
 }
 
@@ -188,8 +188,20 @@ void Key::read_common(std::string & data){
        // mpi.push_back(read_MPI(data));             // RSA e, DSA q, ElGamal g
         
         std::string n = read_MPI(data);
+        
+        //TODO:: cleanup
+        {
+            std::cout << "N:" << hexlify(n) << std::endl;
+        }
+        
         mpi.push_back(n);
         std::string e =  read_MPI(data);
+        
+        //TODO:: cleanup
+        {
+            std::cout << "E:" << hexlify(e) << std::endl;
+        }
+        
         mpi.push_back(e);
         
         // DSA
@@ -333,6 +345,7 @@ std::string Key::get_fingerprint() const{
     }
     else if (version == 4){
         std::string packet = raw_common();
+        std::cout << hexlify(SHA1("\x99" + unhexlify(makehex(packet.size(), 4)) + packet).digest()) << std::endl;
         return SHA1("\x99" + unhexlify(makehex(packet.size(), 4)) + packet).digest();
     }
     else{

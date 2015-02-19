@@ -31,7 +31,7 @@ void RIPEMD160::calc(const std::string &data, context &state) const{
         uint32_t a = state.h0, b = state.h1, c = state.h2, d = state.h3, e = state.h4, A = state.h0, B = state.h1, C = state.h2, D = state.h3, E = state.h4;
         uint32_t X[16];
         for(uint8_t j = 0; j < 16; j++){
-            X[j] = toint(data.substr(i << 6, 64).substr(j << 2, 4), 256);
+            X[j] = (uint32_t)toint(data.substr(i << 6, 64).substr(j << 2, 4), 256);
         }
         uint32_t T;
         for(uint8_t j = 0; j < 80; j++){

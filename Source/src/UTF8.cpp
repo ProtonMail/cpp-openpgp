@@ -151,10 +151,10 @@ std::string ecape(std::string & sin)
     std::string aa = sin;
     //wchar_t *aa = L"冯a继b业";
     std::string ss = "";
-    int size = aa.size();
+    size_t size = aa.size();
     for(int i=0;i<size;i++)
     {
-        if(aa[i]>0xff) //翻译不翻译的关键
+        if(aa[i] > (char)0xff) //翻译不翻译的关键
         {
             char tmp[5];
             sprintf(tmp,"%x",aa[i]);
@@ -212,7 +212,7 @@ std::string decodeURIComponent(const std::string & sSrc)
     // for future extension"
     
     const unsigned char * pSrc = (const unsigned char *)sSrc.c_str();
-    const int SRC_LEN = sSrc.length();
+    const size_t SRC_LEN = sSrc.length();
     const unsigned char * const SRC_END = pSrc + SRC_LEN;
     const unsigned char * const SRC_LAST_DEC = SRC_END - 2;   // last decodable '%'
     
@@ -419,7 +419,7 @@ std::string encodeURIComponent(const std::string & sSrc)
 {
     const char DEC2HEX[16 + 1] = "0123456789ABCDEF";
     const unsigned char * pSrc = (const unsigned char *)sSrc.c_str();
-    const int SRC_LEN = sSrc.length();
+    const size_t SRC_LEN = sSrc.length();
     unsigned char * const pStart = new unsigned char[SRC_LEN * 3];
     unsigned char * pEnd = pStart;
     const unsigned char * const SRC_END = pSrc + SRC_LEN;
@@ -432,8 +432,8 @@ std::string encodeURIComponent(const std::string & sSrc)
         {
             // escape this char
             *pEnd++ = '%';
-            char a = DEC2HEX[*pSrc >> 4];
-            char b = DEC2HEX[*pSrc & 0x0F];
+            //char a = DEC2HEX[*pSrc >> 4];
+            //char b = DEC2HEX[*pSrc & 0x0F];
             
            // std::cout << a << std::endl;
             //*pEnd++
@@ -719,14 +719,14 @@ int bin_value(char ch)
     }
 }
 
-
+//not tested
 std::string hex2bin(std::string& s_in)
 {
     std::string out;
     
     for (int i = 0; i < s_in.size();) {
-        int a = (bin_value(s_in[0])<<4) & 0xF0;
-        int b = (bin_value(s_in[1])   ) & 0x0F;
+        //int a = (bin_value(s_in[0])<<4) & 0xF0;
+        //int b = (bin_value(s_in[1])   ) & 0x0F;
         
         //        char out_a;
         //        sprintf(out, "%d", (a | b));
@@ -742,7 +742,7 @@ std::string hex2bin(std::string& s_in)
 void A_to_B(const char* input)
 {
     int ascii;           // used to store the ASCII number of a character
-    int length = strlen(input);        //find the length of the user's input
+    size_t length = strlen(input);        //find the length of the user's input
     
    // std::cout << " ";
     
@@ -803,7 +803,7 @@ void A_to_B(const char* input)
 
 void B_to_A(const char* input)
 {
-    int length = strlen(input);     //get length of string
+    size_t length = strlen(input);     //get length of string
     
     int binary[8];    //array used to store 1 byte of binary number (1 character)
     int asciiNum = 0;      //the ascii number after conversion from binary

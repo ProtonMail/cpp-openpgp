@@ -24,7 +24,7 @@ void Tag11::read(std::string & data, const uint8_t part){
         std::cerr << "Warning: Special name \"_CONSOLE\" used. Message is considered to be \"for your eyes only\"." << std::endl;
     }
 
-    time = toint(data.substr(2 + len, 4), 256);
+    time = (uint32_t)toint(data.substr(2 + len, 4), 256);
     literal = data.substr(len + 6, data.size() - len - 6);
 }
 

@@ -208,6 +208,10 @@ PGPMessage encrypt_pka(const PGPPublicKey & pub, const std::string & data, const
     }
     
     std::vector <std::string> mpi = public_key -> get_mpi();
+    std::cout<< hexlify(mpi[0]) << std::endl;
+    std::cout<< hexlify(mpi[1]) << std::endl;
+
+    
     Tag1::Ptr tag1 = std::make_shared<Tag1>();
     tag1 -> set_keyid(public_key -> get_keyid());
     tag1 -> set_pka(public_key -> get_pka());
@@ -253,7 +257,7 @@ PGPMessage encrypt_pka(const PGPPublicKey & pub, const std::string & data, const
     out.set_ASCII_Armor(0);
     out.set_Armor_Header(std::vector <std::pair <std::string, std::string> > (
     {
-        std::pair <std::string, std::string> ("Version", "v0.1.0"),
+        std::pair <std::string, std::string> ("Version", "ProtonMail v0.1.0"),
         std::pair <std::string, std::string> ("Comment", "https://protonmail.com")
     }));
     out.set_packets({tag1, encrypted});

@@ -170,7 +170,7 @@ void PGP::read(std::string & data){
     
     // check for a checksum
     if (data[data.size() - 5] == '='){
-        uint32_t checksum = toint(radix642ascii(data.substr(data.size() - 4, 4)), 256);
+        uint32_t checksum = (uint32_t)toint(radix642ascii(data.substr(data.size() - 4, 4)), 256);
         data = radix642ascii(data.substr(0, data.size() - 5));
         // check if the checksum is correct
         if (crc24(data) != checksum){

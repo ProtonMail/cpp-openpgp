@@ -168,7 +168,7 @@ std::string S2K3::run(const std::string & pass, unsigned int sym_key_len) const{
     
     std::string salt_p_pass = salt + pass;
     
-    uint32_t c_c = coded_count(count);
+   // uint32_t c_c = coded_count(count);
     
    // std::cout << c_c << std::endl;
     

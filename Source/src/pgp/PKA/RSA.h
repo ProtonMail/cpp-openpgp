@@ -41,7 +41,6 @@ THE SOFTWARE.
 //std::vector <PGPMPI> RSA_keygen(const uint32_t & bits = 2048);
 //
 //// Encrypt some data
-//std::string RSA_encrypt(const std::string & data, const std::vector <std::string> & pub);
 std::string RSA_encrypt(const std::string & data, const std::vector <std::string> & pub);
 //
 // Decrypt some data
@@ -49,8 +48,9 @@ std::string RSA_decrypt(const std::string & data, const std::vector <std::string
 //
 //// Sign some data
 //PGPMPI RSA_sign(const PGPMPI & data, const std::vector <PGPMPI> & pri, const std::vector <PGPMPI> & pub);
-//PGPMPI RSA_sign(const std::string & data, const std::vector <PGPMPI> & pri, const std::vector <PGPMPI> & pub);
-//
+std::string RSA_sign(const std::string & data, const std::vector <std::string> & pri, const std::vector <std::string> & pub);
+
+
 //// Verify signature
 //bool RSA_verify(const PGPMPI & data, const std::vector <PGPMPI> & signature, const std::vector <PGPMPI> & pub);
 //bool RSA_verify(const std::string & data, const std::vector <PGPMPI> & signature, const std::vector <PGPMPI> & pub);

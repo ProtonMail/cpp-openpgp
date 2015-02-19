@@ -116,8 +116,29 @@ class TestView: UIViewController {
     
     @IBAction func generate_new_key_clicked(sender: AnyObject) {
         
+        
+        let button:UIButton = sender as UIButton;
+        
+        button.enabled = false;
+        
         let pgp:OpenPGP = OpenPGP()
-        pgp.Test()
+        
+        
+        let test_msg:String = GetStringFromSampleFile("tiny_test_msg");
+        
+        let count:Int = 50
+        let startTime:CFTimeInterval  = CACurrentMediaTime()
+        for var i:Int = 0; i < count; ++i {
+            pgp.Test()
+        }
+        
+        let endTime:CFTimeInterval  = CACurrentMediaTime();
+        let total = (endTime - startTime);
+        let cot:Double = Double( count )
+        let avg:Double = (endTime - startTime)/cot;
+        log_lable_.text = NSString(format: "%d Times(ENC->DEC) --- Total Runtime: %g s --- Avg %g s", count, total , avg);
+        button.enabled = true;
+       
     }
     
     

@@ -180,7 +180,7 @@ std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const st
     }
 
     // reused variables
-    uint8_t packet;                             // currently used packet tag
+    uint8_t packet = 0;                         // currently used packet tag
     std::string data;                           // temp stuff
     std::string session_key;                    // session key
     uint8_t sym;                                // symmetric key algorithm used to encrypt original data
@@ -194,7 +194,10 @@ std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const st
         }
     }
 
-    if (packet == 1){}
+    if (packet == 1)
+    {
+        
+    }
     // return symmetrically-encrypted-key decrypted data
     else if (packet == 3){
         return decrypt_sym(m, passphrase);
@@ -217,6 +220,12 @@ std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const st
 
     std::vector <std::string> pub_mpi = sec -> get_mpi();
     std::vector <std::string> pri_mpi = decrypt_secret_key(sec, passphrase);
+    //TODO:: clean up
+    
+    std::cout<< "D: " << hexlify( pri_mpi[0]) << std::endl;
+    std::cout<< "P: " << hexlify(pri_mpi[1]) << std::endl;
+    std::cout<< "Q: " << hexlify(pri_mpi[2]) << std::endl;
+    std::cout<< "U: " << hexlify(pri_mpi[3]) << std::endl;
 
     // get session key
     session_key = zero + pka_decrypt(pka, session_key_mpi, pri_mpi, pub_mpi);     // symmetric algorithm, session key, 2 octet checksum wrapped in EME_PKCS1_ENCODE
@@ -264,7 +273,7 @@ std::string decrypt_sym(const PGPMessage & m, const std::string & passphrase, co
         throw std::runtime_error("Error: No encrypted message found.");
     }
 
-    uint8_t packet;                             // currently used packet tag
+    uint8_t packet = 0;                             // currently used packet tag
     std::string data;                           // temp stuff
 
     // find session key packet; should be first packet

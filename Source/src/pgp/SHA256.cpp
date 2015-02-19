@@ -32,15 +32,15 @@ void SHA256::calc(const std::string &data, context &state) const{
         std::string temp = data.substr(n << 6, 64);
         uint32_t skey[64];
         for(uint8_t x = 0; x < 16; x++){
-            skey[x] = toint(temp.substr(x << 2, 4), 256);
+            skey[x] = (uint32_t)toint(temp.substr(x << 2, 4), 256);
         }
         for(uint8_t x = 16; x < 64; x++){
             skey[x] = s1(skey[x - 2]) + skey[x - 7] + s0(skey[x - 15]) + skey[x - 16];
         }
         uint32_t a = state.h0, b = state.h1, c = state.h2, d = state.h3, e = state.h4, f = state.h5, g = state.h6, h = state.h7;
         for(uint8_t x = 0; x < 64; x++){
-            uint32_t t1 = h + S1(e) + Ch(e, f, g) + SHA256_K[x] + skey[x];
-            uint32_t t2 = S0(a) + Maj(a, b, c);
+            uint32_t t1 = h + S1(e) + (uint32_t)Ch(e, f, g) + SHA256_K[x] + skey[x];
+            uint32_t t2 = S0(a) + (uint32_t)Maj(a, b, c);
             h = g;
             g = f;
             f = e;
@@ -80,7 +80,7 @@ void SHA256::update(const std::string &str){
 
 std::string SHA256::hexdigest(){
     context tmp = ctx;
-    uint32_t size = stack.size();
+    size_t size = stack.size();
     std::string last = stack + "\x80" + std::string((((size & 63) > 55)?119:55) - (size & 63), 0) + unhexlify(makehex((clen+size) << 3, 16));
     calc(last, tmp);
     return makehex(tmp.h0, 8) + makehex(tmp.h1, 8) + makehex(tmp.h2, 8) + makehex(tmp.h3, 8) + makehex(tmp.h4, 8) + makehex(tmp.h5, 8) + makehex(tmp.h6, 8) + makehex(tmp.h7, 8);

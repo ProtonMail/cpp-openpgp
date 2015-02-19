@@ -81,6 +81,8 @@
         
         private_key_->read(str_priv_key);
         
+        //std::cout << "KeyID:" << hexlify(private_key_->keyid()) << std::endl;
+        
         std::string tmp = [pub_key UTF8String];
         public_key_->read(tmp);
         

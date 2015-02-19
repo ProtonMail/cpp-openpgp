@@ -74,7 +74,7 @@ class Packet{
         uint8_t get_tag() const;
         bool get_format() const;
         unsigned int get_version() const;
-        unsigned int get_size() const;
+        size_t get_size() const;
         uint8_t get_partial() const;
 
         // Modifiers

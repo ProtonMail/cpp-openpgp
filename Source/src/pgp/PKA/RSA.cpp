@@ -38,7 +38,7 @@
 //
 std::string RSA_encrypt(const std::string & data, const std::vector <std::string> & pub){
     
-    int msg_size = (int)data.size();//Notes: Convert
+    //size_t msg_size = data.size();//Notes: Convert
     
     BIGNUM* b_e = BN_mpi2bn((unsigned char * )data.c_str(), (int)data.size(), NULL);
     uint8_t cleartext[8192];
@@ -82,11 +82,7 @@ std::string RSA_encrypt(const std::string & data, const std::vector <std::string
     //std::cout << hexlify(mpi_out) << std::endl;
     return mpi_out;
 }
-//
-//std::string RSA_encrypt(const std::string & data, const std::vector <std::string> & pub){
-//    return "";//powm(rawtompi(data), pub[1], pub[0]);
-//}
-//
+
 std::string RSA_decrypt(const std::string & data, const std::vector <std::string> & pri, const std::vector <std::string> & pub)
 {
     BIGNUM * e = BN_mpi2bn((unsigned char*)data.c_str(), (int)data.size(), NULL);
@@ -121,6 +117,11 @@ std::string RSA_decrypt(const std::string & data, const std::vector <std::string
     //std::cout << mpitohex(mpi_out) << std::endl;
     
     return mpi_out;
+}
+
+std::string RSA_sign(const std::string & data, const std::vector <std::string> & pri, const std::vector <std::string> & pub)
+{
+    return "";
 }
 
 //PGPMPI RSA_sign(const PGPMPI & data, const std::vector <PGPMPI> & pri, const std::vector <PGPMPI> & pub){

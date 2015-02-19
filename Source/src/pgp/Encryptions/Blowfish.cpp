@@ -13,7 +13,7 @@ std::string Blowfish::run(const std::string & data){
         throw std::runtime_error("Error: Data must be 64 bits in length.");
     }
 
-    uint32_t left = toint(data.substr(0, 4), 256), right = toint(data.substr(4, 4), 256);
+    uint32_t left = (uint32_t)toint(data.substr(0, 4), 256), right = (uint32_t)toint(data.substr(4, 4), 256);
     for(uint8_t i = 0; i < 16; i++){
         left ^= p[i];
         right ^= f(left);
@@ -72,16 +72,16 @@ void Blowfish::setkey(const std::string & KEY){
     for(uint8_t x = 0; x < 9; x++){
         std::string NEW = run(ini);
         ini = NEW;
-        p[x << 1] = toint(NEW.substr(0, 4), 256);
-        p[(x << 1) + 1] = toint(NEW.substr(4, 4), 256);
+        p[x << 1] = (uint32_t)toint(NEW.substr(0, 4), 256);
+        p[(x << 1) + 1] = (uint32_t)toint(NEW.substr(4, 4), 256);
     }
 
     for(uint8_t x = 0; x < 4; x++){
         for(uint8_t y = 0; y < 128; y++){
             std::string NEW = run(ini);
             ini = NEW;
-            sbox[x][y << 1] = toint(NEW.substr(0, 4), 256);
-            sbox[x][(y << 1) + 1] = toint(NEW.substr(4, 4), 256);
+            sbox[x][y << 1] = (uint32_t)toint(NEW.substr(0, 4), 256);
+            sbox[x][(y << 1) + 1] = (uint32_t)toint(NEW.substr(4, 4), 256);
         }
     }
     keyset = true;

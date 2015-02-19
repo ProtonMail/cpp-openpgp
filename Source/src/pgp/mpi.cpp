@@ -116,12 +116,14 @@ unsigned int bitsize(const std::string &a){
 //
 //// given some value, return the formatted mpi
 std::string write_MPI(const std::string & data){
+    std::cout << hexlify(data) << std::endl;
     std::string out = mpitoraw(data);
-//    std::cout << out << std::endl;
-    int i = out.size();
-    std::string t = makehex(bitsize(data), 4);
+    
+    std::cout << hexlify(out) << std::endl;
+    //int i = out.size();
+   // std::string t = makehex(bitsize(data), 4);
 //    std::cout << t << std::endl;
-    std::string p  = unhexlify(t);
+   // std::string p  = unhexlify(t);
  //   std::cout << p << std::endl;
     return unhexlify(makehex(bitsize(data), 4)) + out;
 }
@@ -134,7 +136,7 @@ std::string read_MPI(std::string & data){
     }
     size >>= 3;                                                                     // get number of octets
     std::string out = rawtompi(data.substr(2, size));                                    // turn to mpz_class
-//    std::cout << out << std::endl;
+    std::cout << hexlify(out) << std::endl;
     data = data.substr(2 + size, data.size() - 2 - size);                           // remove mpi from data
     return out;
 }

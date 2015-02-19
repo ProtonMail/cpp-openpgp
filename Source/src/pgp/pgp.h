@@ -24,7 +24,10 @@
 #include "radix64.h"
 #include "packet.h"
 
-class PGP{
+#include "base/BaseObject.h"
+
+
+class PGP : BaseObject{
 protected:
     bool armored;                                                     // default true
     uint8_t ASCII_Armor;                                              // what type of key is this
