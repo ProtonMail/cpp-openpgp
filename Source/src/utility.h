@@ -13,6 +13,10 @@
 #include <string>
 
 
-void optimized_trim(std::string& s);
+namespace pm {
+    
+    void optimized_trim(std::string& s);
+}
+
 
 #endif /* defined(__OpenPGP__utility__) */

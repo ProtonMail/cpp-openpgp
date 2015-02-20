@@ -273,6 +273,43 @@ PGPMessage encrypt_pka(const PGPPublicKey & pub, const std::string & data, const
     return out;
 }
 
+pm::PMPGPMessage encrypt_pka(const PGPPublicKey & pub, const std::string & data, const std::string & filename, const uint8_t sym_alg, const uint8_t comp, const bool mdc, const PGPSecretKey::Ptr & signer, const std::string & sig_passphrase, bool is_pm_pka)
+{
+//    std::string unencrypt_msg = [unencrypt_message UTF8String];
+//    unencrypt_msg = encode_utf8_base64_msg(unencrypt_msg);
+//    if(isDebugMode)
+//        std::cout << unencrypt_msg << std::endl;
+//    
+//    uint16_t test_BS = Symmetric_Algorithm_Block_Length.at(Symmetric_Algorithms.at(9)) >> 3;
+//    std::string prefix = unhexlify(zfill(bintohex(BBS().rand_byts(test_BS << 3)), test_BS << 1, '0'));
+//    
+//    std::string random_key = BBS().rand_byts(256);
+//    
+//    
+//    std::string aes_encrypted_data = use_OpenPGP_CFB_encrypt(9, 9, unencrypt_msg, random_key, prefix);
+//    if(isDebugMode)
+//        std::cout << aes_encrypted_data << std::endl;
+//    aes_encrypted_data = encode_utf8_base64(aes_encrypted_data);
+//    if(isDebugMode)
+//        std::cout << aes_encrypted_data << std::endl;
+//    
+//    random_key = encode_utf8_base64(random_key);
+//    if(isDebugMode)
+//        std::cout << random_key << std::endl;
+//    
+//    std::string user_pub_key = [pub_key UTF8String];
+//    PGPPublicKey pub(user_pub_key);
+//    
+//    PGPMessage encrypted_pgp = encrypt_pka(pub, random_key);
+//    std::string encrypted_random_key = encrypted_pgp.write();
+//    
+//    
+//    std::string out_msg =  protonmail_cryoto_headerMessage + aes_encrypted_data + protonmail_cryoto_tailMessage + "||" + protonmail_cryoto_headerRandomKey + encrypted_random_key + protonmail_cryoto_tailRandomKey;
+//    
+//    return [[NSString alloc] initWithUTF8String:out_msg.c_str()];
+    return pm::PMPGPMessage();
+}
+
 PGPMessage encrypt_sym(const std::string & passphrase, const std::string & data, const std::string & filename, const uint8_t sym_alg, const uint8_t comp, const bool mdc, const PGPSecretKey::Ptr & signer, const std::string & sig_passphrase){
     std::cerr << "Warning: encrypt_sym is untested. Potentially incorrect" << std::endl;
     

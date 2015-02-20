@@ -124,6 +124,8 @@ class PGPMessage : public PGP {
         bool meaningful() const;                 // whether or not the data is an OpenPGP Message
 
         PGP::Ptr clone() const;
+    
+        void done_load();
 };
 
 #endif

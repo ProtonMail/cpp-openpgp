@@ -98,7 +98,7 @@ class TestView: UIViewController {
             let e:CFTimeInterval = CACurrentMediaTime();
             let cleartext:String = pgp.decrypt_message(pgp_msg, error:nil)
             if cleartext == test_msg  {
-                //println("OK");
+                println("OK");
             }
             else
             {
@@ -122,14 +122,15 @@ class TestView: UIViewController {
         button.enabled = false;
         
         let pgp:OpenPGP = OpenPGP()
-        
+        pgp.SetupKeys(private_key_, pubKey: public_key_, pass: "123", error:nil)
         
         let test_msg:String = GetStringFromSampleFile("tiny_test_msg");
         
-        let count:Int = 50
+        let count:Int = 1
         let startTime:CFTimeInterval  = CACurrentMediaTime()
         for var i:Int = 0; i < count; ++i {
-            pgp.Test()
+            let test_msg:String = GetStringFromSampleFile("old_test")
+            pgp.decrypt_message(test_msg, error:nil)
         }
         
         let endTime:CFTimeInterval  = CACurrentMediaTime();
@@ -142,5 +143,7 @@ class TestView: UIViewController {
     }
     
     
+    
+
 }
 

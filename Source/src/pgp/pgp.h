@@ -27,7 +27,7 @@
 #include "base/BaseObject.h"
 
 
-class PGP : BaseObject{
+class PGP : public BaseObject{
 protected:
     bool armored;                                                     // default true
     uint8_t ASCII_Armor;                                              // what type of key is this

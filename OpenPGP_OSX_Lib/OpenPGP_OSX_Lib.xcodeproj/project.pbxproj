@@ -10,6 +10,9 @@
 		750188AE1A8EA11600C95352 /* OpenPGP.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 756C9BBB1A8D8A47007B2B9B /* OpenPGP.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		7519BBE31A8D868000E0E570 /* libOpenPGP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7519BBD71A8D868000E0E570 /* libOpenPGP.a */; };
 		75419DB11A969AB4002A1F25 /* BaseObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75419DB01A969AB4002A1F25 /* BaseObject.cpp */; };
+		75419DBB1A96A6FB002A1F25 /* PMPGPMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75419DB91A96A6FB002A1F25 /* PMPGPMessage.cpp */; };
+		75419DC21A96BEDF002A1F25 /* pgp_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75419DC11A96BEDF002A1F25 /* pgp_exception.cpp */; };
+		75419DC41A96CAF7002A1F25 /* pgp_exception_define.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75419DC31A96CAF7002A1F25 /* pgp_exception_define.cpp */; };
 		756C9BBD1A8D8A47007B2B9B /* OpenPGP.mm in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BBC1A8D8A47007B2B9B /* OpenPGP.mm */; };
 		756C9CC21A8D8AF7007B2B9B /* base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BC71A8D8AF7007B2B9B /* base64.cpp */; };
 		756C9CC31A8D8AF7007B2B9B /* openpgp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BCA1A8D8AF7007B2B9B /* openpgp.cpp */; };
@@ -169,6 +172,12 @@
 		75419DB51A969C70002A1F25 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		75419DB61A969C70002A1F25 /* RFC4880.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFC4880.h; sourceTree = "<group>"; };
 		75419DB81A969C70002A1F25 /* openpgp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = openpgp.h; sourceTree = "<group>"; };
+		75419DB91A96A6FB002A1F25 /* PMPGPMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PMPGPMessage.cpp; sourceTree = "<group>"; };
+		75419DBA1A96A6FB002A1F25 /* PMPGPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMPGPMessage.h; sourceTree = "<group>"; };
+		75419DBE1A96B558002A1F25 /* pgp_exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pgp_exception.h; sourceTree = "<group>"; };
+		75419DC01A96B831002A1F25 /* pgp_exception_define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pgp_exception_define.h; sourceTree = "<group>"; };
+		75419DC11A96BEDF002A1F25 /* pgp_exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pgp_exception.cpp; sourceTree = "<group>"; };
+		75419DC31A96CAF7002A1F25 /* pgp_exception_define.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pgp_exception_define.cpp; sourceTree = "<group>"; };
 		756C9BBB1A8D8A47007B2B9B /* OpenPGP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPGP.h; sourceTree = "<group>"; };
 		756C9BBC1A8D8A47007B2B9B /* OpenPGP.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenPGP.mm; sourceTree = "<group>"; };
 		756C9BC71A8D8AF7007B2B9B /* base64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base64.cpp; sourceTree = "<group>"; };
@@ -510,8 +519,21 @@
 			isa = PBXGroup;
 			children = (
 				75419DB81A969C70002A1F25 /* openpgp.h */,
+				75419DB91A96A6FB002A1F25 /* PMPGPMessage.cpp */,
+				75419DBA1A96A6FB002A1F25 /* PMPGPMessage.h */,
 			);
 			path = openpgp;
+			sourceTree = "<group>";
+		};
+		75419DBC1A96B54B002A1F25 /* exception */ = {
+			isa = PBXGroup;
+			children = (
+				75419DC31A96CAF7002A1F25 /* pgp_exception_define.cpp */,
+				75419DC11A96BEDF002A1F25 /* pgp_exception.cpp */,
+				75419DC01A96B831002A1F25 /* pgp_exception_define.h */,
+				75419DBE1A96B558002A1F25 /* pgp_exception.h */,
+			);
+			path = exception;
 			sourceTree = "<group>";
 		};
 		756C9BBE1A8D8AF7007B2B9B /* Source */ = {
@@ -530,6 +552,7 @@
 		756C9BBF1A8D8AF7007B2B9B /* include */ = {
 			isa = PBXGroup;
 			children = (
+				75419DBC1A96B54B002A1F25 /* exception */,
 				75419DB21A969C70002A1F25 /* base */,
 				75419DB41A969C70002A1F25 /* config */,
 				75419DB71A969C70002A1F25 /* openpgp */,
@@ -965,6 +988,7 @@
 				756C9D241A8D8AF7007B2B9B /* Tag3.cpp in Sources */,
 				756C9CFF1A8D8AF7007B2B9B /* Tag2Sub15.cpp in Sources */,
 				756C9CE21A8D8AF7007B2B9B /* pgpzlib.cpp in Sources */,
+				75419DC41A96CAF7002A1F25 /* pgp_exception_define.cpp in Sources */,
 				756C9CDF1A8D8AF7007B2B9B /* PGPKey.cpp in Sources */,
 				75419DB11A969AB4002A1F25 /* BaseObject.cpp in Sources */,
 				756C9D311A8D8AF7007B2B9B /* rsa_key.cpp in Sources */,
@@ -1045,6 +1069,7 @@
 				756C9CE81A8D8AF7007B2B9B /* private_key.cpp in Sources */,
 				756C9CF11A8D8AF7007B2B9B /* SHA2_Functions.cpp in Sources */,
 				756C9D091A8D8AF7007B2B9B /* Tag2Sub24.cpp in Sources */,
+				75419DBB1A96A6FB002A1F25 /* PMPGPMessage.cpp in Sources */,
 				756C9CDC1A8D8AF7007B2B9B /* pgpbzip2.cpp in Sources */,
 				756C9CF31A8D8AF7007B2B9B /* SHA512.cpp in Sources */,
 				756C9D061A8D8AF7007B2B9B /* Tag2Sub21.cpp in Sources */,
@@ -1053,6 +1078,7 @@
 				756C9CC41A8D8AF7007B2B9B /* BBS.cpp in Sources */,
 				756C9D151A8D8AF7007B2B9B /* Tag2Sub6.cpp in Sources */,
 				756C9D251A8D8AF7007B2B9B /* Tag4.cpp in Sources */,
+				75419DC21A96BEDF002A1F25 /* pgp_exception.cpp in Sources */,
 				756C9D1C1A8D8AF7007B2B9B /* Tag11.cpp in Sources */,
 				756C9D231A8D8AF7007B2B9B /* Tag2.cpp in Sources */,
 				756C9D131A8D8AF7007B2B9B /* Tag2Sub4.cpp in Sources */,

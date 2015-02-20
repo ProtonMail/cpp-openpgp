@@ -40,9 +40,9 @@ integer::integer(const bool & b) :
     _value(1, b)
 {}
 
-integer::integer(const uint8_t & val){
-    setFromZ(val, 8);
-}
+//integer::integer(const uint8_t & val){
+//    setFromZ(val, 8);
+//}
 
 integer::integer(const uint16_t & val){
     setFromZ(val, 16);
@@ -56,9 +56,9 @@ integer::integer(const uint64_t & val){
     setFromZ(val, 64);
 }
 
-integer::integer(const int8_t & val){
-    setFromZ(val, 8);
-}
+//integer::integer(const int8_t & val){
+//    setFromZ(val, 8);
+//}
 
 integer::integer(const int16_t & val){
     setFromZ(val, 16);

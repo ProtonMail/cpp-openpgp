@@ -41,6 +41,7 @@ THE SOFTWARE.
 //#include "PKCS1.h"
 //#include "revoke.h"
 #include "Tag6.h"
+#include "PMPGPMessage.h"
 
 Tag6::Ptr find_encrypting_key(const PGP & k);
 //std::vector <std::string> pka_encrypt(const uint8_t pka, std::string data, const std::vector <std::string> & pub);
@@ -59,5 +60,8 @@ std::string encrypt_pm_pka(const PGPPublicKey & pub, const std::string & data);
 
 
 PGPMessage encrypt_pka(const PGPPublicKey & pub, const std::string & data, const std::string & filename = "", const uint8_t sym_alg = 9, const uint8_t comp = 2, const bool mdc = true, const PGPSecretKey::Ptr & signer = nullptr, const std::string & sig_passphrase = "");
+
+//pm::PMPGPMessage encrypt_pka(const PGPPublicKey & pub, const std::string & data, const std::string & filename = "", const uint8_t sym_alg = 9, const uint8_t comp = 2, const bool mdc = true, const PGPSecretKey::Ptr & signer = nullptr, const std::string & sig_passphrase = "", bool is_pm_pka = true);
+
 PGPMessage encrypt_sym(const std::string & passphrase, const std::string & data, const std::string & filename = "", const uint8_t sym_alg = 9, const uint8_t comp = 2, const bool mdc = true, const PGPSecretKey::Ptr & signer = nullptr, const std::string & sig_passphrase = "");
 #endif

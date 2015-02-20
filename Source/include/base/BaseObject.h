@@ -19,6 +19,10 @@ private:
 public:
     void set_is_debug(bool debug);
     bool get_is_debug();
+    
+    BaseObject();
+    BaseObject(bool debug);
+    ~BaseObject();
 };
 
 #endif /* defined(__OpenPGP_OSX_Lib__BaseObject__) */

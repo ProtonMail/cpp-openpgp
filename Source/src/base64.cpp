@@ -150,7 +150,7 @@ std::string encode_utf8_base64(std::string & in)
     std::string decoded = base64_encode((unsigned char*)base_decoded.c_str(), (int)base_decoded.size());
     
   //  std::cout << decoded<<std::endl;
-    optimized_trim(decoded);
+    pm::optimized_trim(decoded);
     
     return decoded;
 }
@@ -168,7 +168,7 @@ std::string encode_utf8_base64_msg(std::string & in)
     std::string decoded = base64_encode((unsigned char*)base_decoded.c_str(), (int)base_decoded.size());
     
   //  std::cout << decoded<<std::endl;
-    optimized_trim(decoded);
+    pm::optimized_trim(decoded);
     
     return decoded;
 
@@ -176,7 +176,7 @@ std::string encode_utf8_base64_msg(std::string & in)
 
 std::string decode_utf8_base64(std::string & in)
 {
-    optimized_trim(in);
+    pm::optimized_trim(in);
     //std::cout << in<<std::endl;
     std::string aaa = base64_decode(in); //atob(in); //decode
     //std::cout << hexlify( aaa) <<std::endl;
@@ -196,7 +196,7 @@ std::string decode_utf8_base64(std::string & in)
 
 std::string decode_utf8_base64_msg(std::string & in)
 {
-    optimized_trim(in);
+    pm::optimized_trim(in);
     //std::cout << in<<std::endl;
     std::string aaa = base64_decode(in); //atob(in); //decode
     //std::cout << hexlify( aaa) <<std::endl;

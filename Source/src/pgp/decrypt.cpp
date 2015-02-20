@@ -2,6 +2,9 @@
 #include "PKCS1.h"
 #include "decrypt.h"
 #include "mpi.h"
+#include "pgp_exception.h"
+#include "base64.h"
+
 
 Tag5::Ptr find_decrypting_key(const PGPSecretKey & k, const std::string & keyid){
     for(Packet::Ptr const & p : k.get_packets()){
@@ -265,6 +268,53 @@ std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const st
 
     return out;
 }
+
+
+std::string decrypt_pka(const PGPSecretKey & pri, const pm::PMPGPMessage & m, const std::string & passphrase, const bool writefile, const PGPPublicKey::Ptr & verify)
+{
+    bool isDebugMode = false;
+    if(m.get_is_pm_pka())
+    {
+        PGPMessage pgp_msg = m;
+        std::string random_key = decrypt_pka(pri, pgp_msg, passphrase, writefile, verify);
+        
+        if(isDebugMode)
+            std::cout << random_key << std::endl;
+        random_key = decode_utf8_base64(random_key);
+        if(isDebugMode)
+            std::cout << random_key.length() << std::endl;
+        if(isDebugMode)
+            std::cout << random_key << std::endl;
+        
+        
+        std::string data = use_OpenPGP_CFB_decrypt(9, 9, m.get_encrypt_msg(), random_key, false);
+        if(isDebugMode)
+            std::cout << data.length() << std::endl;
+        if(isDebugMode)
+            std::cout << data << std::endl;
+        
+        //data = base64_decode(data);
+        auto data2 = decode_utf8_base64_msg(data);
+        
+        if(isDebugMode)
+        {
+            std::cout << data.length() << std::endl;
+            std::cout << data << std::endl;
+            
+            std::cout << data2.length() << std::endl;
+            std::cout << data2 << std::endl;
+        }
+        
+        
+        return data2;
+    }
+    else
+    {
+        PGPMessage pgp_msg = m;
+        return decrypt_pka(pri, pgp_msg, passphrase, writefile, verify);
+    }
+}
+
 
 std::string decrypt_sym(const PGPMessage & m, const std::string & passphrase, const bool writefile, const PGPPublicKey::Ptr & verify){
     std::cerr << "Warning: decrypt_sym is untested. Potentially incorrect" << std::endl;

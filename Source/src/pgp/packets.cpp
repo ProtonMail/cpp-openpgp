@@ -8,7 +8,7 @@ std::string read_packet_header(std::string & data, uint8_t & tag, bool & format,
     uint8_t ctb = data[0];		                                           // Name "ctb" came from Version 2 [RFC 1991]
     format = ctb & 0x40;                                                   // get packet length type (OLD = false; NEW = true)
     unsigned int remove = 1;                                               // how much more stuff to remove from raw string
-    unsigned int length = 0;                                               // length of the data without the header
+    size_t length = 0;                                               // length of the data without the header
 
     if (!partial){                                                         // if partial continue packets have not been found
         if (!(ctb & 0x80)){
@@ -159,7 +159,7 @@ Packet::Ptr read_packet_raw(const bool format, const uint8_t tag, uint8_t & part
     out -> set_tag(tag);
     out -> set_format(format);
     out -> set_partial(partial);
-    out -> set_size(packet_data.size());
+    out -> set_size((unsigned int)packet_data.size());
     out -> read(packet_data);
 
     if (partial){

@@ -56,7 +56,10 @@ class integer{
         bool _sign;                                                 // false = positive, true = negative
         REP _value;                                                 // holds the actual _value in REP
 
-        template <typename Z> void setFromZ(Z val, const uint16_t & bits){
+
+    
+        template <typename Z>
+        void setFromZ(Z val, const uint16_t & bits){
             _value.clear();
             _sign = false;
 
@@ -83,11 +86,11 @@ class integer{
 
         // Constructors for Numerical Input
         integer(const bool & b);
-        integer(const uint8_t & val);
+        //integer(const uint8_t & val);
         integer(const uint16_t & val);
         integer(const uint32_t & val);
         integer(const uint64_t & val);
-        integer(const int8_t & val);
+        //integer(const int8_t & val);
         integer(const int16_t & val);
         integer(const int32_t & val);
         integer(const int64_t & val);

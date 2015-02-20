@@ -123,6 +123,15 @@ void PGPMessage::decompress() {
     }
 }
 
+void PGPMessage::done_load()
+{
+    decompress();
+    
+    if ((ASCII_Armor == 255) && meaningful()){
+        ASCII_Armor = 0;
+    }
+}
+
 PGPMessage::PGPMessage():
     PGP(),
     comp(nullptr)
