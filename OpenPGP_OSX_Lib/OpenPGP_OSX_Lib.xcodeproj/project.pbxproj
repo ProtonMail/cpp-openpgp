@@ -1222,6 +1222,7 @@
 		7519BBEC1A8D868000E0E570 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_OPTIMIZATION_LEVEL = s;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = OpenPGP;
 				SKIP_INSTALL = YES;

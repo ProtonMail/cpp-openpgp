@@ -38,8 +38,9 @@ THE SOFTWARE.
 #include "consts.h"
 #include "mpi.h"
 #include "pgptime.h"
+#include "BaseObject.h"
 
-class Packet{
+class Packet : public BaseObject{
     protected:
         uint8_t tag;        // RFC 4880 sec 4.3
         uint8_t version;

@@ -45,11 +45,11 @@ __RCSID("$NetBSD: openssl_crypto.c,v 1.32 2010/11/07 06:56:52 agc Exp $");
 #endif
 #define NETPGP_BUFSIZ	8192
 
-
+#include "BaseObject.h"
 
 namespace pgp {
 
-class openpgp {
+    class openpgp : public BaseObject {
     
 public:
     openpgp();

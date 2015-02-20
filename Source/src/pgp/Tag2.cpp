@@ -192,9 +192,13 @@ void Tag2::read(std::string & data, const uint8_t part){
         unhashed_subpackets = read_subpackets(unhashed);
 
         left16 = data.substr(0, 2);
-        std::cout << "left16:" << hexlify(left16) << std::endl;
+        if(get_is_debug())
+            std::cout << "left16:" << hexlify(left16) << std::endl;
+       
         data = data.substr(2, data.size() - 2);
-        std::cout << "data:" << hexlify(data) << std::endl;
+        
+        if(get_is_debug())
+            std::cout << "data:" << hexlify(data) << std::endl;
 
         if (pka < 4)
             mpi.push_back(read_MPI(data));              // RSA m**d mod n

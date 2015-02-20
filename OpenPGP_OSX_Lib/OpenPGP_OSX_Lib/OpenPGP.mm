@@ -52,7 +52,11 @@
     if ( self )
     {
         private_key_ = new PGPSecretKey();
+        private_key_->set_is_debug(false);
+        
         public_key_ = new PGPPublicKey();
+        public_key_->set_is_debug(false);
+        
         isDebugMode = false;
         IsPasspharseRight = false;
         Passpharse = @"";

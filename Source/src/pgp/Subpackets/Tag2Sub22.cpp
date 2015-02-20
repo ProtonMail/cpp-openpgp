@@ -13,7 +13,7 @@ Tag2Sub22::Tag2Sub22(std::string & data):
 
 void Tag2Sub22::read(std::string & data){
     pca = data;
-    //TODO::cleanup
+    if(get_is_debug())
     {
         std::cout<< "Tag2Sub22-Pca: " << hexlify(pca) << std::endl;
     }

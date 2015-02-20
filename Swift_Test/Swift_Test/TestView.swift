@@ -124,13 +124,24 @@ class TestView: UIViewController {
         let pgp:OpenPGP = OpenPGP()
         pgp.SetupKeys(private_key_, pubKey: public_key_, pass: "123", error:nil)
         
-        let test_msg:String = GetStringFromSampleFile("tiny_test_msg");
-        
-        let count:Int = 1
+        let count:Int = 50
         let startTime:CFTimeInterval  = CACurrentMediaTime()
         for var i:Int = 0; i < count; ++i {
-            let test_msg:String = GetStringFromSampleFile("old_test")
-            pgp.decrypt_message(test_msg, error:nil)
+            let test_msg:String = GetStringFromSampleFile("new_test_enc_message_compressed")
+            let cleartext:String = pgp.decrypt_message(test_msg, error:nil)
+            
+//            let new_enc_msg = pgp.encrypt_message(cleartext, error: nil)
+//            //println(new_enc_msg)
+//            let new_clear_txt = pgp.decrypt_message(new_enc_msg, error: nil)
+//            //println(new_clear_txt)
+//            if(new_clear_txt == cleartext)
+//            {
+//                println("ok")
+//            }
+//            else
+//            {
+//                println("error")
+//            }
         }
         
         let endTime:CFTimeInterval  = CACurrentMediaTime();

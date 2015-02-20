@@ -15,11 +15,6 @@ void BaseObject::set_is_debug(bool debug)
     is_debug_ = debug;
 }
 
-bool BaseObject::get_is_debug()
-{
-    return is_debug_;
-}
-
 BaseObject::BaseObject()
 {
     is_debug_ = false;

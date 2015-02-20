@@ -13,7 +13,7 @@ Tag2Sub16::Tag2Sub16(std::string & data):
 
 void Tag2Sub16::read(std::string & data){
     keyid = data;
-    //TODO cleanup
+    if(get_is_debug())
     {
         std::cout<< "Tag2Sub16-KeyID:" << hexlify(keyid) << std::endl;
     }

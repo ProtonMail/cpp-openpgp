@@ -46,21 +46,21 @@ namespace pm {
         //detatct header check protonmail header.
         std::string::size_type count = 30;
         
-        std::size_t start_enc_msg = data.find_first_of(protonmail_cryoto_headerMessage.c_str(), 0, count);
+        std::size_t start_enc_msg = data.find(protonmail_cryoto_headerMessage.c_str(), 0, count);
         if(start_enc_msg == std::string::npos)
         {
             is_pm_encrypt_pka_ = false;
         }
-        start_enc_msg += protonmail_cryoto_headerMessage.length();
-        std::size_t end_enc_msg = data.find(protonmail_cryoto_tailMessage);
-        if(end_enc_msg == std::string::npos)
-        {
-            is_pm_encrypt_pka_ = false;
-        }
-        end_enc_msg -= start_enc_msg;
-        
         if(is_pm_encrypt_pka_)
         {
+            start_enc_msg += protonmail_cryoto_headerMessage.length();
+            std::size_t end_enc_msg = data.find(protonmail_cryoto_tailMessage);
+            if(end_enc_msg == std::string::npos)
+            {
+                is_pm_encrypt_pka_ = false;
+            }
+            end_enc_msg -= start_enc_msg;
+            
             encrypt_message_ = data.substr(start_enc_msg, end_enc_msg);
             if(get_is_debug())
                 std::cout << encrypt_message_ << std::endl;

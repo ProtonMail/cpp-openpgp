@@ -208,8 +208,8 @@ PGPMessage encrypt_pka(const PGPPublicKey & pub, const std::string & data, const
     }
     
     std::vector <std::string> mpi = public_key -> get_mpi();
-    std::cout<< hexlify(mpi[0]) << std::endl;
-    std::cout<< hexlify(mpi[1]) << std::endl;
+    //std::cout<< hexlify(mpi[0]) << std::endl;
+    //std::cout<< hexlify(mpi[1]) << std::endl;
 
     
     Tag1::Ptr tag1 = std::make_shared<Tag1>();

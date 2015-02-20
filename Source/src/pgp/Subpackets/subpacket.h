@@ -34,8 +34,9 @@ THE SOFTWARE.
 #include "includes.h"
 #include "consts.h"
 #include "pgptime.h"
+#include "BaseObject.h"
 
-class Subpacket{
+class Subpacket : public BaseObject{
     protected:
         uint8_t type;
         unsigned long size; // only used for displaying. recalculated when writing

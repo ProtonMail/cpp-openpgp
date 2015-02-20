@@ -18,7 +18,10 @@ private:
     
 public:
     void set_is_debug(bool debug);
-    bool get_is_debug();
+    inline bool get_is_debug() const
+    {
+        return is_debug_;
+    }
     
     BaseObject();
     BaseObject(bool debug);

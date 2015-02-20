@@ -189,7 +189,7 @@ void Key::read_common(std::string & data){
         
         std::string n = read_MPI(data);
         
-        //TODO:: cleanup
+        if(get_is_debug())
         {
             std::cout << "N:" << hexlify(n) << std::endl;
         }
@@ -197,7 +197,7 @@ void Key::read_common(std::string & data){
         mpi.push_back(n);
         std::string e =  read_MPI(data);
         
-        //TODO:: cleanup
+        if(get_is_debug())
         {
             std::cout << "E:" << hexlify(e) << std::endl;
         }
@@ -345,7 +345,10 @@ std::string Key::get_fingerprint() const{
     }
     else if (version == 4){
         std::string packet = raw_common();
-        std::cout << hexlify(SHA1("\x99" + unhexlify(makehex(packet.size(), 4)) + packet).digest()) << std::endl;
+       
+        if (get_is_debug())
+            std::cout << hexlify(SHA1("\x99" + unhexlify(makehex(packet.size(), 4)) + packet).digest()) << std::endl;
+        
         return SHA1("\x99" + unhexlify(makehex(packet.size(), 4)) + packet).digest();
     }
     else{

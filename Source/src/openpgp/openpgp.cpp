@@ -185,8 +185,9 @@ void openpgp::generate_new_key(int bits, std::string passphrase, std::string use
     sec -> set_secret(use_normal_CFB_encrypt(9, secret + use_hash(2, secret), key, sec -> get_IV()));
     
     std::string keyid = sec -> get_keyid();
-    //TODO:: cleanup
-    std::cout << "KeyID:" << hexlify(keyid) << std::endl;
+    
+    if(get_is_debug())
+        std::cout << "KeyID:" << hexlify(keyid) << std::endl;
     
     Tag13::Ptr uid = std::make_shared<Tag13>();
     uid -> set_name(userid);
@@ -236,8 +237,8 @@ void openpgp::generate_new_key(int bits, std::string passphrase, std::string use
 
 
     
-    //TODO:: cleanup
-    std::cout << "sig_hash:" << hexlify(sig_hash) << std::endl;
+    if(get_is_debug())
+        std::cout << "sig_hash:" << hexlify(sig_hash) << std::endl;
     
     // Secret Subkey Packet
     Tag7::Ptr ssb = std::make_shared<Tag7>();

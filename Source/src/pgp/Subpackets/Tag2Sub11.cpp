@@ -13,8 +13,7 @@ Tag2Sub11::Tag2Sub11(std::string & data):
 
 void Tag2Sub11::read(std::string & data){
     psa = data;
-    //TODO : cleanup
-    {
+    if (get_is_debug()) {
         std::cout<< "Tag2Sub11-PSA: " << hexlify(psa) << std::endl;
     }
     size = data.size();
