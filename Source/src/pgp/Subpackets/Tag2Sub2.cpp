@@ -12,7 +12,7 @@ Tag2Sub2::Tag2Sub2(std::string & data):
 }
 
 void Tag2Sub2::read(std::string & data){
-    time = toint(data, 256);
+    time = (time_t)toint(data, 256);
 }
 
 std::string Tag2Sub2::show(const uint8_t indents, const uint8_t indent_size) const{

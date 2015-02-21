@@ -156,6 +156,7 @@
             return nil;
         }
         std::string unencrypt_msg = [unencrypt_message UTF8String];
+
         PGPMessage encrypted_pgp = encrypt_pka(*public_key_, unencrypt_msg);
         std::string encrypt_message = encrypted_pgp.write();
         return [[NSString alloc] initWithUTF8String:encrypt_message.c_str()];

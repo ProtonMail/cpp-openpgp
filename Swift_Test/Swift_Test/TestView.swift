@@ -31,7 +31,7 @@ class TestView: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-
+    
     
     
     
@@ -50,7 +50,7 @@ class TestView: UIViewController {
         for var i:Int32 = 0; i < count; ++i {
             let s:CFTimeInterval = CACurrentMediaTime();
             
-           let pgp_msg:String = pgp.encrypt_message(test_msg, error:nil)
+            let pgp_msg:String = pgp.encrypt_message(test_msg, error:nil)
             
             let e:CFTimeInterval = CACurrentMediaTime();
             
@@ -79,7 +79,7 @@ class TestView: UIViewController {
         log_lable_.text = NSString(format: "%d Times(ENC->DEC) --- Total Runtime: %g s --- Avg %g s", count, total , avg)
         button.enabled = true;
     }
-
+    
     @IBAction func tiny_test_clicked(sender: AnyObject) {
         let button:UIButton = sender as UIButton;
         
@@ -87,7 +87,7 @@ class TestView: UIViewController {
         
         let pgp:OpenPGP = OpenPGP();
         pgp.SetupKeys(private_key_, pubKey: public_key_, pass: "123", error: nil)
-
+        
         let test_msg:String = GetStringFromSampleFile("tiny_test_msg");
         
         let count:Int = 50
@@ -113,6 +113,24 @@ class TestView: UIViewController {
         log_lable_.text = NSString(format: "%d Times(ENC->DEC) --- Total Runtime: %g s --- Avg %g s", count, total , avg);
         button.enabled = true;
     }
+    @IBAction func other_test_clicked(sender: AnyObject) {
+        let button:UIButton = sender as UIButton;
+        
+        button.enabled = false;
+        
+        public_key_ = GetStringFromSampleFile("PublicKey")
+        
+        var test_private_key:String = GetStringFromSampleFile("pgp_tool_private_key")
+        let pgp:OpenPGP = OpenPGP()
+        pgp.SetupKeys(test_private_key, pubKey: public_key_, pass: "123", error:nil)
+        
+        
+        
+        pgp.Test();
+        
+        
+        button.enabled = true;
+    }
     
     @IBAction func generate_new_key_clicked(sender: AnyObject) {
         
@@ -124,24 +142,24 @@ class TestView: UIViewController {
         let pgp:OpenPGP = OpenPGP()
         pgp.SetupKeys(private_key_, pubKey: public_key_, pass: "123", error:nil)
         
-        let count:Int = 50
+        let count:Int = 10
         let startTime:CFTimeInterval  = CACurrentMediaTime()
         for var i:Int = 0; i < count; ++i {
-            let test_msg:String = GetStringFromSampleFile("new_test_enc_message_compressed")
+            let test_msg:String = GetStringFromSampleFile("new_test_enc_message")
             let cleartext:String = pgp.decrypt_message(test_msg, error:nil)
             
-//            let new_enc_msg = pgp.encrypt_message(cleartext, error: nil)
-//            //println(new_enc_msg)
-//            let new_clear_txt = pgp.decrypt_message(new_enc_msg, error: nil)
-//            //println(new_clear_txt)
-//            if(new_clear_txt == cleartext)
-//            {
-//                println("ok")
-//            }
-//            else
-//            {
-//                println("error")
-//            }
+            //let new_enc_msg = pgp.encrypt_message(cleartext, error: nil)
+            //            //println(new_enc_msg)
+            //            let new_clear_txt = pgp.decrypt_message(new_enc_msg, error: nil)
+            //            //println(new_clear_txt)
+            //            if(new_clear_txt == cleartext)
+            //            {
+            //                println("ok")
+            //            }
+            //            else
+            //            {
+            //                println("error")
+            //            }
         }
         
         let endTime:CFTimeInterval  = CACurrentMediaTime();
@@ -150,11 +168,11 @@ class TestView: UIViewController {
         let avg:Double = (endTime - startTime)/cot;
         log_lable_.text = NSString(format: "%d Times(ENC->DEC) --- Total Runtime: %g s --- Avg %g s", count, total , avg);
         button.enabled = true;
-       
+        
     }
     
     
     
-
+    
 }
 

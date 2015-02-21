@@ -170,7 +170,7 @@ Packet & Packet::operator=(const Packet & copy)
 void Key::read_common(std::string & data){
     size = data.size();
     version = data[0];
-    time = toint(data.substr(1, 4), 256);
+    time = (time_t)toint(data.substr(1, 4), 256);
     
     if (version < 4){
         expire = (data[5] << 8) + data[6];

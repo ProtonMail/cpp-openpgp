@@ -13,6 +13,246 @@
 		75419DBB1A96A6FB002A1F25 /* PMPGPMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75419DB91A96A6FB002A1F25 /* PMPGPMessage.cpp */; };
 		75419DC21A96BEDF002A1F25 /* pgp_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75419DC11A96BEDF002A1F25 /* pgp_exception.cpp */; };
 		75419DC41A96CAF7002A1F25 /* pgp_exception_define.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75419DC31A96CAF7002A1F25 /* pgp_exception_define.cpp */; };
+		75419DC51A97AF0E002A1F25 /* OpenPGP.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 756C9BBB1A8D8A47007B2B9B /* OpenPGP.h */; };
+		75419DC61A97AFC3002A1F25 /* pgp_exception_define.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75419DC31A96CAF7002A1F25 /* pgp_exception_define.cpp */; };
+		75419DC71A97AFC3002A1F25 /* pgp_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75419DC11A96BEDF002A1F25 /* pgp_exception.cpp */; };
+		75419DCE1A97AFC3002A1F25 /* PMPGPMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75419DB91A96A6FB002A1F25 /* PMPGPMessage.cpp */; };
+		75419DD01A97AFC3002A1F25 /* base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BC71A8D8AF7007B2B9B /* base64.cpp */; };
+		75419DD21A97AFC3002A1F25 /* BaseObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75419DB01A969AB4002A1F25 /* BaseObject.cpp */; };
+		75419DD31A97AFC3002A1F25 /* openpgp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BCA1A8D8AF7007B2B9B /* openpgp.cpp */; };
+		75419DD41A97AFC3002A1F25 /* BBS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BCC1A8D8AF7007B2B9B /* BBS.cpp */; };
+		75419DD61A97AFC3002A1F25 /* cfb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BCE1A8D8AF7007B2B9B /* cfb.cpp */; };
+		75419DD91A97AFC3002A1F25 /* Compress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BD11A8D8AF7007B2B9B /* Compress.cpp */; };
+		75419DDD1A97AFC3002A1F25 /* decrypt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BD51A8D8AF7007B2B9B /* decrypt.cpp */; };
+		75419DE01A97AFC3002A1F25 /* encrypt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BD81A8D8AF7007B2B9B /* encrypt.cpp */; };
+		75419DE21A97AFC3002A1F25 /* AES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BDB1A8D8AF7007B2B9B /* AES.cpp */; };
+		75419DE51A97AFC3002A1F25 /* Blowfish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BDE1A8D8AF7007B2B9B /* Blowfish.cpp */; };
+		75419DE81A97AFC3002A1F25 /* Camellia.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BE11A8D8AF7007B2B9B /* Camellia.cpp */; };
+		75419DEB1A97AFC3002A1F25 /* CAST128.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BE41A8D8AF7007B2B9B /* CAST128.cpp */; };
+		75419DEF1A97AFC3002A1F25 /* DES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BE81A8D8AF7007B2B9B /* DES.cpp */; };
+		75419DF31A97AFC3002A1F25 /* IDEA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BEC1A8D8AF7007B2B9B /* IDEA.cpp */; };
+		75419DF51A97AFC3002A1F25 /* SymAlg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BEE1A8D8AF7007B2B9B /* SymAlg.cpp */; };
+		75419DF71A97AFC3002A1F25 /* TDES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BF01A8D8AF7007B2B9B /* TDES.cpp */; };
+		75419DF91A97AFC3002A1F25 /* Twofish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BF21A8D8AF7007B2B9B /* Twofish.cpp */; };
+		75419DFC1A97AFC3002A1F25 /* Hash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BF51A8D8AF7007B2B9B /* Hash.cpp */; };
+		75419DFE1A97AFC3002A1F25 /* Hashes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BF71A8D8AF7007B2B9B /* Hashes.cpp */; };
+		75419E001A97AFC3002A1F25 /* includes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BF91A8D8AF7007B2B9B /* includes.cpp */; };
+		75419E021A97AFC3002A1F25 /* integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BFB1A8D8AF7007B2B9B /* integer.cpp */; };
+		75419E041A97AFC3002A1F25 /* MD5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BFD1A8D8AF7007B2B9B /* MD5.cpp */; };
+		75419E071A97AFC3002A1F25 /* mpi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C001A8D8AF7007B2B9B /* mpi.cpp */; };
+		75419E091A97AFC3002A1F25 /* packet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C021A8D8AF7007B2B9B /* packet.cpp */; };
+		75419E0B1A97AFC3002A1F25 /* packets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C041A8D8AF7007B2B9B /* packets.cpp */; };
+		75419E0D1A97AFC3002A1F25 /* Partial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C061A8D8AF7007B2B9B /* Partial.cpp */; };
+		75419E0F1A97AFC3002A1F25 /* pgp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C081A8D8AF7007B2B9B /* pgp.cpp */; };
+		75419E111A97AFC3002A1F25 /* pgpbzip2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C0A1A8D8AF7007B2B9B /* pgpbzip2.cpp */; };
+		75419E131A97AFC3002A1F25 /* PGPCleartextSignature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C0C1A8D8AF7007B2B9B /* PGPCleartextSignature.cpp */; };
+		75419E151A97AFC3002A1F25 /* PGPDetachedSignature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C0E1A8D8AF7007B2B9B /* PGPDetachedSignature.cpp */; };
+		75419E171A97AFC3002A1F25 /* PGPKey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C101A8D8AF7007B2B9B /* PGPKey.cpp */; };
+		75419E191A97AFC3002A1F25 /* PGPMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C121A8D8AF7007B2B9B /* PGPMessage.cpp */; };
+		75419E1B1A97AFC3002A1F25 /* pgptime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C141A8D8AF7007B2B9B /* pgptime.cpp */; };
+		75419E1D1A97AFC3002A1F25 /* pgpzlib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C161A8D8AF7007B2B9B /* pgpzlib.cpp */; };
+		75419E1F1A97AFC3002A1F25 /* DSA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C191A8D8AF7007B2B9B /* DSA.cpp */; };
+		75419E211A97AFC3002A1F25 /* ElGamal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C1B1A8D8AF7007B2B9B /* ElGamal.cpp */; };
+		75419E231A97AFC3002A1F25 /* PKA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C1D1A8D8AF7007B2B9B /* PKA.cpp */; };
+		75419E251A97AFC3002A1F25 /* RSA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C1F1A8D8AF7007B2B9B /* RSA.cpp */; };
+		75419E271A97AFC3002A1F25 /* PKCS1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C211A8D8AF7007B2B9B /* PKCS1.cpp */; };
+		75419E291A97AFC3002A1F25 /* private_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C231A8D8AF7007B2B9B /* private_key.cpp */; };
+		75419E2B1A97AFC3002A1F25 /* public_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C251A8D8AF7007B2B9B /* public_key.cpp */; };
+		75419E2D1A97AFC3002A1F25 /* radix64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C271A8D8AF7007B2B9B /* radix64.cpp */; };
+		75419E2F1A97AFC3002A1F25 /* revoke.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C291A8D8AF7007B2B9B /* revoke.cpp */; };
+		75419E311A97AFC3002A1F25 /* RIPEMD160.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C2B1A8D8AF7007B2B9B /* RIPEMD160.cpp */; };
+		75419E351A97AFC3002A1F25 /* s2k.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C2F1A8D8AF7007B2B9B /* s2k.cpp */; };
+		75419E371A97AFC3002A1F25 /* SHA1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C311A8D8AF7007B2B9B /* SHA1.cpp */; };
+		75419E391A97AFC3002A1F25 /* SHA224.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C331A8D8AF7007B2B9B /* SHA224.cpp */; };
+		75419E3B1A97AFC3002A1F25 /* SHA256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C351A8D8AF7007B2B9B /* SHA256.cpp */; };
+		75419E3E1A97AFC3002A1F25 /* SHA2_Functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C381A8D8AF7007B2B9B /* SHA2_Functions.cpp */; };
+		75419E401A97AFC3002A1F25 /* SHA384.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C3A1A8D8AF7007B2B9B /* SHA384.cpp */; };
+		75419E421A97AFC3002A1F25 /* SHA512.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C3C1A8D8AF7007B2B9B /* SHA512.cpp */; };
+		75419E451A97AFC3002A1F25 /* sigcalc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C3F1A8D8AF7007B2B9B /* sigcalc.cpp */; };
+		75419E471A97AFC3002A1F25 /* sign.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C411A8D8AF7007B2B9B /* sign.cpp */; };
+		75419E491A97AFC3002A1F25 /* subpacket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C441A8D8AF7007B2B9B /* subpacket.cpp */; };
+		75419E4C1A97AFC3002A1F25 /* Tag17Sub1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C471A8D8AF7007B2B9B /* Tag17Sub1.cpp */; };
+		75419E4E1A97AFC3002A1F25 /* Tag2Sub0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C491A8D8AF7007B2B9B /* Tag2Sub0.cpp */; };
+		75419E501A97AFC3002A1F25 /* Tag2Sub1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C4B1A8D8AF7007B2B9B /* Tag2Sub1.cpp */; };
+		75419E521A97AFC3002A1F25 /* Tag2Sub10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C4D1A8D8AF7007B2B9B /* Tag2Sub10.cpp */; };
+		75419E541A97AFC3002A1F25 /* Tag2Sub11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C4F1A8D8AF7007B2B9B /* Tag2Sub11.cpp */; };
+		75419E561A97AFC3002A1F25 /* Tag2Sub12.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C511A8D8AF7007B2B9B /* Tag2Sub12.cpp */; };
+		75419E581A97AFC3002A1F25 /* Tag2Sub13.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C531A8D8AF7007B2B9B /* Tag2Sub13.cpp */; };
+		75419E5A1A97AFC3002A1F25 /* Tag2Sub14.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C551A8D8AF7007B2B9B /* Tag2Sub14.cpp */; };
+		75419E5C1A97AFC3002A1F25 /* Tag2Sub15.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C571A8D8AF7007B2B9B /* Tag2Sub15.cpp */; };
+		75419E5E1A97AFC3002A1F25 /* Tag2Sub16.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C591A8D8AF7007B2B9B /* Tag2Sub16.cpp */; };
+		75419E601A97AFC3002A1F25 /* Tag2Sub17.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C5B1A8D8AF7007B2B9B /* Tag2Sub17.cpp */; };
+		75419E621A97AFC3002A1F25 /* Tag2Sub18.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C5D1A8D8AF7007B2B9B /* Tag2Sub18.cpp */; };
+		75419E641A97AFC3002A1F25 /* Tag2Sub19.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C5F1A8D8AF7007B2B9B /* Tag2Sub19.cpp */; };
+		75419E661A97AFC3002A1F25 /* Tag2Sub2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C611A8D8AF7007B2B9B /* Tag2Sub2.cpp */; };
+		75419E681A97AFC3002A1F25 /* Tag2Sub20.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C631A8D8AF7007B2B9B /* Tag2Sub20.cpp */; };
+		75419E6A1A97AFC3002A1F25 /* Tag2Sub21.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C651A8D8AF7007B2B9B /* Tag2Sub21.cpp */; };
+		75419E6C1A97AFC3002A1F25 /* Tag2Sub22.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C671A8D8AF7007B2B9B /* Tag2Sub22.cpp */; };
+		75419E6E1A97AFC3002A1F25 /* Tag2Sub23.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C691A8D8AF7007B2B9B /* Tag2Sub23.cpp */; };
+		75419E701A97AFC3002A1F25 /* Tag2Sub24.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C6B1A8D8AF7007B2B9B /* Tag2Sub24.cpp */; };
+		75419E721A97AFC3002A1F25 /* Tag2Sub25.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C6D1A8D8AF7007B2B9B /* Tag2Sub25.cpp */; };
+		75419E741A97AFC3002A1F25 /* Tag2Sub26.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C6F1A8D8AF7007B2B9B /* Tag2Sub26.cpp */; };
+		75419E761A97AFC3002A1F25 /* Tag2Sub27.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C711A8D8AF7007B2B9B /* Tag2Sub27.cpp */; };
+		75419E781A97AFC3002A1F25 /* Tag2Sub28.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C731A8D8AF7007B2B9B /* Tag2Sub28.cpp */; };
+		75419E7A1A97AFC3002A1F25 /* Tag2Sub29.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C751A8D8AF7007B2B9B /* Tag2Sub29.cpp */; };
+		75419E7C1A97AFC3002A1F25 /* Tag2Sub3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C771A8D8AF7007B2B9B /* Tag2Sub3.cpp */; };
+		75419E7E1A97AFC3002A1F25 /* Tag2Sub30.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C791A8D8AF7007B2B9B /* Tag2Sub30.cpp */; };
+		75419E801A97AFC3002A1F25 /* Tag2Sub31.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C7B1A8D8AF7007B2B9B /* Tag2Sub31.cpp */; };
+		75419E821A97AFC3002A1F25 /* Tag2Sub32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C7D1A8D8AF7007B2B9B /* Tag2Sub32.cpp */; };
+		75419E841A97AFC3002A1F25 /* Tag2Sub4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C7F1A8D8AF7007B2B9B /* Tag2Sub4.cpp */; };
+		75419E861A97AFC3002A1F25 /* Tag2Sub5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C811A8D8AF7007B2B9B /* Tag2Sub5.cpp */; };
+		75419E881A97AFC3002A1F25 /* Tag2Sub6.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C831A8D8AF7007B2B9B /* Tag2Sub6.cpp */; };
+		75419E8A1A97AFC3002A1F25 /* Tag2Sub7.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C851A8D8AF7007B2B9B /* Tag2Sub7.cpp */; };
+		75419E8C1A97AFC3002A1F25 /* Tag2Sub8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C871A8D8AF7007B2B9B /* Tag2Sub8.cpp */; };
+		75419E8E1A97AFC3002A1F25 /* Tag2Sub9.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C891A8D8AF7007B2B9B /* Tag2Sub9.cpp */; };
+		75419E901A97AFC3002A1F25 /* Tag0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C8B1A8D8AF7007B2B9B /* Tag0.cpp */; };
+		75419E921A97AFC3002A1F25 /* Tag1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C8D1A8D8AF7007B2B9B /* Tag1.cpp */; };
+		75419E941A97AFC3002A1F25 /* Tag10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C8F1A8D8AF7007B2B9B /* Tag10.cpp */; };
+		75419E961A97AFC3002A1F25 /* Tag11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C911A8D8AF7007B2B9B /* Tag11.cpp */; };
+		75419E981A97AFC3002A1F25 /* Tag12.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C931A8D8AF7007B2B9B /* Tag12.cpp */; };
+		75419E9A1A97AFC3002A1F25 /* Tag13.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C951A8D8AF7007B2B9B /* Tag13.cpp */; };
+		75419E9C1A97AFC3002A1F25 /* Tag14.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C971A8D8AF7007B2B9B /* Tag14.cpp */; };
+		75419E9E1A97AFC3002A1F25 /* Tag17.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C991A8D8AF7007B2B9B /* Tag17.cpp */; };
+		75419EA01A97AFC3002A1F25 /* Tag18.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C9B1A8D8AF7007B2B9B /* Tag18.cpp */; };
+		75419EA21A97AFC3002A1F25 /* Tag19.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C9D1A8D8AF7007B2B9B /* Tag19.cpp */; };
+		75419EA41A97AFC3002A1F25 /* Tag2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C9F1A8D8AF7007B2B9B /* Tag2.cpp */; };
+		75419EA61A97AFC3002A1F25 /* Tag3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CA11A8D8AF7007B2B9B /* Tag3.cpp */; };
+		75419EA81A97AFC3002A1F25 /* Tag4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CA31A8D8AF7007B2B9B /* Tag4.cpp */; };
+		75419EAA1A97AFC3002A1F25 /* Tag5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CA51A8D8AF7007B2B9B /* Tag5.cpp */; };
+		75419EAC1A97AFC3002A1F25 /* Tag6.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CA71A8D8AF7007B2B9B /* Tag6.cpp */; };
+		75419EAE1A97AFC3002A1F25 /* Tag60.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CA91A8D8AF7007B2B9B /* Tag60.cpp */; };
+		75419EB01A97AFC3002A1F25 /* Tag61.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CAB1A8D8AF7007B2B9B /* Tag61.cpp */; };
+		75419EB21A97AFC3002A1F25 /* Tag62.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CAD1A8D8AF7007B2B9B /* Tag62.cpp */; };
+		75419EB41A97AFC3002A1F25 /* Tag63.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CAF1A8D8AF7007B2B9B /* Tag63.cpp */; };
+		75419EB61A97AFC3002A1F25 /* Tag7.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CB11A8D8AF7007B2B9B /* Tag7.cpp */; };
+		75419EB81A97AFC3002A1F25 /* Tag8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CB31A8D8AF7007B2B9B /* Tag8.cpp */; };
+		75419EBA1A97AFC3002A1F25 /* Tag9.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CB51A8D8AF7007B2B9B /* Tag9.cpp */; };
+		75419EBC1A97AFC3002A1F25 /* utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CB71A8D8AF7007B2B9B /* utilities.cpp */; };
+		75419EBE1A97AFC3002A1F25 /* verify.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CB91A8D8AF7007B2B9B /* verify.cpp */; };
+		75419EC01A97AFC3002A1F25 /* rsa_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CBB1A8D8AF7007B2B9B /* rsa_key.cpp */; };
+		75419EC21A97AFC3002A1F25 /* UTF8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CBD1A8D8AF7007B2B9B /* UTF8.cpp */; };
+		75419EC41A97AFC3002A1F25 /* utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CBF1A8D8AF7007B2B9B /* utility.cpp */; };
+		75419EC71A97AFC3002A1F25 /* OpenPGP.mm in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BBC1A8D8A47007B2B9B /* OpenPGP.mm */; };
+		75419ECA1A97E1A8002A1F25 /* pgp_exception_define.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75419DC31A96CAF7002A1F25 /* pgp_exception_define.cpp */; };
+		75419ECB1A97E1A8002A1F25 /* pgp_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75419DC11A96BEDF002A1F25 /* pgp_exception.cpp */; };
+		75419ECC1A97E1A8002A1F25 /* PMPGPMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75419DB91A96A6FB002A1F25 /* PMPGPMessage.cpp */; };
+		75419ECD1A97E1A8002A1F25 /* base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BC71A8D8AF7007B2B9B /* base64.cpp */; };
+		75419ECE1A97E1A8002A1F25 /* BaseObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75419DB01A969AB4002A1F25 /* BaseObject.cpp */; };
+		75419ECF1A97E1A8002A1F25 /* openpgp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BCA1A8D8AF7007B2B9B /* openpgp.cpp */; };
+		75419ED01A97E1A8002A1F25 /* BBS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BCC1A8D8AF7007B2B9B /* BBS.cpp */; };
+		75419ED11A97E1A8002A1F25 /* cfb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BCE1A8D8AF7007B2B9B /* cfb.cpp */; };
+		75419ED21A97E1A8002A1F25 /* Compress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BD11A8D8AF7007B2B9B /* Compress.cpp */; };
+		75419ED31A97E1A8002A1F25 /* decrypt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BD51A8D8AF7007B2B9B /* decrypt.cpp */; };
+		75419ED41A97E1A8002A1F25 /* encrypt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BD81A8D8AF7007B2B9B /* encrypt.cpp */; };
+		75419ED51A97E1A8002A1F25 /* AES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BDB1A8D8AF7007B2B9B /* AES.cpp */; };
+		75419ED61A97E1A8002A1F25 /* Blowfish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BDE1A8D8AF7007B2B9B /* Blowfish.cpp */; };
+		75419ED71A97E1A8002A1F25 /* Camellia.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BE11A8D8AF7007B2B9B /* Camellia.cpp */; };
+		75419ED81A97E1A8002A1F25 /* CAST128.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BE41A8D8AF7007B2B9B /* CAST128.cpp */; };
+		75419ED91A97E1A8002A1F25 /* DES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BE81A8D8AF7007B2B9B /* DES.cpp */; };
+		75419EDA1A97E1A8002A1F25 /* IDEA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BEC1A8D8AF7007B2B9B /* IDEA.cpp */; };
+		75419EDB1A97E1A8002A1F25 /* SymAlg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BEE1A8D8AF7007B2B9B /* SymAlg.cpp */; };
+		75419EDC1A97E1A8002A1F25 /* TDES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BF01A8D8AF7007B2B9B /* TDES.cpp */; };
+		75419EDD1A97E1A8002A1F25 /* Twofish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BF21A8D8AF7007B2B9B /* Twofish.cpp */; };
+		75419EDE1A97E1A8002A1F25 /* Hash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BF51A8D8AF7007B2B9B /* Hash.cpp */; };
+		75419EDF1A97E1A8002A1F25 /* Hashes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BF71A8D8AF7007B2B9B /* Hashes.cpp */; };
+		75419EE01A97E1A8002A1F25 /* includes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BF91A8D8AF7007B2B9B /* includes.cpp */; };
+		75419EE11A97E1A8002A1F25 /* integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BFB1A8D8AF7007B2B9B /* integer.cpp */; };
+		75419EE21A97E1A8002A1F25 /* MD5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BFD1A8D8AF7007B2B9B /* MD5.cpp */; };
+		75419EE31A97E1A8002A1F25 /* mpi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C001A8D8AF7007B2B9B /* mpi.cpp */; };
+		75419EE41A97E1A8002A1F25 /* packet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C021A8D8AF7007B2B9B /* packet.cpp */; };
+		75419EE51A97E1A8002A1F25 /* packets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C041A8D8AF7007B2B9B /* packets.cpp */; };
+		75419EE61A97E1A8002A1F25 /* Partial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C061A8D8AF7007B2B9B /* Partial.cpp */; };
+		75419EE71A97E1A8002A1F25 /* pgp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C081A8D8AF7007B2B9B /* pgp.cpp */; };
+		75419EE81A97E1A8002A1F25 /* pgpbzip2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C0A1A8D8AF7007B2B9B /* pgpbzip2.cpp */; };
+		75419EE91A97E1A8002A1F25 /* PGPCleartextSignature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C0C1A8D8AF7007B2B9B /* PGPCleartextSignature.cpp */; };
+		75419EEA1A97E1A8002A1F25 /* PGPDetachedSignature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C0E1A8D8AF7007B2B9B /* PGPDetachedSignature.cpp */; };
+		75419EEB1A97E1A8002A1F25 /* PGPKey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C101A8D8AF7007B2B9B /* PGPKey.cpp */; };
+		75419EEC1A97E1A8002A1F25 /* PGPMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C121A8D8AF7007B2B9B /* PGPMessage.cpp */; };
+		75419EED1A97E1A8002A1F25 /* pgptime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C141A8D8AF7007B2B9B /* pgptime.cpp */; };
+		75419EEE1A97E1A8002A1F25 /* pgpzlib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C161A8D8AF7007B2B9B /* pgpzlib.cpp */; };
+		75419EEF1A97E1A8002A1F25 /* DSA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C191A8D8AF7007B2B9B /* DSA.cpp */; };
+		75419EF01A97E1A8002A1F25 /* ElGamal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C1B1A8D8AF7007B2B9B /* ElGamal.cpp */; };
+		75419EF11A97E1A8002A1F25 /* PKA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C1D1A8D8AF7007B2B9B /* PKA.cpp */; };
+		75419EF21A97E1A8002A1F25 /* RSA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C1F1A8D8AF7007B2B9B /* RSA.cpp */; };
+		75419EF31A97E1A8002A1F25 /* PKCS1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C211A8D8AF7007B2B9B /* PKCS1.cpp */; };
+		75419EF41A97E1A8002A1F25 /* private_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C231A8D8AF7007B2B9B /* private_key.cpp */; };
+		75419EF51A97E1A8002A1F25 /* public_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C251A8D8AF7007B2B9B /* public_key.cpp */; };
+		75419EF61A97E1A8002A1F25 /* radix64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C271A8D8AF7007B2B9B /* radix64.cpp */; };
+		75419EF71A97E1A8002A1F25 /* revoke.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C291A8D8AF7007B2B9B /* revoke.cpp */; };
+		75419EF81A97E1A8002A1F25 /* RIPEMD160.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C2B1A8D8AF7007B2B9B /* RIPEMD160.cpp */; };
+		75419EF91A97E1A8002A1F25 /* s2k.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C2F1A8D8AF7007B2B9B /* s2k.cpp */; };
+		75419EFA1A97E1A8002A1F25 /* SHA1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C311A8D8AF7007B2B9B /* SHA1.cpp */; };
+		75419EFB1A97E1A8002A1F25 /* SHA224.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C331A8D8AF7007B2B9B /* SHA224.cpp */; };
+		75419EFC1A97E1A8002A1F25 /* SHA256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C351A8D8AF7007B2B9B /* SHA256.cpp */; };
+		75419EFD1A97E1A8002A1F25 /* SHA2_Functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C381A8D8AF7007B2B9B /* SHA2_Functions.cpp */; };
+		75419EFE1A97E1A8002A1F25 /* SHA384.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C3A1A8D8AF7007B2B9B /* SHA384.cpp */; };
+		75419EFF1A97E1A8002A1F25 /* SHA512.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C3C1A8D8AF7007B2B9B /* SHA512.cpp */; };
+		75419F001A97E1A8002A1F25 /* sigcalc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C3F1A8D8AF7007B2B9B /* sigcalc.cpp */; };
+		75419F011A97E1A8002A1F25 /* sign.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C411A8D8AF7007B2B9B /* sign.cpp */; };
+		75419F021A97E1A8002A1F25 /* subpacket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C441A8D8AF7007B2B9B /* subpacket.cpp */; };
+		75419F031A97E1A8002A1F25 /* Tag17Sub1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C471A8D8AF7007B2B9B /* Tag17Sub1.cpp */; };
+		75419F041A97E1A8002A1F25 /* Tag2Sub0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C491A8D8AF7007B2B9B /* Tag2Sub0.cpp */; };
+		75419F051A97E1A8002A1F25 /* Tag2Sub1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C4B1A8D8AF7007B2B9B /* Tag2Sub1.cpp */; };
+		75419F061A97E1A8002A1F25 /* Tag2Sub10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C4D1A8D8AF7007B2B9B /* Tag2Sub10.cpp */; };
+		75419F071A97E1A8002A1F25 /* Tag2Sub11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C4F1A8D8AF7007B2B9B /* Tag2Sub11.cpp */; };
+		75419F081A97E1A8002A1F25 /* Tag2Sub12.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C511A8D8AF7007B2B9B /* Tag2Sub12.cpp */; };
+		75419F091A97E1A8002A1F25 /* Tag2Sub13.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C531A8D8AF7007B2B9B /* Tag2Sub13.cpp */; };
+		75419F0A1A97E1A8002A1F25 /* Tag2Sub14.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C551A8D8AF7007B2B9B /* Tag2Sub14.cpp */; };
+		75419F0B1A97E1A8002A1F25 /* Tag2Sub15.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C571A8D8AF7007B2B9B /* Tag2Sub15.cpp */; };
+		75419F0C1A97E1A8002A1F25 /* Tag2Sub16.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C591A8D8AF7007B2B9B /* Tag2Sub16.cpp */; };
+		75419F0D1A97E1A8002A1F25 /* Tag2Sub17.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C5B1A8D8AF7007B2B9B /* Tag2Sub17.cpp */; };
+		75419F0E1A97E1A8002A1F25 /* Tag2Sub18.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C5D1A8D8AF7007B2B9B /* Tag2Sub18.cpp */; };
+		75419F0F1A97E1A8002A1F25 /* Tag2Sub19.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C5F1A8D8AF7007B2B9B /* Tag2Sub19.cpp */; };
+		75419F101A97E1A8002A1F25 /* Tag2Sub2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C611A8D8AF7007B2B9B /* Tag2Sub2.cpp */; };
+		75419F111A97E1A8002A1F25 /* Tag2Sub20.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C631A8D8AF7007B2B9B /* Tag2Sub20.cpp */; };
+		75419F121A97E1A8002A1F25 /* Tag2Sub21.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C651A8D8AF7007B2B9B /* Tag2Sub21.cpp */; };
+		75419F131A97E1A8002A1F25 /* Tag2Sub22.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C671A8D8AF7007B2B9B /* Tag2Sub22.cpp */; };
+		75419F141A97E1A8002A1F25 /* Tag2Sub23.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C691A8D8AF7007B2B9B /* Tag2Sub23.cpp */; };
+		75419F151A97E1A8002A1F25 /* Tag2Sub24.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C6B1A8D8AF7007B2B9B /* Tag2Sub24.cpp */; };
+		75419F161A97E1A8002A1F25 /* Tag2Sub25.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C6D1A8D8AF7007B2B9B /* Tag2Sub25.cpp */; };
+		75419F171A97E1A8002A1F25 /* Tag2Sub26.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C6F1A8D8AF7007B2B9B /* Tag2Sub26.cpp */; };
+		75419F181A97E1A8002A1F25 /* Tag2Sub27.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C711A8D8AF7007B2B9B /* Tag2Sub27.cpp */; };
+		75419F191A97E1A8002A1F25 /* Tag2Sub28.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C731A8D8AF7007B2B9B /* Tag2Sub28.cpp */; };
+		75419F1A1A97E1A8002A1F25 /* Tag2Sub29.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C751A8D8AF7007B2B9B /* Tag2Sub29.cpp */; };
+		75419F1B1A97E1A8002A1F25 /* Tag2Sub3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C771A8D8AF7007B2B9B /* Tag2Sub3.cpp */; };
+		75419F1C1A97E1A8002A1F25 /* Tag2Sub30.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C791A8D8AF7007B2B9B /* Tag2Sub30.cpp */; };
+		75419F1D1A97E1A8002A1F25 /* Tag2Sub31.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C7B1A8D8AF7007B2B9B /* Tag2Sub31.cpp */; };
+		75419F1E1A97E1A8002A1F25 /* Tag2Sub32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C7D1A8D8AF7007B2B9B /* Tag2Sub32.cpp */; };
+		75419F1F1A97E1A8002A1F25 /* Tag2Sub4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C7F1A8D8AF7007B2B9B /* Tag2Sub4.cpp */; };
+		75419F201A97E1A8002A1F25 /* Tag2Sub5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C811A8D8AF7007B2B9B /* Tag2Sub5.cpp */; };
+		75419F211A97E1A8002A1F25 /* Tag2Sub6.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C831A8D8AF7007B2B9B /* Tag2Sub6.cpp */; };
+		75419F221A97E1A8002A1F25 /* Tag2Sub7.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C851A8D8AF7007B2B9B /* Tag2Sub7.cpp */; };
+		75419F231A97E1A8002A1F25 /* Tag2Sub8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C871A8D8AF7007B2B9B /* Tag2Sub8.cpp */; };
+		75419F241A97E1A8002A1F25 /* Tag2Sub9.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C891A8D8AF7007B2B9B /* Tag2Sub9.cpp */; };
+		75419F251A97E1A8002A1F25 /* Tag0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C8B1A8D8AF7007B2B9B /* Tag0.cpp */; };
+		75419F261A97E1A8002A1F25 /* Tag1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C8D1A8D8AF7007B2B9B /* Tag1.cpp */; };
+		75419F271A97E1A8002A1F25 /* Tag10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C8F1A8D8AF7007B2B9B /* Tag10.cpp */; };
+		75419F281A97E1A8002A1F25 /* Tag11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C911A8D8AF7007B2B9B /* Tag11.cpp */; };
+		75419F291A97E1A8002A1F25 /* Tag12.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C931A8D8AF7007B2B9B /* Tag12.cpp */; };
+		75419F2A1A97E1A8002A1F25 /* Tag13.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C951A8D8AF7007B2B9B /* Tag13.cpp */; };
+		75419F2B1A97E1A8002A1F25 /* Tag14.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C971A8D8AF7007B2B9B /* Tag14.cpp */; };
+		75419F2C1A97E1A8002A1F25 /* Tag17.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C991A8D8AF7007B2B9B /* Tag17.cpp */; };
+		75419F2D1A97E1A8002A1F25 /* Tag18.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C9B1A8D8AF7007B2B9B /* Tag18.cpp */; };
+		75419F2E1A97E1A8002A1F25 /* Tag19.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C9D1A8D8AF7007B2B9B /* Tag19.cpp */; };
+		75419F2F1A97E1A8002A1F25 /* Tag2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9C9F1A8D8AF7007B2B9B /* Tag2.cpp */; };
+		75419F301A97E1A8002A1F25 /* Tag3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CA11A8D8AF7007B2B9B /* Tag3.cpp */; };
+		75419F311A97E1A8002A1F25 /* Tag4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CA31A8D8AF7007B2B9B /* Tag4.cpp */; };
+		75419F321A97E1A8002A1F25 /* Tag5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CA51A8D8AF7007B2B9B /* Tag5.cpp */; };
+		75419F331A97E1A8002A1F25 /* Tag6.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CA71A8D8AF7007B2B9B /* Tag6.cpp */; };
+		75419F341A97E1A8002A1F25 /* Tag60.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CA91A8D8AF7007B2B9B /* Tag60.cpp */; };
+		75419F351A97E1A8002A1F25 /* Tag61.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CAB1A8D8AF7007B2B9B /* Tag61.cpp */; };
+		75419F361A97E1A8002A1F25 /* Tag62.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CAD1A8D8AF7007B2B9B /* Tag62.cpp */; };
+		75419F371A97E1A8002A1F25 /* Tag63.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CAF1A8D8AF7007B2B9B /* Tag63.cpp */; };
+		75419F381A97E1A8002A1F25 /* Tag7.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CB11A8D8AF7007B2B9B /* Tag7.cpp */; };
+		75419F391A97E1A8002A1F25 /* Tag8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CB31A8D8AF7007B2B9B /* Tag8.cpp */; };
+		75419F3A1A97E1A8002A1F25 /* Tag9.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CB51A8D8AF7007B2B9B /* Tag9.cpp */; };
+		75419F3B1A97E1A8002A1F25 /* utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CB71A8D8AF7007B2B9B /* utilities.cpp */; };
+		75419F3C1A97E1A8002A1F25 /* verify.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CB91A8D8AF7007B2B9B /* verify.cpp */; };
+		75419F3D1A97E1A8002A1F25 /* rsa_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CBB1A8D8AF7007B2B9B /* rsa_key.cpp */; };
+		75419F3E1A97E1A8002A1F25 /* UTF8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CBD1A8D8AF7007B2B9B /* UTF8.cpp */; };
+		75419F3F1A97E1A8002A1F25 /* utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CBF1A8D8AF7007B2B9B /* utility.cpp */; };
+		75419F401A97E1A8002A1F25 /* OpenPGP.mm in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BBC1A8D8A47007B2B9B /* OpenPGP.mm */; };
+		75419F431A97E1A8002A1F25 /* OpenPGP.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 756C9BBB1A8D8A47007B2B9B /* OpenPGP.h */; };
 		756C9BBD1A8D8A47007B2B9B /* OpenPGP.mm in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BBC1A8D8A47007B2B9B /* OpenPGP.mm */; };
 		756C9CC21A8D8AF7007B2B9B /* base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BC71A8D8AF7007B2B9B /* base64.cpp */; };
 		756C9CC31A8D8AF7007B2B9B /* openpgp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BCA1A8D8AF7007B2B9B /* openpgp.cpp */; };
@@ -154,9 +394,20 @@
 		7519BBF51A8D869000E0E570 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
-			dstSubfolderSpec = 16;
+			dstPath = "$(PROJECT_DIR)/../Bin/include/$(PRODUCT_NAME)_OSX";
+			dstSubfolderSpec = 0;
 			files = (
+				75419DC51A97AF0E002A1F25 /* OpenPGP.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75419F421A97E1A8002A1F25 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(PROJECT_DIR)/../Bin/include/$(PRODUCT_NAME)_OSX";
+			dstSubfolderSpec = 0;
+			files = (
+				75419F431A97E1A8002A1F25 /* OpenPGP.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,7 +417,7 @@
 		7519BBD71A8D868000E0E570 /* libOpenPGP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOpenPGP.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7519BBE21A8D868000E0E570 /* OpenPGP_OSX_LibTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenPGP_OSX_LibTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7519BBE81A8D868000E0E570 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7519BBFA1A8D869000E0E570 /* libOpenPGP_OSX_Lib copy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libOpenPGP_OSX_Lib copy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7519BBFA1A8D869000E0E570 /* libOpenPGP_x86_64.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOpenPGP_x86_64.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		75419DB01A969AB4002A1F25 /* BaseObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseObject.cpp; sourceTree = "<group>"; };
 		75419DB31A969C70002A1F25 /* BaseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseObject.h; sourceTree = "<group>"; };
 		75419DB51A969C70002A1F25 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
@@ -178,6 +429,7 @@
 		75419DC01A96B831002A1F25 /* pgp_exception_define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pgp_exception_define.h; sourceTree = "<group>"; };
 		75419DC11A96BEDF002A1F25 /* pgp_exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pgp_exception.cpp; sourceTree = "<group>"; };
 		75419DC31A96CAF7002A1F25 /* pgp_exception_define.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pgp_exception_define.cpp; sourceTree = "<group>"; };
+		75419F471A97E1A8002A1F25 /* libOpenPGP_i386.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOpenPGP_i386.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		756C9BBB1A8D8A47007B2B9B /* OpenPGP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPGP.h; sourceTree = "<group>"; };
 		756C9BBC1A8D8A47007B2B9B /* OpenPGP.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenPGP.mm; sourceTree = "<group>"; };
 		756C9BC71A8D8AF7007B2B9B /* base64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base64.cpp; sourceTree = "<group>"; };
@@ -450,6 +702,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		75419F411A97E1A8002A1F25 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -468,7 +727,8 @@
 			children = (
 				7519BBD71A8D868000E0E570 /* libOpenPGP.a */,
 				7519BBE21A8D868000E0E570 /* OpenPGP_OSX_LibTests.xctest */,
-				7519BBFA1A8D869000E0E570 /* libOpenPGP_OSX_Lib copy.a */,
+				7519BBFA1A8D869000E0E570 /* libOpenPGP_x86_64.a */,
+				75419F471A97E1A8002A1F25 /* libOpenPGP_i386.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -912,9 +1172,9 @@
 			productReference = 7519BBE21A8D868000E0E570 /* OpenPGP_OSX_LibTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		7519BBF11A8D869000E0E570 /* OpenPGP_OSX */ = {
+		7519BBF11A8D869000E0E570 /* OpenPGP_x86_64 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7519BBF71A8D869000E0E570 /* Build configuration list for PBXNativeTarget "OpenPGP_OSX" */;
+			buildConfigurationList = 7519BBF71A8D869000E0E570 /* Build configuration list for PBXNativeTarget "OpenPGP_x86_64" */;
 			buildPhases = (
 				7519BBF21A8D869000E0E570 /* Sources */,
 				7519BBF41A8D869000E0E570 /* Frameworks */,
@@ -924,9 +1184,26 @@
 			);
 			dependencies = (
 			);
-			name = OpenPGP_OSX;
+			name = OpenPGP_x86_64;
 			productName = OpenPGP_OSX_Lib;
-			productReference = 7519BBFA1A8D869000E0E570 /* libOpenPGP_OSX_Lib copy.a */;
+			productReference = 7519BBFA1A8D869000E0E570 /* libOpenPGP_x86_64.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		75419EC81A97E1A8002A1F25 /* OpenPGP_i386 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 75419F441A97E1A8002A1F25 /* Build configuration list for PBXNativeTarget "OpenPGP_i386" */;
+			buildPhases = (
+				75419EC91A97E1A8002A1F25 /* Sources */,
+				75419F411A97E1A8002A1F25 /* Frameworks */,
+				75419F421A97E1A8002A1F25 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpenPGP_i386;
+			productName = OpenPGP_OSX_Lib;
+			productReference = 75419F471A97E1A8002A1F25 /* libOpenPGP_i386.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -959,7 +1236,8 @@
 			projectRoot = "";
 			targets = (
 				7519BBD61A8D868000E0E570 /* OpenPGP_IOS */,
-				7519BBF11A8D869000E0E570 /* OpenPGP_OSX */,
+				7519BBF11A8D869000E0E570 /* OpenPGP_x86_64 */,
+				75419EC81A97E1A8002A1F25 /* OpenPGP_i386 */,
 				7519BBE11A8D868000E0E570 /* OpenPGP_OSX_LibTests */,
 			);
 		};
@@ -1113,6 +1391,251 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75419DC61A97AFC3002A1F25 /* pgp_exception_define.cpp in Sources */,
+				75419DC71A97AFC3002A1F25 /* pgp_exception.cpp in Sources */,
+				75419DCE1A97AFC3002A1F25 /* PMPGPMessage.cpp in Sources */,
+				75419DD01A97AFC3002A1F25 /* base64.cpp in Sources */,
+				75419DD21A97AFC3002A1F25 /* BaseObject.cpp in Sources */,
+				75419DD31A97AFC3002A1F25 /* openpgp.cpp in Sources */,
+				75419DD41A97AFC3002A1F25 /* BBS.cpp in Sources */,
+				75419DD61A97AFC3002A1F25 /* cfb.cpp in Sources */,
+				75419DD91A97AFC3002A1F25 /* Compress.cpp in Sources */,
+				75419DDD1A97AFC3002A1F25 /* decrypt.cpp in Sources */,
+				75419DE01A97AFC3002A1F25 /* encrypt.cpp in Sources */,
+				75419DE21A97AFC3002A1F25 /* AES.cpp in Sources */,
+				75419DE51A97AFC3002A1F25 /* Blowfish.cpp in Sources */,
+				75419DE81A97AFC3002A1F25 /* Camellia.cpp in Sources */,
+				75419DEB1A97AFC3002A1F25 /* CAST128.cpp in Sources */,
+				75419DEF1A97AFC3002A1F25 /* DES.cpp in Sources */,
+				75419DF31A97AFC3002A1F25 /* IDEA.cpp in Sources */,
+				75419DF51A97AFC3002A1F25 /* SymAlg.cpp in Sources */,
+				75419DF71A97AFC3002A1F25 /* TDES.cpp in Sources */,
+				75419DF91A97AFC3002A1F25 /* Twofish.cpp in Sources */,
+				75419DFC1A97AFC3002A1F25 /* Hash.cpp in Sources */,
+				75419DFE1A97AFC3002A1F25 /* Hashes.cpp in Sources */,
+				75419E001A97AFC3002A1F25 /* includes.cpp in Sources */,
+				75419E021A97AFC3002A1F25 /* integer.cpp in Sources */,
+				75419E041A97AFC3002A1F25 /* MD5.cpp in Sources */,
+				75419E071A97AFC3002A1F25 /* mpi.cpp in Sources */,
+				75419E091A97AFC3002A1F25 /* packet.cpp in Sources */,
+				75419E0B1A97AFC3002A1F25 /* packets.cpp in Sources */,
+				75419E0D1A97AFC3002A1F25 /* Partial.cpp in Sources */,
+				75419E0F1A97AFC3002A1F25 /* pgp.cpp in Sources */,
+				75419E111A97AFC3002A1F25 /* pgpbzip2.cpp in Sources */,
+				75419E131A97AFC3002A1F25 /* PGPCleartextSignature.cpp in Sources */,
+				75419E151A97AFC3002A1F25 /* PGPDetachedSignature.cpp in Sources */,
+				75419E171A97AFC3002A1F25 /* PGPKey.cpp in Sources */,
+				75419E191A97AFC3002A1F25 /* PGPMessage.cpp in Sources */,
+				75419E1B1A97AFC3002A1F25 /* pgptime.cpp in Sources */,
+				75419E1D1A97AFC3002A1F25 /* pgpzlib.cpp in Sources */,
+				75419E1F1A97AFC3002A1F25 /* DSA.cpp in Sources */,
+				75419E211A97AFC3002A1F25 /* ElGamal.cpp in Sources */,
+				75419E231A97AFC3002A1F25 /* PKA.cpp in Sources */,
+				75419E251A97AFC3002A1F25 /* RSA.cpp in Sources */,
+				75419E271A97AFC3002A1F25 /* PKCS1.cpp in Sources */,
+				75419E291A97AFC3002A1F25 /* private_key.cpp in Sources */,
+				75419E2B1A97AFC3002A1F25 /* public_key.cpp in Sources */,
+				75419E2D1A97AFC3002A1F25 /* radix64.cpp in Sources */,
+				75419E2F1A97AFC3002A1F25 /* revoke.cpp in Sources */,
+				75419E311A97AFC3002A1F25 /* RIPEMD160.cpp in Sources */,
+				75419E351A97AFC3002A1F25 /* s2k.cpp in Sources */,
+				75419E371A97AFC3002A1F25 /* SHA1.cpp in Sources */,
+				75419E391A97AFC3002A1F25 /* SHA224.cpp in Sources */,
+				75419E3B1A97AFC3002A1F25 /* SHA256.cpp in Sources */,
+				75419E3E1A97AFC3002A1F25 /* SHA2_Functions.cpp in Sources */,
+				75419E401A97AFC3002A1F25 /* SHA384.cpp in Sources */,
+				75419E421A97AFC3002A1F25 /* SHA512.cpp in Sources */,
+				75419E451A97AFC3002A1F25 /* sigcalc.cpp in Sources */,
+				75419E471A97AFC3002A1F25 /* sign.cpp in Sources */,
+				75419E491A97AFC3002A1F25 /* subpacket.cpp in Sources */,
+				75419E4C1A97AFC3002A1F25 /* Tag17Sub1.cpp in Sources */,
+				75419E4E1A97AFC3002A1F25 /* Tag2Sub0.cpp in Sources */,
+				75419E501A97AFC3002A1F25 /* Tag2Sub1.cpp in Sources */,
+				75419E521A97AFC3002A1F25 /* Tag2Sub10.cpp in Sources */,
+				75419E541A97AFC3002A1F25 /* Tag2Sub11.cpp in Sources */,
+				75419E561A97AFC3002A1F25 /* Tag2Sub12.cpp in Sources */,
+				75419E581A97AFC3002A1F25 /* Tag2Sub13.cpp in Sources */,
+				75419E5A1A97AFC3002A1F25 /* Tag2Sub14.cpp in Sources */,
+				75419E5C1A97AFC3002A1F25 /* Tag2Sub15.cpp in Sources */,
+				75419E5E1A97AFC3002A1F25 /* Tag2Sub16.cpp in Sources */,
+				75419E601A97AFC3002A1F25 /* Tag2Sub17.cpp in Sources */,
+				75419E621A97AFC3002A1F25 /* Tag2Sub18.cpp in Sources */,
+				75419E641A97AFC3002A1F25 /* Tag2Sub19.cpp in Sources */,
+				75419E661A97AFC3002A1F25 /* Tag2Sub2.cpp in Sources */,
+				75419E681A97AFC3002A1F25 /* Tag2Sub20.cpp in Sources */,
+				75419E6A1A97AFC3002A1F25 /* Tag2Sub21.cpp in Sources */,
+				75419E6C1A97AFC3002A1F25 /* Tag2Sub22.cpp in Sources */,
+				75419E6E1A97AFC3002A1F25 /* Tag2Sub23.cpp in Sources */,
+				75419E701A97AFC3002A1F25 /* Tag2Sub24.cpp in Sources */,
+				75419E721A97AFC3002A1F25 /* Tag2Sub25.cpp in Sources */,
+				75419E741A97AFC3002A1F25 /* Tag2Sub26.cpp in Sources */,
+				75419E761A97AFC3002A1F25 /* Tag2Sub27.cpp in Sources */,
+				75419E781A97AFC3002A1F25 /* Tag2Sub28.cpp in Sources */,
+				75419E7A1A97AFC3002A1F25 /* Tag2Sub29.cpp in Sources */,
+				75419E7C1A97AFC3002A1F25 /* Tag2Sub3.cpp in Sources */,
+				75419E7E1A97AFC3002A1F25 /* Tag2Sub30.cpp in Sources */,
+				75419E801A97AFC3002A1F25 /* Tag2Sub31.cpp in Sources */,
+				75419E821A97AFC3002A1F25 /* Tag2Sub32.cpp in Sources */,
+				75419E841A97AFC3002A1F25 /* Tag2Sub4.cpp in Sources */,
+				75419E861A97AFC3002A1F25 /* Tag2Sub5.cpp in Sources */,
+				75419E881A97AFC3002A1F25 /* Tag2Sub6.cpp in Sources */,
+				75419E8A1A97AFC3002A1F25 /* Tag2Sub7.cpp in Sources */,
+				75419E8C1A97AFC3002A1F25 /* Tag2Sub8.cpp in Sources */,
+				75419E8E1A97AFC3002A1F25 /* Tag2Sub9.cpp in Sources */,
+				75419E901A97AFC3002A1F25 /* Tag0.cpp in Sources */,
+				75419E921A97AFC3002A1F25 /* Tag1.cpp in Sources */,
+				75419E941A97AFC3002A1F25 /* Tag10.cpp in Sources */,
+				75419E961A97AFC3002A1F25 /* Tag11.cpp in Sources */,
+				75419E981A97AFC3002A1F25 /* Tag12.cpp in Sources */,
+				75419E9A1A97AFC3002A1F25 /* Tag13.cpp in Sources */,
+				75419E9C1A97AFC3002A1F25 /* Tag14.cpp in Sources */,
+				75419E9E1A97AFC3002A1F25 /* Tag17.cpp in Sources */,
+				75419EA01A97AFC3002A1F25 /* Tag18.cpp in Sources */,
+				75419EA21A97AFC3002A1F25 /* Tag19.cpp in Sources */,
+				75419EA41A97AFC3002A1F25 /* Tag2.cpp in Sources */,
+				75419EA61A97AFC3002A1F25 /* Tag3.cpp in Sources */,
+				75419EA81A97AFC3002A1F25 /* Tag4.cpp in Sources */,
+				75419EAA1A97AFC3002A1F25 /* Tag5.cpp in Sources */,
+				75419EAC1A97AFC3002A1F25 /* Tag6.cpp in Sources */,
+				75419EAE1A97AFC3002A1F25 /* Tag60.cpp in Sources */,
+				75419EB01A97AFC3002A1F25 /* Tag61.cpp in Sources */,
+				75419EB21A97AFC3002A1F25 /* Tag62.cpp in Sources */,
+				75419EB41A97AFC3002A1F25 /* Tag63.cpp in Sources */,
+				75419EB61A97AFC3002A1F25 /* Tag7.cpp in Sources */,
+				75419EB81A97AFC3002A1F25 /* Tag8.cpp in Sources */,
+				75419EBA1A97AFC3002A1F25 /* Tag9.cpp in Sources */,
+				75419EBC1A97AFC3002A1F25 /* utilities.cpp in Sources */,
+				75419EBE1A97AFC3002A1F25 /* verify.cpp in Sources */,
+				75419EC01A97AFC3002A1F25 /* rsa_key.cpp in Sources */,
+				75419EC21A97AFC3002A1F25 /* UTF8.cpp in Sources */,
+				75419EC41A97AFC3002A1F25 /* utility.cpp in Sources */,
+				75419EC71A97AFC3002A1F25 /* OpenPGP.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75419EC91A97E1A8002A1F25 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75419ECA1A97E1A8002A1F25 /* pgp_exception_define.cpp in Sources */,
+				75419ECB1A97E1A8002A1F25 /* pgp_exception.cpp in Sources */,
+				75419ECC1A97E1A8002A1F25 /* PMPGPMessage.cpp in Sources */,
+				75419ECD1A97E1A8002A1F25 /* base64.cpp in Sources */,
+				75419ECE1A97E1A8002A1F25 /* BaseObject.cpp in Sources */,
+				75419ECF1A97E1A8002A1F25 /* openpgp.cpp in Sources */,
+				75419ED01A97E1A8002A1F25 /* BBS.cpp in Sources */,
+				75419ED11A97E1A8002A1F25 /* cfb.cpp in Sources */,
+				75419ED21A97E1A8002A1F25 /* Compress.cpp in Sources */,
+				75419ED31A97E1A8002A1F25 /* decrypt.cpp in Sources */,
+				75419ED41A97E1A8002A1F25 /* encrypt.cpp in Sources */,
+				75419ED51A97E1A8002A1F25 /* AES.cpp in Sources */,
+				75419ED61A97E1A8002A1F25 /* Blowfish.cpp in Sources */,
+				75419ED71A97E1A8002A1F25 /* Camellia.cpp in Sources */,
+				75419ED81A97E1A8002A1F25 /* CAST128.cpp in Sources */,
+				75419ED91A97E1A8002A1F25 /* DES.cpp in Sources */,
+				75419EDA1A97E1A8002A1F25 /* IDEA.cpp in Sources */,
+				75419EDB1A97E1A8002A1F25 /* SymAlg.cpp in Sources */,
+				75419EDC1A97E1A8002A1F25 /* TDES.cpp in Sources */,
+				75419EDD1A97E1A8002A1F25 /* Twofish.cpp in Sources */,
+				75419EDE1A97E1A8002A1F25 /* Hash.cpp in Sources */,
+				75419EDF1A97E1A8002A1F25 /* Hashes.cpp in Sources */,
+				75419EE01A97E1A8002A1F25 /* includes.cpp in Sources */,
+				75419EE11A97E1A8002A1F25 /* integer.cpp in Sources */,
+				75419EE21A97E1A8002A1F25 /* MD5.cpp in Sources */,
+				75419EE31A97E1A8002A1F25 /* mpi.cpp in Sources */,
+				75419EE41A97E1A8002A1F25 /* packet.cpp in Sources */,
+				75419EE51A97E1A8002A1F25 /* packets.cpp in Sources */,
+				75419EE61A97E1A8002A1F25 /* Partial.cpp in Sources */,
+				75419EE71A97E1A8002A1F25 /* pgp.cpp in Sources */,
+				75419EE81A97E1A8002A1F25 /* pgpbzip2.cpp in Sources */,
+				75419EE91A97E1A8002A1F25 /* PGPCleartextSignature.cpp in Sources */,
+				75419EEA1A97E1A8002A1F25 /* PGPDetachedSignature.cpp in Sources */,
+				75419EEB1A97E1A8002A1F25 /* PGPKey.cpp in Sources */,
+				75419EEC1A97E1A8002A1F25 /* PGPMessage.cpp in Sources */,
+				75419EED1A97E1A8002A1F25 /* pgptime.cpp in Sources */,
+				75419EEE1A97E1A8002A1F25 /* pgpzlib.cpp in Sources */,
+				75419EEF1A97E1A8002A1F25 /* DSA.cpp in Sources */,
+				75419EF01A97E1A8002A1F25 /* ElGamal.cpp in Sources */,
+				75419EF11A97E1A8002A1F25 /* PKA.cpp in Sources */,
+				75419EF21A97E1A8002A1F25 /* RSA.cpp in Sources */,
+				75419EF31A97E1A8002A1F25 /* PKCS1.cpp in Sources */,
+				75419EF41A97E1A8002A1F25 /* private_key.cpp in Sources */,
+				75419EF51A97E1A8002A1F25 /* public_key.cpp in Sources */,
+				75419EF61A97E1A8002A1F25 /* radix64.cpp in Sources */,
+				75419EF71A97E1A8002A1F25 /* revoke.cpp in Sources */,
+				75419EF81A97E1A8002A1F25 /* RIPEMD160.cpp in Sources */,
+				75419EF91A97E1A8002A1F25 /* s2k.cpp in Sources */,
+				75419EFA1A97E1A8002A1F25 /* SHA1.cpp in Sources */,
+				75419EFB1A97E1A8002A1F25 /* SHA224.cpp in Sources */,
+				75419EFC1A97E1A8002A1F25 /* SHA256.cpp in Sources */,
+				75419EFD1A97E1A8002A1F25 /* SHA2_Functions.cpp in Sources */,
+				75419EFE1A97E1A8002A1F25 /* SHA384.cpp in Sources */,
+				75419EFF1A97E1A8002A1F25 /* SHA512.cpp in Sources */,
+				75419F001A97E1A8002A1F25 /* sigcalc.cpp in Sources */,
+				75419F011A97E1A8002A1F25 /* sign.cpp in Sources */,
+				75419F021A97E1A8002A1F25 /* subpacket.cpp in Sources */,
+				75419F031A97E1A8002A1F25 /* Tag17Sub1.cpp in Sources */,
+				75419F041A97E1A8002A1F25 /* Tag2Sub0.cpp in Sources */,
+				75419F051A97E1A8002A1F25 /* Tag2Sub1.cpp in Sources */,
+				75419F061A97E1A8002A1F25 /* Tag2Sub10.cpp in Sources */,
+				75419F071A97E1A8002A1F25 /* Tag2Sub11.cpp in Sources */,
+				75419F081A97E1A8002A1F25 /* Tag2Sub12.cpp in Sources */,
+				75419F091A97E1A8002A1F25 /* Tag2Sub13.cpp in Sources */,
+				75419F0A1A97E1A8002A1F25 /* Tag2Sub14.cpp in Sources */,
+				75419F0B1A97E1A8002A1F25 /* Tag2Sub15.cpp in Sources */,
+				75419F0C1A97E1A8002A1F25 /* Tag2Sub16.cpp in Sources */,
+				75419F0D1A97E1A8002A1F25 /* Tag2Sub17.cpp in Sources */,
+				75419F0E1A97E1A8002A1F25 /* Tag2Sub18.cpp in Sources */,
+				75419F0F1A97E1A8002A1F25 /* Tag2Sub19.cpp in Sources */,
+				75419F101A97E1A8002A1F25 /* Tag2Sub2.cpp in Sources */,
+				75419F111A97E1A8002A1F25 /* Tag2Sub20.cpp in Sources */,
+				75419F121A97E1A8002A1F25 /* Tag2Sub21.cpp in Sources */,
+				75419F131A97E1A8002A1F25 /* Tag2Sub22.cpp in Sources */,
+				75419F141A97E1A8002A1F25 /* Tag2Sub23.cpp in Sources */,
+				75419F151A97E1A8002A1F25 /* Tag2Sub24.cpp in Sources */,
+				75419F161A97E1A8002A1F25 /* Tag2Sub25.cpp in Sources */,
+				75419F171A97E1A8002A1F25 /* Tag2Sub26.cpp in Sources */,
+				75419F181A97E1A8002A1F25 /* Tag2Sub27.cpp in Sources */,
+				75419F191A97E1A8002A1F25 /* Tag2Sub28.cpp in Sources */,
+				75419F1A1A97E1A8002A1F25 /* Tag2Sub29.cpp in Sources */,
+				75419F1B1A97E1A8002A1F25 /* Tag2Sub3.cpp in Sources */,
+				75419F1C1A97E1A8002A1F25 /* Tag2Sub30.cpp in Sources */,
+				75419F1D1A97E1A8002A1F25 /* Tag2Sub31.cpp in Sources */,
+				75419F1E1A97E1A8002A1F25 /* Tag2Sub32.cpp in Sources */,
+				75419F1F1A97E1A8002A1F25 /* Tag2Sub4.cpp in Sources */,
+				75419F201A97E1A8002A1F25 /* Tag2Sub5.cpp in Sources */,
+				75419F211A97E1A8002A1F25 /* Tag2Sub6.cpp in Sources */,
+				75419F221A97E1A8002A1F25 /* Tag2Sub7.cpp in Sources */,
+				75419F231A97E1A8002A1F25 /* Tag2Sub8.cpp in Sources */,
+				75419F241A97E1A8002A1F25 /* Tag2Sub9.cpp in Sources */,
+				75419F251A97E1A8002A1F25 /* Tag0.cpp in Sources */,
+				75419F261A97E1A8002A1F25 /* Tag1.cpp in Sources */,
+				75419F271A97E1A8002A1F25 /* Tag10.cpp in Sources */,
+				75419F281A97E1A8002A1F25 /* Tag11.cpp in Sources */,
+				75419F291A97E1A8002A1F25 /* Tag12.cpp in Sources */,
+				75419F2A1A97E1A8002A1F25 /* Tag13.cpp in Sources */,
+				75419F2B1A97E1A8002A1F25 /* Tag14.cpp in Sources */,
+				75419F2C1A97E1A8002A1F25 /* Tag17.cpp in Sources */,
+				75419F2D1A97E1A8002A1F25 /* Tag18.cpp in Sources */,
+				75419F2E1A97E1A8002A1F25 /* Tag19.cpp in Sources */,
+				75419F2F1A97E1A8002A1F25 /* Tag2.cpp in Sources */,
+				75419F301A97E1A8002A1F25 /* Tag3.cpp in Sources */,
+				75419F311A97E1A8002A1F25 /* Tag4.cpp in Sources */,
+				75419F321A97E1A8002A1F25 /* Tag5.cpp in Sources */,
+				75419F331A97E1A8002A1F25 /* Tag6.cpp in Sources */,
+				75419F341A97E1A8002A1F25 /* Tag60.cpp in Sources */,
+				75419F351A97E1A8002A1F25 /* Tag61.cpp in Sources */,
+				75419F361A97E1A8002A1F25 /* Tag62.cpp in Sources */,
+				75419F371A97E1A8002A1F25 /* Tag63.cpp in Sources */,
+				75419F381A97E1A8002A1F25 /* Tag7.cpp in Sources */,
+				75419F391A97E1A8002A1F25 /* Tag8.cpp in Sources */,
+				75419F3A1A97E1A8002A1F25 /* Tag9.cpp in Sources */,
+				75419F3B1A97E1A8002A1F25 /* utilities.cpp in Sources */,
+				75419F3C1A97E1A8002A1F25 /* verify.cpp in Sources */,
+				75419F3D1A97E1A8002A1F25 /* rsa_key.cpp in Sources */,
+				75419F3E1A97E1A8002A1F25 /* UTF8.cpp in Sources */,
+				75419F3F1A97E1A8002A1F25 /* utility.cpp in Sources */,
+				75419F401A97E1A8002A1F25 /* OpenPGP.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1222,7 +1745,7 @@
 		7519BBEC1A8D868000E0E570 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = OpenPGP;
 				SKIP_INSTALL = YES;
@@ -1273,8 +1796,10 @@
 		7519BBF81A8D869000E0E570 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "OpenPGP_OSX_Lib copy";
+				PRODUCT_NAME = OpenPGP_x86_64;
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -1282,8 +1807,34 @@
 		7519BBF91A8D869000E0E570 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "OpenPGP_OSX_Lib copy";
+				PRODUCT_NAME = OpenPGP_x86_64;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		75419F451A97E1A8002A1F25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = OpenPGP_i386;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		75419F461A97E1A8002A1F25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = OpenPGP_i386;
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -1318,11 +1869,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7519BBF71A8D869000E0E570 /* Build configuration list for PBXNativeTarget "OpenPGP_OSX" */ = {
+		7519BBF71A8D869000E0E570 /* Build configuration list for PBXNativeTarget "OpenPGP_x86_64" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7519BBF81A8D869000E0E570 /* Debug */,
 				7519BBF91A8D869000E0E570 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		75419F441A97E1A8002A1F25 /* Build configuration list for PBXNativeTarget "OpenPGP_i386" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75419F451A97E1A8002A1F25 /* Debug */,
+				75419F461A97E1A8002A1F25 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
