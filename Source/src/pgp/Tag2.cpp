@@ -177,10 +177,23 @@ void Tag2::read(std::string & data, const uint8_t part){
         pka = data[2];
         hash = data[3];
         uint16_t hashed_size = toint(data.substr(4, 2), 256);
+        
+        
         data = data.substr(6, data.size() - 6);
-
+        if (get_is_debug()) {
+            std::cout << "Tag2:" << hexlify(type) << std::endl;
+            std::cout << "Tag2:" << hexlify(pka) << std::endl;
+            std::cout << "Tag2:" << hexlify(hash) << std::endl;
+            std::cout << "Tag2:" << hexlify(data) << std::endl;
+        }
+        
         // hashed subpackets
         std::string hashed = data.substr(0, hashed_size);
+        
+        if (get_is_debug()) {
+            std::cout << "Tag2:" << hexlify(hashed) << std::endl;
+        }
+        
         data = data.substr(hashed_size, data.size() - hashed_size);
         hashed_subpackets = read_subpackets(hashed);
 
@@ -197,11 +210,12 @@ void Tag2::read(std::string & data, const uint8_t part){
        
         data = data.substr(2, data.size() - 2);
         
-        if(get_is_debug())
-            std::cout << "data:" << hexlify(data) << std::endl;
-
         if (pka < 4)
             mpi.push_back(read_MPI(data));              // RSA m**d mod n
+        
+        if(get_is_debug())
+            std::cout << "data:" << mpitohex(mpi[0]) << std::endl;
+
         if (pka == 17){
             mpi.push_back(read_MPI(data));        // DSA r
             mpi.push_back(read_MPI(data));          // DSA s
@@ -419,6 +433,11 @@ void Tag2::set_hash(const uint8_t h){
 
 void Tag2::set_left16(const std::string & l){
     left16 = l;
+    
+    if (get_is_debug()) {
+        std::cout<< "Tag2-left16" << hexlify( l) <<std::endl;
+    }
+    
     size = raw().size();
 }
 

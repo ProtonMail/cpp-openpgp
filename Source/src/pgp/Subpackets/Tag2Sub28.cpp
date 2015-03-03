@@ -14,6 +14,9 @@ Tag2Sub28::Tag2Sub28(std::string & data):
 void Tag2Sub28::read(std::string & data){
     signer = data;
     size = data.size();
+    if (get_is_debug()) {
+        std::cout << "Tag2Sub28:" << hexlify(signer) << std::endl;
+    }
 }
 
 std::string Tag2Sub28::show(const uint8_t indents, const uint8_t indent_size) const{

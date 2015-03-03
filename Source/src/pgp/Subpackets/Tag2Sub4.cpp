@@ -13,6 +13,9 @@ Tag2Sub4::Tag2Sub4(std::string & data):
 
 void Tag2Sub4::read(std::string & data){
     exportable = data[0];
+    if (get_is_debug()) {
+        std::cout << "Tag2Sub4:" << hexlify(exportable) << std::endl;
+    }
 }
 
 std::string Tag2Sub4::show(const uint8_t indents, const uint8_t indent_size) const{

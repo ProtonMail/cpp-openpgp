@@ -578,7 +578,36 @@
 //}
 //
 
+- (void)Test_Privatekey:(NSString *)priv_key pass:(NSString*) passphrase
+{
+    std::string str_priv_key = [priv_key UTF8String];
+    
 
+    
+    private_key_->read(str_priv_key);
+    
+    
+    pgp::openpgp tmp;
+    tmp.generate_new_key(2048, "123", "test");
+    
+    
+//    //std::cout << "KeyID:" << hexlify(private_key_->keyid()) << std::endl;
+//    
+//    std::string tmp = [pub_key UTF8String];
+//    public_key_->read(tmp);
+//    
+//    std::string verifyString = "this is a protonmail encryption test string";
+//    PGPMessage encrypted = encrypt_pka(*public_key_, verifyString);
+//    
+//    std::string clain_txt = decrypt_pka(*private_key_, encrypted, [passphrase UTF8String], false);
+//    if(verifyString == clain_txt)
+//    {
+//        Passpharse = passphrase;
+//        IsPasspharseRight = YES;
+//        return true;
+//    }
+//
+}
 
 - (void)EnableDebug:(BOOL) isDebug
 {
@@ -601,7 +630,7 @@
 - (NSString*)Test_2
 {
     std::string test = "";
-    std::cout << pm::decrypt_message_id(test) << std::endl;
+   // std::cout << pm::decrypt_message_id(test) << std::endl;
     
     return @"";
 }

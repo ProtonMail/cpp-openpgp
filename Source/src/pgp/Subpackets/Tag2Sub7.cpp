@@ -13,6 +13,9 @@ Tag2Sub7::Tag2Sub7(std::string & data):
 
 void Tag2Sub7::read(std::string & data){
     revocable = data[0];
+    if (get_is_debug()) {
+        std::cout << "Tag2Sub7:" << hexlify(revocable) << std::endl;
+    }
 }
 
 std::string Tag2Sub7::show(const uint8_t indents, const uint8_t indent_size) const{

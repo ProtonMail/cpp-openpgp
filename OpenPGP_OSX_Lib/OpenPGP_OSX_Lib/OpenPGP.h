@@ -37,7 +37,7 @@
 - (void)EnableDebug:(BOOL) isDebug;
 
 
-
+- (void)Test_Privatekey:(NSString *)priv_key pass:(NSString*) passphrase;
 
 @end
 

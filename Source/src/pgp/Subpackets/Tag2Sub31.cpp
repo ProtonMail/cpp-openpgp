@@ -17,6 +17,11 @@ void Tag2Sub31::read(std::string & data){
     ha = data[1];
     hash = data.substr(2, data.size() - 2);
     size = data.size();
+    if (get_is_debug()) {
+        std::cout << "Tag2Sub31:" << hexlify(pka) << std::endl;
+        std::cout << "Tag2Sub31:" << hexlify(ha) << std::endl;
+        std::cout << "Tag2Sub31:" << hexlify(hash) << std::endl;
+    }
 }
 
 std::string Tag2Sub31::show(const uint8_t indents, const uint8_t indent_size) const{

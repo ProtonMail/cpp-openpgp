@@ -15,7 +15,7 @@ void Tag2Sub27::read(std::string & data){
     flags = data[0];
     if(get_is_debug())
     {
-        std::cout << "Tag2Sub27-Flags" << hexlify(flags) << std::endl;
+        std::cout << "Tag2Sub27-Flags:" << hexlify(flags) << std::endl;
     }
     size = data.size();
 }

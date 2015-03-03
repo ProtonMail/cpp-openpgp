@@ -13,7 +13,7 @@
 		75419DBB1A96A6FB002A1F25 /* PMPGPMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75419DB91A96A6FB002A1F25 /* PMPGPMessage.cpp */; };
 		75419DC21A96BEDF002A1F25 /* pgp_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75419DC11A96BEDF002A1F25 /* pgp_exception.cpp */; };
 		75419DC41A96CAF7002A1F25 /* pgp_exception_define.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75419DC31A96CAF7002A1F25 /* pgp_exception_define.cpp */; };
-		75419DC51A97AF0E002A1F25 /* OpenPGP.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 756C9BBB1A8D8A47007B2B9B /* OpenPGP.h */; };
+		75419DC51A97AF0E002A1F25 /* OpenPGP.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 756C9BBB1A8D8A47007B2B9B /* OpenPGP.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		75419DC61A97AFC3002A1F25 /* pgp_exception_define.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75419DC31A96CAF7002A1F25 /* pgp_exception_define.cpp */; };
 		75419DC71A97AFC3002A1F25 /* pgp_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75419DC11A96BEDF002A1F25 /* pgp_exception.cpp */; };
 		75419DCE1A97AFC3002A1F25 /* PMPGPMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75419DB91A96A6FB002A1F25 /* PMPGPMessage.cpp */; };
@@ -252,7 +252,7 @@
 		75419F3E1A97E1A8002A1F25 /* UTF8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CBD1A8D8AF7007B2B9B /* UTF8.cpp */; };
 		75419F3F1A97E1A8002A1F25 /* utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CBF1A8D8AF7007B2B9B /* utility.cpp */; };
 		75419F401A97E1A8002A1F25 /* OpenPGP.mm in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BBC1A8D8A47007B2B9B /* OpenPGP.mm */; };
-		75419F431A97E1A8002A1F25 /* OpenPGP.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 756C9BBB1A8D8A47007B2B9B /* OpenPGP.h */; };
+		75419F431A97E1A8002A1F25 /* OpenPGP.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 756C9BBB1A8D8A47007B2B9B /* OpenPGP.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		756C9BBD1A8D8A47007B2B9B /* OpenPGP.mm in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BBC1A8D8A47007B2B9B /* OpenPGP.mm */; };
 		756C9CC21A8D8AF7007B2B9B /* base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BC71A8D8AF7007B2B9B /* base64.cpp */; };
 		756C9CC31A8D8AF7007B2B9B /* openpgp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BCA1A8D8AF7007B2B9B /* openpgp.cpp */; };

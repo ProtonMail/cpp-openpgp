@@ -153,12 +153,12 @@ std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const st
 
     std::vector <std::string> pub_mpi = sec -> get_mpi();
     std::vector <std::string> pri_mpi = decrypt_secret_key(sec, passphrase);
-//    
-//    std::cout<< "D: " << hexlify( pri_mpi[0]) << std::endl;
-//    std::cout<< "P: " << hexlify(pri_mpi[1]) << std::endl;
-//    std::cout<< "Q: " << hexlify(pri_mpi[2]) << std::endl;
-//    std::cout<< "U: " << hexlify(pri_mpi[3]) << std::endl;
-//
+    
+    std::cout<< "D: " << hexlify( pri_mpi[0]) << std::endl;
+    std::cout<< "P: " << hexlify(pri_mpi[1]) << std::endl;
+    std::cout<< "Q: " << hexlify(pri_mpi[2]) << std::endl;
+    std::cout<< "U: " << hexlify(pri_mpi[3]) << std::endl;
+
     // get session key
     session_key = zero + pka_decrypt(pka, session_key_mpi, pri_mpi, pub_mpi);     // symmetric algorithm, session key, 2 octet checksum wrapped in EME_PKCS1_ENCODE
     session_key = EME_PKCS1v1_5_DECODE(session_key);                              // remove EME_PKCS1 encoding

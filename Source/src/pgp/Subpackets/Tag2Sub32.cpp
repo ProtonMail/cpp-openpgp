@@ -22,6 +22,10 @@ void Tag2Sub32::read(std::string & data){
     embedded = std::make_shared<Tag2>();
     embedded -> read(data);
     size = data.size();
+    
+    if (get_is_debug()) {
+        std::cout << "Tag2Sub32:" << hexlify(size) << std::endl;
+    }
 }
 
 std::string Tag2Sub32::show(const uint8_t indents, const uint8_t indent_size) const{

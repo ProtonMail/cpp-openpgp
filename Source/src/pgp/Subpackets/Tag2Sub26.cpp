@@ -14,6 +14,9 @@ Tag2Sub26::Tag2Sub26(std::string & data):
 void Tag2Sub26::read(std::string & data){
     uri = data;
     size = data.size();
+    if (get_is_debug()) {
+        std::cout << "Tag2Sub26:" << hexlify(uri) << std::endl;
+    }
 }
 
 std::string Tag2Sub26::show(const uint8_t indents, const uint8_t indent_size) const{

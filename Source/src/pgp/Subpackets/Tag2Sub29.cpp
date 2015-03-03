@@ -16,6 +16,10 @@ void Tag2Sub29::read(std::string & data){
     code = data[0];
     reason = data.substr(1, data.size() - 1);
     size = data.size();
+    if (get_is_debug()) {
+        std::cout << "Tag2Sub29:" << hexlify(code) << std::endl;
+        std::cout << "Tag2Sub29:" << hexlify(reason) << std::endl;
+    }
 }
 
 std::string Tag2Sub29::show(const uint8_t indents, const uint8_t indent_size) const{

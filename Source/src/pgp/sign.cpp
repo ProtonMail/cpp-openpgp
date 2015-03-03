@@ -24,7 +24,7 @@ std::vector <std::string> pka_sign(const std::string & digest, const uint8_t pka
         // RFC 4880 sec 5.2.2
         // If RSA, hash value is encoded using EMSA-PKCS1-v1_5
         std::string encoded = EMSA_PKCS1_v1_5(h, digest, bitsize(pub[0]) >> 3);
-        return {};//{RSA_sign(encoded, pri, pub)};
+        return {RSA_sign(encoded, pri, pub)};
     }
     else if (pka == 17){ // DSA
         return {};//DSA_sign(digest, pri, pub);

@@ -22,6 +22,13 @@ void Tag2Sub20::read(std::string & data){
     data = data.substr(mlen, data.size() - mlen);
     n = data.substr(0, nlen);
     size = mlen + nlen + 4;
+    if (get_is_debug()) {
+        std::cout << "Tag2Sub20:" << hexlify(flags) << std::endl;
+        std::cout << "Tag2Sub20:" << hexlify(mlen) << std::endl;
+        std::cout << "Tag2Sub20:" << hexlify(nlen) << std::endl;
+        std::cout << "Tag2Sub20:" << hexlify(m) << std::endl;
+        std::cout << "Tag2Sub20:" << hexlify(n) << std::endl;
+    }
 }
 
 std::string Tag2Sub20::show(const uint8_t indents, const uint8_t indent_size) const{

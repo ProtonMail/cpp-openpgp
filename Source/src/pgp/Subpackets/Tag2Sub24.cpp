@@ -14,6 +14,10 @@ Tag2Sub24::Tag2Sub24(std::string & data):
 void Tag2Sub24::read(std::string & data){
     pks = data;
     size = data.size();
+    
+    if (get_is_debug()) {
+        std::cout << "Tag2Sub24:" << hexlify(pks) << std::endl;
+    }
 }
 
 std::string Tag2Sub24::show(const uint8_t indents, const uint8_t indent_size) const{

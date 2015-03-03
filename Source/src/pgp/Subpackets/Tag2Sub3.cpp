@@ -13,6 +13,10 @@ Tag2Sub3::Tag2Sub3(std::string & data):
 
 void Tag2Sub3::read(std::string & data){
     time = (long)toint(data, 256); //Note: Convert
+    
+    if (get_is_debug()) {
+        std::cout << "Tag2Sub3:" << hexlify(time) << std::endl;
+    }
 }
 
 std::string Tag2Sub3::show(const uint8_t indents, const uint8_t indent_size) const{

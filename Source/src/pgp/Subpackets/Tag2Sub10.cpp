@@ -13,6 +13,9 @@ Tag2Sub10::Tag2Sub10(std::string & data):
 
 void Tag2Sub10::read(std::string & data){
     stuff = data;
+    if (get_is_debug()) {
+        std::cout << "Tag2Sub10:" << hexlify(stuff) << std::endl;
+    }
     size = data.size();
 }
 

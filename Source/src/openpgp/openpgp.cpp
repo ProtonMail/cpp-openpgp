@@ -65,6 +65,7 @@ __RCSID("$NetBSD: openssl_crypto.c,v 1.32 2010/11/07 06:56:52 agc Exp $");
 #include "PGPKey.h"
 #include "cfb.h"
 #include "sigcalc.h"
+#include "RSA.h"
 
 
 namespace pgp {
@@ -133,22 +134,29 @@ void openpgp::generate_new_key(int bits, std::string passphrase, std::string use
     rsa_pub_mpi.push_back(unhexlify(pub_n));
     rsa_pub_mpi.push_back(unhexlify(pub_e));
     
-    
-//D: 0000010011c751519465188e4b3d0a637a8f79c53463f8178676dc0223ab8d4b088df5ac84d51d3009105c3e3dae439d55fd4de40ed8210e7a038cd85c3b78b8123ecd91bd2b027d756ff243b70376ced54ed4a77e58408e7cb21badefc1109a202564e90b45bb28df4a8f6857418680d34b15965a20107674d33e8ee17e07ed2134d767f80dc756450bfa1f26957cb566fc7477f018b227b042c7e468811a74e7d8d71ea71fc372d00a6de6c0f17fed581d6a414d3f034dff4a665df75376f04ca7165d83648da646875306e186a0f6d8635dbc9b362cb298c09608208f31992331f02eb1e93fba9075cf81dab8f8409e1aa54c1e584fd824b8568292a2b6ea84603125
-//P: 0000008100c786785df5ef37fdf0f9ff5f2e6aa1b78d2b457889ed713c7b0e0e2be361a2f059ede569509df48d0c175cd20f0983fbc239a21b91dc75ad459c62a4d87f06afa779abab414e3db0da75eeb7588821cd775d3d14a1872d3da0e64a4e609778467cfe795bf852487bedfe0d970289feadc1c15411933ca4d8f65d513e5d6d0ea3
-//Q: 00000081008b4fa19051e3e5d3b95914a94c9faebe256ea8a97d18acef1b0ec13fef2bb58d9a20d788038fcc8d96e821ba6c1ff62ae4fcaa679bfc742aea0410f6bc15f6aa4fa838f5fc72370c36ca37918bdc8c693f51e6968d34ad04e48e8c52bac1b62dc2e2b226dff66453e887fc9ba89b47b781c7319debd57f289506ab3464722e57
-//U: 00000080296ebe38400198771d0125a9c5768df98cab22743e57cfe0726c35cc2280f5598b2cbdeca3fa1100073710ba6f15e9d206174a59b19c631287c85b9b4bb88d806b88ed2e50ad3f885040fab3bb2adb952d135e629215ea17a68913575c4e88477b0babb8c5e7c0fcc2468f39e8f0152a380e0543c05884a545dcc079e1a911ef
+    //D:
+    std::string priv_d = "0000010011c751519465188e4b3d0a637a8f79c53463f8178676dc0223ab8d4b088df5ac84d51d3009105c3e3dae439d55fd4de40ed8210e7a038cd85c3b78b8123ecd91bd2b027d756ff243b70376ced54ed4a77e58408e7cb21badefc1109a202564e90b45bb28df4a8f6857418680d34b15965a20107674d33e8ee17e07ed2134d767f80dc756450bfa1f26957cb566fc7477f018b227b042c7e468811a74e7d8d71ea71fc372d00a6de6c0f17fed581d6a414d3f034dff4a665df75376f04ca7165d83648da646875306e186a0f6d8635dbc9b362cb298c09608208f31992331f02eb1e93fba9075cf81dab8f8409e1aa54c1e584fd824b8568292a2b6ea84603125";
+    rsa_priv_mpi.push_back(unhexlify(priv_d));
+//P:
+    std::string priv_p = "0000008100c786785df5ef37fdf0f9ff5f2e6aa1b78d2b457889ed713c7b0e0e2be361a2f059ede569509df48d0c175cd20f0983fbc239a21b91dc75ad459c62a4d87f06afa779abab414e3db0da75eeb7588821cd775d3d14a1872d3da0e64a4e609778467cfe795bf852487bedfe0d970289feadc1c15411933ca4d8f65d513e5d6d0ea3";
+    rsa_priv_mpi.push_back(unhexlify(priv_p));
+//Q:
+    std::string priv_q = "00000081008b4fa19051e3e5d3b95914a94c9faebe256ea8a97d18acef1b0ec13fef2bb58d9a20d788038fcc8d96e821ba6c1ff62ae4fcaa679bfc742aea0410f6bc15f6aa4fa838f5fc72370c36ca37918bdc8c693f51e6968d34ad04e48e8c52bac1b62dc2e2b226dff66453e887fc9ba89b47b781c7319debd57f289506ab3464722e57";
+    rsa_priv_mpi.push_back(unhexlify(priv_q));
+//U:
+    std::string priv_u = "00000080296ebe38400198771d0125a9c5768df98cab22743e57cfe0726c35cc2280f5598b2cbdeca3fa1100073710ba6f15e9d206174a59b19c631287c85b9b4bb88d806b88ed2e50ad3f885040fab3bb2adb952d135e629215ea17a68913575c4e88477b0babb8c5e7c0fcc2468f39e8f0152a380e0543c05884a545dcc079e1a911ef";
+    rsa_priv_mpi.push_back(unhexlify(priv_u));
 
     
     //private key part
-    ln = BN_bn2mpi(rsa_key->d, out);
-    rsa_priv_mpi.push_back(std::string((char*)out, ln));
-    ln = BN_bn2mpi(rsa_key->p, out);
-    rsa_priv_mpi.push_back(std::string((char*)out, ln));
-    ln = BN_bn2mpi(rsa_key->q, out);
-    rsa_priv_mpi.push_back(std::string((char*)out, ln));
-    ln = BN_bn2mpi(BN_mod_inverse(NULL, rsa_key->p, rsa_key->q, ctx), out);
-    rsa_priv_mpi.push_back(std::string((char*)out, ln));
+//    ln = BN_bn2mpi(rsa_key->d, out);
+//    rsa_priv_mpi.push_back(std::string((char*)out, ln));
+//    ln = BN_bn2mpi(rsa_key->p, out);
+//    rsa_priv_mpi.push_back(std::string((char*)out, ln));
+//    ln = BN_bn2mpi(rsa_key->q, out);
+//    rsa_priv_mpi.push_back(std::string((char*)out, ln));
+//    ln = BN_bn2mpi(BN_mod_inverse(NULL, rsa_key->p, rsa_key->q, ctx), out);
+//    rsa_priv_mpi.push_back(std::string((char*)out, ln));
     
     
     //Key creation time
@@ -200,8 +208,16 @@ void openpgp::generate_new_key(int bits, std::string passphrase, std::string use
     sig -> set_pka(RFC4880_PKA_RSA);
     sig -> set_hash(RFC4880_HASH_SHA256);
     
+//  Tag2Sub2:24
+//    Tag2Sub11-PSA: 0908070302
+//    Tag2Sub16-KeyID:7d2d53de4bcfb404
+//    Tag2Sub21-Pha: 08020a
+//    Tag2Sub22-Pca: 0201
+//    Tag2Sub27-Flags:03
+//    Tag2Sub30-Flags: 01
+    
     Tag2Sub2::Ptr tag2sub2 = std::make_shared<Tag2Sub2>();
-    tag2sub2 -> set_time(time);
+    tag2sub2 -> set_time(1419998500);
     
     Tag2Sub11::Ptr tag2sub11 = std::make_shared<Tag2Sub11>();
     tag2sub11 -> set_psa(unhexlify("0908070302"));
@@ -231,14 +247,17 @@ void openpgp::generate_new_key(int bits, std::string passphrase, std::string use
     //sig -> set_unhashed_subpackets({tag2sub16});
     sig->set_hashed_subpackets({tag2sub2 , tag2sub11, tag2sub16, tag2sub21, tag2sub22, tag2sub27, tag2sub30});
     
-    std::string sig_hash = to_sign_13(sec, uid, sig);
+    std::string sig_hash = to_sign_10(sec, uid, sig);
     sig -> set_left16(sig_hash.substr(0, 2));
-    //sig -> set_mpi(DSA_sign(sig_hash, dsa_pri, dsa_pub));
-
-
+    
+    std::string str_sign = RSA_sign(sig_hash, rsa_priv_mpi, rsa_pub_mpi);
+    std::cout << hexlify(str_sign) << std::endl;
+    sig -> set_mpi({str_sign});
     
     if(get_is_debug())
         std::cout << "sig_hash:" << hexlify(sig_hash) << std::endl;
+    
+    
     
     // Secret Subkey Packet
     Tag7::Ptr ssb = std::make_shared<Tag7>();

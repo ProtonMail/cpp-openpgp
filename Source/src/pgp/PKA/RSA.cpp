@@ -4,12 +4,24 @@
 
 #ifdef HAVE_OPENSSL_RSA_H
 #include <openssl/rsa.h>
+
+#include <openssl/err.h>
+#include <openssl/engine.h>
+#include <openssl/evp.h>
+#include <openssl/sha.h>
+#include <openssl/hmac.h>
+#include <openssl/rand.h>
+#include <openssl/pem.h>
+#include <openssl/rsa.h>
+#include <openssl/aes.h>
 #endif
 
 
 #ifdef HAVE_OPENSSL_ERR_H
 #include <openssl/err.h>
 #endif
+
+#include "PKCS1.h"
 
 //std::vector <PGPMPI> RSA_keygen(const unsigned int & bits){
 //    BBS(static_cast <PGPMPI> (static_cast <unsigned int> (now()))); // seed just in case not seeded
@@ -111,16 +123,83 @@ std::string RSA_decrypt(const std::string & data, const std::vector <std::string
         
     }
     RSA_free ( rsa );
+   
+    
+    std::cout << hexlify(std::string(std::string((char*)out, resultDecrypt))) << std::endl;
     
     std::string mpi_out = rawtompi(std::string((char*)out, resultDecrypt));
    
-    //std::cout << mpitohex(mpi_out) << std::endl;
+    std::cout << mpitohex(mpi_out) << std::endl;
     
     return mpi_out;
 }
 
 std::string RSA_sign(const std::string & data, const std::vector <std::string> & pri, const std::vector <std::string> & pub)
 {
+    RSA * rsa = RSA_new();
+    
+    size_t length = 8192;
+    uint8_t out[length];
+    
+    
+    rsa->n = BN_mpi2bn((unsigned char *)pub[0].c_str(), (int)pub[0].size(), NULL);
+    // rsa->e = BN_mpi2bn((unsigned char *)pub[1].c_str(), (int)pub[1].size(), NULL);
+    rsa->d = BN_mpi2bn((unsigned char *)pri[0].c_str(), (int)pri[0].size(), NULL);
+    rsa->p = BN_mpi2bn((unsigned char *)pri[1].c_str(), (int)pri[1].size(), NULL);
+    rsa->q = BN_mpi2bn((unsigned char *)pri[2].c_str(), (int)pri[2].size(), NULL);
+    
+    
+    RSA            *orsa;
+    int             n;
+    
+    orsa = RSA_new();
+    orsa->n = BN_mpi2bn((unsigned char *)pub[0].c_str(), (int)pub[0].size(), NULL);
+    orsa->d = BN_mpi2bn((unsigned char *)pri[0].c_str(), (int)pri[0].size(), NULL);
+    orsa->p = BN_mpi2bn((unsigned char *)pri[1].c_str(), (int)pri[1].size(), NULL);
+    orsa->q = BN_mpi2bn((unsigned char *)pri[2].c_str(), (int)pri[2].size(), NULL);
+    
+    /* debug */
+    orsa->e = BN_mpi2bn((unsigned char *)pub[1].c_str(), (int)pub[1].size(), NULL);
+    /* If this isn't set, it's very likely that the programmer hasn't */
+    /* decrypted the secret key. RSA_check_key segfaults in that case. */
+    /* Use __ops_decrypt_seckey() to do that. */
+    if (orsa->d == NULL) {
+        (void) fprintf(stderr, "orsa is not set\n");
+        return 0;
+    }
+    if (RSA_check_key(orsa) != 1) {
+        (void) fprintf(stderr, "RSA_check_key is not set\n");
+        return 0;
+    }
+    /* end debug */
+    
+    
+    
+    
+    int keysize = (BN_num_bits(orsa->n) + 7) / 8;
+    
+    //SHA256(data, dataLen, hash);
+    std::string encoded = EMSA_PKCS1_v1_5(8, data, keysize);
+    
+    //encoded = zero + encoded;
+    
+    //std::cout << hexlify(encoded) << std::endl;
+    
+    
+    //RSA_decrypt(rawtompi(encoded), pri, pub);
+    
+    
+    
+    n = RSA_private_encrypt(encoded.size(), (unsigned char*)encoded.c_str(), out, orsa, RSA_NO_PADDING);
+    
+    
+    std::cout << hexlify(std::string(std::string((char*)out, n))) << std::endl;
+    
+    orsa->n = orsa->d = orsa->p = orsa->q = NULL;
+    RSA_free(orsa);
+
+
+    
     return "";
 }
 

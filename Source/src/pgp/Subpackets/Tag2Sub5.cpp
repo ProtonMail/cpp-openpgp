@@ -15,6 +15,11 @@ Tag2Sub5::Tag2Sub5(std::string & data):
 void Tag2Sub5::read(std::string & data){
     level = data[0];
     amount = data[1];
+    
+    if (get_is_debug()) {
+        std::cout << "Tag2Sub5:" << hexlify(level) << std::endl;
+        std::cout << "Tag2Sub5:" << hexlify(amount) << std::endl;
+    }
 }
 
 std::string Tag2Sub5::show(const uint8_t indents, const uint8_t indent_size) const{

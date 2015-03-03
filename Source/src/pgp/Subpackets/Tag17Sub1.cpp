@@ -20,6 +20,10 @@ void Tag17Sub1::read(std::string & data){
     version = data[2];
     encoding = data[3];
     image = data.substr(16, data.size() - 16); // remove image header - 12 '\x00's
+    
+    if (get_is_debug()) {
+        std::cout << "Tag17Sub1:" << std::endl;
+    }
 }
 
 std::string Tag17Sub1::show(const uint8_t indents, const uint8_t indent_size) const{

@@ -14,6 +14,9 @@ Tag2Sub6::Tag2Sub6(std::string & data):
 void Tag2Sub6::read(std::string & data){
     regex = data;
     size = data.size();
+    if (get_is_debug()) {
+        std::cout << "Tag2Sub6:" << hexlify(regex) << std::endl;
+    }
 }
 
 std::string Tag2Sub6::show(const uint8_t indents, const uint8_t indent_size) const{
