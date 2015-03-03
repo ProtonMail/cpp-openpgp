@@ -42,13 +42,9 @@ THE SOFTWARE.
 #include "PGPMessage.h"
 #include "PMPGPMessage.h"
 
-//#include "PKCS1.h"
-//#include "verify.h"
 
-// used internally
-Tag5::Ptr find_decrypting_key(const PGPSecretKey & k, const std::string & keyid);
+
 std::string pka_decrypt(const uint8_t pka, std::vector <std::string> & data, const std::vector <std::string> & pri, const std::vector <std::string> & pub = {});
-std::vector <std::string> decrypt_secret_key(const Tag5::Ptr & pri, const std::string & passphrase);
 
 // decrypt data once session key is known
 PGPMessage decrypt_data(const uint8_t sym, const PGPMessage & m, const std::string & session_key, const bool writefile = true, const PGPPublicKey::Ptr & verify = nullptr);
@@ -61,4 +57,7 @@ std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const st
 std::string decrypt_pka(const PGPSecretKey & pri, const pm::PMPGPMessage & m, const std::string & passphrase, const bool writefile = true, const PGPPublicKey::Ptr & verify = nullptr);
 // session key encrypted with symmetric algorithm
 std::string decrypt_sym(const PGPMessage & m, const std::string & passphrase, const bool writefile = true, const PGPPublicKey::Ptr & verify = nullptr);
+
+
+
 #endif

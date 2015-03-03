@@ -29,11 +29,15 @@
 //Decrypt message user Private key
 - (NSString *) decrypt_message:(NSString*) encrypted_message error:(NSError**) err;
 
+//Update Private Key password
+- (NSString *) update_key_password:(NSString*) passphrase error:(NSError**) err;
+
+
 // print debug logs
 - (void)EnableDebug:(BOOL) isDebug;
 
 
-- (void)Test;
+
 
 @end
 

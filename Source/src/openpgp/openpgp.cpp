@@ -244,7 +244,7 @@ void openpgp::generate_new_key(int bits, std::string passphrase, std::string use
     Tag7::Ptr ssb = std::make_shared<Tag7>();
     ssb -> set_version(RFC4880_V4);
     ssb -> set_time(time);
-    ssb -> set_pka(RFC4880_PKA_RSA);// ElGamal
+    ssb -> set_pka(RFC4880_PKA_RSA);
     ssb -> set_mpi(rsa_pub_mpi);
     ssb -> set_s2k_con(RFC4880_S2KU_ENCRYPTED_AND_HASHED);
     ssb -> set_sym(RFC4880_SA_AES_256);// AES256

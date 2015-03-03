@@ -116,6 +116,7 @@ class TestView: UIViewController {
     @IBAction func other_test_clicked(sender: AnyObject) {
         let button:UIButton = sender as UIButton;
         
+               
         button.enabled = false;
         
         public_key_ = GetStringFromSampleFile("PublicKey")
@@ -126,13 +127,15 @@ class TestView: UIViewController {
         
         
         
-        pgp.Test();
+      //  pgp.Test_2();
         
         
         button.enabled = true;
     }
     
     @IBAction func generate_new_key_clicked(sender: AnyObject) {
+        
+        
         
         
         let button:UIButton = sender as UIButton;

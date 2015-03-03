@@ -90,11 +90,37 @@
 
 - (IBAction)tiny_test_clicked:(id)sender {
     
+
     
     UIButton * button = sender;
     [button setEnabled:false];
     
     OpenPGP * pgp = [[OpenPGP alloc] init];
+    
+
+    
+    //NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:nil]);
+    NSString *path;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    path = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"test"];
+    path = [path stringByAppendingPathComponent:@"1.56mb.txt"];
+    NSLog(@"Documents directory: %@",path);
+          
+          //    if ([[NSFileManager defaultManager] fileExistsAtPath:path])		//Does file exist?
+          //    {
+          //        if (![[NSFileManager defaultManager] removeItemAtPath:path error:nil])	//Delete it
+          //        {
+          //            NSLog(@"Delete file error:");
+          //        }
+          //    }
+    
+          
+    NSData *filedata = [pgp Test_1];
+    
+    BOOL Success = [[NSFileManager defaultManager] createFileAtPath:path contents:nil attributes:nil];
+    
+    
+    
     
     [pgp SetupKeys:private_key_ pubKey:public_key_ pass:@"123" error:nil];
     

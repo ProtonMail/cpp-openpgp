@@ -16,6 +16,12 @@
 namespace pm {
     
     void optimized_trim(std::string& s);
+    
+    
+    std::string decrypt_message_id(std::string& enc_msg);
+    
+    std::string aes_cfb_256_encrypt();
+    void aes_cfb_256_decrypt();
 }
 
 

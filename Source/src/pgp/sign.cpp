@@ -1,4 +1,8 @@
 #include "sign.h"
+#include "private_key.h"
+
+
+using namespace pm::pgp;
 
 // possible to mess up
 ID::Ptr find_user_id(const PGPSecretKey & k){

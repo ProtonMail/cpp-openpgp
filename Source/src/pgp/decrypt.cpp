@@ -4,28 +4,11 @@
 #include "mpi.h"
 #include "pgp_exception.h"
 #include "base64.h"
+#include "private_key.h"
 
 
-Tag5::Ptr find_decrypting_key(const PGPSecretKey & k, const std::string & keyid){
-    for(Packet::Ptr const & p : k.get_packets()){
-        if ((p -> get_tag() == 5) || (p -> get_tag() == 7)){
-            std::string raw = p -> raw();
-            Tag5::Ptr key = std::make_shared<Tag5>(raw);
-            if (key -> get_public_ptr() -> get_keyid() != keyid ){
-                key.reset();
-                continue;
-            }
-            // make sure key has encrypting keys
-            if ((key -> get_pka() == 1) || // RSA
-                (key -> get_pka() == 2) || // RSA
-                (key -> get_pka() == 16)){ // ElGamal
-                    return key;
-            }
-            key.reset();
-        }
-    }
-    return nullptr;
-}
+using namespace pm::pgp;
+
 
 std::string pka_decrypt(const uint8_t pka, std::vector <std::string> & data, const std::vector <std::string> & pri, const std::vector <std::string> & pub){
     if (pka < 3){   // RSA
@@ -39,59 +22,6 @@ std::string pka_decrypt(const uint8_t pka, std::vector <std::string> & data, con
         throw std::runtime_error("Error: PKA number " + s.str() + " not allowed or unknown.");
     }
     return ""; // should never reach here; mainly just to remove compiler warnings
-}
-
-std::vector <std::string> decrypt_secret_key(const Tag5::Ptr & pri, const std::string & passphrase){
-    std::vector <std::string> out;
-    S2K::Ptr s2k = pri -> get_s2k();
-    
-    // calculate key used in encryption algorithm
-    std::string key = s2k -> run(passphrase, Symmetric_Algorithm_Key_Length.at(Symmetric_Algorithms.at(pri -> get_sym())) >> 3);
-        //std::cout << hexlify(key) << std::endl;
-
-    // decrypt secret key
-    std::string secret_key = use_normal_CFB_decrypt(pri -> get_sym(), pri -> get_secret(), key, pri -> get_IV());
-
-   // std::cout << hexlify(secret_key) << std::endl;
-    
-    // get checksum and remove it from the string
-    const unsigned int hash_size = (pri -> get_s2k_con() == 254)?20:2;
-    std::string checksum = secret_key.substr(secret_key.size() - hash_size, hash_size);
-    secret_key = secret_key.substr(0, secret_key.size() - hash_size);
-    //std::cout << hexlify(secret_key) << std::endl;
-
-    // calculate and check checksum
-    if(pri -> get_s2k_con() == 254){
-       //  std::cout << hexlify(checksum) << std::endl;
-       
-        
-        std::string hash_check = use_hash(2, secret_key); //use_hash(s2k -> get_hash(), secret_key);
-      //  std::cout << hexlify(hash_check) << std::endl;
-        
-        if (hash_check != checksum){
-            throw std::runtime_error("Error: Secret key checksum and calculated checksum do not match.");
-        }
-    }
-    else{ // all other values; **UNTESTED**
-        uint16_t sum = 0;
-        for(char & c : secret_key){
-            sum += static_cast <unsigned char> (c);
-        }
-        if (unhexlify(makehex(sum, 4)) != checksum){
-            if (use_hash(s2k -> get_hash(), secret_key) != checksum){
-                throw std::runtime_error("Error: Secret key checksum and calculated checksum do not match.");
-            }
-        }
-    }
-
-    // extract MPI values
-    while (secret_key.size()){
-        out.push_back(read_MPI(secret_key));
-    }
-
-    s2k.reset();
-
-    return out;
 }
 
 PGPMessage decrypt_data(const uint8_t sym, const PGPMessage & m, const std::string & session_key, const bool writefile, const PGPPublicKey::Ptr & verify){

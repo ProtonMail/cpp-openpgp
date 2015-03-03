@@ -368,6 +368,9 @@
 		756C9D311A8D8AF7007B2B9B /* rsa_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CBB1A8D8AF7007B2B9B /* rsa_key.cpp */; };
 		756C9D321A8D8AF7007B2B9B /* UTF8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CBD1A8D8AF7007B2B9B /* UTF8.cpp */; };
 		756C9D331A8D8AF7007B2B9B /* utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756C9CBF1A8D8AF7007B2B9B /* utility.cpp */; };
+		75B21D361A9EAB3600089BF8 /* Rijndael.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75B21D341A9EAB3600089BF8 /* Rijndael.cpp */; };
+		75B21D371A9EAB3600089BF8 /* Rijndael.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75B21D341A9EAB3600089BF8 /* Rijndael.cpp */; };
+		75B21D381A9EAB3600089BF8 /* Rijndael.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75B21D341A9EAB3600089BF8 /* Rijndael.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -677,6 +680,8 @@
 		756C9CBE1A8D8AF7007B2B9B /* UTF8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTF8.h; sourceTree = "<group>"; };
 		756C9CBF1A8D8AF7007B2B9B /* utility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utility.cpp; sourceTree = "<group>"; };
 		756C9CC01A8D8AF7007B2B9B /* utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utility.h; sourceTree = "<group>"; };
+		75B21D341A9EAB3600089BF8 /* Rijndael.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Rijndael.cpp; sourceTree = "<group>"; };
+		75B21D351A9EAB3600089BF8 /* Rijndael.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rijndael.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -823,6 +828,8 @@
 		756C9BC41A8D8AF7007B2B9B /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				75B21D341A9EAB3600089BF8 /* Rijndael.cpp */,
+				75B21D351A9EAB3600089BF8 /* Rijndael.h */,
 			);
 			path = libs;
 			sourceTree = "<group>";
@@ -1320,6 +1327,7 @@
 				756C9CCB1A8D8AF7007B2B9B /* Camellia.cpp in Sources */,
 				756C9CF81A8D8AF7007B2B9B /* Tag2Sub0.cpp in Sources */,
 				756C9CEC1A8D8AF7007B2B9B /* RIPEMD160.cpp in Sources */,
+				75B21D361A9EAB3600089BF8 /* Rijndael.cpp in Sources */,
 				756C9D081A8D8AF7007B2B9B /* Tag2Sub23.cpp in Sources */,
 				756C9CD21A8D8AF7007B2B9B /* Hash.cpp in Sources */,
 				756C9CD01A8D8AF7007B2B9B /* TDES.cpp in Sources */,
@@ -1453,6 +1461,7 @@
 				75419E501A97AFC3002A1F25 /* Tag2Sub1.cpp in Sources */,
 				75419E521A97AFC3002A1F25 /* Tag2Sub10.cpp in Sources */,
 				75419E541A97AFC3002A1F25 /* Tag2Sub11.cpp in Sources */,
+				75B21D371A9EAB3600089BF8 /* Rijndael.cpp in Sources */,
 				75419E561A97AFC3002A1F25 /* Tag2Sub12.cpp in Sources */,
 				75419E581A97AFC3002A1F25 /* Tag2Sub13.cpp in Sources */,
 				75419E5A1A97AFC3002A1F25 /* Tag2Sub14.cpp in Sources */,
@@ -1579,6 +1588,7 @@
 				75419F051A97E1A8002A1F25 /* Tag2Sub1.cpp in Sources */,
 				75419F061A97E1A8002A1F25 /* Tag2Sub10.cpp in Sources */,
 				75419F071A97E1A8002A1F25 /* Tag2Sub11.cpp in Sources */,
+				75B21D381A9EAB3600089BF8 /* Rijndael.cpp in Sources */,
 				75419F081A97E1A8002A1F25 /* Tag2Sub12.cpp in Sources */,
 				75419F091A97E1A8002A1F25 /* Tag2Sub13.cpp in Sources */,
 				75419F0A1A97E1A8002A1F25 /* Tag2Sub14.cpp in Sources */,
