@@ -21,13 +21,26 @@ class ViewController: NSViewController {
         // Update the view, if already loaded.
         }
     }
+    @IBOutlet weak var test_change_pwd: NSButton!
 
+    @IBAction func test_change_pwd_clicked(sender: AnyObject) {
+        let pgp:OpenPGP = OpenPGP()
+        let location = "/Users/Yanfeng/Desktop/testpub.txt"
+        let location_1 = "/Users/Yanfeng/Desktop/testprivat.txt"
+        let fileContent = NSString(contentsOfFile: location, encoding: NSUTF8StringEncoding, error: nil)
+        let fileContent_1 = NSString(contentsOfFile: location_1, encoding: NSUTF8StringEncoding, error: nil)
+        let value = pgp.SetupKeys(fileContent_1, pubKey: fileContent, pass: "321", error:nil)
+        var keys = pgp.update_key_password("123", new_pwd:"321", error: nil)
+        
+    }
     @IBAction func test_new_key(sender: AnyObject) {
+        
         
         let pgp:OpenPGP = OpenPGP();
         var pub_key:String?;
         var priv_key:String?;
         var keys = pgp.generate_key("123", username:"feng_test_1", error: nil);
+
         
     }
     @IBAction func test_import_clicked(sender: AnyObject) {

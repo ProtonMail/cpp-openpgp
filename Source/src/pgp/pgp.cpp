@@ -258,6 +258,11 @@ std::vector <Packet::Ptr> PGP::get_packets() const{
     return packets;
 }
 
+void PGP::update_packet(int index, Packet::Ptr ptr)
+{
+    packets[index] = ptr;
+}
+
 std::vector <Packet::Ptr> PGP::get_packets_clone() const{
     std::vector <Packet::Ptr> out;
     for(Packet::Ptr const & p : packets){

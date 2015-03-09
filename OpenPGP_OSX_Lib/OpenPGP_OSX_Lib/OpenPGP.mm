@@ -328,11 +328,11 @@
 }
 
 
-- (NSString *) update_key_password:(NSString*) passphrase error:(NSError**) err
+- (NSString *)update_key_password:(NSString*)old_passphrase new_pwd:(NSString*) new_passphrase error:(NSError**) err
 {
     try
     {
-        if(passphrase.length <= 0 )
+        if(old_passphrase.length <= 0 )
         {
             if (err)
             {
@@ -357,15 +357,14 @@
             }
             return nil;
         }
-        std::string new_passphrase = [passphrase UTF8String];
         
+        std::string str_old_passphrase = [old_passphrase UTF8String];
+        std::string str_new_passphrase = [new_passphrase UTF8String];
         
-//        std::string clain_txt = decrypt_pka(*private_key_, encrypted, [passphrase UTF8String], false);
+//need add more error handling
+        std::string new_key = pm::pgp::update_passphrase(*private_key_, str_old_passphrase, str_new_passphrase);
         
-
-        pm::pgp::update_passphrase(*private_key_, "123", "123");
-        
-        return [[NSString alloc] initWithUTF8String:new_passphrase.c_str()];
+        return [[NSString alloc] initWithUTF8String:new_key.c_str()];
     }
     catch (const std::runtime_error& error)
     {

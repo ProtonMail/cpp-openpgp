@@ -722,6 +722,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system" size="10"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="test_change_pwd_clicked:" target="XfG-lQ-9wD" id="56I-pp-rHi"/>
+                                </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wdu-7l-nEF">
                                 <rect key="frame" x="18" y="70" width="222" height="58"/>
@@ -735,6 +738,9 @@
                             </button>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="test_change_pwd" destination="xii-Re-e8I" id="Mzv-Sk-rll"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

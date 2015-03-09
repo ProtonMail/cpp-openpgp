@@ -7,26 +7,108 @@
 //
 
 #include "private_key.h"
-#include "cfb.h"
 
+#include "config.h"
+#include "RFC4880.h"
+
+#include "Tag5.h"
+#include "rsa_key.h"
+#include "BBS.h"
+#include "Tag13.h"
+#include "Tag2Sub2.h"
+#include "Tag2Sub11.h"
+#include "Tag2Sub16.h"
+#include "Tag2Sub21.h"
+#include "Tag2Sub22.h"
+#include "Tag2Sub27.h"
+#include "Tag2Sub30.h"
+#include "Tag7.h"
+#include "Tag2.h"
+#include "PGPKey.h"
+#include "cfb.h"
+#include "sigcalc.h"
+#include "RSA.h"
+#include "sign.h"
 
 namespace pm {
     namespace pgp
     {
-        std::string update_passphrase(const PGPSecretKey & pri, const std::string & old_pwd, const std::string & new_pwd)
+        std::string update_passphrase(PGPSecretKey & pri, const std::string & old_pwd, const std::string & new_pwd)
         {
             if (pri.get_ASCII_Armor() != 2){
                 throw std::runtime_error("Error: No Private Key found.");
             }
-
+            
             //find default private key;
             Tag5::Ptr sec = find_decrypting_key(pri, "", true);
             if (!sec){
                 throw std::runtime_error("Error: Correct Private Key not found.");
             }
-
             std::vector <std::string> pub_mpi = sec -> get_mpi();
             std::vector <std::string> pri_mpi = decrypt_secret_key(sec, old_pwd);
+            
+            // Secret Key Packet S2K
+            S2K3::Ptr sec_s2k3 = std::make_shared<S2K3>();
+            sec_s2k3 -> set_hash(RFC4880_HASH_SHA256);
+            sec_s2k3 -> set_salt(unhexlify(bintohex(BBS().rand_b(64))));
+            sec_s2k3 -> set_count(96);
+            // calculate the key from the passphrase
+            std::string key = sec_s2k3 -> run(new_pwd, Symmetric_Algorithm_Key_Length.at(Symmetric_Algorithms.at(sec -> get_sym())) >> 3);
+            // encrypt private key value
+            sec -> set_s2k(sec_s2k3);
+            sec -> set_IV(unhexlify(bintohex(BBS().rand_b(Symmetric_Algorithm_Block_Length.at(Symmetric_Algorithms.at(sec -> get_sym()))))));
+            std::string secret = write_MPI(pri_mpi[0]) + write_MPI(pri_mpi[1]) + write_MPI(pri_mpi[2]) + write_MPI(pri_mpi[3]);
+            sec -> set_secret(use_normal_CFB_encrypt(9, secret + use_hash(2, secret), key, sec -> get_IV()));
+
+            
+            //find default private key;
+            Tag7::Ptr ssb = find_decrypting_sub_key(pri, "", true);
+            if (!sec){
+                throw std::runtime_error("Error: Correct Private Key not found.");
+            }
+            //std::vector <std::string> pub_sub_mpi = ssb -> get_mpi();
+            std::vector <std::string> pri_sub_mpi = decrypt_secret_key(ssb, old_pwd);
+            // Secret Subkey S2K
+            S2K3::Ptr ssb_s2k3 = std::make_shared<S2K3>();
+            ssb_s2k3 -> set_hash(RFC4880_HASH_SHA256);
+            ssb_s2k3 -> set_salt(unhexlify(bintohex(BBS().rand_b(64)))); // new salt value
+            ssb_s2k3 -> set_count(96);
+            std::string subkey = ssb_s2k3 -> run(new_pwd, Symmetric_Algorithm_Key_Length.at(Symmetric_Algorithms.at(ssb -> get_sym())) >> 3);
+            ssb -> set_s2k(ssb_s2k3);
+            ssb -> set_IV(unhexlify(bintohex(BBS().rand_b(Symmetric_Algorithm_Block_Length.at(Symmetric_Algorithms.at(ssb -> get_sym()))))));
+            std::string sub_secret = write_MPI(pri_sub_mpi[0]) + write_MPI(pri_sub_mpi[1]) + write_MPI(pri_sub_mpi[2]) + write_MPI(pri_sub_mpi[3]);
+            ssb -> set_secret(use_normal_CFB_encrypt(9, sub_secret + use_hash(2, sub_secret), subkey, ssb -> get_IV()));
+            
+            // Subkey Binding Signature
+//            Tag2::Ptr subsig = std::make_shared<Tag2>();
+//            subsig -> set_version(RFC4880_V4);
+//            subsig -> set_type(RFC4880_SIG_SUBKEY);
+//            subsig -> set_pka(RFC4880_PKA_RSA);
+//            subsig -> set_hash(RFC4880_HASH_SHA256);
+//            
+//            Tag2Sub27::Ptr sb_tag2sub27 = std::make_shared<Tag2Sub27>();
+//            sb_tag2sub27->set_flags(12);
+//            Tag2Sub16::Ptr tag2sub16 = std::make_shared<Tag2Sub16>();
+//            tag2sub16 -> set_keyid(sec->get_keyid());
+//            Tag2Sub2::Ptr tag2sub2 = std::make_shared<Tag2Sub2>();
+//            tag2sub2 -> set_time(sec->get_time());
+//            subsig -> set_hashed_subpackets({tag2sub2, sb_tag2sub27});
+//            subsig -> set_unhashed_subpackets({tag2sub16});
+//            std::string sig_hash = to_sign_18(sec, ssb, subsig);
+//            subsig -> set_left16(sig_hash.substr(0, 2));
+//            subsig -> set_mpi({RSA_sign(sig_hash, pri_mpi, pub_mpi)});
+
+        
+            pri.update_packet(0, sec);
+            pri.update_packet(3, ssb);
+            //pri.update_packet(4, subsig);
+            
+            std::string priv = pri.write(2, 2);
+            
+            
+            std::cout << priv << std::endl;
+            
+            return priv;
 //            //
 //            //    std::cout<< "D: " << hexlify( pri_mpi[0]) << std::endl;
 //            //    std::cout<< "P: " << hexlify(pri_mpi[1]) << std::endl;
@@ -203,8 +285,6 @@ namespace pm {
 //            
 //            std::cout<< private_key_s << std::endl;
 //            std::cout<< public_key.write() << std::endl;
-            std::string out = "";
-            return out;
         }
         
         
@@ -214,7 +294,7 @@ namespace pm {
                 if ((p -> get_tag() == 5) || (p -> get_tag() == 7)){
                     std::string raw = p -> raw();
                     Tag5::Ptr key = std::make_shared<Tag5>(raw);
-                    if (key -> get_public_ptr() -> get_keyid() != keyid ){
+                    if (key -> get_public_ptr() -> get_keyid() != keyid && find_default == false){
                         key.reset();
                         continue;
                     }
@@ -230,7 +310,93 @@ namespace pm {
             return nullptr;
         }
 
-        
+        Tag7::Ptr find_decrypting_sub_key(const PGPSecretKey & k, const std::string & keyid, const bool& find_default){
+            for(Packet::Ptr const & p : k.get_packets()){
+                if ((p -> get_tag() == 7)){
+                    std::string raw = p -> raw();
+                    Tag7::Ptr key = std::make_shared<Tag7>(raw);
+                    if (key -> get_public_ptr() -> get_keyid() != keyid  && find_default == false){
+                        key.reset();
+                        continue;
+                    }
+                    // make sure key has encrypting keys
+                    if ((key -> get_pka() == 1) || // RSA
+                        (key -> get_pka() == 2) || // RSA
+                        (key -> get_pka() == 16)){ // ElGamal
+                        return key;
+                    }
+                    key.reset();
+                }
+            }
+            return nullptr;
+        }
+
+//        Tag2::Ptr find_sign(const PGPSecretKey & k, const std::string & keyid, const bool& find_default)
+//        {
+//            for(Packet::Ptr const & p : k.get_packets()){
+//                if ((p -> get_tag() == 2)){
+//                    std::string raw = p -> raw();
+//                    Tag2::Ptr key = std::make_shared<Tag2>(raw);
+//                    if (key -> get_public_ptr() -> get_keyid() != keyid  && find_default == false){
+//                        key.reset();
+//                        continue;
+//                    }
+//                    // make sure key has encrypting keys
+//                    if ((key -> get_pka() == 1) || // RSA
+//                        (key -> get_pka() == 2) || // RSA
+//                        (key -> get_pka() == 16)){ // ElGamal
+//                        return key;
+//                    }
+//                    key.reset();
+//                }
+//            }
+//            return nullptr;
+//
+//        }
+//        Tag2::Ptr find_sub_sign(const PGPSecretKey & k, const std::string & keyid, const bool& find_default = false)
+//        {
+//            for(Packet::Ptr const & p : k.get_packets()){
+//                if ((p -> get_tag() == 2)){
+//                    std::string raw = p -> raw();
+//                    Tag5::Ptr key = std::make_shared<Tag5>(raw);
+//                    if (key -> get_public_ptr() -> get_keyid() != keyid  && find_default == false){
+//                        key.reset();
+//                        continue;
+//                    }
+//                    // make sure key has encrypting keys
+//                    if ((key -> get_pka() == 1) || // RSA
+//                        (key -> get_pka() == 2) || // RSA
+//                        (key -> get_pka() == 16)){ // ElGamal
+//                        return key;
+//                    }
+//                    key.reset();
+//                }
+//            }
+//            return nullptr;
+//            
+//        }
+//        Tag13::Ptr find_id(const PGPSecretKey & k, const std::string & keyid, const bool& find_default = false)
+//        {
+//            for(Packet::Ptr const & p : k.get_packets()){
+//                if ((p -> get_tag() == 2)){
+//                    std::string raw = p -> raw();
+//                    Tag5::Ptr key = std::make_shared<Tag5>(raw);
+//                    if (key -> get_public_ptr() -> get_keyid() != keyid  && find_default == false){
+//                        key.reset();
+//                        continue;
+//                    }
+//                    // make sure key has encrypting keys
+//                    if ((key -> get_pka() == 1) || // RSA
+//                        (key -> get_pka() == 2) || // RSA
+//                        (key -> get_pka() == 16)){ // ElGamal
+//                        return key;
+//                    }
+//                    key.reset();
+//                }
+//            }
+//            return nullptr;
+//            
+//        }
         
         
         std::vector <std::string> decrypt_secret_key(const Tag5::Ptr & pri, const std::string & passphrase){

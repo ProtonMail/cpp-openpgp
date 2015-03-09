@@ -30,7 +30,7 @@
 - (NSString *) decrypt_message:(NSString*) encrypted_message error:(NSError**) err;
 
 //Update Private Key password
-- (NSString *) update_key_password:(NSString*) passphrase error:(NSError**) err;
+- (NSString *) update_key_password:(NSString*)old_passphrase new_pwd:(NSString*) new_passphrase error:(NSError**) err;
 
 //Generate new key pair
 - (NSMutableArray*) generate_key:(NSString*)passphrase username:(NSString*)user_name error:(NSError**) err;

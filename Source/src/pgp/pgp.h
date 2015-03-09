@@ -60,6 +60,7 @@ public:
     std::vector <std::pair <std::string, std::string> > get_Armor_Header() const;
     std::vector <Packet::Ptr> get_packets() const;          // get copy of all packet pointers (for looping through packets)
     std::vector <Packet::Ptr> get_packets_clone() const;    // clone all packets (for modifying packets)
+    void update_packet(int index, Packet::Ptr ptr); //sort term.
     
     // Modifiers
     void set_armored(const bool a);
