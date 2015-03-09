@@ -125,11 +125,11 @@ std::string RSA_decrypt(const std::string & data, const std::vector <std::string
     RSA_free ( rsa );
    
     
-    std::cout << hexlify(std::string(std::string((char*)out, resultDecrypt))) << std::endl;
+   // std::cout << hexlify(std::string(std::string((char*)out, resultDecrypt))) << std::endl;
     
     std::string mpi_out = rawtompi(std::string((char*)out, resultDecrypt));
    
-    std::cout << mpitohex(mpi_out) << std::endl;
+  //  std::cout << mpitohex(mpi_out) << std::endl;
     
     return mpi_out;
 }
@@ -176,7 +176,7 @@ std::string RSA_sign(const std::string & data, const std::vector <std::string> &
     //SHA256(data, dataLen, hash);
     std::string encoded = EMSA_PKCS1_v1_5(8, data, keysize);
     n = RSA_private_encrypt((int)encoded.size(), (unsigned char*)encoded.c_str(), out, orsa, RSA_NO_PADDING);
-    std::cout << hexlify(std::string((char*)out, n)) << std::endl;
+    //std::cout << hexlify(std::string((char*)out, n)) << std::endl;
     
     orsa->n = orsa->d = orsa->p = orsa->q = NULL;
     RSA_free(orsa);
@@ -186,7 +186,7 @@ std::string RSA_sign(const std::string & data, const std::vector <std::string> &
     std::string mpi_out = std::string((char*)out, i);
     
    // if (get_is_debug()) {
-    std::cout << hexlify(mpi_out) << std::endl;
+   // std::cout << hexlify(mpi_out) << std::endl;
     //}
     
     

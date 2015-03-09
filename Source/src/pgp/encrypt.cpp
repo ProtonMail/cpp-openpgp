@@ -162,6 +162,7 @@ Packet::Ptr encrypt_data(const std::string & session_key, const std::string & da
 
 std::string encrypt_pm_pka(const PGPPublicKey & pub, const std::string & data)
 {
+    
     std::string body = "<div><br></div><div><br></div><div>Sent from <a href=\"https://protonmail.ch\">ProtonMail</a>, encrypted email based in Switzerland.<br></div>";
     std::cout << body << std::endl;
     

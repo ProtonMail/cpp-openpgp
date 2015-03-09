@@ -117,7 +117,7 @@ namespace pm {
             size_t length = 8192;
             uint8_t out[length];
             
-            int ln;
+            int ln = 0;
             std::vector <std::string> rsa_pub_mpi;
             std::vector <std::string> rsa_priv_mpi;
             std::vector <std::string> rsa_sub_pub_mpi;
@@ -223,11 +223,13 @@ namespace pm {
             sig->set_hashed_subpackets({tag2sub2, tag2sub11, tag2sub21, tag2sub22, tag2sub27, tag2sub30});
             
             std::string sig_hash = to_sign_10(sec, uid, sig);
-            std::cout << hexlify(sig_hash) << std::endl;
+            if(get_is_debug())
+                std::cout << hexlify(sig_hash) << std::endl;
             sig -> set_left16(sig_hash.substr(0, 2));
             
             std::string str_sign = RSA_sign(sig_hash, rsa_priv_mpi, rsa_pub_mpi);
-            std::cout << hexlify(str_sign) << std::endl;
+            if(get_is_debug())
+                std::cout << hexlify(str_sign) << std::endl;
             sig -> set_mpi({str_sign});
             
             if(get_is_debug())
@@ -282,8 +284,11 @@ namespace pm {
             PGPPublicKey public_key = PGPPublicKey(private_key);
             
             pub = public_key.write();
-            std::cout<< priv << std::endl;
-            std::cout<< pub << std::endl;
+            if(get_is_debug())
+                std::cout<< priv << std::endl;
+            
+            if(get_is_debug())
+                std::cout<< pub << std::endl;
             
             sec.reset();
             sec_s2k3.reset();

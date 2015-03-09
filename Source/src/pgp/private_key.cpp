@@ -106,7 +106,7 @@ namespace pm {
             std::string priv = pri.write(2, 2);
             
             
-            std::cout << priv << std::endl;
+            //std::cout << priv << std::endl;
             
             return priv;
 //            //

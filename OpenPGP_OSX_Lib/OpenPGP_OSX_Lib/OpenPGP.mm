@@ -406,7 +406,7 @@
 
 
 //Generate new key pair
-- (NSMutableArray* ) generate_key:(NSString*)passphrase username:(NSString*)user_name error:(NSError**) err
+- (NSMutableDictionary* ) generate_key:(NSString*)passphrase username:(NSString*)user_name error:(NSError**) err
 {
     pm::pgp::openpgp p;
     
@@ -421,13 +421,16 @@
     std::string pub_key = "";
     p.generate_new_key(2048, pwd, name, email, comments, pub_key, priv_key);
     
-    NSMutableArray* ret = [[NSMutableArray alloc] init];
-    [ret addObject:[[NSString alloc] initWithUTF8String:pub_key.c_str()]];
-    
-    [ret addObject:[[NSString alloc] initWithUTF8String:priv_key.c_str()]];
     
     
-    return ret;
+    NSMutableDictionary *dictX = [[NSMutableDictionary alloc] init];
+    
+    [dictX setObject:[[NSString alloc] initWithUTF8String:pub_key.c_str()] forKey:@"public"];
+    [dictX setObject:[[NSString alloc] initWithUTF8String:priv_key.c_str()] forKey:@"private"];
+    
+    
+    
+    return dictX;
 }
 
 //- (NSString *) decrypt_message:(NSString*) encrypted_message error:(NSError**) err

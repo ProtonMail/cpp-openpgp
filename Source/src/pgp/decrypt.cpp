@@ -104,6 +104,8 @@ std::string decrypt_pm_pka(const PGPSecretKey & pri, const std::string & passphr
 }
 
 std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const std::string & passphrase, const bool writefile, const PGPPublicKey::Ptr & verify){
+    bool isDebugMode = false;
+    
     if ((m.get_ASCII_Armor() != 0)/* && (m.get_ASCII_Armor() != 3) && (m.get_ASCII_Armor() != 4)*/){
         throw std::runtime_error("Error: No encrypted message found.");
     }
@@ -153,11 +155,13 @@ std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const st
 
     std::vector <std::string> pub_mpi = sec -> get_mpi();
     std::vector <std::string> pri_mpi = decrypt_secret_key(sec, passphrase);
-    
-    std::cout<< "D: " << hexlify( pri_mpi[0]) << std::endl;
-    std::cout<< "P: " << hexlify(pri_mpi[1]) << std::endl;
-    std::cout<< "Q: " << hexlify(pri_mpi[2]) << std::endl;
-    std::cout<< "U: " << hexlify(pri_mpi[3]) << std::endl;
+
+    if (isDebugMode) {
+        std::cout<< "D: " << hexlify( pri_mpi[0]) << std::endl;
+        std::cout<< "P: " << hexlify(pri_mpi[1]) << std::endl;
+        std::cout<< "Q: " << hexlify(pri_mpi[2]) << std::endl;
+        std::cout<< "U: " << hexlify(pri_mpi[3]) << std::endl;
+    }
 
     // get session key
     session_key = zero + pka_decrypt(pka, session_key_mpi, pri_mpi, pub_mpi);     // symmetric algorithm, session key, 2 octet checksum wrapped in EME_PKCS1_ENCODE
