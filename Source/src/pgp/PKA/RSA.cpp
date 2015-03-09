@@ -172,35 +172,25 @@ std::string RSA_sign(const std::string & data, const std::vector <std::string> &
         return 0;
     }
     /* end debug */
-    
-    
-    
-    
     int keysize = (BN_num_bits(orsa->n) + 7) / 8;
-    
     //SHA256(data, dataLen, hash);
     std::string encoded = EMSA_PKCS1_v1_5(8, data, keysize);
-    
-    //encoded = zero + encoded;
-    
-    //std::cout << hexlify(encoded) << std::endl;
-    
-    
-    //RSA_decrypt(rawtompi(encoded), pri, pub);
-    
-    
-    
-    n = RSA_private_encrypt(encoded.size(), (unsigned char*)encoded.c_str(), out, orsa, RSA_NO_PADDING);
-    
-    
-    std::cout << hexlify(std::string(std::string((char*)out, n))) << std::endl;
+    n = RSA_private_encrypt((int)encoded.size(), (unsigned char*)encoded.c_str(), out, orsa, RSA_NO_PADDING);
+    std::cout << hexlify(std::string((char*)out, n)) << std::endl;
     
     orsa->n = orsa->d = orsa->p = orsa->q = NULL;
     RSA_free(orsa);
 
-
+    BIGNUM* e = BN_bin2bn(out, n, NULL);
+    int i = BN_bn2mpi(e, out);
+    std::string mpi_out = std::string((char*)out, i);
     
-    return "";
+   // if (get_is_debug()) {
+    std::cout << hexlify(mpi_out) << std::endl;
+    //}
+    
+    
+    return mpi_out;
 }
 
 //PGPMPI RSA_sign(const PGPMPI & data, const std::vector <PGPMPI> & pri, const std::vector <PGPMPI> & pub){

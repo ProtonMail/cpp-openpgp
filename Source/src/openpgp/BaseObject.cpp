@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Yanfeng Zhang. All rights reserved.
 //
 
-#include "base/BaseObject.h"
+#include "BaseObject.h"
 
 
 

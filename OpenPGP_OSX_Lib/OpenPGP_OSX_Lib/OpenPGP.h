@@ -32,6 +32,11 @@
 //Update Private Key password
 - (NSString *) update_key_password:(NSString*) passphrase error:(NSError**) err;
 
+//Generate new key pair
+- (NSMutableArray*) generate_key:(NSString*)passphrase username:(NSString*)user_name error:(NSError**) err;
+
+
+
 
 // print debug logs
 - (void)EnableDebug:(BOOL) isDebug;

@@ -54,6 +54,7 @@ public:
     BBS(...);
     BBS(const std::string & SEED, const unsigned int & bits = 1024, std::string p = 0, std::string q = 0);
     std::string rand_byts(const unsigned int & bits = 1, const std::string & par = "even");
+    std::string rand_b(const unsigned int & bits);
     std::string randbit();
     void c_rand(unsigned char *dest, size_t length);
     

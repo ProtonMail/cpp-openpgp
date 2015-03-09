@@ -7,7 +7,7 @@
 //
 
 #include "PMPGPMessage.h"
-#include "base/BaseObject.h"
+#include "BaseObject.h"
 #include "utility.h"
 #include "pgp_exception.h"
 #include "pgp_exception_define.h"

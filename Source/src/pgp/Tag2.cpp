@@ -5,7 +5,7 @@ Tag2::Tag2():
     type(0),
     pka(0),
     hash(0),
-   // mpi(),
+    mpi(),
     left16(),
     time(0),
     keyid(),
@@ -18,7 +18,7 @@ Tag2::Tag2(const Tag2 & copy):
     type(copy.type),
     pka(copy.pka),
     hash(copy.hash),
-    //mpi(copy.mpi),
+    mpi(copy.mpi),
     left16(copy.left16),
     time(copy.time),
     keyid(copy.keyid),
@@ -552,7 +552,7 @@ Tag2 & Tag2::operator =(const Tag2 & copy){
     type = copy.type;
     pka = copy.pka;
     hash = copy.hash;
-   // mpi = copy.mpi;
+    mpi = copy.mpi;
     left16 = copy.left16;
     time = copy.time;
     keyid = copy.keyid;

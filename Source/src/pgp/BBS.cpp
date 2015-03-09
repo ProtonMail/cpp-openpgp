@@ -82,7 +82,7 @@ BBS::BBS(const std::string & SEED, const unsigned int & bits, std::string p, std
 
 std::string BBS::randbit(){
 
-    int i = rand() % 2;    
+    int i = rand() % 2;
     return (i == 1) ? "1" : "0";
 }
 
@@ -109,17 +109,21 @@ std::string BBS::rand_byts(const unsigned int & bits, const std::string & par){
 //        //printf("%o", k);
 //    }
 //    
-    
 
-    
     std::string my_std_string(reinterpret_cast<const char *>(key), 32);
     
   //  std::cout << my_std_string << std::endl;
-    
-    
-    
     return my_std_string;
 }
+
+
+std::string BBS::rand_b(const unsigned int & bits){
+    unsigned char key[bits];
+    RAND_bytes(key, bits);
+    std::string my_std_string(reinterpret_cast<const char *>(key), bits);
+    return my_std_string;
+}
+
 
 
 std::string BBS::gen_random_key(const int len) {

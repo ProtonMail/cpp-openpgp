@@ -47,6 +47,8 @@ __RCSID("$NetBSD: openssl_crypto.c,v 1.32 2010/11/07 06:56:52 agc Exp $");
 
 #include "BaseObject.h"
 
+
+namespace pm {
 namespace pgp {
 
     class openpgp : public BaseObject {
@@ -54,13 +56,12 @@ namespace pgp {
 public:
     openpgp();
     ~openpgp();
-    void generate_new_key(int bits, std::string passphrase, std::string userid);
+    bool generate_new_key(int bits, std::string passphrase, std::string user_name, std::string email, std::string comments, std::string& pub, std::string& priv);
     void encrypt_message();
 };
 
     
 }
-
-
+}
 
 #endif /* defined(__OpenPGP__openpgp__) */

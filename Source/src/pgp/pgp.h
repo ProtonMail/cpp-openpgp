@@ -24,7 +24,7 @@
 #include "radix64.h"
 #include "packet.h"
 
-#include "base/BaseObject.h"
+#include "BaseObject.h"
 
 
 class PGP : public BaseObject{

@@ -8,7 +8,7 @@
 
 #import "OpenPGP.h"
 #include "PGPKey.h"
-#include "openpgp.h"
+#include <openpgp/openpgp.h>
 #include "PGPMessage.h"
 #include "encrypt.h"
 #include "decrypt.h"
@@ -25,7 +25,7 @@
 #include <stdexcept>
 #include <codecvt>
 
-#include <openpgp/openpgp.h>
+#include "openpgp.h"
 #include "PMPGPMessage.h"
 #include "utility.h"
 
@@ -43,7 +43,7 @@
     NSString* Passpharse;
     BOOL isDebugMode;
     
-    pgp::openpgp test;
+    pm::pgp::openpgp test;
     
 }
 
@@ -406,6 +406,31 @@
 }
 
 
+//Generate new key pair
+- (NSMutableArray* ) generate_key:(NSString*)passphrase username:(NSString*)user_name error:(NSError**) err
+{
+    pm::pgp::openpgp p;
+    
+    
+    std::string pwd = [passphrase UTF8String];
+    
+    std::string name = [user_name UTF8String];
+    std::string email = name + "@protonmail.ch";
+    std::string comments = "create by ios";
+    
+    std::string priv_key = "";
+    std::string pub_key = "";
+    p.generate_new_key(2048, pwd, name, email, comments, pub_key, priv_key);
+    
+    NSMutableArray* ret = [[NSMutableArray alloc] init];
+    [ret addObject:[[NSString alloc] initWithUTF8String:pub_key.c_str()]];
+    
+    [ret addObject:[[NSString alloc] initWithUTF8String:priv_key.c_str()]];
+    
+    
+    return ret;
+}
+
 //- (NSString *) decrypt_message:(NSString*) encrypted_message error:(NSError**) err
 //{
 //
@@ -587,10 +612,6 @@
     private_key_->read(str_priv_key);
     
     
-    pgp::openpgp tmp;
-    tmp.generate_new_key(2048, "123", "test");
-    
-    
 //    //std::cout << "KeyID:" << hexlify(private_key_->keyid()) << std::endl;
 //    
 //    std::string tmp = [pub_key UTF8String];
@@ -616,7 +637,7 @@
 
 - (void)Test
 {
-    test.generate_new_key(2048, "123", "100");
+    //test.generate_new_key(2048, "123", "100");
 }
 
 - (NSData*)Test_1

@@ -142,6 +142,7 @@ void S2K3::read(std::string & data, const uint8_t part){
     type = data[0];
     hash = data[1];
     salt = data.substr(2, 8);
+    //std::cout << hexlify(salt) << std::endl;
     count = data[10];
     data = data.substr(11, data.size() - 11);
 }

@@ -1,0 +1,1794 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		750BA2591AAA8745003FEA16 /* Rijndael.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1491AAA8744003FEA16 /* Rijndael.cpp */; };
+		750BA25A1AAA8745003FEA16 /* base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA14F1AAA8744003FEA16 /* base64.cpp */; };
+		750BA25B1AAA8745003FEA16 /* pgp_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1561AAA8744003FEA16 /* pgp_exception.cpp */; };
+		750BA25C1AAA8745003FEA16 /* pgp_exception_define.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1581AAA8744003FEA16 /* pgp_exception_define.cpp */; };
+		750BA25D1AAA8745003FEA16 /* BaseObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA15B1AAA8744003FEA16 /* BaseObject.cpp */; };
+		750BA25E1AAA8745003FEA16 /* openpgp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA15C1AAA8744003FEA16 /* openpgp.cpp */; };
+		750BA25F1AAA8745003FEA16 /* PMPGPMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA15E1AAA8744003FEA16 /* PMPGPMessage.cpp */; };
+		750BA2601AAA8745003FEA16 /* BBS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1621AAA8745003FEA16 /* BBS.cpp */; };
+		750BA2611AAA8745003FEA16 /* cfb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1641AAA8745003FEA16 /* cfb.cpp */; };
+		750BA2621AAA8745003FEA16 /* Compress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1671AAA8745003FEA16 /* Compress.cpp */; };
+		750BA2631AAA8745003FEA16 /* decrypt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA16B1AAA8745003FEA16 /* decrypt.cpp */; };
+		750BA2641AAA8745003FEA16 /* encrypt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA16E1AAA8745003FEA16 /* encrypt.cpp */; };
+		750BA2651AAA8745003FEA16 /* AES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1711AAA8745003FEA16 /* AES.cpp */; };
+		750BA2661AAA8745003FEA16 /* Blowfish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1741AAA8745003FEA16 /* Blowfish.cpp */; };
+		750BA2671AAA8745003FEA16 /* Camellia.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1771AAA8745003FEA16 /* Camellia.cpp */; };
+		750BA2681AAA8745003FEA16 /* CAST128.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA17A1AAA8745003FEA16 /* CAST128.cpp */; };
+		750BA2691AAA8745003FEA16 /* DES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA17E1AAA8745003FEA16 /* DES.cpp */; };
+		750BA26A1AAA8745003FEA16 /* IDEA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1821AAA8745003FEA16 /* IDEA.cpp */; };
+		750BA26B1AAA8745003FEA16 /* SymAlg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1841AAA8745003FEA16 /* SymAlg.cpp */; };
+		750BA26C1AAA8745003FEA16 /* TDES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1861AAA8745003FEA16 /* TDES.cpp */; };
+		750BA26D1AAA8745003FEA16 /* Twofish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1881AAA8745003FEA16 /* Twofish.cpp */; };
+		750BA26E1AAA8745003FEA16 /* Hash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA18B1AAA8745003FEA16 /* Hash.cpp */; };
+		750BA26F1AAA8745003FEA16 /* Hashes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA18D1AAA8745003FEA16 /* Hashes.cpp */; };
+		750BA2701AAA8745003FEA16 /* includes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA18F1AAA8745003FEA16 /* includes.cpp */; };
+		750BA2711AAA8745003FEA16 /* integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1911AAA8745003FEA16 /* integer.cpp */; };
+		750BA2721AAA8745003FEA16 /* MD5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1931AAA8745003FEA16 /* MD5.cpp */; };
+		750BA2731AAA8745003FEA16 /* mpi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1961AAA8745003FEA16 /* mpi.cpp */; };
+		750BA2741AAA8745003FEA16 /* packet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1981AAA8745003FEA16 /* packet.cpp */; };
+		750BA2751AAA8745003FEA16 /* packets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA19A1AAA8745003FEA16 /* packets.cpp */; };
+		750BA2761AAA8745003FEA16 /* Partial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA19C1AAA8745003FEA16 /* Partial.cpp */; };
+		750BA2771AAA8745003FEA16 /* pgp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA19E1AAA8745003FEA16 /* pgp.cpp */; };
+		750BA2781AAA8745003FEA16 /* pgpbzip2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1A01AAA8745003FEA16 /* pgpbzip2.cpp */; };
+		750BA2791AAA8745003FEA16 /* PGPCleartextSignature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1A21AAA8745003FEA16 /* PGPCleartextSignature.cpp */; };
+		750BA27A1AAA8745003FEA16 /* PGPDetachedSignature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1A41AAA8745003FEA16 /* PGPDetachedSignature.cpp */; };
+		750BA27B1AAA8745003FEA16 /* PGPKey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1A61AAA8745003FEA16 /* PGPKey.cpp */; };
+		750BA27C1AAA8745003FEA16 /* PGPMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1A81AAA8745003FEA16 /* PGPMessage.cpp */; };
+		750BA27D1AAA8745003FEA16 /* pgptime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1AA1AAA8745003FEA16 /* pgptime.cpp */; };
+		750BA27E1AAA8745003FEA16 /* pgpzlib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1AC1AAA8745003FEA16 /* pgpzlib.cpp */; };
+		750BA27F1AAA8745003FEA16 /* DSA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1AF1AAA8745003FEA16 /* DSA.cpp */; };
+		750BA2801AAA8745003FEA16 /* ElGamal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1B11AAA8745003FEA16 /* ElGamal.cpp */; };
+		750BA2811AAA8745003FEA16 /* PKA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1B31AAA8745003FEA16 /* PKA.cpp */; };
+		750BA2821AAA8745003FEA16 /* RSA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1B51AAA8745003FEA16 /* RSA.cpp */; };
+		750BA2831AAA8745003FEA16 /* PKCS1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1B71AAA8745003FEA16 /* PKCS1.cpp */; };
+		750BA2841AAA8745003FEA16 /* private_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1B91AAA8745003FEA16 /* private_key.cpp */; };
+		750BA2851AAA8745003FEA16 /* public_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1BB1AAA8745003FEA16 /* public_key.cpp */; };
+		750BA2861AAA8745003FEA16 /* radix64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1BD1AAA8745003FEA16 /* radix64.cpp */; };
+		750BA2871AAA8745003FEA16 /* revoke.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1BF1AAA8745003FEA16 /* revoke.cpp */; };
+		750BA2881AAA8745003FEA16 /* RIPEMD160.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1C11AAA8745003FEA16 /* RIPEMD160.cpp */; };
+		750BA2891AAA8745003FEA16 /* s2k.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1C51AAA8745003FEA16 /* s2k.cpp */; };
+		750BA28A1AAA8745003FEA16 /* SHA1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1C71AAA8745003FEA16 /* SHA1.cpp */; };
+		750BA28B1AAA8745003FEA16 /* SHA224.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1C91AAA8745003FEA16 /* SHA224.cpp */; };
+		750BA28C1AAA8745003FEA16 /* SHA256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1CB1AAA8745003FEA16 /* SHA256.cpp */; };
+		750BA28D1AAA8745003FEA16 /* SHA2_Functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1CE1AAA8745003FEA16 /* SHA2_Functions.cpp */; };
+		750BA28E1AAA8745003FEA16 /* SHA384.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1D01AAA8745003FEA16 /* SHA384.cpp */; };
+		750BA28F1AAA8745003FEA16 /* SHA512.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1D21AAA8745003FEA16 /* SHA512.cpp */; };
+		750BA2901AAA8745003FEA16 /* sigcalc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1D51AAA8745003FEA16 /* sigcalc.cpp */; };
+		750BA2911AAA8745003FEA16 /* sign.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1D71AAA8745003FEA16 /* sign.cpp */; };
+		750BA2921AAA8745003FEA16 /* subpacket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1DA1AAA8745003FEA16 /* subpacket.cpp */; };
+		750BA2931AAA8745003FEA16 /* Tag17Sub1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1DD1AAA8745003FEA16 /* Tag17Sub1.cpp */; };
+		750BA2941AAA8745003FEA16 /* Tag2Sub0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1DF1AAA8745003FEA16 /* Tag2Sub0.cpp */; };
+		750BA2951AAA8745003FEA16 /* Tag2Sub1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1E11AAA8745003FEA16 /* Tag2Sub1.cpp */; };
+		750BA2961AAA8745003FEA16 /* Tag2Sub10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1E31AAA8745003FEA16 /* Tag2Sub10.cpp */; };
+		750BA2971AAA8745003FEA16 /* Tag2Sub11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1E51AAA8745003FEA16 /* Tag2Sub11.cpp */; };
+		750BA2981AAA8745003FEA16 /* Tag2Sub12.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1E71AAA8745003FEA16 /* Tag2Sub12.cpp */; };
+		750BA2991AAA8745003FEA16 /* Tag2Sub13.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1E91AAA8745003FEA16 /* Tag2Sub13.cpp */; };
+		750BA29A1AAA8745003FEA16 /* Tag2Sub14.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1EB1AAA8745003FEA16 /* Tag2Sub14.cpp */; };
+		750BA29B1AAA8745003FEA16 /* Tag2Sub15.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1ED1AAA8745003FEA16 /* Tag2Sub15.cpp */; };
+		750BA29C1AAA8745003FEA16 /* Tag2Sub16.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1EF1AAA8745003FEA16 /* Tag2Sub16.cpp */; };
+		750BA29D1AAA8745003FEA16 /* Tag2Sub17.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1F11AAA8745003FEA16 /* Tag2Sub17.cpp */; };
+		750BA29E1AAA8745003FEA16 /* Tag2Sub18.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1F31AAA8745003FEA16 /* Tag2Sub18.cpp */; };
+		750BA29F1AAA8745003FEA16 /* Tag2Sub19.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1F51AAA8745003FEA16 /* Tag2Sub19.cpp */; };
+		750BA2A01AAA8745003FEA16 /* Tag2Sub2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1F71AAA8745003FEA16 /* Tag2Sub2.cpp */; };
+		750BA2A11AAA8745003FEA16 /* Tag2Sub20.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1F91AAA8745003FEA16 /* Tag2Sub20.cpp */; };
+		750BA2A21AAA8745003FEA16 /* Tag2Sub21.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1FB1AAA8745003FEA16 /* Tag2Sub21.cpp */; };
+		750BA2A31AAA8745003FEA16 /* Tag2Sub22.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1FD1AAA8745003FEA16 /* Tag2Sub22.cpp */; };
+		750BA2A41AAA8745003FEA16 /* Tag2Sub23.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1FF1AAA8745003FEA16 /* Tag2Sub23.cpp */; };
+		750BA2A51AAA8745003FEA16 /* Tag2Sub24.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2011AAA8745003FEA16 /* Tag2Sub24.cpp */; };
+		750BA2A61AAA8745003FEA16 /* Tag2Sub25.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2031AAA8745003FEA16 /* Tag2Sub25.cpp */; };
+		750BA2A71AAA8745003FEA16 /* Tag2Sub26.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2051AAA8745003FEA16 /* Tag2Sub26.cpp */; };
+		750BA2A81AAA8745003FEA16 /* Tag2Sub27.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2071AAA8745003FEA16 /* Tag2Sub27.cpp */; };
+		750BA2A91AAA8745003FEA16 /* Tag2Sub28.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2091AAA8745003FEA16 /* Tag2Sub28.cpp */; };
+		750BA2AA1AAA8745003FEA16 /* Tag2Sub29.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA20B1AAA8745003FEA16 /* Tag2Sub29.cpp */; };
+		750BA2AB1AAA8745003FEA16 /* Tag2Sub3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA20D1AAA8745003FEA16 /* Tag2Sub3.cpp */; };
+		750BA2AC1AAA8745003FEA16 /* Tag2Sub30.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA20F1AAA8745003FEA16 /* Tag2Sub30.cpp */; };
+		750BA2AD1AAA8745003FEA16 /* Tag2Sub31.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2111AAA8745003FEA16 /* Tag2Sub31.cpp */; };
+		750BA2AE1AAA8745003FEA16 /* Tag2Sub32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2131AAA8745003FEA16 /* Tag2Sub32.cpp */; };
+		750BA2AF1AAA8745003FEA16 /* Tag2Sub4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2151AAA8745003FEA16 /* Tag2Sub4.cpp */; };
+		750BA2B01AAA8745003FEA16 /* Tag2Sub5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2171AAA8745003FEA16 /* Tag2Sub5.cpp */; };
+		750BA2B11AAA8745003FEA16 /* Tag2Sub6.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2191AAA8745003FEA16 /* Tag2Sub6.cpp */; };
+		750BA2B21AAA8745003FEA16 /* Tag2Sub7.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA21B1AAA8745003FEA16 /* Tag2Sub7.cpp */; };
+		750BA2B31AAA8745003FEA16 /* Tag2Sub8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA21D1AAA8745003FEA16 /* Tag2Sub8.cpp */; };
+		750BA2B41AAA8745003FEA16 /* Tag2Sub9.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA21F1AAA8745003FEA16 /* Tag2Sub9.cpp */; };
+		750BA2B51AAA8745003FEA16 /* Tag0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2211AAA8745003FEA16 /* Tag0.cpp */; };
+		750BA2B61AAA8745003FEA16 /* Tag1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2231AAA8745003FEA16 /* Tag1.cpp */; };
+		750BA2B71AAA8745003FEA16 /* Tag10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2251AAA8745003FEA16 /* Tag10.cpp */; };
+		750BA2B81AAA8745003FEA16 /* Tag11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2271AAA8745003FEA16 /* Tag11.cpp */; };
+		750BA2B91AAA8745003FEA16 /* Tag12.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2291AAA8745003FEA16 /* Tag12.cpp */; };
+		750BA2BA1AAA8745003FEA16 /* Tag13.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA22B1AAA8745003FEA16 /* Tag13.cpp */; };
+		750BA2BB1AAA8745003FEA16 /* Tag14.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA22D1AAA8745003FEA16 /* Tag14.cpp */; };
+		750BA2BC1AAA8745003FEA16 /* Tag17.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA22F1AAA8745003FEA16 /* Tag17.cpp */; };
+		750BA2BD1AAA8745003FEA16 /* Tag18.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2311AAA8745003FEA16 /* Tag18.cpp */; };
+		750BA2BE1AAA8745003FEA16 /* Tag19.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2331AAA8745003FEA16 /* Tag19.cpp */; };
+		750BA2BF1AAA8745003FEA16 /* Tag2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2351AAA8745003FEA16 /* Tag2.cpp */; };
+		750BA2C01AAA8745003FEA16 /* Tag3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2371AAA8745003FEA16 /* Tag3.cpp */; };
+		750BA2C11AAA8745003FEA16 /* Tag4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2391AAA8745003FEA16 /* Tag4.cpp */; };
+		750BA2C21AAA8745003FEA16 /* Tag5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA23B1AAA8745003FEA16 /* Tag5.cpp */; };
+		750BA2C31AAA8745003FEA16 /* Tag6.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA23D1AAA8745003FEA16 /* Tag6.cpp */; };
+		750BA2C41AAA8745003FEA16 /* Tag60.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA23F1AAA8745003FEA16 /* Tag60.cpp */; };
+		750BA2C51AAA8745003FEA16 /* Tag61.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2411AAA8745003FEA16 /* Tag61.cpp */; };
+		750BA2C61AAA8745003FEA16 /* Tag62.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2431AAA8745003FEA16 /* Tag62.cpp */; };
+		750BA2C71AAA8745003FEA16 /* Tag63.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2451AAA8745003FEA16 /* Tag63.cpp */; };
+		750BA2C81AAA8745003FEA16 /* Tag7.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2471AAA8745003FEA16 /* Tag7.cpp */; };
+		750BA2C91AAA8745003FEA16 /* Tag8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2491AAA8745003FEA16 /* Tag8.cpp */; };
+		750BA2CA1AAA8745003FEA16 /* Tag9.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA24B1AAA8745003FEA16 /* Tag9.cpp */; };
+		750BA2CB1AAA8745003FEA16 /* utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA24D1AAA8745003FEA16 /* utilities.cpp */; };
+		750BA2CC1AAA8745003FEA16 /* verify.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA24F1AAA8745003FEA16 /* verify.cpp */; };
+		750BA2CD1AAA8745003FEA16 /* rsa_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2511AAA8745003FEA16 /* rsa_key.cpp */; };
+		750BA2CE1AAA8745003FEA16 /* UTF8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2531AAA8745003FEA16 /* UTF8.cpp */; };
+		750BA2CF1AAA8745003FEA16 /* utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2561AAA8745003FEA16 /* utility.cpp */; };
+		750BA2D21AAA88E2003FEA16 /* Tag2Sub31.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2111AAA8745003FEA16 /* Tag2Sub31.cpp */; };
+		750BA2D31AAA88E2003FEA16 /* Twofish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1881AAA8745003FEA16 /* Twofish.cpp */; };
+		750BA2D41AAA88E2003FEA16 /* Tag2Sub18.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1F31AAA8745003FEA16 /* Tag2Sub18.cpp */; };
+		750BA2D51AAA88E2003FEA16 /* Tag2Sub11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1E51AAA8745003FEA16 /* Tag2Sub11.cpp */; };
+		750BA2D61AAA88E2003FEA16 /* PGPKey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1A61AAA8745003FEA16 /* PGPKey.cpp */; };
+		750BA2D71AAA88E2003FEA16 /* IDEA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1821AAA8745003FEA16 /* IDEA.cpp */; };
+		750BA2D81AAA88E2003FEA16 /* DSA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1AF1AAA8745003FEA16 /* DSA.cpp */; };
+		750BA2D91AAA88E2003FEA16 /* pgp_exception_define.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1581AAA8744003FEA16 /* pgp_exception_define.cpp */; };
+		750BA2DA1AAA88E2003FEA16 /* Tag1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2231AAA8745003FEA16 /* Tag1.cpp */; };
+		750BA2DB1AAA88E2003FEA16 /* Tag4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2391AAA8745003FEA16 /* Tag4.cpp */; };
+		750BA2DC1AAA88E2003FEA16 /* rsa_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2511AAA8745003FEA16 /* rsa_key.cpp */; };
+		750BA2DD1AAA88E2003FEA16 /* Tag2Sub29.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA20B1AAA8745003FEA16 /* Tag2Sub29.cpp */; };
+		750BA2DE1AAA88E2003FEA16 /* Tag2Sub2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1F71AAA8745003FEA16 /* Tag2Sub2.cpp */; };
+		750BA2DF1AAA88E2003FEA16 /* pgpzlib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1AC1AAA8745003FEA16 /* pgpzlib.cpp */; };
+		750BA2E01AAA88E2003FEA16 /* Tag2Sub19.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1F51AAA8745003FEA16 /* Tag2Sub19.cpp */; };
+		750BA2E11AAA88E2003FEA16 /* encrypt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA16E1AAA8745003FEA16 /* encrypt.cpp */; };
+		750BA2E21AAA88E2003FEA16 /* Tag2Sub6.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2191AAA8745003FEA16 /* Tag2Sub6.cpp */; };
+		750BA2E31AAA88E2003FEA16 /* Tag14.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA22D1AAA8745003FEA16 /* Tag14.cpp */; };
+		750BA2E41AAA88E2003FEA16 /* Tag3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2371AAA8745003FEA16 /* Tag3.cpp */; };
+		750BA2E51AAA88E2003FEA16 /* SHA2_Functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1CE1AAA8745003FEA16 /* SHA2_Functions.cpp */; };
+		750BA2E61AAA88E2003FEA16 /* ElGamal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1B11AAA8745003FEA16 /* ElGamal.cpp */; };
+		750BA2E71AAA88E2003FEA16 /* Tag2Sub3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA20D1AAA8745003FEA16 /* Tag2Sub3.cpp */; };
+		750BA2E81AAA88E2003FEA16 /* includes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA18F1AAA8745003FEA16 /* includes.cpp */; };
+		750BA2E91AAA88E2003FEA16 /* Tag2Sub26.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2051AAA8745003FEA16 /* Tag2Sub26.cpp */; };
+		750BA2EA1AAA88E2003FEA16 /* utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2561AAA8745003FEA16 /* utility.cpp */; };
+		750BA2EB1AAA88E2003FEA16 /* UTF8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2531AAA8745003FEA16 /* UTF8.cpp */; };
+		750BA2EC1AAA88E2003FEA16 /* SHA512.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1D21AAA8745003FEA16 /* SHA512.cpp */; };
+		750BA2ED1AAA88E2003FEA16 /* Tag60.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA23F1AAA8745003FEA16 /* Tag60.cpp */; };
+		750BA2EE1AAA88E2003FEA16 /* CAST128.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA17A1AAA8745003FEA16 /* CAST128.cpp */; };
+		750BA2EF1AAA88E2003FEA16 /* radix64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1BD1AAA8745003FEA16 /* radix64.cpp */; };
+		750BA2F01AAA88E2003FEA16 /* DES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA17E1AAA8745003FEA16 /* DES.cpp */; };
+		750BA2F11AAA88E2003FEA16 /* Tag7.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2471AAA8745003FEA16 /* Tag7.cpp */; };
+		750BA2F21AAA88E2003FEA16 /* Tag11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2271AAA8745003FEA16 /* Tag11.cpp */; };
+		750BA2F31AAA88E2003FEA16 /* Tag9.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA24B1AAA8745003FEA16 /* Tag9.cpp */; };
+		750BA2F41AAA88E2003FEA16 /* Partial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA19C1AAA8745003FEA16 /* Partial.cpp */; };
+		750BA2F51AAA88E2003FEA16 /* Compress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1671AAA8745003FEA16 /* Compress.cpp */; };
+		750BA2F61AAA88E2003FEA16 /* Blowfish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1741AAA8745003FEA16 /* Blowfish.cpp */; };
+		750BA2F71AAA88E2003FEA16 /* Tag2Sub32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2131AAA8745003FEA16 /* Tag2Sub32.cpp */; };
+		750BA2F81AAA88E2003FEA16 /* Tag2Sub21.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1FB1AAA8745003FEA16 /* Tag2Sub21.cpp */; };
+		750BA2F91AAA88E2003FEA16 /* Tag2Sub20.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1F91AAA8745003FEA16 /* Tag2Sub20.cpp */; };
+		750BA2FA1AAA88E2003FEA16 /* Tag18.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2311AAA8745003FEA16 /* Tag18.cpp */; };
+		750BA2FB1AAA88E2003FEA16 /* Tag10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2251AAA8745003FEA16 /* Tag10.cpp */; };
+		750BA2FC1AAA88E2003FEA16 /* SHA384.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1D01AAA8745003FEA16 /* SHA384.cpp */; };
+		750BA2FD1AAA88E2003FEA16 /* pgp_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1561AAA8744003FEA16 /* pgp_exception.cpp */; };
+		750BA2FE1AAA88E2003FEA16 /* PGPCleartextSignature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1A21AAA8745003FEA16 /* PGPCleartextSignature.cpp */; };
+		750BA2FF1AAA88E2003FEA16 /* Tag2Sub13.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1E91AAA8745003FEA16 /* Tag2Sub13.cpp */; };
+		750BA3001AAA88E2003FEA16 /* pgpbzip2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1A01AAA8745003FEA16 /* pgpbzip2.cpp */; };
+		750BA3011AAA88E2003FEA16 /* Tag2Sub7.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA21B1AAA8745003FEA16 /* Tag2Sub7.cpp */; };
+		750BA3021AAA88E2003FEA16 /* utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA24D1AAA8745003FEA16 /* utilities.cpp */; };
+		750BA3031AAA88E2003FEA16 /* revoke.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1BF1AAA8745003FEA16 /* revoke.cpp */; };
+		750BA3041AAA88E2003FEA16 /* Tag0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2211AAA8745003FEA16 /* Tag0.cpp */; };
+		750BA3051AAA88E2003FEA16 /* Tag2Sub4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2151AAA8745003FEA16 /* Tag2Sub4.cpp */; };
+		750BA3061AAA88E2003FEA16 /* SHA224.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1C91AAA8745003FEA16 /* SHA224.cpp */; };
+		750BA3071AAA88E2003FEA16 /* BaseObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA15B1AAA8744003FEA16 /* BaseObject.cpp */; };
+		750BA3081AAA88E2003FEA16 /* Tag2Sub12.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1E71AAA8745003FEA16 /* Tag2Sub12.cpp */; };
+		750BA3091AAA88E2003FEA16 /* RSA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1B51AAA8745003FEA16 /* RSA.cpp */; };
+		750BA30A1AAA88E2003FEA16 /* Tag17.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA22F1AAA8745003FEA16 /* Tag17.cpp */; };
+		750BA30B1AAA88E2003FEA16 /* public_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1BB1AAA8745003FEA16 /* public_key.cpp */; };
+		750BA30C1AAA88E2003FEA16 /* sigcalc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1D51AAA8745003FEA16 /* sigcalc.cpp */; };
+		750BA30D1AAA88E2003FEA16 /* packet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1981AAA8745003FEA16 /* packet.cpp */; };
+		750BA30E1AAA88E2003FEA16 /* TDES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1861AAA8745003FEA16 /* TDES.cpp */; };
+		750BA30F1AAA88E2003FEA16 /* MD5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1931AAA8745003FEA16 /* MD5.cpp */; };
+		750BA3101AAA88E2003FEA16 /* Tag17Sub1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1DD1AAA8745003FEA16 /* Tag17Sub1.cpp */; };
+		750BA3111AAA88E2003FEA16 /* Tag2Sub28.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2091AAA8745003FEA16 /* Tag2Sub28.cpp */; };
+		750BA3121AAA88E2003FEA16 /* Tag13.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA22B1AAA8745003FEA16 /* Tag13.cpp */; };
+		750BA3131AAA88E2003FEA16 /* cfb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1641AAA8745003FEA16 /* cfb.cpp */; };
+		750BA3141AAA88E2003FEA16 /* Tag2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2351AAA8745003FEA16 /* Tag2.cpp */; };
+		750BA3151AAA88E2003FEA16 /* PGPMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1A81AAA8745003FEA16 /* PGPMessage.cpp */; };
+		750BA3161AAA88E2003FEA16 /* sign.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1D71AAA8745003FEA16 /* sign.cpp */; };
+		750BA3171AAA88E2003FEA16 /* Tag2Sub14.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1EB1AAA8745003FEA16 /* Tag2Sub14.cpp */; };
+		750BA3181AAA88E2003FEA16 /* Tag2Sub22.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1FD1AAA8745003FEA16 /* Tag2Sub22.cpp */; };
+		750BA3191AAA88E2003FEA16 /* verify.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA24F1AAA8745003FEA16 /* verify.cpp */; };
+		750BA31A1AAA88E2003FEA16 /* SHA256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1CB1AAA8745003FEA16 /* SHA256.cpp */; };
+		750BA31B1AAA88E2003FEA16 /* Tag2Sub24.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2011AAA8745003FEA16 /* Tag2Sub24.cpp */; };
+		750BA31C1AAA88E2003FEA16 /* PMPGPMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA15E1AAA8744003FEA16 /* PMPGPMessage.cpp */; };
+		750BA31D1AAA88E2003FEA16 /* mpi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1961AAA8745003FEA16 /* mpi.cpp */; };
+		750BA31E1AAA88E2003FEA16 /* Hashes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA18D1AAA8745003FEA16 /* Hashes.cpp */; };
+		750BA31F1AAA88E2003FEA16 /* s2k.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1C51AAA8745003FEA16 /* s2k.cpp */; };
+		750BA3201AAA88E2003FEA16 /* subpacket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1DA1AAA8745003FEA16 /* subpacket.cpp */; };
+		750BA3211AAA88E2003FEA16 /* PKA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1B31AAA8745003FEA16 /* PKA.cpp */; };
+		750BA3221AAA88E2003FEA16 /* Tag2Sub23.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1FF1AAA8745003FEA16 /* Tag2Sub23.cpp */; };
+		750BA3231AAA88E2003FEA16 /* openpgp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA15C1AAA8744003FEA16 /* openpgp.cpp */; };
+		750BA3241AAA88E2003FEA16 /* integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1911AAA8745003FEA16 /* integer.cpp */; };
+		750BA3251AAA88E2003FEA16 /* Tag2Sub10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1E31AAA8745003FEA16 /* Tag2Sub10.cpp */; };
+		750BA3261AAA88E2003FEA16 /* SymAlg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1841AAA8745003FEA16 /* SymAlg.cpp */; };
+		750BA3271AAA88E2003FEA16 /* Tag2Sub30.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA20F1AAA8745003FEA16 /* Tag2Sub30.cpp */; };
+		750BA3281AAA88E2003FEA16 /* private_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1B91AAA8745003FEA16 /* private_key.cpp */; };
+		750BA3291AAA88E2003FEA16 /* AES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1711AAA8745003FEA16 /* AES.cpp */; };
+		750BA32A1AAA88E2003FEA16 /* decrypt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA16B1AAA8745003FEA16 /* decrypt.cpp */; };
+		750BA32B1AAA88E2003FEA16 /* Tag12.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2291AAA8745003FEA16 /* Tag12.cpp */; };
+		750BA32C1AAA88E2003FEA16 /* pgptime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1AA1AAA8745003FEA16 /* pgptime.cpp */; };
+		750BA32D1AAA88E2003FEA16 /* Tag2Sub1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1E11AAA8745003FEA16 /* Tag2Sub1.cpp */; };
+		750BA32E1AAA88E2003FEA16 /* Tag2Sub27.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2071AAA8745003FEA16 /* Tag2Sub27.cpp */; };
+		750BA32F1AAA88E2003FEA16 /* Tag62.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2431AAA8745003FEA16 /* Tag62.cpp */; };
+		750BA3301AAA88E2003FEA16 /* Tag6.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA23D1AAA8745003FEA16 /* Tag6.cpp */; };
+		750BA3311AAA88E2003FEA16 /* Tag61.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2411AAA8745003FEA16 /* Tag61.cpp */; };
+		750BA3321AAA88E2003FEA16 /* Tag2Sub15.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1ED1AAA8745003FEA16 /* Tag2Sub15.cpp */; };
+		750BA3331AAA88E2003FEA16 /* Tag63.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2451AAA8745003FEA16 /* Tag63.cpp */; };
+		750BA3341AAA88E2003FEA16 /* Tag2Sub9.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA21F1AAA8745003FEA16 /* Tag2Sub9.cpp */; };
+		750BA3351AAA88E2003FEA16 /* Tag2Sub8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA21D1AAA8745003FEA16 /* Tag2Sub8.cpp */; };
+		750BA3361AAA88E2003FEA16 /* Tag2Sub17.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1F11AAA8745003FEA16 /* Tag2Sub17.cpp */; };
+		750BA3371AAA88E2003FEA16 /* RIPEMD160.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1C11AAA8745003FEA16 /* RIPEMD160.cpp */; };
+		750BA3381AAA88E2003FEA16 /* Tag2Sub0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1DF1AAA8745003FEA16 /* Tag2Sub0.cpp */; };
+		750BA3391AAA88E2003FEA16 /* Hash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA18B1AAA8745003FEA16 /* Hash.cpp */; };
+		750BA33A1AAA88E2003FEA16 /* Tag2Sub25.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2031AAA8745003FEA16 /* Tag2Sub25.cpp */; };
+		750BA33B1AAA88E2003FEA16 /* base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA14F1AAA8744003FEA16 /* base64.cpp */; };
+		750BA33C1AAA88E2003FEA16 /* PKCS1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1B71AAA8745003FEA16 /* PKCS1.cpp */; };
+		750BA33D1AAA88E2003FEA16 /* packets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA19A1AAA8745003FEA16 /* packets.cpp */; };
+		750BA33E1AAA88E2003FEA16 /* SHA1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1C71AAA8745003FEA16 /* SHA1.cpp */; };
+		750BA33F1AAA88E2003FEA16 /* Rijndael.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1491AAA8744003FEA16 /* Rijndael.cpp */; };
+		750BA3401AAA88E2003FEA16 /* Tag5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA23B1AAA8745003FEA16 /* Tag5.cpp */; };
+		750BA3411AAA88E2003FEA16 /* Tag8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2491AAA8745003FEA16 /* Tag8.cpp */; };
+		750BA3421AAA88E2003FEA16 /* Tag2Sub5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2171AAA8745003FEA16 /* Tag2Sub5.cpp */; };
+		750BA3431AAA88E2003FEA16 /* Tag19.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2331AAA8745003FEA16 /* Tag19.cpp */; };
+		750BA3441AAA88E2003FEA16 /* pgp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA19E1AAA8745003FEA16 /* pgp.cpp */; };
+		750BA3451AAA88E2003FEA16 /* BBS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1621AAA8745003FEA16 /* BBS.cpp */; };
+		750BA3461AAA88E2003FEA16 /* Tag2Sub16.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1EF1AAA8745003FEA16 /* Tag2Sub16.cpp */; };
+		750BA3471AAA88E2003FEA16 /* PGPDetachedSignature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1A41AAA8745003FEA16 /* PGPDetachedSignature.cpp */; };
+		750BA3481AAA88E2003FEA16 /* Camellia.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1771AAA8745003FEA16 /* Camellia.cpp */; };
+		750BA3511AAA8A5B003FEA16 /* Tag2Sub31.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2111AAA8745003FEA16 /* Tag2Sub31.cpp */; };
+		750BA3521AAA8A5B003FEA16 /* Twofish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1881AAA8745003FEA16 /* Twofish.cpp */; };
+		750BA3531AAA8A5B003FEA16 /* Tag2Sub18.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1F31AAA8745003FEA16 /* Tag2Sub18.cpp */; };
+		750BA3541AAA8A5B003FEA16 /* Tag2Sub11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1E51AAA8745003FEA16 /* Tag2Sub11.cpp */; };
+		750BA3551AAA8A5B003FEA16 /* PGPKey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1A61AAA8745003FEA16 /* PGPKey.cpp */; };
+		750BA3561AAA8A5B003FEA16 /* IDEA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1821AAA8745003FEA16 /* IDEA.cpp */; };
+		750BA3571AAA8A5B003FEA16 /* DSA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1AF1AAA8745003FEA16 /* DSA.cpp */; };
+		750BA3581AAA8A5B003FEA16 /* pgp_exception_define.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1581AAA8744003FEA16 /* pgp_exception_define.cpp */; };
+		750BA3591AAA8A5B003FEA16 /* Tag1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2231AAA8745003FEA16 /* Tag1.cpp */; };
+		750BA35A1AAA8A5B003FEA16 /* Tag4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2391AAA8745003FEA16 /* Tag4.cpp */; };
+		750BA35B1AAA8A5B003FEA16 /* rsa_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2511AAA8745003FEA16 /* rsa_key.cpp */; };
+		750BA35C1AAA8A5B003FEA16 /* Tag2Sub29.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA20B1AAA8745003FEA16 /* Tag2Sub29.cpp */; };
+		750BA35D1AAA8A5B003FEA16 /* Tag2Sub2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1F71AAA8745003FEA16 /* Tag2Sub2.cpp */; };
+		750BA35E1AAA8A5B003FEA16 /* pgpzlib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1AC1AAA8745003FEA16 /* pgpzlib.cpp */; };
+		750BA35F1AAA8A5B003FEA16 /* Tag2Sub19.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1F51AAA8745003FEA16 /* Tag2Sub19.cpp */; };
+		750BA3601AAA8A5B003FEA16 /* encrypt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA16E1AAA8745003FEA16 /* encrypt.cpp */; };
+		750BA3611AAA8A5B003FEA16 /* Tag2Sub6.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2191AAA8745003FEA16 /* Tag2Sub6.cpp */; };
+		750BA3621AAA8A5B003FEA16 /* Tag14.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA22D1AAA8745003FEA16 /* Tag14.cpp */; };
+		750BA3631AAA8A5B003FEA16 /* Tag3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2371AAA8745003FEA16 /* Tag3.cpp */; };
+		750BA3641AAA8A5B003FEA16 /* SHA2_Functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1CE1AAA8745003FEA16 /* SHA2_Functions.cpp */; };
+		750BA3651AAA8A5B003FEA16 /* ElGamal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1B11AAA8745003FEA16 /* ElGamal.cpp */; };
+		750BA3661AAA8A5B003FEA16 /* Tag2Sub3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA20D1AAA8745003FEA16 /* Tag2Sub3.cpp */; };
+		750BA3671AAA8A5B003FEA16 /* includes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA18F1AAA8745003FEA16 /* includes.cpp */; };
+		750BA3681AAA8A5B003FEA16 /* Tag2Sub26.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2051AAA8745003FEA16 /* Tag2Sub26.cpp */; };
+		750BA3691AAA8A5B003FEA16 /* utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2561AAA8745003FEA16 /* utility.cpp */; };
+		750BA36A1AAA8A5B003FEA16 /* UTF8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2531AAA8745003FEA16 /* UTF8.cpp */; };
+		750BA36B1AAA8A5B003FEA16 /* SHA512.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1D21AAA8745003FEA16 /* SHA512.cpp */; };
+		750BA36C1AAA8A5B003FEA16 /* Tag60.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA23F1AAA8745003FEA16 /* Tag60.cpp */; };
+		750BA36D1AAA8A5B003FEA16 /* CAST128.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA17A1AAA8745003FEA16 /* CAST128.cpp */; };
+		750BA36E1AAA8A5B003FEA16 /* radix64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1BD1AAA8745003FEA16 /* radix64.cpp */; };
+		750BA36F1AAA8A5B003FEA16 /* DES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA17E1AAA8745003FEA16 /* DES.cpp */; };
+		750BA3701AAA8A5B003FEA16 /* Tag7.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2471AAA8745003FEA16 /* Tag7.cpp */; };
+		750BA3711AAA8A5B003FEA16 /* Tag11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2271AAA8745003FEA16 /* Tag11.cpp */; };
+		750BA3721AAA8A5B003FEA16 /* Tag9.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA24B1AAA8745003FEA16 /* Tag9.cpp */; };
+		750BA3731AAA8A5B003FEA16 /* Partial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA19C1AAA8745003FEA16 /* Partial.cpp */; };
+		750BA3741AAA8A5B003FEA16 /* Compress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1671AAA8745003FEA16 /* Compress.cpp */; };
+		750BA3751AAA8A5B003FEA16 /* Blowfish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1741AAA8745003FEA16 /* Blowfish.cpp */; };
+		750BA3761AAA8A5B003FEA16 /* Tag2Sub32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2131AAA8745003FEA16 /* Tag2Sub32.cpp */; };
+		750BA3771AAA8A5B003FEA16 /* Tag2Sub21.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1FB1AAA8745003FEA16 /* Tag2Sub21.cpp */; };
+		750BA3781AAA8A5B003FEA16 /* Tag2Sub20.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1F91AAA8745003FEA16 /* Tag2Sub20.cpp */; };
+		750BA3791AAA8A5B003FEA16 /* Tag18.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2311AAA8745003FEA16 /* Tag18.cpp */; };
+		750BA37A1AAA8A5B003FEA16 /* Tag10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2251AAA8745003FEA16 /* Tag10.cpp */; };
+		750BA37B1AAA8A5B003FEA16 /* SHA384.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1D01AAA8745003FEA16 /* SHA384.cpp */; };
+		750BA37C1AAA8A5B003FEA16 /* pgp_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1561AAA8744003FEA16 /* pgp_exception.cpp */; };
+		750BA37D1AAA8A5B003FEA16 /* PGPCleartextSignature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1A21AAA8745003FEA16 /* PGPCleartextSignature.cpp */; };
+		750BA37E1AAA8A5B003FEA16 /* Tag2Sub13.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1E91AAA8745003FEA16 /* Tag2Sub13.cpp */; };
+		750BA37F1AAA8A5B003FEA16 /* pgpbzip2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1A01AAA8745003FEA16 /* pgpbzip2.cpp */; };
+		750BA3801AAA8A5B003FEA16 /* Tag2Sub7.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA21B1AAA8745003FEA16 /* Tag2Sub7.cpp */; };
+		750BA3811AAA8A5B003FEA16 /* utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA24D1AAA8745003FEA16 /* utilities.cpp */; };
+		750BA3821AAA8A5B003FEA16 /* revoke.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1BF1AAA8745003FEA16 /* revoke.cpp */; };
+		750BA3831AAA8A5B003FEA16 /* Tag0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2211AAA8745003FEA16 /* Tag0.cpp */; };
+		750BA3841AAA8A5B003FEA16 /* Tag2Sub4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2151AAA8745003FEA16 /* Tag2Sub4.cpp */; };
+		750BA3851AAA8A5B003FEA16 /* SHA224.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1C91AAA8745003FEA16 /* SHA224.cpp */; };
+		750BA3861AAA8A5B003FEA16 /* BaseObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA15B1AAA8744003FEA16 /* BaseObject.cpp */; };
+		750BA3871AAA8A5B003FEA16 /* Tag2Sub12.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1E71AAA8745003FEA16 /* Tag2Sub12.cpp */; };
+		750BA3881AAA8A5B003FEA16 /* RSA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1B51AAA8745003FEA16 /* RSA.cpp */; };
+		750BA3891AAA8A5B003FEA16 /* Tag17.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA22F1AAA8745003FEA16 /* Tag17.cpp */; };
+		750BA38A1AAA8A5B003FEA16 /* public_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1BB1AAA8745003FEA16 /* public_key.cpp */; };
+		750BA38B1AAA8A5B003FEA16 /* sigcalc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1D51AAA8745003FEA16 /* sigcalc.cpp */; };
+		750BA38C1AAA8A5B003FEA16 /* packet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1981AAA8745003FEA16 /* packet.cpp */; };
+		750BA38D1AAA8A5B003FEA16 /* TDES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1861AAA8745003FEA16 /* TDES.cpp */; };
+		750BA38E1AAA8A5B003FEA16 /* MD5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1931AAA8745003FEA16 /* MD5.cpp */; };
+		750BA38F1AAA8A5B003FEA16 /* Tag17Sub1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1DD1AAA8745003FEA16 /* Tag17Sub1.cpp */; };
+		750BA3901AAA8A5B003FEA16 /* Tag2Sub28.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2091AAA8745003FEA16 /* Tag2Sub28.cpp */; };
+		750BA3911AAA8A5B003FEA16 /* Tag13.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA22B1AAA8745003FEA16 /* Tag13.cpp */; };
+		750BA3921AAA8A5B003FEA16 /* cfb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1641AAA8745003FEA16 /* cfb.cpp */; };
+		750BA3931AAA8A5B003FEA16 /* Tag2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2351AAA8745003FEA16 /* Tag2.cpp */; };
+		750BA3941AAA8A5B003FEA16 /* PGPMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1A81AAA8745003FEA16 /* PGPMessage.cpp */; };
+		750BA3951AAA8A5B003FEA16 /* sign.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1D71AAA8745003FEA16 /* sign.cpp */; };
+		750BA3961AAA8A5B003FEA16 /* Tag2Sub14.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1EB1AAA8745003FEA16 /* Tag2Sub14.cpp */; };
+		750BA3971AAA8A5B003FEA16 /* Tag2Sub22.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1FD1AAA8745003FEA16 /* Tag2Sub22.cpp */; };
+		750BA3981AAA8A5B003FEA16 /* verify.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA24F1AAA8745003FEA16 /* verify.cpp */; };
+		750BA3991AAA8A5B003FEA16 /* SHA256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1CB1AAA8745003FEA16 /* SHA256.cpp */; };
+		750BA39A1AAA8A5B003FEA16 /* Tag2Sub24.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2011AAA8745003FEA16 /* Tag2Sub24.cpp */; };
+		750BA39B1AAA8A5B003FEA16 /* PMPGPMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA15E1AAA8744003FEA16 /* PMPGPMessage.cpp */; };
+		750BA39C1AAA8A5B003FEA16 /* mpi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1961AAA8745003FEA16 /* mpi.cpp */; };
+		750BA39D1AAA8A5B003FEA16 /* Hashes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA18D1AAA8745003FEA16 /* Hashes.cpp */; };
+		750BA39E1AAA8A5B003FEA16 /* s2k.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1C51AAA8745003FEA16 /* s2k.cpp */; };
+		750BA39F1AAA8A5B003FEA16 /* subpacket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1DA1AAA8745003FEA16 /* subpacket.cpp */; };
+		750BA3A01AAA8A5B003FEA16 /* PKA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1B31AAA8745003FEA16 /* PKA.cpp */; };
+		750BA3A11AAA8A5B003FEA16 /* Tag2Sub23.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1FF1AAA8745003FEA16 /* Tag2Sub23.cpp */; };
+		750BA3A21AAA8A5B003FEA16 /* openpgp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA15C1AAA8744003FEA16 /* openpgp.cpp */; };
+		750BA3A31AAA8A5B003FEA16 /* integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1911AAA8745003FEA16 /* integer.cpp */; };
+		750BA3A41AAA8A5B003FEA16 /* Tag2Sub10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1E31AAA8745003FEA16 /* Tag2Sub10.cpp */; };
+		750BA3A51AAA8A5B003FEA16 /* SymAlg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1841AAA8745003FEA16 /* SymAlg.cpp */; };
+		750BA3A61AAA8A5B003FEA16 /* Tag2Sub30.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA20F1AAA8745003FEA16 /* Tag2Sub30.cpp */; };
+		750BA3A71AAA8A5B003FEA16 /* private_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1B91AAA8745003FEA16 /* private_key.cpp */; };
+		750BA3A81AAA8A5B003FEA16 /* AES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1711AAA8745003FEA16 /* AES.cpp */; };
+		750BA3A91AAA8A5B003FEA16 /* decrypt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA16B1AAA8745003FEA16 /* decrypt.cpp */; };
+		750BA3AA1AAA8A5B003FEA16 /* Tag12.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2291AAA8745003FEA16 /* Tag12.cpp */; };
+		750BA3AB1AAA8A5B003FEA16 /* pgptime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1AA1AAA8745003FEA16 /* pgptime.cpp */; };
+		750BA3AC1AAA8A5B003FEA16 /* Tag2Sub1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1E11AAA8745003FEA16 /* Tag2Sub1.cpp */; };
+		750BA3AD1AAA8A5B003FEA16 /* Tag2Sub27.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2071AAA8745003FEA16 /* Tag2Sub27.cpp */; };
+		750BA3AE1AAA8A5B003FEA16 /* Tag62.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2431AAA8745003FEA16 /* Tag62.cpp */; };
+		750BA3AF1AAA8A5B003FEA16 /* Tag6.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA23D1AAA8745003FEA16 /* Tag6.cpp */; };
+		750BA3B01AAA8A5B003FEA16 /* Tag61.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2411AAA8745003FEA16 /* Tag61.cpp */; };
+		750BA3B11AAA8A5B003FEA16 /* Tag2Sub15.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1ED1AAA8745003FEA16 /* Tag2Sub15.cpp */; };
+		750BA3B21AAA8A5B003FEA16 /* Tag63.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2451AAA8745003FEA16 /* Tag63.cpp */; };
+		750BA3B31AAA8A5B003FEA16 /* Tag2Sub9.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA21F1AAA8745003FEA16 /* Tag2Sub9.cpp */; };
+		750BA3B41AAA8A5B003FEA16 /* Tag2Sub8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA21D1AAA8745003FEA16 /* Tag2Sub8.cpp */; };
+		750BA3B51AAA8A5B003FEA16 /* Tag2Sub17.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1F11AAA8745003FEA16 /* Tag2Sub17.cpp */; };
+		750BA3B61AAA8A5B003FEA16 /* RIPEMD160.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1C11AAA8745003FEA16 /* RIPEMD160.cpp */; };
+		750BA3B71AAA8A5B003FEA16 /* Tag2Sub0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1DF1AAA8745003FEA16 /* Tag2Sub0.cpp */; };
+		750BA3B81AAA8A5B003FEA16 /* Hash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA18B1AAA8745003FEA16 /* Hash.cpp */; };
+		750BA3B91AAA8A5B003FEA16 /* Tag2Sub25.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2031AAA8745003FEA16 /* Tag2Sub25.cpp */; };
+		750BA3BA1AAA8A5B003FEA16 /* base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA14F1AAA8744003FEA16 /* base64.cpp */; };
+		750BA3BB1AAA8A5B003FEA16 /* PKCS1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1B71AAA8745003FEA16 /* PKCS1.cpp */; };
+		750BA3BC1AAA8A5B003FEA16 /* packets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA19A1AAA8745003FEA16 /* packets.cpp */; };
+		750BA3BD1AAA8A5B003FEA16 /* SHA1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1C71AAA8745003FEA16 /* SHA1.cpp */; };
+		750BA3BE1AAA8A5B003FEA16 /* Rijndael.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1491AAA8744003FEA16 /* Rijndael.cpp */; };
+		750BA3BF1AAA8A5B003FEA16 /* Tag5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA23B1AAA8745003FEA16 /* Tag5.cpp */; };
+		750BA3C01AAA8A5B003FEA16 /* Tag8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2491AAA8745003FEA16 /* Tag8.cpp */; };
+		750BA3C11AAA8A5B003FEA16 /* Tag2Sub5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2171AAA8745003FEA16 /* Tag2Sub5.cpp */; };
+		750BA3C21AAA8A5B003FEA16 /* Tag19.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA2331AAA8745003FEA16 /* Tag19.cpp */; };
+		750BA3C31AAA8A5B003FEA16 /* pgp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA19E1AAA8745003FEA16 /* pgp.cpp */; };
+		750BA3C41AAA8A5B003FEA16 /* BBS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1621AAA8745003FEA16 /* BBS.cpp */; };
+		750BA3C51AAA8A5B003FEA16 /* Tag2Sub16.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1EF1AAA8745003FEA16 /* Tag2Sub16.cpp */; };
+		750BA3C61AAA8A5B003FEA16 /* PGPDetachedSignature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1A41AAA8745003FEA16 /* PGPDetachedSignature.cpp */; };
+		750BA3C71AAA8A5B003FEA16 /* Camellia.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750BA1771AAA8745003FEA16 /* Camellia.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		750BA12B1AAA8712003FEA16 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		750BA34A1AAA88E2003FEA16 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		750BA3C91AAA8A5B003FEA16 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		750BA12D1AAA8712003FEA16 /* libOpenPGP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOpenPGP.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		750BA1491AAA8744003FEA16 /* Rijndael.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Rijndael.cpp; sourceTree = "<group>"; };
+		750BA14A1AAA8744003FEA16 /* Rijndael.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rijndael.h; sourceTree = "<group>"; };
+		750BA14F1AAA8744003FEA16 /* base64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base64.cpp; sourceTree = "<group>"; };
+		750BA1501AAA8744003FEA16 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
+		750BA1521AAA8744003FEA16 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		750BA1531AAA8744003FEA16 /* RFC4880.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFC4880.h; sourceTree = "<group>"; };
+		750BA1561AAA8744003FEA16 /* pgp_exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pgp_exception.cpp; sourceTree = "<group>"; };
+		750BA1571AAA8744003FEA16 /* pgp_exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pgp_exception.h; sourceTree = "<group>"; };
+		750BA1581AAA8744003FEA16 /* pgp_exception_define.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pgp_exception_define.cpp; sourceTree = "<group>"; };
+		750BA1591AAA8744003FEA16 /* pgp_exception_define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pgp_exception_define.h; sourceTree = "<group>"; };
+		750BA15B1AAA8744003FEA16 /* BaseObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseObject.cpp; sourceTree = "<group>"; };
+		750BA15C1AAA8744003FEA16 /* openpgp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = openpgp.cpp; sourceTree = "<group>"; };
+		750BA15D1AAA8744003FEA16 /* openpgp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = openpgp.h; sourceTree = "<group>"; };
+		750BA15E1AAA8744003FEA16 /* PMPGPMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PMPGPMessage.cpp; sourceTree = "<group>"; };
+		750BA15F1AAA8744003FEA16 /* PMPGPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMPGPMessage.h; sourceTree = "<group>"; };
+		750BA1621AAA8745003FEA16 /* BBS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BBS.cpp; sourceTree = "<group>"; };
+		750BA1631AAA8745003FEA16 /* BBS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBS.h; sourceTree = "<group>"; };
+		750BA1641AAA8745003FEA16 /* cfb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cfb.cpp; sourceTree = "<group>"; };
+		750BA1651AAA8745003FEA16 /* cfb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cfb.h; sourceTree = "<group>"; };
+		750BA1661AAA8745003FEA16 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		750BA1671AAA8745003FEA16 /* Compress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Compress.cpp; sourceTree = "<group>"; };
+		750BA1681AAA8745003FEA16 /* Compress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Compress.h; sourceTree = "<group>"; };
+		750BA1691AAA8745003FEA16 /* consts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = consts.h; sourceTree = "<group>"; };
+		750BA16A1AAA8745003FEA16 /* cryptomath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cryptomath.h; sourceTree = "<group>"; };
+		750BA16B1AAA8745003FEA16 /* decrypt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = decrypt.cpp; sourceTree = "<group>"; };
+		750BA16C1AAA8745003FEA16 /* decrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = decrypt.h; sourceTree = "<group>"; };
+		750BA16D1AAA8745003FEA16 /* define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = define.h; sourceTree = "<group>"; };
+		750BA16E1AAA8745003FEA16 /* encrypt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = encrypt.cpp; sourceTree = "<group>"; };
+		750BA16F1AAA8745003FEA16 /* encrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = encrypt.h; sourceTree = "<group>"; };
+		750BA1711AAA8745003FEA16 /* AES.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AES.cpp; sourceTree = "<group>"; };
+		750BA1721AAA8745003FEA16 /* AES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AES.h; sourceTree = "<group>"; };
+		750BA1731AAA8745003FEA16 /* AES_Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AES_Const.h; sourceTree = "<group>"; };
+		750BA1741AAA8745003FEA16 /* Blowfish.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Blowfish.cpp; sourceTree = "<group>"; };
+		750BA1751AAA8745003FEA16 /* Blowfish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Blowfish.h; sourceTree = "<group>"; };
+		750BA1761AAA8745003FEA16 /* Blowfish_Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Blowfish_Const.h; sourceTree = "<group>"; };
+		750BA1771AAA8745003FEA16 /* Camellia.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camellia.cpp; sourceTree = "<group>"; };
+		750BA1781AAA8745003FEA16 /* Camellia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camellia.h; sourceTree = "<group>"; };
+		750BA1791AAA8745003FEA16 /* Camellia_Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camellia_Const.h; sourceTree = "<group>"; };
+		750BA17A1AAA8745003FEA16 /* CAST128.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CAST128.cpp; sourceTree = "<group>"; };
+		750BA17B1AAA8745003FEA16 /* CAST128.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAST128.h; sourceTree = "<group>"; };
+		750BA17C1AAA8745003FEA16 /* CAST128_Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAST128_Const.h; sourceTree = "<group>"; };
+		750BA17D1AAA8745003FEA16 /* CAST_Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAST_Const.h; sourceTree = "<group>"; };
+		750BA17E1AAA8745003FEA16 /* DES.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DES.cpp; sourceTree = "<group>"; };
+		750BA17F1AAA8745003FEA16 /* DES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DES.h; sourceTree = "<group>"; };
+		750BA1801AAA8745003FEA16 /* DES_Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DES_Const.h; sourceTree = "<group>"; };
+		750BA1811AAA8745003FEA16 /* Encryptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Encryptions.h; sourceTree = "<group>"; };
+		750BA1821AAA8745003FEA16 /* IDEA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IDEA.cpp; sourceTree = "<group>"; };
+		750BA1831AAA8745003FEA16 /* IDEA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEA.h; sourceTree = "<group>"; };
+		750BA1841AAA8745003FEA16 /* SymAlg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SymAlg.cpp; sourceTree = "<group>"; };
+		750BA1851AAA8745003FEA16 /* SymAlg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SymAlg.h; sourceTree = "<group>"; };
+		750BA1861AAA8745003FEA16 /* TDES.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDES.cpp; sourceTree = "<group>"; };
+		750BA1871AAA8745003FEA16 /* TDES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDES.h; sourceTree = "<group>"; };
+		750BA1881AAA8745003FEA16 /* Twofish.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Twofish.cpp; sourceTree = "<group>"; };
+		750BA1891AAA8745003FEA16 /* Twofish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Twofish.h; sourceTree = "<group>"; };
+		750BA18A1AAA8745003FEA16 /* Twofish_Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Twofish_Const.h; sourceTree = "<group>"; };
+		750BA18B1AAA8745003FEA16 /* Hash.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hash.cpp; sourceTree = "<group>"; };
+		750BA18C1AAA8745003FEA16 /* Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hash.h; sourceTree = "<group>"; };
+		750BA18D1AAA8745003FEA16 /* Hashes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hashes.cpp; sourceTree = "<group>"; };
+		750BA18E1AAA8745003FEA16 /* Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hashes.h; sourceTree = "<group>"; };
+		750BA18F1AAA8745003FEA16 /* includes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = includes.cpp; sourceTree = "<group>"; };
+		750BA1901AAA8745003FEA16 /* includes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = includes.h; sourceTree = "<group>"; };
+		750BA1911AAA8745003FEA16 /* integer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = integer.cpp; sourceTree = "<group>"; };
+		750BA1921AAA8745003FEA16 /* integer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = integer.h; sourceTree = "<group>"; };
+		750BA1931AAA8745003FEA16 /* MD5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MD5.cpp; sourceTree = "<group>"; };
+		750BA1941AAA8745003FEA16 /* MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5.h; sourceTree = "<group>"; };
+		750BA1951AAA8745003FEA16 /* MD5_Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5_Const.h; sourceTree = "<group>"; };
+		750BA1961AAA8745003FEA16 /* mpi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mpi.cpp; sourceTree = "<group>"; };
+		750BA1971AAA8745003FEA16 /* mpi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mpi.h; sourceTree = "<group>"; };
+		750BA1981AAA8745003FEA16 /* packet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = packet.cpp; sourceTree = "<group>"; };
+		750BA1991AAA8745003FEA16 /* packet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = packet.h; sourceTree = "<group>"; };
+		750BA19A1AAA8745003FEA16 /* packets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = packets.cpp; sourceTree = "<group>"; };
+		750BA19B1AAA8745003FEA16 /* packets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = packets.h; sourceTree = "<group>"; };
+		750BA19C1AAA8745003FEA16 /* Partial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Partial.cpp; sourceTree = "<group>"; };
+		750BA19D1AAA8745003FEA16 /* Partial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Partial.h; sourceTree = "<group>"; };
+		750BA19E1AAA8745003FEA16 /* pgp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pgp.cpp; sourceTree = "<group>"; };
+		750BA19F1AAA8745003FEA16 /* pgp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pgp.h; sourceTree = "<group>"; };
+		750BA1A01AAA8745003FEA16 /* pgpbzip2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pgpbzip2.cpp; sourceTree = "<group>"; };
+		750BA1A11AAA8745003FEA16 /* pgpbzip2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pgpbzip2.h; sourceTree = "<group>"; };
+		750BA1A21AAA8745003FEA16 /* PGPCleartextSignature.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PGPCleartextSignature.cpp; sourceTree = "<group>"; };
+		750BA1A31AAA8745003FEA16 /* PGPCleartextSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGPCleartextSignature.h; sourceTree = "<group>"; };
+		750BA1A41AAA8745003FEA16 /* PGPDetachedSignature.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PGPDetachedSignature.cpp; sourceTree = "<group>"; };
+		750BA1A51AAA8745003FEA16 /* PGPDetachedSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGPDetachedSignature.h; sourceTree = "<group>"; };
+		750BA1A61AAA8745003FEA16 /* PGPKey.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PGPKey.cpp; sourceTree = "<group>"; };
+		750BA1A81AAA8745003FEA16 /* PGPMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PGPMessage.cpp; sourceTree = "<group>"; };
+		750BA1A91AAA8745003FEA16 /* PGPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGPMessage.h; sourceTree = "<group>"; };
+		750BA1AA1AAA8745003FEA16 /* pgptime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pgptime.cpp; sourceTree = "<group>"; };
+		750BA1AB1AAA8745003FEA16 /* pgptime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pgptime.h; sourceTree = "<group>"; };
+		750BA1AC1AAA8745003FEA16 /* pgpzlib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pgpzlib.cpp; sourceTree = "<group>"; };
+		750BA1AD1AAA8745003FEA16 /* pgpzlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pgpzlib.h; sourceTree = "<group>"; };
+		750BA1AF1AAA8745003FEA16 /* DSA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DSA.cpp; sourceTree = "<group>"; };
+		750BA1B01AAA8745003FEA16 /* DSA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSA.h; sourceTree = "<group>"; };
+		750BA1B11AAA8745003FEA16 /* ElGamal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ElGamal.cpp; sourceTree = "<group>"; };
+		750BA1B21AAA8745003FEA16 /* ElGamal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElGamal.h; sourceTree = "<group>"; };
+		750BA1B31AAA8745003FEA16 /* PKA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PKA.cpp; sourceTree = "<group>"; };
+		750BA1B41AAA8745003FEA16 /* PKA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKA.h; sourceTree = "<group>"; };
+		750BA1B51AAA8745003FEA16 /* RSA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RSA.cpp; sourceTree = "<group>"; };
+		750BA1B61AAA8745003FEA16 /* RSA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSA.h; sourceTree = "<group>"; };
+		750BA1B71AAA8745003FEA16 /* PKCS1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PKCS1.cpp; sourceTree = "<group>"; };
+		750BA1B81AAA8745003FEA16 /* PKCS1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKCS1.h; sourceTree = "<group>"; };
+		750BA1B91AAA8745003FEA16 /* private_key.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = private_key.cpp; sourceTree = "<group>"; };
+		750BA1BA1AAA8745003FEA16 /* private_key.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = private_key.h; sourceTree = "<group>"; };
+		750BA1BB1AAA8745003FEA16 /* public_key.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = public_key.cpp; sourceTree = "<group>"; };
+		750BA1BC1AAA8745003FEA16 /* public_key.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = public_key.h; sourceTree = "<group>"; };
+		750BA1BD1AAA8745003FEA16 /* radix64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = radix64.cpp; sourceTree = "<group>"; };
+		750BA1BE1AAA8745003FEA16 /* radix64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = radix64.h; sourceTree = "<group>"; };
+		750BA1BF1AAA8745003FEA16 /* revoke.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = revoke.cpp; sourceTree = "<group>"; };
+		750BA1C01AAA8745003FEA16 /* revoke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = revoke.h; sourceTree = "<group>"; };
+		750BA1C11AAA8745003FEA16 /* RIPEMD160.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RIPEMD160.cpp; sourceTree = "<group>"; };
+		750BA1C21AAA8745003FEA16 /* RIPEMD160.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIPEMD160.h; sourceTree = "<group>"; };
+		750BA1C31AAA8745003FEA16 /* RIPEMD160_Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIPEMD160_Const.h; sourceTree = "<group>"; };
+		750BA1C41AAA8745003FEA16 /* RIPEMD_Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIPEMD_Const.h; sourceTree = "<group>"; };
+		750BA1C51AAA8745003FEA16 /* s2k.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = s2k.cpp; sourceTree = "<group>"; };
+		750BA1C61AAA8745003FEA16 /* s2k.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = s2k.h; sourceTree = "<group>"; };
+		750BA1C71AAA8745003FEA16 /* SHA1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SHA1.cpp; sourceTree = "<group>"; };
+		750BA1C81AAA8745003FEA16 /* SHA1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHA1.h; sourceTree = "<group>"; };
+		750BA1C91AAA8745003FEA16 /* SHA224.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SHA224.cpp; sourceTree = "<group>"; };
+		750BA1CA1AAA8745003FEA16 /* SHA224.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHA224.h; sourceTree = "<group>"; };
+		750BA1CB1AAA8745003FEA16 /* SHA256.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SHA256.cpp; sourceTree = "<group>"; };
+		750BA1CC1AAA8745003FEA16 /* SHA256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHA256.h; sourceTree = "<group>"; };
+		750BA1CD1AAA8745003FEA16 /* SHA256_Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHA256_Const.h; sourceTree = "<group>"; };
+		750BA1CE1AAA8745003FEA16 /* SHA2_Functions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SHA2_Functions.cpp; sourceTree = "<group>"; };
+		750BA1CF1AAA8745003FEA16 /* SHA2_Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHA2_Functions.h; sourceTree = "<group>"; };
+		750BA1D01AAA8745003FEA16 /* SHA384.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SHA384.cpp; sourceTree = "<group>"; };
+		750BA1D11AAA8745003FEA16 /* SHA384.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHA384.h; sourceTree = "<group>"; };
+		750BA1D21AAA8745003FEA16 /* SHA512.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SHA512.cpp; sourceTree = "<group>"; };
+		750BA1D31AAA8745003FEA16 /* SHA512.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHA512.h; sourceTree = "<group>"; };
+		750BA1D41AAA8745003FEA16 /* SHA512_Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHA512_Const.h; sourceTree = "<group>"; };
+		750BA1D51AAA8745003FEA16 /* sigcalc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sigcalc.cpp; sourceTree = "<group>"; };
+		750BA1D61AAA8745003FEA16 /* sigcalc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sigcalc.h; sourceTree = "<group>"; };
+		750BA1D71AAA8745003FEA16 /* sign.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sign.cpp; sourceTree = "<group>"; };
+		750BA1D81AAA8745003FEA16 /* sign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sign.h; sourceTree = "<group>"; };
+		750BA1DA1AAA8745003FEA16 /* subpacket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = subpacket.cpp; sourceTree = "<group>"; };
+		750BA1DB1AAA8745003FEA16 /* subpacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = subpacket.h; sourceTree = "<group>"; };
+		750BA1DC1AAA8745003FEA16 /* subpackets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = subpackets.h; sourceTree = "<group>"; };
+		750BA1DD1AAA8745003FEA16 /* Tag17Sub1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag17Sub1.cpp; sourceTree = "<group>"; };
+		750BA1DE1AAA8745003FEA16 /* Tag17Sub1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag17Sub1.h; sourceTree = "<group>"; };
+		750BA1DF1AAA8745003FEA16 /* Tag2Sub0.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub0.cpp; sourceTree = "<group>"; };
+		750BA1E01AAA8745003FEA16 /* Tag2Sub0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub0.h; sourceTree = "<group>"; };
+		750BA1E11AAA8745003FEA16 /* Tag2Sub1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub1.cpp; sourceTree = "<group>"; };
+		750BA1E21AAA8745003FEA16 /* Tag2Sub1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub1.h; sourceTree = "<group>"; };
+		750BA1E31AAA8745003FEA16 /* Tag2Sub10.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub10.cpp; sourceTree = "<group>"; };
+		750BA1E41AAA8745003FEA16 /* Tag2Sub10.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub10.h; sourceTree = "<group>"; };
+		750BA1E51AAA8745003FEA16 /* Tag2Sub11.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub11.cpp; sourceTree = "<group>"; };
+		750BA1E61AAA8745003FEA16 /* Tag2Sub11.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub11.h; sourceTree = "<group>"; };
+		750BA1E71AAA8745003FEA16 /* Tag2Sub12.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub12.cpp; sourceTree = "<group>"; };
+		750BA1E81AAA8745003FEA16 /* Tag2Sub12.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub12.h; sourceTree = "<group>"; };
+		750BA1E91AAA8745003FEA16 /* Tag2Sub13.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub13.cpp; sourceTree = "<group>"; };
+		750BA1EA1AAA8745003FEA16 /* Tag2Sub13.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub13.h; sourceTree = "<group>"; };
+		750BA1EB1AAA8745003FEA16 /* Tag2Sub14.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub14.cpp; sourceTree = "<group>"; };
+		750BA1EC1AAA8745003FEA16 /* Tag2Sub14.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub14.h; sourceTree = "<group>"; };
+		750BA1ED1AAA8745003FEA16 /* Tag2Sub15.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub15.cpp; sourceTree = "<group>"; };
+		750BA1EE1AAA8745003FEA16 /* Tag2Sub15.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub15.h; sourceTree = "<group>"; };
+		750BA1EF1AAA8745003FEA16 /* Tag2Sub16.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub16.cpp; sourceTree = "<group>"; };
+		750BA1F01AAA8745003FEA16 /* Tag2Sub16.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub16.h; sourceTree = "<group>"; };
+		750BA1F11AAA8745003FEA16 /* Tag2Sub17.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub17.cpp; sourceTree = "<group>"; };
+		750BA1F21AAA8745003FEA16 /* Tag2Sub17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub17.h; sourceTree = "<group>"; };
+		750BA1F31AAA8745003FEA16 /* Tag2Sub18.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub18.cpp; sourceTree = "<group>"; };
+		750BA1F41AAA8745003FEA16 /* Tag2Sub18.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub18.h; sourceTree = "<group>"; };
+		750BA1F51AAA8745003FEA16 /* Tag2Sub19.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub19.cpp; sourceTree = "<group>"; };
+		750BA1F61AAA8745003FEA16 /* Tag2Sub19.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub19.h; sourceTree = "<group>"; };
+		750BA1F71AAA8745003FEA16 /* Tag2Sub2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub2.cpp; sourceTree = "<group>"; };
+		750BA1F81AAA8745003FEA16 /* Tag2Sub2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub2.h; sourceTree = "<group>"; };
+		750BA1F91AAA8745003FEA16 /* Tag2Sub20.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub20.cpp; sourceTree = "<group>"; };
+		750BA1FA1AAA8745003FEA16 /* Tag2Sub20.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub20.h; sourceTree = "<group>"; };
+		750BA1FB1AAA8745003FEA16 /* Tag2Sub21.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub21.cpp; sourceTree = "<group>"; };
+		750BA1FC1AAA8745003FEA16 /* Tag2Sub21.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub21.h; sourceTree = "<group>"; };
+		750BA1FD1AAA8745003FEA16 /* Tag2Sub22.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub22.cpp; sourceTree = "<group>"; };
+		750BA1FE1AAA8745003FEA16 /* Tag2Sub22.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub22.h; sourceTree = "<group>"; };
+		750BA1FF1AAA8745003FEA16 /* Tag2Sub23.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub23.cpp; sourceTree = "<group>"; };
+		750BA2001AAA8745003FEA16 /* Tag2Sub23.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub23.h; sourceTree = "<group>"; };
+		750BA2011AAA8745003FEA16 /* Tag2Sub24.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub24.cpp; sourceTree = "<group>"; };
+		750BA2021AAA8745003FEA16 /* Tag2Sub24.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub24.h; sourceTree = "<group>"; };
+		750BA2031AAA8745003FEA16 /* Tag2Sub25.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub25.cpp; sourceTree = "<group>"; };
+		750BA2041AAA8745003FEA16 /* Tag2Sub25.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub25.h; sourceTree = "<group>"; };
+		750BA2051AAA8745003FEA16 /* Tag2Sub26.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub26.cpp; sourceTree = "<group>"; };
+		750BA2061AAA8745003FEA16 /* Tag2Sub26.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub26.h; sourceTree = "<group>"; };
+		750BA2071AAA8745003FEA16 /* Tag2Sub27.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub27.cpp; sourceTree = "<group>"; };
+		750BA2081AAA8745003FEA16 /* Tag2Sub27.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub27.h; sourceTree = "<group>"; };
+		750BA2091AAA8745003FEA16 /* Tag2Sub28.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub28.cpp; sourceTree = "<group>"; };
+		750BA20A1AAA8745003FEA16 /* Tag2Sub28.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub28.h; sourceTree = "<group>"; };
+		750BA20B1AAA8745003FEA16 /* Tag2Sub29.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub29.cpp; sourceTree = "<group>"; };
+		750BA20C1AAA8745003FEA16 /* Tag2Sub29.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub29.h; sourceTree = "<group>"; };
+		750BA20D1AAA8745003FEA16 /* Tag2Sub3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub3.cpp; sourceTree = "<group>"; };
+		750BA20E1AAA8745003FEA16 /* Tag2Sub3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub3.h; sourceTree = "<group>"; };
+		750BA20F1AAA8745003FEA16 /* Tag2Sub30.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub30.cpp; sourceTree = "<group>"; };
+		750BA2101AAA8745003FEA16 /* Tag2Sub30.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub30.h; sourceTree = "<group>"; };
+		750BA2111AAA8745003FEA16 /* Tag2Sub31.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub31.cpp; sourceTree = "<group>"; };
+		750BA2121AAA8745003FEA16 /* Tag2Sub31.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub31.h; sourceTree = "<group>"; };
+		750BA2131AAA8745003FEA16 /* Tag2Sub32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub32.cpp; sourceTree = "<group>"; };
+		750BA2141AAA8745003FEA16 /* Tag2Sub32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub32.h; sourceTree = "<group>"; };
+		750BA2151AAA8745003FEA16 /* Tag2Sub4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub4.cpp; sourceTree = "<group>"; };
+		750BA2161AAA8745003FEA16 /* Tag2Sub4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub4.h; sourceTree = "<group>"; };
+		750BA2171AAA8745003FEA16 /* Tag2Sub5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub5.cpp; sourceTree = "<group>"; };
+		750BA2181AAA8745003FEA16 /* Tag2Sub5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub5.h; sourceTree = "<group>"; };
+		750BA2191AAA8745003FEA16 /* Tag2Sub6.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub6.cpp; sourceTree = "<group>"; };
+		750BA21A1AAA8745003FEA16 /* Tag2Sub6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub6.h; sourceTree = "<group>"; };
+		750BA21B1AAA8745003FEA16 /* Tag2Sub7.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub7.cpp; sourceTree = "<group>"; };
+		750BA21C1AAA8745003FEA16 /* Tag2Sub7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub7.h; sourceTree = "<group>"; };
+		750BA21D1AAA8745003FEA16 /* Tag2Sub8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub8.cpp; sourceTree = "<group>"; };
+		750BA21E1AAA8745003FEA16 /* Tag2Sub8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub8.h; sourceTree = "<group>"; };
+		750BA21F1AAA8745003FEA16 /* Tag2Sub9.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2Sub9.cpp; sourceTree = "<group>"; };
+		750BA2201AAA8745003FEA16 /* Tag2Sub9.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2Sub9.h; sourceTree = "<group>"; };
+		750BA2211AAA8745003FEA16 /* Tag0.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag0.cpp; sourceTree = "<group>"; };
+		750BA2221AAA8745003FEA16 /* Tag0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag0.h; sourceTree = "<group>"; };
+		750BA2231AAA8745003FEA16 /* Tag1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag1.cpp; sourceTree = "<group>"; };
+		750BA2241AAA8745003FEA16 /* Tag1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag1.h; sourceTree = "<group>"; };
+		750BA2251AAA8745003FEA16 /* Tag10.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag10.cpp; sourceTree = "<group>"; };
+		750BA2261AAA8745003FEA16 /* Tag10.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag10.h; sourceTree = "<group>"; };
+		750BA2271AAA8745003FEA16 /* Tag11.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag11.cpp; sourceTree = "<group>"; };
+		750BA2281AAA8745003FEA16 /* Tag11.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag11.h; sourceTree = "<group>"; };
+		750BA2291AAA8745003FEA16 /* Tag12.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag12.cpp; sourceTree = "<group>"; };
+		750BA22A1AAA8745003FEA16 /* Tag12.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag12.h; sourceTree = "<group>"; };
+		750BA22B1AAA8745003FEA16 /* Tag13.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag13.cpp; sourceTree = "<group>"; };
+		750BA22C1AAA8745003FEA16 /* Tag13.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag13.h; sourceTree = "<group>"; };
+		750BA22D1AAA8745003FEA16 /* Tag14.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag14.cpp; sourceTree = "<group>"; };
+		750BA22E1AAA8745003FEA16 /* Tag14.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag14.h; sourceTree = "<group>"; };
+		750BA22F1AAA8745003FEA16 /* Tag17.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag17.cpp; sourceTree = "<group>"; };
+		750BA2301AAA8745003FEA16 /* Tag17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag17.h; sourceTree = "<group>"; };
+		750BA2311AAA8745003FEA16 /* Tag18.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag18.cpp; sourceTree = "<group>"; };
+		750BA2321AAA8745003FEA16 /* Tag18.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag18.h; sourceTree = "<group>"; };
+		750BA2331AAA8745003FEA16 /* Tag19.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag19.cpp; sourceTree = "<group>"; };
+		750BA2341AAA8745003FEA16 /* Tag19.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag19.h; sourceTree = "<group>"; };
+		750BA2351AAA8745003FEA16 /* Tag2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag2.cpp; sourceTree = "<group>"; };
+		750BA2361AAA8745003FEA16 /* Tag2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag2.h; sourceTree = "<group>"; };
+		750BA2371AAA8745003FEA16 /* Tag3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag3.cpp; sourceTree = "<group>"; };
+		750BA2381AAA8745003FEA16 /* Tag3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag3.h; sourceTree = "<group>"; };
+		750BA2391AAA8745003FEA16 /* Tag4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag4.cpp; sourceTree = "<group>"; };
+		750BA23A1AAA8745003FEA16 /* Tag4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag4.h; sourceTree = "<group>"; };
+		750BA23B1AAA8745003FEA16 /* Tag5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag5.cpp; sourceTree = "<group>"; };
+		750BA23C1AAA8745003FEA16 /* Tag5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag5.h; sourceTree = "<group>"; };
+		750BA23D1AAA8745003FEA16 /* Tag6.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag6.cpp; sourceTree = "<group>"; };
+		750BA23E1AAA8745003FEA16 /* Tag6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag6.h; sourceTree = "<group>"; };
+		750BA23F1AAA8745003FEA16 /* Tag60.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag60.cpp; sourceTree = "<group>"; };
+		750BA2401AAA8745003FEA16 /* Tag60.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag60.h; sourceTree = "<group>"; };
+		750BA2411AAA8745003FEA16 /* Tag61.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag61.cpp; sourceTree = "<group>"; };
+		750BA2421AAA8745003FEA16 /* Tag61.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag61.h; sourceTree = "<group>"; };
+		750BA2431AAA8745003FEA16 /* Tag62.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag62.cpp; sourceTree = "<group>"; };
+		750BA2441AAA8745003FEA16 /* Tag62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag62.h; sourceTree = "<group>"; };
+		750BA2451AAA8745003FEA16 /* Tag63.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag63.cpp; sourceTree = "<group>"; };
+		750BA2461AAA8745003FEA16 /* Tag63.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag63.h; sourceTree = "<group>"; };
+		750BA2471AAA8745003FEA16 /* Tag7.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag7.cpp; sourceTree = "<group>"; };
+		750BA2481AAA8745003FEA16 /* Tag7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag7.h; sourceTree = "<group>"; };
+		750BA2491AAA8745003FEA16 /* Tag8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag8.cpp; sourceTree = "<group>"; };
+		750BA24A1AAA8745003FEA16 /* Tag8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag8.h; sourceTree = "<group>"; };
+		750BA24B1AAA8745003FEA16 /* Tag9.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tag9.cpp; sourceTree = "<group>"; };
+		750BA24C1AAA8745003FEA16 /* Tag9.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag9.h; sourceTree = "<group>"; };
+		750BA24D1AAA8745003FEA16 /* utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utilities.cpp; sourceTree = "<group>"; };
+		750BA24E1AAA8745003FEA16 /* utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utilities.h; sourceTree = "<group>"; };
+		750BA24F1AAA8745003FEA16 /* verify.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = verify.cpp; sourceTree = "<group>"; };
+		750BA2501AAA8745003FEA16 /* verify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = verify.h; sourceTree = "<group>"; };
+		750BA2511AAA8745003FEA16 /* rsa_key.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rsa_key.cpp; sourceTree = "<group>"; };
+		750BA2521AAA8745003FEA16 /* rsa_key.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rsa_key.h; sourceTree = "<group>"; };
+		750BA2531AAA8745003FEA16 /* UTF8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UTF8.cpp; sourceTree = "<group>"; };
+		750BA2541AAA8745003FEA16 /* UTF8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTF8.h; sourceTree = "<group>"; };
+		750BA2561AAA8745003FEA16 /* utility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utility.cpp; sourceTree = "<group>"; };
+		750BA2571AAA8745003FEA16 /* utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utility.h; sourceTree = "<group>"; };
+		750BA34E1AAA88E2003FEA16 /* libOpenPGP_x86_64.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOpenPGP_x86_64.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		750BA3CD1AAA8A5B003FEA16 /* libOpenPGP_i386.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOpenPGP_i386.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		750BA3D01AAA8DD9003FEA16 /* PGPKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGPKey.h; sourceTree = "<group>"; };
+		750BA3D51AAA8EBD003FEA16 /* BaseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseObject.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		750BA12A1AAA8712003FEA16 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		750BA3491AAA88E2003FEA16 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		750BA3C81AAA8A5B003FEA16 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		750BA1241AAA8712003FEA16 = {
+			isa = PBXGroup;
+			children = (
+				750BA1471AAA8744003FEA16 /* Source */,
+				750BA12E1AAA8712003FEA16 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		750BA12E1AAA8712003FEA16 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				750BA12D1AAA8712003FEA16 /* libOpenPGP.a */,
+				750BA34E1AAA88E2003FEA16 /* libOpenPGP_x86_64.a */,
+				750BA3CD1AAA8A5B003FEA16 /* libOpenPGP_i386.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		750BA1471AAA8744003FEA16 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				750BA3CE1AAA8DD9003FEA16 /* include */,
+				750BA1481AAA8744003FEA16 /* libs */,
+				750BA14B1AAA8744003FEA16 /* samples */,
+				750BA14C1AAA8744003FEA16 /* src */,
+				750BA2581AAA8745003FEA16 /* tests */,
+			);
+			name = Source;
+			path = ../Source;
+			sourceTree = "<group>";
+		};
+		750BA1481AAA8744003FEA16 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				750BA1491AAA8744003FEA16 /* Rijndael.cpp */,
+				750BA14A1AAA8744003FEA16 /* Rijndael.h */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		750BA14B1AAA8744003FEA16 /* samples */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = samples;
+			sourceTree = "<group>";
+		};
+		750BA14C1AAA8744003FEA16 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				750BA14F1AAA8744003FEA16 /* base64.cpp */,
+				750BA1501AAA8744003FEA16 /* base64.h */,
+				750BA1511AAA8744003FEA16 /* config */,
+				750BA1541AAA8744003FEA16 /* encryption */,
+				750BA1551AAA8744003FEA16 /* exception */,
+				750BA15A1AAA8744003FEA16 /* openpgp */,
+				750BA1601AAA8744003FEA16 /* package */,
+				750BA1611AAA8744003FEA16 /* pgp */,
+				750BA2511AAA8745003FEA16 /* rsa_key.cpp */,
+				750BA2521AAA8745003FEA16 /* rsa_key.h */,
+				750BA2531AAA8745003FEA16 /* UTF8.cpp */,
+				750BA2541AAA8745003FEA16 /* UTF8.h */,
+				750BA2551AAA8745003FEA16 /* utility */,
+				750BA2561AAA8745003FEA16 /* utility.cpp */,
+				750BA2571AAA8745003FEA16 /* utility.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		750BA1511AAA8744003FEA16 /* config */ = {
+			isa = PBXGroup;
+			children = (
+				750BA1521AAA8744003FEA16 /* config.h */,
+				750BA1531AAA8744003FEA16 /* RFC4880.h */,
+			);
+			path = config;
+			sourceTree = "<group>";
+		};
+		750BA1541AAA8744003FEA16 /* encryption */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = encryption;
+			sourceTree = "<group>";
+		};
+		750BA1551AAA8744003FEA16 /* exception */ = {
+			isa = PBXGroup;
+			children = (
+				750BA1561AAA8744003FEA16 /* pgp_exception.cpp */,
+				750BA1571AAA8744003FEA16 /* pgp_exception.h */,
+				750BA1581AAA8744003FEA16 /* pgp_exception_define.cpp */,
+				750BA1591AAA8744003FEA16 /* pgp_exception_define.h */,
+			);
+			path = exception;
+			sourceTree = "<group>";
+		};
+		750BA15A1AAA8744003FEA16 /* openpgp */ = {
+			isa = PBXGroup;
+			children = (
+				750BA15B1AAA8744003FEA16 /* BaseObject.cpp */,
+				750BA15C1AAA8744003FEA16 /* openpgp.cpp */,
+				750BA15D1AAA8744003FEA16 /* openpgp.h */,
+				750BA15E1AAA8744003FEA16 /* PMPGPMessage.cpp */,
+				750BA15F1AAA8744003FEA16 /* PMPGPMessage.h */,
+			);
+			path = openpgp;
+			sourceTree = "<group>";
+		};
+		750BA1601AAA8744003FEA16 /* package */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = package;
+			sourceTree = "<group>";
+		};
+		750BA1611AAA8744003FEA16 /* pgp */ = {
+			isa = PBXGroup;
+			children = (
+				750BA1621AAA8745003FEA16 /* BBS.cpp */,
+				750BA1631AAA8745003FEA16 /* BBS.h */,
+				750BA1641AAA8745003FEA16 /* cfb.cpp */,
+				750BA1651AAA8745003FEA16 /* cfb.h */,
+				750BA1661AAA8745003FEA16 /* common.h */,
+				750BA1671AAA8745003FEA16 /* Compress.cpp */,
+				750BA1681AAA8745003FEA16 /* Compress.h */,
+				750BA1691AAA8745003FEA16 /* consts.h */,
+				750BA16A1AAA8745003FEA16 /* cryptomath.h */,
+				750BA16B1AAA8745003FEA16 /* decrypt.cpp */,
+				750BA16C1AAA8745003FEA16 /* decrypt.h */,
+				750BA16D1AAA8745003FEA16 /* define.h */,
+				750BA16E1AAA8745003FEA16 /* encrypt.cpp */,
+				750BA16F1AAA8745003FEA16 /* encrypt.h */,
+				750BA1701AAA8745003FEA16 /* Encryptions */,
+				750BA18B1AAA8745003FEA16 /* Hash.cpp */,
+				750BA18C1AAA8745003FEA16 /* Hash.h */,
+				750BA18D1AAA8745003FEA16 /* Hashes.cpp */,
+				750BA18E1AAA8745003FEA16 /* Hashes.h */,
+				750BA18F1AAA8745003FEA16 /* includes.cpp */,
+				750BA1901AAA8745003FEA16 /* includes.h */,
+				750BA1911AAA8745003FEA16 /* integer.cpp */,
+				750BA1921AAA8745003FEA16 /* integer.h */,
+				750BA1931AAA8745003FEA16 /* MD5.cpp */,
+				750BA1941AAA8745003FEA16 /* MD5.h */,
+				750BA1951AAA8745003FEA16 /* MD5_Const.h */,
+				750BA1961AAA8745003FEA16 /* mpi.cpp */,
+				750BA1971AAA8745003FEA16 /* mpi.h */,
+				750BA1981AAA8745003FEA16 /* packet.cpp */,
+				750BA1991AAA8745003FEA16 /* packet.h */,
+				750BA19A1AAA8745003FEA16 /* packets.cpp */,
+				750BA19B1AAA8745003FEA16 /* packets.h */,
+				750BA19C1AAA8745003FEA16 /* Partial.cpp */,
+				750BA19D1AAA8745003FEA16 /* Partial.h */,
+				750BA19E1AAA8745003FEA16 /* pgp.cpp */,
+				750BA19F1AAA8745003FEA16 /* pgp.h */,
+				750BA1A01AAA8745003FEA16 /* pgpbzip2.cpp */,
+				750BA1A11AAA8745003FEA16 /* pgpbzip2.h */,
+				750BA1A21AAA8745003FEA16 /* PGPCleartextSignature.cpp */,
+				750BA1A31AAA8745003FEA16 /* PGPCleartextSignature.h */,
+				750BA1A41AAA8745003FEA16 /* PGPDetachedSignature.cpp */,
+				750BA1A51AAA8745003FEA16 /* PGPDetachedSignature.h */,
+				750BA1A61AAA8745003FEA16 /* PGPKey.cpp */,
+				750BA1A81AAA8745003FEA16 /* PGPMessage.cpp */,
+				750BA1A91AAA8745003FEA16 /* PGPMessage.h */,
+				750BA1AA1AAA8745003FEA16 /* pgptime.cpp */,
+				750BA1AB1AAA8745003FEA16 /* pgptime.h */,
+				750BA1AC1AAA8745003FEA16 /* pgpzlib.cpp */,
+				750BA1AD1AAA8745003FEA16 /* pgpzlib.h */,
+				750BA1AE1AAA8745003FEA16 /* PKA */,
+				750BA1B71AAA8745003FEA16 /* PKCS1.cpp */,
+				750BA1B81AAA8745003FEA16 /* PKCS1.h */,
+				750BA1B91AAA8745003FEA16 /* private_key.cpp */,
+				750BA1BA1AAA8745003FEA16 /* private_key.h */,
+				750BA1BB1AAA8745003FEA16 /* public_key.cpp */,
+				750BA1BC1AAA8745003FEA16 /* public_key.h */,
+				750BA1BD1AAA8745003FEA16 /* radix64.cpp */,
+				750BA1BE1AAA8745003FEA16 /* radix64.h */,
+				750BA1BF1AAA8745003FEA16 /* revoke.cpp */,
+				750BA1C01AAA8745003FEA16 /* revoke.h */,
+				750BA1C11AAA8745003FEA16 /* RIPEMD160.cpp */,
+				750BA1C21AAA8745003FEA16 /* RIPEMD160.h */,
+				750BA1C31AAA8745003FEA16 /* RIPEMD160_Const.h */,
+				750BA1C41AAA8745003FEA16 /* RIPEMD_Const.h */,
+				750BA1C51AAA8745003FEA16 /* s2k.cpp */,
+				750BA1C61AAA8745003FEA16 /* s2k.h */,
+				750BA1C71AAA8745003FEA16 /* SHA1.cpp */,
+				750BA1C81AAA8745003FEA16 /* SHA1.h */,
+				750BA1C91AAA8745003FEA16 /* SHA224.cpp */,
+				750BA1CA1AAA8745003FEA16 /* SHA224.h */,
+				750BA1CB1AAA8745003FEA16 /* SHA256.cpp */,
+				750BA1CC1AAA8745003FEA16 /* SHA256.h */,
+				750BA1CD1AAA8745003FEA16 /* SHA256_Const.h */,
+				750BA1CE1AAA8745003FEA16 /* SHA2_Functions.cpp */,
+				750BA1CF1AAA8745003FEA16 /* SHA2_Functions.h */,
+				750BA1D01AAA8745003FEA16 /* SHA384.cpp */,
+				750BA1D11AAA8745003FEA16 /* SHA384.h */,
+				750BA1D21AAA8745003FEA16 /* SHA512.cpp */,
+				750BA1D31AAA8745003FEA16 /* SHA512.h */,
+				750BA1D41AAA8745003FEA16 /* SHA512_Const.h */,
+				750BA1D51AAA8745003FEA16 /* sigcalc.cpp */,
+				750BA1D61AAA8745003FEA16 /* sigcalc.h */,
+				750BA1D71AAA8745003FEA16 /* sign.cpp */,
+				750BA1D81AAA8745003FEA16 /* sign.h */,
+				750BA1D91AAA8745003FEA16 /* Subpackets */,
+				750BA2211AAA8745003FEA16 /* Tag0.cpp */,
+				750BA2221AAA8745003FEA16 /* Tag0.h */,
+				750BA2231AAA8745003FEA16 /* Tag1.cpp */,
+				750BA2241AAA8745003FEA16 /* Tag1.h */,
+				750BA2251AAA8745003FEA16 /* Tag10.cpp */,
+				750BA2261AAA8745003FEA16 /* Tag10.h */,
+				750BA2271AAA8745003FEA16 /* Tag11.cpp */,
+				750BA2281AAA8745003FEA16 /* Tag11.h */,
+				750BA2291AAA8745003FEA16 /* Tag12.cpp */,
+				750BA22A1AAA8745003FEA16 /* Tag12.h */,
+				750BA22B1AAA8745003FEA16 /* Tag13.cpp */,
+				750BA22C1AAA8745003FEA16 /* Tag13.h */,
+				750BA22D1AAA8745003FEA16 /* Tag14.cpp */,
+				750BA22E1AAA8745003FEA16 /* Tag14.h */,
+				750BA22F1AAA8745003FEA16 /* Tag17.cpp */,
+				750BA2301AAA8745003FEA16 /* Tag17.h */,
+				750BA2311AAA8745003FEA16 /* Tag18.cpp */,
+				750BA2321AAA8745003FEA16 /* Tag18.h */,
+				750BA2331AAA8745003FEA16 /* Tag19.cpp */,
+				750BA2341AAA8745003FEA16 /* Tag19.h */,
+				750BA2351AAA8745003FEA16 /* Tag2.cpp */,
+				750BA2361AAA8745003FEA16 /* Tag2.h */,
+				750BA2371AAA8745003FEA16 /* Tag3.cpp */,
+				750BA2381AAA8745003FEA16 /* Tag3.h */,
+				750BA2391AAA8745003FEA16 /* Tag4.cpp */,
+				750BA23A1AAA8745003FEA16 /* Tag4.h */,
+				750BA23B1AAA8745003FEA16 /* Tag5.cpp */,
+				750BA23C1AAA8745003FEA16 /* Tag5.h */,
+				750BA23D1AAA8745003FEA16 /* Tag6.cpp */,
+				750BA23E1AAA8745003FEA16 /* Tag6.h */,
+				750BA23F1AAA8745003FEA16 /* Tag60.cpp */,
+				750BA2401AAA8745003FEA16 /* Tag60.h */,
+				750BA2411AAA8745003FEA16 /* Tag61.cpp */,
+				750BA2421AAA8745003FEA16 /* Tag61.h */,
+				750BA2431AAA8745003FEA16 /* Tag62.cpp */,
+				750BA2441AAA8745003FEA16 /* Tag62.h */,
+				750BA2451AAA8745003FEA16 /* Tag63.cpp */,
+				750BA2461AAA8745003FEA16 /* Tag63.h */,
+				750BA2471AAA8745003FEA16 /* Tag7.cpp */,
+				750BA2481AAA8745003FEA16 /* Tag7.h */,
+				750BA2491AAA8745003FEA16 /* Tag8.cpp */,
+				750BA24A1AAA8745003FEA16 /* Tag8.h */,
+				750BA24B1AAA8745003FEA16 /* Tag9.cpp */,
+				750BA24C1AAA8745003FEA16 /* Tag9.h */,
+				750BA24D1AAA8745003FEA16 /* utilities.cpp */,
+				750BA24E1AAA8745003FEA16 /* utilities.h */,
+				750BA24F1AAA8745003FEA16 /* verify.cpp */,
+				750BA2501AAA8745003FEA16 /* verify.h */,
+			);
+			path = pgp;
+			sourceTree = "<group>";
+		};
+		750BA1701AAA8745003FEA16 /* Encryptions */ = {
+			isa = PBXGroup;
+			children = (
+				750BA1711AAA8745003FEA16 /* AES.cpp */,
+				750BA1721AAA8745003FEA16 /* AES.h */,
+				750BA1731AAA8745003FEA16 /* AES_Const.h */,
+				750BA1741AAA8745003FEA16 /* Blowfish.cpp */,
+				750BA1751AAA8745003FEA16 /* Blowfish.h */,
+				750BA1761AAA8745003FEA16 /* Blowfish_Const.h */,
+				750BA1771AAA8745003FEA16 /* Camellia.cpp */,
+				750BA1781AAA8745003FEA16 /* Camellia.h */,
+				750BA1791AAA8745003FEA16 /* Camellia_Const.h */,
+				750BA17A1AAA8745003FEA16 /* CAST128.cpp */,
+				750BA17B1AAA8745003FEA16 /* CAST128.h */,
+				750BA17C1AAA8745003FEA16 /* CAST128_Const.h */,
+				750BA17D1AAA8745003FEA16 /* CAST_Const.h */,
+				750BA17E1AAA8745003FEA16 /* DES.cpp */,
+				750BA17F1AAA8745003FEA16 /* DES.h */,
+				750BA1801AAA8745003FEA16 /* DES_Const.h */,
+				750BA1811AAA8745003FEA16 /* Encryptions.h */,
+				750BA1821AAA8745003FEA16 /* IDEA.cpp */,
+				750BA1831AAA8745003FEA16 /* IDEA.h */,
+				750BA1841AAA8745003FEA16 /* SymAlg.cpp */,
+				750BA1851AAA8745003FEA16 /* SymAlg.h */,
+				750BA1861AAA8745003FEA16 /* TDES.cpp */,
+				750BA1871AAA8745003FEA16 /* TDES.h */,
+				750BA1881AAA8745003FEA16 /* Twofish.cpp */,
+				750BA1891AAA8745003FEA16 /* Twofish.h */,
+				750BA18A1AAA8745003FEA16 /* Twofish_Const.h */,
+			);
+			path = Encryptions;
+			sourceTree = "<group>";
+		};
+		750BA1AE1AAA8745003FEA16 /* PKA */ = {
+			isa = PBXGroup;
+			children = (
+				750BA1AF1AAA8745003FEA16 /* DSA.cpp */,
+				750BA1B01AAA8745003FEA16 /* DSA.h */,
+				750BA1B11AAA8745003FEA16 /* ElGamal.cpp */,
+				750BA1B21AAA8745003FEA16 /* ElGamal.h */,
+				750BA1B31AAA8745003FEA16 /* PKA.cpp */,
+				750BA1B41AAA8745003FEA16 /* PKA.h */,
+				750BA1B51AAA8745003FEA16 /* RSA.cpp */,
+				750BA1B61AAA8745003FEA16 /* RSA.h */,
+			);
+			path = PKA;
+			sourceTree = "<group>";
+		};
+		750BA1D91AAA8745003FEA16 /* Subpackets */ = {
+			isa = PBXGroup;
+			children = (
+				750BA1DA1AAA8745003FEA16 /* subpacket.cpp */,
+				750BA1DB1AAA8745003FEA16 /* subpacket.h */,
+				750BA1DC1AAA8745003FEA16 /* subpackets.h */,
+				750BA1DD1AAA8745003FEA16 /* Tag17Sub1.cpp */,
+				750BA1DE1AAA8745003FEA16 /* Tag17Sub1.h */,
+				750BA1DF1AAA8745003FEA16 /* Tag2Sub0.cpp */,
+				750BA1E01AAA8745003FEA16 /* Tag2Sub0.h */,
+				750BA1E11AAA8745003FEA16 /* Tag2Sub1.cpp */,
+				750BA1E21AAA8745003FEA16 /* Tag2Sub1.h */,
+				750BA1E31AAA8745003FEA16 /* Tag2Sub10.cpp */,
+				750BA1E41AAA8745003FEA16 /* Tag2Sub10.h */,
+				750BA1E51AAA8745003FEA16 /* Tag2Sub11.cpp */,
+				750BA1E61AAA8745003FEA16 /* Tag2Sub11.h */,
+				750BA1E71AAA8745003FEA16 /* Tag2Sub12.cpp */,
+				750BA1E81AAA8745003FEA16 /* Tag2Sub12.h */,
+				750BA1E91AAA8745003FEA16 /* Tag2Sub13.cpp */,
+				750BA1EA1AAA8745003FEA16 /* Tag2Sub13.h */,
+				750BA1EB1AAA8745003FEA16 /* Tag2Sub14.cpp */,
+				750BA1EC1AAA8745003FEA16 /* Tag2Sub14.h */,
+				750BA1ED1AAA8745003FEA16 /* Tag2Sub15.cpp */,
+				750BA1EE1AAA8745003FEA16 /* Tag2Sub15.h */,
+				750BA1EF1AAA8745003FEA16 /* Tag2Sub16.cpp */,
+				750BA1F01AAA8745003FEA16 /* Tag2Sub16.h */,
+				750BA1F11AAA8745003FEA16 /* Tag2Sub17.cpp */,
+				750BA1F21AAA8745003FEA16 /* Tag2Sub17.h */,
+				750BA1F31AAA8745003FEA16 /* Tag2Sub18.cpp */,
+				750BA1F41AAA8745003FEA16 /* Tag2Sub18.h */,
+				750BA1F51AAA8745003FEA16 /* Tag2Sub19.cpp */,
+				750BA1F61AAA8745003FEA16 /* Tag2Sub19.h */,
+				750BA1F71AAA8745003FEA16 /* Tag2Sub2.cpp */,
+				750BA1F81AAA8745003FEA16 /* Tag2Sub2.h */,
+				750BA1F91AAA8745003FEA16 /* Tag2Sub20.cpp */,
+				750BA1FA1AAA8745003FEA16 /* Tag2Sub20.h */,
+				750BA1FB1AAA8745003FEA16 /* Tag2Sub21.cpp */,
+				750BA1FC1AAA8745003FEA16 /* Tag2Sub21.h */,
+				750BA1FD1AAA8745003FEA16 /* Tag2Sub22.cpp */,
+				750BA1FE1AAA8745003FEA16 /* Tag2Sub22.h */,
+				750BA1FF1AAA8745003FEA16 /* Tag2Sub23.cpp */,
+				750BA2001AAA8745003FEA16 /* Tag2Sub23.h */,
+				750BA2011AAA8745003FEA16 /* Tag2Sub24.cpp */,
+				750BA2021AAA8745003FEA16 /* Tag2Sub24.h */,
+				750BA2031AAA8745003FEA16 /* Tag2Sub25.cpp */,
+				750BA2041AAA8745003FEA16 /* Tag2Sub25.h */,
+				750BA2051AAA8745003FEA16 /* Tag2Sub26.cpp */,
+				750BA2061AAA8745003FEA16 /* Tag2Sub26.h */,
+				750BA2071AAA8745003FEA16 /* Tag2Sub27.cpp */,
+				750BA2081AAA8745003FEA16 /* Tag2Sub27.h */,
+				750BA2091AAA8745003FEA16 /* Tag2Sub28.cpp */,
+				750BA20A1AAA8745003FEA16 /* Tag2Sub28.h */,
+				750BA20B1AAA8745003FEA16 /* Tag2Sub29.cpp */,
+				750BA20C1AAA8745003FEA16 /* Tag2Sub29.h */,
+				750BA20D1AAA8745003FEA16 /* Tag2Sub3.cpp */,
+				750BA20E1AAA8745003FEA16 /* Tag2Sub3.h */,
+				750BA20F1AAA8745003FEA16 /* Tag2Sub30.cpp */,
+				750BA2101AAA8745003FEA16 /* Tag2Sub30.h */,
+				750BA2111AAA8745003FEA16 /* Tag2Sub31.cpp */,
+				750BA2121AAA8745003FEA16 /* Tag2Sub31.h */,
+				750BA2131AAA8745003FEA16 /* Tag2Sub32.cpp */,
+				750BA2141AAA8745003FEA16 /* Tag2Sub32.h */,
+				750BA2151AAA8745003FEA16 /* Tag2Sub4.cpp */,
+				750BA2161AAA8745003FEA16 /* Tag2Sub4.h */,
+				750BA2171AAA8745003FEA16 /* Tag2Sub5.cpp */,
+				750BA2181AAA8745003FEA16 /* Tag2Sub5.h */,
+				750BA2191AAA8745003FEA16 /* Tag2Sub6.cpp */,
+				750BA21A1AAA8745003FEA16 /* Tag2Sub6.h */,
+				750BA21B1AAA8745003FEA16 /* Tag2Sub7.cpp */,
+				750BA21C1AAA8745003FEA16 /* Tag2Sub7.h */,
+				750BA21D1AAA8745003FEA16 /* Tag2Sub8.cpp */,
+				750BA21E1AAA8745003FEA16 /* Tag2Sub8.h */,
+				750BA21F1AAA8745003FEA16 /* Tag2Sub9.cpp */,
+				750BA2201AAA8745003FEA16 /* Tag2Sub9.h */,
+			);
+			path = Subpackets;
+			sourceTree = "<group>";
+		};
+		750BA2551AAA8745003FEA16 /* utility */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = utility;
+			sourceTree = "<group>";
+		};
+		750BA2581AAA8745003FEA16 /* tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = tests;
+			sourceTree = "<group>";
+		};
+		750BA3CE1AAA8DD9003FEA16 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				750BA3D41AAA8EBD003FEA16 /* base */,
+				750BA3CF1AAA8DD9003FEA16 /* pgp */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		750BA3CF1AAA8DD9003FEA16 /* pgp */ = {
+			isa = PBXGroup;
+			children = (
+				750BA3D01AAA8DD9003FEA16 /* PGPKey.h */,
+			);
+			path = pgp;
+			sourceTree = "<group>";
+		};
+		750BA3D41AAA8EBD003FEA16 /* base */ = {
+			isa = PBXGroup;
+			children = (
+				750BA3D51AAA8EBD003FEA16 /* BaseObject.h */,
+			);
+			path = base;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		750BA12C1AAA8712003FEA16 /* OpenPGP_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 750BA1411AAA8712003FEA16 /* Build configuration list for PBXNativeTarget "OpenPGP_iOS" */;
+			buildPhases = (
+				750BA1291AAA8712003FEA16 /* Sources */,
+				750BA12A1AAA8712003FEA16 /* Frameworks */,
+				750BA12B1AAA8712003FEA16 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpenPGP_iOS;
+			productName = OpenPGP;
+			productReference = 750BA12D1AAA8712003FEA16 /* libOpenPGP.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		750BA2D01AAA88E2003FEA16 /* OpenPGP_x86_64 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 750BA34B1AAA88E2003FEA16 /* Build configuration list for PBXNativeTarget "OpenPGP_x86_64" */;
+			buildPhases = (
+				750BA2D11AAA88E2003FEA16 /* Sources */,
+				750BA3491AAA88E2003FEA16 /* Frameworks */,
+				750BA34A1AAA88E2003FEA16 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpenPGP_x86_64;
+			productName = OpenPGP;
+			productReference = 750BA34E1AAA88E2003FEA16 /* libOpenPGP_x86_64.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		750BA34F1AAA8A5B003FEA16 /* OpenPGP_i386 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 750BA3CA1AAA8A5B003FEA16 /* Build configuration list for PBXNativeTarget "OpenPGP_i386" */;
+			buildPhases = (
+				750BA3501AAA8A5B003FEA16 /* Sources */,
+				750BA3C81AAA8A5B003FEA16 /* Frameworks */,
+				750BA3C91AAA8A5B003FEA16 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpenPGP_i386;
+			productName = OpenPGP;
+			productReference = 750BA3CD1AAA8A5B003FEA16 /* libOpenPGP_i386.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		750BA1251AAA8712003FEA16 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Yanfeng Zhang";
+				TargetAttributes = {
+					750BA12C1AAA8712003FEA16 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 750BA1281AAA8712003FEA16 /* Build configuration list for PBXProject "OpenPGP" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 750BA1241AAA8712003FEA16;
+			productRefGroup = 750BA12E1AAA8712003FEA16 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				750BA12C1AAA8712003FEA16 /* OpenPGP_iOS */,
+				750BA2D01AAA88E2003FEA16 /* OpenPGP_x86_64 */,
+				750BA34F1AAA8A5B003FEA16 /* OpenPGP_i386 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		750BA1291AAA8712003FEA16 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				750BA2AD1AAA8745003FEA16 /* Tag2Sub31.cpp in Sources */,
+				750BA26D1AAA8745003FEA16 /* Twofish.cpp in Sources */,
+				750BA29E1AAA8745003FEA16 /* Tag2Sub18.cpp in Sources */,
+				750BA2971AAA8745003FEA16 /* Tag2Sub11.cpp in Sources */,
+				750BA27B1AAA8745003FEA16 /* PGPKey.cpp in Sources */,
+				750BA26A1AAA8745003FEA16 /* IDEA.cpp in Sources */,
+				750BA27F1AAA8745003FEA16 /* DSA.cpp in Sources */,
+				750BA25C1AAA8745003FEA16 /* pgp_exception_define.cpp in Sources */,
+				750BA2B61AAA8745003FEA16 /* Tag1.cpp in Sources */,
+				750BA2C11AAA8745003FEA16 /* Tag4.cpp in Sources */,
+				750BA2CD1AAA8745003FEA16 /* rsa_key.cpp in Sources */,
+				750BA2AA1AAA8745003FEA16 /* Tag2Sub29.cpp in Sources */,
+				750BA2A01AAA8745003FEA16 /* Tag2Sub2.cpp in Sources */,
+				750BA27E1AAA8745003FEA16 /* pgpzlib.cpp in Sources */,
+				750BA29F1AAA8745003FEA16 /* Tag2Sub19.cpp in Sources */,
+				750BA2641AAA8745003FEA16 /* encrypt.cpp in Sources */,
+				750BA2B11AAA8745003FEA16 /* Tag2Sub6.cpp in Sources */,
+				750BA2BB1AAA8745003FEA16 /* Tag14.cpp in Sources */,
+				750BA2C01AAA8745003FEA16 /* Tag3.cpp in Sources */,
+				750BA28D1AAA8745003FEA16 /* SHA2_Functions.cpp in Sources */,
+				750BA2801AAA8745003FEA16 /* ElGamal.cpp in Sources */,
+				750BA2AB1AAA8745003FEA16 /* Tag2Sub3.cpp in Sources */,
+				750BA2701AAA8745003FEA16 /* includes.cpp in Sources */,
+				750BA2A71AAA8745003FEA16 /* Tag2Sub26.cpp in Sources */,
+				750BA2CF1AAA8745003FEA16 /* utility.cpp in Sources */,
+				750BA2CE1AAA8745003FEA16 /* UTF8.cpp in Sources */,
+				750BA28F1AAA8745003FEA16 /* SHA512.cpp in Sources */,
+				750BA2C41AAA8745003FEA16 /* Tag60.cpp in Sources */,
+				750BA2681AAA8745003FEA16 /* CAST128.cpp in Sources */,
+				750BA2861AAA8745003FEA16 /* radix64.cpp in Sources */,
+				750BA2691AAA8745003FEA16 /* DES.cpp in Sources */,
+				750BA2C81AAA8745003FEA16 /* Tag7.cpp in Sources */,
+				750BA2B81AAA8745003FEA16 /* Tag11.cpp in Sources */,
+				750BA2CA1AAA8745003FEA16 /* Tag9.cpp in Sources */,
+				750BA2761AAA8745003FEA16 /* Partial.cpp in Sources */,
+				750BA2621AAA8745003FEA16 /* Compress.cpp in Sources */,
+				750BA2661AAA8745003FEA16 /* Blowfish.cpp in Sources */,
+				750BA2AE1AAA8745003FEA16 /* Tag2Sub32.cpp in Sources */,
+				750BA2A21AAA8745003FEA16 /* Tag2Sub21.cpp in Sources */,
+				750BA2A11AAA8745003FEA16 /* Tag2Sub20.cpp in Sources */,
+				750BA2BD1AAA8745003FEA16 /* Tag18.cpp in Sources */,
+				750BA2B71AAA8745003FEA16 /* Tag10.cpp in Sources */,
+				750BA28E1AAA8745003FEA16 /* SHA384.cpp in Sources */,
+				750BA25B1AAA8745003FEA16 /* pgp_exception.cpp in Sources */,
+				750BA2791AAA8745003FEA16 /* PGPCleartextSignature.cpp in Sources */,
+				750BA2991AAA8745003FEA16 /* Tag2Sub13.cpp in Sources */,
+				750BA2781AAA8745003FEA16 /* pgpbzip2.cpp in Sources */,
+				750BA2B21AAA8745003FEA16 /* Tag2Sub7.cpp in Sources */,
+				750BA2CB1AAA8745003FEA16 /* utilities.cpp in Sources */,
+				750BA2871AAA8745003FEA16 /* revoke.cpp in Sources */,
+				750BA2B51AAA8745003FEA16 /* Tag0.cpp in Sources */,
+				750BA2AF1AAA8745003FEA16 /* Tag2Sub4.cpp in Sources */,
+				750BA28B1AAA8745003FEA16 /* SHA224.cpp in Sources */,
+				750BA25D1AAA8745003FEA16 /* BaseObject.cpp in Sources */,
+				750BA2981AAA8745003FEA16 /* Tag2Sub12.cpp in Sources */,
+				750BA2821AAA8745003FEA16 /* RSA.cpp in Sources */,
+				750BA2BC1AAA8745003FEA16 /* Tag17.cpp in Sources */,
+				750BA2851AAA8745003FEA16 /* public_key.cpp in Sources */,
+				750BA2901AAA8745003FEA16 /* sigcalc.cpp in Sources */,
+				750BA2741AAA8745003FEA16 /* packet.cpp in Sources */,
+				750BA26C1AAA8745003FEA16 /* TDES.cpp in Sources */,
+				750BA2721AAA8745003FEA16 /* MD5.cpp in Sources */,
+				750BA2931AAA8745003FEA16 /* Tag17Sub1.cpp in Sources */,
+				750BA2A91AAA8745003FEA16 /* Tag2Sub28.cpp in Sources */,
+				750BA2BA1AAA8745003FEA16 /* Tag13.cpp in Sources */,
+				750BA2611AAA8745003FEA16 /* cfb.cpp in Sources */,
+				750BA2BF1AAA8745003FEA16 /* Tag2.cpp in Sources */,
+				750BA27C1AAA8745003FEA16 /* PGPMessage.cpp in Sources */,
+				750BA2911AAA8745003FEA16 /* sign.cpp in Sources */,
+				750BA29A1AAA8745003FEA16 /* Tag2Sub14.cpp in Sources */,
+				750BA2A31AAA8745003FEA16 /* Tag2Sub22.cpp in Sources */,
+				750BA2CC1AAA8745003FEA16 /* verify.cpp in Sources */,
+				750BA28C1AAA8745003FEA16 /* SHA256.cpp in Sources */,
+				750BA2A51AAA8745003FEA16 /* Tag2Sub24.cpp in Sources */,
+				750BA25F1AAA8745003FEA16 /* PMPGPMessage.cpp in Sources */,
+				750BA2731AAA8745003FEA16 /* mpi.cpp in Sources */,
+				750BA26F1AAA8745003FEA16 /* Hashes.cpp in Sources */,
+				750BA2891AAA8745003FEA16 /* s2k.cpp in Sources */,
+				750BA2921AAA8745003FEA16 /* subpacket.cpp in Sources */,
+				750BA2811AAA8745003FEA16 /* PKA.cpp in Sources */,
+				750BA2A41AAA8745003FEA16 /* Tag2Sub23.cpp in Sources */,
+				750BA25E1AAA8745003FEA16 /* openpgp.cpp in Sources */,
+				750BA2711AAA8745003FEA16 /* integer.cpp in Sources */,
+				750BA2961AAA8745003FEA16 /* Tag2Sub10.cpp in Sources */,
+				750BA26B1AAA8745003FEA16 /* SymAlg.cpp in Sources */,
+				750BA2AC1AAA8745003FEA16 /* Tag2Sub30.cpp in Sources */,
+				750BA2841AAA8745003FEA16 /* private_key.cpp in Sources */,
+				750BA2651AAA8745003FEA16 /* AES.cpp in Sources */,
+				750BA2631AAA8745003FEA16 /* decrypt.cpp in Sources */,
+				750BA2B91AAA8745003FEA16 /* Tag12.cpp in Sources */,
+				750BA27D1AAA8745003FEA16 /* pgptime.cpp in Sources */,
+				750BA2951AAA8745003FEA16 /* Tag2Sub1.cpp in Sources */,
+				750BA2A81AAA8745003FEA16 /* Tag2Sub27.cpp in Sources */,
+				750BA2C61AAA8745003FEA16 /* Tag62.cpp in Sources */,
+				750BA2C31AAA8745003FEA16 /* Tag6.cpp in Sources */,
+				750BA2C51AAA8745003FEA16 /* Tag61.cpp in Sources */,
+				750BA29B1AAA8745003FEA16 /* Tag2Sub15.cpp in Sources */,
+				750BA2C71AAA8745003FEA16 /* Tag63.cpp in Sources */,
+				750BA2B41AAA8745003FEA16 /* Tag2Sub9.cpp in Sources */,
+				750BA2B31AAA8745003FEA16 /* Tag2Sub8.cpp in Sources */,
+				750BA29D1AAA8745003FEA16 /* Tag2Sub17.cpp in Sources */,
+				750BA2881AAA8745003FEA16 /* RIPEMD160.cpp in Sources */,
+				750BA2941AAA8745003FEA16 /* Tag2Sub0.cpp in Sources */,
+				750BA26E1AAA8745003FEA16 /* Hash.cpp in Sources */,
+				750BA2A61AAA8745003FEA16 /* Tag2Sub25.cpp in Sources */,
+				750BA25A1AAA8745003FEA16 /* base64.cpp in Sources */,
+				750BA2831AAA8745003FEA16 /* PKCS1.cpp in Sources */,
+				750BA2751AAA8745003FEA16 /* packets.cpp in Sources */,
+				750BA28A1AAA8745003FEA16 /* SHA1.cpp in Sources */,
+				750BA2591AAA8745003FEA16 /* Rijndael.cpp in Sources */,
+				750BA2C21AAA8745003FEA16 /* Tag5.cpp in Sources */,
+				750BA2C91AAA8745003FEA16 /* Tag8.cpp in Sources */,
+				750BA2B01AAA8745003FEA16 /* Tag2Sub5.cpp in Sources */,
+				750BA2BE1AAA8745003FEA16 /* Tag19.cpp in Sources */,
+				750BA2771AAA8745003FEA16 /* pgp.cpp in Sources */,
+				750BA2601AAA8745003FEA16 /* BBS.cpp in Sources */,
+				750BA29C1AAA8745003FEA16 /* Tag2Sub16.cpp in Sources */,
+				750BA27A1AAA8745003FEA16 /* PGPDetachedSignature.cpp in Sources */,
+				750BA2671AAA8745003FEA16 /* Camellia.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		750BA2D11AAA88E2003FEA16 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				750BA2D21AAA88E2003FEA16 /* Tag2Sub31.cpp in Sources */,
+				750BA2D31AAA88E2003FEA16 /* Twofish.cpp in Sources */,
+				750BA2D41AAA88E2003FEA16 /* Tag2Sub18.cpp in Sources */,
+				750BA2D51AAA88E2003FEA16 /* Tag2Sub11.cpp in Sources */,
+				750BA2D61AAA88E2003FEA16 /* PGPKey.cpp in Sources */,
+				750BA2D71AAA88E2003FEA16 /* IDEA.cpp in Sources */,
+				750BA2D81AAA88E2003FEA16 /* DSA.cpp in Sources */,
+				750BA2D91AAA88E2003FEA16 /* pgp_exception_define.cpp in Sources */,
+				750BA2DA1AAA88E2003FEA16 /* Tag1.cpp in Sources */,
+				750BA2DB1AAA88E2003FEA16 /* Tag4.cpp in Sources */,
+				750BA2DC1AAA88E2003FEA16 /* rsa_key.cpp in Sources */,
+				750BA2DD1AAA88E2003FEA16 /* Tag2Sub29.cpp in Sources */,
+				750BA2DE1AAA88E2003FEA16 /* Tag2Sub2.cpp in Sources */,
+				750BA2DF1AAA88E2003FEA16 /* pgpzlib.cpp in Sources */,
+				750BA2E01AAA88E2003FEA16 /* Tag2Sub19.cpp in Sources */,
+				750BA2E11AAA88E2003FEA16 /* encrypt.cpp in Sources */,
+				750BA2E21AAA88E2003FEA16 /* Tag2Sub6.cpp in Sources */,
+				750BA2E31AAA88E2003FEA16 /* Tag14.cpp in Sources */,
+				750BA2E41AAA88E2003FEA16 /* Tag3.cpp in Sources */,
+				750BA2E51AAA88E2003FEA16 /* SHA2_Functions.cpp in Sources */,
+				750BA2E61AAA88E2003FEA16 /* ElGamal.cpp in Sources */,
+				750BA2E71AAA88E2003FEA16 /* Tag2Sub3.cpp in Sources */,
+				750BA2E81AAA88E2003FEA16 /* includes.cpp in Sources */,
+				750BA2E91AAA88E2003FEA16 /* Tag2Sub26.cpp in Sources */,
+				750BA2EA1AAA88E2003FEA16 /* utility.cpp in Sources */,
+				750BA2EB1AAA88E2003FEA16 /* UTF8.cpp in Sources */,
+				750BA2EC1AAA88E2003FEA16 /* SHA512.cpp in Sources */,
+				750BA2ED1AAA88E2003FEA16 /* Tag60.cpp in Sources */,
+				750BA2EE1AAA88E2003FEA16 /* CAST128.cpp in Sources */,
+				750BA2EF1AAA88E2003FEA16 /* radix64.cpp in Sources */,
+				750BA2F01AAA88E2003FEA16 /* DES.cpp in Sources */,
+				750BA2F11AAA88E2003FEA16 /* Tag7.cpp in Sources */,
+				750BA2F21AAA88E2003FEA16 /* Tag11.cpp in Sources */,
+				750BA2F31AAA88E2003FEA16 /* Tag9.cpp in Sources */,
+				750BA2F41AAA88E2003FEA16 /* Partial.cpp in Sources */,
+				750BA2F51AAA88E2003FEA16 /* Compress.cpp in Sources */,
+				750BA2F61AAA88E2003FEA16 /* Blowfish.cpp in Sources */,
+				750BA2F71AAA88E2003FEA16 /* Tag2Sub32.cpp in Sources */,
+				750BA2F81AAA88E2003FEA16 /* Tag2Sub21.cpp in Sources */,
+				750BA2F91AAA88E2003FEA16 /* Tag2Sub20.cpp in Sources */,
+				750BA2FA1AAA88E2003FEA16 /* Tag18.cpp in Sources */,
+				750BA2FB1AAA88E2003FEA16 /* Tag10.cpp in Sources */,
+				750BA2FC1AAA88E2003FEA16 /* SHA384.cpp in Sources */,
+				750BA2FD1AAA88E2003FEA16 /* pgp_exception.cpp in Sources */,
+				750BA2FE1AAA88E2003FEA16 /* PGPCleartextSignature.cpp in Sources */,
+				750BA2FF1AAA88E2003FEA16 /* Tag2Sub13.cpp in Sources */,
+				750BA3001AAA88E2003FEA16 /* pgpbzip2.cpp in Sources */,
+				750BA3011AAA88E2003FEA16 /* Tag2Sub7.cpp in Sources */,
+				750BA3021AAA88E2003FEA16 /* utilities.cpp in Sources */,
+				750BA3031AAA88E2003FEA16 /* revoke.cpp in Sources */,
+				750BA3041AAA88E2003FEA16 /* Tag0.cpp in Sources */,
+				750BA3051AAA88E2003FEA16 /* Tag2Sub4.cpp in Sources */,
+				750BA3061AAA88E2003FEA16 /* SHA224.cpp in Sources */,
+				750BA3071AAA88E2003FEA16 /* BaseObject.cpp in Sources */,
+				750BA3081AAA88E2003FEA16 /* Tag2Sub12.cpp in Sources */,
+				750BA3091AAA88E2003FEA16 /* RSA.cpp in Sources */,
+				750BA30A1AAA88E2003FEA16 /* Tag17.cpp in Sources */,
+				750BA30B1AAA88E2003FEA16 /* public_key.cpp in Sources */,
+				750BA30C1AAA88E2003FEA16 /* sigcalc.cpp in Sources */,
+				750BA30D1AAA88E2003FEA16 /* packet.cpp in Sources */,
+				750BA30E1AAA88E2003FEA16 /* TDES.cpp in Sources */,
+				750BA30F1AAA88E2003FEA16 /* MD5.cpp in Sources */,
+				750BA3101AAA88E2003FEA16 /* Tag17Sub1.cpp in Sources */,
+				750BA3111AAA88E2003FEA16 /* Tag2Sub28.cpp in Sources */,
+				750BA3121AAA88E2003FEA16 /* Tag13.cpp in Sources */,
+				750BA3131AAA88E2003FEA16 /* cfb.cpp in Sources */,
+				750BA3141AAA88E2003FEA16 /* Tag2.cpp in Sources */,
+				750BA3151AAA88E2003FEA16 /* PGPMessage.cpp in Sources */,
+				750BA3161AAA88E2003FEA16 /* sign.cpp in Sources */,
+				750BA3171AAA88E2003FEA16 /* Tag2Sub14.cpp in Sources */,
+				750BA3181AAA88E2003FEA16 /* Tag2Sub22.cpp in Sources */,
+				750BA3191AAA88E2003FEA16 /* verify.cpp in Sources */,
+				750BA31A1AAA88E2003FEA16 /* SHA256.cpp in Sources */,
+				750BA31B1AAA88E2003FEA16 /* Tag2Sub24.cpp in Sources */,
+				750BA31C1AAA88E2003FEA16 /* PMPGPMessage.cpp in Sources */,
+				750BA31D1AAA88E2003FEA16 /* mpi.cpp in Sources */,
+				750BA31E1AAA88E2003FEA16 /* Hashes.cpp in Sources */,
+				750BA31F1AAA88E2003FEA16 /* s2k.cpp in Sources */,
+				750BA3201AAA88E2003FEA16 /* subpacket.cpp in Sources */,
+				750BA3211AAA88E2003FEA16 /* PKA.cpp in Sources */,
+				750BA3221AAA88E2003FEA16 /* Tag2Sub23.cpp in Sources */,
+				750BA3231AAA88E2003FEA16 /* openpgp.cpp in Sources */,
+				750BA3241AAA88E2003FEA16 /* integer.cpp in Sources */,
+				750BA3251AAA88E2003FEA16 /* Tag2Sub10.cpp in Sources */,
+				750BA3261AAA88E2003FEA16 /* SymAlg.cpp in Sources */,
+				750BA3271AAA88E2003FEA16 /* Tag2Sub30.cpp in Sources */,
+				750BA3281AAA88E2003FEA16 /* private_key.cpp in Sources */,
+				750BA3291AAA88E2003FEA16 /* AES.cpp in Sources */,
+				750BA32A1AAA88E2003FEA16 /* decrypt.cpp in Sources */,
+				750BA32B1AAA88E2003FEA16 /* Tag12.cpp in Sources */,
+				750BA32C1AAA88E2003FEA16 /* pgptime.cpp in Sources */,
+				750BA32D1AAA88E2003FEA16 /* Tag2Sub1.cpp in Sources */,
+				750BA32E1AAA88E2003FEA16 /* Tag2Sub27.cpp in Sources */,
+				750BA32F1AAA88E2003FEA16 /* Tag62.cpp in Sources */,
+				750BA3301AAA88E2003FEA16 /* Tag6.cpp in Sources */,
+				750BA3311AAA88E2003FEA16 /* Tag61.cpp in Sources */,
+				750BA3321AAA88E2003FEA16 /* Tag2Sub15.cpp in Sources */,
+				750BA3331AAA88E2003FEA16 /* Tag63.cpp in Sources */,
+				750BA3341AAA88E2003FEA16 /* Tag2Sub9.cpp in Sources */,
+				750BA3351AAA88E2003FEA16 /* Tag2Sub8.cpp in Sources */,
+				750BA3361AAA88E2003FEA16 /* Tag2Sub17.cpp in Sources */,
+				750BA3371AAA88E2003FEA16 /* RIPEMD160.cpp in Sources */,
+				750BA3381AAA88E2003FEA16 /* Tag2Sub0.cpp in Sources */,
+				750BA3391AAA88E2003FEA16 /* Hash.cpp in Sources */,
+				750BA33A1AAA88E2003FEA16 /* Tag2Sub25.cpp in Sources */,
+				750BA33B1AAA88E2003FEA16 /* base64.cpp in Sources */,
+				750BA33C1AAA88E2003FEA16 /* PKCS1.cpp in Sources */,
+				750BA33D1AAA88E2003FEA16 /* packets.cpp in Sources */,
+				750BA33E1AAA88E2003FEA16 /* SHA1.cpp in Sources */,
+				750BA33F1AAA88E2003FEA16 /* Rijndael.cpp in Sources */,
+				750BA3401AAA88E2003FEA16 /* Tag5.cpp in Sources */,
+				750BA3411AAA88E2003FEA16 /* Tag8.cpp in Sources */,
+				750BA3421AAA88E2003FEA16 /* Tag2Sub5.cpp in Sources */,
+				750BA3431AAA88E2003FEA16 /* Tag19.cpp in Sources */,
+				750BA3441AAA88E2003FEA16 /* pgp.cpp in Sources */,
+				750BA3451AAA88E2003FEA16 /* BBS.cpp in Sources */,
+				750BA3461AAA88E2003FEA16 /* Tag2Sub16.cpp in Sources */,
+				750BA3471AAA88E2003FEA16 /* PGPDetachedSignature.cpp in Sources */,
+				750BA3481AAA88E2003FEA16 /* Camellia.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		750BA3501AAA8A5B003FEA16 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				750BA3511AAA8A5B003FEA16 /* Tag2Sub31.cpp in Sources */,
+				750BA3521AAA8A5B003FEA16 /* Twofish.cpp in Sources */,
+				750BA3531AAA8A5B003FEA16 /* Tag2Sub18.cpp in Sources */,
+				750BA3541AAA8A5B003FEA16 /* Tag2Sub11.cpp in Sources */,
+				750BA3551AAA8A5B003FEA16 /* PGPKey.cpp in Sources */,
+				750BA3561AAA8A5B003FEA16 /* IDEA.cpp in Sources */,
+				750BA3571AAA8A5B003FEA16 /* DSA.cpp in Sources */,
+				750BA3581AAA8A5B003FEA16 /* pgp_exception_define.cpp in Sources */,
+				750BA3591AAA8A5B003FEA16 /* Tag1.cpp in Sources */,
+				750BA35A1AAA8A5B003FEA16 /* Tag4.cpp in Sources */,
+				750BA35B1AAA8A5B003FEA16 /* rsa_key.cpp in Sources */,
+				750BA35C1AAA8A5B003FEA16 /* Tag2Sub29.cpp in Sources */,
+				750BA35D1AAA8A5B003FEA16 /* Tag2Sub2.cpp in Sources */,
+				750BA35E1AAA8A5B003FEA16 /* pgpzlib.cpp in Sources */,
+				750BA35F1AAA8A5B003FEA16 /* Tag2Sub19.cpp in Sources */,
+				750BA3601AAA8A5B003FEA16 /* encrypt.cpp in Sources */,
+				750BA3611AAA8A5B003FEA16 /* Tag2Sub6.cpp in Sources */,
+				750BA3621AAA8A5B003FEA16 /* Tag14.cpp in Sources */,
+				750BA3631AAA8A5B003FEA16 /* Tag3.cpp in Sources */,
+				750BA3641AAA8A5B003FEA16 /* SHA2_Functions.cpp in Sources */,
+				750BA3651AAA8A5B003FEA16 /* ElGamal.cpp in Sources */,
+				750BA3661AAA8A5B003FEA16 /* Tag2Sub3.cpp in Sources */,
+				750BA3671AAA8A5B003FEA16 /* includes.cpp in Sources */,
+				750BA3681AAA8A5B003FEA16 /* Tag2Sub26.cpp in Sources */,
+				750BA3691AAA8A5B003FEA16 /* utility.cpp in Sources */,
+				750BA36A1AAA8A5B003FEA16 /* UTF8.cpp in Sources */,
+				750BA36B1AAA8A5B003FEA16 /* SHA512.cpp in Sources */,
+				750BA36C1AAA8A5B003FEA16 /* Tag60.cpp in Sources */,
+				750BA36D1AAA8A5B003FEA16 /* CAST128.cpp in Sources */,
+				750BA36E1AAA8A5B003FEA16 /* radix64.cpp in Sources */,
+				750BA36F1AAA8A5B003FEA16 /* DES.cpp in Sources */,
+				750BA3701AAA8A5B003FEA16 /* Tag7.cpp in Sources */,
+				750BA3711AAA8A5B003FEA16 /* Tag11.cpp in Sources */,
+				750BA3721AAA8A5B003FEA16 /* Tag9.cpp in Sources */,
+				750BA3731AAA8A5B003FEA16 /* Partial.cpp in Sources */,
+				750BA3741AAA8A5B003FEA16 /* Compress.cpp in Sources */,
+				750BA3751AAA8A5B003FEA16 /* Blowfish.cpp in Sources */,
+				750BA3761AAA8A5B003FEA16 /* Tag2Sub32.cpp in Sources */,
+				750BA3771AAA8A5B003FEA16 /* Tag2Sub21.cpp in Sources */,
+				750BA3781AAA8A5B003FEA16 /* Tag2Sub20.cpp in Sources */,
+				750BA3791AAA8A5B003FEA16 /* Tag18.cpp in Sources */,
+				750BA37A1AAA8A5B003FEA16 /* Tag10.cpp in Sources */,
+				750BA37B1AAA8A5B003FEA16 /* SHA384.cpp in Sources */,
+				750BA37C1AAA8A5B003FEA16 /* pgp_exception.cpp in Sources */,
+				750BA37D1AAA8A5B003FEA16 /* PGPCleartextSignature.cpp in Sources */,
+				750BA37E1AAA8A5B003FEA16 /* Tag2Sub13.cpp in Sources */,
+				750BA37F1AAA8A5B003FEA16 /* pgpbzip2.cpp in Sources */,
+				750BA3801AAA8A5B003FEA16 /* Tag2Sub7.cpp in Sources */,
+				750BA3811AAA8A5B003FEA16 /* utilities.cpp in Sources */,
+				750BA3821AAA8A5B003FEA16 /* revoke.cpp in Sources */,
+				750BA3831AAA8A5B003FEA16 /* Tag0.cpp in Sources */,
+				750BA3841AAA8A5B003FEA16 /* Tag2Sub4.cpp in Sources */,
+				750BA3851AAA8A5B003FEA16 /* SHA224.cpp in Sources */,
+				750BA3861AAA8A5B003FEA16 /* BaseObject.cpp in Sources */,
+				750BA3871AAA8A5B003FEA16 /* Tag2Sub12.cpp in Sources */,
+				750BA3881AAA8A5B003FEA16 /* RSA.cpp in Sources */,
+				750BA3891AAA8A5B003FEA16 /* Tag17.cpp in Sources */,
+				750BA38A1AAA8A5B003FEA16 /* public_key.cpp in Sources */,
+				750BA38B1AAA8A5B003FEA16 /* sigcalc.cpp in Sources */,
+				750BA38C1AAA8A5B003FEA16 /* packet.cpp in Sources */,
+				750BA38D1AAA8A5B003FEA16 /* TDES.cpp in Sources */,
+				750BA38E1AAA8A5B003FEA16 /* MD5.cpp in Sources */,
+				750BA38F1AAA8A5B003FEA16 /* Tag17Sub1.cpp in Sources */,
+				750BA3901AAA8A5B003FEA16 /* Tag2Sub28.cpp in Sources */,
+				750BA3911AAA8A5B003FEA16 /* Tag13.cpp in Sources */,
+				750BA3921AAA8A5B003FEA16 /* cfb.cpp in Sources */,
+				750BA3931AAA8A5B003FEA16 /* Tag2.cpp in Sources */,
+				750BA3941AAA8A5B003FEA16 /* PGPMessage.cpp in Sources */,
+				750BA3951AAA8A5B003FEA16 /* sign.cpp in Sources */,
+				750BA3961AAA8A5B003FEA16 /* Tag2Sub14.cpp in Sources */,
+				750BA3971AAA8A5B003FEA16 /* Tag2Sub22.cpp in Sources */,
+				750BA3981AAA8A5B003FEA16 /* verify.cpp in Sources */,
+				750BA3991AAA8A5B003FEA16 /* SHA256.cpp in Sources */,
+				750BA39A1AAA8A5B003FEA16 /* Tag2Sub24.cpp in Sources */,
+				750BA39B1AAA8A5B003FEA16 /* PMPGPMessage.cpp in Sources */,
+				750BA39C1AAA8A5B003FEA16 /* mpi.cpp in Sources */,
+				750BA39D1AAA8A5B003FEA16 /* Hashes.cpp in Sources */,
+				750BA39E1AAA8A5B003FEA16 /* s2k.cpp in Sources */,
+				750BA39F1AAA8A5B003FEA16 /* subpacket.cpp in Sources */,
+				750BA3A01AAA8A5B003FEA16 /* PKA.cpp in Sources */,
+				750BA3A11AAA8A5B003FEA16 /* Tag2Sub23.cpp in Sources */,
+				750BA3A21AAA8A5B003FEA16 /* openpgp.cpp in Sources */,
+				750BA3A31AAA8A5B003FEA16 /* integer.cpp in Sources */,
+				750BA3A41AAA8A5B003FEA16 /* Tag2Sub10.cpp in Sources */,
+				750BA3A51AAA8A5B003FEA16 /* SymAlg.cpp in Sources */,
+				750BA3A61AAA8A5B003FEA16 /* Tag2Sub30.cpp in Sources */,
+				750BA3A71AAA8A5B003FEA16 /* private_key.cpp in Sources */,
+				750BA3A81AAA8A5B003FEA16 /* AES.cpp in Sources */,
+				750BA3A91AAA8A5B003FEA16 /* decrypt.cpp in Sources */,
+				750BA3AA1AAA8A5B003FEA16 /* Tag12.cpp in Sources */,
+				750BA3AB1AAA8A5B003FEA16 /* pgptime.cpp in Sources */,
+				750BA3AC1AAA8A5B003FEA16 /* Tag2Sub1.cpp in Sources */,
+				750BA3AD1AAA8A5B003FEA16 /* Tag2Sub27.cpp in Sources */,
+				750BA3AE1AAA8A5B003FEA16 /* Tag62.cpp in Sources */,
+				750BA3AF1AAA8A5B003FEA16 /* Tag6.cpp in Sources */,
+				750BA3B01AAA8A5B003FEA16 /* Tag61.cpp in Sources */,
+				750BA3B11AAA8A5B003FEA16 /* Tag2Sub15.cpp in Sources */,
+				750BA3B21AAA8A5B003FEA16 /* Tag63.cpp in Sources */,
+				750BA3B31AAA8A5B003FEA16 /* Tag2Sub9.cpp in Sources */,
+				750BA3B41AAA8A5B003FEA16 /* Tag2Sub8.cpp in Sources */,
+				750BA3B51AAA8A5B003FEA16 /* Tag2Sub17.cpp in Sources */,
+				750BA3B61AAA8A5B003FEA16 /* RIPEMD160.cpp in Sources */,
+				750BA3B71AAA8A5B003FEA16 /* Tag2Sub0.cpp in Sources */,
+				750BA3B81AAA8A5B003FEA16 /* Hash.cpp in Sources */,
+				750BA3B91AAA8A5B003FEA16 /* Tag2Sub25.cpp in Sources */,
+				750BA3BA1AAA8A5B003FEA16 /* base64.cpp in Sources */,
+				750BA3BB1AAA8A5B003FEA16 /* PKCS1.cpp in Sources */,
+				750BA3BC1AAA8A5B003FEA16 /* packets.cpp in Sources */,
+				750BA3BD1AAA8A5B003FEA16 /* SHA1.cpp in Sources */,
+				750BA3BE1AAA8A5B003FEA16 /* Rijndael.cpp in Sources */,
+				750BA3BF1AAA8A5B003FEA16 /* Tag5.cpp in Sources */,
+				750BA3C01AAA8A5B003FEA16 /* Tag8.cpp in Sources */,
+				750BA3C11AAA8A5B003FEA16 /* Tag2Sub5.cpp in Sources */,
+				750BA3C21AAA8A5B003FEA16 /* Tag19.cpp in Sources */,
+				750BA3C31AAA8A5B003FEA16 /* pgp.cpp in Sources */,
+				750BA3C41AAA8A5B003FEA16 /* BBS.cpp in Sources */,
+				750BA3C51AAA8A5B003FEA16 /* Tag2Sub16.cpp in Sources */,
+				750BA3C61AAA8A5B003FEA16 /* PGPDetachedSignature.cpp in Sources */,
+				750BA3C71AAA8A5B003FEA16 /* Camellia.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		750BA13F1AAA8712003FEA16 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		750BA1401AAA8712003FEA16 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		750BA1421AAA8712003FEA16 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../Bin/libs/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(PROJECT_DIR)/../Bin/include",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		750BA1431AAA8712003FEA16 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../Bin/libs/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(PROJECT_DIR)/../Bin/include",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		750BA34C1AAA88E2003FEA16 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../Bin/libs/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(PROJECT_DIR)/../Bin/include",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = OpenPGP_x86_64;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = macosx;
+			};
+			name = Debug;
+		};
+		750BA34D1AAA88E2003FEA16 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../Bin/libs/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(PROJECT_DIR)/../Bin/include",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = OpenPGP_x86_64;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = macosx;
+			};
+			name = Release;
+		};
+		750BA3CB1AAA8A5B003FEA16 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../Bin/libs/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(PROJECT_DIR)/../Bin/include",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = OpenPGP_i386;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = macosx;
+			};
+			name = Debug;
+		};
+		750BA3CC1AAA8A5B003FEA16 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../Bin/libs/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(PROJECT_DIR)/../Bin/include",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = OpenPGP_i386;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		750BA1281AAA8712003FEA16 /* Build configuration list for PBXProject "OpenPGP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				750BA13F1AAA8712003FEA16 /* Debug */,
+				750BA1401AAA8712003FEA16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		750BA1411AAA8712003FEA16 /* Build configuration list for PBXNativeTarget "OpenPGP_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				750BA1421AAA8712003FEA16 /* Debug */,
+				750BA1431AAA8712003FEA16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		750BA34B1AAA88E2003FEA16 /* Build configuration list for PBXNativeTarget "OpenPGP_x86_64" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				750BA34C1AAA88E2003FEA16 /* Debug */,
+				750BA34D1AAA88E2003FEA16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		750BA3CA1AAA8A5B003FEA16 /* Build configuration list for PBXNativeTarget "OpenPGP_i386" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				750BA3CB1AAA8A5B003FEA16 /* Debug */,
+				750BA3CC1AAA8A5B003FEA16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 750BA1251AAA8712003FEA16 /* Project object */;
+}
