@@ -16,6 +16,7 @@
 #include "revoke.h"
 #include "base64.h"
 #include "cfb.h"
+#include "BBS.h"
 
 Tag6::Ptr find_encrypting_key(const PGP & k){
     if ((k.get_ASCII_Armor() == 1) || (k.get_ASCII_Armor() == 2)){
@@ -74,7 +75,7 @@ std::vector <std::string> pka_encrypt(const uint8_t pka, const std::string & dat
 Packet::Ptr encrypt_data(const std::string & session_key, const std::string & data, const std::string & filename, const uint8_t sym_alg, const uint8_t comp, const bool mdc, const PGPSecretKey::Ptr & signer, const std::string & sig_passphrase){
     // generate prefix
     uint16_t BS = Symmetric_Algorithm_Block_Length.at(Symmetric_Algorithms.at(sym_alg)) >> 3;
-    std::string prefix = unhexlify(zfill(bintohex(BBS().rand_byts(BS << 3)), BS << 1, '0'));
+    std::string prefix = unhexlify(zfill(bintohex(BBS().rand_b(BS << 3)), BS << 1, '0'));
     
     std::string to_encrypt;
     
@@ -82,7 +83,8 @@ Packet::Ptr encrypt_data(const std::string & session_key, const std::string & da
     Tag11 tag11;
     tag11.set_format('t');
     tag11.set_filename(filename);
-    tag11.set_time(0);
+    time_t t = now();
+    tag11.set_time(t);
     tag11.set_literal(data);
     
     to_encrypt = tag11.write(2);
@@ -312,46 +314,50 @@ pm::PMPGPMessage encrypt_pka(const PGPPublicKey & pub, const std::string & data,
 }
 
 PGPMessage encrypt_sym(const std::string & passphrase, const std::string & data, const std::string & filename, const uint8_t sym_alg, const uint8_t comp, const bool mdc, const PGPSecretKey::Ptr & signer, const std::string & sig_passphrase){
-    std::cerr << "Warning: encrypt_sym is untested. Potentially incorrect" << std::endl;
+    //std::cerr << "Warning: encrypt_sym is untested. Potentially incorrect" << std::endl;
     
     // generate Symmetric-Key Encrypted Session Key Packets (Tag 3)
-    uint16_t key_len = Symmetric_Algorithm_Key_Length.at(Symmetric_Algorithms.at(sym_alg));
-    
     S2K3::Ptr s2k = std::make_shared <S2K3> ();
     s2k -> set_type(3);
-    s2k -> set_hash(2); // SHA1
-    //   s2k -> set_salt(unhexlify(mpitohex(bintompi(BBS().rand(key_len)))));
+    s2k -> set_hash(8); // SHA1
+    s2k -> set_salt(unhexlify(bintohex(BBS().rand_b(64))));
     s2k -> set_count(96);
     
     Tag3::Ptr tag3 = std::make_shared <Tag3> ();
     tag3 -> set_version(4);
-    tag3 -> set_sym(sym_alg);
     tag3 -> set_s2k(s2k);
+    tag3 -> set_sym(sym_alg);
     // don't set esk (?)
     
     // generate session key
     // get hex version of session key
-    std::string session_key = "";//mpitohex(bintompi(BBS().rand(key_len)));
-    // unhexlify session key
-    session_key = unhexlify(std::string((key_len >> 2) - session_key.size(), '0') + session_key);
+    std::string session_key = tag3->get_key(passphrase);
     
-    // encrypt session key
-    std::string encrypted_session_key;
+//    // unhexlify session key
+//    session_key = unhexlify(std::string((key_len >> 2) - session_key.size(), '0') + session_key);
+//    
+//    // encrypt session key
+//    std::string encrypted_session_key = session_key;
     
     // encrypt data
-    Packet::Ptr encrypted = encrypt_data(encrypted_session_key, data, filename, sym_alg, comp, mdc, signer, sig_passphrase);
+    Packet::Ptr encrypted = encrypt_data(session_key.substr(1, session_key.size() - 1), data, filename, session_key[0], comp, mdc, signer, sig_passphrase);
     
     // write to output container
     PGPMessage out;
     out.set_ASCII_Armor(0);
-    out.set_Armor_Header(std::vector <std::pair <std::string, std::string> > ({std::pair <std::string, std::string> ("Version", "cc")}));
+    out.set_Armor_Header(std::vector <std::pair <std::string, std::string> > (
+    {
+        std::pair <std::string, std::string> ("Version", "ProtonMail v0.1.0"),
+        std::pair <std::string, std::string> ("Comment", "https://protonmail.com")
+    }));
+
     out.set_packets({tag3, encrypted});
     
     // clear data
     s2k.reset();
     tag3.reset();
     session_key = "";
-    encrypted_session_key = "";
+    //encrypted_session_key = "";
     encrypted.reset();
     
     return out;

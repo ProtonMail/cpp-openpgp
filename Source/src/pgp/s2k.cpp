@@ -12,8 +12,8 @@ std::string S2K::show_title() const{
 }
 
 S2K::S2K(uint8_t type):
-    type(type),
-    hash()
+type(type),
+hash()
 {}
 
 S2K::~S2K(){}
@@ -39,11 +39,11 @@ void S2K::set_hash(const uint8_t h){
 }
 
 S2K0::S2K0(uint8_t type):
-    S2K(type)
+S2K(type)
 {}
 
 S2K0::S2K0():
-    S2K0(0)
+S2K0(0)
 {}
 
 S2K0::~S2K0(){}
@@ -58,7 +58,7 @@ std::string S2K0::show(const uint8_t indents, const uint8_t indent_size) const{
     unsigned int tab = indents * indent_size;
     std::stringstream out;
     out << std::string(tab, ' ') << show_title() << "\n"
-        << std::string(tab, ' ') << "        Hash: " << Hash_Algorithms.at(hash) << " (hash " << static_cast <unsigned int> (hash) << ")";
+    << std::string(tab, ' ') << "        Hash: " << Hash_Algorithms.at(hash) << " (hash " << static_cast <unsigned int> (hash) << ")";
     return out.str();
 }
 
@@ -80,12 +80,12 @@ S2K::Ptr S2K0::clone() const{
 }
 
 S2K1::S2K1(uint8_t type):
-    S2K0(type),
-    salt()
+S2K0(type),
+salt()
 {}
 
 S2K1::S2K1():
-    S2K1(1)
+S2K1(1)
 {}
 
 S2K1::~S2K1(){}
@@ -101,8 +101,8 @@ std::string S2K1::show(const uint8_t indents, const uint8_t indent_size) const{
     unsigned int tab = indents * indent_size;
     std::stringstream out;
     out << std::string(tab, ' ') << show_title() << "\n"
-        << std::string(tab, ' ') << "        Hash: " << Hash_Algorithms.at(hash) << " (hash " << static_cast <unsigned int> (hash) << ")\n"
-        << std::string(tab, ' ') << "        Salt: " << hexlify(salt);
+    << std::string(tab, ' ') << "        Hash: " << Hash_Algorithms.at(hash) << " (hash " << static_cast <unsigned int> (hash) << ")\n"
+    << std::string(tab, ' ') << "        Salt: " << hexlify(salt);
     return out.str();
 }
 
@@ -124,6 +124,11 @@ std::string S2K1::get_salt() const{
 }
 
 void S2K1::set_salt(const std::string & s){
+    if (get_is_debug()) {
+        std::cout<<hexlify(s) <<std::endl;
+        std::cout<<s.length() <<std::endl;
+        
+    }
     salt = s;
 }
 
@@ -132,8 +137,8 @@ S2K::Ptr S2K1::clone() const{
 }
 
 S2K3::S2K3():
-    S2K1(3),
-    count()
+S2K1(3),
+count()
 {}
 
 S2K3::~S2K3(){}
@@ -142,7 +147,10 @@ void S2K3::read(std::string & data, const uint8_t part){
     type = data[0];
     hash = data[1];
     salt = data.substr(2, 8);
-    //std::cout << hexlify(salt) << std::endl;
+    
+    if (get_is_debug()) {
+        std::cout << hexlify(salt) << std::endl;
+    }
     count = data[10];
     data = data.substr(11, data.size() - 11);
 }
@@ -151,9 +159,9 @@ std::string S2K3::show(const uint8_t indents, const uint8_t indent_size) const{
     unsigned int tab = indents * indent_size;
     std::stringstream out;
     out << std::string(tab, ' ') << show_title() << "\n"
-        << std::string(tab, ' ') << "        Hash: " << Hash_Algorithms.at(hash) << " (hash " << static_cast <unsigned int> (hash) << ")\n"
-        << std::string(tab, ' ') << "        Salt: " << hexlify(salt) << "\n"
-        << std::string(tab, ' ') << "        Coded Count: " << coded_count(count) << " (count " << static_cast <unsigned int> (count) << ")";
+    << std::string(tab, ' ') << "        Hash: " << Hash_Algorithms.at(hash) << " (hash " << static_cast <unsigned int> (hash) << ")\n"
+    << std::string(tab, ' ') << "        Salt: " << hexlify(salt) << "\n"
+    << std::string(tab, ' ') << "        Coded Count: " << coded_count(count) << " (count " << static_cast <unsigned int> (count) << ")";
     return out.str();
 }
 
@@ -169,9 +177,9 @@ std::string S2K3::run(const std::string & pass, unsigned int sym_key_len) const{
     
     std::string salt_p_pass = salt + pass;
     
-   // uint32_t c_c = coded_count(count);
+    // uint32_t c_c = coded_count(count);
     
-   // std::cout << c_c << std::endl;
+    // std::cout << c_c << std::endl;
     
     while (to_hash.size() < coded_count(count)){// coded count is count of octets, not iterations
         to_hash += salt_p_pass;

@@ -49,6 +49,15 @@ class ViewController: NSViewController {
         let pgp:OpenPGP = OpenPGP();
         //pgp.SetupKeys("", pubKey: public_key_, pass: "123", error: nil)
         
+        let testStr : String = "-----BEGIN PGP MESSAGE-----\nVersion: OpenPGP.js v0.10.1-IE\nComment: http://openpgpjs.org\n\nww0ECQMIina34sp8Nlpg0sAbAc/x6pR8h57OJv9pklLuEc/aH5lFT9OpWS+N\n7oPaJCGK1f3aQV7g5V5INlUvwICeDiSkDMo+hHGtFgDFEwgNiMDc7wAtod1U\nZ5PTHegr8KWWmBiDIYuPVFJH8mALVcQen9MI1xFSYO8RvSxM/P6dJPzrVZQK\noIRW98dxMjJqMWW9HgqWCej6TRDua65r/X7Ucco9tWpwzmQCnvJLqpcYYrEk\ngcGyXsp3RvISG6pWh8ZFemeO6yoqnphYmcAa/i4h4CiMqKDDJuOg4UdpW46U\nGoNSV+C4hz5ymRDj\n=hUe3\n-----END PGP MESSAGE-----"
+        
+        pgp.decrypt_message_aes(testStr, pwd: "123", error: nil)
+        
+        let test_message = "this is a test message";
+        let enc_msg = pgp.encrypt_message_aes(test_message, pwd: "123", error: nil)
+        NSLog(enc_msg)
+        let un_enc_msg = pgp.decrypt_message_aes(enc_msg, pwd: "123", error: nil)
+        NSLog(un_enc_msg)
         
         
         let location = "/Users/Yanfeng/Desktop/testpub.txt"
@@ -69,7 +78,32 @@ class ViewController: NSViewController {
 
         pgp.Test_Privatekey(PrivateKey, pass: "123");
         
+        
     }
 
+    @IBAction func test_aes_clicked(sender: AnyObject) {
+        
+        let pgp:OpenPGP = OpenPGP();
+        
+        let testStr : String = "-----BEGIN PGP MESSAGE-----\nVersion: OpenPGP.js v0.10.1-IE\nComment: http://openpgpjs.org\n\nww0ECQMIina34sp8Nlpg0sAbAc/x6pR8h57OJv9pklLuEc/aH5lFT9OpWS+N\n7oPaJCGK1f3aQV7g5V5INlUvwICeDiSkDMo+hHGtFgDFEwgNiMDc7wAtod1U\nZ5PTHegr8KWWmBiDIYuPVFJH8mALVcQen9MI1xFSYO8RvSxM/P6dJPzrVZQK\noIRW98dxMjJqMWW9HgqWCej6TRDua65r/X7Ucco9tWpwzmQCnvJLqpcYYrEk\ngcGyXsp3RvISG6pWh8ZFemeO6yoqnphYmcAa/i4h4CiMqKDDJuOg4UdpW46U\nGoNSV+C4hz5ymRDj\n=hUe3\n-----END PGP MESSAGE-----"
+        
+        let message = pgp.decrypt_message_aes(testStr, pwd: "1234", error: nil)
+        if(message == "<div>lajflkjasklfjlksdfkl</div><div><br></div><div>Sent from iPhone <a href=\"https://protonmail.ch\">ProtonMail</a>, encrypted email based in Switzerland.<br></div>")
+        {
+            NSLog("OK")
+        }
+        
+        let test_message = "this is a test message";
+        let enc_msg = pgp.encrypt_message_aes(test_message, pwd: "123", error: nil)
+        //NSLog(enc_msg)
+        let un_enc_msg = pgp.decrypt_message_aes(enc_msg, pwd: "123", error: nil)
+        //NSLog(un_enc_msg)
+        
+        if(test_message == un_enc_msg)
+        {
+            NSLog("OK")
+        }
+
+    }
 }
 

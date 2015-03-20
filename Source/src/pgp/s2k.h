@@ -33,12 +33,13 @@ THE SOFTWARE.
 #include "includes.h"
 #include "Hashes.h"
 #include "consts.h"
+#include "BaseObject.h"
 
 #define EXPBIAS 6
 uint32_t coded_count(unsigned int c);
 
 // Base Class
-class S2K{
+class S2K : public BaseObject{
     protected:
         uint8_t type; // octet 0
         uint8_t hash; // octet 1

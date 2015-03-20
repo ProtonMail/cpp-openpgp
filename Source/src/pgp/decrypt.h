@@ -56,7 +56,7 @@ std::string decrypt_pm_pka(const PGPSecretKey & pri, const std::string & passphr
 std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const std::string & passphrase, const bool writefile = true, const PGPPublicKey::Ptr & verify = nullptr);
 std::string decrypt_pka(const PGPSecretKey & pri, const pm::PMPGPMessage & m, const std::string & passphrase, const bool writefile = true, const PGPPublicKey::Ptr & verify = nullptr);
 // session key encrypted with symmetric algorithm
-std::string decrypt_sym(const PGPMessage & m, const std::string & passphrase, const bool writefile = true, const PGPPublicKey::Ptr & verify = nullptr);
+std::string decrypt_sym(const PGPMessage & m, const std::string & passphrase, const bool writefile = false, const PGPPublicKey::Ptr & verify = nullptr);
 
 
 

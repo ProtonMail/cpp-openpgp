@@ -93,7 +93,7 @@ PGPMessage decrypt_data(const uint8_t sym, const PGPMessage & m, const std::stri
         data = data.substr(0, data.size() - 2);                     // get rid of \xd3\x14
     }
     data = data.substr(BS + 2, data.size() - BS - 2);               // get rid of prefix
-
+    //std::cout << data << std::endl;
     // decompress and parse decrypted data
     return PGPMessage(data);
 }
@@ -250,7 +250,7 @@ std::string decrypt_pka(const PGPSecretKey & pri, const pm::PMPGPMessage & m, co
 
 
 std::string decrypt_sym(const PGPMessage & m, const std::string & passphrase, const bool writefile, const PGPPublicKey::Ptr & verify){
-    std::cerr << "Warning: decrypt_sym is untested. Potentially incorrect" << std::endl;
+    //std::cerr << "Warning: decrypt_sym is untested. Potentially incorrect" << std::endl;
 
     if ((m.get_ASCII_Armor() != 0)/* && (m.get_ASCII_Armor() != 3) && (m.get_ASCII_Armor() != 4)*/){
         throw std::runtime_error("Error: No encrypted message found.");

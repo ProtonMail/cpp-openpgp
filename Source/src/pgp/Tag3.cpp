@@ -77,14 +77,14 @@ std::shared_ptr<std::string> Tag3::get_esk() const{
 }
 
 std::shared_ptr<std::string> Tag3::get_esk_clone() const{
-    return std::make_shared<std::string>(*esk);
+    return esk == nullptr ? nullptr : std::make_shared<std::string>(*esk);
 }
 
 std::string Tag3::get_key(const std::string & pass) const{
-    std::cerr << "Warning: Tag3::get_key is untested. Potentially incorrect" << std::endl;
-    std::string out = s2k -> run(pass, Symmetric_Algorithm_Block_Length.at(Symmetric_Algorithms.at(sym)) >> 3);
+    //std::cerr << "Warning: Tag3::get_key is untested. Potentially incorrect" << std::endl;
+    std::string out = s2k -> run(pass, Symmetric_Algorithm_Key_Length.at(Symmetric_Algorithms.at(sym)) >> 3);
     if (esk){
-//        out = use_normal_CFB_decrypt(sym, *esk, out, std::string(Symmetric_Algorithm_Block_Length.at(Symmetric_Algorithms.at(sym)) >> 3, 0));
+        out = use_normal_CFB_decrypt(sym, *esk, out, std::string(Symmetric_Algorithm_Block_Length.at(Symmetric_Algorithms.at(sym)) >> 3, 0));
     }
     else{
         out = std::string(1, sym) + out;
@@ -119,7 +119,7 @@ void Tag3::set_key(const std::string & pass, const std::string & sk){
     std::cerr << "Warning: Tag3::set_key is untested. Potentially incorrect" << std::endl;
     esk.reset();
     if (!sk.size()){
-        //esk = std::make_shared<std::string>(use_normal_CFB_encrypt(sk[0], sk.substr(1, sk.size() - 1), pass, std::string(Symmetric_Algorithm_Block_Length.at(Symmetric_Algorithms.at(sk[0])), 0)));
+        esk = std::make_shared<std::string>(use_normal_CFB_encrypt(sk[0], sk.substr(1, sk.size() - 1), pass, std::string(Symmetric_Algorithm_Block_Length.at(Symmetric_Algorithms.at(sk[0])), 0)));
     }
     size = raw().size();
 }
@@ -128,7 +128,7 @@ Packet::Ptr Tag3::clone() const{
     Ptr out = std::make_shared <Tag3> (*this);
     out -> sym = sym;
     out -> s2k = s2k -> clone();
-    out -> esk = std::make_shared<std::string>(*esk);
+    out -> esk = get_esk_clone();
     return out;
 }
 

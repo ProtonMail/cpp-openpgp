@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14D87h" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D87h" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6751"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -703,11 +703,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="545" height="346"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <progressIndicator hidden="YES" fixedFrame="YES" maxValue="100" doubleValue="50" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="4Bk-Cx-tNL">
+                            <progressIndicator hidden="YES" maxValue="100" doubleValue="50" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="4Bk-Cx-tNL">
                                 <rect key="frame" x="-10" y="332" width="594" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="yud-3o-ERw"/>
+                                </constraints>
                             </progressIndicator>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mbB-M2-h9u">
-                                <rect key="frame" x="18" y="270" width="222" height="58"/>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="mbB-M2-h9u">
+                                <rect key="frame" x="18" y="271" width="222" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="218" id="HQr-8x-Fsu"/>
+                                    <constraint firstAttribute="height" constant="53" id="X0c-wD-F8L"/>
+                                </constraints>
                                 <buttonCell key="cell" type="bevel" title="Test_Import" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="12x-Ij-FII">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system" size="10"/>
@@ -716,8 +723,12 @@
                                     <action selector="test_import_clicked:" target="XfG-lQ-9wD" id="pf4-xv-y7R"/>
                                 </connections>
                             </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xii-Re-e8I">
-                                <rect key="frame" x="18" y="171" width="222" height="58"/>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="xii-Re-e8I">
+                                <rect key="frame" x="18" y="206" width="222" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="53" id="0Xu-jQ-Qc5"/>
+                                    <constraint firstAttribute="width" constant="218" id="PSU-up-6Ms"/>
+                                </constraints>
                                 <buttonCell key="cell" type="bevel" title="Change_Password" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="r3j-5u-JSK">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system" size="10"/>
@@ -726,8 +737,12 @@
                                     <action selector="test_change_pwd_clicked:" target="XfG-lQ-9wD" id="56I-pp-rHi"/>
                                 </connections>
                             </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wdu-7l-nEF">
-                                <rect key="frame" x="18" y="70" width="222" height="58"/>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="Wdu-7l-nEF">
+                                <rect key="frame" x="18" y="141" width="222" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="218" id="43z-6v-Z76"/>
+                                    <constraint firstAttribute="height" constant="53" id="CbX-nR-bC7"/>
+                                </constraints>
                                 <buttonCell key="cell" type="bevel" title="Generate_New_Key" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vMs-Tn-i8Y">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system" size="10"/>
@@ -736,7 +751,34 @@
                                     <action selector="test_new_key:" target="XfG-lQ-9wD" id="Kg7-lO-7UP"/>
                                 </connections>
                             </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="OgY-UP-6po">
+                                <rect key="frame" x="18" y="76" width="222" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="53" id="6Ia-U0-SXb"/>
+                                    <constraint firstAttribute="width" constant="218" id="v8F-mw-hUu"/>
+                                </constraints>
+                                <buttonCell key="cell" type="bevel" title="Test_AES" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1CM-t4-rZH">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system" size="10"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="test_aes_clicked:" target="XfG-lQ-9wD" id="Jb4-Uy-zwh"/>
+                                </connections>
+                            </button>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="xii-Re-e8I" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="5yG-mO-3E4"/>
+                            <constraint firstItem="4Bk-Cx-tNL" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="-10" id="FaU-Bt-NKp"/>
+                            <constraint firstItem="Wdu-7l-nEF" firstAttribute="top" secondItem="xii-Re-e8I" secondAttribute="bottom" constant="12" id="GPI-Th-fVc"/>
+                            <constraint firstItem="mbB-M2-h9u" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="H2q-Ar-iCt"/>
+                            <constraint firstItem="4Bk-Cx-tNL" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="-5" id="WSs-6g-ns4"/>
+                            <constraint firstItem="mbB-M2-h9u" firstAttribute="top" secondItem="4Bk-Cx-tNL" secondAttribute="bottom" constant="6" id="aNC-Mz-ZrB"/>
+                            <constraint firstAttribute="trailing" secondItem="4Bk-Cx-tNL" secondAttribute="trailing" constant="-39" id="ara-ad-9Oa"/>
+                            <constraint firstItem="xii-Re-e8I" firstAttribute="top" secondItem="mbB-M2-h9u" secondAttribute="bottom" constant="12" id="h7F-Oy-gz6"/>
+                            <constraint firstItem="OgY-UP-6po" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="hA8-6f-iIm"/>
+                            <constraint firstItem="Wdu-7l-nEF" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="iOy-6q-nb1"/>
+                            <constraint firstItem="OgY-UP-6po" firstAttribute="top" secondItem="Wdu-7l-nEF" secondAttribute="bottom" constant="12" id="qfS-bF-tHo"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="test_change_pwd" destination="xii-Re-e8I" id="Mzv-Sk-rll"/>
