@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Yanfeng Zhang. All rights reserved.
 //
 
-#include "PMPGPMessage.h"
-#include "BaseObject.h"
-#include "utility.h"
+#include <openpgp/PMPGPMessage.h>
+#include <base/BaseObject.h>
+#include <utilities/utility.h>
 #include "pgp_exception.h"
 #include "pgp_exception_define.h"
-#include "consts.h"
-#include "base64.h"
+#include <utilities/consts.h>
+#include <utilities/base64.h>
 
 namespace pm {
     

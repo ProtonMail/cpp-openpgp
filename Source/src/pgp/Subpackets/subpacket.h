@@ -32,9 +32,9 @@ THE SOFTWARE.
 #include <sstream>
 
 #include "includes.h"
-#include "consts.h"
+#include <utilities/consts.h>
 #include "pgptime.h"
-#include "BaseObject.h"
+#include  <base/BaseObject.h>
 
 class Subpacket : public BaseObject{
     protected:

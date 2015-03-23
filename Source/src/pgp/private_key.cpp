@@ -12,7 +12,7 @@
 #include "RFC4880.h"
 
 #include "Tag5.h"
-#include "rsa_key.h"
+#include <base/rsa_key.h>
 #include "BBS.h"
 #include "Tag13.h"
 #include "Tag2Sub2.h"
@@ -24,10 +24,10 @@
 #include "Tag2Sub30.h"
 #include "Tag7.h"
 #include "Tag2.h"
-#include "PGPKey.h"
+#include <pgp/PGPKey.h>
 #include "cfb.h"
 #include "sigcalc.h"
-#include "RSA.h"
+#include <encryption/RSA.h>
 #include "sign.h"
 
 namespace pm {

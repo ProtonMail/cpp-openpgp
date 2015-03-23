@@ -1,9 +1,9 @@
 #include "decrypt.h"
 #include "PKCS1.h"
 #include "decrypt.h"
-#include "mpi.h"
+#include <utilities/mpi.h>
 #include "pgp_exception.h"
-#include "base64.h"
+#include <utilities/base64.h>
 #include "private_key.h"
 
 

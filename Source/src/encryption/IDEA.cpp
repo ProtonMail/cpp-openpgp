@@ -1,4 +1,4 @@
-#include "IDEA.h"
+#include <encryption/IDEA.h>
 
 // ////////////////////////
 // Thanks for the help, Darkerline !

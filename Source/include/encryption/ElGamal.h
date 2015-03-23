@@ -28,7 +28,7 @@ THE SOFTWARE.
 
 #include <vector>
 
-#include "../mpi.h"
+#include <utilities/mpi.h>
 //
 //#include "../common/includes.h"
 //#include "../RNG/RNG.h"

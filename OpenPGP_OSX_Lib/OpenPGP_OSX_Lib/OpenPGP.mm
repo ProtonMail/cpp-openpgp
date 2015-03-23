@@ -7,17 +7,17 @@
 //
 
 #import "OpenPGP.h"
-#include "PGPKey.h"
+#include <pgp/PGPKey.h>
 #include <openpgp/openpgp.h>
 #include "PGPMessage.h"
 #include "encrypt.h"
 #include "decrypt.h"
 #include <exception>
-#include "consts.h"
-#include "base64.h"
+#include <utilities/consts.h>
+#include <utilities/base64.h>
 #include "cfb.h"
-#include "UTF8.h"
-#include "mpi.h"
+#include <utilities/UTF8.h>
+#include <utilities/mpi.h>
 #include <openssl/bio.h>
 #include <openssl/evp.h>
 
@@ -26,8 +26,8 @@
 #include <codecvt>
 
 #include "openpgp.h"
-#include "PMPGPMessage.h"
-#include "utility.h"
+#include <openpgp/PMPGPMessage.h>
+#include <utilities/utility.h>
 
 #include "private_key.h"
 

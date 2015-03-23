@@ -1,4 +1,4 @@
-#include "mpi.h"
+#include <utilities/mpi.h>
 
 #include "BBS.h"
 #include "includes.h"

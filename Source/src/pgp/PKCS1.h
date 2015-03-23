@@ -31,8 +31,8 @@ THE SOFTWARE.
 
 #include "includes.h"
 #include "BBS.h"
-#include "consts.h"
-#include "mpi.h"
+#include <utilities/consts.h>
+#include <utilities/mpi.h>
 #include "pgptime.h"
 
 // RFC 4880 13.1.1

@@ -1,6 +1,5 @@
-#include "RSA.h"
+#include <encryption/RSA.h>
 #include "config.h"
-#include "RSA.h"
 
 #ifdef HAVE_OPENSSL_RSA_H
 #include <openssl/rsa.h>

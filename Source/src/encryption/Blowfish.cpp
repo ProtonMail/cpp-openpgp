@@ -1,4 +1,4 @@
-#include "Blowfish.h"
+#include <encryption/Blowfish.h>
 
 uint32_t Blowfish::f(const uint32_t & left){
     return ((((sbox[0][ left >> 24] + sbox[1][(left >> 16) & 255]) & mod32) ^ sbox[2][(left >> 8) & 255]) + sbox[3][left & 255]) & mod32;

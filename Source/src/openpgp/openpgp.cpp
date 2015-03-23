@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 UP-NEXT. All rights reserved.
 //
 
-#include "openpgp.h"
+#include <openpgp/openpgp.h>
 
 #include <iostream>
 #include <algorithm>
@@ -50,7 +50,7 @@ __RCSID("$NetBSD: openssl_crypto.c,v 1.32 2010/11/07 06:56:52 agc Exp $");
 
 
 #include "Tag5.h"
-#include "rsa_key.h"
+#include <base/rsa_key.h>
 #include "BBS.h"
 #include "Tag13.h"
 #include "Tag2Sub2.h"
@@ -62,10 +62,10 @@ __RCSID("$NetBSD: openssl_crypto.c,v 1.32 2010/11/07 06:56:52 agc Exp $");
 #include "Tag2Sub30.h"
 #include "Tag7.h"
 #include "Tag2.h"
-#include "PGPKey.h"
+#include <pgp/PGPKey.h>
 #include "cfb.h"
 #include "sigcalc.h"
-#include "RSA.h"
+#include <encryption/RSA.h>
 #include "sign.h"
 
 

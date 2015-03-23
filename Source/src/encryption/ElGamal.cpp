@@ -1,4 +1,4 @@
-#include "ElGamal.h"
+#include <encryption/ElGamal.h>
 //std::vector <PGPMPI> ElGamal_keygen(unsigned int bits){
 //    BBS(static_cast <PGPMPI> (static_cast <unsigned int> (now()))); // seed just in case not seeded
 //

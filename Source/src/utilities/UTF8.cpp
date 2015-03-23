@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Yanfeng Zhang. All rights reserved.
 //
 
-#include "UTF8.h"
+#include <utilities/UTF8.h>
 #include <string>
 #include <sstream>
 #include <iostream>

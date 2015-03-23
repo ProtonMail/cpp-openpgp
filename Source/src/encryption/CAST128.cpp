@@ -1,4 +1,4 @@
-#include "CAST128.h"
+#include <encryption/CAST128.h>
 
 uint32_t CAST128::F(const uint8_t & round, const uint32_t & D, const uint32_t & Kmi, const uint8_t & Kri){
     uint32_t f = 0, I, Ia, Ib, Ic, Id;

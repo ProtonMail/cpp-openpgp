@@ -10,7 +10,7 @@
 #define __UNNetPGP__rsa_key__
 
 #include <stdio.h>
-#include "openpgp.h"
+#include <openpgp/openpgp.h>
 
 
 class rsa_key {

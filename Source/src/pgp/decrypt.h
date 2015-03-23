@@ -34,13 +34,13 @@ THE SOFTWARE.
 #include "Compress.h"
 #include "Hashes.h"
 #include "packets.h"
-#include "PKA/PKA.h"
+#include <encryption/PKA.h>
 #include "cfb.h"
-#include "consts.h"
-#include "mpi.h"
-#include "PGPKey.h"
+#include <utilities/consts.h>
+#include <utilities/mpi.h>
+#include <pgp/PGPKey.h>
 #include "PGPMessage.h"
-#include "PMPGPMessage.h"
+#include <openpgp/PMPGPMessage.h>
 
 
 

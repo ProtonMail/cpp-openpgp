@@ -7,14 +7,14 @@
 #include "Tag1.h"
 #include "s2k.h"
 #include "Tag3.h"
-#include "mpi.h"
+#include <utilities/mpi.h>
 #include "PKCS1.h"
 #include "packet.h"
 #include "Tag5.h"
 #include "Tag2.h"
-#include "PGPKey.h"
+#include <pgp/PGPKey.h>
 #include "revoke.h"
-#include "base64.h"
+#include <utilities/base64.h>
 #include "cfb.h"
 #include "BBS.h"
 

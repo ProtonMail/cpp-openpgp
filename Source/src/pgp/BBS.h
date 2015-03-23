@@ -31,7 +31,7 @@
 #include <iostream>
 
 #include "cryptomath.h"
-#include "mpi.h"
+#include <utilities/mpi.h>
 #include "pgptime.h"
 
 class BBS{

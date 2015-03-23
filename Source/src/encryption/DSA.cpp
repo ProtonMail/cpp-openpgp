@@ -1,4 +1,6 @@
-#include "DSA.h"
+#include <encryption/DSA.h>
+
+
 //std::vector <PGPMPI> new_DSA_public(const uint32_t & L, const uint32_t & N){
 ////    L = 1024, N = 160
 ////    L = 2048, N = 224

@@ -29,9 +29,10 @@ THE SOFTWARE.
 #include <iostream>
 #include <stdexcept>
 
-#include "Encryptions.h"
+#include <encryption/Encryptions.h>
+
 #include "BBS.h"
-#include "consts.h"
+#include <utilities/consts.h>
 
 const std::string TDES_mode1 = "e";
 const std::string TDES_mode2 = "d";

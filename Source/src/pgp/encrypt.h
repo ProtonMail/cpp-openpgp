@@ -33,15 +33,15 @@ THE SOFTWARE.
 
 #include "Compress.h"
 #include "Hashes.h"
-#include "PKA.h"
+#include <encryption/PKA.h>
 #include "cfb.h"
-#include "mpi.h"
-#include "PGPKey.h"
+#include <utilities/mpi.h>
+#include <pgp/PGPKey.h>
 #include "PGPMessage.h"
 //#include "PKCS1.h"
 //#include "revoke.h"
 #include "Tag6.h"
-#include "PMPGPMessage.h"
+#include <openpgp/PMPGPMessage.h>
 
 Tag6::Ptr find_encrypting_key(const PGP & k);
 //std::vector <std::string> pka_encrypt(const uint8_t pka, std::string data, const std::vector <std::string> & pub);

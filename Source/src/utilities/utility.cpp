@@ -6,12 +6,12 @@
 //  Copyright (c) 2015 Yanfeng Zhang. All rights reserved.
 //
 
-#include "utility.h"
+#include <utilities/utility.h>
 #include "MD5.h"
-#include "utilities.h"
-#include "base64.h"
+#include <utilities/utilities.h>
+#include <utilities/base64.h>
 #include "cfb.h"
-#include "Rijndael.h"
+//#include "Rijndael.h"
 
 #ifdef HAVE_OPENSSL_DSA_H
 #include <openssl/dsa.h>

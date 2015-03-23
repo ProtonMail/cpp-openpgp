@@ -1,5 +1,5 @@
 #include "cfb.h"
-#include "SymAlg.h"
+#include <encryption/SymAlg.h>
 SymAlg::Ptr use_sym_alg(const uint8_t sym_alg, const std::string & key){
     SymAlg::Ptr alg;
     switch(sym_alg){

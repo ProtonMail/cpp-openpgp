@@ -19,12 +19,12 @@
 #include <stdexcept>
 #include <vector>
 #include <utility>
-#include "consts.h"
+#include <utilities/consts.h>
 #include "pgptime.h"
 #include "radix64.h"
 #include "packet.h"
 
-#include "BaseObject.h"
+#include <base/BaseObject.h>
 
 
 class PGP : public BaseObject{

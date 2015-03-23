@@ -1,4 +1,4 @@
-#include "./Camellia.h"
+#include <encryption/Camellia.h>
 
 unsigned int Camellia::SBOX(const uint8_t s, const uint8_t value){
     if (s == 1){

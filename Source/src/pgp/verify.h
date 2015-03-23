@@ -34,9 +34,9 @@ THE SOFTWARE.
 #include <vector>
 
 #include "packets.h"
-#include "PKA/PKA.h"
-#include "mpi.h"
-#include "PGPKey.h"
+#include <encryption/PKA.h>
+#include <utilities/mpi.h>
+#include <pgp/PGPKey.h>
 #include "PGPCleartextSignature.h"
 #include "PGPDetachedSignature.h"
 #include "PGPMessage.h"

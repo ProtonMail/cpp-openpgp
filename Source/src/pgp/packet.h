@@ -35,10 +35,10 @@ THE SOFTWARE.
 
 #include "includes.h"
 #include "Hashes.h"
-#include "consts.h"
-#include "mpi.h"
+#include <utilities/consts.h>
+#include <utilities/mpi.h>
 #include "pgptime.h"
-#include "BaseObject.h"
+#include <base/BaseObject.h>
 
 class Packet : public BaseObject{
     protected:

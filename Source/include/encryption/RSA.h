@@ -30,9 +30,9 @@ THE SOFTWARE.
 #include <vector>
 #include <iostream>
 
-#include "../mpi.h"
+#include <encryption/RSA.h>
 
-#include "../consts.h"
+#include <utilities/consts.h>
 //#include "../common/includes.h"
 //#include "../RNG/RNG.h"
 //#include "../pgptime.h"

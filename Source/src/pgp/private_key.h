@@ -10,7 +10,7 @@
 #define __UNNetPGP__private_key__
 
 #include <stdio.h>
-#include "PGPKey.h"
+#include <pgp/PGPKey.h>
 #include "Tag2.h"
 #include "Tag13.h"
 #include "Tag7.h"

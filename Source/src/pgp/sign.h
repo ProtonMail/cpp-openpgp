@@ -35,12 +35,12 @@ THE SOFTWARE.
 #include "includes.h"
 #include "Compress.h"
 #include "packets.h"
-#include "PKA/PKA.h"
+#include <encryption/PKA.h>
 #include "decrypt.h"
-#include "mpi.h"
+#include <utilities/mpi.h>
 #include "PGPCleartextSignature.h"
 #include "PGPDetachedSignature.h"
-#include "PGPKey.h"
+#include <pgp/PGPKey.h>
 #include "PGPMessage.h"
 #include "pgptime.h"
 #include "revoke.h"

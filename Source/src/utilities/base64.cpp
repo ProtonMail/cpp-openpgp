@@ -6,12 +6,10 @@
 //  Copyright (c) 2015 Yanfeng Zhang. All rights reserved.
 //
 
-#include "base64.h"
-
-#include "base64.h"
-#include "utility.h"
+#include <utilities/base64.h>
+#include <utilities/utility.h>
 #include <iostream>
-#include "UTF8.h"
+#include <utilities/UTF8.h> 
 #include "includes.h"
 
 #include <algorithm>

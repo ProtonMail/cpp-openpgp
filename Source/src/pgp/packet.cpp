@@ -1,6 +1,6 @@
 #include "packet.h"
 #include "s2k.h"
-#include "consts.h"
+#include <utilities/consts.h>
 
 std::string Packet::write_old_length(std::string data) const{
     size_t length = data.size();

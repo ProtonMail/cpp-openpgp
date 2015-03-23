@@ -1,4 +1,4 @@
-#include "SymAlg.h"
+#include <encryption/SymAlg.h>
 
 SymAlg::SymAlg() :
     keyset(false)

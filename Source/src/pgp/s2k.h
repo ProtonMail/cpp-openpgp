@@ -32,8 +32,8 @@ THE SOFTWARE.
 
 #include "includes.h"
 #include "Hashes.h"
-#include "consts.h"
-#include "BaseObject.h"
+#include <utilities/consts.h>
+#include <base/BaseObject.h>
 
 #define EXPBIAS 6
 uint32_t coded_count(unsigned int c);
