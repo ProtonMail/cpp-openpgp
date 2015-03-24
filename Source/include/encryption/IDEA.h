@@ -3,9 +3,9 @@
 
 #include <vector>
 
-#include "cryptomath.h"
-#include "includes.h"
-#include "SymAlg.h"
+#include <openpgp/cryptomath.h>
+#include <utilities/includes.h>
+#include <encryption/SymAlg.h>
 
 class IDEA : public SymAlg{
     private:

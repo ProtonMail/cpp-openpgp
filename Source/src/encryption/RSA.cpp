@@ -1,5 +1,5 @@
 #include <encryption/RSA.h>
-#include "config.h"
+#include <config/config.h>
 
 #ifdef HAVE_OPENSSL_RSA_H
 #include <openssl/rsa.h>
@@ -20,7 +20,7 @@
 #include <openssl/err.h>
 #endif
 
-#include "PKCS1.h"
+#include <utilities/PKCS1.h>
 
 //std::vector <PGPMPI> RSA_keygen(const unsigned int & bits){
 //    BBS(static_cast <PGPMPI> (static_cast <unsigned int> (now()))); // seed just in case not seeded

@@ -9,8 +9,8 @@
 #include <openpgp/PMPGPMessage.h>
 #include <base/BaseObject.h>
 #include <utilities/utility.h>
-#include "pgp_exception.h"
-#include "pgp_exception_define.h"
+#include <exception/pgp_exception.h>
+#include <exception/pgp_exception_define.h>
 #include <utilities/consts.h>
 #include <utilities/base64.h>
 

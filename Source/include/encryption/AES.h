@@ -4,11 +4,10 @@
 #ifndef __AES__
 #define __AES__
 
-#include "cryptomath.h"
-#include "includes.h"
-#include "SymAlg.h"
-
-#include "AES_Const.h"
+#include <utilities/includes.h>
+#include <openpgp/cryptomath.h>
+#include <encryption/SymAlg.h>
+#include <encryption/AES_Const.h>
 
 class AES : public SymAlg{
     private:

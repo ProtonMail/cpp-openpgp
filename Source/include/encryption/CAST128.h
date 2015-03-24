@@ -1,12 +1,11 @@
 #ifndef __CAST128__
 #define __CAST128__
 
-#include "cryptomath.h"
-#include "includes.h"
-#include "SymAlg.h"
-
-#include "CAST_Const.h"
-#include "CAST128_Const.h"
+#include <openpgp/cryptomath.h>
+#include <utilities/includes.h>
+#include <encryption/SymAlg.h>
+#include <encryption/CAST_Const.h>
+#include <encryption/CAST128_Const.h>
 
 class CAST128 : public SymAlg{
     private:

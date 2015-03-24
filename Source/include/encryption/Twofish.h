@@ -3,10 +3,9 @@
 
 #include <vector>
 
-#include "includes.h"
-#include "SymAlg.h"
-
-#include "Twofish_Const.h"
+#include <utilities/includes.h>
+#include <encryption/SymAlg.h>
+#include <encryption/Twofish_Const.h>
 
 class Twofish : public SymAlg{
     private:

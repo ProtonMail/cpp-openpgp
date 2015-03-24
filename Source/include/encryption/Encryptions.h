@@ -2,18 +2,18 @@
 #define ENCRYPTIONS_H
 
 // common includes
-#include "includes.h"
-#include "cryptomath.h"
-#include "SymAlg.h"
+#include <utilities/includes.h>
+#include <openpgp/cryptomath.h>
+#include <encryption/SymAlg.h>
 
 // Algorithms
-#include "AES.h"
-#include "Blowfish.h"
-#include "CAST128.h"
-#include "Camellia.h"
-#include "DES.h"
-#include "IDEA.h"
-#include "TDES.h"
-#include "Twofish.h"
+#include <encryption/AES.h>
+#include <encryption/Blowfish.h>
+#include <encryption/CAST128.h>
+#include <encryption/Camellia.h>
+#include <encryption/DES.h>
+#include <encryption/IDEA.h>
+#include <encryption/TDES.h>
+#include <encryption/Twofish.h>
 
 #endif

@@ -7,11 +7,10 @@
 //
 
 #include <utilities/utility.h>
-#include "MD5.h"
+#include <hash/MD5.h>
 #include <utilities/utilities.h>
 #include <utilities/base64.h>
-#include "cfb.h"
-//#include "Rijndael.h"
+#include <openpgp/cfb.h>
 
 #ifdef HAVE_OPENSSL_DSA_H
 #include <openssl/dsa.h>

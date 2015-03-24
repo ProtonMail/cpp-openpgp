@@ -4,12 +4,11 @@
 #include <algorithm>
 #include <vector>
 
-#include "cryptomath.h"
-#include "includes.h"
-#include "integer.h"
-#include "SymAlg.h"
-
-#include "Camellia_Const.h"
+#include <openpgp/cryptomath.h>
+#include <utilities/includes.h>
+#include <utilities/integer.h>
+#include <encryption/SymAlg.h>
+#include <encryption/Camellia_Const.h>
 
 class Camellia : public SymAlg{
     // Camellia is a CRYPTmetric key block cipher developed jointly in 2000 by

@@ -3,10 +3,9 @@
 
 #include <algorithm>
 
-#include "includes.h"
-#include "SymAlg.h"
-
-#include "Blowfish_Const.h"
+#include <utilities/includes.h>
+#include <encryption/SymAlg.h>
+#include <encryption/Blowfish_Const.h>
 
 class Blowfish : public SymAlg{
     private:

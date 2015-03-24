@@ -1,12 +1,11 @@
 #include <utilities/mpi.h>
+#include <utilities/BBS.h>
+#include <utilities/includes.h>
+#include <config/config.h>
 
-#include "BBS.h"
-#include "includes.h"
-#include "config.h"
 #ifdef HAVE_OPENSSL_RSA_H
 #include <openssl/rsa.h>
 #endif
-
 
 #include <sstream>
 #include <string>

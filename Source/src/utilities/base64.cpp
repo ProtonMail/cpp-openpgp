@@ -6,14 +6,15 @@
 //  Copyright (c) 2015 Yanfeng Zhang. All rights reserved.
 //
 
-#include <utilities/base64.h>
-#include <utilities/utility.h>
 #include <iostream>
-#include <utilities/UTF8.h> 
-#include "includes.h"
-
 #include <algorithm>
 #include <stdexcept>
+
+#include <utilities/base64.h>
+#include <utilities/utility.h>
+#include <utilities/UTF8.h> 
+#include <utilities/includes.h>
+
 
 
 static const std::string base64_chars =

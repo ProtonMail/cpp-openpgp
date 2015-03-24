@@ -31,11 +31,9 @@ THE SOFTWARE.
 #include <iostream>
 
 #include <utilities/mpi.h>
-
-#include "cryptomath.h"
-#include "includes.h"
-//#include "RNG.h"
-#include "pgptime.h"
+#include <openpgp/cryptomath.h>
+#include <utilities/includes.h>
+#include <openpgp/pgptime.h>
 
 //// Generate new set of parameters
 //std::vector <PGPMPI> new_DSA_public(const uint32_t & L = 2048, const uint32_t & N = 256);

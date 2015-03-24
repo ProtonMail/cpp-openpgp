@@ -1,6 +1,5 @@
 #include <encryption/Twofish.h>
-
-#include "cryptomath.h"
+#include <openpgp/cryptomath.h>
 
 uint32_t Twofish::h_fun(uint32_t x, const std::vector<uint32_t> & key){
     uint32_t b0, b1, b2, b3;

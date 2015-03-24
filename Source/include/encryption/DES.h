@@ -3,10 +3,9 @@
 
 #include <algorithm>
 
-#include "includes.h"
-#include "SymAlg.h"
-
-#include "DES_Const.h"
+#include <utilities/includes.h>
+#include <encryption/SymAlg.h>
+#include <encryption/DES_Const.h>
 
 class DES : public SymAlg{
     private:
