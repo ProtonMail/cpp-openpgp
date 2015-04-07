@@ -136,42 +136,42 @@ std::string base64_decode(std::string const& encoded_string) {
 }
 
 
-std::string encode_utf8_base64(std::string & in)
-{
-    //std::cout << in.length() << std::endl;
-   // std::cout << in<<std::endl;
-    std::string aaa =  js_encodeURIComponent(in);
-   // std::cout << aaa<<std::endl;
-    //
-    std::string base_decoded = js_unescape(aaa);
-   // std::cout << base_decoded<<std::endl;
-    
-    std::string decoded = base64_encode((unsigned char*)base_decoded.c_str(), (int)base_decoded.size());
-    
-  //  std::cout << decoded<<std::endl;
-    pm::optimized_trim(decoded);
-    
-    return decoded;
-}
-
-std::string encode_utf8_base64_msg(std::string & in)
-{
-  //  std::cout << in.length() << std::endl;
-   // std::cout << in<<std::endl;
-    std::string aaa =  encodeURIComponent(in);
-   // std::cout << aaa<<std::endl;
-    
-    std::string base_decoded = js_unescape(aaa);
-   // std::cout << base_decoded<<std::endl;
-    
-    std::string decoded = base64_encode((unsigned char*)base_decoded.c_str(), (int)base_decoded.size());
-    
-  //  std::cout << decoded<<std::endl;
-    pm::optimized_trim(decoded);
-    
-    return decoded;
-
-}
+//std::string encode_utf8_base64(std::string & in)
+//{
+//    //std::cout << in.length() << std::endl;
+//   // std::cout << in<<std::endl;
+//    std::string aaa =  js_encodeURIComponent(in);
+//   // std::cout << aaa<<std::endl;
+//    //
+//    std::string base_decoded = js_unescape(aaa);
+//   // std::cout << base_decoded<<std::endl;
+//    
+//    std::string decoded = base64_encode((unsigned char*)base_decoded.c_str(), (int)base_decoded.size());
+//    
+//  //  std::cout << decoded<<std::endl;
+//    pm::optimized_trim(decoded);
+//    
+//    return decoded;
+//}
+//
+//std::string encode_utf8_base64_msg(std::string & in)
+//{
+//  //  std::cout << in.length() << std::endl;
+//   // std::cout << in<<std::endl;
+//    std::string aaa =  encodeURIComponent(in);
+//   // std::cout << aaa<<std::endl;
+//    
+//    std::string base_decoded = js_unescape(aaa);
+//   // std::cout << base_decoded<<std::endl;
+//    
+//    std::string decoded = base64_encode((unsigned char*)base_decoded.c_str(), (int)base_decoded.size());
+//    
+//  //  std::cout << decoded<<std::endl;
+//    pm::optimized_trim(decoded);
+//    
+//    return decoded;
+//
+//}
 
 std::string decode_utf8_base64(std::string & in)
 {

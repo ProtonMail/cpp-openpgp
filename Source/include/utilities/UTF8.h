@@ -90,8 +90,8 @@ std::string hex2bin(std::string& s_in);
 //good
 
 
-std::string js_escape(std::string &str);
-std::string js_unescape(std::string &str);
+//std::string js_escape(std::string &str);
+//std::string js_unescape(std::string &str);
 
 std::string decodeURIComponent(const std::string & sSrc);
 std::string encodeURIComponent(const std::string & sSrc);

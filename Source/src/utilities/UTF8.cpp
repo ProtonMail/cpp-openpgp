@@ -12,7 +12,7 @@
 #include <iostream>
 #include <locale>
 #include <utilities/includes.h>
-#include <codecvt>
+//#include <codecvt>
 #include <iomanip>
 #include <iostream>
 #include <fstream>
@@ -454,93 +454,93 @@ std::string encodeURIComponent(const std::string & sSrc)
 
 ////
 
-std::string js_escape(std::string &str)
-{
-    std::wstring wcs;
-    
-    typedef std::codecvt_utf8_utf16<wchar_t> convert_type;
-    std::wstring_convert<convert_type, wchar_t> converter;
-    wcs = converter.from_bytes(str);
-    
-   // std::cout << wcs.length() << std::endl;
-    str = "";
-    for(int i=0;i<wcs.size();i++)
-    {
-        if(wcs[i]>0xff)
-        {
-            char tmp[5];
-            sprintf(tmp,"%04X",wcs[i]);
-            str += "%u";
-            str += tmp;
-        }
-        else
-        {
-            
-            if( (wcs[i]>='a' && wcs[i]<='z') || (wcs[i]>='A' && wcs[i]<='Z') || ( wcs[i]>='0' && wcs[i]<='9' ) || wcs[i] == '-' || wcs[i] == '_' || wcs[i] == '.')
-            {
-                str += converter.to_bytes(wcs[i]);
-            }
-            else
-            {
-                char tmp[3];
-                sprintf(tmp,"%04x",wcs[i]);
-                str += "%";
-                str += tmp;
-            }
-        }
-    }
-    return str;
-}
-
-
-std::string js_unescape(std::string &str)
-{
-    std::string sbuf;
-    
-    typedef std::codecvt_utf8<wchar_t> convert_type;
-    std::wstring_convert<convert_type, wchar_t> converter;
-    
-    
-    int i = 0;
-    int len = (int)str.length();
-    while (i < len) {
-        int ch = str[i];
-        if ('A' <= ch && ch <= 'Z') {    // 'A'..'Z' : as it was
-            sbuf += ch;
-        } else if ('a' <= ch && ch <= 'z') {    // 'a'..'z' : as it was
-            sbuf += ch;
-        } else if ('0' <= ch && ch <= '9') {    // '0'..'9' : as it was
-            sbuf += ch;
-        } else if (ch == '-' || ch == '_'       // unreserved : as it was
-                   || ch == '.' || ch == '!'
-                   || ch == '~' || ch == '*'
-                   || ch == '\'' || ch == '('
-                   || ch == ')' || ch == '+') {
-            sbuf += ch;
-        } else if (ch == '%') {
-            int cint = 0;
-            std::wstring ci;
-            if ('u' != str[i+1]) {         // %XX : map to ascii(XX)
-                cint = (cint << 4) | e_val[str[i+1]];
-                cint = (cint << 4) | e_val[str[i+2]];
-                i+=2;
-                sbuf += (char)cint;
-            } else {                            // %uXXXX : map to unicode(XXXX)
-                cint = (cint << 4) | e_val[str[i+2]];
-                cint = (cint << 4) | e_val[str[i+3]];
-                cint = (cint << 4) | e_val[str[i+4]];
-                cint = (cint << 4) | e_val[str[i+5]];
-                i+=5;
-                
-                ci = (wchar_t)cint;
-                sbuf += converter.to_bytes(ci);
-            }
-        }
-        i++;
-    }
-    
-    return sbuf;
-}
+//std::string js_escape(std::string &str)
+//{
+//    std::wstring wcs;
+//    
+//    typedef std::codecvt_utf8_utf16<wchar_t> convert_type;
+//    std::wstring_convert<convert_type, wchar_t> converter;
+//    wcs = converter.from_bytes(str);
+//    
+//   // std::cout << wcs.length() << std::endl;
+//    str = "";
+//    for(int i=0;i<wcs.size();i++)
+//    {
+//        if(wcs[i]>0xff)
+//        {
+//            char tmp[5];
+//            sprintf(tmp,"%04X",wcs[i]);
+//            str += "%u";
+//            str += tmp;
+//        }
+//        else
+//        {
+//            
+//            if( (wcs[i]>='a' && wcs[i]<='z') || (wcs[i]>='A' && wcs[i]<='Z') || ( wcs[i]>='0' && wcs[i]<='9' ) || wcs[i] == '-' || wcs[i] == '_' || wcs[i] == '.')
+//            {
+//                str += converter.to_bytes(wcs[i]);
+//            }
+//            else
+//            {
+//                char tmp[3];
+//                sprintf(tmp,"%04x",wcs[i]);
+//                str += "%";
+//                str += tmp;
+//            }
+//        }
+//    }
+//    return str;
+//}
+//
+//
+//std::string js_unescape(std::string &str)
+//{
+//    std::string sbuf;
+//    
+//    typedef std::codecvt_utf8<wchar_t> convert_type;
+//    std::wstring_convert<convert_type, wchar_t> converter;
+//    
+//    
+//    int i = 0;
+//    int len = (int)str.length();
+//    while (i < len) {
+//        int ch = str[i];
+//        if ('A' <= ch && ch <= 'Z') {    // 'A'..'Z' : as it was
+//            sbuf += ch;
+//        } else if ('a' <= ch && ch <= 'z') {    // 'a'..'z' : as it was
+//            sbuf += ch;
+//        } else if ('0' <= ch && ch <= '9') {    // '0'..'9' : as it was
+//            sbuf += ch;
+//        } else if (ch == '-' || ch == '_'       // unreserved : as it was
+//                   || ch == '.' || ch == '!'
+//                   || ch == '~' || ch == '*'
+//                   || ch == '\'' || ch == '('
+//                   || ch == ')' || ch == '+') {
+//            sbuf += ch;
+//        } else if (ch == '%') {
+//            int cint = 0;
+//            std::wstring ci;
+//            if ('u' != str[i+1]) {         // %XX : map to ascii(XX)
+//                cint = (cint << 4) | e_val[str[i+1]];
+//                cint = (cint << 4) | e_val[str[i+2]];
+//                i+=2;
+//                sbuf += (char)cint;
+//            } else {                            // %uXXXX : map to unicode(XXXX)
+//                cint = (cint << 4) | e_val[str[i+2]];
+//                cint = (cint << 4) | e_val[str[i+3]];
+//                cint = (cint << 4) | e_val[str[i+4]];
+//                cint = (cint << 4) | e_val[str[i+5]];
+//                i+=5;
+//                
+//                ci = (wchar_t)cint;
+//                sbuf += converter.to_bytes(ci);
+//            }
+//        }
+//        i++;
+//    }
+//    
+//    return sbuf;
+//}
 
 std::string escape(std::string& s) {
     const int SRC_LEN = (int)s.length();

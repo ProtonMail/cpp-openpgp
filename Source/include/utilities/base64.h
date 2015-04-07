@@ -26,9 +26,9 @@ std::string base64_encode(unsigned char const* , unsigned int len);
 //std::string base64_decode(std::string const& s);
 
 
-std::string encode_utf8_base64(std::string & in);
+//std::string encode_utf8_base64(std::string & in);
 std::string decode_utf8_base64(std::string & in);
-std::string encode_utf8_base64_msg(std::string & in);
+//std::string encode_utf8_base64_msg(std::string & in);
 std::string decode_utf8_base64_msg(std::string & in);
 
 
