@@ -1,6 +1,6 @@
 #include <openpgp/sign.h>
 #include <openpgp/private_key.h>
-
+#include <openpgp/FindKey.h>
 
 using namespace pm::pgp;
 

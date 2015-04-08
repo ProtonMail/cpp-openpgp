@@ -26,7 +26,6 @@ THE SOFTWARE.
 #ifndef __TAG8__
 #define __TAG8__
 
-#include <compress/compress.h>
 #include <package/packet.h>
 
 class Tag8 : public Packet{

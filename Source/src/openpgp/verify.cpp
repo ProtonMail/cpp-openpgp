@@ -5,6 +5,7 @@
 #include <openssl/rsa.h>
 #endif
 
+#include <openpgp/FindKey.h>
 
 bool pka_verify(const std::string & digest, const uint8_t hash, const uint8_t pka, const std::vector <std::string> & signing, const std::vector<std::string> & signature){
     if ((pka == 1) || (pka == 3)){ // RSA

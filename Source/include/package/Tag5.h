@@ -26,8 +26,8 @@ THE SOFTWARE.
 #ifndef __TAG5__
 #define __TAG5__
 
-#include "Tag6.h"
-#include "s2k.h"
+#include <package/Tag6.h>
+#include <package/s2k.h>
 
 class Tag5 : public Tag6{
     protected:

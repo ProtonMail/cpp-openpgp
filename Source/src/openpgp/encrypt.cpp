@@ -20,6 +20,7 @@
 #include <openpgp/PGPKey.h>
 #include <openpgp/revoke.h>
 #include <openpgp/cfb.h>
+#include <openpgp/FindKey.h>
 
 Tag6::Ptr find_encrypting_key(const PGP & k){
     if ((k.get_ASCII_Armor() == 1) || (k.get_ASCII_Armor() == 2)){

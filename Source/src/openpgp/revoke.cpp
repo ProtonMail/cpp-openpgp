@@ -1,5 +1,5 @@
 #include <openpgp/revoke.h>
-
+#include <openpgp/FindKey.h>
 bool check_revoked(const std::vector <Packet::Ptr> & packets, const std::string & keyid){
     for(Packet::Ptr const & p: packets){
         // if a signature packet

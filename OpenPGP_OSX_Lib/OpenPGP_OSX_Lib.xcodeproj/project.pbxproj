@@ -250,6 +250,7 @@
 		755A93501AC0E87100AE78D9 /* UTF8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 755A92641AC0D6C000AE78D9 /* UTF8.cpp */; };
 		755A93511AC0E87100AE78D9 /* utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 755A92651AC0D6C000AE78D9 /* utilities.cpp */; };
 		755A93521AC0E87100AE78D9 /* utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 755A92661AC0D6C000AE78D9 /* utility.cpp */; };
+		755EF6541AD4FEC1008F238E /* FindKey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 755EF6521AD4FEC1008F238E /* FindKey.cpp */; };
 		756C9BBD1A8D8A47007B2B9B /* OpenPGP.mm in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BBC1A8D8A47007B2B9B /* OpenPGP.mm */; };
 /* End PBXBuildFile section */
 
@@ -420,6 +421,7 @@
 		755A92641AC0D6C000AE78D9 /* UTF8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UTF8.cpp; sourceTree = "<group>"; };
 		755A92651AC0D6C000AE78D9 /* utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utilities.cpp; sourceTree = "<group>"; };
 		755A92661AC0D6C000AE78D9 /* utility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utility.cpp; sourceTree = "<group>"; };
+		755EF6521AD4FEC1008F238E /* FindKey.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FindKey.cpp; sourceTree = "<group>"; };
 		756C9BBB1A8D8A47007B2B9B /* OpenPGP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPGP.h; sourceTree = "<group>"; };
 		756C9BBC1A8D8A47007B2B9B /* OpenPGP.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenPGP.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -628,6 +630,7 @@
 				755A92191AC0D6C000AE78D9 /* public_key.cpp */,
 				755A921A1AC0D6C000AE78D9 /* revoke.cpp */,
 				755A921B1AC0D6C000AE78D9 /* verify.cpp */,
+				755EF6521AD4FEC1008F238E /* FindKey.cpp */,
 			);
 			path = openpgp;
 			sourceTree = "<group>";
@@ -944,6 +947,7 @@
 				755A92B61AC0D6C000AE78D9 /* Tag2Sub4.cpp in Sources */,
 				755A92B91AC0D6C000AE78D9 /* Tag2Sub7.cpp in Sources */,
 				755A92A61AC0D6C000AE78D9 /* Tag2Sub19.cpp in Sources */,
+				755EF6541AD4FEC1008F238E /* FindKey.cpp in Sources */,
 				755A92B21AC0D6C000AE78D9 /* Tag2Sub3.cpp in Sources */,
 				755A92911AC0D6C000AE78D9 /* private_key.cpp in Sources */,
 				755A92811AC0D6C000AE78D9 /* SHA2_Functions.cpp in Sources */,
