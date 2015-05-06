@@ -130,7 +130,6 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptMessage(JNIEnv* env, jobject o, 
 		secret_key.read(str_priv_key);
 
         std::string test_plain_txt = decrypt_pka(secret_key, pm_pgp_msg, str_passphrase, false);
-
         jstring jsRet = 0;
 		if (!test_plain_txt.empty())
 		{
