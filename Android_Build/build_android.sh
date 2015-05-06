@@ -1,9 +1,11 @@
 #!/bin/bash
-
-echo "";
+printf "\e[0;34m#######################################################\033[0m\n";
+printf "\e[0;36m################ \e[0;32mProtonMail OpenPGP\033[0m \e[0;36m###################\033[0m\n";
+printf "\e[0;34m#######################################################\033[0m\n";
 printf "\e[0;32mInitial Building scripts. \033[0m\n"
 SCRIPT_DIR=${PWD};
 SOURCE_DIR=${PWD}/../Source/
+OUT_PUT_DIR=${SCRIPT_DIR}/../Bin/android_libs/
 
 PGP_DIR=${SCRIPT_DIR}/OpenPGP.Android/
 PGP_ANDROID_WRAPPER_DIR=${SCRIPT_DIR}/OpenPGP.Android.Wrapper/
@@ -19,7 +21,6 @@ rm ./jni
 unset ${PGP_DIR}
 printf "\e[0;37mLeaveDirectory:\033[0m \e[0;36m ${PGP_DIR} \033[0m\n"
 echo "";
-echo "";
 cd ${PGP_ANDROID_WRAPPER_DIR}
 printf "\e[0;37mEnterDirectory:\033[0m \e[0;36m ${PGP_ANDROID_WRAPPER_DIR} \033[0m\n"
 printf "\e[0;32mSetup Wrapper Project Enviroment \033[0m\n"
@@ -30,6 +31,9 @@ ndk-build -j6
 unset ${PGP_ANDROID_WRAPPER_DIR}
 printf "\e[0;37mLeaveDirectory:\033[0m \e[0;36m ${PGP_ANDROID_WRAPPER_DIR} \033[0m\n"
 cd ../
+
+printf "\e[0;36mCopying files to Bin folder ... \033[0m\n"
+cp -rf ${PGP_ANDROID_WRAPPER_DIR}/libs/ ${OUT_PUT_DIR}/
 
 echo "";
 printf "\e[0;32mDONE \033[0m\n"
