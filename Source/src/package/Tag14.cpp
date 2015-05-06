@@ -1,5 +1,5 @@
 #include <package/Tag14.h>
-
+#include <package/Tag6.h>
 Tag14::Tag14():
     Tag6(14)
 {}
@@ -10,10 +10,4 @@ Tag14::Tag14(std::string & data){
 
 Packet::Ptr Tag14::clone() const{
     return std::make_shared <Tag14> (*this);
-}
-
-
-Tag14::~Tag14()
-{
-    
 }

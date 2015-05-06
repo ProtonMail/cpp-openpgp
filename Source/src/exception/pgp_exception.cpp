@@ -25,7 +25,7 @@ namespace pm {
     {
     }
     
-    pgp_exception::~pgp_exception() _NOEXCEPT {};
+    pgp_exception::~pgp_exception() noexcept {};
     
     
     

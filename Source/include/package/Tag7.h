@@ -26,8 +26,8 @@ THE SOFTWARE.
 #ifndef __TAG7__
 #define __TAG7__
 
-#include "Tag5.h"
-#include "Tag14.h"
+#include <package/Tag5.h>
+#include <package/Tag14.h>
 
 class Tag7 : public Tag5{
     public:

@@ -18,12 +18,10 @@ namespace pm
 {
     enum exception_code : uint32_t {
         PM_EXC_DEC_SIZE_INVALID = 100001,
-        
-        
+
         PM_EXC_UNKNOW = 0xFFFFFFFF
     };
 
-    
     std::string to_string (const exception_code& val);
     std::ostream& operator << (std::ostream& os, exception_code c);
 

@@ -26,7 +26,7 @@ THE SOFTWARE.
 #ifndef __TAG61__
 #define __TAG61__
 
-#include "packet.h"
+#include <package/packet.h>
 
 class Tag61 : public Packet{
     private:

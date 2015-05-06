@@ -26,7 +26,7 @@ THE SOFTWARE.
 #ifndef __PARTIAL__
 #define __PARTIAL__
 
-#include "packet.h"
+#include <package/packet.h>
 
 class Partial : public Packet{
     private:

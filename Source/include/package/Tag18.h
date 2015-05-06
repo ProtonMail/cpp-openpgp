@@ -26,7 +26,7 @@ THE SOFTWARE.
 #ifndef __TAG18__
 #define __TAG18__
 
-#include "packet.h"
+#include <package/packet.h>
 class Tag18 : public Packet{
     private:
         std::string protected_data;

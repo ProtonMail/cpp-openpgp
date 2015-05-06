@@ -26,31 +26,31 @@ THE SOFTWARE.
 #ifndef __PACKETS__
 #define __PACKETS__
 
-#include "packet.h"
+#include <package/packet.h>
 
-#include "Partial.h"
-#include "Tag0.h"
-#include "Tag1.h"
-#include "Tag2.h"
-#include "Tag3.h"
-#include "Tag4.h"
-#include "Tag5.h"
-#include "Tag6.h"
-#include "Tag7.h"
-#include "Tag8.h"
-#include "Tag9.h"
-#include "Tag10.h"
-#include "Tag11.h"
-#include "Tag12.h"
-#include "Tag13.h"
-#include "Tag14.h"
-#include "Tag17.h"
-#include "Tag18.h"
-#include "Tag19.h"
-#include "Tag60.h"
-#include "Tag61.h"
-#include "Tag62.h"
-#include "Tag63.h"
+#include <package/Partial.h>
+#include <package/Tag0.h>
+#include <package/Tag1.h>
+#include <package/Tag2.h>
+#include <package/Tag3.h>
+#include <package/Tag4.h>
+#include <package/Tag5.h>
+#include <package/Tag6.h>
+#include <package/Tag7.h>
+#include <package/Tag8.h>
+#include <package/Tag9.h>
+#include <package/Tag10.h>
+#include <package/Tag11.h>
+#include <package/Tag12.h>
+#include <package/Tag13.h>
+#include <package/Tag14.h>
+#include <package/Tag17.h>
+#include <package/Tag18.h>
+#include <package/Tag19.h>
+#include <package/Tag60.h>
+#include <package/Tag61.h>
+#include <package/Tag62.h>
+#include <package/Tag63.h>
 
 // Functions that are needed globally and cannot be placed inside Packet class
 
