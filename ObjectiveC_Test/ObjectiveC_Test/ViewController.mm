@@ -115,7 +115,7 @@
           //    }
     
           
-    NSData *filedata = [pgp Test_1];
+    //NSData *filedata = [pgp Test_1];
     
     BOOL Success = [[NSFileManager defaultManager] createFileAtPath:path contents:nil attributes:nil];
     

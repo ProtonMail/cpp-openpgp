@@ -36,7 +36,7 @@ class TestView: UIViewController {
     
     
     @IBAction func large_test_clicked(sender: AnyObject) {
-        let button:UIButton = sender as UIButton;
+        let button:UIButton = sender as! UIButton;
         
         button.enabled = false;
         
@@ -76,12 +76,12 @@ class TestView: UIViewController {
         let total = (endTime - startTime);
         let cot:Double = Double( count )
         let avg:Double = (endTime - startTime)/cot;
-        log_lable_.text = NSString(format: "%d Times(ENC->DEC) --- Total Runtime: %g s --- Avg %g s", count, total , avg)
+        log_lable_.text = NSString(format: "%d Times(ENC->DEC) --- Total Runtime: %g s --- Avg %g s", count, total , avg) as String
         button.enabled = true;
     }
     
     @IBAction func tiny_test_clicked(sender: AnyObject) {
-        let button:UIButton = sender as UIButton;
+        let button:UIButton = sender as! UIButton;
         
         button.enabled = false;
         
@@ -110,11 +110,11 @@ class TestView: UIViewController {
         let total = (endTime - startTime);
         let cot:Double = Double( count )
         let avg:Double = (endTime - startTime)/cot;
-        log_lable_.text = NSString(format: "%d Times(ENC->DEC) --- Total Runtime: %g s --- Avg %g s", count, total , avg);
+        log_lable_.text = NSString(format: "%d Times(ENC->DEC) --- Total Runtime: %g s --- Avg %g s", count, total , avg) as String;
         button.enabled = true;
     }
     @IBAction func other_test_clicked(sender: AnyObject) {
-        let button:UIButton = sender as UIButton;
+        let button:UIButton = sender as! UIButton;
         
                
         button.enabled = false;
@@ -138,7 +138,7 @@ class TestView: UIViewController {
         
         
         
-        let button:UIButton = sender as UIButton;
+        let button:UIButton = sender as! UIButton;
         
         button.enabled = false;
         
@@ -169,7 +169,7 @@ class TestView: UIViewController {
         let total = (endTime - startTime);
         let cot:Double = Double( count )
         let avg:Double = (endTime - startTime)/cot;
-        log_lable_.text = NSString(format: "%d Times(ENC->DEC) --- Total Runtime: %g s --- Avg %g s", count, total , avg);
+        log_lable_.text = NSString(format: "%d Times(ENC->DEC) --- Total Runtime: %g s --- Avg %g s", count, total , avg) as String;
         button.enabled = true;
         
     }
