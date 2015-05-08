@@ -32,6 +32,13 @@ Java_ch_protonmail_android_utils_OpenPGP_EncryptMessageAES(JNIEnv* env, jobject 
 JNIEXPORT jstring JNICALL
 Java_ch_protonmail_android_utils_OpenPGP_DecryptMessageAES(JNIEnv* env, jobject o, jstring encrypted_message, jstring password);
 
+JNIEXPORT jstring JNICALL
+Java_ch_protonmail_android_utils_OpenPGP_EncryptMailboxPWD(JNIEnv* env, jobject o, jstring unencrypt_pwd, jstring salt);
+JNIEXPORT jstring JNICALL
+Java_ch_protonmail_android_utils_OpenPGP_DecryptMailboxPWD(JNIEnv* env, jobject o, jstring encrypted_pwd, jstring salt);
+
+
+
 
 //JNIEXPORT jstring JNICALL
 //Java_ch_protonmail_android_utils_OpenPGP_UpdateKeyPassphrase(JNIEnv* env, jobject o, jstring encrypted_message, jstring password);
@@ -41,8 +48,6 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptMessageAES(JNIEnv* env, jobject 
 
 // // //Generate new key pair
 // // - (NSMutableDictionary*) generate_key:(NSString*)passphrase username:(NSString*)user_name error:(NSError**) err;
-
-
 
 
 #ifdef __cplusplus

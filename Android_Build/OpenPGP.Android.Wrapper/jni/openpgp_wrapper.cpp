@@ -7,6 +7,7 @@
 #include <openpgp/openpgp.h>
 #include <openpgp/PMPGPMessage.h>
 #include <utilities/utility.h>
+#include <utilities/utilities.h>
 #include <openpgp/private_key.h>
 #include <openpgp/encrypt.h>
 #include <openpgp/decrypt.h>
@@ -195,6 +196,62 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptMessageAES(JNIEnv* env, jobject 
 			jsRet = (env)->NewStringUTF((const char*) out_unencrypt_msg.c_str());
 		}
 		return jsRet;
+    }
+    catch (const std::runtime_error& error)
+    {
+    }
+    catch (const std::exception& e)
+    {
+    }
+    catch (...)
+    {
+    }
+    return 0;
+}
+
+JNIEXPORT jstring JNICALL
+Java_ch_protonmail_android_utils_OpenPGP_EncryptMailboxPWD(JNIEnv* env, jobject o, jstring unencrypt_pwd, jstring salt)
+{
+    try
+    {
+        std::string str_unencrypt_message = (*env).GetStringUTFChars(unencrypt_pwd, 0);
+        std::string str_password = (*env).GetStringUTFChars(salt, 0);
+
+        std::string encrypt_message = pm::encrypt_mailbox_password(str_unencrypt_message, str_password);
+        jstring jsRet = 0;
+        if (!encrypt_message.empty())
+        {
+            jsRet = (env)->NewStringUTF((const char*) encrypt_message.c_str());
+        }
+        return jsRet;
+    }
+    catch (const std::runtime_error& error)
+    {
+    }
+    catch (const std::exception& e)
+    {
+    }
+    catch (...)
+    {
+    }
+    return 0;
+}
+
+JNIEXPORT jstring JNICALL
+Java_ch_protonmail_android_utils_OpenPGP_DecryptMailboxPWD(JNIEnv* env, jobject o, jstring encrypted_pwd, jstring salt)
+{
+    try
+    {
+        std::string str_encrypted_message = (*env).GetStringUTFChars(encrypted_pwd, 0);
+        std::string str_password = (*env).GetStringUTFChars(salt, 0);
+
+        std::string out_unencrypt_msg = pm::decrypt_mailbox_password(str_encrypted_message, str_password);
+        jstring jsRet = 0;
+        if (!out_unencrypt_msg.empty())
+        {
+            jsRet = (env)->NewStringUTF((const char*) out_unencrypt_msg.c_str());
+        }
+        return jsRet;
     }
     catch (const std::runtime_error& error)
     {
