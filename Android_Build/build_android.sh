@@ -36,6 +36,9 @@ cd ../
 
 printf "\e[0;36mCopying files to Bin folder ... \033[0m\n"
 cp -rf ${PGP_ANDROID_WRAPPER_DIR}/libs/ ${OUT_PUT_DIR}/
+cp -rf ${PGP_ANDROID_WRAPPER_DIR}/libs/ ${PWD}/../Android_Test/app/src/main/jniLibs/
+
+
 
 echo "";
 printf "\e[0;32mDONE \033[0m\n"
