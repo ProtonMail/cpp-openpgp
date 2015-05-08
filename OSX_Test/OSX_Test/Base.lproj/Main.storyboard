@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D87h" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6751"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7702"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -765,12 +765,27 @@
                                     <action selector="test_aes_clicked:" target="XfG-lQ-9wD" id="Jb4-Uy-zwh"/>
                                 </connections>
                             </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="qhg-Uw-FmH">
+                                <rect key="frame" x="273" y="271" width="222" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="53" id="28K-qQ-IMZ"/>
+                                    <constraint firstAttribute="width" constant="218" id="gtT-j6-3lN"/>
+                                </constraints>
+                                <buttonCell key="cell" type="bevel" title="Test Encrypt Mailbox PWD" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VeW-0Q-Z59">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="EncryptMailboxPWD:" target="XfG-lQ-9wD" id="gyK-Yz-mun"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="xii-Re-e8I" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="5yG-mO-3E4"/>
                             <constraint firstItem="4Bk-Cx-tNL" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="-10" id="FaU-Bt-NKp"/>
                             <constraint firstItem="Wdu-7l-nEF" firstAttribute="top" secondItem="xii-Re-e8I" secondAttribute="bottom" constant="12" id="GPI-Th-fVc"/>
                             <constraint firstItem="mbB-M2-h9u" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="H2q-Ar-iCt"/>
+                            <constraint firstItem="qhg-Uw-FmH" firstAttribute="top" secondItem="4Bk-Cx-tNL" secondAttribute="bottom" constant="6" id="LSp-UF-hor"/>
                             <constraint firstItem="4Bk-Cx-tNL" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="-5" id="WSs-6g-ns4"/>
                             <constraint firstItem="mbB-M2-h9u" firstAttribute="top" secondItem="4Bk-Cx-tNL" secondAttribute="bottom" constant="6" id="aNC-Mz-ZrB"/>
                             <constraint firstAttribute="trailing" secondItem="4Bk-Cx-tNL" secondAttribute="trailing" constant="-39" id="ara-ad-9Oa"/>
@@ -778,6 +793,7 @@
                             <constraint firstItem="OgY-UP-6po" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="hA8-6f-iIm"/>
                             <constraint firstItem="Wdu-7l-nEF" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="iOy-6q-nb1"/>
                             <constraint firstItem="OgY-UP-6po" firstAttribute="top" secondItem="Wdu-7l-nEF" secondAttribute="bottom" constant="12" id="qfS-bF-tHo"/>
+                            <constraint firstItem="qhg-Uw-FmH" firstAttribute="leading" secondItem="mbB-M2-h9u" secondAttribute="trailing" constant="37" id="ubU-HO-XAk"/>
                         </constraints>
                     </view>
                     <connections>

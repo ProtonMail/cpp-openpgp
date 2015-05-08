@@ -29,4 +29,19 @@ class AES : public SymAlg{
         std::string decrypt(const std::string & DATA);
         unsigned int blocksize() const;
 };
+
+
+namespace pm {
+    
+    std::string aes_cbc_256_encrypt(std::string key, std::string iv, std::string text);
+    std::string aes_cbc_256_decrypt(std::string key, std::string iv, std::string enc_text);
+    
+    std::string AESEncrypt(const void *const apBuffer, size_t aBufferSize, const void *const apKey, size_t aKeySize, std::string aIVector);
+    std::string AESDecrypt(const void *const apBuffer, size_t aBufferSize, const void *const apKey, size_t aKeySize, std::string aIVector);
+}
+
+
+
+
+
 #endif

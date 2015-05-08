@@ -1,14 +1,24 @@
-//
-//  utilities.h
-//  UNNetPGP
-//
-//  Created by Yanfeng Zhang on 1/21/15.
-//  Copyright (c) 2015 UP-NEXT. All rights reserved.
-//
-
-#ifndef __UNNetPGP__utilities__
-#define __UNNetPGP__utilities__
+#ifndef __pm_openpgp__utilities__
+#define __pm_openpgp__utilities__
 
 #include <stdio.h>
+#include <string>
 
-#endif /* defined(__UNNetPGP__utilities__) */
+#endif
+
+
+
+
+namespace pm {
+
+    
+    
+    
+    std::string encrypt_mailbox_password(std::string plaintext, std::string salt_value);
+    std::string decrypt_mailbox_password(std::string enc_value, std::string salt_value);
+
+
+
+
+
+}

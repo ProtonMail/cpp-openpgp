@@ -28,6 +28,7 @@
 #include <openpgp/openpgp.h>
 #include <openpgp/PMPGPMessage.h>
 #include <utilities/utility.h>
+#include <utilities/utilities.h>
 
 #include <openpgp/private_key.h>
 
@@ -44,7 +45,6 @@
     BOOL isDebugMode;
     
     pm::pgp::openpgp test;
-    
 }
 
 
@@ -756,6 +756,17 @@
 //        return true;
 //    }
 //
+}
+- (NSString* ) encrypt_mailbox_pwd:(NSString *)plain slat:(NSString*) value
+{
+    std::string outString = pm::encrypt_mailbox_password( [plain UTF8String], [value UTF8String]);
+    return [[NSString alloc] initWithUTF8String:outString.c_str()];
+}
+
+- (NSString* ) decrypt_mailbox_pwd:(NSString *)encrypt_text slat:(NSString*) value
+{
+    std::string outString = pm::decrypt_mailbox_password([encrypt_text UTF8String], [value UTF8String]);
+    return [[NSString alloc] initWithUTF8String:outString.c_str()];
 }
 
 - (void)EnableDebug:(BOOL) isDebug

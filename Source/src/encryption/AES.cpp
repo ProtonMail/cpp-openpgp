@@ -1,5 +1,10 @@
 #include <encryption/AES.h>
 
+#include <openssl/ssl.h>
+#include <openssl/aes.h>
+#include <openssl/evp.h>
+#include <openssl/hmac.h>
+
 void AES::shiftrow(std::vector <uint32_t> & data){
     std::vector <uint32_t> temp;
     for(uint8_t x = 0; x < 4; x++){
@@ -600,3 +605,114 @@ unsigned int AES::blocksize(){
     return 128;
 }
 */
+
+
+
+#include <vector>
+#include <string>
+#include <iostream>
+#include <iomanip>
+#include <algorithm>
+#include <initializer_list>
+#include <openssl/aes.h>
+
+
+namespace pm {
+    
+    typedef unsigned char byte;
+    
+    
+    template <size_t multiple> size_t round_up(const size_t len)
+    {
+        if (len % multiple == 0) return len;
+        else return ((len / multiple) + 1) * multiple;
+    }
+    
+    std::ostream &print_buffer_as_hex(std::ostream &o, const unsigned char *buf, size_t size)
+    {
+        o << std::hex << std::setfill('0');
+        for( size_t i = 0; i < size; ++i )
+        {
+            o << std::setw(2) << static_cast<unsigned int>(buf[i]);
+        }
+        return o << std::dec;
+    }
+    
+    inline std::ostream &operator<<(std::ostream &o, const std::vector<byte> &buf)
+    {
+        return print_buffer_as_hex(o, reinterpret_cast<const unsigned char*>(&buf[0]), buf.size());
+    }
+    
+    // Make a Key of exactly 32 bytes, truncates or adds values if it's necessary
+    std::string AES_NormalizeKey(const void *const apBuffer, size_t aSize)
+    {
+        static const unsigned char key32[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31};
+        const char *const Buffer = reinterpret_cast<const char *>(apBuffer);
+        std::string Result(reinterpret_cast<const char *>(key32), 32);
+        std::copy(Buffer, Buffer + ((aSize < 32)? aSize: 32), Result.begin());
+        return Result;
+    }
+    
+    // Encrypt using AES cbc
+    std::string AESEncrypt(const void *const apBuffer, size_t aBufferSize, const void *const apKey, size_t aKeySize, std::string aIVector)
+    {
+        unsigned char AES_IVector[AES_BLOCK_SIZE] = {0};
+        std::copy(std::begin(aIVector), std::end(aIVector), std::begin(AES_IVector));
+        
+        // Create key.
+        const std::string Key(AES_NormalizeKey(apKey, aKeySize));
+//        std::cout << "(Normalized key: ";
+//        print_buffer_as_hex(std::cout, (const unsigned char*)Key.data(), Key.size()) << ")\n";
+        AES_KEY EncryptKey;
+        AES_set_encrypt_key(reinterpret_cast<const unsigned char *>(Key.data()), 256, &EncryptKey);
+        
+        // Encrypt.
+        unsigned char AES_Encrypted[1024] = {0};
+        AES_cbc_encrypt(static_cast<const unsigned char *>(apBuffer), AES_Encrypted, aBufferSize, &EncryptKey, AES_IVector, AES_ENCRYPT);
+        const std::string Encrypted(reinterpret_cast<const char *>(AES_Encrypted), round_up<AES_BLOCK_SIZE>(aBufferSize));
+        
+        // Finish.
+        return Encrypted;
+    }
+
+    std::string aes_cbc_256_encrypt(std::string key, std::string iv, std::string text)
+    {
+        return AESEncrypt(text.data(), text.size(), key.data(), key.size(), iv);
+    }
+    std::string aes_cbc_256_decrypt(std::string key, std::string iv, std::string enc_text)
+    {
+        return AESDecrypt(enc_text.data(), enc_text.size(), key.data(), key.size(), iv);
+    }
+    
+    
+    
+    // Decrypt using AES cbc
+    std::string AESDecrypt(const void *const apBuffer, size_t aBufferSize, const void *const apKey, size_t aKeySize, std::string aIVector)
+    {
+        //unsigned char AES_IVector[AES_BLOCK_SIZE] = {0};
+        //std::copy(std::begin(aIVector), std::end(aIVector), std::begin(AES_IVector));
+        
+        // Create Key.
+        const std::string Key(AES_NormalizeKey(apKey, aKeySize));
+        AES_KEY DecryptKey;
+        AES_set_decrypt_key(reinterpret_cast<const unsigned char *>(Key.data()), 256, &DecryptKey);
+        
+        // Decrypt.
+        unsigned char AES_Decrypted[1024] = {0};
+        AES_cbc_encrypt(static_cast<const unsigned char *>(apBuffer), AES_Decrypted, 1024, &DecryptKey,(unsigned char *)(aIVector.data()), AES_DECRYPT);
+        
+        const std::string Decrypted(reinterpret_cast<const char *>(AES_Decrypted));
+        return Decrypted;
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+

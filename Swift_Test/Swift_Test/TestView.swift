@@ -136,13 +136,15 @@ class TestView: UIViewController {
     @IBAction func generate_new_key_clicked(sender: AnyObject) {
         
         
+        let pgp:OpenPGP = OpenPGP();
         
+        pgp.TestEncryptPwd("test", pass: "a123");
         
         let button:UIButton = sender as! UIButton;
         
         button.enabled = false;
         
-        let pgp:OpenPGP = OpenPGP()
+        //let pgp:OpenPGP = OpenPGP()
         pgp.SetupKeys(private_key_, pubKey: public_key_, pass: "123", error:nil)
         
         let count:Int = 10

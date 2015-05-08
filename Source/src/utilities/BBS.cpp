@@ -110,7 +110,7 @@ std::string BBS::rand_byts(const unsigned int & bits, const std::string & par){
 //    }
 //    
 
-    std::string my_std_string(reinterpret_cast<const char *>(key), 32);
+    std::string my_std_string(reinterpret_cast<const char *>(key), size);
     
   //  std::cout << my_std_string << std::endl;
     return my_std_string;

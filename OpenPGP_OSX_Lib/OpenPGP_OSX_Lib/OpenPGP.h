@@ -40,6 +40,9 @@
 - (NSMutableDictionary*) generate_key:(NSString*)passphrase username:(NSString*)user_name error:(NSError**) err;
 
 
+//encrypt mailbox pwd
+- (NSString* ) encrypt_mailbox_pwd:(NSString *)plain slat:(NSString*) value;
+- (NSString* ) decrypt_mailbox_pwd:(NSString *)encrypt_text slat:(NSString*) value;
 
 
 // print debug logs
@@ -47,6 +50,14 @@
 
 
 - (void)Test_Privatekey:(NSString *)priv_key pass:(NSString*) passphrase;
+
+
+
+
+
+
+
+
 
 @end
 
