@@ -4,4 +4,4 @@
 
 
 #import <Foundation/Foundation.h>
-#import "OpenPGP_Lib.h"
+#import "OpenPGP.h"

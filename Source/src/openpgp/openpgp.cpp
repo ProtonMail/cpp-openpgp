@@ -6,15 +6,15 @@
 //  Copyright (c) 2015 UP-NEXT. All rights reserved.
 //
 
-#include "openpgp.h"
+#include <openpgp/openpgp.h>
 
 #include <iostream>
 #include <algorithm>
 #include <string>
 
 
-#include "config.h"
-#include "RFC4880.h"
+#include <config/config.h>
+#include <config/RFC4880.h>
 
 
 #ifdef HAVE_SYS_CDEFS_H
@@ -49,24 +49,24 @@ __RCSID("$NetBSD: openssl_crypto.c,v 1.32 2010/11/07 06:56:52 agc Exp $");
 #endif
 
 
-#include "Tag5.h"
-#include "rsa_key.h"
-#include "BBS.h"
-#include "Tag13.h"
-#include "Tag2Sub2.h"
-#include "Tag2Sub11.h"
-#include "Tag2Sub16.h"
-#include "Tag2Sub21.h"
-#include "Tag2Sub22.h"
-#include "Tag2Sub27.h"
-#include "Tag2Sub30.h"
-#include "Tag7.h"
-#include "Tag2.h"
-#include "PGPKey.h"
-#include "cfb.h"
-#include "sigcalc.h"
-#include "RSA.h"
-#include "sign.h"
+#include <package/Tag5.h>
+#include <base/rsa_key.h>
+#include <utilities/BBS.h>
+#include <package/Tag13.h>
+#include <package/subpackage/Tag2Sub2.h>
+#include <package/subpackage/Tag2Sub11.h>
+#include <package/subpackage/Tag2Sub16.h>
+#include <package/subpackage/Tag2Sub21.h>
+#include <package/subpackage/Tag2Sub22.h>
+#include <package/subpackage/Tag2Sub27.h>
+#include <package/subpackage/Tag2Sub30.h>
+#include <package/Tag7.h>
+#include <package/Tag2.h>
+#include <openpgp/PGPKey.h>
+#include <openpgp/cfb.h>
+#include <openpgp/sigcalc.h>
+#include <encryption/RSA.h>
+#include <openpgp/sign.h>
 
 
 namespace pm {

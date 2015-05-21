@@ -31,9 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		750BA0FA1AAA8582003FEA16 /* libOpenPGP_i386.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOpenPGP_i386.a; path = /Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OpenPGP_OSX_Lib/../Bin/libs/Debug/libOpenPGP_i386.a; sourceTree = "<absolute>"; };
 		750BA0FB1AAA8582003FEA16 /* libOpenPGP_x86_64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOpenPGP_x86_64.a; path = /Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OpenPGP_OSX_Lib/../Bin/libs/Debug/libOpenPGP_x86_64.a; sourceTree = "<absolute>"; };
-		750BA5611AAA969A003FEA16 /* libOpenPGP_i386.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOpenPGP_i386.a; path = /Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OpenPGP_OSX_Lib/../Bin/libs/Debug/libOpenPGP_i386.a; sourceTree = "<absolute>"; };
 		750BA5621AAA969A003FEA16 /* libOpenPGP.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOpenPGP.a; path = "../Bin/libs/Debug-iphoneos/libOpenPGP.a"; sourceTree = "<group>"; };
 		7588B93F1AA53D6D006A8793 /* OSX_Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OSX_Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7588B9431AA53D6D006A8793 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -78,9 +76,7 @@
 		750BA0E41AAA73BB003FEA16 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				750BA5611AAA969A003FEA16 /* libOpenPGP_i386.a */,
 				750BA5621AAA969A003FEA16 /* libOpenPGP.a */,
-				750BA0FA1AAA8582003FEA16 /* libOpenPGP_i386.a */,
 				750BA0FB1AAA8582003FEA16 /* libOpenPGP_x86_64.a */,
 				7588B96C1AA541D3006A8793 /* libz.dylib */,
 				7588B96A1AA541CD006A8793 /* libbz2.dylib */,
@@ -370,6 +366,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(PROJECT_DIR)/../Bin/include/OpenPGP_x86_64_OSX",
+					"$(PROJECT_DIR)/../Bin/include",
 				);
 				INFOPLIST_FILE = OSX_Test/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";

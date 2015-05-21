@@ -7,17 +7,17 @@
 //
 
 #import "OpenPGP.h"
-#include "PGPKey.h"
+#include <openpgp/PGPKey.h>
 #include <openpgp/openpgp.h>
-#include "PGPMessage.h"
-#include "encrypt.h"
-#include "decrypt.h"
+#include <openpgp/PGPMessage.h>
+#include <openpgp/encrypt.h>
+#include <openpgp/decrypt.h>
 #include <exception>
-#include "consts.h"
-#include "base64.h"
-#include "cfb.h"
-#include "UTF8.h"
-#include "mpi.h"
+#include <utilities/consts.h>
+#include <utilities/base64.h>
+#include <openpgp/cfb.h>
+#include <utilities/UTF8.h>
+#include <utilities/mpi.h>
 #include <openssl/bio.h>
 #include <openssl/evp.h>
 
@@ -25,11 +25,12 @@
 #include <stdexcept>
 #include <codecvt>
 
-#include "openpgp.h"
-#include "PMPGPMessage.h"
-#include "utility.h"
+#include <openpgp/openpgp.h>
+#include <openpgp/PMPGPMessage.h>
+#include <utilities/utility.h>
+#include <utilities/utilities.h>
 
-#include "private_key.h"
+#include <openpgp/private_key.h>
 
 
 @implementation OpenPGP
@@ -44,7 +45,6 @@
     BOOL isDebugMode;
     
     pm::pgp::openpgp test;
-    
 }
 
 
@@ -756,6 +756,23 @@
 //        return true;
 //    }
 //
+}
+- (NSString* ) encrypt_mailbox_pwd:(NSString *)plain slat:(NSString*) value
+{
+    std::string outString = pm::encrypt_mailbox_password( [plain UTF8String], [value UTF8String]);
+    return [[NSString alloc] initWithUTF8String:outString.c_str()];
+}
+
+- (NSString* ) decrypt_mailbox_pwd:(NSString *)encrypt_text slat:(NSString*) value
+{
+    std::string outString = pm::decrypt_mailbox_password([encrypt_text UTF8String], [value UTF8String]);
+    
+    NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:[[NSString alloc] initWithUTF8String:outString.c_str()] options:0];
+    NSString *decodedString = [[NSString alloc] initWithData:decodedData encoding:NSUTF8StringEncoding];
+    NSLog(@"%@", decodedString); // foo
+    
+   // outString
+    return decodedString;//[[NSString alloc] initWithUTF8String:outString.c_str()];
 }
 
 - (void)EnableDebug:(BOOL) isDebug

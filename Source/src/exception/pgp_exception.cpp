@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Yanfeng Zhang. All rights reserved.
 //
 
-#include "pgp_exception.h"
+#include <exception/pgp_exception.h>
 
 
 namespace pm {
@@ -25,7 +25,7 @@ namespace pm {
     {
     }
     
-    pgp_exception::~pgp_exception() _NOEXCEPT {};
+    pgp_exception::~pgp_exception() noexcept {};
     
     
     
