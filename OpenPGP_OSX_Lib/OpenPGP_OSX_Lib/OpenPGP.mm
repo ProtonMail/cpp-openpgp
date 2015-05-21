@@ -766,7 +766,13 @@
 - (NSString* ) decrypt_mailbox_pwd:(NSString *)encrypt_text slat:(NSString*) value
 {
     std::string outString = pm::decrypt_mailbox_password([encrypt_text UTF8String], [value UTF8String]);
-    return [[NSString alloc] initWithUTF8String:outString.c_str()];
+    
+    NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:[[NSString alloc] initWithUTF8String:outString.c_str()] options:0];
+    NSString *decodedString = [[NSString alloc] initWithData:decodedData encoding:NSUTF8StringEncoding];
+    NSLog(@"%@", decodedString); // foo
+    
+   // outString
+    return decodedString;//[[NSString alloc] initWithUTF8String:outString.c_str()];
 }
 
 - (void)EnableDebug:(BOOL) isDebug

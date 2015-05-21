@@ -107,9 +107,9 @@ class ViewController: NSViewController {
     @IBAction func EncryptMailboxPWD(sender: AnyObject) {
         let pgp:OpenPGP = OpenPGP();
         
-        let v = pgp.encrypt_mailbox_pwd("test", slat: "a123")
+        let v = pgp.encrypt_mailbox_pwd("thisisatestmailbox", slat: "4428c82a118a2dc76f53dab507d3b1d69850ebb9")
         
-        let out = pgp.decrypt_mailbox_pwd(v, slat: "a123")
+        let out = pgp.decrypt_mailbox_pwd(v, slat: "4428c82a118a2dc76f53dab507d3b1d69850ebb9")
         
         println(out);
 

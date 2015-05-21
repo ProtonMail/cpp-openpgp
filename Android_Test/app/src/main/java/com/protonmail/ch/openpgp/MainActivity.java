@@ -20,16 +20,15 @@ import ch.protonmail.android.utils.OpenPGP;
 public class MainActivity extends ActionBarActivity {
 
     static {
-        try
-        {
+        try {
+            System.loadLibrary("gnustl_shared");
             System.loadLibrary("openpgp");
             System.loadLibrary("openpgp_android");
-        }
-        catch (Exception ex)
-        {
-            ex.printStackTrace();;
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +98,12 @@ public class MainActivity extends ActionBarActivity {
                     int isPwdOK1 = p.SetupKeys(privateKey, publicKey, "123123");
 
                     Log.e("test", String.format("%d",isPwdOK));
+
+
+                    String test_encrypt = open_test.EncryptMailboxPWD("thisisatestmailbox", "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
+                    String test_plain_text = open_test.DecryptMailboxPWD(test_encrypt, "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
+
+                    Log.e("DecryptMailboxPWD", test_plain_text);
                 }
             });
 
@@ -131,6 +136,8 @@ public class MainActivity extends ActionBarActivity {
             {
                 Log.e("Test", "OK");
             }
+
+
 
             return rootView;
         }

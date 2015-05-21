@@ -19,5 +19,6 @@ public class OpenPGP {
 
     public native String EncryptMailboxPWD(String unencrypted_pwd, String salt);
     public native String DecryptMailboxPWD(String encrypted_pwd, String salt);
+
 }
 

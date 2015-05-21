@@ -681,6 +681,8 @@ namespace pm {
     }
     std::string aes_cbc_256_decrypt(std::string key, std::string iv, std::string enc_text)
     {
+        std::cout<<hexlify(iv) <<std::endl;
+        std::cout<<hexlify(enc_text) << std::endl;
         return AESDecrypt(enc_text.data(), enc_text.size(), key.data(), key.size(), iv);
     }
     
@@ -691,7 +693,7 @@ namespace pm {
     {
         //unsigned char AES_IVector[AES_BLOCK_SIZE] = {0};
         //std::copy(std::begin(aIVector), std::end(aIVector), std::begin(AES_IVector));
-        
+
         // Create Key.
         const std::string Key(AES_NormalizeKey(apKey, aKeySize));
         AES_KEY DecryptKey;
@@ -699,7 +701,7 @@ namespace pm {
         
         // Decrypt.
         unsigned char AES_Decrypted[1024] = {0};
-        AES_cbc_encrypt(static_cast<const unsigned char *>(apBuffer), AES_Decrypted, 1024, &DecryptKey,(unsigned char *)(aIVector.data()), AES_DECRYPT);
+        AES_cbc_encrypt(static_cast<const unsigned char *>(apBuffer), AES_Decrypted, aBufferSize, &DecryptKey,(unsigned char *)(aIVector.data()), AES_DECRYPT);
         
         const std::string Decrypted(reinterpret_cast<const char *>(AES_Decrypted));
         return Decrypted;

@@ -59,70 +59,88 @@ namespace pm {
     std::string encrypt_mailbox_password(std::string plaintext, std::string salt_value)
     {
         std::string key_one = unhexlify(key_factory.substr(iKeyOne, iKeySize));   //for salt hash
-        //std::cout << "key_one:" << hexlify(key_one) << std::endl;
+        std::cout << "key_one:" << hexlify(key_one) << std::endl;
         std::string key_two = unhexlify(key_factory.substr(iKeyTwo, iKeySize));    //for aes cbc 256
-        //std::cout << "key_two:" << hexlify(key_two) << std::endl;
+        std::cout << "key_two:" << hexlify(key_two) << std::endl;
         std::string key_three = unhexlify(key_factory.substr(iKeyThree, iKeySize));  //for enc data hash
-        //std::cout << "key_three:" << hexlify(key_three) << std::endl;
-        std::string random_iv = BBS().rand_b(iIVSize);
-        //std::cout << "random:" << hexlify(random_iv) << std::endl;
-        std::string hash_salt = hash_hmac("sha256", salt_value, key_one, true);
-        //std::cout << "hash_salt:" << hexlify(hash_salt) << std::endl;
-        std::string enc_data = aes_cbc_256_encrypt(key_two, random_iv, hash_salt + plaintext);
-        //std::cout << "enc_data:" << hexlify(enc_data) << std::endl;
+        std::cout << "key_three:" << hexlify(key_three) << std::endl;
+        
+        std::cout << hexlify(BBS().rand_b(iIVSize)) << std::endl;
+        std::string random_iv = unhexlify(salt_value) +BBS().rand_b(iIVSize);
+        random_iv = random_iv.substr(0, iIVSize);
+        std::cout << "random:" << hexlify(random_iv) << std::endl;
+        
+        //std::string hash_salt = hash_hmac("sha256", salt_value, key_one, true);
+        
+//        std::cout << "hash_salt:" << hexlify(hash_salt) << std::endl;
+//        std::cout << "hash+plain" << hexlify(hash_salt + plaintext) << std::endl;
+        
+        std::string enc_data = aes_cbc_256_encrypt(key_two, random_iv, plaintext);
+        std::cout << "enc_data:" << hexlify(enc_data) << std::endl;
+        
         std::string hash_enc_data = hash_hmac("sha256", random_iv + enc_data, key_three, true);
-        //std::cout << "hash_enc_data:" << hexlify(hash_enc_data) << std::endl;
-        return  hexlify(hash_enc_data + random_iv + enc_data);
+        std::cout << "hash_enc_data:" << hexlify(hash_enc_data) << std::endl;
+        return hexlify(hash_enc_data + random_iv + enc_data);
     }
     
     std::string decrypt_mailbox_password(std::string enc_value, std::string salt_value)
     {
         std::string key_one = unhexlify(key_factory.substr(iKeyOne, iKeySize));   //for salt hash
-        //std::cout << "key_one:" << hexlify(key_one) << std::endl;
+        std::cout << "key_one:" << hexlify(key_one) << std::endl;
         std::string key_two = unhexlify(key_factory.substr(iKeyTwo, iKeySize));    //for aes cbc 256
-        //std::cout << "key_two:" << hexlify(key_two) << std::endl;
+        std::cout << "key_two:" << hexlify(key_two) << std::endl;
         std::string key_three = unhexlify(key_factory.substr(iKeyThree, iKeySize));  //for enc data hash
-        //std::cout << "key_three:" << hexlify(key_three) << std::endl;
+        std::cout << "key_three:" << hexlify(key_three) << std::endl;
         
         std::string unhexlify_enc_value = unhexlify(enc_value);
-        //std::cout << "input:" << enc_value << std::endl;
+        std::cout << "input:" << enc_value << std::endl;
         
         std::string hash_enc_data = unhexlify_enc_value.substr(0, hmacSize);
-        //std::cout << "hash_enc_data:" << hexlify(hash_enc_data) << std::endl;
+        std::cout << "hash_enc_data:" << hexlify(hash_enc_data) << std::endl;
         std::string random_iv = unhexlify_enc_value.substr(hmacSize, iIVSize);
-        //std::cout << "random:" << hexlify(random_iv) << std::endl;
+        std::cout << "random:" << hexlify(random_iv) << std::endl;
         
         int enc_data_start = hmacSize + iIVSize;
         std::string enc_data = unhexlify_enc_value.substr(enc_data_start);
-        //std::cout << "enc_data:" << hexlify(enc_data) << std::endl;
+        std::cout << "enc_data:" << hexlify(enc_data) << std::endl;
         
         std::string match_hash_enc_data = hash_hmac("sha256", random_iv + enc_data, key_three, true);
-        //std::cout << "match_hash_enc_data:" << hexlify(match_hash_enc_data) << std::endl;
+        std::cout << "match_hash_enc_data:" << hexlify(match_hash_enc_data) << std::endl;
         
-        //std::cout << hexlify(match_hash_enc_data) << std::endl;
-        //std::cout << hexlify(hash_enc_data) << std::endl;
+        std::cout << hexlify(match_hash_enc_data) << std::endl;
+        std::cout << hexlify(hash_enc_data) << std::endl;
         
         int compare =match_hash_enc_data.compare(hash_enc_data );
         if( compare  != 0)
         {
             std::cout << "hash_enc_data not match" << std::endl;
-            return "";
+            return "hash_enc_data not match";
         }
         
         std::string decrypt_data = aes_cbc_256_decrypt(key_two, random_iv, enc_data);
-        //std::cout << decrypt_data << std::endl;
-        //std::cout << hexlify(decrypt_data) << std::endl;
-
-        std::string match_hash_salt = decrypt_data.substr(0, hmacSize);
-        //std::cout << hexlify(match_hash_salt) << std::endl;
-        std::string hash_salt = hash_hmac("sha256", salt_value, key_one, true);
-        //std::cout << hexlify(hash_salt) << std::endl;
-        if( match_hash_salt.compare(hash_salt) != 0)
+        std::cout << decrypt_data << std::endl;
+        if(random_iv.find(salt_value) != 0 && salt_value.find(random_iv) != 0)
         {
-            std::cout << "hash_salt not match" << std::endl;
-            return "";
+            std::cout << "random:" << hexlify(random_iv) << std::endl;
+            std::cout << "salt_value:" << hexlify(salt_value) << std::endl;
+            std::cout << "salt not match" << std::endl;
+            return random_iv;
         }
-        std::string plain_text = decrypt_data.substr(hmacSize);
-        return plain_text;
+        
+        return base64_encode(decrypt_data);
+//        std::cout << hexlify(decrypt_data) << std::endl;
+//        //decrypt_data = unhexlify(decrypt_data);
+//
+//        std::string match_hash_salt = unhexlify(decrypt_data.substr(0, hmacSize * 2));
+//        std::cout << hexlify(match_hash_salt) << std::endl;
+//        std::string hash_salt = hash_hmac("sha256", salt_value, key_one, true);
+//        std::cout << hexlify(hash_salt) << std::endl;
+//        if( match_hash_salt.compare(hash_salt) != 0)
+//        {
+//            std::cout << "hash_salt not match" << std::endl;
+//            return "";
+//        }
+//        std::string plain_text = decrypt_data.substr(hmacSize*2);
+//        return plain_text;
     }
 }
