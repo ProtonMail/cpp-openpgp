@@ -20,7 +20,7 @@ namespace pm {
     {
         encrypt_message_ = "";
         is_pm_encrypt_pka_ = true;
-        set_is_debug(true);
+        set_is_debug(false);
     }
     
     PMPGPMessage::PMPGPMessage(std::string & data): PMPGPMessage()
@@ -44,7 +44,7 @@ namespace pm {
         }
         
         //detatct header check protonmail header.
-        std::string::size_type count = 30;
+        std::string::size_type count = 29;
         
         std::size_t start_enc_msg = data.find(protonmail_cryoto_headerMessage.c_str(), 0, count);
         if(start_enc_msg == std::string::npos)

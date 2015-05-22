@@ -120,7 +120,7 @@ class ViewController: NSViewController {
         let pgp:OpenPGP = OpenPGP()
         let location = "/Users/Yanfeng/Desktop/publickey.txt"
         let location_1 = "/Users/Yanfeng/Desktop/privatekey.txt"
-        let location_2 = "/Users/Yanfeng/Desktop/message.text.txt"
+        let location_2 = "/Users/Yanfeng/Desktop/bad.message.txt"
         let fileContent = NSString(contentsOfFile: location, encoding: NSUTF8StringEncoding, error: nil) as! String
         let fileContent_1 = NSString(contentsOfFile: location_1, encoding: NSUTF8StringEncoding, error: nil) as! String
         let fileContent_2 = NSString(contentsOfFile: location_2, encoding: NSUTF8StringEncoding, error: nil) as! String
