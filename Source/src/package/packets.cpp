@@ -42,7 +42,7 @@ std::string read_packet_header(std::string & data, uint8_t & tag, bool & format,
                 remove += 1;
                 length = first_octet;
             }
-            else if ((192 <= first_octet) & (first_octet < 223)){          // 192 - 8383; A two-octet Body Length header encodes packet lengths of 192 to 8383 octets.
+            else if ((192 <= first_octet) & (first_octet <= 223)){          // 192 - 8383; A two-octet Body Length header encodes packet lengths of 192 to 8383 octets.
                 remove += 2;
                 length = toint(data.substr(1, 2), 256) - (192 << 8) + 192;
             }
