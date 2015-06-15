@@ -29,6 +29,7 @@
 #include <openpgp/PMPGPMessage.h>
 #include <utilities/utility.h>
 #include <utilities/utilities.h>
+#include <utilities/UTF8.h>
 
 #include <openpgp/private_key.h>
 
@@ -778,6 +779,34 @@
 - (void)EnableDebug:(BOOL) isDebug
 {
     isDebugMode = isDebug;
+}
+
+- (NSData * ) Test_Attachment:(NSString*) package data:(NSString*) datapackage
+{
+    std::string encrypt_msg = "wcBMA9ted+lmZVn8AQf/Q41P+zzGgasmskYRZQ5joeQnDOcqE0jS4+YSkFNZ1sViMf35B6ohO7lu3hqyxehXNxsDZvBDwBPYK5foJn/ozTVGiPNszW6x9qM3dNN0KRzpHgoNYyqGiG2jeWjfztCui7jtEVcYQTH0vD5F4RGFVQ0RjHA2cufuVFpJzlevwdkU2D9tY/U2ZzpoNkkTHR3KcmPmSaZVQKIVnM97AJM1W0MSCVH+Fai9vvd0roobp2NTBZes0bZdQ8c2W7Kx04xU7YMcSvGjSmpdSL/RJM/lr/oZDqtUrmvOmuGB5cncHp4Bw0qxQVciehy4pIceJWSsEObC5RXvnicL4x+nqXpFog==";
+
+    std::string data = [datapackage UTF8String];
+    
+    data = unhexlify(data);
+    
+     std::cout << hexlify(data) << std::endl;
+    
+    std::string one = base64_decode(encrypt_msg);
+    std::cout << hexlify(one) << std::endl;
+    
+    
+    std::string two = base64_encode(one);
+    std::cout << two << std::endl;
+    
+    pm::PMPGPMessage pm_pgp_msg(one);
+    
+    pm_pgp_msg.append(data);
+    
+    std::string test_plain_txt = decrypt_pka(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String], false);
+    
+    //std::cout << hexlify(test_plain_txt) << std::endl;
+    
+    return [NSData dataWithBytes: test_plain_txt.c_str() length:test_plain_txt.length()];
 }
 
 - (void)Test

@@ -133,5 +133,28 @@ class ViewController: NSViewController {
         println(dec_m);
         
     }
+    @IBAction func test_encrypt_decrypt_attachment(sender: AnyObject) {
+        let pgp:OpenPGP = OpenPGP()
+        let pub_location = "/Users/Yanfeng/Desktop/publickey.net.txt"
+        let priv_location = "/Users/Yanfeng/Desktop/privatekey.net.txt"
+        let key_package_location = "/Users/Yanfeng/Desktop/keypackage.txt"
+        let data_package_location = "/Users/Yanfeng/Desktop/dataPack.txt"
+
+        let pubkey = NSString(contentsOfFile: pub_location, encoding: NSUTF8StringEncoding, error: nil) as! String
+        let privkey = NSString(contentsOfFile: priv_location, encoding: NSUTF8StringEncoding, error: nil) as! String
+        let key_package = NSString(contentsOfFile: key_package_location, encoding: NSUTF8StringEncoding, error: nil) as! String
+        let data_package = NSString(contentsOfFile: data_package_location, encoding: NSUTF8StringEncoding, error: nil) as! String
+        
+        let value = pgp.SetupKeys(privkey, pubKey: pubkey, pass: "123", error:nil)
+        
+        
+        let data = pgp.Test_Attachment(key_package, data: data_package)
+
+        data.writeToFile("/Users/Yanfeng/Desktop/1.png", atomically: false)
+
+        
+        println("Done");
+
+    }
 }
 

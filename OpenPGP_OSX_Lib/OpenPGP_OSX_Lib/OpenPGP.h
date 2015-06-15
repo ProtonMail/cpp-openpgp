@@ -52,6 +52,8 @@
 - (void)Test_Privatekey:(NSString *)priv_key pass:(NSString*) passphrase;
 
 
+- (NSData *) Test_Attachment:(NSString*) package data:(NSString*) datapackage;
+
 
 
 

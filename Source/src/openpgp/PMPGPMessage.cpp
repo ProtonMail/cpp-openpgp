@@ -45,7 +45,6 @@ namespace pm {
         
         //detatct header check protonmail header.
         std::string::size_type count = 29;
-        
         std::size_t start_enc_msg = data.find(protonmail_cryoto_headerMessage.c_str(), 0, count);
         if(start_enc_msg == std::string::npos)
         {
@@ -92,45 +91,11 @@ namespace pm {
             PGPMessage::read(data);
             PGPMessage::done_load();
         }
-        
-        //
-        //std::string clain_txt = decrypt_pka(*private_key_, pgp_encrypted_msg, [self->Passpharse UTF8String], false);
-//        if(isDebugMode)
-//            std::cout << clain_txt << std::endl;
-//        
-//        std::string v = decode_utf8_base64(clain_txt);
-//        if(isDebugMode)
-//            std::cout << v.length() << std::endl;
-//        if(isDebugMode)
-//            std::cout << v << std::endl;
-//        
-//        std::string decoded_message = decode_utf8_base64(encrypted_msg);
-//        if(isDebugMode)
-//            std::cout << decoded_message << std::endl;
-//        
-//        std::string data = use_OpenPGP_CFB_decrypt(9, 9, decoded_message, v, false);
-//        if(isDebugMode)
-//            std::cout << data.length() << std::endl;
-//        if(isDebugMode)
-//            std::cout << data << std::endl;
-//        
-//        //data = base64_decode(data);
-//        auto data2 = decode_utf8_base64_msg(data);
-//        
-//        if(isDebugMode)
-//        {
-//            std::cout << data.length() << std::endl;
-//            std::cout << data << std::endl;
-//            
-//            std::cout << data2.length() << std::endl;
-//            std::cout << data2 << std::endl;
-//        }
-//        
-//        
-//        
-//        
-
-        //        return [[NSString alloc] initWithUTF8String:data2.c_str()];
+    }
+    
+    void PMPGPMessage::append(std::string &data)
+    {
+        read(data);
     }
     
     bool PMPGPMessage::get_is_pm_pka() const

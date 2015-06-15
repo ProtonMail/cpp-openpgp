@@ -34,6 +34,7 @@ public:
     bool get_is_pm_pka() const;
     std::string get_encrypt_msg() const;
 
+    void append(std::string &data);
 };
     
     
