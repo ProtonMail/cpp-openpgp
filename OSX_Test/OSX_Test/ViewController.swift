@@ -148,6 +148,16 @@ class ViewController: NSViewController {
         let value = pgp.SetupKeys(privkey, pubKey: pubkey, pass: "123", error:nil)
         
         
+        
+        let armored_key_package_location = "/Users/Yanfeng/Desktop/new_att_key.txt"
+        let armored_data_package_location = "/Users/Yanfeng/Desktop/new_att_data.txt"
+        let armored_key_package = NSString(contentsOfFile: armored_key_package_location, encoding: NSUTF8StringEncoding, error: nil) as! String
+        let armored_data_package = NSString(contentsOfFile: armored_data_package_location, encoding: NSUTF8StringEncoding, error: nil) as! String
+        let decrypted_data = pgp.decrypt_attachment_armored(armored_key_package, data: armored_data_package, error:nil)
+        decrypted_data.writeToFile("/Users/Yanfeng/Desktop/new_unencrypted.png", atomically: false)
+
+        
+        
         let data = pgp.Test_Attachment(key_package, data: data_package)
 
         data.writeToFile("/Users/Yanfeng/Desktop/1.png", atomically: false)

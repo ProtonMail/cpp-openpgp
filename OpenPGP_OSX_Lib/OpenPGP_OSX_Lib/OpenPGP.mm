@@ -609,10 +609,35 @@
 }
 
 
-//encrypt decrypt attachment
-- (NSData *) decrypt_attachment:(NSString*) keyPackage data:(NSString*) dataPackage error:(NSError**) err
+- (NSData *) decrypt_attachment:(NSData*) keyPackage data:(NSData*) dataPackage error:(NSError**) err
 {
-    return nil;
+    std::string str_key_package = std::string((char* )[keyPackage bytes], [keyPackage length]);
+    std::string str_data_package = std::string((char* )[dataPackage bytes], [dataPackage length]);
+    
+    
+    pm::PMPGPMessage pm_pgp_msg(str_key_package);
+    pm_pgp_msg.append(str_data_package);
+    
+    std::string test_plain_txt = decrypt_pka(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String], false);
+    
+    std::cout  << test_plain_txt << std::endl;
+    
+    return [NSData dataWithBytes: test_plain_txt.c_str() length:test_plain_txt.length()];
+}
+
+- (NSData *) decrypt_attachment_armored:(NSString*) keyPackage data:(NSString*) dataPackage error:(NSError**) err
+{
+    std::string str_key_package = [keyPackage UTF8String];
+    std::string str_data_package = [dataPackage UTF8String];
+    
+    pm::PMPGPMessage pm_pgp_msg(str_key_package);
+    pm_pgp_msg.append(str_data_package);
+    
+    std::string test_plain_txt = decrypt_pka(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String], false);
+    
+    std::cout  << test_plain_txt << std::endl;
+    
+    return [NSData dataWithBytes: test_plain_txt.c_str() length:test_plain_txt.length()];
 }
 
 - (NSMutableDictionary*) encrypt_attachment:(NSData *) unencrypt_att pub_key:(NSString *)pub_key error:(NSError**) err
@@ -627,10 +652,12 @@
     
     PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg);
     
-    std::string encrypt_message = encrypted_pgp.write();
+    std::string keyPackage = encrypted_pgp.write(0, 0, 1);
+    std::string dataPackage = encrypted_pgp.write(0, 0, 18);
 
-    
-    std::cout << encrypt_message.length() << std::endl;
+    std::cout << keyPackage << std::endl;
+
+    std::cout << dataPackage << std::endl;
     
     return nil;
 }

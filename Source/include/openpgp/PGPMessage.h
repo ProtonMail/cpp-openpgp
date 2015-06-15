@@ -113,8 +113,8 @@ class PGPMessage : public PGP {
         ~PGPMessage();
 
         std::string show(const uint8_t indents = 0, const uint8_t indent_size = 4) const;   // display information; indents is used to tab the output if desired
-        std::string raw(const uint8_t header = 0) const;                                    // write packets only; header is for writing default (0), old (1) or new (2) header formats
-        std::string write(const uint8_t armor = 0, const uint8_t header = 0) const;         // armor: use default = 0, no armor = 1, armored = 2; header: same as raw()
+        std::string raw(const uint8_t header = 0, const uint8_t tag = 255) const;                                    // write packets only; header is for writing default (0), old (1) or new (2) header formats
+        std::string write(const uint8_t armor = 0, const uint8_t header = 0, const uint8_t tag = 255) const;         // armor: use default = 0, no armor = 1, armored = 2; header: same as raw()
 
         uint8_t get_comp();             // get compression algorithm
 
