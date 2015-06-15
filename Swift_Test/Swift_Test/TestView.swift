@@ -138,7 +138,7 @@ class TestView: UIViewController {
         
         let pgp:OpenPGP = OpenPGP();
         
-        pgp.TestEncryptPwd("test", pass: "a123");
+       // pgp.TestEncryptPwd("test", pass: "a123");
         
         let button:UIButton = sender as! UIButton;
         

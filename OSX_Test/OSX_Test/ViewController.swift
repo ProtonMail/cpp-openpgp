@@ -10,6 +10,7 @@ import Cocoa
 
 class ViewController: NSViewController {
 
+    @IBOutlet weak var labelDisplay: NSTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -112,8 +113,6 @@ class ViewController: NSViewController {
         let out = pgp.decrypt_mailbox_pwd(v, slat: "4428c82a118a2dc76f53dab507d3b1d69850ebb9")
         
         println(out);
-
-        
     }
     
     @IBAction func test_bad_message(sender: AnyObject) {
@@ -165,13 +164,61 @@ class ViewController: NSViewController {
         let un_encrypt_attachment = "/Users/Yanfeng/Desktop/2.png"
         let un_encrypt_attachment_data_package = NSData(contentsOfFile: un_encrypt_attachment)
         
-        println(un_encrypt_attachment_data_package)
-        
+        //println(un_encrypt_attachment_data_package)
         pgp.encrypt_attachment(un_encrypt_attachment_data_package, pub_key: pubkey, error: nil)
-
+        let dictOut = pgp.encrypt_attachments(un_encrypt_attachment_data_package, pub_keys: ["zhj4478@protonmail.com" : pubkey], error: nil)
         
-        println("Done");
+        let key = dictOut["zhj4478@protonmail.com"] as! String
+        let d = dictOut["DataPacket"] as! String
+        
+        let test_data = pgp.decrypt_attachment_armored(key, data: d, error:nil)
+        test_data.writeToFile("/Users/Yanfeng/Desktop/3.png", atomically: false)
+        
 
+        println("Done");
+    }
+
+    @IBAction func large_attachment_testing(sender: AnyObject) {
+        
+        let pgp:OpenPGP = OpenPGP()
+        let pub_location = "/Users/Yanfeng/Desktop/publickey.net.txt"
+        let priv_location = "/Users/Yanfeng/Desktop/privatekey.net.txt"
+        let key_package_location = "/Users/Yanfeng/Desktop/keypackage.txt"
+        let data_package_location = "/Users/Yanfeng/Desktop/dataPack.txt"
+        
+        let pubkey = NSString(contentsOfFile: pub_location, encoding: NSUTF8StringEncoding, error: nil) as! String
+        let privkey = NSString(contentsOfFile: priv_location, encoding: NSUTF8StringEncoding, error: nil) as! String
+        let key_package = NSString(contentsOfFile: key_package_location, encoding: NSUTF8StringEncoding, error: nil) as! String
+        let data_package = NSString(contentsOfFile: data_package_location, encoding: NSUTF8StringEncoding, error: nil) as! String
+        
+        let value = pgp.SetupKeys(privkey, pubKey: pubkey, pass: "123", error:nil)
+        
+        let startTime:CFTimeInterval  = CACurrentMediaTime()
+        
+        let un_encrypt_attachment = "/Users/Yanfeng/Desktop/Bee-latest.zip"
+        let un_encrypt_attachment_data_package = NSData(contentsOfFile: un_encrypt_attachment)
+        
+        //println(un_encrypt_attachment_data_package)
+        //pgp.encrypt_attachment(un_encrypt_attachment_data_package, pub_key: pubkey, error: nil)
+        let dictOut = pgp.encrypt_attachments(un_encrypt_attachment_data_package, pub_keys: ["zhj4478@protonmail.com" : pubkey], error: nil)
+        
+        let encryptTime:CFTimeInterval  = CACurrentMediaTime();
+        
+        
+        let key = dictOut["zhj4478@protonmail.com"] as! String
+        let d = dictOut["DataPacket"] as! String
+        
+        let test_data = pgp.decrypt_attachment_armored(key, data: d, error:nil)
+        test_data.writeToFile("/Users/Yanfeng/Desktop/new_Bee-latest.zip", atomically: false)
+        
+        let decryptTime:CFTimeInterval  = CACurrentMediaTime();
+        
+        let total = (decryptTime - startTime);
+        
+        let encrypt = (encryptTime - startTime);
+        let decrypt = (decryptTime - encryptTime);
+
+        self.labelDisplay.stringValue = NSString(format: "Total Runtime: %g s --- Enrypt: %g s ---- Decrypt %g s", total, encrypt , decrypt) as String;
     }
 }
 

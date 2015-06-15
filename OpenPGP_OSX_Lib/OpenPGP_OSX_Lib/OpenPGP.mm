@@ -620,8 +620,7 @@
     
     std::string test_plain_txt = decrypt_pka(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String], false);
     
-    std::cout  << test_plain_txt << std::endl;
-    
+    //std::cout  << test_plain_txt << std::endl;
     return [NSData dataWithBytes: test_plain_txt.c_str() length:test_plain_txt.length()];
 }
 
@@ -635,17 +634,22 @@
     
     std::string test_plain_txt = decrypt_pka(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String], false);
     
-    std::cout  << test_plain_txt << std::endl;
-    
+    //std::cout  << test_plain_txt << std::endl;
     return [NSData dataWithBytes: test_plain_txt.c_str() length:test_plain_txt.length()];
 }
 
+
+//encrypt decrypt attachment
+// ["dataPacket"]
+// ["keyPacket"]
 - (NSMutableDictionary*) encrypt_attachment:(NSData *) unencrypt_att pub_key:(NSString *)pub_key error:(NSError**) err
 {
+    NSMutableDictionary *dictX = [[NSMutableDictionary alloc] init];
+    
     //NSData to string  need error handling here
     std::string unencrypt_msg = std::string((char* )[unencrypt_att bytes], [unencrypt_att length]);
     
-    std::cout << hexlify(unencrypt_msg) << std::endl;
+   // std::cout << hexlify(unencrypt_msg) << std::endl;
     std::string user_pub_key = [pub_key UTF8String];
     
     PGPPublicKey pub(user_pub_key);
@@ -654,14 +658,44 @@
     
     std::string keyPackage = encrypted_pgp.write(0, 0, 1);
     std::string dataPackage = encrypted_pgp.write(0, 0, 18);
-
-    std::cout << keyPackage << std::endl;
-
-    std::cout << dataPackage << std::endl;
     
-    return nil;
+    
+    [dictX setObject:[[NSString alloc] initWithUTF8String:dataPackage.c_str()] forKey:@"DataPacket"];
+    [dictX setObject:[[NSString alloc] initWithUTF8String:keyPackage.c_str()] forKey:@"KeyPacket"];
+
+    
+    //std::cout << keyPackage << std::endl;
+    //std::cout << dataPackage << std::endl;
+    
+    return dictX;
 }
 
+
+//encrypt decrypt attachment
+// ["dataPacket"]
+// ["keyPackets"]
+//        ["email" : "KeyP"]
+//        ["email" : "KeyP"]
+- (NSMutableDictionary*) encrypt_attachments:(NSData *) unencrypt_att pub_keys:(NSMutableDictionary*)pub_keys error:(NSError**) err
+{
+    NSMutableDictionary *dictX = [[NSMutableDictionary alloc] init];
+    
+    std::string unencrypt_attachment = std::string((char* )[unencrypt_att bytes], [unencrypt_att length]);
+    std::string session_key = generat_session_key();
+    
+    for(id key in pub_keys)
+    {
+        std::string user_pub_key = [pub_keys[key] UTF8String];
+        PGPPublicKey pub(user_pub_key);
+        PGPMessage enrypted_session_key = encrypt_pka_only_session(pub, session_key);
+        [dictX setObject:[[NSString alloc] initWithUTF8String:enrypted_session_key.write().c_str()] forKey:key];
+    }
+    
+    PGPMessage encrypted_att = encrypt_pka_only_data(session_key, unencrypt_attachment);
+    [dictX setObject:[[NSString alloc] initWithUTF8String:encrypted_att.write().c_str()] forKey:@"DataPacket"];
+
+    return dictX;
+}
 
 
 - (NSData * ) Test_Attachment:(NSString*) package data:(NSString*) datapackage
@@ -672,14 +706,14 @@
     
     data = unhexlify(data);
     
-     std::cout << hexlify(data) << std::endl;
+    // std::cout << hexlify(data) << std::endl;
     
     std::string one = base64_decode(encrypt_msg);
-    std::cout << hexlify(one) << std::endl;
+   // std::cout << hexlify(one) << std::endl;
     
     
     std::string two = base64_encode(one);
-    std::cout << two << std::endl;
+    //std::cout << two << std::endl;
     
     pm::PMPGPMessage pm_pgp_msg(one);
     
@@ -687,7 +721,7 @@
     
     std::string test_plain_txt = decrypt_pka(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String], false);
     
-    std::cout  << test_plain_txt << std::endl;
+    //std::cout  << test_plain_txt << std::endl;
     
     return [NSData dataWithBytes: test_plain_txt.c_str() length:test_plain_txt.length()];
 }

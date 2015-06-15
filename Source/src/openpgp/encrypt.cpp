@@ -280,6 +280,89 @@ PGPMessage encrypt_pka(const PGPPublicKey & pub, const std::string & data, const
     return out;
 }
 
+std::string generat_session_key (const uint8_t sym_alg)
+{
+    uint16_t key_len = Symmetric_Algorithm_Key_Length.at(Symmetric_Algorithms.at(sym_alg));
+    // get hex version of session key
+    std::string session_key = BBS().rand_byts(key_len);
+    return session_key;
+}
+
+PGPMessage encrypt_pka_only_data(const std::string & session_key, const std::string & data, const std::string & filename, const uint8_t sym_alg, const uint8_t comp, const bool mdc, const PGPSecretKey::Ptr & signer, const std::string & sig_passphrase)
+{
+    // encrypt data and put it into a packet
+    Packet::Ptr encrypted = encrypt_data(session_key, data, filename, sym_alg, comp, mdc, signer, sig_passphrase);
+    
+    // write data to output container
+    PGPMessage out;
+    out.set_ASCII_Armor(0);
+    out.set_Armor_Header(std::vector <std::pair <std::string, std::string> > ( {
+        std::pair <std::string, std::string> ("Version", "ProtonMail v0.1.0"),
+        std::pair <std::string, std::string> ("Comment", "https://protonmail.com")
+    }));
+    out.set_packets({encrypted});
+    encrypted.reset();
+    
+    return out;
+}
+
+PGPMessage encrypt_pka_only_session(const PGPPublicKey & pub, std::string & session_key, const uint8_t sym_alg)
+{
+    if ((pub.get_ASCII_Armor() != 1) && (pub.get_ASCII_Armor() != 2)){
+        throw std::runtime_error("Error: No encrypting key found.");
+    }
+    std::vector <Packet::Ptr> packets = pub.get_packets();
+    Tag6::Ptr public_key = find_encrypting_key(pub);
+    if (!public_key){
+        throw std::runtime_error("Error: No encrypting key found.");
+    }
+    // Check if key has been revoked
+    if (check_revoked(packets, public_key -> get_keyid())){
+        throw std::runtime_error("Error: Key " + hexlify(public_key -> get_keyid()) + " has been revoked. Nothing done.");
+    }
+    std::vector <std::string> mpi = public_key -> get_mpi();
+    Tag1::Ptr tag1 = std::make_shared<Tag1>();
+    tag1 -> set_keyid(public_key -> get_keyid());
+    tag1 -> set_pka(public_key -> get_pka());
+    
+    // generate session key
+    uint16_t key_len = Symmetric_Algorithm_Key_Length.at(Symmetric_Algorithms.at(sym_alg));
+    if (key_len/8 != session_key.length())
+    {
+        throw std::runtime_error("Error: The session length incorrect");
+    }
+    
+    std::string unencoded = "";
+    unencoded += 9;
+    unencoded += session_key;
+    uint16_t sum = 0;
+    for(char & x : session_key){
+        sum += static_cast <unsigned char> (x);
+    }
+    unencoded += (uint8_t)((sum >> 8) & 0xff);
+    unencoded += (uint8_t)(sum & 0xff);
+    
+    std::string nibbles = mpitohex(mpi[0]);        // get hex representation of modulus
+    nibbles += std::string(nibbles.size() & 1, 0); // get even number of nibbles
+    std::string m = hextompi(hexlify(EME_PKCS1v1_5_ENCODE(std::string(1, sym_alg) + session_key + unhexlify(makehex(sum, 4)), (unsigned int)nibbles.size() >> 1)));
+    tag1->set_mpi(pka_encrypt(public_key->get_pka(), m, mpi));
+    
+    // write data to output container
+    PGPMessage out;
+    out.set_ASCII_Armor(0);
+    out.set_Armor_Header(std::vector <std::pair <std::string, std::string> > ( {
+        std::pair <std::string, std::string> ("Version", "ProtonMail v0.1.0"),
+        std::pair <std::string, std::string> ("Comment", "https://protonmail.com")
+    }));
+    out.set_packets({tag1});
+    // clear data
+    packets.clear();
+    public_key.reset();
+    tag1.reset();
+    return out;
+}
+
+
 pm::PMPGPMessage encrypt_pka(const PGPPublicKey & pub, const std::string & data, const std::string & filename, const uint8_t sym_alg, const uint8_t comp, const bool mdc, const PGPSecretKey::Ptr & signer, const std::string & sig_passphrase, bool is_pm_pka)
 {
 //    std::string unencrypt_msg = [unencrypt_message UTF8String];
