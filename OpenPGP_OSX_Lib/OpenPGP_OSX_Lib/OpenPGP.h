@@ -45,13 +45,14 @@
 - (NSString* ) decrypt_mailbox_pwd:(NSString *)encrypt_text slat:(NSString*) value;
 
 
+//encrypt decrypt attachment
+- (NSMutableDictionary*) encrypt_attachment:(NSData *) unencrypt_att pub_key:(NSString *)pub_key error:(NSError**) err;
+- (NSData *) decrypt_attachment:(NSString*) keyPackage data:(NSString*) dataPackage error:(NSError**) err;
+
+
 // print debug logs
 - (void)EnableDebug:(BOOL) isDebug;
-
-
 - (void)Test_Privatekey:(NSString *)priv_key pass:(NSString*) passphrase;
-
-
 - (NSData *) Test_Attachment:(NSString*) package data:(NSString*) datapackage;
 
 

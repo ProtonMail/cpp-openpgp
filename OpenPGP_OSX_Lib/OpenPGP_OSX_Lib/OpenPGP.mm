@@ -559,179 +559,6 @@
     
     return dictX;
 }
-
-//- (NSString *) decrypt_message:(NSString*) encrypted_message error:(NSError**) err
-//{
-//
-//    try
-//    {
-//        if(encrypted_message.length <= 0 )
-//        {
-//            if (err)
-//            {
-//                NSString *domain = @"com.ProtonMail.OpenPGP";
-//                NSString *desc = NSLocalizedString(@"The input message is not valid" , @"");
-//                NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
-//
-//                *err = [NSError errorWithDomain:domain code:10005 userInfo:userInfo];
-//            }
-//            return nil;
-//
-//        }
-//
-//        if(!IsPasspharseRight)
-//        {
-//            if (err)
-//            {
-//                NSString *domain = @"com.ProtonMail.OpenPGP";
-//                NSString *desc = NSLocalizedString(@"you need load private key first" , @"");
-//                NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
-//
-//                *err = [NSError errorWithDomain:domain code:10004 userInfo:userInfo];
-//            }
-//            return nil;
-//        }
-//
-//        PGPMessage pgp_encrypted_msg;
-//        std::string encrypt_msg = [encrypted_message UTF8String];
-//
-//        std::size_t start = encrypt_msg.find(protonmail_cryoto_headerMessage) + protonmail_cryoto_headerMessage.length();
-//        if(start == std::string::npos)
-//        {
-//            if (err)
-//            {
-//                NSString *domain = @"com.ProtonMail.OpenPGP";
-//                NSString *desc = NSLocalizedString(@"Bad protonmail pgp message" , @"");
-//                NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
-//
-//                *err = [NSError errorWithDomain:domain code:10006 userInfo:userInfo];
-//            }
-//            return nil;
-//        }
-//        std::size_t end = encrypt_msg.find(protonmail_cryoto_tailMessage);
-//        if(end == std::string::npos)
-//        {
-//            if (err)
-//            {
-//                NSString *domain = @"com.ProtonMail.OpenPGP";
-//                NSString *desc = NSLocalizedString(@"Bad protonmail pgp message" , @"");
-//                NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
-//
-//                *err = [NSError errorWithDomain:domain code:10006 userInfo:userInfo];
-//            }
-//            return nil;
-//        }
-//        end -= start;
-//
-//        std::string encrypted_msg = encrypt_msg.substr(start, end);
-//        if(isDebugMode)
-//            std::cout << encrypted_msg << std::endl;
-//
-//
-//        std::size_t start_1 = encrypt_msg.find(protonmail_cryoto_headerRandomKey) + protonmail_cryoto_headerRandomKey.length();
-//        if(start_1 == std::string::npos)
-//        {
-//            if (err)
-//            {
-//                NSString *domain = @"com.ProtonMail.OpenPGP";
-//                NSString *desc = NSLocalizedString(@"Bad protonmail pgp message" , @"");
-//                NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
-//
-//                *err = [NSError errorWithDomain:domain code:10006 userInfo:userInfo];
-//            }
-//            return nil;
-//        }
-//        std::size_t end_1 = encrypt_msg.length() - protonmail_cryoto_tailRandomKey.length();
-//        if(end_1 == std::string::npos)
-//        {
-//            if (err)
-//            {
-//                NSString *domain = @"com.ProtonMail.OpenPGP";
-//                NSString *desc = NSLocalizedString(@"Bad protonmail pgp message" , @"");
-//                NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
-//
-//                *err = [NSError errorWithDomain:domain code:10006 userInfo:userInfo];
-//            }
-//            return nil;
-//        }
-//        start_1 -= start_1;
-//
-//        std::string encrypt_random_key = encrypt_msg.substr(start_1, end_1);
-//        if(isDebugMode)
-//            std::cout << encrypt_random_key << std::endl;
-//
-//        pgp_encrypted_msg.read(encrypt_random_key);
-//        std::string clain_txt = decrypt_pka(*private_key_, pgp_encrypted_msg, [self->Passpharse UTF8String], false);
-//        if(isDebugMode)
-//            std::cout << clain_txt << std::endl;
-//
-//        std::string v = decode_utf8_base64(clain_txt);
-//        if(isDebugMode)
-//            std::cout << v.length() << std::endl;
-//        if(isDebugMode)
-//            std::cout << v << std::endl;
-//
-//        std::string decoded_message = decode_utf8_base64(encrypted_msg);
-//        if(isDebugMode)
-//            std::cout << decoded_message << std::endl;
-//
-//        std::string data = use_OpenPGP_CFB_decrypt(9, 9, decoded_message, v, false);
-//        if(isDebugMode)
-//            std::cout << data.length() << std::endl;
-//        if(isDebugMode)
-//            std::cout << data << std::endl;
-//
-//        //data = base64_decode(data);
-//        auto data2 = decode_utf8_base64_msg(data);
-//
-//        if(isDebugMode)
-//        {
-//            std::cout << data.length() << std::endl;
-//            std::cout << data << std::endl;
-//
-//            std::cout << data2.length() << std::endl;
-//            std::cout << data2 << std::endl;
-//        }
-//        return [[NSString alloc] initWithUTF8String:data2.c_str()];
-//    }
-//    catch (const std::runtime_error& error)
-//    {
-//        if (err)
-//        {
-//            NSString *domain = @"com.ProtonMail.OpenPGP";
-//            NSString *desc = NSLocalizedString([NSString stringWithUTF8String:error.what()] , @"");
-//            NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
-//
-//            *err = [NSError errorWithDomain:domain code:10001 userInfo:userInfo];
-//        }
-//    }
-//    catch (const std::exception& e)
-//    {
-//        if (err)
-//        {
-//            NSString *domain = @"com.ProtonMail.OpenPGP";
-//            NSString *desc = NSLocalizedString([NSString stringWithUTF8String:e.what()] , @"");
-//            NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
-//
-//            *err = [NSError errorWithDomain:domain code:10002 userInfo:userInfo];
-//        }
-//
-//    }
-//    catch (...)
-//    {
-//        if (err)
-//        {
-//            NSString *domain = @"com.ProtonMail.OpenPGP";
-//            NSString *desc = NSLocalizedString(@"Unknow errors", @"");
-//            NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
-//
-//            *err = [NSError errorWithDomain:domain code:10003 userInfo:userInfo];
-//        }
-//    }
-//    return nil;
-//}
-//
-
 - (void)Test_Privatekey:(NSString *)priv_key pass:(NSString*) passphrase
 {
     std::string str_priv_key = [priv_key UTF8String];
@@ -781,6 +608,35 @@
     isDebugMode = isDebug;
 }
 
+
+//encrypt decrypt attachment
+- (NSData *) decrypt_attachment:(NSString*) keyPackage data:(NSString*) dataPackage error:(NSError**) err
+{
+    return nil;
+}
+
+- (NSMutableDictionary*) encrypt_attachment:(NSData *) unencrypt_att pub_key:(NSString *)pub_key error:(NSError**) err
+{
+    //NSData to string  need error handling here
+    std::string unencrypt_msg = std::string((char* )[unencrypt_att bytes], [unencrypt_att length]);
+    
+    std::cout << hexlify(unencrypt_msg) << std::endl;
+    std::string user_pub_key = [pub_key UTF8String];
+    
+    PGPPublicKey pub(user_pub_key);
+    
+    PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg);
+    
+    std::string encrypt_message = encrypted_pgp.write();
+
+    
+    std::cout << encrypt_message.length() << std::endl;
+    
+    return nil;
+}
+
+
+
 - (NSData * ) Test_Attachment:(NSString*) package data:(NSString*) datapackage
 {
     std::string encrypt_msg = "wcBMA9ted+lmZVn8AQf/Q41P+zzGgasmskYRZQ5joeQnDOcqE0jS4+YSkFNZ1sViMf35B6ohO7lu3hqyxehXNxsDZvBDwBPYK5foJn/ozTVGiPNszW6x9qM3dNN0KRzpHgoNYyqGiG2jeWjfztCui7jtEVcYQTH0vD5F4RGFVQ0RjHA2cufuVFpJzlevwdkU2D9tY/U2ZzpoNkkTHR3KcmPmSaZVQKIVnM97AJM1W0MSCVH+Fai9vvd0roobp2NTBZes0bZdQ8c2W7Kx04xU7YMcSvGjSmpdSL/RJM/lr/oZDqtUrmvOmuGB5cncHp4Bw0qxQVciehy4pIceJWSsEObC5RXvnicL4x+nqXpFog==";
@@ -804,7 +660,7 @@
     
     std::string test_plain_txt = decrypt_pka(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String], false);
     
-    //std::cout << hexlify(test_plain_txt) << std::endl;
+    std::cout  << test_plain_txt << std::endl;
     
     return [NSData dataWithBytes: test_plain_txt.c_str() length:test_plain_txt.length()];
 }
@@ -829,5 +685,6 @@
     
     return @"";
 }
+
 
 @end

@@ -151,6 +151,13 @@ class ViewController: NSViewController {
         let data = pgp.Test_Attachment(key_package, data: data_package)
 
         data.writeToFile("/Users/Yanfeng/Desktop/1.png", atomically: false)
+        
+        let un_encrypt_attachment = "/Users/Yanfeng/Desktop/2.png"
+        let un_encrypt_attachment_data_package = NSData(contentsOfFile: un_encrypt_attachment)
+        
+        println(un_encrypt_attachment_data_package)
+        
+        pgp.encrypt_attachment(un_encrypt_attachment_data_package, pub_key: pubkey, error: nil)
 
         
         println("Done");
