@@ -193,11 +193,13 @@ class ViewController: NSViewController {
         
         let value = pgp.SetupKeys(privkey, pubKey: pubkey, pass: "123", error:nil)
         
-        let startTime:CFTimeInterval  = CACurrentMediaTime()
+        
         
         let un_encrypt_attachment = "/Users/Yanfeng/Desktop/Bee-latest.zip"
         let un_encrypt_attachment_data_package = NSData(contentsOfFile: un_encrypt_attachment)
         
+        let startTime:CFTimeInterval  = CACurrentMediaTime()
+
         //println(un_encrypt_attachment_data_package)
         //pgp.encrypt_attachment(un_encrypt_attachment_data_package, pub_key: pubkey, error: nil)
         let dictOut = pgp.encrypt_attachments(un_encrypt_attachment_data_package, pub_keys: ["zhj4478@protonmail.com" : pubkey], error: nil)
@@ -205,11 +207,11 @@ class ViewController: NSViewController {
         let encryptTime:CFTimeInterval  = CACurrentMediaTime();
         
         
-        let key = dictOut["zhj4478@protonmail.com"] as! String
-        let d = dictOut["DataPacket"] as! String
-        
-        let test_data = pgp.decrypt_attachment_armored(key, data: d, error:nil)
-        test_data.writeToFile("/Users/Yanfeng/Desktop/new_Bee-latest.zip", atomically: false)
+//        let key = dictOut["zhj4478@protonmail.com"] as! String
+//        let d = dictOut["DataPacket"] as! String
+//        
+//        let test_data = pgp.decrypt_attachment_armored(key, data: d, error:nil)
+//        test_data.writeToFile("/Users/Yanfeng/Desktop/new_Bee-latest.zip", atomically: false)
         
         let decryptTime:CFTimeInterval  = CACurrentMediaTime();
         

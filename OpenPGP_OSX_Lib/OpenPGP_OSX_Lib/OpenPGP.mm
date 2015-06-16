@@ -691,8 +691,9 @@
         [dictX setObject:[[NSString alloc] initWithUTF8String:enrypted_session_key.write().c_str()] forKey:key];
     }
     
-    PGPMessage encrypted_att = encrypt_pka_only_data(session_key, unencrypt_attachment);
-    [dictX setObject:[[NSString alloc] initWithUTF8String:encrypted_att.write().c_str()] forKey:@"DataPacket"];
+    PGPMessage encrypted_att = encrypt_pka_only_data(session_key, unencrypt_attachment, "", 9, 0);
+    std::string endryp_dat = encrypted_att.write(1, 0);
+    [dictX setObject:[NSData dataWithBytes: endryp_dat.c_str() length:endryp_dat.length()] forKey:@"DataPacket"];
 
     return dictX;
 }

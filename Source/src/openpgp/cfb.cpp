@@ -69,36 +69,64 @@ std::string OpenPGP_CFB_encrypt(SymAlg::Ptr & crypt, const uint8_t packet, const
 
 	Step by step, here is the procedure:
 	*/
+    clock_t Start1 = clock();
+    clock_t Start = clock();
 
     // 1. The feedback register (FR) is set to the IV, which is all zeros.
     std::string FR(BS, 0);
+    
+    std::cout << "Step 1: " << clock() - Start << std::endl;
+    Start = clock();
 
     // 2. FR is encrypted to produce FRE (FR Encrypted). This is the encryption of an all-zero value.
     std::string FRE = crypt -> encrypt(FR);
+    
+    std::cout << "Step 2: " << clock() - Start << std::endl;
+    Start = clock();
 
     // 3. FRE is xored with the first BS octets of random data prefixed to the plaintext to produce C[1] through C[BS], the first BS octets of ciphertext.
     FRE = xor_strings(FRE, prefix);
     std::string C = FRE;
+    
+    std::cout << "Step 3: " << clock() - Start << std::endl;
+    Start = clock();
 
     // 4. FR is loaded with C[1] through C[BS].
     FR = C;
+    
+    std::cout << "Step 4: " << clock() - Start << std::endl;
+    Start = clock();
 
     // 5. FR is encrypted to produce FRE, the encryption of the first BS octets of ciphertext.
     FRE = crypt -> encrypt(FR);
 
+    std::cout << "Step 5: " << clock() - Start << std::endl;
+    Start = clock();
 
 	if (packet == 9){           // resynchronization
         // 6. The left two octets of FRE get xored with the next two octets of data that were prefixed to the plaintext. This produces C[BS+1] and C[BS+2], the next two octets of ciphertext.
         C += xor_strings(FRE.substr(0, 2), prefix.substr(BS - 2, 2));
+        
+        std::cout << "Step 6: " << clock() - Start << std::endl;
+        Start = clock();
 
 		// 7. (The resynchronization step) FR is loaded with C[3] through C[BS+2].
         FR = C.substr(2, BS);
+        
+        std::cout << "Step 7: " << clock() - Start << std::endl;
+        Start = clock();
 
 		// 8. FR is encrypted to produce FRE.
         FRE = crypt -> encrypt(FR);
+        
+        std::cout << "Step 8: " << clock() - Start << std::endl;
+        Start = clock();
 
         // 9. FRE is xored with the first BS octets of the given plaintext, now that we have finished encrypting the BS+2 octets of prefixed data. This produces C[BS+3] through C[BS+(BS+2)], the next BS octets of ciphertext.
         C += xor_strings(FRE, data.substr(0, BS));
+        
+        std::cout << "Step 9: " << clock() - Start << std::endl;
+        Start = clock();
     }
     else if (packet == 18){     // no resynchronization
 		/*
@@ -111,25 +139,40 @@ std::string OpenPGP_CFB_encrypt(SymAlg::Ptr & crypt, const uint8_t packet, const
 
         // Second block of ciphertext is the 2 repeated octets + the first BS - 2 octets of the plaintext
         C += xor_strings(FRE, prefix.substr(BS - 2, 2) + data.substr(0, BS - 2));
+        
+        std::cout << "packet == 18: " << clock() - Start << std::endl;
+        Start = clock();
     }
     else{
         throw std::runtime_error("Error: Bad Packet Type");
     }
 
     unsigned int x = BS - ((packet == 9)?0:2);
-    while (x < data.size()){
+    unsigned long data_size = data.size();
+    while (x < data_size){
         // 10. FR is loaded with C[BS+3] to C[BS + (BS+2)] (which is C11-C18 for an 8-octet block).
         FR = C.substr(x + 2, BS);
+        
+        std::cout << "Step 10: " << clock() - Start << std::endl;
+        Start = clock();
 
         // 11. FR is encrypted to produce FRE.
         FRE = crypt -> encrypt(FR);
+        
+        std::cout << "Step 11: " << clock() - Start << std::endl;
+        Start = clock();
 
         // 12. FRE is xored with the next BS octets of plaintext, to produce the next BS octets of ciphertext. These are loaded into FR, and the process is repeated until the plaintext is used up.
         C += xor_strings(FRE, data.substr(x, BS));
-
         x += BS;
+        
+        std::cout << "Step 12: " << clock() - Start << std::endl;
+        Start = clock();
     }
-
+    
+    
+    std::cout << "Done: " << clock() - Start1 << std::endl;
+    Start = clock();
     return C;
 }
 

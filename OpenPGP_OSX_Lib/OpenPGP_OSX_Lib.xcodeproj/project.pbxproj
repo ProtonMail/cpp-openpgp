@@ -1539,6 +1539,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = OpenPGP_x86_64;
 				SDKROOT = macosx;
@@ -1551,6 +1552,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = OpenPGP_x86_64;
 				SDKROOT = macosx;
