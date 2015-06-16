@@ -134,6 +134,10 @@ class ViewController: NSViewController {
     }
     @IBAction func test_encrypt_decrypt_attachment(sender: AnyObject) {
         let pgp:OpenPGP = OpenPGP()
+        
+       // pgp.Test_Attachment("", data: "")
+        
+        
         let pub_location = "/Users/Yanfeng/Desktop/publickey.net.txt"
         let priv_location = "/Users/Yanfeng/Desktop/privatekey.net.txt"
         let key_package_location = "/Users/Yanfeng/Desktop/keypackage.txt"
@@ -195,7 +199,7 @@ class ViewController: NSViewController {
         
         
         
-        let un_encrypt_attachment = "/Users/Yanfeng/Desktop/Bee-latest.zip"
+        let un_encrypt_attachment = "/Users/Yanfeng/Desktop/1.png"
         let un_encrypt_attachment_data_package = NSData(contentsOfFile: un_encrypt_attachment)
         
         let startTime:CFTimeInterval  = CACurrentMediaTime()
@@ -205,6 +209,12 @@ class ViewController: NSViewController {
         let dictOut = pgp.encrypt_attachments(un_encrypt_attachment_data_package, pub_keys: ["zhj4478@protonmail.com" : pubkey], error: nil)
         
         let encryptTime:CFTimeInterval  = CACurrentMediaTime();
+        
+        let key = dictOut["zhj4478@protonmail.com"] as! String
+        let d = dictOut["DataPacket"] as! String
+        
+        let test_data = pgp.decrypt_attachment_armored(key, data: d, error:nil)
+        test_data.writeToFile("/Users/Yanfeng/Desktop/ssltest.png", atomically: false)
         
         
 //        let key = dictOut["zhj4478@protonmail.com"] as! String

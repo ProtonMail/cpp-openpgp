@@ -46,7 +46,7 @@ namespace pm {
     
     std::string decrypt_message_id(std::string& enc_msg)
     {
-        aes_cfb_256_encrypt();
+       // aes_cfb_256_encrypt();
         std::string test_msg = "x_-YHVQVFZT-L35gCPBeMMnyXZe8vkcOGM_zZM3a5Uyw1giMFvg5jg==";
         enc_msg = test_msg;
         std::string IVSource = MD5("wqPBNpeCf").hexdigest();
@@ -96,15 +96,15 @@ namespace pm {
     
     std::string aes_cfb_256_encrypt()
     {
-        std::string messageID = "11147588";
-        std::string IVSource = MD5("wqPBNpeCf").hexdigest();
-        std::string KeySource = "zeULFiE7Axedotu9QSoPIxNh8oCz3QcFoPvYPLka";
-        std::string SaltSource = "DstYFJQHMsKwqPBNpeCfatXsfpnMRcRtTJVwUTXu";
-        
-        
-        messageID = messageID + SaltSource.substr(0, 40 - messageID.size());
-        
-        
+//        std::string messageID = "11147588";
+//        std::string IVSource = MD5("wqPBNpeCf").hexdigest();
+//        std::string KeySource = "zeULFiE7Axedotu9QSoPIxNh8oCz3QcFoPvYPLka";
+//        std::string SaltSource = "DstYFJQHMsKwqPBNpeCfatXsfpnMRcRtTJVwUTXu";
+//        
+//        
+//        messageID = messageID + SaltSource.substr(0, 40 - messageID.size());
+//        
+//        
 //        EVP_CIPHER_CTX ctx;
 //        const EVP_CIPHER * cipher;
 //        EVP_CIPHER_CTX_init(&ctx);

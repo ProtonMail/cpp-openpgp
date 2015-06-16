@@ -221,6 +221,11 @@ std::string use_OpenPGP_CFB_encrypt(const uint8_t sym_alg, const uint8_t packet,
     return OpenPGP_CFB_encrypt(alg, packet, data, prefix);
 }
 
+std::string use_OpenPGP_CFB_encrypt(const std::string & data, const std::string & key)
+{
+    return pm::aes_cfb_256_encrypt(data, key);
+}
+
 std::string use_OpenPGP_CFB_decrypt(const uint8_t sym_alg, const uint8_t packet, const std::string & data, const std::string & key, bool isReturnPrefix){
     if (!sym_alg){
         return data;

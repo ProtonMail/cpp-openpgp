@@ -692,8 +692,8 @@
     }
     
     PGPMessage encrypted_att = encrypt_pka_only_data(session_key, unencrypt_attachment, "", 9, 0);
-    std::string endryp_dat = encrypted_att.write(1, 0);
-    [dictX setObject:[NSData dataWithBytes: endryp_dat.c_str() length:endryp_dat.length()] forKey:@"DataPacket"];
+    std::string endryp_dat = encrypted_att.write();
+    [dictX setObject:[[NSString alloc] initWithUTF8String:endryp_dat.c_str()] forKey:@"DataPacket"];
 
     return dictX;
 }
@@ -701,6 +701,13 @@
 
 - (NSData * ) Test_Attachment:(NSString*) package data:(NSString*) datapackage
 {
+    
+            std::string sKey = "12345678912345678912345678912345";
+            std::string intext = "Some Crypto Text";
+    pm::aes_cfb_256_encrypt(intext,sKey);
+    
+    
+    
     std::string encrypt_msg = "wcBMA9ted+lmZVn8AQf/Q41P+zzGgasmskYRZQ5joeQnDOcqE0jS4+YSkFNZ1sViMf35B6ohO7lu3hqyxehXNxsDZvBDwBPYK5foJn/ozTVGiPNszW6x9qM3dNN0KRzpHgoNYyqGiG2jeWjfztCui7jtEVcYQTH0vD5F4RGFVQ0RjHA2cufuVFpJzlevwdkU2D9tY/U2ZzpoNkkTHR3KcmPmSaZVQKIVnM97AJM1W0MSCVH+Fai9vvd0roobp2NTBZes0bZdQ8c2W7Kx04xU7YMcSvGjSmpdSL/RJM/lr/oZDqtUrmvOmuGB5cncHp4Bw0qxQVciehy4pIceJWSsEObC5RXvnicL4x+nqXpFog==";
 
     std::string data = [datapackage UTF8String];
@@ -743,6 +750,9 @@
 - (NSString*)Test_2
 {
     std::string test = "";
+    
+    
+    
    // std::cout << pm::decrypt_message_id(test) << std::endl;
     
     return @"";

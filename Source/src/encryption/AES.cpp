@@ -5,6 +5,8 @@
 #include <openssl/evp.h>
 #include <openssl/hmac.h>
 
+#include "string.h"
+
 void AES::shiftrow(std::vector <uint32_t> & data){
     std::vector <uint32_t> temp;
     for(uint8_t x = 0; x < 4; x++){
@@ -201,13 +203,24 @@ void AES::setkey(const std::string & KEY){
 }
 
 std::string AES::encrypt(const std::string & DATA){
+    
+    clock_t Start = clock();
+    
     if (!keyset){
         throw std::runtime_error("Error: Key has not been set.");
     }
+    
+    //std::cout << "encrypt 1: " << clock() - Start << std::endl;
+    Start = clock();
+
 
     if (DATA.size() != 16){
         throw std::runtime_error("Error: Data must be 128 bits long.");
     }
+    
+    //std::cout << "encrypt 2: " << clock() - Start << std::endl;
+    Start = clock();
+
 
     std::vector <uint32_t> data;
     for(uint8_t x = 0; x < 4; x++){
@@ -218,31 +231,77 @@ std::string AES::encrypt(const std::string & DATA){
         data.push_back(static_cast <uint32_t> (toint(d, 256)));
     }
 
+    //std::cout << "encrypt 3: " << clock() - Start << std::endl;
+    Start = clock();
+
+    
     for(uint8_t x = 0; x < 4; x++){
         data[x] ^= keys[0][x];
     }
 
+   // std::cout << "encrypt 4: " << clock() - Start << std::endl;
+    Start = clock();
+
+    //clock_t Start2 = clock();
     for(uint8_t r = 1; r < rounds; r++){
         for(uint8_t x = 0; x < 4; x++){
             data[x] = (AES_Subbytes[data[x] >> 24] << 24) + (AES_Subbytes[(data[x] >> 16) & 255] << 16) + (AES_Subbytes[(data[x] >> 8) & 255] << 8) + AES_Subbytes[data[x] & 255];
         }
+        
+        //std::cout << "encrypt 5-1: " << clock() - Start << std::endl;
+        Start = clock();
+        
         shiftrow(data);
+        
+        //std::cout << "encrypt 5-2: " << clock() - Start << std::endl;
+        Start = clock();
+        
         mixcolumns(data);
+        
+        
+        //std::cout << "encrypt 5-3: " << clock() - Start << std::endl;
+        Start = clock();
+        
         for(uint8_t x = 0; x < 4; x++){
             data[x] ^= keys[r][x];
         }
+        
+        //std::cout << "encrypt 5-4: " << clock() - Start << std::endl;
+        Start = clock();
     }
 
+    
+    //std::cout << "encrypt 5: " << clock() - Start2 << std::endl;
+    Start = clock();
+
+    
     for(uint8_t x = 0; x < 4; x++){
         data[x] = (AES_Subbytes[data[x] >> 24] << 24) + (AES_Subbytes[(data[x] >> 16) & 255] << 16) + (AES_Subbytes[(data[x] >> 8) & 255] << 8) + AES_Subbytes[data[x] & 255];
     }
+    
+   // std::cout << "encrypt 6: " << clock() - Start << std::endl;
+    Start = clock();
+
 
     shiftrow(data);
+    
+   // std::cout << "encrypt 7: " << clock() - Start << std::endl;
+    Start = clock();
+
 
     for(uint8_t x = 0; x < 4; x++){
         data[x] ^= keys[rounds][x];
     }
-    return OUT(data);
+    
+   // std::cout << "encrypt 8: " << clock() - Start << std::endl;
+    Start = clock();
+
+    std::string out_data = OUT(data);//std::string((char *)&data[0], data.size()); //
+    
+   // std::cout << "encrypt 9: " << clock() - Start << std::endl;
+    Start = clock();
+    
+    return out_data;
 }
 
 std::string AES::decrypt(const std::string & DATA){
@@ -615,6 +674,7 @@ unsigned int AES::blocksize(){
 #include <algorithm>
 #include <initializer_list>
 #include <openssl/aes.h>
+#include <openpgp/cfb.h>
 
 
 namespace pm {
@@ -686,7 +746,161 @@ namespace pm {
         return AESDecrypt(enc_text.data(), enc_text.size(), key.data(), key.size(), iv);
     }
     
+#define BUFSIZE 256
+
+    std::string aes_cfb_256_encrypt(std::string text, std::string key)
+    {
+        std::vector<unsigned char> outbuf;
+        //unsigned char outbuf[216472];
+        int outlen, tmplen;
+        /* Bogus key and IV: we'd normally set these from
+         * another source.
+         */
+        std::cout << key << "    size:" << key.size()  << "  text size:" << text.size() << std::endl;
+        
+        EVP_CIPHER_CTX ctx;
+        EVP_CIPHER_CTX_init(&ctx);
+        EVP_EncryptInit_ex(&ctx, EVP_aes_256_cfb(), NULL, (unsigned char*)key.c_str(), 0);
+        
+//        
+//        for(;;)
+//        {
+//            inlen = fread(inbuf, 1, 1024, in);
+//            if(inlen <= 0) break;
+//            if(!EVP_EncryptUpdate(&ctx, &outbuf[0], &outlen, (unsigned char*)text.c_str(), (int)text.size()))
+//            {
+//                /* Error */
+//                return 0;
+//            }
+//            
+//            fwrite(outbuf, 1, outlen, out);
+//        }
+//        if(!EVP_CipherFinal_ex(&ctx, outbuf, &outlen))
+//        {
+//            /* Error */
+//            EVP_CIPHER_CTX_cleanup(&ctx);
+//            return 0;
+//        }
+//        fwrite(outbuf, 1, outlen, out);
+//        
+//        EVP_CIPHER_CTX_cleanup(&ctx);
+//
+
     
+        if(!EVP_EncryptUpdate(&ctx, &outbuf[0], &outlen, (unsigned char*)text.c_str(), (int)text.size()))
+        {
+            /* Error */
+            return 0;
+        }
+        /* Buffer passed to EVP_EncryptFinal() must be after data just
+         * encrypted to avoid overwriting it.
+         */
+        if(!EVP_EncryptFinal_ex(&ctx, &outbuf[0] + outlen, &tmplen))
+        {
+            /* Error */
+            return 0;
+        }
+        outlen += tmplen;
+        EVP_CIPHER_CTX_cleanup(&ctx);
+        /* Need binary mode for fopen because encrypted data is
+         * binary data. Also cannot use strlen() on it because
+         * it wont be null terminated and may contain embedded
+         * nulls.
+         */
+        std::string outString = std::string((char*)&outbuf[0], outlen);
+        
+       // std::cout << hexlify(outString) << std::endl;
+
+        return outString;
+        
+//        std::string sKey = "12345678912345678912345678912345";
+//        std::string intext = "Some Crypto Text";
+//
+//        uint16_t BS = Symmetric_Algorithm_Block_Length.at(Symmetric_Algorithms.at(9)) >> 3;
+//        std::string prefix = unhexlify(zfill(bintohex(BBS().rand_b(BS << 3)), BS << 1, '0'));
+//
+//        std::string check = use_OpenPGP_CFB_encrypt(9, 18, intext, sKey, prefix);
+//        std::cout << hexlify(check) << std::endl;
+//        
+//        unsigned char outbuf[1024];
+//        int outlen, tmplen;
+//        /* Bogus key and IV: we'd normally set these from
+//         * another source.
+//         */
+//        
+//        std::cout << sKey << "    size:" << sKey.size() << std::endl;
+//        
+//        std::string iv = "12345678";        EVP_CIPHER_CTX ctx;
+//        std::string newPrefix = prefix + prefix.substr(BS - 2, 2);
+//        
+//        EVP_CIPHER_CTX_init(&ctx);
+//        EVP_EncryptInit_ex(&ctx, EVP_aes_256_cfb(), NULL, (unsigned char*)sKey.c_str(), 0);
+//        
+//        std::string toEncrypt = newPrefix + intext;
+//        if(!EVP_EncryptUpdate(&ctx, outbuf, &outlen, (unsigned char*)toEncrypt.c_str(), (int)toEncrypt.size()))
+//        {
+//            /* Error */
+//            return 0;
+//        }
+//        /* Buffer passed to EVP_EncryptFinal() must be after data just
+//         * encrypted to avoid overwriting it.
+//         */
+//        if(!EVP_EncryptFinal_ex(&ctx, outbuf + outlen, &tmplen))
+//        {
+//            /* Error */
+//            return 0;
+//        }
+//        outlen += tmplen;
+//        EVP_CIPHER_CTX_cleanup(&ctx);
+//        /* Need binary mode for fopen because encrypted data is
+//         * binary data. Also cannot use strlen() on it because
+//         * it wont be null terminated and may contain embedded
+//         * nulls.
+//         */
+//        std::string outString = std::string((char*)outbuf, outlen);
+//        
+//        std::cout << hexlify(outString) << std::endl;
+//        
+//        
+//        //outString  = check;
+//        ///
+//        EVP_CIPHER_CTX_init(&ctx);
+//        EVP_DecryptInit_ex(&ctx, EVP_aes_256_cfb(), NULL, (unsigned char*)sKey.c_str(), 0);
+//        
+//        
+//        
+//        if(!EVP_DecryptUpdate(&ctx, outbuf,  &outlen, (unsigned char*)outString.c_str(), (int)outString.size()))
+//        {
+//            /* Error */
+//            return 0;
+//        }
+//
+//        if(!EVP_DecryptFinal_ex(&ctx, outbuf + outlen, &tmplen))
+//        {
+//            /* Error */
+//            return 0;
+//        }
+//        outlen += tmplen;
+//        EVP_CIPHER_CTX_cleanup(&ctx);
+//        
+//        outString = std::string((char*)outbuf, outlen);
+//        
+//        std::cout << (outString) << std::endl;
+//       // string& erase (size_t pos = 0, size_t len = npos);
+//        outString = outString.substr(BS+2, BS);//  .substr().subarray(BS + 2, BS);
+//        
+//        std::cout << (outString) << std::endl;
+
+        
+     //   return "";
+        
+        
+        
+    }
+    std::string aes_cfb_256_decrypt(std::string key, std::string iv, std::string enc_text)
+    {
+        return "";
+    }
     
     // Decrypt using AES cbc
     std::string AESDecrypt(const void *const apBuffer, size_t aBufferSize, const void *const apKey, size_t aKeySize, std::string aIVector)
