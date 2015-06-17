@@ -747,11 +747,12 @@ namespace pm {
     }
     
 #define BUFSIZE 256
+    
 
-    std::string aes_cfb_256_encrypt(std::string text, std::string key)
+    std::string openssl_aes_cfb_256_encrypt(const std::string& text, const std::string& key)
     {
         std::vector<unsigned char> outbuf;
-        //unsigned char outbuf[216472];
+        outbuf.reserve(text.size() + 64);
         int outlen, tmplen;
         /* Bogus key and IV: we'd normally set these from
          * another source.
@@ -785,8 +786,6 @@ namespace pm {
 //        
 //        EVP_CIPHER_CTX_cleanup(&ctx);
 //
-
-    
         if(!EVP_EncryptUpdate(&ctx, &outbuf[0], &outlen, (unsigned char*)text.c_str(), (int)text.size()))
         {
             /* Error */
@@ -897,7 +896,8 @@ namespace pm {
         
         
     }
-    std::string aes_cfb_256_decrypt(std::string key, std::string iv, std::string enc_text)
+    
+    std::string openssl_aes_cfb_256_decrypt(const std::string& enc_text, const std::string& key)
     {
         return "";
     }

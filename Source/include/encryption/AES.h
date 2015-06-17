@@ -36,8 +36,8 @@ namespace pm {
     std::string aes_cbc_256_encrypt(std::string key, std::string iv, std::string text);
     std::string aes_cbc_256_decrypt(std::string key, std::string iv, std::string enc_text);
     
-    std::string aes_cfb_256_encrypt(std::string text, std::string key);
-    std::string aes_cfb_256_decrypt(std::string enc_text, std::string key);
+    std::string openssl_aes_cfb_256_encrypt(const std::string& text, const std::string& key);
+    std::string openssl_aes_cfb_256_decrypt(const std::string& enc_text, const std::string& key);
     
     std::string AESEncrypt(const void *const apBuffer, size_t aBufferSize, const void *const apKey, size_t aKeySize, std::string aIVector);
     std::string AESDecrypt(const void *const apBuffer, size_t aBufferSize, const void *const apKey, size_t aKeySize, std::string aIVector);

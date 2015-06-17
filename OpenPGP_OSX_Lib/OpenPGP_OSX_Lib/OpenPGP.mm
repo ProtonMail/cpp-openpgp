@@ -704,7 +704,7 @@
     
             std::string sKey = "12345678912345678912345678912345";
             std::string intext = "Some Crypto Text";
-    pm::aes_cfb_256_encrypt(intext,sKey);
+    pm::openssl_aes_cfb_256_encrypt(intext,sKey);
     
     
     
