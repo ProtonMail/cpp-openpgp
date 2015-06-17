@@ -172,11 +172,11 @@ class ViewController: NSViewController {
         pgp.encrypt_attachment(un_encrypt_attachment_data_package, pub_key: pubkey, error: nil)
         let dictOut = pgp.encrypt_attachments(un_encrypt_attachment_data_package, pub_keys: ["zhj4478@protonmail.com" : pubkey], error: nil)
         
-        let key = dictOut["zhj4478@protonmail.com"] as! String
-        let d = dictOut["DataPacket"] as! String
-        
-        let test_data = pgp.decrypt_attachment_armored(key, data: d, error:nil)
-        test_data.writeToFile("/Users/Yanfeng/Desktop/3.png", atomically: false)
+//        let key = dictOut["zhj4478@protonmail.com"] as! String
+//        let d = dictOut["DataPacket"] as! String
+//        
+//        let test_data = pgp.decrypt_attachment_armored(key, data: d, error:nil)
+//        test_data.writeToFile("/Users/Yanfeng/Desktop/3.png", atomically: false)
         
 
         println("Done");
@@ -198,37 +198,37 @@ class ViewController: NSViewController {
         let value = pgp.SetupKeys(privkey, pubKey: pubkey, pass: "123", error:nil)
         
         
+        let Start:CFTimeInterval  = CACurrentMediaTime();
+        let StartEncryptTime:CFTimeInterval  = CACurrentMediaTime();
         
-        let un_encrypt_attachment = "/Users/Yanfeng/Desktop/1.png"
+        let un_encrypt_attachment = "/Users/Yanfeng/Desktop/Fetch.mp4"
         let un_encrypt_attachment_data_package = NSData(contentsOfFile: un_encrypt_attachment)
         
-        let startTime:CFTimeInterval  = CACurrentMediaTime()
+        let LoadFile:CFTimeInterval  = CACurrentMediaTime()
 
-        //println(un_encrypt_attachment_data_package)
-        //pgp.encrypt_attachment(un_encrypt_attachment_data_package, pub_key: pubkey, error: nil)
         let dictOut = pgp.encrypt_attachments(un_encrypt_attachment_data_package, pub_keys: ["zhj4478@protonmail.com" : pubkey], error: nil)
         
-        let encryptTime:CFTimeInterval  = CACurrentMediaTime();
+        let EncryptTime:CFTimeInterval  = CACurrentMediaTime()
         
-        let key = dictOut["zhj4478@protonmail.com"] as! String
-        let d = dictOut["DataPacket"] as! String
+        let key = dictOut["zhj4478@protonmail.com"] as! NSData
+        let d = dictOut["DataPacket"] as! NSData
         
-        let test_data = pgp.decrypt_attachment_armored(key, data: d, error:nil)
-        test_data.writeToFile("/Users/Yanfeng/Desktop/ssltest.png", atomically: false)
+        let TransforTime:CFTimeInterval  = CACurrentMediaTime();
         
+        let test_data = pgp.decrypt_attachment(key, data: d, error:nil)
         
-//        let key = dictOut["zhj4478@protonmail.com"] as! String
-//        let d = dictOut["DataPacket"] as! String
-//        
-//        let test_data = pgp.decrypt_attachment_armored(key, data: d, error:nil)
-//        test_data.writeToFile("/Users/Yanfeng/Desktop/new_Bee-latest.zip", atomically: false)
+        let DecryptTime:CFTimeInterval  = CACurrentMediaTime();
         
-        let decryptTime:CFTimeInterval  = CACurrentMediaTime();
+        test_data.writeToFile("/Users/Yanfeng/Desktop/Fetch.mp4.bak", atomically: false)
         
-        let total = (decryptTime - startTime);
+        let WriteTime:CFTimeInterval  = CACurrentMediaTime();
         
-        let encrypt = (encryptTime - startTime);
-        let decrypt = (decryptTime - encryptTime);
+
+    
+        let total = (WriteTime - Start);
+        
+        let encrypt = (EncryptTime - LoadFile);
+        let decrypt = (DecryptTime - TransforTime);
 
         self.labelDisplay.stringValue = NSString(format: "Total Runtime: %g s --- Enrypt: %g s ---- Decrypt %g s", total, encrypt , decrypt) as String;
     }

@@ -160,8 +160,8 @@ Packet::Ptr encrypt_data(const std::string & session_key, const std::string & da
         Tag18 tag18;
         //encrypt(compressed(literal_data_packet(plain text)) + MDC SHA1(20 octets))
         
-        std::cout << prefix << std::endl;
-        std::cout << hexlify(prefix) << std::endl;
+        //std::cout << prefix << std::endl;
+        //std::cout << hexlify(prefix) << std::endl;
         //tag18.set_protected_data(use_OpenPGP_CFB_encrypt(sym_alg, 18, to_encrypt + tag19.write(), session_key, prefix));
         tag18.set_protected_data(use_OpenPGP_CFB_encrypt(prefix + prefix.substr(BS - 2, 2) + to_encrypt + tag19.write(), session_key));
         encrypted = std::make_shared<Tag18>(tag18);

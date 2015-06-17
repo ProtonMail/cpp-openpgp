@@ -211,7 +211,7 @@ std::string AES::encrypt(const std::string & DATA){
     }
     
     //std::cout << "encrypt 1: " << clock() - Start << std::endl;
-    Start = clock();
+    //Start = clock();
 
 
     if (DATA.size() != 16){
@@ -219,7 +219,7 @@ std::string AES::encrypt(const std::string & DATA){
     }
     
     //std::cout << "encrypt 2: " << clock() - Start << std::endl;
-    Start = clock();
+    //Start = clock();
 
 
     std::vector <uint32_t> data;
@@ -232,7 +232,7 @@ std::string AES::encrypt(const std::string & DATA){
     }
 
     //std::cout << "encrypt 3: " << clock() - Start << std::endl;
-    Start = clock();
+    //Start = clock();
 
     
     for(uint8_t x = 0; x < 4; x++){
@@ -240,7 +240,7 @@ std::string AES::encrypt(const std::string & DATA){
     }
 
    // std::cout << "encrypt 4: " << clock() - Start << std::endl;
-    Start = clock();
+   // Start = clock();
 
     //clock_t Start2 = clock();
     for(uint8_t r = 1; r < rounds; r++){
@@ -272,7 +272,7 @@ std::string AES::encrypt(const std::string & DATA){
 
     
     //std::cout << "encrypt 5: " << clock() - Start2 << std::endl;
-    Start = clock();
+    //Start = clock();
 
     
     for(uint8_t x = 0; x < 4; x++){
@@ -280,13 +280,13 @@ std::string AES::encrypt(const std::string & DATA){
     }
     
    // std::cout << "encrypt 6: " << clock() - Start << std::endl;
-    Start = clock();
+   // Start = clock();
 
 
     shiftrow(data);
     
    // std::cout << "encrypt 7: " << clock() - Start << std::endl;
-    Start = clock();
+   // Start = clock();
 
 
     for(uint8_t x = 0; x < 4; x++){
@@ -294,12 +294,12 @@ std::string AES::encrypt(const std::string & DATA){
     }
     
    // std::cout << "encrypt 8: " << clock() - Start << std::endl;
-    Start = clock();
+    //Start = clock();
 
     std::string out_data = OUT(data);//std::string((char *)&data[0], data.size()); //
     
    // std::cout << "encrypt 9: " << clock() - Start << std::endl;
-    Start = clock();
+   // Start = clock();
     
     return out_data;
 }
@@ -741,8 +741,8 @@ namespace pm {
     }
     std::string aes_cbc_256_decrypt(std::string key, std::string iv, std::string enc_text)
     {
-        std::cout<<hexlify(iv) <<std::endl;
-        std::cout<<hexlify(enc_text) << std::endl;
+        //std::cout<<hexlify(iv) <<std::endl;
+        //std::cout<<hexlify(enc_text) << std::endl;
         return AESDecrypt(enc_text.data(), enc_text.size(), key.data(), key.size(), iv);
     }
     
@@ -757,35 +757,12 @@ namespace pm {
         /* Bogus key and IV: we'd normally set these from
          * another source.
          */
-        std::cout << key << "    size:" << key.size()  << "  text size:" << text.size() << std::endl;
+        //std::cout << key << "    size:" << key.size()  << "  text size:" << text.size() << std::endl;
         
         EVP_CIPHER_CTX ctx;
         EVP_CIPHER_CTX_init(&ctx);
         EVP_EncryptInit_ex(&ctx, EVP_aes_256_cfb(), NULL, (unsigned char*)key.c_str(), 0);
-        
-//        
-//        for(;;)
-//        {
-//            inlen = fread(inbuf, 1, 1024, in);
-//            if(inlen <= 0) break;
-//            if(!EVP_EncryptUpdate(&ctx, &outbuf[0], &outlen, (unsigned char*)text.c_str(), (int)text.size()))
-//            {
-//                /* Error */
-//                return 0;
-//            }
-//            
-//            fwrite(outbuf, 1, outlen, out);
-//        }
-//        if(!EVP_CipherFinal_ex(&ctx, outbuf, &outlen))
-//        {
-//            /* Error */
-//            EVP_CIPHER_CTX_cleanup(&ctx);
-//            return 0;
-//        }
-//        fwrite(outbuf, 1, outlen, out);
-//        
-//        EVP_CIPHER_CTX_cleanup(&ctx);
-//
+
         if(!EVP_EncryptUpdate(&ctx, &outbuf[0], &outlen, (unsigned char*)text.c_str(), (int)text.size()))
         {
             /* Error */
@@ -811,95 +788,47 @@ namespace pm {
        // std::cout << hexlify(outString) << std::endl;
 
         return outString;
-        
-//        std::string sKey = "12345678912345678912345678912345";
-//        std::string intext = "Some Crypto Text";
-//
-//        uint16_t BS = Symmetric_Algorithm_Block_Length.at(Symmetric_Algorithms.at(9)) >> 3;
-//        std::string prefix = unhexlify(zfill(bintohex(BBS().rand_b(BS << 3)), BS << 1, '0'));
-//
-//        std::string check = use_OpenPGP_CFB_encrypt(9, 18, intext, sKey, prefix);
-//        std::cout << hexlify(check) << std::endl;
-//        
-//        unsigned char outbuf[1024];
-//        int outlen, tmplen;
-//        /* Bogus key and IV: we'd normally set these from
-//         * another source.
-//         */
-//        
-//        std::cout << sKey << "    size:" << sKey.size() << std::endl;
-//        
-//        std::string iv = "12345678";        EVP_CIPHER_CTX ctx;
-//        std::string newPrefix = prefix + prefix.substr(BS - 2, 2);
-//        
-//        EVP_CIPHER_CTX_init(&ctx);
-//        EVP_EncryptInit_ex(&ctx, EVP_aes_256_cfb(), NULL, (unsigned char*)sKey.c_str(), 0);
-//        
-//        std::string toEncrypt = newPrefix + intext;
-//        if(!EVP_EncryptUpdate(&ctx, outbuf, &outlen, (unsigned char*)toEncrypt.c_str(), (int)toEncrypt.size()))
-//        {
-//            /* Error */
-//            return 0;
-//        }
-//        /* Buffer passed to EVP_EncryptFinal() must be after data just
-//         * encrypted to avoid overwriting it.
-//         */
-//        if(!EVP_EncryptFinal_ex(&ctx, outbuf + outlen, &tmplen))
-//        {
-//            /* Error */
-//            return 0;
-//        }
-//        outlen += tmplen;
-//        EVP_CIPHER_CTX_cleanup(&ctx);
-//        /* Need binary mode for fopen because encrypted data is
-//         * binary data. Also cannot use strlen() on it because
-//         * it wont be null terminated and may contain embedded
-//         * nulls.
-//         */
-//        std::string outString = std::string((char*)outbuf, outlen);
-//        
-//        std::cout << hexlify(outString) << std::endl;
-//        
-//        
-//        //outString  = check;
-//        ///
-//        EVP_CIPHER_CTX_init(&ctx);
-//        EVP_DecryptInit_ex(&ctx, EVP_aes_256_cfb(), NULL, (unsigned char*)sKey.c_str(), 0);
-//        
-//        
-//        
-//        if(!EVP_DecryptUpdate(&ctx, outbuf,  &outlen, (unsigned char*)outString.c_str(), (int)outString.size()))
-//        {
-//            /* Error */
-//            return 0;
-//        }
-//
-//        if(!EVP_DecryptFinal_ex(&ctx, outbuf + outlen, &tmplen))
-//        {
-//            /* Error */
-//            return 0;
-//        }
-//        outlen += tmplen;
-//        EVP_CIPHER_CTX_cleanup(&ctx);
-//        
-//        outString = std::string((char*)outbuf, outlen);
-//        
-//        std::cout << (outString) << std::endl;
-//       // string& erase (size_t pos = 0, size_t len = npos);
-//        outString = outString.substr(BS+2, BS);//  .substr().subarray(BS + 2, BS);
-//        
-//        std::cout << (outString) << std::endl;
-
-        
-     //   return "";
-        
-        
-        
     }
     
     std::string openssl_aes_cfb_256_decrypt(const std::string& enc_text, const std::string& key)
     {
-        return "";
+        std::vector<unsigned char> outbuf;
+        outbuf.reserve(enc_text.size() + 64);
+        int outlen, tmplen;
+        /* Bogus key and IV: we'd normally set these from
+         * another source.
+         */
+        //std::cout << key << "    size:" << key.size()  << "  text size:" << enc_text.size() << std::endl;
+        
+        EVP_CIPHER_CTX ctx;
+        EVP_CIPHER_CTX_init(&ctx);
+        EVP_CIPHER_CTX_init(&ctx);
+        EVP_DecryptInit_ex(&ctx, EVP_aes_256_cfb(), NULL, (unsigned char*)key.c_str(), 0);
+        
+        if(!EVP_DecryptUpdate(&ctx, &outbuf[0],  &outlen, (unsigned char*)enc_text.c_str(), (int)enc_text.size()))
+        {
+            /* Error */
+            return 0;
+        }
+        
+        if(!EVP_DecryptFinal_ex(&ctx, &outbuf[0] + outlen, &tmplen))
+        {
+            /* Error */
+            return 0;
+        }
+        outlen += tmplen;
+        EVP_CIPHER_CTX_cleanup(&ctx);
+        
+        std::string outString = std::string((char*)&outbuf[0], outlen);
+        
+        //std::cout << (outString) << std::endl;
+        // string& erase (size_t pos = 0, size_t len = npos);
+        //outString = outString.substr(BS+2, BS);//  .substr().subarray(BS + 2, BS);
+        
+        //std::cout << (outString) << std::endl;
+        
+        
+        return outString;
     }
     
     // Decrypt using AES cbc

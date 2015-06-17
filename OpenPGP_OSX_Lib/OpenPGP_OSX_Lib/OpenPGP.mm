@@ -671,7 +671,7 @@
 }
 
 
-//encrypt decrypt attachment
+//encrypt decrypt attachment  dict NSData
 // ["dataPacket"]
 // ["keyPackets"]
 //        ["email" : "KeyP"]
@@ -688,12 +688,13 @@
         std::string user_pub_key = [pub_keys[key] UTF8String];
         PGPPublicKey pub(user_pub_key);
         PGPMessage enrypted_session_key = encrypt_pka_only_session(pub, session_key);
-        [dictX setObject:[[NSString alloc] initWithUTF8String:enrypted_session_key.write().c_str()] forKey:key];
+        std::string enrypted_session_key_data = enrypted_session_key.write(1);
+        [dictX setObject:[NSData dataWithBytes: enrypted_session_key_data.c_str() length:enrypted_session_key_data.length()] forKey:key];
     }
     
     PGPMessage encrypted_att = encrypt_pka_only_data(session_key, unencrypt_attachment, "", 9, 0);
-    std::string endryp_dat = encrypted_att.write();
-    [dictX setObject:[[NSString alloc] initWithUTF8String:endryp_dat.c_str()] forKey:@"DataPacket"];
+    std::string endryp_dat = encrypted_att.write(1);
+    [dictX setObject:[NSData dataWithBytes: endryp_dat.c_str() length:endryp_dat.length()] forKey:@"DataPacket"];
 
     return dictX;
 }
