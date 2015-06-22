@@ -294,3 +294,81 @@ std::string decrypt_sym(const PGPMessage & m, const std::string & passphrase, co
     return out;
 
 }
+
+
+std::string decrypt_pka_only_session(const PGPSecretKey & pri, const PGPMessage & m, const std::string & passphrase)
+{
+    // reused variables
+    uint8_t packet = 0;                         // currently used packet tag
+    std::string data;                           // temp stuff
+    std::string session_key;                    // session key
+    uint8_t sym;                                // symmetric key algorithm used to encrypt original data
+    
+    // find session key packet; should be first packet
+    for(Packet::Ptr const & p : m.get_packets()){
+        if ((p -> get_tag() == 1) || (p -> get_tag() == 3)){
+            data = p -> raw();
+            packet = p -> get_tag();
+            break;
+        }
+    }
+    
+    if (packet == 1)
+    {
+        
+    }
+    // return symmetrically-encrypted-key decrypted data
+    else if (packet == 3){
+        return decrypt_sym(m, passphrase);
+    }
+    else{
+        std::stringstream s; s << Packet_Tags.at(packet) << " (Tag " << static_cast <unsigned int> (packet) << ").";
+        throw std::runtime_error("Error: Expected Public-Key Encrypted Session Key Packet (Tag 1). Instead got " + s.str());
+    }
+    
+    
+    // Public-Key Encrypted Session Key Packet (Tag 1)
+    Tag1 tag1(data);
+    uint8_t pka = tag1.get_pka();
+    std::vector <std::string> session_key_mpi = tag1.get_mpi();
+    
+    // find corresponding secret key
+    Tag5::Ptr sec = find_decrypting_key(pri, tag1.get_keyid());
+    if (!sec){
+        throw std::runtime_error("Error: Correct Private Key not found.");
+    }
+    
+    std::vector <std::string> pub_mpi = sec -> get_mpi();
+    std::vector <std::string> pri_mpi = decrypt_secret_key(sec, passphrase);
+   
+    // get session key
+    session_key = zero + pka_decrypt(pka, session_key_mpi, pri_mpi, pub_mpi);     // symmetric algorithm, session key, 2 octet checksum wrapped in EME_PKCS1_ENCODE
+    session_key = EME_PKCS1v1_5_DECODE(session_key);                              // remove EME_PKCS1 encoding
+    sym = session_key[0];                                                         // get symmetric algorithm
+    std::string checksum = session_key.substr(session_key.size() - 2, 2);         // get 2 octet checksum
+    session_key = session_key.substr(1, session_key.size() - 3);                  // remove both from session key
+    uint16_t sum = 0;
+    for(char & c : session_key){                                                  // calculate session key checksum
+        sum += static_cast <uint8_t> (c);
+    }
+    if (unhexlify(makehex(sum, 4)) != checksum){                                  // check session key checksums
+        throw std::runtime_error("Error: Calculated session key checksum does not match given checksum.");
+    }
+    
+    sec.reset();
+    
+    return session_key;
+}
+std::string decrypt_pka_only_sym_session(const PGPMessage & m, const std::string & passphrase)
+{
+    
+
+    return "";
+}
+
+
+
+
+
+
+

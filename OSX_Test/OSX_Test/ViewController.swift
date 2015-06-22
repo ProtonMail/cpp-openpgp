@@ -198,10 +198,11 @@ class ViewController: NSViewController {
         let value = pgp.SetupKeys(privkey, pubKey: pubkey, pass: "123", error:nil)
         
         
+        
         let Start:CFTimeInterval  = CACurrentMediaTime();
         let StartEncryptTime:CFTimeInterval  = CACurrentMediaTime();
         
-        let un_encrypt_attachment = "/Users/Yanfeng/Desktop/Fetch.mp4"
+        let un_encrypt_attachment = "/Users/Yanfeng/Desktop/img_0147.png"
         let un_encrypt_attachment_data_package = NSData(contentsOfFile: un_encrypt_attachment)
         
         let LoadFile:CFTimeInterval  = CACurrentMediaTime()
@@ -215,11 +216,17 @@ class ViewController: NSViewController {
         
         let TransforTime:CFTimeInterval  = CACurrentMediaTime();
         
-        let test_data = pgp.decrypt_attachment(key, data: d, error:nil)
+        
+        let sessenKey = pgp.getPublicKeySessionKey(key, error: nil)
+        
+        let newSessionKey = pgp.getNewPublicKeyPackage(sessenKey, pub_key: pubkey, error: nil)
+        
+        
+        let test_data = pgp.decrypt_attachment(newSessionKey, data: d, error:nil)
         
         let DecryptTime:CFTimeInterval  = CACurrentMediaTime();
         
-        test_data.writeToFile("/Users/Yanfeng/Desktop/Fetch.mp4.bak", atomically: false)
+        test_data.writeToFile("/Users/Yanfeng/Desktop/img_0147.png.bak", atomically: false)
         
         let WriteTime:CFTimeInterval  = CACurrentMediaTime();
         

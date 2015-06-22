@@ -700,6 +700,58 @@
 }
 
 
+// //
+- (NSData*) getNewPublicKeyPackage:(NSData *) sessionKey pub_key:(NSString *)pub_key error:(NSError**) err
+{
+    std::string str_sessionKey = std::string((char* )[sessionKey bytes], [sessionKey length]);
+    std::string user_pub_key = [pub_key UTF8String];
+    
+    PGPPublicKey pub(user_pub_key);
+
+    PGPMessage out_msg = encrypt_pka_only_session(pub, str_sessionKey);
+    
+    std::string endryp_dat = out_msg.write(1);
+    
+    return [NSData dataWithBytes: endryp_dat.c_str() length:endryp_dat.length()];
+}
+- (NSData*) getNewSymmetricKeyPackage:(NSData *) sessionKey password:(NSString*)pwd error:(NSError**) err
+{
+    std::string str_key_package = std::string((char* )[sessionKey bytes], [sessionKey length]);
+    std::string str_password = [pwd UTF8String];
+    
+    
+    pm::PMPGPMessage pm_pgp_msg(str_key_package);
+
+    
+    std::string test_plain_txt = decrypt_pka(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String], false);
+    
+    //std::cout  << test_plain_txt << std::endl;
+    return [NSData dataWithBytes: test_plain_txt.c_str() length:test_plain_txt.length()];
+}
+
+//
+- (NSData*) getPublicKeySessionKey:(NSData *) keyPackage error:(NSError**) err
+{
+    std::string str_key_package = std::string((char* )[keyPackage bytes], [keyPackage length]);
+    pm::PMPGPMessage pm_pgp_msg(str_key_package);
+    std::string sessionKey = decrypt_pka_only_session(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String]);
+    return [NSData dataWithBytes: sessionKey.c_str() length:sessionKey.length()];
+}
+
+- (NSData*) getSymmetricSessionKey:(NSData *) keyPackage password:(NSString*)pwd error:(NSError**) err
+{
+    std::string str_key_package = std::string((char* )[keyPackage bytes], [keyPackage length]);
+    std::string str_password = [pwd UTF8String];
+    
+    pm::PMPGPMessage pm_pgp_msg(str_key_package);
+    std::string sessionkey = decrypt_pka_only_sym_session(pm_pgp_msg, str_password);
+    return [NSData dataWithBytes: sessionkey.c_str() length:sessionkey.length()];
+}
+
+
+
+
+
 - (NSData * ) Test_Attachment:(NSString*) package data:(NSString*) datapackage
 {
     

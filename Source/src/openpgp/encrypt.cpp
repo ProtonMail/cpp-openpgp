@@ -367,6 +367,54 @@ PGPMessage encrypt_pka_only_session(const PGPPublicKey & pub, std::string & sess
 }
 
 
+
+PGPMessage encrypt_pka_only_sym_session(const std::string & passphrase, std::string & session,  const uint8_t sym_alg)
+{
+    S2K3::Ptr s2k = std::make_shared <S2K3> ();
+    s2k -> set_type(3);
+    s2k -> set_hash(8); // SHA1
+    s2k -> set_salt(unhexlify(bintohex(BBS().rand_b(64))));
+    s2k -> set_count(96);
+    
+    Tag3::Ptr tag3 = std::make_shared <Tag3> ();
+    tag3 -> set_version(4);
+    tag3 -> set_s2k(s2k);
+    tag3 -> set_sym(sym_alg);
+    // don't set esk (?)
+    
+    // generate session key
+    // get hex version of session key
+    std::string session_key = tag3->get_key(passphrase);
+    
+    //    // unhexlify session key
+    //    session_key = unhexlify(std::string((key_len >> 2) - session_key.size(), '0') + session_key);
+    //
+    //    // encrypt session key
+    //    std::string encrypted_session_key = session_key;
+    
+    // encrypt data
+
+    
+    // write to output container
+    PGPMessage out;
+    out.set_ASCII_Armor(0);
+    out.set_Armor_Header(std::vector <std::pair <std::string, std::string> > (
+                                                                              {
+                                                                                  std::pair <std::string, std::string> ("Version", "ProtonMail v0.1.0"),
+                                                                                  std::pair <std::string, std::string> ("Comment", "https://protonmail.com")
+                                                                              }));
+    
+    out.set_packets({tag3});
+    
+    // clear data
+    s2k.reset();
+    tag3.reset();
+    session_key = "";
+
+    return out;
+}
+
+
 pm::PMPGPMessage encrypt_pka(const PGPPublicKey & pub, const std::string & data, const std::string & filename, const uint8_t sym_alg, const uint8_t comp, const bool mdc, const PGPSecretKey::Ptr & signer, const std::string & sig_passphrase, bool is_pm_pka)
 {
 //    std::string unencrypt_msg = [unencrypt_message UTF8String];
