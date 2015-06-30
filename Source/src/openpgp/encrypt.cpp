@@ -379,20 +379,9 @@ PGPMessage encrypt_pka_only_sym_session(const std::string & passphrase, std::str
     Tag3::Ptr tag3 = std::make_shared <Tag3> ();
     tag3 -> set_version(4);
     tag3 -> set_s2k(s2k);
-    tag3 -> set_sym(sym_alg);
-    // don't set esk (?)
-    
-    // generate session key
-    // get hex version of session key
-    std::string session_key = tag3->get_key(passphrase);
-    
-    //    // unhexlify session key
-    //    session_key = unhexlify(std::string((key_len >> 2) - session_key.size(), '0') + session_key);
-    //
-    //    // encrypt session key
-    //    std::string encrypted_session_key = session_key;
-    
-    // encrypt data
+    tag3 -> set_sym(session[0]);
+    //std::cout << hexlify(session) << std::endl;
+    tag3 -> set_key(passphrase, session.substr(1, session.size() - 1));
 
     
     // write to output container
@@ -403,13 +392,11 @@ PGPMessage encrypt_pka_only_sym_session(const std::string & passphrase, std::str
                                                                                   std::pair <std::string, std::string> ("Version", "ProtonMail v0.1.0"),
                                                                                   std::pair <std::string, std::string> ("Comment", "https://protonmail.com")
                                                                               }));
-    
     out.set_packets({tag3});
     
     // clear data
     s2k.reset();
     tag3.reset();
-    session_key = "";
 
     return out;
 }
@@ -466,13 +453,15 @@ PGPMessage encrypt_sym(const std::string & passphrase, const std::string & data,
     tag3 -> set_version(4);
     tag3 -> set_s2k(s2k);
     tag3 -> set_sym(sym_alg);
-    // don't set esk (?)
     
+    std::string session_key = generat_session_key(sym_alg);
+    tag3 -> set_key(passphrase, session_key);
+    // don't set esk (?)
     // sec -> set_secret(use_normal_CFB_encrypt(sym_alg, sessionKey, key, sec -> get_IV()));
     
     // generate session key
     // get hex version of session key
-    std::string session_key = tag3->get_key(passphrase);
+    //std::string session_key = tag3->get_key(passphrase);
     
 //    // unhexlify session key
 //    session_key = unhexlify(std::string((key_len >> 2) - session_key.size(), '0') + session_key);
@@ -481,7 +470,7 @@ PGPMessage encrypt_sym(const std::string & passphrase, const std::string & data,
 //    std::string encrypted_session_key = session_key;
     
     // encrypt data
-    Packet::Ptr encrypted = encrypt_data(session_key.substr(1, session_key.size() - 1), data, filename, session_key[0], comp, mdc, signer, sig_passphrase);
+    Packet::Ptr encrypted = encrypt_data(session_key, data, filename, sym_alg, comp, mdc, signer, sig_passphrase);
     
     // write to output container
     PGPMessage out;

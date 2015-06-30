@@ -61,6 +61,9 @@
 //armored attachment packages
 - (NSData *) decrypt_attachment_armored:(NSString*) keyPackage data:(NSString*) dataPackage error:(NSError**) err;
 
+//binary attachment
+- (NSData *) decrypt_message_aes:(NSData*) keyPackage data:(NSData*) dataPackage pwd:(NSString *)password error:(NSError**) err;
+
 // print debug logs
 - (void)EnableDebug:(BOOL) isDebug;
 - (void)Test_Privatekey:(NSString *)priv_key pass:(NSString*) passphrase;

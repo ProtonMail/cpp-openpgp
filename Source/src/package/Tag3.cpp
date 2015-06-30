@@ -115,11 +115,23 @@ void Tag3::set_esk(const std::string & s){
 }
 
 void Tag3::set_key(const std::string & pass, const std::string & sk){
+    //TODO : here need change to pass the ecnrypt body sym not key's
+    if (get_is_debug()) {
+        std::cout << hexlify(sk) << std::endl;
+        std::cout << hexlify(pass) << std::endl;
+    }
+    
     //sk should be [1 octet symmetric key algorithm] + [session key(s)]
-    std::cerr << "Warning: Tag3::set_key is untested. Potentially incorrect" << std::endl;
+    // std::cerr << "Warning: Tag3::set_key is untested. Potentially incorrect" << std::endl;
+    std::string out = s2k -> run(pass, Symmetric_Algorithm_Key_Length.at(Symmetric_Algorithms.at(sym)) >> 3);
+    
+    if (get_is_debug()) {
+        std::cout << hexlify(out) << std::endl;
+    }
+    
     esk.reset();
-    if (!sk.size()){
-        esk = std::make_shared<std::string>(use_normal_CFB_encrypt(sk[0], sk.substr(1, sk.size() - 1), pass, std::string(Symmetric_Algorithm_Block_Length.at(Symmetric_Algorithms.at(sk[0])), 0)));
+    if (sk.size() > 0){
+        esk = std::make_shared<std::string>(use_normal_CFB_encrypt(sym, std::string(1, sym) + sk, out, std::string(Symmetric_Algorithm_Block_Length.at(Symmetric_Algorithms.at(sym)) >> 3, 0)));
     }
     size = raw().size();
 }

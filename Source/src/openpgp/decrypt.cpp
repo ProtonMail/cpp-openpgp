@@ -279,8 +279,11 @@ std::string decrypt_sym(const PGPMessage & m, const std::string & passphrase, co
 
     Tag3 tag3(data);
     data = tag3.get_key(passphrase);
-
+    //std::cout << hexlify(data) << std::endl;
+    
     PGPMessage decrypted = decrypt_data(data[0], m, data.substr(1, data.size() - 1), writefile, nullptr);
+    
+    
 
     std::string out = "";
     // extract data
@@ -359,15 +362,89 @@ std::string decrypt_pka_only_session(const PGPSecretKey & pri, const PGPMessage 
     
     return session_key;
 }
+
 std::string decrypt_pka_only_sym_session(const PGPMessage & m, const std::string & passphrase)
 {
+    //std::cerr << "Warning: decrypt_sym is untested. Potentially incorrect" << std::endl;
     
+    if ((m.get_ASCII_Armor() != 0)/* && (m.get_ASCII_Armor() != 3) && (m.get_ASCII_Armor() != 4)*/){
+        throw std::runtime_error("Error: No encrypted message found.");
+    }
+    
+    uint8_t packet = 0;                             // currently used packet tag
+    std::string data;                           // temp stuff
+    
+    // find session key packet; should be first packet
+    for(Packet::Ptr const & p : m.get_packets()){
+        if ((p -> get_tag() == 1) || (p -> get_tag() == 3)){
+            data = p -> raw();
+            packet = p -> get_tag();
+            break;
+        }
+    }
+    
+    if (packet == 1){
+        throw std::runtime_error("Error: Use decrypt_pka to decrypt this data.");
+    }
+    else if (packet == 3){}
+    else{
+        std::stringstream s; s << Packet_Tags.at(packet) << " (Tag " << static_cast <unsigned int> (packet) << ").";
+        throw std::runtime_error("Error: Expected Symmetric-Key Encrypted Session Key Packet (Tag 3). Instead got " + s.str());
+    }
+    
+    Tag3 tag3(data);
+    data = tag3.get_key(passphrase);
 
-    return "";
+    return data;  /// [1 octet symmetric key algorithm] + [session key(s)]
 }
 
 
-
+std::string decrypt_pka_use_sym_session(const PGPMessage & m, const PGPMessage &key, const std::string & passphrase)
+{
+    if ((m.get_ASCII_Armor() != 0)/* && (m.get_ASCII_Armor() != 3) && (m.get_ASCII_Armor() != 4)*/){
+        throw std::runtime_error("Error: No encrypted message found.");
+    }
+    
+    uint8_t packet = 0;                             // currently used packet tag
+    std::string data;                           // temp stuff
+    
+    // find session key packet; should be first packet
+    for(Packet::Ptr const & p : key.get_packets()){
+        if ((p -> get_tag() == 1) || (p -> get_tag() == 3)){
+            data = p -> raw();
+            packet = p -> get_tag();
+            break;
+        }
+    }
+    
+    if (packet == 1){
+        throw std::runtime_error("Error: Use decrypt_pka to decrypt this data.");
+    }
+    else if (packet == 3){}
+    else{
+        std::stringstream s; s << Packet_Tags.at(packet) << " (Tag " << static_cast <unsigned int> (packet) << ").";
+        throw std::runtime_error("Error: Expected Symmetric-Key Encrypted Session Key Packet (Tag 3). Instead got " + s.str());
+    }
+    
+    Tag3 tag3(data);
+    data = tag3.get_key(passphrase);
+    
+    
+    //std::cout << hexlify(data) << std::endl;
+    
+    PGPMessage decrypted = decrypt_data(data[0], m, data.substr(1, data.size() - 1), false, nullptr);
+    
+    std::string out = "";
+    // extract data
+    for(Packet::Ptr const & p : decrypted.get_packets()){
+        if (p -> get_tag() == 11){
+            std::string raw = p -> raw();
+            Tag11 tag11(raw);
+            out += tag11.out(false);
+        }
+    }
+    return out;
+}
 
 
 

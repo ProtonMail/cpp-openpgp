@@ -46,8 +46,6 @@ class ViewController: NSViewController {
         
     }
     @IBAction func test_import_clicked(sender: AnyObject) {
-        
-        
         let pgp:OpenPGP = OpenPGP();
         //pgp.SetupKeys("", pubKey: public_key_, pass: "123", error: nil)
         
@@ -85,7 +83,12 @@ class ViewController: NSViewController {
         
         let pgp:OpenPGP = OpenPGP();
         
-        let testStr : String = "-----BEGIN PGP MESSAGE-----\nVersion: OpenPGP.js v0.10.1-IE\nComment: http://openpgpjs.org\n\nww0ECQMIina34sp8Nlpg0sAbAc/x6pR8h57OJv9pklLuEc/aH5lFT9OpWS+N\n7oPaJCGK1f3aQV7g5V5INlUvwICeDiSkDMo+hHGtFgDFEwgNiMDc7wAtod1U\nZ5PTHegr8KWWmBiDIYuPVFJH8mALVcQen9MI1xFSYO8RvSxM/P6dJPzrVZQK\noIRW98dxMjJqMWW9HgqWCej6TRDua65r/X7Ucco9tWpwzmQCnvJLqpcYYrEk\ngcGyXsp3RvISG6pWh8ZFemeO6yoqnphYmcAa/i4h4CiMqKDDJuOg4UdpW46U\nGoNSV+C4hz5ymRDj\n=hUe3\n-----END PGP MESSAGE-----"
+        let test_file = "/Users/Yanfeng/Desktop/aestest.txt"
+        
+        let testStr = NSString(contentsOfFile: test_file, encoding: NSUTF8StringEncoding, error: nil) as! String
+
+        
+        //let testStr : String = "-----BEGIN PGP MESSAGE-----\nVersion: OpenPGP.js v0.10.1-IE\nComment: http://openpgpjs.org\n\nww0ECQMIina34sp8Nlpg0sAbAc/x6pR8h57OJv9pklLuEc/aH5lFT9OpWS+N\n7oPaJCGK1f3aQV7g5V5INlUvwICeDiSkDMo+hHGtFgDFEwgNiMDc7wAtod1U\nZ5PTHegr8KWWmBiDIYuPVFJH8mALVcQen9MI1xFSYO8RvSxM/P6dJPzrVZQK\noIRW98dxMjJqMWW9HgqWCej6TRDua65r/X7Ucco9tWpwzmQCnvJLqpcYYrEk\ngcGyXsp3RvISG6pWh8ZFemeO6yoqnphYmcAa/i4h4CiMqKDDJuOg4UdpW46U\nGoNSV+C4hz5ymRDj\n=hUe3\n-----END PGP MESSAGE-----"
         
         let message = pgp.decrypt_message_aes(testStr, pwd: "123", error: nil)
         if(message == "<div>lajflkjasklfjlksdfkl</div><div><br></div><div>Sent from iPhone <a href=\"https://protonmail.ch\">ProtonMail</a>, encrypted email based in Switzerland.<br></div>")
@@ -98,11 +101,20 @@ class ViewController: NSViewController {
         //NSLog(enc_msg)
         let un_enc_msg = pgp.decrypt_message_aes(enc_msg, pwd: "123", error: nil)
         //NSLog(un_enc_msg)
-        
         if(test_message == un_enc_msg)
         {
             NSLog("OK")
         }
+        
+        let test_keys = pgp.encrypt_message_aes(test_message, pwd: "123", error: nil)
+        let data_key = test_keys.dataUsingEncoding(NSUTF8StringEncoding)
+        let symSession = pgp.getSymmetricSessionKey(data_key, password: "123", error: nil)
+        
+        let newSessionKeyPackage = pgp.getNewSymmetricKeyPackage(symSession, password: "1234", error: nil)
+        
+        let out = pgp.decrypt_message_aes(newSessionKeyPackage, data: data_key, pwd: "1234", error: nil)
+        
+        var strout = NSString(data: out, encoding:NSUTF8StringEncoding)
 
     }
     @IBAction func EncryptMailboxPWD(sender: AnyObject) {

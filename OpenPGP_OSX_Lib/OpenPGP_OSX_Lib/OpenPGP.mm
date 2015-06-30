@@ -638,6 +638,20 @@
     return [NSData dataWithBytes: test_plain_txt.c_str() length:test_plain_txt.length()];
 }
 
+- (NSData *) decrypt_message_aes:(NSData*) keyPackage data:(NSData*) dataPackage pwd:(NSString *)password error:(NSError**) err
+{
+    std::string str_key_package = std::string((char* )[keyPackage bytes], [keyPackage length]);
+    std::string str_data_package = std::string((char* )[dataPackage bytes], [dataPackage length]);
+    std::string str_password = [password UTF8String];
+    
+    pm::PMPGPMessage pmp_key(str_key_package);
+    pm::PMPGPMessage pmp_data(str_data_package);
+
+    std::string test_plain_txt = decrypt_pka_use_sym_session(pmp_data, pmp_key, str_password);
+    //std::cout  << test_plain_txt << std::endl;
+    return [NSData dataWithBytes: test_plain_txt.c_str() length:test_plain_txt.length()];
+}
+
 
 //encrypt decrypt attachment
 // ["dataPacket"]
@@ -716,17 +730,16 @@
 }
 - (NSData*) getNewSymmetricKeyPackage:(NSData *) sessionKey password:(NSString*)pwd error:(NSError**) err
 {
+    //[1 octet symmetric key algorithm] + [session key(s)]
     std::string str_key_package = std::string((char* )[sessionKey bytes], [sessionKey length]);
     std::string str_password = [pwd UTF8String];
     
     
-    pm::PMPGPMessage pm_pgp_msg(str_key_package);
-
+    PGPMessage out_msg = encrypt_pka_only_sym_session(str_password, str_key_package);
     
-    std::string test_plain_txt = decrypt_pka(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String], false);
+    std::string endryp_dat = out_msg.write(1);
     
-    //std::cout  << test_plain_txt << std::endl;
-    return [NSData dataWithBytes: test_plain_txt.c_str() length:test_plain_txt.length()];
+    return [NSData dataWithBytes: endryp_dat.c_str() length:endryp_dat.length()];
 }
 
 //
@@ -745,6 +758,9 @@
     
     pm::PMPGPMessage pm_pgp_msg(str_key_package);
     std::string sessionkey = decrypt_pka_only_sym_session(pm_pgp_msg, str_password);
+    
+    //std::cout << hexlify(sessionkey) << std::endl;
+    
     return [NSData dataWithBytes: sessionkey.c_str() length:sessionkey.length()];
 }
 
