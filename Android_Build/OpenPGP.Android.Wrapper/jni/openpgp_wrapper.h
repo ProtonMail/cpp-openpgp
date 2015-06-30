@@ -49,6 +49,26 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptMailboxPWD(JNIEnv* env, jobject 
 // // //Generate new key pair
 // // - (NSMutableDictionary*) generate_key:(NSString*)passphrase username:(NSString*)user_name error:(NSError**) err;
 
+////encrypt decrypt attachment
+//- (NSMutableDictionary*) encrypt_attachment:(NSData *) unencrypt_att pub_key:(NSString *)pub_key error:(NSError**) err;
+//- (NSMutableDictionary*) encrypt_attachments:(NSData *) unencrypt_att pub_keys:(NSMutableDictionary*)pub_keys error:(NSError**) err;
+//
+////
+//- (NSData*) getNewPublicKeyPackage:(NSData *) sessionKey pub_key:(NSString *)pub_key error:(NSError**) err;
+//- (NSData*) getNewSymmetricKeyPackage:(NSData *) sessionKey password:(NSString*)pwd error:(NSError**) err;
+////
+//- (NSData*) getPublicKeySessionKey:(NSData *) keyPackage error:(NSError**) err;
+//- (NSData*) getSymmetricSessionKey:(NSData *) keyPackage password:(NSString*)pwd error:(NSError**) err;
+//
+//
+////binary attachment
+//- (NSData *) decrypt_attachment:(NSData*) keyPackage data:(NSData*) dataPackage error:(NSError**) err;
+////armored attachment packages
+//- (NSData *) decrypt_attachment_armored:(NSString*) keyPackage data:(NSString*) dataPackage error:(NSError**) err;
+//
+////binary attachment
+//- (NSData *) decrypt_message_aes:(NSData*) keyPackage data:(NSData*) dataPackage pwd:(NSString *)password error:(NSError**) err;
+
 
 #ifdef __cplusplus
 }
