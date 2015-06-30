@@ -468,6 +468,8 @@ PGPMessage encrypt_sym(const std::string & passphrase, const std::string & data,
     tag3 -> set_sym(sym_alg);
     // don't set esk (?)
     
+    // sec -> set_secret(use_normal_CFB_encrypt(sym_alg, sessionKey, key, sec -> get_IV()));
+    
     // generate session key
     // get hex version of session key
     std::string session_key = tag3->get_key(passphrase);
