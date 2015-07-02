@@ -445,7 +445,7 @@ PGPMessage encrypt_sym(const std::string & passphrase, const std::string & data,
     // generate Symmetric-Key Encrypted Session Key Packets (Tag 3)
     S2K3::Ptr s2k = std::make_shared <S2K3> ();
     s2k -> set_type(3);
-    s2k -> set_hash(8); // SHA1
+    s2k -> set_hash(8); // SHA256
     s2k -> set_salt(unhexlify(bintohex(BBS().rand_b(64))));
     s2k -> set_count(96);
     
