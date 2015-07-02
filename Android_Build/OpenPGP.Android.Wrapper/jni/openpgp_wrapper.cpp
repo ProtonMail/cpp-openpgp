@@ -80,6 +80,11 @@ Java_ch_protonmail_android_utils_OpenPGP_SetupKeys(JNIEnv* env, jobject o, jstri
 	    public_key.set_is_debug(false);
 	   	public_key.read(str_pub_key);
 
+
+	   	(*env).DeleteLocalRef(jpriv_key);
+        (*env).DeleteLocalRef(jpub_key);
+        (*env).DeleteLocalRef(jpassphrase);
+
 	    std::string verifyString = "this is a protonmail encryption test string";
 	    LOG_E("Start encrypt check");
 	    PGPMessage encrypted = encrypt_pka(public_key, verifyString);
@@ -127,10 +132,13 @@ Java_ch_protonmail_android_utils_OpenPGP_EncryptMessage(JNIEnv* env, jobject o, 
             env->ReleaseStringUTFChars(junencrypt_message, c_un_encrypt_msg);
         }
 
-
         PGPPublicKey pub(str_pub_key);
         PGPMessage encrypted_pgp = encrypt_pka(pub, str_unencrypt_msg);
         std::string encrypt_message = encrypted_pgp.write();
+
+
+	   	(*env).DeleteLocalRef(junencrypt_message);
+        (*env).DeleteLocalRef(jpub_key);
 
         jstring jsRet = 0;
 		if (!encrypt_message.empty())
@@ -182,6 +190,11 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptMessage(JNIEnv* env, jobject o, 
 		secret_key.read(str_priv_key);
 
         std::string test_plain_txt = decrypt_pka(secret_key, pm_pgp_msg, str_passphrase, false);
+
+        (*env).DeleteLocalRef(jencrypted_message);
+        (*env).DeleteLocalRef(jpriv_key);
+        (*env).DeleteLocalRef(jpassphrase);
+
         jstring jsRet = 0;
 		if (!test_plain_txt.empty())
 		{
@@ -202,15 +215,28 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptMessage(JNIEnv* env, jobject o, 
 }
 
 JNIEXPORT jstring JNICALL
-Java_ch_protonmail_android_utils_OpenPGP_EncryptMessageAES(JNIEnv* env, jobject o, jstring unencrypt_message, jstring password)
+Java_ch_protonmail_android_utils_OpenPGP_EncryptMessageAES(JNIEnv* env, jobject o, jstring junencrypt_message, jstring jpassword)
 {
 	try
     {
-        std::string str_unencrypt_message = (*env).GetStringUTFChars(unencrypt_message, 0);
-		std::string str_password = (*env).GetStringUTFChars(password, 0);
+        jboolean isCopy;
+        const char* c_un_encrypt_msg = env->GetStringUTFChars(junencrypt_message, &isCopy);
+        std::string str_unencrypt_message = std::string(c_un_encrypt_msg);
+        if (isCopy == JNI_TRUE) {
+            env->ReleaseStringUTFChars(junencrypt_message, c_un_encrypt_msg);
+        }
+
+        const char* c_password = env->GetStringUTFChars(jpassword, &isCopy);
+        std::string str_password = std::string(c_password);
+        if (isCopy == JNI_TRUE) {
+            env->ReleaseStringUTFChars(jpassword, c_password);
+        }
 
         PGPMessage encrypted_sym = encrypt_sym(str_password, str_unencrypt_message, "", 9, 0, true, nullptr, "");
         std::string encrypt_message = encrypted_sym.write();
+
+        (*env).DeleteLocalRef(junencrypt_message);
+        (*env).DeleteLocalRef(jpassword);
 
         jstring jsRet = 0;
 		if (!encrypt_message.empty())
@@ -230,16 +256,30 @@ Java_ch_protonmail_android_utils_OpenPGP_EncryptMessageAES(JNIEnv* env, jobject 
     }
 	return 0;
 }
+
 JNIEXPORT jstring JNICALL
-Java_ch_protonmail_android_utils_OpenPGP_DecryptMessageAES(JNIEnv* env, jobject o, jstring encrypted_message, jstring password)
+Java_ch_protonmail_android_utils_OpenPGP_DecryptMessageAES(JNIEnv* env, jobject o, jstring jencrypted_message, jstring jpassword)
 {
 	try
     {
-        std::string str_encrypted_message = (*env).GetStringUTFChars(encrypted_message, 0);
-		std::string str_password = (*env).GetStringUTFChars(password, 0);
+        jboolean isCopy;
+        const char* c_encrypted_msg = env->GetStringUTFChars(jencrypted_message, &isCopy);
+        std::string str_encrypted_message = std::string(c_encrypted_msg);
+        if (isCopy == JNI_TRUE) {
+            env->ReleaseStringUTFChars(jencrypted_message, c_encrypted_msg);
+        }
+
+        const char* c_password = env->GetStringUTFChars(jpassword, &isCopy);
+        std::string str_password = std::string(c_password);
+        if (isCopy == JNI_TRUE) {
+            env->ReleaseStringUTFChars(jpassword, c_password);
+        }
 
         pm::PMPGPMessage pm_pgp_msg(str_encrypted_message);
         std::string out_unencrypt_msg = decrypt_sym(pm_pgp_msg, str_password);
+
+        (*env).DeleteLocalRef(jencrypted_message);
+        (*env).DeleteLocalRef(jpassword);
 
         jstring jsRet = 0;
 		if (!out_unencrypt_msg.empty())
@@ -262,12 +302,22 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptMessageAES(JNIEnv* env, jobject 
 }
 
 JNIEXPORT jstring JNICALL
-Java_ch_protonmail_android_utils_OpenPGP_EncryptMailboxPWD(JNIEnv* env, jobject o, jstring unencrypt_pwd, jstring salt)
+Java_ch_protonmail_android_utils_OpenPGP_EncryptMailboxPWD(JNIEnv* env, jobject o, jstring junencrypt_pwd, jstring jsalt)
 {
     try
     {
-        std::string str_unencrypt_message = (*env).GetStringUTFChars(unencrypt_pwd, 0);
-        std::string str_password = (*env).GetStringUTFChars(salt, 0);
+        jboolean isCopy;
+        const char* c_unencrypt_pwd = env->GetStringUTFChars(junencrypt_pwd, &isCopy);
+        std::string str_unencrypt_message = std::string(c_unencrypt_pwd);
+        if (isCopy == JNI_TRUE) {
+            env->ReleaseStringUTFChars(junencrypt_pwd, c_unencrypt_pwd);
+        }
+
+        const char* c_password = env->GetStringUTFChars(jsalt, &isCopy);
+        std::string str_password = std::string(c_password);
+        if (isCopy == JNI_TRUE) {
+            env->ReleaseStringUTFChars(jsalt, c_password);
+        }
 
         PGPMessage encrypted_sym = encrypt_sym(str_password, str_unencrypt_message, "", 9, 0, true, nullptr, "");
         std::string encrypt_message = hexlify(encrypted_sym.write(1));
@@ -277,6 +327,10 @@ Java_ch_protonmail_android_utils_OpenPGP_EncryptMailboxPWD(JNIEnv* env, jobject 
         {
             jsRet = (env)->NewStringUTF((const char*) encrypt_message.c_str());
         }
+
+        (*env).DeleteLocalRef(junencrypt_pwd);
+        (*env).DeleteLocalRef(jsalt);
+
         return jsRet;
     }
     catch (const std::runtime_error& error)
@@ -351,12 +405,22 @@ Java_ch_protonmail_android_utils_OpenPGP_EncryptMailboxPWD(JNIEnv* env, jobject 
 }
 
 JNIEXPORT jstring JNICALL
-Java_ch_protonmail_android_utils_OpenPGP_DecryptMailboxPWD(JNIEnv* env, jobject o, jstring encrypted_pwd, jstring salt)
+Java_ch_protonmail_android_utils_OpenPGP_DecryptMailboxPWD(JNIEnv* env, jobject o, jstring jencrypted_pwd, jstring jsalt)
 {
     try
     {
-        std::string str_encrypted_message = (*env).GetStringUTFChars(encrypted_pwd, 0);
-        std::string str_password = (*env).GetStringUTFChars(salt, 0);
+        jboolean isCopy;
+        const char* c_encrypted_pwd = env->GetStringUTFChars(jencrypted_pwd, &isCopy);
+        std::string str_encrypted_message = std::string(c_encrypted_pwd);
+        if (isCopy == JNI_TRUE) {
+            env->ReleaseStringUTFChars(jencrypted_pwd, c_encrypted_pwd);
+        }
+
+        const char* c_password = env->GetStringUTFChars(jsalt, &isCopy);
+        std::string str_password = std::string(c_password);
+        if (isCopy == JNI_TRUE) {
+            env->ReleaseStringUTFChars(jsalt, c_password);
+        }
 
         str_encrypted_message = unhexlify(str_encrypted_message);
         pm::PMPGPMessage pm_pgp_msg(str_encrypted_message);
@@ -367,6 +431,9 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptMailboxPWD(JNIEnv* env, jobject 
         {
             jsRet = (env)->NewStringUTF((const char*) out_unencrypt_msg.c_str());
         }
+
+        (*env).DeleteLocalRef(jencrypted_pwd);
+        (*env).DeleteLocalRef(jsalt);
 
         return jsRet;
     }
@@ -495,15 +562,34 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptMailboxPWD(JNIEnv* env, jobject 
 
 
 JNIEXPORT jbyteArray JNICALL
-Java_ch_protonmail_android_utils_OpenPGP_DecryptAttachmentArmored(JNIEnv* env, jobject o, jstring key_package, jstring data_package, jstring priv_key, jstring passphrase)
+Java_ch_protonmail_android_utils_OpenPGP_DecryptAttachmentArmored(JNIEnv* env, jobject o, jstring jkey_package, jstring jdata_package, jstring jpriv_key, jstring jpassphrase)
 {
     try
     {
-        std::string str_key_package = (*env).GetStringUTFChars(key_package, 0);
-        std::string str_data_package = (*env).GetStringUTFChars(data_package, 0);
+        jboolean isCopy;
+        const char* c_key_package = env->GetStringUTFChars(jkey_package, &isCopy);
+        std::string str_key_package = std::string(c_key_package);
+        if (isCopy == JNI_TRUE) {
+            env->ReleaseStringUTFChars(jkey_package, c_key_package);
+        }
 
-        std::string str_private_key = (*env).GetStringUTFChars(priv_key, 0);
-        std::string str_password = (*env).GetStringUTFChars(passphrase, 0);
+        const char* c_data_package = env->GetStringUTFChars(jdata_package, &isCopy);
+        std::string str_data_package = std::string(c_data_package);
+        if (isCopy == JNI_TRUE) {
+            env->ReleaseStringUTFChars(jdata_package, c_data_package);
+        }
+
+        const char* c_private_key = env->GetStringUTFChars(jpriv_key, &isCopy);
+        std::string str_private_key = std::string(c_private_key);
+        if (isCopy == JNI_TRUE) {
+            env->ReleaseStringUTFChars(jpriv_key, c_private_key);
+        }
+
+        const char* c_password = env->GetStringUTFChars(jpassphrase, &isCopy);
+        std::string str_password = std::string(c_password);
+        if (isCopy == JNI_TRUE) {
+            env->ReleaseStringUTFChars(jpassphrase, c_password);
+        }
 
         pm::PMPGPMessage pm_pgp_msg(str_key_package);
         pm_pgp_msg.append(str_data_package);
@@ -516,9 +602,14 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptAttachmentArmored(JNIEnv* env, j
 
         int len = test_plain_txt.size();
         jbyteArray array = env->NewByteArray(len);
-
         // //HERE I GET THE ERROR, I HAVE BEEN TRYING WITH len/2 and WORKS , PROBABLY SOME BYTS ARE GETTING LOST.
         (*env).SetByteArrayRegion (array, 0, len, (jbyte*)(test_plain_txt.c_str()));
+
+
+        (*env).DeleteLocalRef(jkey_package);
+        (*env).DeleteLocalRef(jdata_package);
+        (*env).DeleteLocalRef(jpriv_key);
+        (*env).DeleteLocalRef(jpassphrase);
 
         return array;
     }
@@ -573,7 +664,10 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptAttachment(JNIEnv* env, jobject 
         (*env).SetByteArrayRegion (array, 0, len, (jbyte*)(test_plain_txt.c_str()));
 
 
-       // (*env).DeleteLocalRef (jniEnv, jprivate_key);
+        (*env).DeleteLocalRef(key);
+        (*env).DeleteLocalRef(data);
+        (*env).DeleteLocalRef(jprivate_key);
+        (*env).DeleteLocalRef(passphrase);
 
         return array;
     }
@@ -605,37 +699,22 @@ Java_ch_protonmail_android_utils_OpenPGP_EncryptAttachment(JNIEnv* env, jobject 
 
         std::string str_public_key = (*env).GetStringUTFChars(public_key, 0);
 
-        ///
-//LOG_E("Step 1");
-        std::string str_session_key = generat_session_key();
-//LOG_E("Step 1-1 : %s", str_session_key.c_str());
-//LOG_E("Step 1-1 : %d", str_session_key.size());
 
-//LOG_E("Step 1-2 : %d", str_public_key.size());
-//LOG_E("Step 1-2 : %s", str_public_key.c_str());
+        std::string str_session_key = generat_session_key();
 
         PGPPublicKey pub;
 	    pub.set_is_debug(false);
 	   	pub.read(str_public_key);
 
-//    LOG_E("Step 1-3");
-
-        //std::string k_out = pub.write();
-//LOG_E("Step 1-4 : %d", k_out.size());
-//LOG_E("Step 1-4 : %s", k_out.c_str());
-
         PGPMessage enrypted_session_key = encrypt_pka_only_session(pub, str_session_key);
 
- //           LOG_E("Step 1-5");
         //session key package
         std::string enrypted_session_key_data = enrypted_session_key.write(1);
 
-//LOG_E("Step 2");
 
         PGPMessage encrypted_att = encrypt_pka_only_data(str_session_key, un_encrypted_data, "", 9, 0);
         std::string encrypted_data = encrypted_att.write(1);
 
-//LOG_E("Step 3");
 
         jclass clazz = (*env).FindClass("ch/protonmail/android/utils/EncryptPackage");
         // Get the method id of an empty constructor in clazz
@@ -646,7 +725,6 @@ Java_ch_protonmail_android_utils_OpenPGP_EncryptAttachment(JNIEnv* env, jobject 
         jfieldID key_fieldID = (*env).GetFieldID(clazz, "KeyPackage", "[B");
         jfieldID data_fieldID = (*env).GetFieldID(clazz, "DataPackage", "[B");
 
-
         int len = enrypted_session_key_data.size();
         jbyteArray key_array = env->NewByteArray(len);
         (*env).SetByteArrayRegion (key_array, 0, len, (jbyte*)(enrypted_session_key_data.c_str()));
@@ -656,6 +734,12 @@ Java_ch_protonmail_android_utils_OpenPGP_EncryptAttachment(JNIEnv* env, jobject 
         jbyteArray data_array = env->NewByteArray(len);
         (*env).SetByteArrayRegion (data_array, 0, len, (jbyte*)(encrypted_data.c_str()));
         (*env).SetObjectField(obj, data_fieldID, data_array);
+
+
+        (*env).DeleteLocalRef(data_array);
+        (*env).DeleteLocalRef(data);
+        (*env).DeleteLocalRef(public_key);
+        (*env).DeleteLocalRef(key_array);
 
         return obj;
     }
@@ -705,6 +789,11 @@ Java_ch_protonmail_android_utils_OpenPGP_GetPublicKeySessionKey(JNIEnv* env, job
         jbyteArray array = env->NewByteArray(len);
         (*env).SetByteArrayRegion (array, 0, len, (jbyte*)(sessionKey.c_str()));
 
+
+        (*env).DeleteLocalRef(key);
+        (*env).DeleteLocalRef(priv_key);
+        (*env).DeleteLocalRef(passphrase);
+
         return array;
     }
     catch (const std::runtime_error& error)
@@ -745,6 +834,11 @@ Java_ch_protonmail_android_utils_OpenPGP_GetSymmetricSessionKey(JNIEnv* env, job
         jbyteArray array = env->NewByteArray(len);
         (*env).SetByteArrayRegion (array, 0, len, (jbyte*)(sessionKey.c_str()));
 
+
+        (*env).DeleteLocalRef(key);
+        (*env).DeleteLocalRef(password);
+
+
         return array;
     }
     catch (const std::runtime_error& error)
@@ -773,17 +867,36 @@ Java_ch_protonmail_android_utils_OpenPGP_GetNewPublicKeyPackage(JNIEnv* env, job
         std::string str_session_key = std::string((char* )key_session, srcLen);
         (*env).ReleaseByteArrayElements(key, key_session , 0);
 
+        LOG_E("1");
+
         std::string str_public_key = (*env).GetStringUTFChars(publicKey, 0);
 
+        LOG_E("2");
         PGPPublicKey pub(str_public_key);
 
+
+
+        LOG_E("3");
         PGPMessage out_msg = encrypt_pka_only_session(pub, str_session_key);
 
-        std::string new_key_package = out_msg.write(0);
 
+        LOG_E("4");
+        std::string new_key_package = out_msg.write(1);
+
+        //LOG_E("4- %s", new_key_package.c_str());
+
+        LOG_E("5");
         int len = new_key_package.size();
         jbyteArray array = env->NewByteArray(len);
         (*env).SetByteArrayRegion (array, 0, len, (jbyte*)(new_key_package.c_str()));
+
+
+        LOG_E("6");
+        (*env).DeleteLocalRef(key);
+        (*env).DeleteLocalRef(publicKey);
+
+
+        LOG_E("7");
 
         return array;
     }
@@ -823,6 +936,9 @@ Java_ch_protonmail_android_utils_OpenPGP_GetNewSymmetricKeyPackage(JNIEnv* env, 
         int len = new_key_package.size();
         jbyteArray array = env->NewByteArray(len);
         (*env).SetByteArrayRegion (array, 0, len, (jbyte*)(new_key_package.c_str()));
+
+        (*env).DeleteLocalRef(key);
+        (*env).DeleteLocalRef(password);
 
         return array;
     }
