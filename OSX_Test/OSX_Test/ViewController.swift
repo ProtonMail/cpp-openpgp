@@ -250,6 +250,19 @@ class ViewController: NSViewController {
         let decrypt = (DecryptTime - TransforTime);
 
         self.labelDisplay.stringValue = NSString(format: "Total Runtime: %g s --- Enrypt: %g s ---- Decrypt %g s", total, encrypt , decrypt) as String;
+        
+        
+        let test_string_test = "adlfjasljflkasjfjskdlfjkjfljskldfjlkasjfljsdklfjalsfjlksdjfklsjdf"
+        let test_data_test = test_string_test.dataUsingEncoding(NSUTF8StringEncoding)
+        let test_data_test_out = pgp.encrypt_attachments(test_data_test, pub_keys: ["zhj4478@protonmail.com" : pubkey], error: nil)
+        
+        
+        let key_a = test_data_test_out["zhj4478@protonmail.com"] as! NSData
+        let d_a = test_data_test_out["DataPacket"] as! NSData
+        
+        
+        
+        
     }
 }
 

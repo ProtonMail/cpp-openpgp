@@ -670,8 +670,8 @@
     
     PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg);
     
-    std::string keyPackage = encrypted_pgp.write(0, 0, 1);
-    std::string dataPackage = encrypted_pgp.write(0, 0, 18);
+    std::string keyPackage = encrypted_pgp.write(1, 0, 1);
+    std::string dataPackage = encrypted_pgp.write(1, 0, 18);
     
     
     [dictX setObject:[[NSString alloc] initWithUTF8String:dataPackage.c_str()] forKey:@"DataPacket"];

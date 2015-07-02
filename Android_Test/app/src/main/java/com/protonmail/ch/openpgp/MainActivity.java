@@ -14,6 +14,7 @@ import android.os.Build;
 import android.widget.Button;
 import android.widget.TextView;
 
+import ch.protonmail.android.utils.EncryptPackage;
 import ch.protonmail.android.utils.OpenPGP;
 
 
@@ -83,34 +84,29 @@ public class MainActivity extends ActionBarActivity {
 
             TextView helloworld = (TextView) rootView.findViewById(R.id.hello_world);
 
-            OpenPGP tm = new OpenPGP();
-            String test = tm.test2(100);
+            String test = OpenPGP.test2(100);
             helloworld.setText(test);
 
             Button test_button = (Button) rootView.findViewById(R.id.pgp_test);
             test_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    OpenPGP open_test = new OpenPGP();
-                    int isPwdOK = open_test.SetupKeys(privateKey,publicKey,passphrase);
+                    int isPwdOK = OpenPGP.SetupKeys(privateKey,publicKey,passphrase);
 
-                    OpenPGP p = new OpenPGP();
-                    int isPwdOK1 = p.SetupKeys(privateKey, publicKey, "123123");
+                    int isPwdOK1 = OpenPGP.SetupKeys(privateKey, publicKey, "123123");
 
                     Log.e("test", String.format("%d",isPwdOK));
 
 
-                    String test_encrypt = open_test.EncryptMailboxPWD("thisisatestmailbox", "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
-                    String test_plain_text = open_test.DecryptMailboxPWD(test_encrypt, "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
+                    String test_encrypt = OpenPGP.EncryptMailboxPWD("thisisatestmailbox", "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
+                    String test_plain_text = OpenPGP.DecryptMailboxPWD(test_encrypt, "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
 
                     Log.e("DecryptMailboxPWD", test_plain_text);
                 }
             });
 
-            OpenPGP open_test = new OpenPGP();
-
-            String encryptedText = open_test.EncryptMessage(cleartext, publicKey);
-            String decryptedText = open_test.DecryptMessage(encryptedText, privateKey, passphrase);
+            String encryptedText = OpenPGP.EncryptMessage(cleartext, publicKey);
+            String decryptedText = OpenPGP.DecryptMessage(encryptedText, privateKey, passphrase);
             if (decryptedText.equalsIgnoreCase(cleartext)) {
                 Log.e("Test", "OK");
             }
@@ -118,26 +114,165 @@ public class MainActivity extends ActionBarActivity {
             String test_password = "123";
             String original_text = "<div>lajflkjasklfjlksdfkl</div><div><br></div><div>Sent from iPhone <a href=\"https://protonmail.ch\">ProtonMail</a>, encrypted email based in Switzerland.<br></div>";
             String test_aes_str = "-----BEGIN PGP MESSAGE-----\nVersion: OpenPGP.js v0.10.1-IE\nComment: http://openpgpjs.org\n\nww0ECQMIina34sp8Nlpg0sAbAc/x6pR8h57OJv9pklLuEc/aH5lFT9OpWS+N\n7oPaJCGK1f3aQV7g5V5INlUvwICeDiSkDMo+hHGtFgDFEwgNiMDc7wAtod1U\nZ5PTHegr8KWWmBiDIYuPVFJH8mALVcQen9MI1xFSYO8RvSxM/P6dJPzrVZQK\noIRW98dxMjJqMWW9HgqWCej6TRDua65r/X7Ucco9tWpwzmQCnvJLqpcYYrEk\ngcGyXsp3RvISG6pWh8ZFemeO6yoqnphYmcAa/i4h4CiMqKDDJuOg4UdpW46U\nGoNSV+C4hz5ymRDj\n=hUe3\n-----END PGP MESSAGE-----";
-            String plain_text = open_test.DecryptMessageAES(test_aes_str, test_password);
+            String plain_text = OpenPGP.DecryptMessageAES(test_aes_str, test_password);
 
             if (plain_text.equalsIgnoreCase(original_text)) {
                 Log.e("Test", "OK");
             }
 
 
-            String new_enc_msg = open_test.EncryptMessageAES(original_text, test_password);
+            String new_enc_msg = OpenPGP.EncryptMessageAES(original_text, test_password);
             if(new_enc_msg != null)
             {
                 Log.e("Test", "OK");
             }
 
-            String new_dec_msg = open_test.DecryptMessageAES(new_enc_msg, test_password);
+            String new_dec_msg = OpenPGP.DecryptMessageAES(new_enc_msg, test_password);
             if(new_enc_msg != null && new_dec_msg.equalsIgnoreCase(original_text))
             {
                 Log.e("Test", "OK");
             }
 
 
+
+            //.net private key
+            String private_key_net = "-----BEGIN PGP PRIVATE KEY BLOCK-----\n" +
+                    "Version:    OpenPGP.js v0.7.1\n" +
+                    "Comment:    http://openpgpjs.org\n" +
+                    "\n" +
+                    "xcMGBFRAGVYBCAC873RDV1sSYgUg/xFxoRGWeJpUKtI6e/1W+h+3IxHftQAtQYBN\n" +
+                    "L3XtigghJTjMjKoeCW4Q6qILXk2O3P8JKxewmMe8lPMK9WRE42kEpZl31pJ4YaDN\n" +
+                    "NFSBuF/uHsNnXgM3INEmRri3ewIlEcptnmOnqIXbsEpPlUo5LpaIXyHmdVqRo5fi\n" +
+                    "JykZWY2OIqV0QRw0hSkz4Lcl0ZONDfd5O4bvfYwq0CzxuuCz7YFl73vIC+gwcEH8\n" +
+                    "6msBOeWR2JN3E4O8NqrUwyQSaHqQmXENkXISo6KpNlLPkaN5CGppDMXYpClDIc82\n" +
+                    "4V/JmGuXHmDyEmecyWw2djsqxirjlnkDQV4JABEBAAH+CQMIzFi3glrFyiFgsxzZ\n" +
+                    "kO4NBtPh5Sy+auolrMVb/ijp/MX80GAnV6/pL7xsVCFAdg9PZqreot+iVTK2gAK7\n" +
+                    "ih9OUZ3CZ2CsCXKtPD5Bv9fxUWlKeB8yTcyP/ivnqTc/AXu6S7/YQNqyY8dgSTnG\n" +
+                    "Q4ZTbI7UYclr6MnEeoAWzDFDtAGmmRc2W/aIUn+lHyMiB9tM/geEmeZPipCKR4Iz\n" +
+                    "9HKcOXYFIsz7jC0uBVbYowe974WfYDNjMKDCaBV7o6Bd3Gw9BS/VpN9+dnLdQvu3\n" +
+                    "YvnxEzCrBKcnJ3J4DwsYHm0fwLwMce293K3Y7jWEOlbZYiu6HzwDoFu2CGMjYVOF\n" +
+                    "P8OecTYwOgxLwHpAsw1EXFHOC4Z4W1L44xtB3qesk9kwueh8ON0yxOtsLtIpNcb7\n" +
+                    "MGH+7OwAhSIVpjFwsGrTHxelKgPgeSgroPJqIs4Rdz84AGFvkNW32EW3qxUsmGmJ\n" +
+                    "+XP+tzXoyWang2wjmeOF1n+Y0Xdp4wVkIWsZqfkzSfIEh2xoFKziWKEASPf7u0i3\n" +
+                    "eyu7A0Es+7dhds3BDkw4O9Dt5elQyKygclaDB3ny79VRRZCBfuCAVfAyO/DpizvF\n" +
+                    "ltJSwQZ2j3pdDOnfYhRtzk5C03OyDJDpVXtGxRY5JpMFnjOsLO9yFQF9apsOOjfV\n" +
+                    "Ou6YwaaJ0brCBevFfTfneXhk/oXxrR7twRNAY5bdKmGVS2C3pOemR+o1lKWY6Az3\n" +
+                    "WGKnaf+KX2/23mMh2Dl7bqwqHrWvJTWwOi2lW28TkVrxAqLidnJmWfGRYS6L83NV\n" +
+                    "icHcAycmB8hjCngRkzw3ZTzzkaHdKeEvHdU/fJLxuLHYCLc9MYCs/NEcMqw+H+pX\n" +
+                    "M8r0gU4nD0jpSiJbfT9Tk+mLSXkHp9aDbDzD0Zywa6Oqwq1a3XHr/jMXRgAEHSpz\n" +
+                    "Tn/+hL5MFNLczQDCwHIEEAEIACYFAlRAGVgGCwkIBwMCCRDJ6DjbEVuFVgQVCAIK\n" +
+                    "AxYCAQIbAwIeAQAAweEIAIiV9RcpkS/D2jEG51JBbnV0X3e3xWLYn9sqKBUUcCgf\n" +
+                    "OtWuCqSisTsEGjtENkSEUVym1d0CJDZYdg/hgTGMhZr7L8PFNSY215TgZcXjyWvL\n" +
+                    "9NgrMJinDa+epUs5rOW0OA08JmadL07wzleMFWjLBVLLnLL2uq9/R/Rndpf/7g1R\n" +
+                    "gC2CYoza37aFbI33OOe1VfrpjUJ074bffSrmzvYHdkB/dNlJhvRftxHLtzkzlLhI\n" +
+                    "eKr3jhx0MTFzNhX9VtXNbx8HqRbJWKRgtoBxUvm54f7WNV3gZUckjWJDz7+TAACb\n" +
+                    "xEJxqaaCPlnmb3RFRd8dQCu67TP+0hsM2q7PtgcnRAfHwwYEVEAZWAEIANUYBlFP\n" +
+                    "MvdZvr10DxX4+OJYAiT/4BSAEawkMLThyNYycnEIM3Epv2lZbJyzFU8RUxifhHAY\n" +
+                    "i8+sYWA/czncabzWS7i0Hmes7FAz6nLAPf/jiIx5A8F35mhdGuvmN11OaXJbRT5J\n" +
+                    "e5Xot0UmnZ8NSglOK8F0R0V2+uQ5Nb8lF7XlGeRDBaE8eW4aMQydyIrF5W5cUIfI\n" +
+                    "FUYJnvURTpHY2nPR8N8XfMBEK/b9bXSO8KyvxsUghhOO/UrhpeUVHukcCrvtsZuE\n" +
+                    "VqB+WkFYhxr9Se+YHc23BWMsNNBLL6deVQzPGwePiYnUYtwzOdh1TXeaBy1YuBJU\n" +
+                    "VmszvThb3n9cgecAEQEAAf4JAwgz6ysmk5if3mAE3Qcb5jY5h9h5kiK6LmKpNb2L\n" +
+                    "Wx5ZdBOYR3KRIZDpnOh1X4Fn0fGKcrS0vadviI9ni+Dj66S8CEWEL9a7QF6o07K1\n" +
+                    "pERKvDgAT/taLqJpWmMQSnWJKslqbgxAsA4NVxuz2sQ0Wh7KOTCK/QVMUCIl/jTw\n" +
+                    "A7xkhoAvQElZKzOSXTSSe99uLGguHYx2jm4GrUjpR3NhbeYgb/COF0yYF0tC0zvL\n" +
+                    "xz/iC7bNSRk347EAjtI504yUuqYx44EVeiEP1xhsZR43w82qXfeyP7Djac1yFgYu\n" +
+                    "LRdYWB35HvjHdIilQckKiyBkLhyG1x2gPo2D0Rc1YwitZ2OLL/OdjZFFtUWsab+R\n" +
+                    "UpJc/NPrYntyejyevQEdIeqOKwjlWnzEBX1DPlLlXO+r1BNZKrjgackrG/FWD1Fo\n" +
+                    "xE8uM/GmM1Hm+OY7feJUNa5/L63X5cS+gcNzeAwGeMcKI2RgaDM6nEeJ/xKJA6wx\n" +
+                    "iO8h8TaAtEoxvYOXJIxlKUR/BDn8SqAG0ChyatFdXlVjV+p3YbKvULayBRD7Qnxm\n" +
+                    "I+PzXR0I5jDXku4G5Tjypa8tDAFqipwMl/tIXu8icbTp5R4Eque6KkYWLqckAzHE\n" +
+                    "yjnO+9ZzYaysOcDiP3JJ12rwYWedInH6G5Ujdsgeo9e9H2ythgwVE/RzkB5recau\n" +
+                    "OtEA1+0NpJu7M8wDcHI1aaq7dBXtvP124JxOmEY4ClrKR4TPiuJ7wVVD+VEWlxca\n" +
+                    "Xa3CjpUUgL81+q9yfB9aTtSCYTMzVKQ33l7JPWZmR1sUV5lSOyXXmTIdbm32YOfX\n" +
+                    "dQtN1qOtWuady2CMEw2AnsOBitQqxRWzP869VhOebgJ0A8CVUZLe0eDyQNWPe8Qy\n" +
+                    "KmrRxwzn+JgTTPv6MsctLmODXUsoKf7utkDbk9v1qlV/Kuk9F2IgEbjCwF8EGAEI\n" +
+                    "ABMFAlRAGVoJEMnoONsRW4VWAhsMAACEaQgAiZwPofEwkH1IPs3HZDF9JMFUuxr+\n" +
+                    "hizcGBKmdDFXidm+cn27ywsUFwL/I5MO01GypumZr5VfWOuwG7NH7S0QBV4Y43DO\n" +
+                    "8nabT4j/FYqqXfxHUk//S3nNMCQ0CtZv+blZdA1JqOjzQZjjcxDFMGTDi4u22PBt\n" +
+                    "2hAi5kxKtogLlN8G/hrM5tWjsEvAClf5jjT0bpV0Cb6aVoZ4t7MlmWViUx7mEZ+Y\n" +
+                    "WslT2ufu/4Kh1Jhb1wOK+qhhFOnN5OqD5NesX57xxeM5rPvesXR2dqJAq5nIE4bh\n" +
+                    "u/44gJtO9lySgIMXx6S6ZtB5P0rn0HhNRRWRmPN81dXnrq3pBQ8O6CC9Gw==\n" +
+                    "=EIgA\n" +
+                    "-----END PGP PRIVATE KEY BLOCK-----";
+
+
+            String public_key_net = "-----BEGIN PGP PUBLIC KEY BLOCK-----\n" +
+                    "Version: OpenPGP.js v0.7.1\n" +
+                    "Comment: http://openpgpjs.org\n" +
+                    "\n" +
+                    "xsBNBFRAGVYBCAC873RDV1sSYgUg/xFxoRGWeJpUKtI6e/1W+h+3IxHftQAt\n" +
+                    "QYBNL3XtigghJTjMjKoeCW4Q6qILXk2O3P8JKxewmMe8lPMK9WRE42kEpZl3\n" +
+                    "1pJ4YaDNNFSBuF/uHsNnXgM3INEmRri3ewIlEcptnmOnqIXbsEpPlUo5LpaI\n" +
+                    "XyHmdVqRo5fiJykZWY2OIqV0QRw0hSkz4Lcl0ZONDfd5O4bvfYwq0CzxuuCz\n" +
+                    "7YFl73vIC+gwcEH86msBOeWR2JN3E4O8NqrUwyQSaHqQmXENkXISo6KpNlLP\n" +
+                    "kaN5CGppDMXYpClDIc824V/JmGuXHmDyEmecyWw2djsqxirjlnkDQV4JABEB\n" +
+                    "AAHNBlVzZXJJRMLAcgQQAQgAJgUCVEAZWAYLCQgHAwIJEMnoONsRW4VWBBUI\n" +
+                    "AgoDFgIBAhsDAh4BAADB4QgAiJX1FymRL8PaMQbnUkFudXRfd7fFYtif2yoo\n" +
+                    "FRRwKB861a4KpKKxOwQaO0Q2RIRRXKbV3QIkNlh2D+GBMYyFmvsvw8U1JjbX\n" +
+                    "lOBlxePJa8v02CswmKcNr56lSzms5bQ4DTwmZp0vTvDOV4wVaMsFUsucsva6\n" +
+                    "r39H9Gd2l//uDVGALYJijNrftoVsjfc457VV+umNQnTvht99KubO9gd2QH90\n" +
+                    "2UmG9F+3Ecu3OTOUuEh4qveOHHQxMXM2Ff1W1c1vHwepFslYpGC2gHFS+bnh\n" +
+                    "/tY1XeBlRySNYkPPv5MAAJvEQnGppoI+WeZvdEVF3x1AK7rtM/7SGwzars+2\n" +
+                    "BydEB87ATQRUQBlYAQgA1RgGUU8y91m+vXQPFfj44lgCJP/gFIARrCQwtOHI\n" +
+                    "1jJycQgzcSm/aVlsnLMVTxFTGJ+EcBiLz6xhYD9zOdxpvNZLuLQeZ6zsUDPq\n" +
+                    "csA9/+OIjHkDwXfmaF0a6+Y3XU5pcltFPkl7lei3RSadnw1KCU4rwXRHRXb6\n" +
+                    "5Dk1vyUXteUZ5EMFoTx5bhoxDJ3IisXlblxQh8gVRgme9RFOkdjac9Hw3xd8\n" +
+                    "wEQr9v1tdI7wrK/GxSCGE479SuGl5RUe6RwKu+2xm4RWoH5aQViHGv1J75gd\n" +
+                    "zbcFYyw00Esvp15VDM8bB4+JidRi3DM52HVNd5oHLVi4ElRWazO9OFvef1yB\n" +
+                    "5wARAQABwsBfBBgBCAATBQJUQBlaCRDJ6DjbEVuFVgIbDAAAhGkIAImcD6Hx\n" +
+                    "MJB9SD7Nx2QxfSTBVLsa/oYs3BgSpnQxV4nZvnJ9u8sLFBcC/yOTDtNRsqbp\n" +
+                    "ma+VX1jrsBuzR+0tEAVeGONwzvJ2m0+I/xWKql38R1JP/0t5zTAkNArWb/m5\n" +
+                    "WXQNSajo80GY43MQxTBkw4uLttjwbdoQIuZMSraIC5TfBv4azObVo7BLwApX\n" +
+                    "+Y409G6VdAm+mlaGeLezJZllYlMe5hGfmFrJU9rn7v+CodSYW9cDivqoYRTp\n" +
+                    "zeTqg+TXrF+e8cXjOaz73rF0dnaiQKuZyBOG4bv+OICbTvZckoCDF8ekumbQ\n" +
+                    "eT9K59B4TUUVkZjzfNXV566t6QUPDuggvRs=\n" +
+                    "=9/hF\n" +
+                    "-----END PGP PUBLIC KEY BLOCK-----";
+
+
+
+            String string_armed_key ="-----BEGIN PGP MESSAGE-----\n" +
+                    "Version: ProtonMail v0.1.0\n" +
+            "Comment: https://protonmail.com\n" +
+            "\n"+
+            "wcBMA8noONsRW4VWAQf/a3RUJaR4nsnmBE+tbBymAx3rCZvG2xbHdUIJpxd/0V7r\n"+
+            "Wb4ScHpPLSWEzSI9fWGZJCfRVQ6BwVub7myANjgl2qX6fenAuAxC4qU16P4QvZYS\n"+
+            "TkE9XwS1X7YL4SatsMnUtQYgb0SMFXSjA0/19UyukXAmwx8LJsoFRir8AlAfdyYg\n"+
+            "Fg02foN2ZKbHc/aLBtjEUYTps2BW3xw3Z/H6NXSr524/jbRGbHkqy3zul4b1q6eZ\n"+
+            "LxtA5r3XYE6njC6lfyy5x+OnoJF0QagwcA5Rsul2bl+KAbI6nLMdelKePn1bQYBZ\n"+
+            "WUvm9JeyiguDuX1LrtHefh1CR9Po2g7Rc7Cv9fTNLQ==\n" +
+            "=3zGb\n" +
+            "-----END PGP MESSAGE-----";
+
+            String string_armed_data = "-----BEGIN PGP MESSAGE-----\n"+
+            "Version: ProtonMail v0.1.0\n"+
+            "Comment: https://protonmail.com\n"+
+            "\n"+
+            "0nIBn2Lq4RT8AotgzNwSWBtz8F8y1kU67t8Pa7GOGrtZxl4YhKl1YNcn8T6F1yfB\n"+
+            "I3u5URSjY4OS6Y3BqJC3xMjr5hoMBmwy2rTEsheKK3NJ/TWJvLDXPsTQi3PO75Ae\n"+
+            "P0VubLe5TAMFwKg2VjnyYogU1Ts=\n"+
+            "=OUZw\n"+
+            "-----END PGP MESSAGE-----";
+
+           // byte[] data_out = open_test.DecryptAttachment(string_armed_key.getBytes(), string_armed_data.getBytes(), private_key_net, "123");
+           // String str_out_data = new String(data_out);
+
+            String testString = "this is a test attachment";
+            byte[] data_in = testString.getBytes();
+
+            EncryptPackage encryptPackage = OpenPGP.EncryptAttachment(data_in, public_key_net);
+           // byte[] new_out_data = open_test.DecryptAttachment(encryptPackage.KeyPackage, encryptPackage.DataPackage, private_key_net, "123");
+           // String test_out_msg = new String(new_out_data);
+
+            byte[] sessionBytes = OpenPGP.GetPublicKeySessionKey(encryptPackage.KeyPackage, private_key_net, "123");
+
+           // byte[] newKeyPackage = OpenPGP.GetNewPublicKeyPackage(sessionBytes, public_key_net);
+
+            //byte[] new_out_data = open_test.DecryptAttachment(newKeyPackage, encryptPackage.DataPackage, private_key_net, "123");
+           // String pak = new String(newKeyPackage);
+
+           // String message = new String(new_out_data);
 
             return rootView;
         }
