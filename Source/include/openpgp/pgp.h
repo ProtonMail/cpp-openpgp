@@ -42,7 +42,7 @@ public:
     
     PGP();
     PGP(const PGP & copy);                                  // clone another PGP instance
-    PGP(std::string & data);                                // data fed into this constructor will be consumed
+    PGP(std::string & data, bool isRaw = false);                                // data fed into this constructor will be consumed
     PGP(std::ifstream & f);                                 // read from file; file not modified
     ~PGP();
     

@@ -624,6 +624,21 @@
     return [NSData dataWithBytes: test_plain_txt.c_str() length:test_plain_txt.length()];
 }
 
+- (NSData *) decrypt_attachment_password:(NSData*) keyPackage data:(NSData*) dataPackage password:(NSString*)pwd error:(NSError**) err
+{
+    std::string str_key_package = std::string((char* )[keyPackage bytes], [keyPackage length]);
+    std::string str_data_package = std::string((char* )[dataPackage bytes], [dataPackage length]);
+    std::string str_pwd =  [pwd UTF8String];
+    
+    pm::PMPGPMessage pm_pgp_msg(str_key_package);
+    pm_pgp_msg.append(str_data_package);
+    
+    std::string test_plain_txt = decrypt_sym(pm_pgp_msg, str_pwd);
+    
+    //std::cout  << test_plain_txt << std::endl;
+    return [NSData dataWithBytes: test_plain_txt.c_str() length:test_plain_txt.length()];
+}
+
 - (NSData *) decrypt_attachment_armored:(NSString*) keyPackage data:(NSString*) dataPackage error:(NSError**) err
 {
     std::string str_key_package = [keyPackage UTF8String];
@@ -656,10 +671,10 @@
 //encrypt decrypt attachment
 // ["dataPacket"]
 // ["keyPacket"]
-- (NSMutableDictionary*) encrypt_attachment:(NSData *) unencrypt_att pub_key:(NSString *)pub_key error:(NSError**) err
+- (NSMutableDictionary*) encrypt_attachment:(NSData *) unencrypt_att fileNam:(NSString*)name pub_key:(NSString *)pub_key error:(NSError**) err
 {
     NSMutableDictionary *dictX = [[NSMutableDictionary alloc] init];
-    
+    std::string fileName = [name UTF8String];
     //NSData to string  need error handling here
     std::string unencrypt_msg = std::string((char* )[unencrypt_att bytes], [unencrypt_att length]);
     
@@ -668,7 +683,7 @@
     
     PGPPublicKey pub(user_pub_key);
     
-    PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg);
+    PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg, fileName);
     
     std::string keyPackage = encrypted_pgp.write(1, 0, 1);
     std::string dataPackage = encrypted_pgp.write(1, 0, 18);
@@ -690,13 +705,14 @@
 // ["keyPackets"]
 //        ["email" : "KeyP"]
 //        ["email" : "KeyP"]
-- (NSMutableDictionary*) encrypt_attachments:(NSData *) unencrypt_att pub_keys:(NSMutableDictionary*)pub_keys error:(NSError**) err
+- (NSMutableDictionary*) encrypt_attachments:(NSData *)unencrypt_att fileNam:(NSString*)name pub_keys:(NSMutableDictionary*)pub_keys error:(NSError**) err
 {
     NSMutableDictionary *dictX = [[NSMutableDictionary alloc] init];
     
     std::string unencrypt_attachment = std::string((char* )[unencrypt_att bytes], [unencrypt_att length]);
     std::string session_key = generat_session_key();
-    
+    std::string fileName = [name UTF8String];
+
     for(id key in pub_keys)
     {
         std::string user_pub_key = [pub_keys[key] UTF8String];
@@ -706,7 +722,7 @@
         [dictX setObject:[NSData dataWithBytes: enrypted_session_key_data.c_str() length:enrypted_session_key_data.length()] forKey:key];
     }
     
-    PGPMessage encrypted_att = encrypt_pka_only_data(session_key, unencrypt_attachment, "", 9, 0);
+    PGPMessage encrypted_att = encrypt_pka_only_data(session_key, unencrypt_attachment, fileName, 9, 0);
     std::string endryp_dat = encrypted_att.write(1);
     [dictX setObject:[NSData dataWithBytes: endryp_dat.c_str() length:endryp_dat.length()] forKey:@"DataPacket"];
 

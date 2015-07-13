@@ -150,8 +150,8 @@ PGPMessage::PGPMessage(const PGPMessage & copy):
     }
 }
 
-PGPMessage::PGPMessage(std::string & data):
-    PGP(data),
+PGPMessage::PGPMessage(std::string & data, bool isRaw):
+    PGP(data, isRaw),
     comp(nullptr)
 {
     decompress();

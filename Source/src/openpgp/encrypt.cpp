@@ -379,9 +379,13 @@ PGPMessage encrypt_pka_only_sym_session(const std::string & passphrase, std::str
     Tag3::Ptr tag3 = std::make_shared <Tag3> ();
     tag3 -> set_version(4);
     tag3 -> set_s2k(s2k);
-    tag3 -> set_sym(session[0]);
+    tag3 -> set_sym(9);
+    tag3 -> set_key(passphrase, session);
+
     //std::cout << hexlify(session) << std::endl;
-    tag3 -> set_key(passphrase, session.substr(1, session.size() - 1));
+    
+    //tag3 -> set_sym(session[0]);
+    //tag3 -> set_key(passphrase, session.substr(1, session.size() - 1));
 
     
     // write to output container

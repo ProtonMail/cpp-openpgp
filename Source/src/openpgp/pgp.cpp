@@ -31,10 +31,17 @@ Armor_Header(copy.Armor_Header),
 packets(copy.get_packets_clone())
 {}
 
-PGP::PGP(std::string & data):
+PGP::PGP(std::string & data, bool isRaw):
 PGP()
 {
-    read(data);
+    if (isRaw)
+    {
+        read_raw(data);
+    }
+    else
+    {
+        read(data);
+    }
 }
 
 PGP::PGP(std::ifstream & f):

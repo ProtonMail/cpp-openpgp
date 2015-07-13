@@ -64,7 +64,6 @@ class ViewController: NSViewController {
         
         let location_1 = "/Users/Yanfeng/Desktop/testprivat.txt"//"/Users/Yanfeng/Desktop/old/sample/private_key.txt"//
         
-        
         let fileContent = NSString(contentsOfFile: location, encoding: NSUTF8StringEncoding, error: nil) as! String
         let fileContent_1 = NSString(contentsOfFile: location_1, encoding: NSUTF8StringEncoding, error: nil) as! String
         
@@ -131,7 +130,7 @@ class ViewController: NSViewController {
         let pgp:OpenPGP = OpenPGP()
         let location = "/Users/Yanfeng/Desktop/publickey.txt"
         let location_1 = "/Users/Yanfeng/Desktop/privatekey.txt"
-        let location_2 = "/Users/Yanfeng/Desktop/bad.message.txt"
+        let location_2 = "/Users/Yanfeng/Desktop/bad_encrypt_message.txt"
         let fileContent = NSString(contentsOfFile: location, encoding: NSUTF8StringEncoding, error: nil) as! String
         let fileContent_1 = NSString(contentsOfFile: location_1, encoding: NSUTF8StringEncoding, error: nil) as! String
         let fileContent_2 = NSString(contentsOfFile: location_2, encoding: NSUTF8StringEncoding, error: nil) as! String
@@ -181,8 +180,8 @@ class ViewController: NSViewController {
         let un_encrypt_attachment_data_package = NSData(contentsOfFile: un_encrypt_attachment)
         
         //println(un_encrypt_attachment_data_package)
-        pgp.encrypt_attachment(un_encrypt_attachment_data_package, pub_key: pubkey, error: nil)
-        let dictOut = pgp.encrypt_attachments(un_encrypt_attachment_data_package, pub_keys: ["zhj4478@protonmail.com" : pubkey], error: nil)
+        pgp.encrypt_attachment(un_encrypt_attachment_data_package, fileNam:"", pub_key: pubkey, error: nil)
+        let dictOut = pgp.encrypt_attachments(un_encrypt_attachment_data_package, fileNam:"", pub_keys: ["zhj4478@protonmail.com" : pubkey], error: nil)
         
 //        let key = dictOut["zhj4478@protonmail.com"] as! String
 //        let d = dictOut["DataPacket"] as! String
@@ -214,26 +213,26 @@ class ViewController: NSViewController {
         let Start:CFTimeInterval  = CACurrentMediaTime();
         let StartEncryptTime:CFTimeInterval  = CACurrentMediaTime();
         
-        let un_encrypt_attachment = "/Users/Yanfeng/Desktop/img_0147.png"
+        let un_encrypt_attachment = "/Users/Yanfeng/Desktop/19691487.jpg"
         let un_encrypt_attachment_data_package = NSData(contentsOfFile: un_encrypt_attachment)
         
         let LoadFile:CFTimeInterval  = CACurrentMediaTime()
 
-        let dictOut = pgp.encrypt_attachments(un_encrypt_attachment_data_package, pub_keys: ["zhj4478@protonmail.com" : pubkey], error: nil)
+        let dictOut = pgp.encrypt_attachments(un_encrypt_attachment_data_package, fileNam: "", pub_keys: ["zhj4478@protonmail.com" : pubkey], error: nil)
         
         let EncryptTime:CFTimeInterval  = CACurrentMediaTime()
         
-        let key = dictOut["zhj4478@protonmail.com"] as! NSData
+        let key = dictOut["zhj4478@protonmail6.com"] as! NSData
         let d = dictOut["DataPacket"] as! NSData
         
         let TransforTime:CFTimeInterval  = CACurrentMediaTime();
         
         
         let sessenKey = pgp.getPublicKeySessionKey(key, error: nil)
+        let newSessionKey = pgp.getNewSymmetricKeyPackage(sessenKey, password: "123", error: nil)
+        //let newSessionKey = pgp.getNewPublicKeyPackage(sessenKey, pub_key: pubkey, error: nil)
         
-        let newSessionKey = pgp.getNewPublicKeyPackage(sessenKey, pub_key: pubkey, error: nil)
-        
-        
+        //pgp.decrypt_attachment(<#keyPackage: NSData!#>, data: <#NSData!#>, error: <#NSErrorPointer#>)
         let test_data = pgp.decrypt_attachment(newSessionKey, data: d, error:nil)
         
         let DecryptTime:CFTimeInterval  = CACurrentMediaTime();
@@ -254,7 +253,7 @@ class ViewController: NSViewController {
         
         let test_string_test = "adlfjasljflkasjfjskdlfjkjfljskldfjlkasjfljsdklfjalsfjlksdjfklsjdf"
         let test_data_test = test_string_test.dataUsingEncoding(NSUTF8StringEncoding)
-        let test_data_test_out = pgp.encrypt_attachments(test_data_test, pub_keys: ["zhj4478@protonmail.com" : pubkey], error: nil)
+        let test_data_test_out = pgp.encrypt_attachments(test_data_test, fileNam: "", pub_keys: ["zhj4478@protonmail.com" : pubkey], error: nil)
         
         
         let key_a = test_data_test_out["zhj4478@protonmail.com"] as! NSData
