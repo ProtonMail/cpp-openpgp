@@ -256,17 +256,25 @@ public class MainActivity extends ActionBarActivity {
                     // byte[] data_out = open_test.DecryptAttachment(string_armed_key.getBytes(), string_armed_data.getBytes(), private_key_net, "123");
                     // String str_out_data = new String(data_out);
 
-                  //  String testString = "this is a test attachment";
-                  //  byte[] data_in = testString.getBytes();
+                    String testString = "this is a test attachment";
+                    byte[] data_in = testString.getBytes();
 
-                  //  EncryptPackage encryptPackage = OpenPGP.EncryptAttachment(data_in, public_key_net);
+                    EncryptPackage encryptPackage = OpenPGP.EncryptAttachment(data_in, public_key_net, "test.txt");
                   //   byte[] new_out_data = OpenPGP.DecryptAttachment(encryptPackage.KeyPackage, encryptPackage.DataPackage, private_key_net, "123");
                   //   String test_out_msg = new String(new_out_data);
 
-                    byte[] sessionBytes = OpenPGP.GetPublicKeySessionKey(string_armed_key.getBytes(), private_key_net, "123");
+                    byte[] sessionBytes = OpenPGP.GetPublicKeySessionKey(encryptPackage.KeyPackage, private_key_net, "123");
 
                     byte[] newKeyPackage = OpenPGP.GetNewPublicKeyPackage(sessionBytes, public_key_net);
-                   // String pak = new String(newKeyPackage);
+
+                    byte[] out = OpenPGP.DecryptAttachment(newKeyPackage, encryptPackage.DataPackage, private_key_net, "123");
+                    String pak = new String(out);
+
+                    byte[] newSymKeyPackage = OpenPGP.GetNewSymmetricKeyPackage(sessionBytes, "123");
+
+
+                   byte[] out1 = OpenPGP.DecryptAttachmentWithPassword(newSymKeyPackage, encryptPackage.DataPackage, "123");
+                    String pak1 = new String(out1);
 
 //                    String newKey = "-----BEGIN PGP MESSAGE-----\n" +
 //                            "Version: ProtonMail v0.1.0\n" +

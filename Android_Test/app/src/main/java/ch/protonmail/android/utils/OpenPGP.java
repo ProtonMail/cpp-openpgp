@@ -71,7 +71,7 @@ public class OpenPGP {
      * @param pub_key user's public key
      * @return package include key&data package binary data
      */
-    public static native EncryptPackage EncryptAttachment(byte[] data,  String pub_key);
+    public static native EncryptPackage EncryptAttachment(byte[] data,  String pub_key, String file_name);
 
     /**
      * decrypt attachment
@@ -82,7 +82,7 @@ public class OpenPGP {
      * @return decrypted attachment
      */
     public static native byte[] DecryptAttachment(byte[] key, byte[] data,  String priv_key, String passphrase);
-    public static native byte[] DecryptAttachmentAES(byte[] key, byte[] data, String password); //TODO : not done and not inuse
+    public static native byte[] DecryptAttachmentWithPassword(byte[] key, byte[] data, String password); //TODO : not done and not inuse
 
     /**
      * get the session key from a public key package

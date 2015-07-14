@@ -108,7 +108,7 @@ class PGPMessage : public PGP {
 
         PGPMessage();
         PGPMessage(const PGPMessage & copy);
-        PGPMessage(std::string & data);
+        PGPMessage(std::string & data, bool isRaw = false );
         PGPMessage(std::ifstream & f);
         ~PGPMessage();
 
