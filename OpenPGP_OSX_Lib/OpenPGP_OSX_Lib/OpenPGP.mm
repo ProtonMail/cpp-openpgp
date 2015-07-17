@@ -32,7 +32,8 @@
 #include <utilities/UTF8.h>
 
 #include <openpgp/private_key.h>
-
+#include <exception/pgp_exception_define.h>
+#include <exception/pgp_exception.h>
 
 @implementation OpenPGP
 {
@@ -74,10 +75,136 @@
 {
     delete private_key_;
     delete public_key_;
-    //[super dealloc];
 }
 
-- (BOOL) SetupKeys:(NSString *)priv_key pubKey:(NSString *)pub_key pass:(NSString*) passphrase error:(NSError **) err;
+
+- (BOOL) CheckPassphrase:(NSString *)priv_key pass:(NSString*) passphrase error:(NSError **) err{
+    try
+    {
+        std::string str_priv_key = [priv_key UTF8String];
+        
+        if(isDebugMode)
+            std::cout << str_priv_key;
+        PGPSecretKey privateKey(str_priv_key);
+        std::string str_passphrase = [passphrase UTF8String];
+        return check_private_passphrase(privateKey, str_passphrase);
+    }
+    catch (const pm::pgp_exception & pgp_ex)
+    {
+        if (err)
+        {
+            NSString *domain = @"com.ProtonMail.OpenPGP";
+            NSString *desc = NSLocalizedString([NSString stringWithUTF8String:pgp_ex.what()] , @"");
+            NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
+            *err = [NSError errorWithDomain:domain code:10001 userInfo:userInfo];
+        }
+    }
+    catch (const std::runtime_error& error)
+    {
+        if (err)
+        {
+            NSString *domain = @"com.ProtonMail.OpenPGP";
+            NSString *desc = NSLocalizedString([NSString stringWithUTF8String:error.what()] , @"");
+            NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
+            
+            *err = [NSError errorWithDomain:domain code:10001 userInfo:userInfo];
+        }
+    }
+    catch (const std::exception& e)
+    {
+        if (err)
+        {
+            NSString *domain = @"com.ProtonMail.OpenPGP";
+            NSString *desc = NSLocalizedString([NSString stringWithUTF8String:e.what()] , @"");
+            NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
+            
+            *err = [NSError errorWithDomain:domain code:10002 userInfo:userInfo];
+        }
+        
+    }
+    catch (...)
+    {
+        if (err)
+        {
+            NSString *domain = @"com.ProtonMail.OpenPGP";
+            NSString *desc = NSLocalizedString(@"Unknow errors", @"");
+            NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
+            
+            *err = [NSError errorWithDomain:domain code:10003 userInfo:userInfo];
+        }
+        
+    }
+    return false;
+}
+
+
+- (NSString *) decrypt_message:(NSString *)priv_key pass:(NSString*) passphrase encrypted:(NSString*)encrypted_message error:(NSError**) err
+{
+    try
+    {
+        if(encrypted_message.length <= 0 )
+        {
+            if (err)
+            {
+                NSString *domain = @"com.ProtonMail.OpenPGP";
+                NSString *desc = NSLocalizedString(@"The input message is not valid" , @"");
+                NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
+                
+                *err = [NSError errorWithDomain:domain code:10005 userInfo:userInfo];
+            }
+            return nil;
+        }
+        
+        std::string str_private_key = [priv_key UTF8String];
+        std::string encrypt_msg = [encrypted_message UTF8String];
+        
+        PGPSecretKey privateKey(str_private_key);
+        pm::PMPGPMessage pm_pgp_msg(encrypt_msg);
+        
+        std::string test_plain_txt = decrypt_pka(privateKey, pm_pgp_msg, [passphrase UTF8String], false);
+        
+        return [[NSString alloc] initWithUTF8String:test_plain_txt.c_str()];
+    }
+    catch (const std::runtime_error& error)
+    {
+        if (err)
+        {
+            NSString *domain = @"com.ProtonMail.OpenPGP";
+            NSString *desc = NSLocalizedString([NSString stringWithUTF8String:error.what()] , @"");
+            NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
+            
+            *err = [NSError errorWithDomain:domain code:10001 userInfo:userInfo];
+        }
+    }
+    catch (const std::exception& e)
+    {
+        if (err)
+        {
+            NSString *domain = @"com.ProtonMail.OpenPGP";
+            NSString *desc = NSLocalizedString([NSString stringWithUTF8String:e.what()] , @"");
+            NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
+            
+            *err = [NSError errorWithDomain:domain code:10002 userInfo:userInfo];
+        }
+        
+    }
+    catch (...)
+    {
+        if (err)
+        {
+            NSString *domain = @"com.ProtonMail.OpenPGP";
+            NSString *desc = NSLocalizedString(@"Unknow errors", @"");
+            NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
+            
+            *err = [NSError errorWithDomain:domain code:10003 userInfo:userInfo];
+        }
+    }
+    return nil;
+}
+
+
+
+- (BOOL) SetupKeys:(NSString *)priv_key pubKey:(NSString *)pub_key pass:(NSString*) passphrase error:(NSError **) err
 {
     try
     {

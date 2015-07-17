@@ -27,12 +27,10 @@ namespace pm {
     
     pgp_exception::~pgp_exception() noexcept {};
     
-    
-    
-    
-    int pgp_exception::get_error_code() const
+
+    exception_code pgp_exception::get_error_code() const
     {
-        return pm_exception_code_;
+        return (exception_code)pm_exception_code_;
     }
     
     //        virtual const char* what() const throw()

@@ -42,7 +42,7 @@ Stdafx.cpp
 
 LOCAL_SHARED_LIBRARIES := openpgp
 LOCAL_LDLIBS += -llog
-
+# LOCAL_CFLAGS += -O3
 include $(BUILD_SHARED_LIBRARY)
 include $(CLEAR_VARS)
 

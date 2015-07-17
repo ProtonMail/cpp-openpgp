@@ -5,6 +5,33 @@ package ch.protonmail.android.utils;
  */
 public class OpenPGP {
 
+    public static final int KEYS_RESULT_OK = 1;
+
+    /**
+     * generate a new open pgp key
+     * @param user_name user name user pick
+     * @param passphrase password to encrypt the private key
+     * @return new public key and private key
+     */
+    public static native OpenPGPKey GenerateKey(String user_name, String passphrase);
+
+    /**
+     * check is passphrase correct for the private key
+     * @param private_key   user private key
+     * @param passphrase    use passphrase
+     * @return 1 is ok 0 is incorrect
+     */
+    public static native int CheckPassphrase(String private_key, String passphrase);
+
+    /**
+     *  update user's private key passphrase
+     * @param private_key user's private key
+     * @param old_passphrase old passphrase
+     * @param new_passphrase new passphrase
+     * @return new private key, is empty means old passphrase incorrect
+     */
+    public static native String UpdateKeyPassphrase(String private_key, String old_passphrase, String new_passphrase);
+
     /**
      * for check is private public key with passphrase correct
      * @param priv_key user's private key

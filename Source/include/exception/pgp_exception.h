@@ -21,7 +21,7 @@ namespace pm {
         explicit pgp_exception(const int code, const char* error);
         
         virtual ~pgp_exception() noexcept;
-        int get_error_code() const;
+        exception_code get_error_code() const;
     private:
         int pm_exception_code_;
     };

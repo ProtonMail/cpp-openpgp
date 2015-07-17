@@ -17,8 +17,11 @@
 namespace pm
 {
     enum exception_code : uint32_t {
-        PM_EXC_DEC_SIZE_INVALID = 100001,
-
+        PM_EXC_DEC_SIZE_INVALID = 1000001,
+        
+        PM_DECRYPT_PRIVATE_KEY_SUMCHECK_NOT_MATCH = 1000002,
+        PM_DECRYPT_SESSION_SUMCHECK_NOT_MATCH = 1000003,
+        
         PM_EXC_UNKNOW = 0xFFFFFFFF
     };
 

@@ -9,6 +9,7 @@
 #include <package/Tag14.h>
 #include <package/Tag13.h>
 #include <package/Tag17.h>
+
 bool PGPKey::meaningful(uint8_t type) const{
     uint8_t key, subkey;
 
@@ -260,6 +261,11 @@ PGP::Ptr PGPKey::clone() const{
 std::ostream & operator<<(std::ostream & stream, const PGPKey & pgp){
     stream << hexlify(pgp.keyid());
     return stream;
+}
+
+std::string &operator <<(std::string& str, const PGPSecretKey & pgp) {
+    str = hexlify(pgp.keyid());
+    return str;
 }
 
 PGPSecretKey::PGPSecretKey():

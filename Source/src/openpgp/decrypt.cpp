@@ -5,6 +5,8 @@
 #include <exception/pgp_exception.h>
 #include <utilities/base64.h>
 #include <openpgp/private_key.h>
+#include <exception/pgp_exception_define.h>
+#include <exception/pgp_exception.h>
 
 
 using namespace pm::pgp;
@@ -139,7 +141,7 @@ std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const st
     }
     else{
         std::stringstream s; s << Packet_Tags.at(packet) << " (Tag " << static_cast <unsigned int> (packet) << ").";
-        throw std::runtime_error("Error: Expected Public-Key Encrypted Session Key Packet (Tag 1). Instead got " + s.str());
+       // throw std::runtime_error("Error: Expected Public-Key Encrypted Session Key Packet (Tag 1). Instead got " + s.str());
     }
 
    // Public-Key Encrypted Session Key Packet (Tag 1)
@@ -174,11 +176,10 @@ std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const st
         sum += static_cast <uint8_t> (c);
     }
     if (unhexlify(makehex(sum, 4)) != checksum){                                  // check session key checksums
-        throw std::runtime_error("Error: Calculated session key checksum does not match given checksum.");
+        throw pm::pgp_exception(pm::PM_DECRYPT_SESSION_SUMCHECK_NOT_MATCH, "Error: Calculated session key checksum does not match given checksum.");
     }
 
     sec.reset();
-    
    // std::cout << hexlify(session_key) << std::endl;
 
     // decrypt the data with the extracted key
@@ -283,8 +284,6 @@ std::string decrypt_sym(const PGPMessage & m, const std::string & passphrase, co
     
     PGPMessage decrypted = decrypt_data(data[0], m, data.substr(1, data.size() - 1), writefile, nullptr);
     
-    
-
     std::string out = "";
     // extract data
     for(Packet::Ptr const & p : decrypted.get_packets()){
@@ -355,12 +354,31 @@ std::string decrypt_pka_only_session(const PGPSecretKey & pri, const PGPMessage 
         sum += static_cast <uint8_t> (c);
     }
     if (unhexlify(makehex(sum, 4)) != checksum){                                  // check session key checksums
-        throw std::runtime_error("Error: Calculated session key checksum does not match given checksum.");
+        throw pm::pgp_exception(pm::PM_DECRYPT_SESSION_SUMCHECK_NOT_MATCH, "Error: Calculated session key checksum does not match given checksum.");
     }
     
     sec.reset();
     
     return session_key;
+}
+
+
+
+bool check_private_passphrase(const PGPSecretKey &pri, const std::string & passphrase)
+{
+    // find corresponding secret key
+    Tag5::Ptr sec = find_decrypting_key(pri,"", true);
+    if (!sec){
+        throw std::runtime_error("Error: Correct Private Key not found.");
+    }
+    
+    std::vector <std::string> pub_mpi = sec -> get_mpi();
+    std::vector <std::string> pri_mpi = decrypt_secret_key(sec, passphrase);
+    
+    if (pri_mpi.size() > 0)
+        return true;
+    
+    return false;
 }
 
 std::string decrypt_pka_only_sym_session(const PGPMessage & m, const std::string & passphrase)

@@ -21,8 +21,6 @@ namespace pm {
         
         std::string update_passphrase(PGPSecretKey & pri, const std::string & old_pwd, const std::string & new_pwd);
         
-        
-        
         Tag5::Ptr find_decrypting_key(const PGPSecretKey & k, const std::string & keyid, const bool& find_default = false);
         Tag7::Ptr find_decrypting_sub_key(const PGPSecretKey & k, const std::string & keyid, const bool& find_default = false);
         //Tag2::Ptr find_sign(const PGPSecretKey & k, const std::string & keyid, const bool& find_default = false);

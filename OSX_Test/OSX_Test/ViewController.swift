@@ -196,6 +196,7 @@ class ViewController: NSViewController {
     @IBAction func large_attachment_testing(sender: AnyObject) {
         
         let pgp:OpenPGP = OpenPGP()
+        
         let pub_location = "/Users/Yanfeng/Desktop/publickey.net.txt"
         let priv_location = "/Users/Yanfeng/Desktop/privatekey.net.txt"
         let key_package_location = "/Users/Yanfeng/Desktop/keypackage.txt"
@@ -203,6 +204,14 @@ class ViewController: NSViewController {
         
         let pubkey = NSString(contentsOfFile: pub_location, encoding: NSUTF8StringEncoding, error: nil) as! String
         let privkey = NSString(contentsOfFile: priv_location, encoding: NSUTF8StringEncoding, error: nil) as! String
+        
+        let checkOne = pgp.CheckPassphrase(privkey, pass: "123", error: nil)
+        
+        let checkTwo = pgp.CheckPassphrase(privkey, pass: "1231", error: nil)
+        
+        let checkThree = pgp.CheckPassphrase(privkey, pass: "", error: nil)
+        
+        
         let key_package = NSString(contentsOfFile: key_package_location, encoding: NSUTF8StringEncoding, error: nil) as! String
         let data_package = NSString(contentsOfFile: data_package_location, encoding: NSUTF8StringEncoding, error: nil) as! String
         

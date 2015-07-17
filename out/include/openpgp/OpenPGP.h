@@ -16,6 +16,15 @@
 // The NSError doesn't work on swift
 //
 
+// 
+- (BOOL) CheckPassphrase:(NSString *)priv_key pass:(NSString*) passphrase error:(NSError **) err;
+- (NSString *) decrypt_message:(NSString *)priv_key pass:(NSString*) passphrase encrypted:(NSString*)encrypted_message error:(NSError**) err;
+
+
+
+
+
+
 
 // self keys setup up for login user
 - (BOOL) SetupKeys:(NSString *)priv_key pubKey:(NSString *)pub_key pass:(NSString*) passphrase error:(NSError* *) err;

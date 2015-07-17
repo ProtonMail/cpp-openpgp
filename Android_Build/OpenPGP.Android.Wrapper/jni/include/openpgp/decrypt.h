@@ -64,6 +64,6 @@ std::string decrypt_pka_only_sym_session(const PGPMessage & m, const std::string
 
 std::string decrypt_pka_use_sym_session(const PGPMessage & m, const PGPMessage &key, const std::string & passphrase);
 
-
+bool check_private_passphrase(const PGPSecretKey &pri, const std::string & passphrase);
 
 #endif

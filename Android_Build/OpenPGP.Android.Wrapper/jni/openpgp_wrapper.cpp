@@ -1020,6 +1020,169 @@ Java_ch_protonmail_android_utils_OpenPGP_GetNewSymmetricKeyPackage(JNIEnv* env, 
     return 0;
 }
 
+JNIEXPORT jstring JNICALL
+Java_ch_protonmail_android_utils_OpenPGP_UpdateKeyPassphrase(JNIEnv* env, jobject o, jstring j_priv_key, jstring j_old_passphrase , jstring j_new_passphrase)
+{
+    try
+    {
+        jboolean isCopy;
+        const char* c_private_key = env->GetStringUTFChars(j_priv_key, &isCopy);
+        std::string str_priv_key = std::string(c_private_key);
+        if (isCopy == JNI_TRUE) {
+            env->ReleaseStringUTFChars(j_priv_key, c_private_key);
+        }
+
+        const char* c_old_passphrase = env->GetStringUTFChars(j_old_passphrase, &isCopy);
+        std::string str_old_passphrase = std::string(c_old_passphrase);
+        if (isCopy == JNI_TRUE) {
+            env->ReleaseStringUTFChars(j_old_passphrase, c_old_passphrase);
+        }
+
+        const char* c_new_passphrase = env->GetStringUTFChars(j_new_passphrase, &isCopy);
+        std::string str_new_passphrase = std::string(c_new_passphrase);
+        if (isCopy == JNI_TRUE) {
+            env->ReleaseStringUTFChars(j_new_passphrase, c_new_passphrase);
+        }
+
+		PGPSecretKey secret_key;
+	    secret_key.set_is_debug(false);
+		secret_key.read(str_priv_key);
+
+        bool isOk = check_private_passphrase(secret_key, str_old_passphrase);
+
+	   	(*env).DeleteLocalRef(j_priv_key);
+        (*env).DeleteLocalRef(j_old_passphrase);
+        (*env).DeleteLocalRef(j_new_passphrase);
+        if (!isOk) {
+            return 0;
+        }
+LOG_E("check 1");
+        std::string new_key = pm::pgp::update_passphrase(secret_key, str_old_passphrase, str_new_passphrase);
+        if (!new_key.empty())
+            return (env)->NewStringUTF((const char*) new_key.c_str());
+
+	    return 0;
+    }
+    catch (const std::runtime_error& error)
+    {
+    LOG_E("old paasword not right");
+    	LOG_E("runtime_error");
+    }
+    catch (const std::exception& e)
+    {
+    	LOG_E("exception");
+    }
+    catch (...)
+    {
+    	LOG_E("Other exception");
+    }
+
+    LOG_E("not ok");
+	return 0;
+}
+
+JNIEXPORT jint JNICALL
+Java_ch_protonmail_android_utils_OpenPGP_CheckPassphrase(JNIEnv* env, jobject o, jstring j_priv_key, jstring j_passphrase)
+{
+    try
+    {
+        jboolean isCopy;
+        const char* c_private_key = env->GetStringUTFChars(j_priv_key, &isCopy);
+        std::string str_priv_key = std::string(c_private_key);
+        if (isCopy == JNI_TRUE) {
+            env->ReleaseStringUTFChars(j_priv_key, c_private_key);
+        }
+
+        const char* c_passphrase = env->GetStringUTFChars(j_passphrase, &isCopy);
+        std::string str_passphrase = std::string(c_passphrase);
+        if (isCopy == JNI_TRUE) {
+            env->ReleaseStringUTFChars(j_passphrase, c_passphrase);
+        }
+
+		PGPSecretKey secret_key;
+	    secret_key.set_is_debug(false);
+		secret_key.read(str_priv_key);
+
+        bool isOk = check_private_passphrase(secret_key, str_passphrase);
+
+	   	(*env).DeleteLocalRef(j_priv_key);
+        (*env).DeleteLocalRef(j_passphrase);
+
+        if (isOk) {
+            return 1;
+        }
+	    return 0;
+    }
+    catch (const std::runtime_error& error)
+    {
+    	LOG_E("runtime_error");
+    }
+    catch (const std::exception& e)
+    {
+    	LOG_E("exception");
+    }
+    catch (...)
+    {
+    	LOG_E("Other exception");
+    }
+
+    LOG_E("not ok");
+	return 0;
+}
+
+JNIEXPORT jobject JNICALL
+Java_ch_protonmail_android_utils_OpenPGP_GenerateKey(JNIEnv* env, jobject o, jstring j_user_name, jstring j_passphrase)
+{
+
+    jboolean isCopy;
+    const char* c_user_name = env->GetStringUTFChars(j_user_name, &isCopy);
+    std::string str_user_name = std::string(c_user_name);
+    if (isCopy == JNI_TRUE) {
+        env->ReleaseStringUTFChars(j_user_name, c_user_name);
+    }
+
+    const char* c_passphrase = env->GetStringUTFChars(j_passphrase, &isCopy);
+    std::string str_passphrase = std::string(c_passphrase);
+    if (isCopy == JNI_TRUE) {
+        env->ReleaseStringUTFChars(j_passphrase, c_passphrase);
+    }
+
+
+    pm::pgp::openpgp p;
+    std::string pwd = str_passphrase;
+
+    std::string name = str_user_name;
+    std::string email = name + "@protonmail.ch";
+    std::string comments = "create by ios";
+
+    std::string priv_key = "";
+    std::string pub_key = "";
+    p.generate_new_key(2048, pwd, name, email, comments, pub_key, priv_key);
+
+
+    jclass clazz = (*env).FindClass("ch/protonmail/android/utils/OpenPGPKey");
+    // Get the method id of an empty constructor in clazz
+    jmethodID constructor = (*env).GetMethodID(clazz, "<init>", "()V");
+    // Create an instance of clazz
+    jobject obj = (*env).NewObject(clazz, constructor);
+    // Get Field references
+    jfieldID public_key_fieldID = (*env).GetFieldID(clazz, "PublicKey", "Ljava/lang/String;");
+    jfieldID private_key_fieldID = (*env).GetFieldID(clazz, "PrivateKey", "Ljava/lang/String;");
+
+    jstring j_public_key = (env)->NewStringUTF((const char*) pub_key.c_str());
+    jstring j_private_key = (env)->NewStringUTF((const char*) priv_key.c_str());
+
+    (*env).SetObjectField(obj, public_key_fieldID, j_public_key);
+    (*env).SetObjectField(obj, private_key_fieldID, j_private_key);
+
+
+    (*env).DeleteLocalRef(j_user_name);
+    (*env).DeleteLocalRef(j_passphrase);
+    (*env).DeleteLocalRef(j_public_key);
+    (*env).DeleteLocalRef(j_private_key);
+
+    return obj;
+}
 
 
 }

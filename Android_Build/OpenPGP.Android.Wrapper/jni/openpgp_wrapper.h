@@ -63,21 +63,15 @@ Java_ch_protonmail_android_utils_OpenPGP_GetNewSymmetricKeyPackage(JNIEnv* env, 
 
 
 
+JNIEXPORT jobject JNICALL
+Java_ch_protonmail_android_utils_OpenPGP_GenerateKey(JNIEnv* env, jobject o, jstring user_name, jstring passphrase);
 
+JNIEXPORT jint JNICALL
+Java_ch_protonmail_android_utils_OpenPGP_CheckPassphrase(JNIEnv* env, jobject o, jstring priv_key, jstring passphrase);
 
-// TODO :: need add blow functions
+JNIEXPORT jstring JNICALL
+Java_ch_protonmail_android_utils_OpenPGP_UpdateKeyPassphrase(JNIEnv* env, jobject o, jstring priv_key, jstring old_passphrase , jstring new_passphrase);
 
-//JNIEXPORT jstring JNICALL
-//Java_ch_protonmail_android_utils_OpenPGP_UpdateKeyPassphrase(JNIEnv* env, jobject o, jstring encrypted_message, jstring password);
-
-// //Update Private Key password
-// - (NSString *) update_key_password:(NSString*)old_passphrase new_pwd:(NSString*) new_passphrase error:(NSError**) err;
-
-// // //Generate new key pair
-// // - (NSMutableDictionary*) generate_key:(NSString*)passphrase username:(NSString*)user_name error:(NSError**) err;
-
-////binary attachment
-//- (NSData *) decrypt_message_aes:(NSData*) keyPackage data:(NSData*) dataPackage pwd:(NSString *)password error:(NSError**) err;
 
 
 #ifdef __cplusplus

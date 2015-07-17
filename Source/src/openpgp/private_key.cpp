@@ -29,6 +29,8 @@
 #include <openpgp/sigcalc.h>
 #include <encryption/RSA.h>
 #include <openpgp/sign.h>
+#include <exception/pgp_exception_define.h>
+#include <exception/pgp_exception.h>
 
 namespace pm {
     namespace pgp
@@ -126,7 +128,7 @@ namespace pm {
 //                sum += static_cast <uint8_t> (c);
 //            }
 //            if (unhexlify(makehex(sum, 4)) != checksum){                                  // check session key checksums
-//                throw std::runtime_error("Error: Calculated session key checksum does not match given checksum.");
+//                throw pm::pgp_exception(pm::PM_DECRYPT_SESSION_SUMCHECK_NOT_MATCH, "Error: Calculated session key checksum does not match given checksum.");
 //            }
 //            
 //            sec.reset();
@@ -287,8 +289,6 @@ namespace pm {
 //            std::cout<< public_key.write() << std::endl;
         }
         
-        
-        
         Tag5::Ptr find_decrypting_key(const PGPSecretKey & k, const std::string & keyid, const bool& find_default){
             for(Packet::Ptr const & p : k.get_packets()){
                 if ((p -> get_tag() == 5) || (p -> get_tag() == 7)){
@@ -427,7 +427,7 @@ namespace pm {
                 //  std::cout << hexlify(hash_check) << std::endl;
                 
                 if (hash_check != checksum){
-                    throw std::runtime_error("Error: Secret key checksum and calculated checksum do not match.");
+                    throw pm::pgp_exception(pm::PM_DECRYPT_PRIVATE_KEY_SUMCHECK_NOT_MATCH, "Error: Secret key checksum and calculated checksum do not match.");
                 }
             }
             else{ // all other values; **UNTESTED**
@@ -437,7 +437,7 @@ namespace pm {
                 }
                 if (unhexlify(makehex(sum, 4)) != checksum){
                     if (use_hash(s2k -> get_hash(), secret_key) != checksum){
-                        throw std::runtime_error("Error: Secret key checksum and calculated checksum do not match.");
+                        throw pm::pgp_exception(pm::PM_DECRYPT_PRIVATE_KEY_SUMCHECK_NOT_MATCH, "Error: Secret key checksum and calculated checksum do not match.");
                     }
                 }
             }
