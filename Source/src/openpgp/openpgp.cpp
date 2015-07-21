@@ -130,7 +130,11 @@ namespace pm {
             rsa_priv_mpi.push_back(std::string((char*)out, ln));
             ln = BN_bn2mpi(rsa_key->q, out);
             rsa_priv_mpi.push_back(std::string((char*)out, ln));
-            ln = BN_bn2mpi(BN_mod_inverse(NULL, rsa_key->p, rsa_key->q, ctx), out);
+            
+            BIGNUM * rsa_inverse = BN_mod_inverse(NULL, rsa_key->p, rsa_key->q, ctx);
+            ln = BN_bn2mpi(rsa_inverse, out);
+            BN_free(rsa_inverse);
+            
             rsa_priv_mpi.push_back(std::string((char*)out, ln));
             //pub key part
             ln = BN_bn2mpi(rsa_key->n, out);
@@ -146,7 +150,11 @@ namespace pm {
             rsa_sub_priv_mpi.push_back(std::string((char*)out, ln));
             ln = BN_bn2mpi(rsa_sub_key->q, out);
             rsa_sub_priv_mpi.push_back(std::string((char*)out, ln));
-            ln = BN_bn2mpi(BN_mod_inverse(NULL, rsa_sub_key->p, rsa_sub_key->q, ctx), out);
+            
+            BIGNUM * rsa_sub_inverse = BN_mod_inverse(NULL, rsa_sub_key->p, rsa_sub_key->q, ctx);
+            ln = BN_bn2mpi(rsa_sub_inverse, out);
+            BN_free(rsa_sub_inverse);
+            
             rsa_sub_priv_mpi.push_back(std::string((char*)out, ln));
             //sub public key part
             ln = BN_bn2mpi(rsa_sub_key->n, out);
@@ -302,9 +310,9 @@ namespace pm {
             
             BN_CTX_free(ctx);
             BN_free(e);
-            rsa_key->n = rsa_key->e = rsa_key->d = rsa_key->p = rsa_key->q = NULL;
+            //rsa_key->n = rsa_key->e = rsa_key->d = rsa_key->p = rsa_key->q = NULL;
             RSA_free(rsa_key);
-            rsa_sub_key->n = rsa_sub_key->e = rsa_sub_key->d = rsa_sub_key->p = rsa_sub_key->q = NULL;
+            //rsa_sub_key->n = rsa_sub_key->e = rsa_sub_key->d = rsa_sub_key->p = rsa_sub_key->q = NULL;
             RSA_free(rsa_sub_key);
             
             

@@ -55,6 +55,9 @@ std::string RSA_encrypt(const std::string & data, const std::vector <std::string
     uint8_t cleartext[8192];
     int lin = BN_bn2bin(b_e, cleartext);
     
+    //release
+    BN_free(b_e);
+    
     std::string t = std::string((char*)cleartext , lin);
     
     t = zero + t;
@@ -72,7 +75,6 @@ std::string RSA_encrypt(const std::string & data, const std::vector <std::string
     
 
     int n = RSA_public_encrypt(lin, (unsigned char*)t.c_str(), out, orsa, RSA_NO_PADDING);
-    
     if (n == -1) {
         BIO            *fd_out;
         
@@ -80,7 +82,11 @@ std::string RSA_encrypt(const std::string & data, const std::vector <std::string
         ERR_print_errors(fd_out);
         std::cout << fd_out << std::endl;
     }
-    orsa->n = orsa->e = NULL;
+    
+//    BN_free(orsa->n);
+//    BN_free(orsa->e);
+//    
+//    orsa->n = orsa->e = NULL;
     RSA_free(orsa);
     
    // std::cout << out << std::endl;
@@ -88,6 +94,8 @@ std::string RSA_encrypt(const std::string & data, const std::vector <std::string
     BIGNUM* e = BN_bin2bn(out, n, NULL);
     
     int i = BN_bn2mpi(e, out);
+    
+    BN_free(e);
     
     std::string mpi_out = std::string((char*)out, i);
     //std::cout << hexlify(mpi_out) << std::endl;
@@ -100,6 +108,8 @@ std::string RSA_decrypt(const std::string & data, const std::vector <std::string
     uint8_t cleartext[8192];
     BN_bn2bin(e, cleartext);
     int size =  (unsigned)(BN_num_bits(e) + 7) / 8;
+    
+    BN_free(e);
    
     //std::cout << data << std::endl;
    // std::cout << pri.size() << std::endl;
@@ -177,8 +187,8 @@ std::string RSA_sign(const std::string & data, const std::vector <std::string> &
     n = RSA_private_encrypt((int)encoded.size(), (unsigned char*)encoded.c_str(), out, orsa, RSA_NO_PADDING);
     //std::cout << hexlify(std::string((char*)out, n)) << std::endl;
     
-    orsa->n = orsa->d = orsa->p = orsa->q = NULL;
-    RSA_free(orsa);
+//    orsa->n = orsa->d = orsa->p = orsa->q = NULL;
+//    RSA_free(orsa);
 
     BIGNUM* e = BN_bin2bn(out, n, NULL);
     int i = BN_bn2mpi(e, out);
@@ -187,6 +197,11 @@ std::string RSA_sign(const std::string & data, const std::vector <std::string> &
    // if (get_is_debug()) {
    // std::cout << hexlify(mpi_out) << std::endl;
     //}
+    
+    BN_free(e);
+    
+    RSA_free(rsa);
+    RSA_free(orsa);
     
     
     return mpi_out;

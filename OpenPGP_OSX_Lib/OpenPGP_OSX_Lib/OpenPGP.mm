@@ -690,10 +690,7 @@
 {
     std::string str_priv_key = [priv_key UTF8String];
     
-
-    
     private_key_->read(str_priv_key);
-    
     
 //    //std::cout << "KeyID:" << hexlify(private_key_->keyid()) << std::endl;
 //    

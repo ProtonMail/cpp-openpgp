@@ -43,11 +43,14 @@ std::string mpitohex(const std::string & a){
     BIGNUM* e = BN_new();
     int ln = (int)a.size();
     
-    BN_mpi2bn((unsigned char *)a.c_str(), ln, e);
+    BIGNUM* num = BN_mpi2bn((unsigned char *)a.c_str(), ln, e);
     
-    std::string hex = BN_bn2hex(e);
-  //  std::cout << hex << std::endl;
-    BN_free(e);
+    char * chex = BN_bn2hex(e);
+    
+    std::string hex(chex);
+    
+    free(chex);
+    BN_free(num);
     
     return hex;
 }
