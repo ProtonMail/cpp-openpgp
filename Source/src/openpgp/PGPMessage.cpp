@@ -119,7 +119,7 @@ void PGPMessage::decompress() {
         raw = comp -> get_data();                           // get decompressed data
         comp -> set_data("");                               // free up space taken up by compressed data; also prevents data from showing twice
         comp -> set_partial(packets[0] -> get_partial());   
-        read(raw);                                          // read decompressed data into packets
+        read_raw(raw);                                          // read decompressed data into packets
     }
 }
 
