@@ -1,26 +1,39 @@
 package com.protonmail.ch.openpgp;
 
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
 import android.widget.Button;
 import android.widget.TextView;
+import android.content.Intent;
+import android.widget.Toast;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 import ch.protonmail.android.utils.EncryptPackage;
 import ch.protonmail.android.utils.OpenPGP;
-import ch.protonmail.android.utils.OpenPGPKey;
 
 
 public class MainActivity extends ActionBarActivity {
 
+    String publicKey = "-----BEGIN PGP PUBLIC KEY BLOCK-----\nVersion: OpenPGP.js v0.7.1\nComment: http://openpgpjs.org\n\nxsBNBFSjdRkBB/9slBPGNrHAMbYT71AnxF4a0W/fcrzCP27yd1nte+iUKGyh\nyux3xGQRIHrwB9zyYBPFORXXwaQIA3YDH73YnE0FPfjh+fBWENWXKBkOVx1R\nefPTytGIyATFtLvmN1D65WkvnIfBdcOc7FWj6N4w5yOajpL3u/46Pe73ypic\nhe10XuwO4198q/8YamGpTFgQVj4H7QbtuIxoV+umIAf96p9PCMAxipF+piao\nD8LYWDUCK/wr1tSXIkNKL+ZCyuCYyIAnOli7xgIlKNCWvC8csuJEYcZlmf42\n/iHyrWeusyumLeBPhRABikE2ePSo+XI7LznD/CIrLhEk6RJT31+JR0NlABEB\nAAHNBlVzZXJJRMLAcgQQAQgAJgUCVKN1JAYLCQgHAwIJEH0tU95Lz7QEBBUI\nAgoDFgIBAhsDAh4BAAAXCgf8CsNCB0tKdLrwGe+dDLTGGdgyYr33Jz6GVta6\nJMl4rccf5T8QiRPkOIWITITpi5maxrn1w7yOUI3xkqCLCEO9vqLhIRr1/aBq\nvVUI+0L7goJoVrx6ynSR1KNNHM/hkttA+t1t894qgug6hooUfxtFWU8KesKK\ngdMFOxst3ODTeZxzO6xmiaf9Mof/y1M5y1fsKuUH57AJRzkJYviZmpEWMAxI\nmmiCPv/iMRUeR7hX9+spG2O9A0Ny46g89T59Wkerggu6/ulgX0O6MAhsuBY3\n+10TgajGyub5oJTLKVDY/nlVvmaEA+4IthepIQs+L3380oQz3GEtr/UfB1PB\nD/VfTM7ATQRUo3UkAQf/dcKxn9bt+fDMxuQT6sxSWjX4ptf6W0QbucDA/5Dw\n2vCFvCGakDdsczduFJ23QI7iZHHig5Fyp5M2MV+1DM/EJs9OZxMK6k0I4M4r\niucSf2L2XPv8m2Q5/nn7+gdvH6mO8POsDu766A0fMNhN36eHa5730dahJlIR\nYP+wOunUkQ3wzTPE4MZh878eCvkaeelMTMPNnQu9ONgxVyaO8GG09M0uJCxV\nqQ6PXBMtYSBydrYUscAeHQrreyfECNPobWgXRafTwftk/n9aGIzLViv4zo36\nGwuk7JzC3AF2PANxYus6EACPckwsjpbMVLpIpSvjDGdlYg9BPtNk0Fd4qZt2\nzwARAQABwsBfBBgBCAATBQJUo3UmCRB9LVPeS8+0BAIbDAAAgzcH/1kyh+20\ntcUGMRrT3akfhVv3o4d9C4j0Ja7PQMKwZNiSdFSbQ8ZE9xbR5cKB/Z33emMw\n+54CeJsanj7lOeefRqoHUynpirANguPLmp8SW4Dor4rwSOs4gfO1ttzw7+8M\nIeFG8p8OQ5B+J3+KCUdiuB+6zdxGW3rIfA9OAPYAObQUJ7quS/lmoNrOzKVm\nJWa7x4f9cS2Wls/vt/jeEn2j0x/GqN0KI8P2PjixiBY5Ogf6FRHvWWUD4SYx\n8YHf6rvFXGHW3tdMRRb24miP0UuhbOyUUiQm1xNIe2fJ+IUCD9cumgWbGXof\nGjz3pBuLbZus9/waqlaZWpyEUl5bKsqeifA=\n=LhM4\n-----END PGP PUBLIC KEY BLOCK-----";
+
+    static public Uri uriSavedImage;
     static {
         try {
             System.loadLibrary("gnustl_shared");
@@ -31,6 +44,81 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
+    private static final int BUFFER_SIZE = 4096;
+    public static String getBase64String(@NonNull File file) throws IOException {
+        InputStream in = null;
+        final byte[] buffer = new byte[BUFFER_SIZE];
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+        try {
+            in = new FileInputStream(file);
+            int read;
+
+            while ((read = in.read(buffer)) != -1) {
+                out.write(buffer, 0, read);
+            }
+        } finally {
+            if (in != null) {
+                in.close();
+            }
+        }
+
+        return Base64.encodeToString(out.toByteArray(), Base64.DEFAULT);
+    }
+
+    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+    private static final int CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE = 200;
+
+    private void Encrypt_Message(){
+        final OpenPGP openPGP = new OpenPGP();
+
+        final File file = new File(MainActivity.uriSavedImage.getPath());
+        if (!file.exists()) {
+        } else {
+            try {
+                long size = file.getTotalSpace();
+                final String base64Content = getBase64String(file);
+
+                byte[] content = Base64.decode(base64Content, Base64.DEFAULT);
+                EncryptPackage EncryptPackage = openPGP.EncryptAttachment(content, publicKey, "temp.jp");
+                //TypedByteArray KeyPackage = new TypedByteArray(attachment.getMimeType(), EncryptPackage.KeyPackage);
+                //TypedByteArray DataPackage = new TypedByteArray(attachment.getMimeType(), EncryptPackage.DataPackage);
+                //AttachmentUploadResponse response = mApi.uploadAttachment(attachment, mMessage.getMessageId(), KeyPackage, DataPackage);
+
+                Log.e("test", "error while attaching file: ");
+            } catch (Exception e) {
+                Log.e("test", "error while attaching file: " + MainActivity.uriSavedImage.getPath(), e);
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        this.Encrypt_Message();
+        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                // Image captured and saved to fileUri specified in the Intent
+                Toast.makeText(this, "Image saved to:\n" +
+                        data.getData(), Toast.LENGTH_LONG).show();
+            } else if (resultCode == RESULT_CANCELED) {
+                // User cancelled the image capture
+            } else {
+                // Image capture failed, advise user
+            }
+        }
+
+        if (requestCode == CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                // Video captured and saved to fileUri specified in the Intent
+                Toast.makeText(this, "Video saved to:\n" +
+                        data.getData(), Toast.LENGTH_LONG).show();
+            } else if (resultCode == RESULT_CANCELED) {
+                // User cancelled the video capture
+            } else {
+                // Video capture failed, advise user
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -202,8 +290,32 @@ public class MainActivity extends ActionBarActivity {
         public PlaceholderFragment() {
         }
 
-        TextView helloworld;
 
+        private static final int BUFFER_SIZE = 4096;
+        public static String getBase64String(@NonNull File file) throws IOException {
+            InputStream in = null;
+            final byte[] buffer = new byte[BUFFER_SIZE];
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+            try {
+                in = new FileInputStream(file);
+                int read;
+
+                while ((read = in.read(buffer)) != -1) {
+                    out.write(buffer, 0, read);
+                }
+            } finally {
+                if (in != null) {
+                    in.close();
+                }
+            }
+
+            return Base64.encodeToString(out.toByteArray(), Base64.DEFAULT);
+        }
+
+        TextView helloworld;
+        private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+        private Uri fileUri;
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
@@ -211,34 +323,69 @@ public class MainActivity extends ActionBarActivity {
             String test = OpenPGP.test2(100);
             this.helloworld.setText(test);
 
+
             Button test_button = (Button) rootView.findViewById(R.id.pgp_test);
             test_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
+//                    final OpenPGP openPGP = new OpenPGP();
+//
+//                    final File file = new File(MainActivity.uriSavedImage.getPath());
+//                    if (!file.exists()) {
+//                    } else {
+//                        try {
+//                            long size = file.getTotalSpace();
+//                            final String base64Content = getBase64String(file);
+//
+//                            byte[] content = Base64.decode(base64Content, Base64.DEFAULT);
+//                            EncryptPackage EncryptPackage = openPGP.EncryptAttachment(content, publicKey, "temp.jp");
+//                            //TypedByteArray KeyPackage = new TypedByteArray(attachment.getMimeType(), EncryptPackage.KeyPackage);
+//                            //TypedByteArray DataPackage = new TypedByteArray(attachment.getMimeType(), EncryptPackage.DataPackage);
+//                            //AttachmentUploadResponse response = mApi.uploadAttachment(attachment, mMessage.getMessageId(), KeyPackage, DataPackage);
+//
+//                            Log.e("test", "error while attaching file: ");
+//                        } catch (Exception e) {
+//                            Log.e("test", "error while attaching file: " + MainActivity.uriSavedImage.getPath(), e);
+//                        }
+//                    }
 
-                    long time= System.currentTimeMillis();
-
-                    //test generate a new key
-                    OpenPGPKey newKey = OpenPGP.GenerateKey("feng", "123123");
-
-                    int check1 = OpenPGP.CheckPassphrase(newKey.PrivateKey, "");
-                    int check2 = OpenPGP.CheckPassphrase(newKey.PrivateKey, "123");
-                    int check3 = OpenPGP.CheckPassphrase(newKey.PrivateKey, "123123");
-
-
-                    String scheck1 = OpenPGP.UpdateKeyPassphrase(newKey.PrivateKey, "", "123");
-                    String scheck2 = OpenPGP.UpdateKeyPassphrase(newKey.PrivateKey, "123", "123");
-                    String scheck3 = OpenPGP.UpdateKeyPassphrase(newKey.PrivateKey, "123123", "123");
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    File imagesFolder = new File(Environment.getExternalStorageDirectory(), "MyImages");
+                    imagesFolder.mkdirs(); // <----
+                    File image = new File(imagesFolder, "image_001.jpg");
+                    MainActivity.uriSavedImage = Uri.fromFile(image);
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, MainActivity.uriSavedImage); // set the image file name
+                    // start the image capture Intent
+                    startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
 
 
-                    long end = System.currentTimeMillis();
 
-                    int check4 = OpenPGP.CheckPassphrase(scheck3, "");
-                    int check5 = OpenPGP.CheckPassphrase(scheck3, "123");
-                    int check6 = OpenPGP.CheckPassphrase(scheck3, "123123");
 
-                    helloworld.setText("Time:" + String.valueOf(end - time));
+
+
+//                    long time= System.currentTimeMillis();
+//
+//                    //test generate a new key
+//                    OpenPGPKey newKey = OpenPGP.GenerateKey("feng", "123123");
+//
+//                    int check1 = OpenPGP.CheckPassphrase(newKey.PrivateKey, "");
+//                    int check2 = OpenPGP.CheckPassphrase(newKey.PrivateKey, "123");
+//                    int check3 = OpenPGP.CheckPassphrase(newKey.PrivateKey, "123123");
+//
+//
+//                    String scheck1 = OpenPGP.UpdateKeyPassphrase(newKey.PrivateKey, "", "123");
+//                    String scheck2 = OpenPGP.UpdateKeyPassphrase(newKey.PrivateKey, "123", "123");
+//                    String scheck3 = OpenPGP.UpdateKeyPassphrase(newKey.PrivateKey, "123123", "123");
+//
+//
+//                    long end = System.currentTimeMillis();
+//
+//                    int check4 = OpenPGP.CheckPassphrase(scheck3, "");
+//                    int check5 = OpenPGP.CheckPassphrase(scheck3, "123");
+//                    int check6 = OpenPGP.CheckPassphrase(scheck3, "123123");
+//
+//                    helloworld.setText("Time:" + String.valueOf(end - time));
 //                    int isPwdOK = OpenPGP.SetupKeys(privateKey,publicKey,passphrase);
 //                    int isPwdOK1 = OpenPGP.SetupKeys(privateKey, publicKey, "123123");
 //
@@ -315,7 +462,7 @@ public class MainActivity extends ActionBarActivity {
 //                            "WSDvufZb+qxDUNzGr72nDN54DrCDLzsbhBinT/s7ng==\n" +
 //                            "=AbsE\n" +
 //                            "-----END PGP MESSAGE-----\n";
-                   // byte[] new_out_data = OpenPGP.DecryptAttachment(newKeyPackage, string_armed_data.getBytes(), private_key_net, "123");
+                    // byte[] new_out_data = OpenPGP.DecryptAttachment(newKeyPackage, string_armed_data.getBytes(), private_key_net, "123");
 
 
                     //String message = new String(new_out_data);
@@ -326,6 +473,8 @@ public class MainActivity extends ActionBarActivity {
 
             return rootView;
         }
+
+
 
     }
 }

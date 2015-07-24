@@ -692,10 +692,12 @@ Java_ch_protonmail_android_utils_OpenPGP_EncryptAttachment(JNIEnv* env, jobject 
     {
         jboolean isCopy;
         // get length of bytes
-        int srcLen=(*env).GetArrayLength(data);
-        jbyte plain_data[srcLen];
+        int srcLen = (*env).GetArrayLength(data);
+
+        jbyte * plain_data = (jbyte*)malloc(srcLen);
         (*env).GetByteArrayRegion(data, 0, srcLen, plain_data);
         std::string un_encrypted_data = std::string((char* )plain_data, srcLen);
+        free(plain_data);
         (*env).ReleaseByteArrayElements(data, plain_data , 0);
 
         const char* c_public_key = env->GetStringUTFChars(jpublic_key, &isCopy);
