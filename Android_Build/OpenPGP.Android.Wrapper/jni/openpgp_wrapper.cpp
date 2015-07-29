@@ -632,19 +632,18 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptAttachment(JNIEnv* env, jobject 
     {
         // get length of bytes
         int srcLen=(*env).GetArrayLength(key);
-        jbyte key_packet[srcLen];
+        jbyte * key_packet = (jbyte*)malloc(srcLen);
         (*env).GetByteArrayRegion(key, 0, srcLen, key_packet);
-        // key string package
         std::string str_key_package = std::string((char* )key_packet, srcLen);
         (*env).ReleaseByteArrayElements(key, key_packet , 0);
+        free(key_packet);
 
         srcLen=(*env).GetArrayLength(data);
-        jbyte data_packet[srcLen];
+        jbyte * data_packet = (jbyte*)malloc(srcLen);
         (*env).GetByteArrayRegion(data, 0, srcLen, data_packet);
-        // data string package
         std::string str_data_package = std::string((char* )data_packet, srcLen);
         (*env).ReleaseByteArrayElements(data, data_packet , 0);
-
+        free(data_packet);
 
         std::string str_private_key = (*env).GetStringUTFChars(jprivate_key, 0);
         std::string str_password = (*env).GetStringUTFChars(passphrase, 0);
@@ -697,8 +696,8 @@ Java_ch_protonmail_android_utils_OpenPGP_EncryptAttachment(JNIEnv* env, jobject 
         jbyte * plain_data = (jbyte*)malloc(srcLen);
         (*env).GetByteArrayRegion(data, 0, srcLen, plain_data);
         std::string un_encrypted_data = std::string((char* )plain_data, srcLen);
-        free(plain_data);
         (*env).ReleaseByteArrayElements(data, plain_data , 0);
+        free(plain_data);
 
         const char* c_public_key = env->GetStringUTFChars(jpublic_key, &isCopy);
         std::string str_public_key = std::string(c_public_key);
