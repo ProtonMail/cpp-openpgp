@@ -177,7 +177,7 @@ std::string encrypt_pm_pka(const PGPPublicKey & pub, const std::string & data)
     std::cout << body << std::endl;
     
     std::string session_key = base64_decode("IsKORjNGw7HCsVY1QXHCscOZQsKGDsKywpjCtHfCol4FasOfIGUXw7DDssOqw50=");
-    std::cout << session_key << std::endl;
+    //std::cout << session_key << std::endl;
     std::string encoded_msg_body = base64_encode(reinterpret_cast<const unsigned char*>(body.c_str()), (int)body.length());
     
     int residual = encoded_msg_body.length() % 32;
@@ -191,10 +191,8 @@ std::string encrypt_pm_pka(const PGPPublicKey & pub, const std::string & data)
     uint16_t BS = Symmetric_Algorithm_Block_Length.at(Symmetric_Algorithms.at(sym_alg)) >> 3;
     std::string prefix = unhexlify(zfill(bintohex(BBS().rand_byts(BS << 3)), BS << 1, '0'));
     std::string out_str = use_OpenPGP_CFB_encrypt(sym_alg, 18, encoded_msg_body, session_key, prefix);
-    std::cout << out_str << std::endl;
-    
-    
-    std::cout << base64_encode(reinterpret_cast<const unsigned char*>(out_str.c_str()), (int)out_str.length()) << std::endl;
+    //std::cout << out_str << std::endl;
+    //std::cout << base64_encode(reinterpret_cast<const unsigned char*>(out_str.c_str()), (int)out_str.length()) << std::endl;
     
     return encoded_msg_body;
 }

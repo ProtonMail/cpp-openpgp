@@ -140,7 +140,7 @@ class ViewController: NSViewController {
         let asfsdfa = pgp.decrypt_message(enc_m, error: nil)
         let dec_m = pgp.decrypt_message(fileContent_2, error: nil)
 
-        println(dec_m);
+       // println(dec_m);
         
     }
     @IBAction func test_encrypt_decrypt_attachment(sender: AnyObject) {

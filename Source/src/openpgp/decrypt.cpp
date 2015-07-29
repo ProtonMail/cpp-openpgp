@@ -95,7 +95,7 @@ PGPMessage decrypt_data(const uint8_t sym, const PGPMessage & m, const std::stri
         data = data.substr(0, data.size() - 2);                     // get rid of \xd3\x14
     }
     data = data.substr(BS + 2, data.size() - BS - 2);               // get rid of prefix
-    std::cout << data << std::endl;
+    //std::cout << data << std::endl;
     // decompress and parse decrypted data
     return PGPMessage(data, true);
 }

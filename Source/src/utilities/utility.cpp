@@ -65,9 +65,9 @@ namespace pm {
         auto t = use_OpenPGP_CFB_decrypt(9,  0, EncMessageID, EncKey);
         
         std::string data = use_normal_CFB_decrypt(9, EncMessageID, EncKey, IV);
-        std::cout << hexlify(data) << std::endl;
+        //std::cout << hexlify(data) << std::endl;
         
-        std::cout << data << std::endl;
+        //std::cout << data << std::endl;
 //        let decodedData = NSData(base64EncodedString: EncMessageID, options: NSDataBase64DecodingOptions.init(0))
 //        let decodedString = NSString(data: decodedData!, encoding: NSUTF8StringEncoding)
 //        println(decodedString) // foo
