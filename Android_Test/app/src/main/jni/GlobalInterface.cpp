@@ -6,15 +6,15 @@
  */
 
 
-#include "GlobalInterface.h"
-
-JNIEXPORT JNICALL jint JNI_OnLoad(JavaVM* aVm, void* aReserved)
-{
-	return JNI_VERSION_1_6;
-}
-
-JNIEXPORT JNICALL void
-JNI_OnUnload(JavaVM* vm, void* reserved)
-{
-}
-
+//#include "GlobalInterface.h
+//
+//JNIEXPORT JNICALL jint JNI_OnLoad(JavaVM* aVm, void* aReserved)
+//{
+//	return JNI_VERSION_1_6;
+//}
+//
+//JNIEXPORT JNICALL void
+//JNI_OnUnload(JavaVM* vm, void* reserved)
+//{
+//}
+//

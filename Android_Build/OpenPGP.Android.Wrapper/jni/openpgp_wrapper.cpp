@@ -2,7 +2,7 @@
 #include "openpgp_wrapper.h"
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "GlobalInterface.h"
 
 #include <openpgp/openpgp.h>
 #include <openpgp/PMPGPMessage.h>
@@ -21,7 +21,9 @@
 
 #include <encryption/AES.h>
 
+
 extern "C" {
+
 
 JNIEXPORT jint JNICALL
 Java_ch_protonmail_android_utils_OpenPGP_test1(JNIEnv* env, jobject o, jint x, jint y)
@@ -628,6 +630,7 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptAttachmentArmored(JNIEnv* env, j
 JNIEXPORT jbyteArray JNICALL
 Java_ch_protonmail_android_utils_OpenPGP_DecryptAttachment(JNIEnv* env, jobject o, jbyteArray key, jbyteArray data, jstring jprivate_key, jstring passphrase)
 {
+
     try
     {
         // get length of bytes
@@ -689,6 +692,25 @@ Java_ch_protonmail_android_utils_OpenPGP_EncryptAttachment(JNIEnv* env, jobject 
 {
     try
     {
+        jint interface_id = JNI_VERSION_1_6;
+
+        JavaVM* jvm;
+        int gotVM = (*env).GetJavaVM(&jvm);
+
+        int res = (*jvm).AttachCurrentThread(&env, NULL);
+
+        LOG_E("attach thread : %d", res);
+
+//        /* Get Class from Java **/
+//        jclass localClass = env->FindClass("com/fido/android/framework/service/XMLDOMDocument");
+//        if (localClass != NULL) {
+//            m_XMLDocumentClass = env->NewGlobalRef(localClass);
+//            /* Call java class constructor. **/
+//            jmethodID constructor = env->GetMethodID(localClass, "<init>", "()V");
+//            jobject localObject = env->NewObject(m_XMLDocumentClass , constructor);
+//            m_XMLDocumentObject = env->NewGlobalRef(localObject );
+//        }
+
         jboolean isCopy;
         // get length of bytes
         int srcLen = (*env).GetArrayLength(data);
@@ -729,10 +751,14 @@ Java_ch_protonmail_android_utils_OpenPGP_EncryptAttachment(JNIEnv* env, jobject 
 
 
         jclass clazz = (*env).FindClass("ch/protonmail/android/utils/EncryptPackage");
+        jclass ref_class  = (jclass)(*env).NewGlobalRef(clazz);
+
         // Get the method id of an empty constructor in clazz
         jmethodID constructor = (*env).GetMethodID(clazz, "<init>", "()V");
         // Create an instance of clazz
-        jobject obj = (*env).NewObject(clazz, constructor);
+        jobject obj = (*env).NewObject(ref_class, constructor);
+
+        jobject out_obj = (*env).NewGlobalRef(obj);
         // Get Field references
         jfieldID key_fieldID = (*env).GetFieldID(clazz, "KeyPackage", "[B");
         jfieldID data_fieldID = (*env).GetFieldID(clazz, "DataPackage", "[B");
@@ -748,13 +774,15 @@ Java_ch_protonmail_android_utils_OpenPGP_EncryptAttachment(JNIEnv* env, jobject 
         (*env).SetObjectField(obj, data_fieldID, data_array);
 
 
+        (*env).DeleteLocalRef(clazz);
         (*env).DeleteLocalRef(data_array);
         (*env).DeleteLocalRef(data);
         (*env).DeleteLocalRef(jpublic_key);
         (*env).DeleteLocalRef(key_array);
         (*env).DeleteLocalRef(jfileName);
+        (*env).DeleteLocalRef(obj);
 
-        return obj;
+        return out_obj;
     }
     catch (const std::runtime_error& error)
     {
