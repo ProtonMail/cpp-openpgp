@@ -639,14 +639,14 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptAttachment(JNIEnv* env, jobject 
         (*env).GetByteArrayRegion(key, 0, srcLen, key_packet);
         std::string str_key_package = std::string((char* )key_packet, srcLen);
         (*env).ReleaseByteArrayElements(key, key_packet , 0);
-        free(key_packet);
+        //free(key_packet);
 
         srcLen=(*env).GetArrayLength(data);
         jbyte * data_packet = (jbyte*)malloc(srcLen);
         (*env).GetByteArrayRegion(data, 0, srcLen, data_packet);
         std::string str_data_package = std::string((char* )data_packet, srcLen);
         (*env).ReleaseByteArrayElements(data, data_packet , 0);
-        free(data_packet);
+        //free(data_packet);
 
         std::string str_private_key = (*env).GetStringUTFChars(jprivate_key, 0);
         std::string str_password = (*env).GetStringUTFChars(passphrase, 0);
@@ -699,27 +699,34 @@ Java_ch_protonmail_android_utils_OpenPGP_EncryptAttachment(JNIEnv* env, jobject 
 
         int res = (*jvm).AttachCurrentThread(&env, NULL);
 
-        LOG_E("attach thread : %d", res);
-
-//        /* Get Class from Java **/
-//        jclass localClass = env->FindClass("com/fido/android/framework/service/XMLDOMDocument");
-//        if (localClass != NULL) {
-//            m_XMLDocumentClass = env->NewGlobalRef(localClass);
-//            /* Call java class constructor. **/
-//            jmethodID constructor = env->GetMethodID(localClass, "<init>", "()V");
-//            jobject localObject = env->NewObject(m_XMLDocumentClass , constructor);
-//            m_XMLDocumentObject = env->NewGlobalRef(localObject );
-//        }
+        //LOG_E("attach thread : %d", res);
 
         jboolean isCopy;
         // get length of bytes
         int srcLen = (*env).GetArrayLength(data);
 
+        //LOG_E("input size: %d", srcLen);
+
         jbyte * plain_data = (jbyte*)malloc(srcLen);
+
+        //LOG_E("malloc bytes");
+
         (*env).GetByteArrayRegion(data, 0, srcLen, plain_data);
+
+        //LOG_E("get jni data");
+
         std::string un_encrypted_data = std::string((char* )plain_data, srcLen);
-        (*env).ReleaseByteArrayElements(data, plain_data , 0);
-        free(plain_data);
+
+        //LOG_E("set to string");
+
+        (*env).ReleaseByteArrayElements(data, plain_data , JNI_ABORT);
+
+        //LOG_E("release jni data");
+
+        //free(plain_data);
+
+        //LOG_E("free data");
+        //LOG_E("input data ok");
 
         const char* c_public_key = env->GetStringUTFChars(jpublic_key, &isCopy);
         std::string str_public_key = std::string(c_public_key);
@@ -740,7 +747,11 @@ Java_ch_protonmail_android_utils_OpenPGP_EncryptAttachment(JNIEnv* env, jobject 
 	    pub.set_is_debug(false);
 	   	pub.read(str_public_key);
 
+        //LOG_E("Keys ok");
+
         PGPMessage enrypted_session_key = encrypt_pka_only_session(pub, str_session_key);
+
+       // LOG_E("Session Keys ok");
 
         //session key package
         std::string enrypted_session_key_data = enrypted_session_key.write(1);
@@ -748,7 +759,7 @@ Java_ch_protonmail_android_utils_OpenPGP_EncryptAttachment(JNIEnv* env, jobject 
 
         PGPMessage encrypted_att = encrypt_pka_only_data(str_session_key, un_encrypted_data, str_file_name, 9, 0);
         std::string encrypted_data = encrypted_att.write(1);
-
+        //LOG_E("encrypt ok");
 
         jclass clazz = (*env).FindClass("ch/protonmail/android/utils/EncryptPackage");
         jclass ref_class  = (jclass)(*env).NewGlobalRef(clazz);
@@ -773,6 +784,7 @@ Java_ch_protonmail_android_utils_OpenPGP_EncryptAttachment(JNIEnv* env, jobject 
         (*env).SetByteArrayRegion (data_array, 0, len, (jbyte*)(encrypted_data.c_str()));
         (*env).SetObjectField(obj, data_fieldID, data_array);
 
+        //LOG_E("setup ok");
 
         (*env).DeleteLocalRef(clazz);
         (*env).DeleteLocalRef(data_array);
