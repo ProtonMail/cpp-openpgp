@@ -198,10 +198,10 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptMessage(JNIEnv* env, jobject o, 
         (*env).DeleteLocalRef(jpassphrase);
 
         jstring jsRet = 0;
-		if (!test_plain_txt.empty())
-		{
-			jsRet = (env)->NewStringUTF((const char*) test_plain_txt.c_str());
-		}
+		//if (!test_plain_txt.empty())
+		//{
+		jsRet = (env)->NewStringUTF((const char*) test_plain_txt.c_str());
+		//}
 		return jsRet;
     }
     catch (const std::runtime_error& error)
@@ -869,20 +869,36 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptAttachmentWithPassword(JNIEnv* e
 }
 
 JNIEXPORT jbyteArray JNICALL
-Java_ch_protonmail_android_utils_OpenPGP_GetPublicKeySessionKey(JNIEnv* env, jobject o, jbyteArray key, jstring priv_key, jstring passphrase)
+Java_ch_protonmail_android_utils_OpenPGP_GetPublicKeySessionKey(JNIEnv* env, jobject o, jbyteArray jkey, jstring jpriv_key, jstring jpassphrase)
 {
     try
     {
-        // get length of bytes
-        int srcLen=(*env).GetArrayLength(key);
-        jbyte key_packet[srcLen];
-        (*env).GetByteArrayRegion(key, 0, srcLen, key_packet);
-        // key string package
-        std::string str_key_package = std::string((char* )key_packet, srcLen);
-        (*env).ReleaseByteArrayElements(key, key_packet , 0);
+        jint interface_id = JNI_VERSION_1_6;
 
-        std::string str_private_key = (*env).GetStringUTFChars(priv_key, 0);
-        std::string str_password = (*env).GetStringUTFChars(passphrase, 0);
+        JavaVM* jvm;
+        int gotVM = (*env).GetJavaVM(&jvm);
+        int res = (*jvm).AttachCurrentThread(&env, NULL);
+
+        jboolean isCopy;
+        int srcLen = (*env).GetArrayLength(jkey);
+        jbyte * key_packet = (jbyte*)malloc(srcLen);
+        (*env).GetByteArrayRegion(jkey, 0, srcLen, key_packet);
+
+        // key package
+        std::string str_key_package = std::string((char* )key_packet, srcLen);
+        (*env).ReleaseByteArrayElements(jkey, key_packet , JNI_ABORT);
+
+        const char* c_private_key = env->GetStringUTFChars(jpriv_key, &isCopy);
+        std::string str_private_key = std::string(c_private_key);
+        if (isCopy == JNI_TRUE) {
+            env->ReleaseStringUTFChars(jpriv_key, c_private_key);
+        }
+
+        const char* c_passphrase = env->GetStringUTFChars(jpassphrase, &isCopy);
+        std::string str_password = std::string(c_passphrase);
+        if (isCopy == JNI_TRUE) {
+            env->ReleaseStringUTFChars(jpassphrase, c_passphrase);
+        }
 
         pm::PMPGPMessage pm_pgp_msg(str_key_package);
 
@@ -897,9 +913,9 @@ Java_ch_protonmail_android_utils_OpenPGP_GetPublicKeySessionKey(JNIEnv* env, job
         (*env).SetByteArrayRegion (array, 0, len, (jbyte*)(sessionKey.c_str()));
 
 
-        (*env).DeleteLocalRef(key);
-        (*env).DeleteLocalRef(priv_key);
-        (*env).DeleteLocalRef(passphrase);
+        (*env).DeleteLocalRef(jkey);
+        (*env).DeleteLocalRef(jpriv_key);
+        (*env).DeleteLocalRef(jpassphrase);
 
         return array;
     }
@@ -919,19 +935,32 @@ Java_ch_protonmail_android_utils_OpenPGP_GetPublicKeySessionKey(JNIEnv* env, job
 }
 
 JNIEXPORT jbyteArray JNICALL
-Java_ch_protonmail_android_utils_OpenPGP_GetSymmetricSessionKey(JNIEnv* env, jobject o, jbyteArray key, jstring password)
+Java_ch_protonmail_android_utils_OpenPGP_GetSymmetricSessionKey(JNIEnv* env, jobject o, jbyteArray jkey, jstring jpassword)
 {
     try
     {
-        // get length of bytes
-        int srcLen=(*env).GetArrayLength(key);
-        jbyte key_packet[srcLen];
-        (*env).GetByteArrayRegion(key, 0, srcLen, key_packet);
-        // key string package
-        std::string str_key_package = std::string((char* )key_packet, srcLen);
-        (*env).ReleaseByteArrayElements(key, key_packet , 0);
+        jint interface_id = JNI_VERSION_1_6;
 
-        std::string str_password = (*env).GetStringUTFChars(password, 0);
+        JavaVM* jvm;
+        int gotVM = (*env).GetJavaVM(&jvm);
+        int res = (*jvm).AttachCurrentThread(&env, NULL);
+
+
+        jboolean isCopy;
+        int srcLen = (*env).GetArrayLength(jkey);
+        jbyte * key_packet = (jbyte*)malloc(srcLen);
+        (*env).GetByteArrayRegion(jkey, 0, srcLen, key_packet);
+
+        // key package
+        std::string str_key_package = std::string((char* )key_packet, srcLen);
+        (*env).ReleaseByteArrayElements(jkey, key_packet , JNI_ABORT);
+
+
+        const char* c_password = env->GetStringUTFChars(jpassword, &isCopy);
+        std::string str_password = std::string(c_password);
+        if (isCopy == JNI_TRUE) {
+            env->ReleaseStringUTFChars(jpassword, c_password);
+        }
 
         pm::PMPGPMessage pm_pgp_msg(str_key_package);
 
@@ -942,9 +971,8 @@ Java_ch_protonmail_android_utils_OpenPGP_GetSymmetricSessionKey(JNIEnv* env, job
         (*env).SetByteArrayRegion (array, 0, len, (jbyte*)(sessionKey.c_str()));
 
 
-        (*env).DeleteLocalRef(key);
-        (*env).DeleteLocalRef(password);
-
+        (*env).DeleteLocalRef(jkey);
+        (*env).DeleteLocalRef(jpassword);
 
         return array;
     }
