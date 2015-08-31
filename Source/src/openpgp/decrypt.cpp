@@ -62,21 +62,20 @@ PGPMessage decrypt_data(const uint8_t sym, const PGPMessage & m, const std::stri
 
     // does not work
     // // if the packet was a partial start
-    // if (packets[i] -> get_partial()){
-        // i++;
-
-        // // add the rest of the data
-        // for(; i < packets.size(); i++){
-            // std::string raw = packets[i] -> raw();
-            // Partial::Ptr part = std::make_shared <Partial> (raw);
-            // data += part -> get_stream();
-
-            // // if the current packet is parital end, break after adding data
-            // if (packets[i] -> get_partial() == 3){
-                // break;
-            // }
-        // }
-    // }
+//     if (packets[i] -> get_partial()){
+//         i++;
+//         // add the rest of the data
+//         for(; i < packets.size(); i++){
+//             std::string raw = packets[i] -> raw();
+//             Partial::Ptr part = std::make_shared <Partial> (raw);
+//             data += part -> get_stream();
+//
+//             // if the current packet is parital end, break after adding data
+//             if (packets[i] -> get_partial() == 3){
+//                 break;
+//             }
+//         }
+//     }
 
     if (!data.size()){
         throw std::runtime_error("Error: No encrypted data packet(s) found.");
@@ -85,6 +84,8 @@ PGPMessage decrypt_data(const uint8_t sym, const PGPMessage & m, const std::stri
     // decrypt data
     data = use_OpenPGP_CFB_decrypt(data, session_key); //use_OpenPGP_CFB_decrypt(sym, packet, data, session_key);
 
+    //std::cout << data << std::endl;
+    
     // strip extra data
     if (packet == 18){ // Symmetrically Encrypted Integrity Protected Data Packet (Tag 18)
         std::string checksum = data.substr(data.size() - 20, 20);   // get given SHA1 checksum
