@@ -451,14 +451,14 @@ public class MainActivity extends ActionBarActivity {
 //
                     byte[] newKeyPackage = OpenPGP.GetNewPublicKeyPackage(sessionBytes, public_key_net);
 
-                    byte[] out = OpenPGP.DecryptAttachment(newKeyPackage, encryptPackage.DataPackage, private_key_net, "123");
-                    String pak = new String(out);
+//                    byte[] out = OpenPGP.DecryptAttachment(newKeyPackage, encryptPackage.DataPackage, private_key_net, "123");
+//                    String pak = new String(out);
 
-                    byte[] newSymKeyPackage = OpenPGP.GetNewSymmetricKeyPackage(sessionBytes, "123");
+//                    byte[] newSymKeyPackage = OpenPGP.GetNewSymmetricKeyPackage(sessionBytes, "123");
 
 
-                   byte[] out1 = OpenPGP.DecryptAttachmentWithPassword(newSymKeyPackage, encryptPackage.DataPackage, "123");
-                    String pak1 = new String(out1);
+//                   byte[] out1 = OpenPGP.DecryptAttachmentWithPassword(newSymKeyPackage, encryptPackage.DataPackage, "123");
+//                    String pak1 = new String(out1);
 
 
                     String testEmpty = "";

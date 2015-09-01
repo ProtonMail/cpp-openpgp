@@ -17,6 +17,18 @@ ifeq ($(TARGET_ARCH_ABI),x86)
 	include $(PREBUILT_STATIC_LIBRARY)
 endif # TARGET_ARCH_ABI == x86
 
+ifeq ($(TARGET_ARCH_ABI),x86_64)
+	include $(CLEAR_VARS)
+	LOCAL_MODULE    := crypto
+	LOCAL_SRC_FILES := libs/x86_64/libcrypto.a
+	include $(PREBUILT_STATIC_LIBRARY)
+
+	include $(CLEAR_VARS)
+	LOCAL_MODULE    := ssl
+	LOCAL_SRC_FILES := libs/x86_64/libssl.a
+	include $(PREBUILT_STATIC_LIBRARY)
+endif # TARGET_ARCH_ABI == x86_64
+
 ifeq ($(TARGET_ARCH_ABI),armeabi)
 	include $(CLEAR_VARS)
     LOCAL_MODULE    := crypto
@@ -41,6 +53,17 @@ ifeq ($(TARGET_ARCH_ABI),armeabi-v7a)
 	include $(PREBUILT_STATIC_LIBRARY)
 endif # TARGET_ARCH_ABI == armeabi-v7a
 
+ifeq ($(TARGET_ARCH_ABI),arm64-v8a)
+	include $(CLEAR_VARS)
+	LOCAL_MODULE    := crypto
+	LOCAL_SRC_FILES := libs/arm64-v8a/libcrypto.a
+	include $(PREBUILT_STATIC_LIBRARY)
+
+    include $(CLEAR_VARS)
+	LOCAL_MODULE    := ssl
+	LOCAL_SRC_FILES := libs/arm64-v8a/libssl.a
+	include $(PREBUILT_STATIC_LIBRARY)
+endif # TARGET_ARCH_ABI == arm64-v8a
 
 include $(CLEAR_VARS)
 bzlib_1 := $(shell find $(LOCAL_PATH)/src/bzlib -type d)

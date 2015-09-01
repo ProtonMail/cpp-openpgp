@@ -16,6 +16,14 @@ ifeq ($(TARGET_ARCH_ABI),x86)
 	include $(PREBUILT_SHARED_LIBRARY)
 endif # TARGET_ARCH_ABI == x86
 
+ifeq ($(TARGET_ARCH_ABI),x86_64)
+   	$(info "start build x86_64")
+	include $(CLEAR_VARS)
+	LOCAL_MODULE    := openpgp
+	LOCAL_SRC_FILES := libs/x86_64/libopenpgp.so
+	include $(PREBUILT_SHARED_LIBRARY)
+endif # TARGET_ARCH_ABI == x86_64
+
 ifeq ($(TARGET_ARCH_ABI),armeabi-v7a)
    	$(info "start build armeabi-v7a")
 	include $(CLEAR_VARS)
@@ -23,6 +31,14 @@ ifeq ($(TARGET_ARCH_ABI),armeabi-v7a)
 	LOCAL_SRC_FILES := libs/armeabi-v7a/libopenpgp.so
 	include $(PREBUILT_SHARED_LIBRARY)
 endif # TARGET_ARCH_ABI == armeabi-v7a
+
+ifeq ($(TARGET_ARCH_ABI),arm64-v8a)
+   	$(info "start build arm64-v8a")
+	include $(CLEAR_VARS)
+	LOCAL_MODULE    := openpgp
+	LOCAL_SRC_FILES := libs/arm64-v8a/libopenpgp.so
+	include $(PREBUILT_SHARED_LIBRARY)
+endif # TARGET_ARCH_ABI == arm64-v8a
 
 ifeq ($(TARGET_ARCH_ABI),armeabi)
    	$(info "start build armeabi")
