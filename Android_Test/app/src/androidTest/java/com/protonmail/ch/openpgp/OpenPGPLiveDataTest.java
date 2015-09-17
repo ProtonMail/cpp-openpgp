@@ -1,6 +1,7 @@
 package com.protonmail.ch.openpgp;
 
 import android.test.AndroidTestCase;
+import android.util.Log;
 
 
 import ch.protonmail.android.utils.AppUtil;
@@ -27,7 +28,7 @@ public class OpenPGPLiveDataTest extends AndroidTestCase {
     private String privateKey = "";
     private String publicKey = "";
 
-    private static final String privatePassphrase = "";
+    private static final String privatePassphrase = "123";
 
     @Override
     protected void setUp() throws Exception {
@@ -46,18 +47,18 @@ public class OpenPGPLiveDataTest extends AndroidTestCase {
         assertNotNull(newKey.PublicKey);
     }
 
+    public void test_checkPassword() {
+        int isOk = OpenPGP.CheckPassphrase(privateKey, privatePassphrase);
 
-    public void test_emojiOne() {
-
-        String badEncryptedMsg = AppUtil.readTxt(getContext(), R.raw.feng_bad_msg_emoji_1);
-
-
-        String out = OpenPGP.DecryptMessage(badEncryptedMsg, privateKey, privatePassphrase);
-        assertNotNull(out);
-
+        assertTrue("The password not match", isOk == 1);
     }
 
-
-
-
+    public void test_badMsg_emojiOne() {
+        String badEncryptedMsg = AppUtil.readTxt(getContext(), R.raw.feng_bad_msg_emoji_1);
+        for (int i = 0; i < 100; i++) {
+            String out = OpenPGP.DecryptMessage(badEncryptedMsg, privateKey, privatePassphrase);
+            assertNotNull(out);
+            Log.d("Unit Testing", "count:" + i + " - " + out);
+        }
+    }
 }

@@ -59,7 +59,16 @@ public class OpenPGP {
      * @param passphrase    user's private key passphrase
      * @return decrypted plaint text
      */
-    public static native String DecryptMessage(String encrypted_message, String priv_key, String passphrase);
+    private static native byte[] DecryptMessage(byte[] encrypted_message, String priv_key, String passphrase);
+
+    public static String DecryptMessage(String encrypted_message, String privateKey, String passPhrase) {
+        byte[] out = DecryptMessage(encrypted_message.getBytes(), privateKey, passPhrase);
+        if (out != null && out.length > 0) {
+
+            return new String(out);
+        }
+        return "";
+    }
 
     /**
      * aes encrypt message use password this is for encrypt outside emails
