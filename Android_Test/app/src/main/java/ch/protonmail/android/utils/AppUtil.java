@@ -1,3 +1,5 @@
+package ch.protonmail.android.utils;
+
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -17,7 +19,7 @@ public class AppUtil {
 
     private static final int BUFFER_SIZE = 4096;
 
-    private AppUtil() {
+    public AppUtil() {
     }
 
     public static String getBase64String(@NonNull File file) throws IOException {
@@ -61,5 +63,26 @@ public class AppUtil {
         }
     }
 
+
+    public static String readTxt(Context content, int id) {
+        InputStream inputStream = content.getResources().openRawResource(id);
+        System.out.println(inputStream);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+
+        int i;
+        try {
+            i = inputStream.read();
+            while (i != -1) {
+                byteArrayOutputStream.write(i);
+                i = inputStream.read();
+            }
+            inputStream.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return byteArrayOutputStream.toString();
+    }
 
 }
