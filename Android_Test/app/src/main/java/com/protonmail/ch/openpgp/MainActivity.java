@@ -374,99 +374,95 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-                    long time= System.currentTimeMillis();
-
-                    //test generate a new key
-                    OpenPGPKey newKey = OpenPGP.GenerateKey("feng", "123123");
-
-                    int check1 = OpenPGP.CheckPassphrase(newKey.PrivateKey, "");
-                    int check2 = OpenPGP.CheckPassphrase(newKey.PrivateKey, "123");
-                    int check3 = OpenPGP.CheckPassphrase(newKey.PrivateKey, "123123");
-
-
-                    String scheck1 = OpenPGP.UpdateKeyPassphrase(newKey.PrivateKey, "", "123");
-                    String scheck2 = OpenPGP.UpdateKeyPassphrase(newKey.PrivateKey, "123", "123");
-                    String scheck3 = OpenPGP.UpdateKeyPassphrase(newKey.PrivateKey, "123123", "123");
-
-
-                    long end = System.currentTimeMillis();
-
-                    int check4 = OpenPGP.CheckPassphrase(scheck3, "");
-                    int check5 = OpenPGP.CheckPassphrase(scheck3, "123");
-                    int check6 = OpenPGP.CheckPassphrase(scheck3, "123123");
-
-                    helloworld.setText("Time:" + String.valueOf(end - time));
-                    int isPwdOK = OpenPGP.SetupKeys(privateKey,publicKey,passphrase);
-                    int isPwdOK1 = OpenPGP.SetupKeys(privateKey, publicKey, "123123");
-
-                    Log.e("test", String.format("%d",isPwdOK));
-                    String test_encrypt = OpenPGP.EncryptMailboxPWD("thisisatestmailbox", "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
-                    String test_plain_text = OpenPGP.DecryptMailboxPWD(test_encrypt, "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
-
-                    Log.e("DecryptMailboxPWD", test_plain_text);
-
-                    String encryptedText = OpenPGP.EncryptMessage(cleartext, publicKey);
-                    String decryptedText = OpenPGP.DecryptMessage(encryptedText, privateKey, passphrase);
-                    if (decryptedText.equalsIgnoreCase(cleartext)) {
-                        Log.e("Test", "OK");
-                    }
-
-                    String test_password = "123";
-                    String original_text = "<div>lajflkjasklfjlksdfkl</div><div><br></div><div>Sent from iPhone <a href=\"https://protonmail.ch\">ProtonMail</a>, encrypted email based in Switzerland.<br></div>";
-                    String test_aes_str = "-----BEGIN PGP MESSAGE-----\nVersion: OpenPGP.js v0.10.1-IE\nComment: http://openpgpjs.org\n\nww0ECQMIina34sp8Nlpg0sAbAc/x6pR8h57OJv9pklLuEc/aH5lFT9OpWS+N\n7oPaJCGK1f3aQV7g5V5INlUvwICeDiSkDMo+hHGtFgDFEwgNiMDc7wAtod1U\nZ5PTHegr8KWWmBiDIYuPVFJH8mALVcQen9MI1xFSYO8RvSxM/P6dJPzrVZQK\noIRW98dxMjJqMWW9HgqWCej6TRDua65r/X7Ucco9tWpwzmQCnvJLqpcYYrEk\ngcGyXsp3RvISG6pWh8ZFemeO6yoqnphYmcAa/i4h4CiMqKDDJuOg4UdpW46U\nGoNSV+C4hz5ymRDj\n=hUe3\n-----END PGP MESSAGE-----";
-                    String plain_text = OpenPGP.DecryptMessageAES(test_aes_str, test_password);
-
-                    if (plain_text.equalsIgnoreCase(original_text)) {
-                        Log.e("Test", "OK");
-                    }
-
-
-                    String new_enc_msg = OpenPGP.EncryptMessageAES(original_text, test_password);
-                    if(new_enc_msg != null)
-                    {
-                        Log.e("Test", "OK");
-                    }
-
-                    String new_dec_msg = OpenPGP.DecryptMessageAES(new_enc_msg, test_password);
-                    if(new_enc_msg != null && new_dec_msg.equalsIgnoreCase(original_text))
-                    {
-                        Log.e("Test", "OK");
-                    }
-
-
-
-
+//                    long time= System.currentTimeMillis();
+//
+//                    //test generate a new key
+//                    OpenPGPKey newKey = OpenPGP.GenerateKey("feng", "123123");
+//
+//                    int check1 = OpenPGP.CheckPassphrase(newKey.PrivateKey, "");
+//                    int check2 = OpenPGP.CheckPassphrase(newKey.PrivateKey, "123");
+//                    int check3 = OpenPGP.CheckPassphrase(newKey.PrivateKey, "123123");
+//
+//
+//                    String scheck1 = OpenPGP.UpdateKeyPassphrase(newKey.PrivateKey, "", "123");
+//                    String scheck2 = OpenPGP.UpdateKeyPassphrase(newKey.PrivateKey, "123", "123");
+//                    String scheck3 = OpenPGP.UpdateKeyPassphrase(newKey.PrivateKey, "123123", "123");
+//
+//
+//                    long end = System.currentTimeMillis();
+//
+//                    int check4 = OpenPGP.CheckPassphrase(scheck3, "");
+//                    int check5 = OpenPGP.CheckPassphrase(scheck3, "123");
+//                    int check6 = OpenPGP.CheckPassphrase(scheck3, "123123");
+//
+//                    helloworld.setText("Time:" + String.valueOf(end - time));
+//                    int isPwdOK = OpenPGP.SetupKeys(privateKey,publicKey,passphrase);
+//                    int isPwdOK1 = OpenPGP.SetupKeys(privateKey, publicKey, "123123");
+//
+//                    Log.e("test", String.format("%d",isPwdOK));
+//                    String test_encrypt = OpenPGP.EncryptMailboxPWD("thisisatestmailbox", "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
+//                    String test_plain_text = OpenPGP.DecryptMailboxPWD(test_encrypt, "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
+//
+//                    Log.e("DecryptMailboxPWD", test_plain_text);
+//
+//                    String encryptedText = OpenPGP.EncryptMessage(cleartext, publicKey);
+//                    String decryptedText = OpenPGP.DecryptMessage(encryptedText, privateKey, passphrase);
+//                    if (decryptedText.equalsIgnoreCase(cleartext)) {
+//                        Log.e("Test", "OK");
+//                    }
+//
+//                    String test_password = "123";
+//                    String original_text = "<div>lajflkjasklfjlksdfkl</div><div><br></div><div>Sent from iPhone <a href=\"https://protonmail.ch\">ProtonMail</a>, encrypted email based in Switzerland.<br></div>";
+//                    String test_aes_str = "-----BEGIN PGP MESSAGE-----\nVersion: OpenPGP.js v0.10.1-IE\nComment: http://openpgpjs.org\n\nww0ECQMIina34sp8Nlpg0sAbAc/x6pR8h57OJv9pklLuEc/aH5lFT9OpWS+N\n7oPaJCGK1f3aQV7g5V5INlUvwICeDiSkDMo+hHGtFgDFEwgNiMDc7wAtod1U\nZ5PTHegr8KWWmBiDIYuPVFJH8mALVcQen9MI1xFSYO8RvSxM/P6dJPzrVZQK\noIRW98dxMjJqMWW9HgqWCej6TRDua65r/X7Ucco9tWpwzmQCnvJLqpcYYrEk\ngcGyXsp3RvISG6pWh8ZFemeO6yoqnphYmcAa/i4h4CiMqKDDJuOg4UdpW46U\nGoNSV+C4hz5ymRDj\n=hUe3\n-----END PGP MESSAGE-----";
+//                    String plain_text = OpenPGP.DecryptMessageAES(test_aes_str, test_password);
+//
+//                    if (plain_text.equalsIgnoreCase(original_text)) {
+//                        Log.e("Test", "OK");
+//                    }
+//
+//
+//                    String new_enc_msg = OpenPGP.EncryptMessageAES(original_text, test_password);
+//                    if(new_enc_msg != null)
+//                    {
+//                        Log.e("Test", "OK");
+//                    }
+//
+//                    String new_dec_msg = OpenPGP.DecryptMessageAES(new_enc_msg, test_password);
+//                    if(new_enc_msg != null && new_dec_msg.equalsIgnoreCase(original_text))
+//                    {
+//                        Log.e("Test", "OK");
+//                    }
 
                     // byte[] data_out = open_test.DecryptAttachment(string_armed_key.getBytes(), string_armed_data.getBytes(), private_key_net, "123");
                     // String str_out_data = new String(data_out);
 
-                    String testString = "this is a test attachment";
+                    String testString = "this is a test attachment1111111";
                     byte[] data_in = testString.getBytes();
-//
-                    EncryptPackage encryptPackage = OpenPGP.EncryptAttachment(data_in, public_key_net, "test.txt");
-//                  //   byte[] new_out_data = OpenPGP.DecryptAttachment(encryptPackage.KeyPackage, encryptPackage.DataPackage, private_key_net, "123");
-//                  //   String test_out_msg = new String(new_out_data);
-//
-                    byte[] sessionBytes = OpenPGP.GetPublicKeySessionKey(encryptPackage.KeyPackage, private_key_net, "123");
-//
-                    byte[] newKeyPackage = OpenPGP.GetNewPublicKeyPackage(sessionBytes, public_key_net);
 
+//                    EncryptPackage encryptPackage = OpenPGP.EncryptAttachment(data_in, public_key_net, "test.txt");
+//                     byte[] new_out_data = OpenPGP.DecryptAttachment(encryptPackage.KeyPackage, encryptPackage.DataPackage, private_key_net, "123");
+//                     String test_out_msg = new String(new_out_data);
+//
+//                    byte[] sessionBytes = OpenPGP.GetPublicKeySessionKey(encryptPackage.KeyPackage, private_key_net, "123");
+//
+//                    byte[] newKeyPackage = OpenPGP.GetNewPublicKeyPackage(sessionBytes, public_key_net);
+//
 //                    byte[] out = OpenPGP.DecryptAttachment(newKeyPackage, encryptPackage.DataPackage, private_key_net, "123");
 //                    String pak = new String(out);
 
-//                    byte[] newSymKeyPackage = OpenPGP.GetNewSymmetricKeyPackage(sessionBytes, "123");
+                    byte[] newSymKeyPackage = OpenPGP.GetNewSymmetricKeyPackage(data_in, "123");
 
 
-//                   byte[] out1 = OpenPGP.DecryptAttachmentWithPassword(newSymKeyPackage, encryptPackage.DataPackage, "123");
+//                    byte[] out1 = OpenPGP.DecryptAttachmentWithPassword(newSymKeyPackage, encryptPackage.DataPackage, "123");
 //                    String pak1 = new String(out1);
 
 
                     String testEmpty = "";
-                    String testEmptyencryptedText = OpenPGP.EncryptMessage(testEmpty, publicKey);
-                    String testEmptydecryptedText = OpenPGP.DecryptMessage(testEmptyencryptedText, privateKey, passphrase);
-                    if (testEmpty.equalsIgnoreCase(testEmptydecryptedText)) {
-                        Log.e("Test", "OK");
-                    }
+//                    String testEmptyencryptedText = OpenPGP.EncryptMessage(testEmpty, publicKey);
+//                    String testEmptydecryptedText = OpenPGP.DecryptMessage(testEmptyencryptedText, privateKey, passphrase);
+//                    if (testEmpty.equalsIgnoreCase(testEmptydecryptedText)) {
+//                        Log.e("Test", "OK");
+//                    }
                 }
             });
 

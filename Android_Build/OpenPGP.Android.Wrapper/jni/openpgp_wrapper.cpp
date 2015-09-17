@@ -1073,7 +1073,7 @@ Java_ch_protonmail_android_utils_OpenPGP_GetNewSymmetricKeyPackage(JNIEnv* env, 
         // key package
         std::string str_session_key = std::string((char* )key_session, srcLen);
         (*env).ReleaseByteArrayElements(jsession_key, key_session , JNI_ABORT);
-
+        free(key_session);
 
         const char* c_password = env->GetStringUTFChars(jpassword, &isCopy);
         std::string str_password = std::string(c_password);
@@ -1081,17 +1081,25 @@ Java_ch_protonmail_android_utils_OpenPGP_GetNewSymmetricKeyPackage(JNIEnv* env, 
             env->ReleaseStringUTFChars(jpassword, c_password);
         }
 
+        LOG_E("check 1");
         PGPMessage out_msg = encrypt_pka_only_sym_session(str_password, str_session_key);
-
+        LOG_E("check 2");
         std::string new_key_package = out_msg.write(1);
+        LOG_E("check 3");
 
         int len = new_key_package.size();
+
+        LOG_E("check 4");
+
         jbyteArray array = env->NewByteArray(len);
+
+        LOG_E("check 5");
         (*env).SetByteArrayRegion (array, 0, len, (jbyte*)(new_key_package.c_str()));
+        LOG_E("check 6");
 
         (*env).DeleteLocalRef(jsession_key);
         (*env).DeleteLocalRef(jpassword);
-
+        LOG_E("check 7");
         return array;
     }
     catch (const std::runtime_error& error)
