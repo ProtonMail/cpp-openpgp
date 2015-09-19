@@ -29,5 +29,9 @@ THE SOFTWARE.
 #include <iostream>
 
 uint64_t Ch(const uint64_t &  m, const uint64_t & n, const uint64_t & o);
-uint64_t  Maj(const uint64_t & m, const uint64_t & n, const uint64_t & o);
+uint64_t Maj(const uint64_t & m, const uint64_t & n, const uint64_t & o);
+
+uint32_t Ch32(const uint32_t &  m, const uint32_t & n, const uint32_t & o);
+uint32_t Maj32(const uint32_t & m, const uint32_t & n, const uint32_t & o);
+
 #endif

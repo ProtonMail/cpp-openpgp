@@ -50,7 +50,7 @@ public class OpenPGP {
      * @param pub_key user's public key
      * @return encrypted message
      */
-    public static native String EncryptMessage(String unencrypted_message, String pub_key);
+    private static native String EncryptMessage(byte[] unencrypted_message, String pub_key);
 
     /**
      * decrypt encrypt message use private key and passphrase
@@ -68,6 +68,10 @@ public class OpenPGP {
             return new String(out);
         }
         return "";
+    }
+
+    public static String EncryptMessage(String unencrypted_message, String pub_key) {
+        return EncryptMessage(unencrypted_message.getBytes(), pub_key);
     }
 
     /**
@@ -117,7 +121,7 @@ public class OpenPGP {
      * @param passphrase user's private key passphrase
      * @return decrypted attachment
      */
-    public static native byte[] DecryptAttachment(byte[] key, byte[] data,  String priv_key, String passphrase);
+    public static native DecryptPackage DecryptAttachment(byte[] key, byte[] data,  String priv_key, String passphrase);
     public static native byte[] DecryptAttachmentWithPassword(byte[] key, byte[] data, String password); //TODO : not done and not inuse
 
     /**

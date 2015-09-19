@@ -8,3 +8,4 @@ public class EncryptPackage {
     public byte[] KeyPackage;
     public byte[] DataPackage;
 }
+

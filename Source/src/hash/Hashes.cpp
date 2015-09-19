@@ -1,5 +1,4 @@
 #include <hash/Hashes.h>
-
 std::string use_hash(uint8_t flag, const std::string & data){
     switch (flag){
         case 0: // don't hash; not defined in standard

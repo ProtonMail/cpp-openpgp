@@ -21,13 +21,13 @@ Java_ch_protonmail_android_utils_OpenPGP_test2(JNIEnv* env, jobject o, jint x);
 JNIEXPORT jint JNICALL
 Java_ch_protonmail_android_utils_OpenPGP_SetupKeys(JNIEnv* env, jobject o, jstring priv_key, jstring pub_key, jstring passphrase);
 
-//JNIEXPORT jstring JNICALL
-//Java_ch_protonmail_android_utils_OpenPGP_EncryptMessage(JNIEnv* env, jobject o, jbyteArray junencrypted_msg, jstring pub_key);
+JNIEXPORT jstring JNICALL
+Java_ch_protonmail_android_utils_OpenPGP_EncryptMessage(JNIEnv* env, jobject o, jbyteArray j_unencrypted_msg, jstring j_pub_key);
 JNIEXPORT jbyteArray JNICALL
 Java_ch_protonmail_android_utils_OpenPGP_DecryptMessage(JNIEnv* env, jobject o, jbyteArray j_encrypted_msg, jstring j_private_key, jstring passphrase);
 
-JNIEXPORT jstring JNICALL
-Java_ch_protonmail_android_utils_OpenPGP_EncryptMessage(JNIEnv* env, jobject o, jstring j_plain_message, jstring pub_key);
+//JNIEXPORT jstring JNICALL
+//Java_ch_protonmail_android_utils_OpenPGP_EncryptMessage(JNIEnv* env, jobject o, jstring j_plain_message, jstring pub_key);
 //JNIEXPORT jstring JNICALL
 //Java_ch_protonmail_android_utils_OpenPGP_DecryptMessage(JNIEnv* env, jobject o, jstring encrypted_message, jstring priv_key, jstring passphrase);
 
@@ -46,7 +46,7 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptMailboxPWD(JNIEnv* env, jobject 
 /// this function save as DecryptAttachment
 JNIEXPORT jbyteArray JNICALL
 Java_ch_protonmail_android_utils_OpenPGP_DecryptAttachmentArmored(JNIEnv* env, jobject o, jstring key_package, jstring data_package, jstring priv_key, jstring passphrase);
-JNIEXPORT jbyteArray JNICALL
+JNIEXPORT jobject JNICALL
 Java_ch_protonmail_android_utils_OpenPGP_DecryptAttachment(JNIEnv* env, jobject o, jbyteArray key, jbyteArray data, jstring private_key, jstring passphrase);
 JNIEXPORT jbyteArray JNICALL
 Java_ch_protonmail_android_utils_OpenPGP_DecryptAttachmentWithPassword(JNIEnv* env, jobject o, jbyteArray key, jbyteArray data, jstring password);

@@ -1,5 +1,6 @@
 #include <hash/SHA256.h>
 
+#include <openssl/sha.h>
 uint32_t SHA256::S0(const uint32_t & value) const{
     return ROR(value, 2, 32) ^ ROR(value, 13, 32) ^ ROR(value, 22, 32);
 }
@@ -68,22 +69,59 @@ SHA256::SHA256(const std::string & str) :
 }
 
 void SHA256::update(const std::string &str){
-    std::string data = stack + str;
-    stack.clear();
-    std::string::size_type size = ((data.size() >> 6) << 6);
-    if ( std::string::size_type rem = ( data.size() - size ) ){
-        stack = data.substr(size, rem);
-    }
-    calc(data.substr(0, size), ctx);
-    clen += size;
+
+    stack = str;
+//    std::cout<< d << std::endl;
+//    std::cout<< hexlify(d) << std::endl;
+//    
+//    
+//    std::cout<< stack << std::endl;
+//    std::cout<< hexlify(stack) << std::endl;
+//    
+//    std::string data = stack + str;
+//    stack.clear();
+//    std::string::size_type size = ((data.size() >> 6) << 6);
+//    if ( std::string::size_type rem = ( data.size() - size ) ){
+//        stack = data.substr(size, rem);
+//    }
+//    calc(data.substr(0, size), ctx);
+//    clen += size;
+//    
+//    std::cout<< data << std::endl;
+//    std::cout<< hexlify(data) << std::endl;
 }
 
+
+
 std::string SHA256::hexdigest(){
-    context tmp = ctx;
-    size_t size = stack.size();
-    std::string last = stack + "\x80" + std::string((((size & 63) > 55)?119:55) - (size & 63), 0) + unhexlify(makehex((clen+size) << 3, 16));
-    calc(last, tmp);
-    return makehex(tmp.h0, 8) + makehex(tmp.h1, 8) + makehex(tmp.h2, 8) + makehex(tmp.h3, 8) + makehex(tmp.h4, 8) + makehex(tmp.h5, 8) + makehex(tmp.h6, 8) + makehex(tmp.h7, 8);
+
+//    context tmp = ctx;
+//    size_t size = stack.size();
+//    std::string last = stack + "\x80" + std::string((((size & 63) > 55)?119:55) - (size & 63), 0) + unhexlify(makehex((clen+size) << 3, 16));
+//    calc(last, tmp);
+//    std::string out = makehex(tmp.h0, 8) + makehex(tmp.h1, 8) + makehex(tmp.h2, 8) + makehex(tmp.h3, 8) + makehex(tmp.h4, 8) + makehex(tmp.h5, 8) + makehex(tmp.h6, 8) + makehex(tmp.h7, 8);
+//    
+//    std::cout<< out << std::endl;
+//
+//    return out;
+    
+    char outputBuffer[65];
+    
+    unsigned char hash[SHA256_DIGEST_LENGTH];
+    SHA256_CTX sha256;
+    SHA256_Init(&sha256);
+    SHA256_Update(&sha256, stack.c_str(), stack.length());
+    SHA256_Final(hash, &sha256);
+    int i = 0;
+    for(i = 0; i < SHA256_DIGEST_LENGTH; i++)
+    {
+        sprintf(outputBuffer + (i * 2), "%02x", hash[i]);
+    }
+    outputBuffer[64] = 0;
+    
+    std::string d = std::string(outputBuffer, 64);
+    
+    return d;
 }
 
 unsigned int SHA256::blocksize() const{

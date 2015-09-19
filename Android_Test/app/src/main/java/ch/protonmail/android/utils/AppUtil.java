@@ -85,4 +85,25 @@ public class AppUtil {
         return byteArrayOutputStream.toString();
     }
 
+    public static byte[] readBytes(Context content, int id) {
+        InputStream inputStream = content.getResources().openRawResource(id);
+        System.out.println(inputStream);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+
+        int i;
+        try {
+            i = inputStream.read();
+            while (i != -1) {
+                byteArrayOutputStream.write(i);
+                i = inputStream.read();
+            }
+            inputStream.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return byteArrayOutputStream.toByteArray();
+    }
+
 }
