@@ -23,7 +23,6 @@ const uint32_t mod32 = 0xffffffffUL;
 const uint64_t mod64 = 0xffffffffffffffffULL;
 
 uint64_t toint(const std::string & s, const int & base = 10);
-uint32_t toint32(const std::string & s, const int & base = 10);
 std::string little_end(const std::string & str, const unsigned int & base = 16);
 
 template <typename T> std::string makebin(T value, unsigned int size = 8 * sizeof(T)){
