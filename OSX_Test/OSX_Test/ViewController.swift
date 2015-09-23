@@ -130,15 +130,20 @@ class ViewController: NSViewController {
         let pgp:OpenPGP = OpenPGP()
         let location = "/Users/Yanfeng/Desktop/publickey.txt"
         let location_1 = "/Users/Yanfeng/Desktop/privatekey.txt"
-        let location_2 = "/Users/Yanfeng/Desktop/bad_feng_email.txt"
+        let location_2 = "/Users/Yanfeng/Desktop/bad_feng_email_fb.txt"
+         let location_3 = "/Users/Yanfeng/Desktop/bad_feng_email_tool.txt"
+        
         let fileContent = NSString(contentsOfFile: location, encoding: NSUTF8StringEncoding, error: nil) as! String
         let fileContent_1 = NSString(contentsOfFile: location_1, encoding: NSUTF8StringEncoding, error: nil) as! String
         let fileContent_2 = NSString(contentsOfFile: location_2, encoding: NSUTF8StringEncoding, error: nil) as! String
+        let fileContent_3 = NSString(contentsOfFile: location_3, encoding: NSUTF8StringEncoding, error: nil) as! String
         
         let value = pgp.SetupKeys(fileContent_1, pubKey: fileContent, pass: "Jiao2Jian", error:nil)
         let enc_m = pgp.encrypt_message("test", error: nil)
         let asfsdfa = pgp.decrypt_message(enc_m, error: nil)
         let dec_m = pgp.decrypt_message(fileContent_2, error: nil)
+        
+        //let dec_m2 = pgp.decrypt_message(fileContent_3, error: nil)
 
         println(dec_m);
         

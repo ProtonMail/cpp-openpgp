@@ -117,9 +117,13 @@ void PGP::read(std::string & data){
     data = data.substr(x + 1, data.size() - x - 1);
     
     // find header keys
-    x = 0;
-    while ((x < data.size()) && (data.substr(x, 2) != "\n\n")){
-        x++;
+     x = 0;
+    if (data.substr(x, 1) == "\n") {
+        x --;
+    } else {
+        while ((x < data.size()) && (data.substr(x, 2) != "\n\n")){
+            x++;
+        }
     }
     
     std::string header_keys = data.substr(0, (++x)++);

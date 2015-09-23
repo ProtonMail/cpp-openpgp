@@ -5,6 +5,9 @@ unsigned int partialBodyLen(uint8_t first_octet){
 }
 
 std::string read_packet_header(std::string & data, uint8_t & tag, bool & format, uint8_t & partial){
+    
+    std::cout << data.length() << std::endl;
+    
     uint8_t ctb = data[0];		                                           // Name "ctb" came from Version 2 [RFC 1991]
     format = ctb & 0x40;                                                   // get packet length type (OLD = false; NEW = true)
     unsigned int remove = 1;                                               // how much more stuff to remove from raw string
@@ -66,7 +69,7 @@ std::string read_packet_header(std::string & data, uint8_t & tag, bool & format,
                         break;
                     } else if (first_octet_check >= 192 && first_octet_check <= 223) {
                         remove += 2;
-                        length = toint(data.substr(1, 2), 256) - (192 << 8) + 192;
+                        length = toint(data.substr(0, 2), 256) - (192 << 8) + 192;
                         break;
                     } else if (first_octet_check > 223 && first_octet_check <= 244) {
                         length = partialBodyLen(first_octet_check);
@@ -77,7 +80,7 @@ std::string read_packet_header(std::string & data, uint8_t & tag, bool & format,
                         length = 0;
                     } else if (first_octet == 255){
                         remove += 5;
-                        length = toint(data.substr(2, 4), 256);
+                        length = toint(data.substr(1, 4), 256);
                         break;
                     }
                 }
