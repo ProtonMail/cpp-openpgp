@@ -159,7 +159,7 @@
         std::string encrypt_msg = [encrypted_message UTF8String];
         
         PGPSecretKey privateKey(str_private_key);
-        pm::PMPGPMessage pm_pgp_msg(encrypt_msg);
+        pm::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
         
         std::string test_plain_txt = decrypt_pka(privateKey, pm_pgp_msg, [passphrase UTF8String], false);
         
@@ -412,7 +412,7 @@
         }
         std::string encrypt_msg = [encrypted_message UTF8String];
         
-        pm::PMPGPMessage pm_pgp_msg(encrypt_msg);
+        pm::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
         
         std::string test_plain_txt = decrypt_pka(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String], false);
         
@@ -539,7 +539,7 @@
         }
         std::string encrypt_msg = [encrypted_message UTF8String];
         std::string pwd = [password UTF8String];
-        pm::PMPGPMessage pm_pgp_msg(encrypt_msg);
+        pm::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
         std::string out_unencrypt_msg = decrypt_sym(pm_pgp_msg, pwd);
         return [[NSString alloc] initWithUTF8String:out_unencrypt_msg.c_str()];
     }
@@ -740,8 +740,8 @@
     std::string str_data_package = std::string((char* )[dataPackage bytes], [dataPackage length]);
     
     
-    pm::PMPGPMessage pm_pgp_msg(str_key_package);
-    pm_pgp_msg.append(str_data_package);
+    pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
+    pm_pgp_msg.append(str_data_package, true);
     
     std::string test_plain_txt = decrypt_pka(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String], false);
     
@@ -755,8 +755,8 @@
     std::string str_data_package = std::string((char* )[dataPackage bytes], [dataPackage length]);
     std::string str_pwd =  [pwd UTF8String];
     
-    pm::PMPGPMessage pm_pgp_msg(str_key_package);
-    pm_pgp_msg.append(str_data_package);
+    pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
+    pm_pgp_msg.append(str_data_package, true);
     
     std::string test_plain_txt = decrypt_sym(pm_pgp_msg, str_pwd);
     
@@ -769,8 +769,8 @@
     std::string str_key_package = [keyPackage UTF8String];
     std::string str_data_package = [dataPackage UTF8String];
     
-    pm::PMPGPMessage pm_pgp_msg(str_key_package);
-    pm_pgp_msg.append(str_data_package);
+    pm::PMPGPMessage pm_pgp_msg(str_key_package, false);
+    pm_pgp_msg.append(str_data_package, false);
     
     std::string test_plain_txt = decrypt_pka(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String], false);
     
@@ -784,8 +784,8 @@
     std::string str_data_package = std::string((char* )[dataPackage bytes], [dataPackage length]);
     std::string str_password = [password UTF8String];
     
-    pm::PMPGPMessage pmp_key(str_key_package);
-    pm::PMPGPMessage pmp_data(str_data_package);
+    pm::PMPGPMessage pmp_key(str_key_package, true);
+    pm::PMPGPMessage pmp_data(str_data_package, true);
 
     std::string test_plain_txt = decrypt_pka_use_sym_session(pmp_data, pmp_key, str_password);
     //std::cout  << test_plain_txt << std::endl;
@@ -887,7 +887,7 @@
 - (NSData*) getPublicKeySessionKey:(NSData *) keyPackage error:(NSError**) err
 {
     std::string str_key_package = std::string((char* )[keyPackage bytes], [keyPackage length]);
-    pm::PMPGPMessage pm_pgp_msg(str_key_package);
+    pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
     std::string sessionKey = decrypt_pka_only_session(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String]);
     return [NSData dataWithBytes: sessionKey.c_str() length:sessionKey.length()];
 }
@@ -897,7 +897,7 @@
     std::string str_key_package = std::string((char* )[keyPackage bytes], [keyPackage length]);
     std::string str_password = [pwd UTF8String];
     
-    pm::PMPGPMessage pm_pgp_msg(str_key_package);
+    pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
     std::string sessionkey = decrypt_pka_only_sym_session(pm_pgp_msg, str_password);
     
     //std::cout << hexlify(sessionkey) << std::endl;
@@ -933,9 +933,9 @@
     std::string two = base64_encode(one);
     //std::cout << two << std::endl;
     
-    pm::PMPGPMessage pm_pgp_msg(one);
+    pm::PMPGPMessage pm_pgp_msg(one, false);
     
-    pm_pgp_msg.append(data);
+    pm_pgp_msg.append(data, false);
     
     std::string test_plain_txt = decrypt_pka(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String], false);
     

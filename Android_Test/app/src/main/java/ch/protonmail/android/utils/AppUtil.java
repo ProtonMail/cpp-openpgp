@@ -106,4 +106,25 @@ public class AppUtil {
         return byteArrayOutputStream.toByteArray();
     }
 
+    public static String byteArrayToHexString(byte[] array) {
+        StringBuffer hexString = new StringBuffer();
+        for (byte b : array) {
+            int intVal = b & 0xff;
+            if (intVal < 0x10)
+                hexString.append("0");
+            hexString.append(Integer.toHexString(intVal));
+        }
+        return hexString.toString();
+    }
+
+    public static byte[] hexStringToByteArray(String s) {
+        byte[] b = new byte[s.length() / 2];
+        for (int i = 0; i < b.length; i++) {
+            int index = i * 2;
+            int v = Integer.parseInt(s.substring(index, index + 2), 16);
+            b[i] = (byte) v;
+        }
+        return b;
+    }
+
 }

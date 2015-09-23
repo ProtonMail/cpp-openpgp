@@ -6,7 +6,7 @@ unsigned int partialBodyLen(uint8_t first_octet){
 
 std::string read_packet_header(std::string & data, uint8_t & tag, bool & format, uint8_t & partial){
     
-    std::cout << data.length() << std::endl;
+    //std::cout << data.length() << std::endl;
     
     uint8_t ctb = data[0];		                                           // Name "ctb" came from Version 2 [RFC 1991]
     format = ctb & 0x40;                                                   // get packet length type (OLD = false; NEW = true)

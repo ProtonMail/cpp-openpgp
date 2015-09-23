@@ -52,25 +52,25 @@ public class OpenPGPMediumAttachmentTest extends AndroidTestCase {
             assertNotNull("Count" + i, new_out_data);
             assertTrue("Count" + i, new_out_data.DecryptData.length > 0);
 
-//            byte[] sessionBytes = OpenPGP.GetPublicKeySessionKey(encryptPackage.KeyPackage, privateKey, privatePassphrase);
-//            assertNotNull("Count" + i, sessionBytes);
-//            assertTrue(sessionBytes.length > 0);
-//
-//            byte[] newKeyPackage = OpenPGP.GetNewPublicKeyPackage(sessionBytes, publicKey);
-//            assertNotNull("Count" + i, newKeyPackage);
-//            assertTrue(newKeyPackage.length > 0);
-//
-//            DecryptPackage out = OpenPGP.DecryptAttachment(newKeyPackage, encryptPackage.DataPackage, privateKey, privatePassphrase);
-//            assertNotNull("Count" + i, out);
-//            assertTrue(out.DecryptData.length > 0);
-//
-//            byte[] newSymKeyPackage = OpenPGP.GetNewSymmetricKeyPackage(sessionBytes, privatePassphrase);
-//            assertNotNull("Count" + i, newSymKeyPackage);
-//            assertTrue(newSymKeyPackage.length > 0);
+            byte[] sessionBytes = OpenPGP.GetPublicKeySessionKey(encryptPackage.KeyPackage, privateKey, privatePassphrase);
+            assertNotNull("Count" + i, sessionBytes);
+            assertTrue(sessionBytes.length > 0);
 
-//            byte[] out1 = OpenPGP.DecryptAttachmentWithPassword(newSymKeyPackage, encryptPackage.DataPackage, privatePassphrase);
-//            assertNotNull(out1);
-//            assertTrue(out1.length > 0);
+            byte[] newKeyPackage = OpenPGP.GetNewPublicKeyPackage(sessionBytes, publicKey);
+            assertNotNull("Count" + i, newKeyPackage);
+            assertTrue(newKeyPackage.length > 0);
+
+            DecryptPackage out = OpenPGP.DecryptAttachment(newKeyPackage, encryptPackage.DataPackage, privateKey, privatePassphrase);
+            assertNotNull("Count" + i, out);
+            assertTrue(out.DecryptData.length > 0);
+
+            byte[] newSymKeyPackage = OpenPGP.GetNewSymmetricKeyPackage(sessionBytes, privatePassphrase);
+            assertNotNull("Count" + i, newSymKeyPackage);
+            assertTrue(newSymKeyPackage.length > 0);
+
+            byte[] out1 = OpenPGP.DecryptAttachmentWithPassword(newSymKeyPackage, encryptPackage.DataPackage, privatePassphrase);
+            assertNotNull(out1);
+            assertTrue(out1.length > 0);
 
             Log.d("UnitTest", "Count: " + i);
         }

@@ -23,9 +23,9 @@ namespace pm {
         set_is_debug(false);
     }
     
-    PMPGPMessage::PMPGPMessage(std::string & data): PMPGPMessage()
+    PMPGPMessage::PMPGPMessage(std::string & data, bool isRaw): PMPGPMessage()
     {
-        read(data);
+        read(data, isRaw);
     }
     
     PMPGPMessage::~PMPGPMessage()
@@ -33,9 +33,10 @@ namespace pm {
         
     }
     
-    void PMPGPMessage::read(std::string &data)
-    {        
-        optimized_trim(data);
+    void PMPGPMessage::read(std::string &data, bool isRaw)
+    {
+        if (!isRaw)
+            optimized_trim(data);
         size_t data_size = data.length();
         
         if(data_size <= 0)
@@ -93,9 +94,9 @@ namespace pm {
         }
     }
     
-    void PMPGPMessage::append(std::string &data)
+    void PMPGPMessage::append(std::string &data, bool isRaw)
     {
-        read(data);
+        read(data, isRaw);
     }
     
     bool PMPGPMessage::get_is_pm_pka() const
