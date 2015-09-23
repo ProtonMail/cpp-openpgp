@@ -22,19 +22,19 @@ private:
     bool is_pm_encrypt_pka_;
     
     
-    void read(std::string &data);
+    void read(std::string &data, bool isRaw);
     
    
 public:
     PMPGPMessage();
-    PMPGPMessage(std::string& data);
+    PMPGPMessage(std::string& data, bool isRaw);
     ~PMPGPMessage();
     
     
     bool get_is_pm_pka() const;
     std::string get_encrypt_msg() const;
 
-    void append(std::string &data);
+    void append(std::string &data, bool isRaw);
 };
     
     

@@ -310,7 +310,7 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptMessage(JNIEnv* env, jobject o, 
             env->ReleaseStringUTFChars(j_passphrase, c_passphrase);
         }
 
-        pm::PMPGPMessage pm_pgp_msg(str_encrypted_msg);
+        pm::PMPGPMessage pm_pgp_msg(str_encrypted_msg, false);
 
         PGPSecretKey secret_key;
 	    secret_key.set_is_debug(false);
@@ -419,7 +419,7 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptMessageAES(JNIEnv* env, jobject 
             env->ReleaseStringUTFChars(jpassword, c_password);
         }
 
-        pm::PMPGPMessage pm_pgp_msg(str_encrypted_message);
+        pm::PMPGPMessage pm_pgp_msg(str_encrypted_message, false);
         std::string out_unencrypt_msg = decrypt_sym(pm_pgp_msg, str_password);
 
         (*env).DeleteLocalRef(jencrypted_message);
@@ -581,7 +581,7 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptMailboxPWD(JNIEnv* env, jobject 
         }
 
         str_encrypted_message = unhexlify(str_encrypted_message);
-        pm::PMPGPMessage pm_pgp_msg(str_encrypted_message);
+        pm::PMPGPMessage pm_pgp_msg(str_encrypted_message, false);
         std::string out_unencrypt_msg = decrypt_sym(pm_pgp_msg, str_password);
 
         jstring jsRet = 0;
@@ -756,8 +756,8 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptAttachmentArmored(JNIEnv* env, j
             env->ReleaseStringUTFChars(jpassphrase, c_password);
         }
 
-        pm::PMPGPMessage pm_pgp_msg(str_key_package);
-        pm_pgp_msg.append(str_data_package);
+        pm::PMPGPMessage pm_pgp_msg(str_key_package, false);
+        pm_pgp_msg.append(str_data_package, false);
 
         PGPSecretKey secret_key;
         secret_key.set_is_debug(false);
@@ -823,8 +823,8 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptAttachment(JNIEnv* env, jobject 
         std::string str_private_key = (*env).GetStringUTFChars(jprivate_key, 0);
         std::string str_password = (*env).GetStringUTFChars(passphrase, 0);
 
-        pm::PMPGPMessage pm_pgp_msg(str_key_package);
-        pm_pgp_msg.append(str_data_package);
+        pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
+        pm_pgp_msg.append(str_data_package, true);
 
         PGPSecretKey secret_key;
         secret_key.set_is_debug(false);
@@ -1049,8 +1049,8 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptAttachmentWithPassword(JNIEnv* e
             env->ReleaseStringUTFChars(jpassword, c_password);
         }
 
-        pm::PMPGPMessage pm_pgp_msg(str_key_package);
-        pm_pgp_msg.append(str_data_package);
+        pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
+        pm_pgp_msg.append(str_data_package, true);
 
         std::string test_plain_txt = decrypt_sym(pm_pgp_msg, str_password);
 
@@ -1112,7 +1112,7 @@ Java_ch_protonmail_android_utils_OpenPGP_GetPublicKeySessionKey(JNIEnv* env, job
             env->ReleaseStringUTFChars(jpassphrase, c_passphrase);
         }
 
-        pm::PMPGPMessage pm_pgp_msg(str_key_package);
+        pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
 
         PGPSecretKey secret_key;
         secret_key.set_is_debug(false);
@@ -1177,7 +1177,7 @@ Java_ch_protonmail_android_utils_OpenPGP_GetSymmetricSessionKey(JNIEnv* env, job
             env->ReleaseStringUTFChars(jpassword, c_password);
         }
 
-        pm::PMPGPMessage pm_pgp_msg(str_key_package);
+        pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
 
         std::string sessionKey = decrypt_pka_only_sym_session(pm_pgp_msg, str_password);
 
