@@ -416,7 +416,16 @@
         
         std::string test_plain_txt = decrypt_pka(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String], false);
         
-        return [[NSString alloc] initWithUTF8String:test_plain_txt.c_str()];
+        std::cout << test_plain_txt << std::endl;
+        
+        NSString * outString = [[NSString alloc] initWithUTF8String:test_plain_txt.c_str()];
+        
+        if (test_plain_txt.length() > 0 && outString == nil) {
+            NSString * temp = [[NSString alloc] initWithFormat:@"%s", test_plain_txt.c_str()];
+            NSData* tempData = [NSData dataWithBytes:[temp UTF8String] length:[temp length]];
+            outString = [[NSString alloc] initWithData:tempData encoding:NSUTF8StringEncoding];
+        }
+        return outString;
     }
     catch (const std::runtime_error& error)
     {

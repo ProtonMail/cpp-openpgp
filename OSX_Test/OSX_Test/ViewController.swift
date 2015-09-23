@@ -127,11 +127,12 @@ class ViewController: NSViewController {
     }
     
     @IBAction func test_bad_message(sender: AnyObject) {
-        let pgp:OpenPGP = OpenPGP()
+        
         let location = "/Users/Yanfeng/Desktop/publickey.txt"
         let location_1 = "/Users/Yanfeng/Desktop/privatekey.txt"
         let location_2 = "/Users/Yanfeng/Desktop/bad_feng_email_fb.txt"
         let location_3 = "/Users/Yanfeng/Desktop/bad_feng_email_tool.txt"
+        let location_4 = "/Users/Yanfeng/Desktop/bad_feng_email_emoji.txt"
         
         let fengtPublicKeyLocation = "/Users/Yanfeng/Desktop/fengt_publickey.txt"
         let fengtPrivateKeyLocation = "/Users/Yanfeng/Desktop/fengt_privatekey.txt"
@@ -140,25 +141,30 @@ class ViewController: NSViewController {
         let fileContent_1 = NSString(contentsOfFile: location_1, encoding: NSUTF8StringEncoding, error: nil) as! String
         let fileContent_2 = NSString(contentsOfFile: location_2, encoding: NSUTF8StringEncoding, error: nil) as! String
         let fileContent_3 = NSString(contentsOfFile: location_3, encoding: NSUTF8StringEncoding, error: nil) as! String
+        let fileContent_4 = NSString(contentsOfFile: location_4, encoding: NSUTF8StringEncoding, error: nil) as! String
         
         let fengtPublickey = NSString(contentsOfFile: fengtPublicKeyLocation, encoding: NSUTF8StringEncoding, error: nil) as! String
         let fengtPrivatekey = NSString(contentsOfFile: fengtPrivateKeyLocation, encoding: NSUTF8StringEncoding, error: nil) as! String
         
+        var pgp:OpenPGP = OpenPGP()
         let value = pgp.SetupKeys(fengtPrivatekey, pubKey: fengtPublickey, pass: "123", error:nil)
         let enc_m = pgp.encrypt_message("test", error: nil)
         let asfsdfa = pgp.decrypt_message(enc_m, error: nil)
-//        let dec_m = pgp.decrypt_message(fileContent_2, error: nil)
-//        let dec_m2 = pgp.decrypt_message(fileContent_3, error: nil)
-//
-//        println(dec_m);
-//        
-//        println(dec_m2);
-        
         let  keyString : String = "c1c04c038eac9f302e252bc3010800bba534aedfeb1f72ab4930e2f1f508c96a0cc44ce8fc975f4f185f38d3b712dd7a0f124e6447d7d300752b11db8717385d560867e5bf6b68592d7b4cacca1f633083928dbf7d93ea7eebb993949ddefe737e5c365cd539afece7a5a27af182b229ca18e522c1d8d16d241d91bb38c847250c134d6bddd28b8c8db971015fc11c18f46e74c0e7bed6ac5ace05e445eea3660518b9c781fb24c312d3eac7c96761b4579de0d8da8a6363f1a53716a6aaeeca535026c1552362d90d80c977414a257a0d4b8172194557018b1bdd5b20ae715497487689e53761366d92607343b379246487759357b9b4792fd85fc2ce18477de75a3e4837f78cda1c0cf4b8299f92";
-
         let dataString : String = "d259018f44a04a1b5bee3d567b197278ce4d94d5b3c958e422150f7edb481bd648ee1b08d7718283866eeb1dc7028c1cd1b315adf5354b5e98be7ba8a9e5acd454f004462ed543136a8506e0a9382ff9652bfc7c186288cce0b420";
-
         pgp.decrypt_attachment(keyString.dataFromHexadecimalString()!, data: dataString.dataFromHexadecimalString()!, error: nil)
+        
+        
+        pgp = OpenPGP()
+        let o_value = pgp.SetupKeys(fileContent_1, pubKey: fileContent, pass: "Jiao2Jian", error:nil)
+        let o_enc_m = pgp.encrypt_message("test", error: nil)
+        let o_asfsdfa = pgp.decrypt_message(enc_m, error: nil)
+        let o_dec_m = pgp.decrypt_message(fileContent_2, error: nil)
+        println(o_dec_m);
+        let o_dec_m2 = pgp.decrypt_message(fileContent_3, error: nil)
+        println(o_dec_m2);
+        let o_dec_4 = pgp.decrypt_message(fileContent_4, error: nil)
+        println(o_dec_4);
         
     }
     @IBAction func test_encrypt_decrypt_attachment(sender: AnyObject) {
