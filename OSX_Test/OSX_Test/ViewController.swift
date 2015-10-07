@@ -133,6 +133,7 @@ class ViewController: NSViewController {
         let location_2 = "/Users/Yanfeng/Desktop/bad_feng_email_fb.txt"
         let location_3 = "/Users/Yanfeng/Desktop/bad_feng_email_tool.txt"
         let location_4 = "/Users/Yanfeng/Desktop/bad_feng_email_emoji.txt"
+        let bad_location_1 = "/Users/Yanfeng/Desktop/bad_fengt_zhj4478_message.txt"
         
         let fengtPublicKeyLocation = "/Users/Yanfeng/Desktop/fengt_publickey.txt"
         let fengtPrivateKeyLocation = "/Users/Yanfeng/Desktop/fengt_privatekey.txt"
@@ -142,6 +143,8 @@ class ViewController: NSViewController {
         let fileContent_2 = NSString(contentsOfFile: location_2, encoding: NSUTF8StringEncoding, error: nil) as! String
         let fileContent_3 = NSString(contentsOfFile: location_3, encoding: NSUTF8StringEncoding, error: nil) as! String
         let fileContent_4 = NSString(contentsOfFile: location_4, encoding: NSUTF8StringEncoding, error: nil) as! String
+        
+        let bad_file_1 = NSString(contentsOfFile: bad_location_1, encoding: NSUTF8StringEncoding, error: nil) as! String
         
         let fengtPublickey = NSString(contentsOfFile: fengtPublicKeyLocation, encoding: NSUTF8StringEncoding, error: nil) as! String
         let fengtPrivatekey = NSString(contentsOfFile: fengtPrivateKeyLocation, encoding: NSUTF8StringEncoding, error: nil) as! String
@@ -154,6 +157,7 @@ class ViewController: NSViewController {
         let dataString : String = "d259018f44a04a1b5bee3d567b197278ce4d94d5b3c958e422150f7edb481bd648ee1b08d7718283866eeb1dc7028c1cd1b315adf5354b5e98be7ba8a9e5acd454f004462ed543136a8506e0a9382ff9652bfc7c186288cce0b420";
         pgp.decrypt_attachment(keyString.dataFromHexadecimalString()!, data: dataString.dataFromHexadecimalString()!, error: nil)
         
+        var bad_file_1_check = pgp.decrypt_message(bad_file_1, error: nil)
         
         pgp = OpenPGP()
         let o_value = pgp.SetupKeys(fileContent_1, pubKey: fileContent, pass: "Jiao2Jian", error:nil)
@@ -165,6 +169,8 @@ class ViewController: NSViewController {
         println(o_dec_m2);
         let o_dec_4 = pgp.decrypt_message(fileContent_4, error: nil)
         println(o_dec_4);
+        bad_file_1_check = pgp.decrypt_message(bad_file_1, error: nil)
+        println(bad_file_1_check);
         
     }
     @IBAction func test_encrypt_decrypt_attachment(sender: AnyObject) {

@@ -123,18 +123,33 @@ std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const st
     std::string session_key;                    // session key
     uint8_t sym;                                // symmetric key algorithm used to encrypt original data
 
+    // find corresponding secret key
+    Tag5::Ptr sec = 0;
+    std::vector <std::string> session_key_mpi;
+    uint8_t pka = 0;
+    
     // find session key packet; should be first packet
     for(Packet::Ptr const & p : m.get_packets()){
         if ((p -> get_tag() == 1) || (p -> get_tag() == 3)){
             data = p -> raw();
             packet = p -> get_tag();
-            break;
+            if (packet == 1)
+            {
+                if (p -> get_tag() == 1) {
+                    Tag1 tag1(data);
+                    sec = find_decrypting_key(pri, tag1.get_keyid());
+                    if (!sec){
+                        continue;
+                    }
+                    pka = tag1.get_pka();
+                    session_key_mpi = tag1.get_mpi();
+                    break;
+                }
+            }
         }
     }
-
-    if (packet == 1)
-    {
-        
+    
+    if (packet == 1) {
     }
     // return symmetrically-encrypted-key decrypted data
     else if (packet == 3){
@@ -142,30 +157,25 @@ std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const st
     }
     else{
         std::stringstream s; s << Packet_Tags.at(packet) << " (Tag " << static_cast <unsigned int> (packet) << ").";
-       // throw std::runtime_error("Error: Expected Public-Key Encrypted Session Key Packet (Tag 1). Instead got " + s.str());
+        // throw std::runtime_error("Error: Expected Public-Key Encrypted Session Key Packet (Tag 1). Instead got " + s.str());
     }
-
-   // Public-Key Encrypted Session Key Packet (Tag 1)
-    Tag1 tag1(data);
-    uint8_t pka = tag1.get_pka();
-    std::vector <std::string> session_key_mpi = tag1.get_mpi();
-
-    // find corresponding secret key
-    Tag5::Ptr sec = find_decrypting_key(pri, tag1.get_keyid());
+    
+    // Public-Key Encrypted Session Key Packet (Tag 1)
+    // Tag1 tag1(data);
     if (!sec){
         throw std::runtime_error("Error: Correct Private Key not found.");
     }
-
+    
     std::vector <std::string> pub_mpi = sec -> get_mpi();
     std::vector <std::string> pri_mpi = decrypt_secret_key(sec, passphrase);
-
+    
     if (isDebugMode) {
         std::cout<< "D: " << hexlify( pri_mpi[0]) << std::endl;
         std::cout<< "P: " << hexlify(pri_mpi[1]) << std::endl;
         std::cout<< "Q: " << hexlify(pri_mpi[2]) << std::endl;
         std::cout<< "U: " << hexlify(pri_mpi[3]) << std::endl;
     }
-
+    
     // get session key
     session_key = zero + pka_decrypt(pka, session_key_mpi, pri_mpi, pub_mpi);     // symmetric algorithm, session key, 2 octet checksum wrapped in EME_PKCS1_ENCODE
     session_key = EME_PKCS1v1_5_DECODE(session_key);                              // remove EME_PKCS1 encoding
@@ -179,19 +189,19 @@ std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const st
     if (unhexlify(makehex(sum, 4)) != checksum){                                  // check session key checksums
         throw pm::pgp_exception(pm::PM_DECRYPT_SESSION_SUMCHECK_NOT_MATCH, "Error: Calculated session key checksum does not match given checksum.");
     }
-
+    
     sec.reset();
-   // std::cout << hexlify(session_key) << std::endl;
-
+    // std::cout << hexlify(session_key) << std::endl;
+    
     // decrypt the data with the extracted key
     PGPMessage decrypted = decrypt_data(sym, m, session_key, writefile, verify);
-
+    
     std::string out = "";
     // if signing key provided, check the signature
     if (verify){
-       // out = "Message was" + std::string(verify_message(*verify, decrypted)?"":" not") + " signed by key " + hexlify(verify -> keyid()) + ".\n";
+        // out = "Message was" + std::string(verify_message(*verify, decrypted)?"":" not") + " signed by key " + hexlify(verify -> keyid()) + ".\n";
     }
-
+    
     // extract data
     for(Packet::Ptr const & p : decrypted.get_packets()){
         if (p -> get_tag() == 11){
@@ -200,7 +210,7 @@ std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const st
             out += tag11.out(writefile);
         }
     }
-
+    
     return out;
 }
 
@@ -307,12 +317,30 @@ std::string decrypt_pka_only_session(const PGPSecretKey & pri, const PGPMessage 
     std::string session_key;                    // session key
     uint8_t sym;                                // symmetric key algorithm used to encrypt original data
     
+    // find corresponding secret key
+    Tag5::Ptr sec = 0;
+    std::vector <std::string> session_key_mpi;
+    uint8_t pka = 0;
+    
     // find session key packet; should be first packet
     for(Packet::Ptr const & p : m.get_packets()){
         if ((p -> get_tag() == 1) || (p -> get_tag() == 3)){
             data = p -> raw();
             packet = p -> get_tag();
-            break;
+            if (packet == 1)
+            {
+                if (p -> get_tag() == 1) {
+                    // Public-Key Encrypted Session Key Packet (Tag 1)
+                    Tag1 tag1(data);
+                    sec = find_decrypting_key(pri, tag1.get_keyid());
+                    if (!sec){
+                        continue;
+                    }
+                    pka = tag1.get_pka();
+                    session_key_mpi = tag1.get_mpi();
+                    break;
+                }
+            }
         }
     }
     
@@ -329,14 +357,6 @@ std::string decrypt_pka_only_session(const PGPSecretKey & pri, const PGPMessage 
         throw std::runtime_error("Error: Expected Public-Key Encrypted Session Key Packet (Tag 1). Instead got " + s.str());
     }
     
-    
-    // Public-Key Encrypted Session Key Packet (Tag 1)
-    Tag1 tag1(data);
-    uint8_t pka = tag1.get_pka();
-    std::vector <std::string> session_key_mpi = tag1.get_mpi();
-    
-    // find corresponding secret key
-    Tag5::Ptr sec = find_decrypting_key(pri, tag1.get_keyid());
     if (!sec){
         throw std::runtime_error("Error: Correct Private Key not found.");
     }
