@@ -270,6 +270,64 @@
     return false;
 }
 
+- (BOOL) AddKeys:(NSString *)priv_key pubKey:(NSString *)pub_key error:(NSError* *) err
+{
+    try
+    {
+        std::string str_priv_key = [priv_key UTF8String];
+        Passpharse = @"123";
+        if(isDebugMode)
+            std::cout << str_priv_key;
+        
+        private_key_->read(str_priv_key);
+        IsPasspharseRight = YES;
+
+        //std::cout << "KeyID:" << hexlify(private_key_->keyid()) << std::endl;
+        
+//        std::string tmp = [pub_key UTF8String];
+//        public_key_->read(tmp);
+        
+//        std::string verifyString = "this is a protonmail encryption test string";
+        return true;
+    }
+    catch (const std::runtime_error& error)
+    {
+        if (err)
+        {
+            NSString *domain = @"com.ProtonMail.OpenPGP";
+            NSString *desc = NSLocalizedString([NSString stringWithUTF8String:error.what()] , @"");
+            NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
+            
+            *err = [NSError errorWithDomain:domain code:10001 userInfo:userInfo];
+        }
+    }
+    catch (const std::exception& e)
+    {
+        if (err)
+        {
+            NSString *domain = @"com.ProtonMail.OpenPGP";
+            NSString *desc = NSLocalizedString([NSString stringWithUTF8String:e.what()] , @"");
+            NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
+            
+            *err = [NSError errorWithDomain:domain code:10002 userInfo:userInfo];
+        }
+        
+    }
+    catch (...)
+    {
+        if (err)
+        {
+            NSString *domain = @"com.ProtonMail.OpenPGP";
+            NSString *desc = NSLocalizedString(@"Unknow errors", @"");
+            NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
+            
+            *err = [NSError errorWithDomain:domain code:10003 userInfo:userInfo];
+        }
+        
+    }
+    
+    return false;
+}
 
 //Encrypt for user self
 - (NSString *) encrypt_message:(NSString*) unencrypt_message error:(NSError**) err

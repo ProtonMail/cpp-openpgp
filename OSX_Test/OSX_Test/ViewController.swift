@@ -9,21 +9,21 @@
 import Cocoa
 
 class ViewController: NSViewController {
-
+    
     @IBOutlet weak var labelDisplay: NSTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override var representedObject: AnyObject? {
         didSet {
-        // Update the view, if already loaded.
+            // Update the view, if already loaded.
         }
     }
     @IBOutlet weak var test_change_pwd: NSButton!
-
+    
     @IBAction func test_change_pwd_clicked(sender: AnyObject) {
         let pgp:OpenPGP = OpenPGP()
         let location = "/Users/Yanfeng/Desktop/testpub.txt"
@@ -42,7 +42,7 @@ class ViewController: NSViewController {
         var pub_key:String?;
         var priv_key:String?;
         var keys = pgp.generate_key("123", username:"feng_test_1", error: nil);
-
+        
         
     }
     @IBAction func test_import_clicked(sender: AnyObject) {
@@ -72,12 +72,12 @@ class ViewController: NSViewController {
         
         let PrivateKey = "-----BEGIN PGP PRIVATE KEY BLOCK-----\r\nVersion: OpenPGP.js v0.9.0\r\nComment: http://openpgpjs.org\r\n\r\nxcMGBFSjdRkBB/9slBPGNrHAMbYT71AnxF4a0W/fcrzCP27yd1nte+iUKGyh\nyux3xGQRIHrwB9zyYBPFORXXwaQIA3YDH73YnE0FPfjh+fBWENWXKBkOVx1R\nefPTytGIyATFtLvmN1D65WkvnIfBdcOc7FWj6N4w5yOajpL3u/46Pe73ypic\nhe10XuwO4198q/8YamGpTFgQVj4H7QbtuIxoV+umIAf96p9PCMAxipF+piao\nD8LYWDUCK/wr1tSXIkNKL+ZCyuCYyIAnOli7xgIlKNCWvC8csuJEYcZlmf42\n/iHyrWeusyumLeBPhRABikE2ePSo+XI7LznD/CIrLhEk6RJT31+JR0NlABEB\nAAH+CQMIGhfYEFuRjVpgaSOmgLetjNJyo++e3P3RykGb5AL/vo5LUzlGX95c\ngQWSNyYYBo7xzDw8K02dGF4y9Hq6zQDFkA9jOI2XX/qq4GYb7K515aJZwnuF\nwQ+SntabFrdty8oV33Ufm8Y/TSUP/swbOP6xlXIk8Gy06D8JHW22oN35Lcww\nLftEo5Y0rD+OFlZWnA9fe/Q6CO4OGn5DJs0HbQIlNPU1sK3i0dEjCgDJq0Fx\n6WczXpB16jLiNh0W3X/HsjgSKT7Zm3nSPW6Y5mK3y7dnlfHt+A8F1ONYbpNt\nRzaoiIaKm3hoFKyAP4vAkto1IaCfZRyVr5TQQh2UJO9S/o5dCEUNw2zXhF+Z\nO3QQfFZgQjyEPgbzVmsc/zfNUyB4PEPEOMO/9IregXa/Ij42dIEoczKQzlR0\nmHCNReLfu/B+lVNj0xMrodx9slCpH6qWMKGQ7dR4eLU2+2BZvK0UeG/QY2xe\nIvLLLptm0IBbfnWYZOWSFnqaT5NMN0idMlLBCYQoOtpgmd4voND3xpBXmTIv\nO5t4CTqK/KO8+lnL75e5X2ygZ+f1x6tPa/B45C4w+TtgITXZMlp7OE8RttO6\nv+0Fg6vGAmqHJzGckCYhwvxRJoyndRd501a/W6PdImZQJ5bPYYlaFiaF+Vxx\novNb7AvUsDfknr80IdzxanKq3TFf+vCmNWs9tjXgZe0POwFZvjTdErf+lZcz\np4lTMipdA7zYksoNobNODjBgMwm5H5qMCYDothG9EF1dU/u/MOrCcgIPFouL\nZ/MiY665T9xjLOHm1Hed8LI1Fkzoclkh2yRwdFDtbFGTSq00LDcDwuluRM/8\nJ6hCQQ72OT7SBtbCVhljbPbzLCuvZ8mDscvardQkYI6x7g4QhKLNQVyVk1nA\nN4g59mSICpixvgihiFZbuxYjYxoWJMJvzQZVc2VySUTCwHIEEAEIACYFAlSj\ndSQGCwkIBwMCCRB9LVPeS8+0BAQVCAIKAxYCAQIbAwIeAQAAFwoH/ArDQgdL\nSnS68BnvnQy0xhnYMmK99yc+hlbWuiTJeK3HH+U/EIkT5DiFiEyE6YuZmsa5\n9cO8jlCN8ZKgiwhDvb6i4SEa9f2gar1VCPtC+4KCaFa8esp0kdSjTRzP4ZLb\nQPrdbfPeKoLoOoaKFH8bRVlPCnrCioHTBTsbLdzg03mcczusZomn/TKH/8tT\nOctX7CrlB+ewCUc5CWL4mZqRFjAMSJpogj7/4jEVHke4V/frKRtjvQNDcuOo\nPPU+fVpHq4ILuv7pYF9DujAIbLgWN/tdE4Goxsrm+aCUyylQ2P55Vb5mhAPu\nCLYXqSELPi99/NKEM9xhLa/1HwdTwQ/1X0zHwwYEVKN1JAEH/3XCsZ/W7fnw\nzMbkE+rMUlo1+KbX+ltEG7nAwP+Q8NrwhbwhmpA3bHM3bhSdt0CO4mRx4oOR\ncqeTNjFftQzPxCbPTmcTCupNCODOK4rnEn9i9lz7/JtkOf55+/oHbx+pjvDz\nrA7u+ugNHzDYTd+nh2ue99HWoSZSEWD/sDrp1JEN8M0zxODGYfO/Hgr5Gnnp\nTEzDzZ0LvTjYMVcmjvBhtPTNLiQsVakOj1wTLWEgcna2FLHAHh0K63snxAjT\n6G1oF0Wn08H7ZP5/WhiMy1Yr+M6N+hsLpOycwtwBdjwDcWLrOhAAj3JMLI6W\nzFS6SKUr4wxnZWIPQT7TZNBXeKmbds8AEQEAAf4JAwhPB3Ux5u4eB2CqeaWy\nKsvSTH/D1o2QpWujempJ5KtCVstyV4bF1JZ3tadOGOuOpNT7jgcp/Et2VVGs\nnHPtws9uStvbY8XcZYuu+BXYEM9tkDbAaanS7FOvh48F8Qa07IQB6JbrpOAW\nuQPKtBMEsmBqpyWMPIo856ai1Lwp6ZYovdI/WxHdkcQMg8Jvsi2DFY827/ha\n75vTnyDx0psbCUN+kc9rXqwGJlGiBdWmLSGW1cb9Gy05KcAihQmXmp9YaP9y\nPMFPHiHMOLn6HPW1xEV8B1jHVF/BfaLDJYSm1q3aDC9/QkV5WLeU7DIzFWN9\nJcMsKwoRJwEf63O3/CZ39RHd9qwFrd+HPIlc7X5Pxop16G1xXAOnLBucup90\nkYwDcbNvyC8TKESf+Ga+Py5If01WhgldBm+wgOZvXnn8SoLO98qAotei8MBi\nkI/B+7cqynWg4aoZZP2wOm/dl0zlsXGhoKut2Hxr9BzG/WdbjFRgbWSOMawo\nyF5LThbevNLZeLXFcT95NSI2HO2XgNi4I0kqjldY5k9JH0fqUnlQw87CMbVs\nTUS78q6IxtljUXJ360kfQh5ue7cRdCPrfWqNyg1YU3s7CXvEfrHNMugES6/N\nzAQllWz6MHbbTxFz80l5gi3AJAoB0jQuZsLrm4RB82lmmBuWrQZh4MPtzLg0\nHOGixprygBjuaNUPHT281Ghe2UNPpqlUp8BFkUuHYPe4LWSB2ILNGaWB+nX+\nxmvZMSnI4kVsA8oXOAbg+v5W0sYNIBU4h3nk1KOGHR4kL8fSgDi81dfqtcop\n2jzolo0yPMvcrfWnwMaEH/doS3dVBQyrC61si/U6CXLqCS/w+8JTWShVT/6B\nNihnIf1ulAhSqoa317/VuYYr7hLTqS+D7O0uMfJ/1SL6/AEy4D1Rc7l8Bd5F\nud9UVvXCwF8EGAEIABMFAlSjdSYJEH0tU95Lz7QEAhsMAACDNwf/WTKH7bS1\nxQYxGtPdqR+FW/ejh30LiPQlrs9AwrBk2JJ0VJtDxkT3FtHlwoH9nfd6YzD7\nngJ4mxqePuU5559GqgdTKemKsA2C48uanxJbgOivivBI6ziB87W23PDv7wwh\n4Ubynw5DkH4nf4oJR2K4H7rN3EZbesh8D04A9gA5tBQnuq5L+Wag2s7MpWYl\nZrvHh/1xLZaWz++3+N4SfaPTH8ao3Qojw/Y+OLGIFjk6B/oVEe9ZZQPhJjHx\ngd/qu8VcYdbe10xFFvbiaI/RS6Fs7JRSJCbXE0h7Z8n4hQIP1y6aBZsZeh8a\nPPekG4ttm6z3/BqqVplanIRSXlsqyp6J8A==\r\n=Pyb1\r\n-----END PGP PRIVATE KEY BLOCK-----\r\n";
         pgp.SetupKeys(fileContent_1, pubKey: fileContent, pass: "123", error:nil)
-
+        
         pgp.Test_Privatekey(PrivateKey, pass: "123");
         
         
     }
-
+    
     @IBAction func test_aes_clicked(sender: AnyObject) {
         
         let pgp:OpenPGP = OpenPGP();
@@ -85,7 +85,7 @@ class ViewController: NSViewController {
         let test_file = "/Users/Yanfeng/Desktop/aestest.txt"
         
         let testStr = NSString(contentsOfFile: test_file, encoding: NSUTF8StringEncoding, error: nil) as! String
-
+        
         
         //let testStr : String = "-----BEGIN PGP MESSAGE-----\nVersion: OpenPGP.js v0.10.1-IE\nComment: http://openpgpjs.org\n\nww0ECQMIina34sp8Nlpg0sAbAc/x6pR8h57OJv9pklLuEc/aH5lFT9OpWS+N\n7oPaJCGK1f3aQV7g5V5INlUvwICeDiSkDMo+hHGtFgDFEwgNiMDc7wAtod1U\nZ5PTHegr8KWWmBiDIYuPVFJH8mALVcQen9MI1xFSYO8RvSxM/P6dJPzrVZQK\noIRW98dxMjJqMWW9HgqWCej6TRDua65r/X7Ucco9tWpwzmQCnvJLqpcYYrEk\ngcGyXsp3RvISG6pWh8ZFemeO6yoqnphYmcAa/i4h4CiMqKDDJuOg4UdpW46U\nGoNSV+C4hz5ymRDj\n=hUe3\n-----END PGP MESSAGE-----"
         
@@ -114,7 +114,7 @@ class ViewController: NSViewController {
         let out = pgp.decrypt_message_aes(newSessionKeyPackage, data: data_key, pwd: "1234", error: nil)
         
         var strout = NSString(data: out, encoding:NSUTF8StringEncoding)
-
+        
     }
     @IBAction func EncryptMailboxPWD(sender: AnyObject) {
         let pgp:OpenPGP = OpenPGP();
@@ -176,7 +176,7 @@ class ViewController: NSViewController {
     @IBAction func test_encrypt_decrypt_attachment(sender: AnyObject) {
         let pgp:OpenPGP = OpenPGP()
         
-       // pgp.Test_Attachment("", data: "")
+        // pgp.Test_Attachment("", data: "")
         
         
         
@@ -184,7 +184,7 @@ class ViewController: NSViewController {
         let priv_location = "/Users/Yanfeng/Desktop/privatekey.net.txt"
         let key_package_location = "/Users/Yanfeng/Desktop/keypackage.txt"
         let data_package_location = "/Users/Yanfeng/Desktop/dataPack.txt"
-
+        
         let pubkey = NSString(contentsOfFile: pub_location, encoding: NSUTF8StringEncoding, error: nil) as! String
         let privkey = NSString(contentsOfFile: priv_location, encoding: NSUTF8StringEncoding, error: nil) as! String
         let key_package = NSString(contentsOfFile: key_package_location, encoding: NSUTF8StringEncoding, error: nil) as! String
@@ -200,11 +200,11 @@ class ViewController: NSViewController {
         let armored_data_package = NSString(contentsOfFile: armored_data_package_location, encoding: NSUTF8StringEncoding, error: nil) as! String
         let decrypted_data = pgp.decrypt_attachment_armored(armored_key_package, data: armored_data_package, error:nil)
         decrypted_data.writeToFile("/Users/Yanfeng/Desktop/new_unencrypted.png", atomically: false)
-
+        
         
         
         let data = pgp.Test_Attachment(key_package, data: data_package)
-
+        
         data.writeToFile("/Users/Yanfeng/Desktop/1.png", atomically: false)
         
         let un_encrypt_attachment = "/Users/Yanfeng/Desktop/2.png"
@@ -214,16 +214,16 @@ class ViewController: NSViewController {
         pgp.encrypt_attachment(un_encrypt_attachment_data_package, fileNam:"", pub_key: pubkey, error: nil)
         let dictOut = pgp.encrypt_attachments(un_encrypt_attachment_data_package, fileNam:"", pub_keys: ["zhj4478@protonmail.com" : pubkey], error: nil)
         
-//        let key = dictOut["zhj4478@protonmail.com"] as! String
-//        let d = dictOut["DataPacket"] as! String
-//        
-//        let test_data = pgp.decrypt_attachment_armored(key, data: d, error:nil)
-//        test_data.writeToFile("/Users/Yanfeng/Desktop/3.png", atomically: false)
+        //        let key = dictOut["zhj4478@protonmail.com"] as! String
+        //        let d = dictOut["DataPacket"] as! String
+        //
+        //        let test_data = pgp.decrypt_attachment_armored(key, data: d, error:nil)
+        //        test_data.writeToFile("/Users/Yanfeng/Desktop/3.png", atomically: false)
         
-
+        
         println("Done");
     }
-
+    
     @IBAction func large_attachment_testing(sender: AnyObject) {
         
         let pgp:OpenPGP = OpenPGP()
@@ -257,7 +257,7 @@ class ViewController: NSViewController {
         let un_encrypt_attachment_data_package = NSData(contentsOfFile: un_encrypt_attachment)
         
         let LoadFile:CFTimeInterval  = CACurrentMediaTime()
-
+        
         let dictOut = pgp.encrypt_attachments(un_encrypt_attachment_data_package, fileNam: "", pub_keys: ["zhj4478@protonmail.com" : pubkey], error: nil)
         
         let EncryptTime:CFTimeInterval  = CACurrentMediaTime()
@@ -281,13 +281,13 @@ class ViewController: NSViewController {
         
         let WriteTime:CFTimeInterval  = CACurrentMediaTime();
         
-
-    
+        
+        
         let total = (WriteTime - Start);
         
         let encrypt = (EncryptTime - LoadFile);
         let decrypt = (DecryptTime - TransforTime);
-
+        
         self.labelDisplay.stringValue = NSString(format: "Total Runtime: %g s --- Enrypt: %g s ---- Decrypt %g s", total, encrypt , decrypt) as String;
         
         
@@ -298,10 +298,59 @@ class ViewController: NSViewController {
         
         let key_a = test_data_test_out["zhj4478@protonmail.com"] as! NSData
         let d_a = test_data_test_out["DataPacket"] as! NSData
-        
-        
-        
-        
+    }
+    
+    
+    @IBAction func multiple_keys_encrypt_decrypt(sender: NSButton) {
+        if let localFile = NSBundle.mainBundle().pathForResource("feng_addresses", ofType: "geojson") {
+            if let content = String(contentsOfFile:localFile, encoding:NSUTF8StringEncoding, error: nil) {
+                
+                print(content);
+                
+                
+                let pgp:OpenPGP = OpenPGP()
+                
+                
+                
+               
+                
+                var parseError: NSError?
+                let parsedObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(content.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, options: NSJSONReadingOptions.AllowFragments, error: nil)
+                
+                //2
+                if let topApps = parsedObject as? NSDictionary {
+                    if let feed = topApps["User"] as? NSDictionary {
+                        if let addresses = feed["Addresses"] as? NSArray {
+                            for address in addresses {
+                                if let address = address as? NSDictionary {
+                                    if let keys = address["Keys"] as? NSArray {
+                                        for key in keys {
+                                            if let key = key as? NSDictionary {
+                                                print(key);
+                                                if let priv_key = key["PrivateKey"] as? String {
+                                                    print(priv_key);
+                                                    pgp.AddKeys(priv_key, pubKey: "", error: nil)
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                
+                let test_body = "/Users/Yanfeng/Desktop/test_new_key.txt"
+                
+                let test = NSString(contentsOfFile: test_body, encoding: NSUTF8StringEncoding, error: nil) as! String
+                
+                
+                let out = pgp.decrypt_message(test, error: nil)
+                
+            }
+        }
     }
 }
 

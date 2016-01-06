@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		750BA0FD1AAA8582003FEA16 /* libOpenPGP_x86_64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 750BA0FB1AAA8582003FEA16 /* libOpenPGP_x86_64.a */; };
+		7571EC3D1C3C6CBE00428F74 /* feng_addresses.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 7571EC3C1C3C6C2300428F74 /* feng_addresses.geojson */; };
 		7588B9451AA53D6D006A8793 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7588B9441AA53D6D006A8793 /* AppDelegate.swift */; };
 		7588B9471AA53D6D006A8793 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7588B9461AA53D6D006A8793 /* ViewController.swift */; };
 		7588B9491AA53D6D006A8793 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7588B9481AA53D6D006A8793 /* Images.xcassets */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		750BA0FB1AAA8582003FEA16 /* libOpenPGP_x86_64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOpenPGP_x86_64.a; path = /Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OpenPGP_OSX_Lib/../Bin/libs/Debug/libOpenPGP_x86_64.a; sourceTree = "<absolute>"; };
 		750BA5621AAA969A003FEA16 /* libOpenPGP.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOpenPGP.a; path = "../Bin/libs/Debug-iphoneos/libOpenPGP.a"; sourceTree = "<group>"; };
+		7571EC3C1C3C6C2300428F74 /* feng_addresses.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; name = feng_addresses.geojson; path = OSX_Test/feng_addresses.geojson; sourceTree = "<group>"; };
 		7588B93F1AA53D6D006A8793 /* OSX_Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OSX_Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7588B9431AA53D6D006A8793 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7588B9441AA53D6D006A8793 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,12 +88,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7571EC3E1C3C839800428F74 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				7571EC3C1C3C6C2300428F74 /* feng_addresses.geojson */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
+		};
 		7588B9361AA53D6D006A8793 = {
 			isa = PBXGroup;
 			children = (
 				7588B9411AA53D6D006A8793 /* OSX_Test */,
 				7588B9541AA53D6D006A8793 /* OSX_TestTests */,
 				7588B9401AA53D6D006A8793 /* Products */,
+				7571EC3E1C3C839800428F74 /* Resource */,
 				750BA0E41AAA73BB003FEA16 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -227,6 +238,7 @@
 			files = (
 				7588B9491AA53D6D006A8793 /* Images.xcassets in Resources */,
 				7588B94C1AA53D6D006A8793 /* Main.storyboard in Resources */,
+				7571EC3D1C3C6CBE00428F74 /* feng_addresses.geojson in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
