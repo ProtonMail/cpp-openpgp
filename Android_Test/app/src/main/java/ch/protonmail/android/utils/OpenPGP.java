@@ -1,11 +1,40 @@
 package ch.protonmail.android.utils;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  * Created by Yanfeng on 4/8/15.
  */
 public class OpenPGP {
 
     public static final int KEYS_RESULT_OK = 1;
+    HashMap<String, String> Addresses = new HashMap<>();
+    ArrayList<OpenPGPKey> Keys = new ArrayList<OpenPGPKey>();
+
+    public void AddPublicKey(String id, String publicKey) {
+        Addresses.put(id, publicKey);
+    }
+
+    public void AddKeys(String id, ArrayList<OpenPGPKey> keys) {
+        Keys.addAll(keys);
+        this.AddPublicKey(id, keys.get(0).PublicKey);
+    }
+
+    public String DecryptMessage(String encrypted_message, String passPhrase) {
+        byte[] out = DecryptMessageWithKeys(encrypted_message.getBytes(), Keys, passPhrase);
+        if (out != null && out.length > 0) {
+
+            return new String(out);
+        }
+        return "";
+    }
+
+    public String EncryptMessage(String id, String unencrypted_message) {
+        return EncryptMessage(unencrypted_message.getBytes(), Addresses.get(id));
+    }
+
+
 
     /**
      * generate a new open pgp key
@@ -61,6 +90,17 @@ public class OpenPGP {
      */
     private static native byte[] DecryptMessage(byte[] encrypted_message, String priv_key, String passphrase);
 
+
+    /**
+     * decrypt encrypt message use private key and passphrase
+     * @param encrypted_message encrypted message
+     * @param keys  user's private key
+     * @param passphrase    user's private key passphrase
+     * @return decrypted plaint text
+     */
+    private static native byte[] DecryptMessageWithKeys(byte[] encrypted_message, ArrayList<OpenPGPKey> keys, String passphrase);
+
+
     public static String DecryptMessage(String encrypted_message, String privateKey, String passPhrase) {
         byte[] out = DecryptMessage(encrypted_message.getBytes(), privateKey, passPhrase);
         if (out != null && out.length > 0) {
@@ -70,7 +110,7 @@ public class OpenPGP {
         return "";
     }
 
-    public static String EncryptMessage(String unencrypted_message, String pub_key) {
+    public static String EncryptMessageWithKey(String unencrypted_message, String pub_key) {
         return EncryptMessage(unencrypted_message.getBytes(), pub_key);
     }
 
