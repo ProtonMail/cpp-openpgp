@@ -320,10 +320,8 @@
             NSString *domain = @"com.ProtonMail.OpenPGP";
             NSString *desc = NSLocalizedString(@"Unknow errors", @"");
             NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
-            
             *err = [NSError errorWithDomain:domain code:10003 userInfo:userInfo];
         }
-        
     }
     
     return false;

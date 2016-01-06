@@ -305,19 +305,11 @@ class ViewController: NSViewController {
         if let localFile = NSBundle.mainBundle().pathForResource("feng_addresses", ofType: "geojson") {
             if let content = String(contentsOfFile:localFile, encoding:NSUTF8StringEncoding, error: nil) {
                 
-                print(content);
-                
-                
                 let pgp:OpenPGP = OpenPGP()
-                
-                
-                
-               
                 
                 var parseError: NSError?
                 let parsedObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(content.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, options: NSJSONReadingOptions.AllowFragments, error: nil)
                 
-                //2
                 if let topApps = parsedObject as? NSDictionary {
                     if let feed = topApps["User"] as? NSDictionary {
                         if let addresses = feed["Addresses"] as? NSArray {
@@ -333,14 +325,12 @@ class ViewController: NSViewController {
                                                 }
                                             }
                                         }
-
                                     }
                                 }
                             }
                         }
                     }
                 }
-                
                 
                 let test_body = "/Users/Yanfeng/Desktop/test_new_key.txt"
                 
