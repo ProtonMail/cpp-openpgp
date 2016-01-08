@@ -19,12 +19,17 @@ import android.widget.TextView;
 import android.content.Intent;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import ch.protonmail.android.utils.AppUtil;
 import ch.protonmail.android.utils.DecryptPackage;
@@ -369,6 +374,40 @@ public class MainActivity extends ActionBarActivity {
 //                    startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
 
 
+                    OpenPGP pgp = new OpenPGP();
+
+                    String jsonString = AppUtil.readTxt(getActivity(), R.raw.feng_mulitiple_keys);
+                    try {
+                        JSONObject pages = new JSONObject(jsonString);
+                        JSONObject user = pages.getJSONObject("User");
+                        JSONArray addresses = user.getJSONArray("Addresses");
+                        for (int i = 0; i < addresses.length(); ++i) {
+                            JSONObject address = addresses.getJSONObject(i);
+                            String addressID = address.getString("ID");
+                            ArrayList<OpenPGPKey> address_keys = new ArrayList<OpenPGPKey>();
+                            JSONArray keys = address.getJSONArray("Keys");
+                            for (int j = 0; j < keys.length(); ++j) {
+                                JSONObject key = keys.getJSONObject(j);
+                                OpenPGPKey keyo = new OpenPGPKey();
+                                keyo.PublicKey = key.getString("PublicKey");
+                                keyo.PrivateKey = key.getString("PrivateKey");
+                                address_keys.add(keyo);
+                            }
+                            pgp.AddKeys(addressID, address_keys);
+                        }
+
+                        Log.d("", "");
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                    String encrypted_test_data = AppUtil.readTxt(getActivity(), R.raw.feng_mulitiple_test_message);
+
+                    String tmp_out = pgp.DecryptMessage(encrypted_test_data, "123");
+
+
                     String cleartext = AppUtil.readTxt(getActivity(), R.raw.test_plain_message);
 
 
@@ -404,7 +443,7 @@ public class MainActivity extends ActionBarActivity {
 
                     Log.e("DecryptMailboxPWD", test_plain_text);
 
-                    String encryptedText = OpenPGP.EncryptMessage(cleartext, publicKey);
+                    String encryptedText = OpenPGP.EncryptMessageWithKey(cleartext, publicKey);
                     String decryptedText = OpenPGP.DecryptMessage(encryptedText, privateKey, passphrase);
                     if (decryptedText.equalsIgnoreCase(cleartext)) {
                         Log.e("Test", "OK");

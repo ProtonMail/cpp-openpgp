@@ -8,4 +8,11 @@ public class OpenPGPKey {
     public String PublicKey;
     public String PrivateKey;
 
+
+    public void OpenPGP(){
+    }
+//    public void OpenPGP(String publicKey, String privateKey){
+//        this.PublicKey = publicKey;
+//        this.PrivateKey = privateKey;
+//    }
 }

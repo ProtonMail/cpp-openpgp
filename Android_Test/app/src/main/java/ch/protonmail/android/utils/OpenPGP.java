@@ -22,9 +22,8 @@ public class OpenPGP {
     }
 
     public String DecryptMessage(String encrypted_message, String passPhrase) {
-        byte[] out = DecryptMessageWithKeys(encrypted_message.getBytes(), Keys, passPhrase);
+        byte[] out = DecryptMessageWithKeys(encrypted_message.getBytes(), Keys.toArray(), passPhrase);
         if (out != null && out.length > 0) {
-
             return new String(out);
         }
         return "";
@@ -33,8 +32,6 @@ public class OpenPGP {
     public String EncryptMessage(String id, String unencrypted_message) {
         return EncryptMessage(unencrypted_message.getBytes(), Addresses.get(id));
     }
-
-
 
     /**
      * generate a new open pgp key
@@ -98,7 +95,7 @@ public class OpenPGP {
      * @param passphrase    user's private key passphrase
      * @return decrypted plaint text
      */
-    private static native byte[] DecryptMessageWithKeys(byte[] encrypted_message, ArrayList<OpenPGPKey> keys, String passphrase);
+    private static native byte[] DecryptMessageWithKeys(byte[] encrypted_message, Object[] keys, String passphrase);
 
 
     public static String DecryptMessage(String encrypted_message, String privateKey, String passPhrase) {

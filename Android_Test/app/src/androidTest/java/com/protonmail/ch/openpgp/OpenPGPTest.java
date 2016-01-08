@@ -167,7 +167,7 @@ public class OpenPGPTest extends AndroidTestCase {
 
         for( int i = 0; i< 200; i++) {
 
-            String encryptedText = OpenPGP.EncryptMessage(cleartext, publicKey);
+            String encryptedText = OpenPGP.EncryptMessageWithKey(cleartext, publicKey);
             assertNotNull("encryptedText can't null", encryptedText);
             assertTrue("cleartext can't empty", !encryptedText.isEmpty());
 

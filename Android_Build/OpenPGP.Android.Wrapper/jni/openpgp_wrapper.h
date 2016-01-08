@@ -26,6 +26,10 @@ Java_ch_protonmail_android_utils_OpenPGP_EncryptMessage(JNIEnv* env, jobject o, 
 JNIEXPORT jbyteArray JNICALL
 Java_ch_protonmail_android_utils_OpenPGP_DecryptMessage(JNIEnv* env, jobject o, jbyteArray j_encrypted_msg, jstring j_private_key, jstring passphrase);
 
+JNIEXPORT jbyteArray JNICALL
+Java_ch_protonmail_android_utils_OpenPGP_DecryptMessageWithKeys(JNIEnv* env, jobject o, jbyteArray j_encrypted_msg, jobjectArray j_array_keys, jstring passphrase);
+
+
 //JNIEXPORT jstring JNICALL
 //Java_ch_protonmail_android_utils_OpenPGP_EncryptMessage(JNIEnv* env, jobject o, jstring j_plain_message, jstring pub_key);
 //JNIEXPORT jstring JNICALL
