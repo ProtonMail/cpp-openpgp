@@ -1,4 +1,4 @@
-NDK_TOOLCHAIN_VERSION := 4.8
+NDK_TOOLCHAIN_VERSION := 4.9
 APP_PLATFORM := android-14
 APP_STL	:= gnustl_shared
 PP_CFLAGS := -std=gnu99

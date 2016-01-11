@@ -1,5 +1,6 @@
 package com.protonmail.ch.openpgp;
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -36,10 +37,12 @@ import ch.protonmail.android.utils.DecryptPackage;
 import ch.protonmail.android.utils.EncryptPackage;
 import ch.protonmail.android.utils.OpenPGP;
 import ch.protonmail.android.utils.OpenPGPKey;
+import ch.protonmail.android.utils.OpenPgpTest;
 
 
 public class MainActivity extends ActionBarActivity {
 
+    private Context mContext;
     String publicKey = "-----BEGIN PGP PUBLIC KEY BLOCK-----\nVersion: OpenPGP.js v0.7.1\nComment: http://openpgpjs.org\n\nxsBNBFSjdRkBB/9slBPGNrHAMbYT71AnxF4a0W/fcrzCP27yd1nte+iUKGyh\nyux3xGQRIHrwB9zyYBPFORXXwaQIA3YDH73YnE0FPfjh+fBWENWXKBkOVx1R\nefPTytGIyATFtLvmN1D65WkvnIfBdcOc7FWj6N4w5yOajpL3u/46Pe73ypic\nhe10XuwO4198q/8YamGpTFgQVj4H7QbtuIxoV+umIAf96p9PCMAxipF+piao\nD8LYWDUCK/wr1tSXIkNKL+ZCyuCYyIAnOli7xgIlKNCWvC8csuJEYcZlmf42\n/iHyrWeusyumLeBPhRABikE2ePSo+XI7LznD/CIrLhEk6RJT31+JR0NlABEB\nAAHNBlVzZXJJRMLAcgQQAQgAJgUCVKN1JAYLCQgHAwIJEH0tU95Lz7QEBBUI\nAgoDFgIBAhsDAh4BAAAXCgf8CsNCB0tKdLrwGe+dDLTGGdgyYr33Jz6GVta6\nJMl4rccf5T8QiRPkOIWITITpi5maxrn1w7yOUI3xkqCLCEO9vqLhIRr1/aBq\nvVUI+0L7goJoVrx6ynSR1KNNHM/hkttA+t1t894qgug6hooUfxtFWU8KesKK\ngdMFOxst3ODTeZxzO6xmiaf9Mof/y1M5y1fsKuUH57AJRzkJYviZmpEWMAxI\nmmiCPv/iMRUeR7hX9+spG2O9A0Ny46g89T59Wkerggu6/ulgX0O6MAhsuBY3\n+10TgajGyub5oJTLKVDY/nlVvmaEA+4IthepIQs+L3380oQz3GEtr/UfB1PB\nD/VfTM7ATQRUo3UkAQf/dcKxn9bt+fDMxuQT6sxSWjX4ptf6W0QbucDA/5Dw\n2vCFvCGakDdsczduFJ23QI7iZHHig5Fyp5M2MV+1DM/EJs9OZxMK6k0I4M4r\niucSf2L2XPv8m2Q5/nn7+gdvH6mO8POsDu766A0fMNhN36eHa5730dahJlIR\nYP+wOunUkQ3wzTPE4MZh878eCvkaeelMTMPNnQu9ONgxVyaO8GG09M0uJCxV\nqQ6PXBMtYSBydrYUscAeHQrreyfECNPobWgXRafTwftk/n9aGIzLViv4zo36\nGwuk7JzC3AF2PANxYus6EACPckwsjpbMVLpIpSvjDGdlYg9BPtNk0Fd4qZt2\nzwARAQABwsBfBBgBCAATBQJUo3UmCRB9LVPeS8+0BAIbDAAAgzcH/1kyh+20\ntcUGMRrT3akfhVv3o4d9C4j0Ja7PQMKwZNiSdFSbQ8ZE9xbR5cKB/Z33emMw\n+54CeJsanj7lOeefRqoHUynpirANguPLmp8SW4Dor4rwSOs4gfO1ttzw7+8M\nIeFG8p8OQ5B+J3+KCUdiuB+6zdxGW3rIfA9OAPYAObQUJ7quS/lmoNrOzKVm\nJWa7x4f9cS2Wls/vt/jeEn2j0x/GqN0KI8P2PjixiBY5Ogf6FRHvWWUD4SYx\n8YHf6rvFXGHW3tdMRRb24miP0UuhbOyUUiQm1xNIe2fJ+IUCD9cumgWbGXof\nGjz3pBuLbZus9/waqlaZWpyEUl5bKsqeifA=\n=LhM4\n-----END PGP PUBLIC KEY BLOCK-----";
     String privateKey = "-----BEGIN PGP PRIVATE KEY BLOCK-----\r\nVersion: OpenPGP.js v0.9.0\r\nComment: http://openpgpjs.org\r\n\r\n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\nPPekG4ttm6z3/BqqVplanIRSXlsqyp6J8A==\r\n=Pyb1\r\n-----END PGP PRIVATE KEY BLOCK-----\r\n";
     static public Uri uriSavedImage;
@@ -116,34 +119,34 @@ public class MainActivity extends ActionBarActivity {
             Log.e("OpenPGP", "OpenFile Done");
         }
     }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        this.Encrypt_Message();
-        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                // Image captured and saved to fileUri specified in the Intent
-                Toast.makeText(this, "Image saved to:\n" +
-                        data.getData(), Toast.LENGTH_LONG).show();
-            } else if (resultCode == RESULT_CANCELED) {
-                // User cancelled the image capture
-            } else {
-                // Image capture failed, advise user
-            }
-        }
-
-        if (requestCode == CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                // Video captured and saved to fileUri specified in the Intent
-                Toast.makeText(this, "Video saved to:\n" +
-                        data.getData(), Toast.LENGTH_LONG).show();
-            } else if (resultCode == RESULT_CANCELED) {
-                // User cancelled the video capture
-            } else {
-                // Video capture failed, advise user
-            }
-        }
-    }
+//
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        this.Encrypt_Message();
+//        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+//            if (resultCode == RESULT_OK) {
+//                // Image captured and saved to fileUri specified in the Intent
+//                Toast.makeText(this, "Image saved to:\n" +
+//                        data.getData(), Toast.LENGTH_LONG).show();
+//            } else if (resultCode == RESULT_CANCELED) {
+//                // User cancelled the image capture
+//            } else {
+//                // Image capture failed, advise user
+//            }
+//        }
+//
+//        if (requestCode == CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE) {
+//            if (resultCode == RESULT_OK) {
+//                // Video captured and saved to fileUri specified in the Intent
+//                Toast.makeText(this, "Video saved to:\n" +
+//                        data.getData(), Toast.LENGTH_LONG).show();
+//            } else if (resultCode == RESULT_CANCELED) {
+//                // User cancelled the video capture
+//            } else {
+//                // Video capture failed, advise user
+//            }
+//        }
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,30 +157,32 @@ public class MainActivity extends ActionBarActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+
+
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
     /**
      * A placeholder fragment containing a simple view.
@@ -352,6 +357,14 @@ public class MainActivity extends ActionBarActivity {
                 public void onClick(View view) {
 
 
+                    OpenPgpTest test = OpenPgpTest.createWithListener();
+
+
+                    String out_hello_world = test.decryptMessage();
+
+                    Log.d("", "");
+
+
 //                    File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
 //                    String d = "adsfasdfasdfasfasdfasdfasdf";
 //                    File file = new File(path, "_Ascent_Test.txt");
@@ -374,127 +387,127 @@ public class MainActivity extends ActionBarActivity {
 //                    startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
 
 
-                    OpenPGP pgp = new OpenPGP();
-
-                    String jsonString = AppUtil.readTxt(getActivity(), R.raw.feng_mulitiple_keys);
-                    try {
-                        JSONObject pages = new JSONObject(jsonString);
-                        JSONObject user = pages.getJSONObject("User");
-                        JSONArray addresses = user.getJSONArray("Addresses");
-                        for (int i = 0; i < addresses.length(); ++i) {
-                            JSONObject address = addresses.getJSONObject(i);
-                            String addressID = address.getString("ID");
-                            ArrayList<OpenPGPKey> address_keys = new ArrayList<OpenPGPKey>();
-                            JSONArray keys = address.getJSONArray("Keys");
-                            for (int j = 0; j < keys.length(); ++j) {
-                                JSONObject key = keys.getJSONObject(j);
-                                OpenPGPKey keyo = new OpenPGPKey();
-                                keyo.PublicKey = key.getString("PublicKey");
-                                keyo.PrivateKey = key.getString("PrivateKey");
-                                address_keys.add(keyo);
-                            }
-                            pgp.AddKeys(addressID, address_keys);
-                        }
-
-                        Log.d("", "");
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-
-                    String encrypted_test_data = AppUtil.readTxt(getActivity(), R.raw.feng_mulitiple_test_message);
-
-                    String tmp_out = pgp.DecryptMessage(encrypted_test_data, "123");
-
-
-                    String cleartext = AppUtil.readTxt(getActivity(), R.raw.test_plain_message);
-
-
-
-                    long time= System.currentTimeMillis();
-
-                    //test generate a new key
-                    OpenPGPKey newKey = OpenPGP.GenerateKey("feng", "123123");
-
-                    int check1 = OpenPGP.CheckPassphrase(newKey.PrivateKey, "");
-                    int check2 = OpenPGP.CheckPassphrase(newKey.PrivateKey, "123");
-                    int check3 = OpenPGP.CheckPassphrase(newKey.PrivateKey, "123123");
+//                    OpenPGP pgp = new OpenPGP();
+//
+//                    String jsonString = AppUtil.readTxt(getActivity(), R.raw.feng_mulitiple_keys);
+//                    try {
+//                        JSONObject pages = new JSONObject(jsonString);
+//                        JSONObject user = pages.getJSONObject("User");
+//                        JSONArray addresses = user.getJSONArray("Addresses");
+//                        for (int i = 0; i < addresses.length(); ++i) {
+//                            JSONObject address = addresses.getJSONObject(i);
+//                            String addressID = address.getString("ID");
+//                            ArrayList<OpenPGPKey> address_keys = new ArrayList<OpenPGPKey>();
+//                            JSONArray keys = address.getJSONArray("Keys");
+//                            for (int j = 0; j < keys.length(); ++j) {
+//                                JSONObject key = keys.getJSONObject(j);
+//                                OpenPGPKey keyo = new OpenPGPKey();
+//                                keyo.PublicKey = key.getString("PublicKey");
+//                                keyo.PrivateKey = key.getString("PrivateKey");
+//                                address_keys.add(keyo);
+//                            }
+//                            pgp.AddKeys(addressID, address_keys);
+//                        }
+//
+//                        Log.d("", "");
+//
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//
+//                    String encrypted_test_data = AppUtil.readTxt(getActivity(), R.raw.feng_mulitiple_test_message);
+//
+//                    String tmp_out = pgp.DecryptMessage(encrypted_test_data, "123");
+//
+//
+//                    String cleartext = AppUtil.readTxt(getActivity(), R.raw.test_plain_message);
+//
 
 
-                    String scheck1 = OpenPGP.UpdateKeyPassphrase(newKey.PrivateKey, "", "123");
-                    String scheck2 = OpenPGP.UpdateKeyPassphrase(newKey.PrivateKey, "123", "123");
-                    String scheck3 = OpenPGP.UpdateKeyPassphrase(newKey.PrivateKey, "123123", "123");
-
-
-                    long end = System.currentTimeMillis();
-
-                    int check4 = OpenPGP.CheckPassphrase(scheck3, "");
-                    int check5 = OpenPGP.CheckPassphrase(scheck3, "123");
-                    int check6 = OpenPGP.CheckPassphrase(scheck3, "123123");
-
-                    helloworld.setText("Time:" + String.valueOf(end - time));
-                    int isPwdOK = OpenPGP.SetupKeys(privateKey,publicKey,passphrase);
-                    int isPwdOK1 = OpenPGP.SetupKeys(privateKey, publicKey, "123123");
-
-                    Log.e("test", String.format("%d",isPwdOK));
-                    String test_encrypt = OpenPGP.EncryptMailboxPWD("thisisatestmailbox", "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
-                    String test_plain_text = OpenPGP.DecryptMailboxPWD(test_encrypt, "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
-
-                    Log.e("DecryptMailboxPWD", test_plain_text);
-
-                    String encryptedText = OpenPGP.EncryptMessageWithKey(cleartext, publicKey);
-                    String decryptedText = OpenPGP.DecryptMessage(encryptedText, privateKey, passphrase);
-                    if (decryptedText.equalsIgnoreCase(cleartext)) {
-                        Log.e("Test", "OK");
-                    }
-
-                    String test_password = "123";
-                    String original_text = "<div>lajflkjasklfjlksdfkl</div><div><br></div><div>Sent from iPhone <a href=\"https://protonmail.ch\">ProtonMail</a>, encrypted email based in Switzerland.<br></div>";
-                    String test_aes_str = "-----BEGIN PGP MESSAGE-----\nVersion: OpenPGP.js v0.10.1-IE\nComment: http://openpgpjs.org\n\nww0ECQMIina34sp8Nlpg0sAbAc/x6pR8h57OJv9pklLuEc/aH5lFT9OpWS+N\n7oPaJCGK1f3aQV7g5V5INlUvwICeDiSkDMo+hHGtFgDFEwgNiMDc7wAtod1U\nZ5PTHegr8KWWmBiDIYuPVFJH8mALVcQen9MI1xFSYO8RvSxM/P6dJPzrVZQK\noIRW98dxMjJqMWW9HgqWCej6TRDua65r/X7Ucco9tWpwzmQCnvJLqpcYYrEk\ngcGyXsp3RvISG6pWh8ZFemeO6yoqnphYmcAa/i4h4CiMqKDDJuOg4UdpW46U\nGoNSV+C4hz5ymRDj\n=hUe3\n-----END PGP MESSAGE-----";
-                    String plain_text = OpenPGP.DecryptMessageAES(test_aes_str, test_password);
-
-                    if (plain_text.equalsIgnoreCase(original_text)) {
-                        Log.e("Test", "OK");
-                    }
-
-
-                    String new_enc_msg = OpenPGP.EncryptMessageAES(original_text, test_password);
-                    if(new_enc_msg != null)
-                    {
-                        Log.e("Test", "OK");
-                    }
-
-                    String new_dec_msg = OpenPGP.DecryptMessageAES(new_enc_msg, test_password);
-                    if(new_enc_msg != null && new_dec_msg.equalsIgnoreCase(original_text))
-                    {
-                        Log.e("Test", "OK");
-                    }
-
-                    // byte[] data_out = open_test.DecryptAttachment(string_armed_key.getBytes(), string_armed_data.getBytes(), private_key_net, "123");
-                    // String str_out_data = new String(data_out);
-                   //for (int i = 0; i< 100 ; i ++ ) {
-
-                        String testString = "this is a test attachment1111111";
-                        byte[] data_in = testString.getBytes();
-
-                        EncryptPackage encryptPackage = OpenPGP.EncryptAttachment(data_in, public_key_net, "test.txt");
-                        DecryptPackage new_out_data = OpenPGP.DecryptAttachment(encryptPackage.KeyPackage, encryptPackage.DataPackage, private_key_net, "123");
-                        String test_out_msg = new String(new_out_data.DecryptData);
-
-
-                    byte[] sessionBytes = OpenPGP.GetPublicKeySessionKey(encryptPackage.KeyPackage, private_key_net, "123");
-
-                    byte[] newKeyPackage = OpenPGP.GetNewPublicKeyPackage(sessionBytes, public_key_net);
-
-                    DecryptPackage out = OpenPGP.DecryptAttachment(newKeyPackage, encryptPackage.DataPackage, private_key_net, "123");
-                    String pak = new String(out.DecryptData);
-
-                    byte[] newSymKeyPackage = OpenPGP.GetNewSymmetricKeyPackage(data_in, "123");
-
-
-                    byte[] out1 = OpenPGP.DecryptAttachmentWithPassword(newSymKeyPackage, encryptPackage.DataPackage, "123");
-                    //String pak1 = new String(out1);
+//                    long time= System.currentTimeMillis();
+//
+//                    //test generate a new key
+//                    OpenPGPKey newKey = OpenPGP.GenerateKey("feng", "123123");
+//
+//                    int check1 = OpenPGP.CheckPassphrase(newKey.PrivateKey, "");
+//                    int check2 = OpenPGP.CheckPassphrase(newKey.PrivateKey, "123");
+//                    int check3 = OpenPGP.CheckPassphrase(newKey.PrivateKey, "123123");
+//
+//
+//                    String scheck1 = OpenPGP.UpdateKeyPassphrase(newKey.PrivateKey, "", "123");
+//                    String scheck2 = OpenPGP.UpdateKeyPassphrase(newKey.PrivateKey, "123", "123");
+//                    String scheck3 = OpenPGP.UpdateKeyPassphrase(newKey.PrivateKey, "123123", "123");
+//
+//
+//                    long end = System.currentTimeMillis();
+//
+//                    int check4 = OpenPGP.CheckPassphrase(scheck3, "");
+//                    int check5 = OpenPGP.CheckPassphrase(scheck3, "123");
+//                    int check6 = OpenPGP.CheckPassphrase(scheck3, "123123");
+//
+//                    helloworld.setText("Time:" + String.valueOf(end - time));
+//                    int isPwdOK = OpenPGP.SetupKeys(privateKey,publicKey,passphrase);
+//                    int isPwdOK1 = OpenPGP.SetupKeys(privateKey, publicKey, "123123");
+//
+//                    Log.e("test", String.format("%d",isPwdOK));
+//                    String test_encrypt = OpenPGP.EncryptMailboxPWD("thisisatestmailbox", "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
+//                    String test_plain_text = OpenPGP.DecryptMailboxPWD(test_encrypt, "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
+//
+//                    Log.e("DecryptMailboxPWD", test_plain_text);
+//
+//                    String encryptedText = OpenPGP.EncryptMessageWithKey(cleartext, publicKey);
+//                    String decryptedText = OpenPGP.DecryptMessage(encryptedText, privateKey, passphrase);
+//                    if (decryptedText.equalsIgnoreCase(cleartext)) {
+//                        Log.e("Test", "OK");
+//                    }
+//
+//                    String test_password = "123";
+//                    String original_text = "<div>lajflkjasklfjlksdfkl</div><div><br></div><div>Sent from iPhone <a href=\"https://protonmail.ch\">ProtonMail</a>, encrypted email based in Switzerland.<br></div>";
+//                    String test_aes_str = "-----BEGIN PGP MESSAGE-----\nVersion: OpenPGP.js v0.10.1-IE\nComment: http://openpgpjs.org\n\nww0ECQMIina34sp8Nlpg0sAbAc/x6pR8h57OJv9pklLuEc/aH5lFT9OpWS+N\n7oPaJCGK1f3aQV7g5V5INlUvwICeDiSkDMo+hHGtFgDFEwgNiMDc7wAtod1U\nZ5PTHegr8KWWmBiDIYuPVFJH8mALVcQen9MI1xFSYO8RvSxM/P6dJPzrVZQK\noIRW98dxMjJqMWW9HgqWCej6TRDua65r/X7Ucco9tWpwzmQCnvJLqpcYYrEk\ngcGyXsp3RvISG6pWh8ZFemeO6yoqnphYmcAa/i4h4CiMqKDDJuOg4UdpW46U\nGoNSV+C4hz5ymRDj\n=hUe3\n-----END PGP MESSAGE-----";
+//                    String plain_text = OpenPGP.DecryptMessageAES(test_aes_str, test_password);
+//
+//                    if (plain_text.equalsIgnoreCase(original_text)) {
+//                        Log.e("Test", "OK");
+//                    }
+//
+//
+//                    String new_enc_msg = OpenPGP.EncryptMessageAES(original_text, test_password);
+//                    if(new_enc_msg != null)
+//                    {
+//                        Log.e("Test", "OK");
+//                    }
+//
+//                    String new_dec_msg = OpenPGP.DecryptMessageAES(new_enc_msg, test_password);
+//                    if(new_enc_msg != null && new_dec_msg.equalsIgnoreCase(original_text))
+//                    {
+//                        Log.e("Test", "OK");
+//                    }
+//
+//                    // byte[] data_out = open_test.DecryptAttachment(string_armed_key.getBytes(), string_armed_data.getBytes(), private_key_net, "123");
+//                    // String str_out_data = new String(data_out);
+//                   //for (int i = 0; i< 100 ; i ++ ) {
+//
+//                        String testString = "this is a test attachment1111111";
+//                        byte[] data_in = testString.getBytes();
+//
+//                        EncryptPackage encryptPackage = OpenPGP.EncryptAttachment(data_in, public_key_net, "test.txt");
+//                        DecryptPackage new_out_data = OpenPGP.DecryptAttachment(encryptPackage.KeyPackage, encryptPackage.DataPackage, private_key_net, "123");
+//                        String test_out_msg = new String(new_out_data.DecryptData);
+//
+//
+//                    byte[] sessionBytes = OpenPGP.GetPublicKeySessionKey(encryptPackage.KeyPackage, private_key_net, "123");
+//
+//                    byte[] newKeyPackage = OpenPGP.GetNewPublicKeyPackage(sessionBytes, public_key_net);
+//
+//                    DecryptPackage out = OpenPGP.DecryptAttachment(newKeyPackage, encryptPackage.DataPackage, private_key_net, "123");
+//                    String pak = new String(out.DecryptData);
+//
+//                    byte[] newSymKeyPackage = OpenPGP.GetNewSymmetricKeyPackage(data_in, "123");
+//
+//
+//                    byte[] out1 = OpenPGP.DecryptAttachmentWithPassword(newSymKeyPackage, encryptPackage.DataPackage, "123");
+//                    //String pak1 = new String(out1);
 
 
  //                   String testEmpty = "";

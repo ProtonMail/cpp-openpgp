@@ -51,9 +51,15 @@ endif # TARGET_ARCH_ABI == armeabi
 include $(CLEAR_VARS)
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/include/ $(LOCAL_PATH)/include/bzlib/
 LOCAL_MODULE := openpgp_android
-LOCAL_SRC_FILES := openpgp_wrapper.cpp \
-GlobalInterface.cpp \
+LOCAL_SRC_FILES := djinni_main.cpp \
+djinni_support.cpp \
+openpgp_wrapper.cpp \
+NativeOpenPgpTest.cpp \
+open_pgp_impl.cpp \
 Stdafx.cpp
+
+
+#GlobalInterface.cpp \
 
 
 LOCAL_SHARED_LIBRARIES := openpgp
