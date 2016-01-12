@@ -6,30 +6,30 @@ package ch.protonmail.android.utils;
 public final class EncryptPackage {
 
 
-    /*package*/ final String publicKey;
+    /*package*/ final byte[] keyPackage;
 
-    /*package*/ final String privateKey;
+    /*package*/ final byte[] dataPackage;
 
     public EncryptPackage(
-            String publicKey,
-            String privateKey) {
-        this.publicKey = publicKey;
-        this.privateKey = privateKey;
+            byte[] keyPackage,
+            byte[] dataPackage) {
+        this.keyPackage = keyPackage;
+        this.dataPackage = dataPackage;
     }
 
-    public String getPublicKey() {
-        return publicKey;
+    public byte[] getKeyPackage() {
+        return keyPackage;
     }
 
-    public String getPrivateKey() {
-        return privateKey;
+    public byte[] getDataPackage() {
+        return dataPackage;
     }
 
     @Override
     public String toString() {
         return "EncryptPackage{" +
-                "publicKey=" + publicKey +
-                "," + "privateKey=" + privateKey +
+                "keyPackage=" + keyPackage +
+                "," + "dataPackage=" + dataPackage +
         "}";
     }
 

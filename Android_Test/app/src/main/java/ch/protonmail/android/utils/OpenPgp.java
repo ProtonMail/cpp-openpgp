@@ -14,13 +14,32 @@ public abstract class OpenPgp {
     public abstract boolean checkPassphrase(String privateKey, String passphrase);
 
     /**encrypt message */
-    public abstract String encryptMessage(String addressId, String planText);
+    public abstract String encryptMessage(String addressId, String plainText);
 
     public abstract String decryptMessage(String encryptText, String passphras);
 
-    public abstract byte[] encryptAttachment(String addressId, String planText);
+    public abstract EncryptPackage encryptAttachment(String addressId, byte[] unencryptData, String fileName);
 
-    public abstract String decryptAttachment(String encryptText, String passphras);
+    public abstract byte[] decryptAttachment(byte[] key, byte[] data, String passphras);
+
+    /**TODO : not done and not inuse */
+    public abstract byte[] decryptAttachmentWithPassword(byte[] key, byte[] data, String password);
+
+    public abstract byte[] getPublicKeySessionKey(byte[] keyPackage, String privateKey, String passphrase);
+
+    public abstract byte[] getSymmetricSessionKey(byte[] keyPackage, String password);
+
+    public abstract byte[] getNewPublicKeyPackage(byte[] session, String publicKey);
+
+    public abstract byte[] getNewSymmetricKeyPackage(byte[] session, String password);
+
+    public abstract String encryptMessageAes(String plainText, String password);
+
+    public abstract String decryptMessageAes(String encryptedMessage, String password);
+
+    public abstract String encryptMailboxPWD(String unencryptedPwd, String salt);
+
+    public abstract String decryptMailboxPWD(String encryptedPwd, String salt);
 
     public static native OpenPgp createInstance();
 
@@ -66,12 +85,12 @@ public abstract class OpenPgp {
         private native boolean native_checkPassphrase(long _nativeRef, String privateKey, String passphrase);
 
         @Override
-        public String encryptMessage(String addressId, String planText)
+        public String encryptMessage(String addressId, String plainText)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_encryptMessage(this.nativeRef, addressId, planText);
+            return native_encryptMessage(this.nativeRef, addressId, plainText);
         }
-        private native String native_encryptMessage(long _nativeRef, String addressId, String planText);
+        private native String native_encryptMessage(long _nativeRef, String addressId, String plainText);
 
         @Override
         public String decryptMessage(String encryptText, String passphras)
@@ -82,19 +101,91 @@ public abstract class OpenPgp {
         private native String native_decryptMessage(long _nativeRef, String encryptText, String passphras);
 
         @Override
-        public byte[] encryptAttachment(String addressId, String planText)
+        public EncryptPackage encryptAttachment(String addressId, byte[] unencryptData, String fileName)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_encryptAttachment(this.nativeRef, addressId, planText);
+            return native_encryptAttachment(this.nativeRef, addressId, unencryptData, fileName);
         }
-        private native byte[] native_encryptAttachment(long _nativeRef, String addressId, String planText);
+        private native EncryptPackage native_encryptAttachment(long _nativeRef, String addressId, byte[] unencryptData, String fileName);
 
         @Override
-        public String decryptAttachment(String encryptText, String passphras)
+        public byte[] decryptAttachment(byte[] key, byte[] data, String passphras)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_decryptAttachment(this.nativeRef, encryptText, passphras);
+            return native_decryptAttachment(this.nativeRef, key, data, passphras);
         }
-        private native String native_decryptAttachment(long _nativeRef, String encryptText, String passphras);
+        private native byte[] native_decryptAttachment(long _nativeRef, byte[] key, byte[] data, String passphras);
+
+        @Override
+        public byte[] decryptAttachmentWithPassword(byte[] key, byte[] data, String password)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_decryptAttachmentWithPassword(this.nativeRef, key, data, password);
+        }
+        private native byte[] native_decryptAttachmentWithPassword(long _nativeRef, byte[] key, byte[] data, String password);
+
+        @Override
+        public byte[] getPublicKeySessionKey(byte[] keyPackage, String privateKey, String passphrase)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_getPublicKeySessionKey(this.nativeRef, keyPackage, privateKey, passphrase);
+        }
+        private native byte[] native_getPublicKeySessionKey(long _nativeRef, byte[] keyPackage, String privateKey, String passphrase);
+
+        @Override
+        public byte[] getSymmetricSessionKey(byte[] keyPackage, String password)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_getSymmetricSessionKey(this.nativeRef, keyPackage, password);
+        }
+        private native byte[] native_getSymmetricSessionKey(long _nativeRef, byte[] keyPackage, String password);
+
+        @Override
+        public byte[] getNewPublicKeyPackage(byte[] session, String publicKey)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_getNewPublicKeyPackage(this.nativeRef, session, publicKey);
+        }
+        private native byte[] native_getNewPublicKeyPackage(long _nativeRef, byte[] session, String publicKey);
+
+        @Override
+        public byte[] getNewSymmetricKeyPackage(byte[] session, String password)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_getNewSymmetricKeyPackage(this.nativeRef, session, password);
+        }
+        private native byte[] native_getNewSymmetricKeyPackage(long _nativeRef, byte[] session, String password);
+
+        @Override
+        public String encryptMessageAes(String plainText, String password)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_encryptMessageAes(this.nativeRef, plainText, password);
+        }
+        private native String native_encryptMessageAes(long _nativeRef, String plainText, String password);
+
+        @Override
+        public String decryptMessageAes(String encryptedMessage, String password)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_decryptMessageAes(this.nativeRef, encryptedMessage, password);
+        }
+        private native String native_decryptMessageAes(long _nativeRef, String encryptedMessage, String password);
+
+        @Override
+        public String encryptMailboxPWD(String unencryptedPwd, String salt)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_encryptMailboxPWD(this.nativeRef, unencryptedPwd, salt);
+        }
+        private native String native_encryptMailboxPWD(long _nativeRef, String unencryptedPwd, String salt);
+
+        @Override
+        public String decryptMailboxPWD(String encryptedPwd, String salt)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_decryptMailboxPWD(this.nativeRef, encryptedPwd, salt);
+        }
+        private native String native_decryptMailboxPWD(long _nativeRef, String encryptedPwd, String salt);
     }
 }

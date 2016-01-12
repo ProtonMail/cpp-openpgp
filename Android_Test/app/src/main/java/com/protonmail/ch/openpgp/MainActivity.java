@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import ch.protonmail.android.utils.EncryptPackage;
 import ch.protonmail.android.utils.OpenPgp;
 import ch.protonmail.android.utils.OpenPgpKey;
 import ch.protonmail.android.utils.OpenPgpTest;
@@ -344,14 +346,31 @@ public class MainActivity extends ActionBarActivity {
 
                     OpenPgpKey test1 = test.generateKey();
                     boolean test2 = test.checkPassphrase("", "");
-
                     String test3 = test.encryptMessage("", "");
-
                     String test4 = test.decryptMessage("", "");
-                    byte[] test5 = test.encryptAttachment("", "");
-                    String test6 = test.decryptAttachment("", "");
+                    EncryptPackage test5 = test.encryptAttachment("", "".getBytes(), "");
+                    byte[] test6 = test.decryptAttachment("".getBytes(), "".getBytes(), "");
 
-           //         Log.d("", "");
+                    /**TODO : not done and not inuse */
+                    byte[] test7 = test.decryptAttachmentWithPassword("".getBytes(), "".getBytes(), "");
+
+                    byte[] test8 = test.getPublicKeySessionKey("".getBytes(), "", "");
+
+                    byte[] test9 = test.getSymmetricSessionKey("".getBytes(), "");
+
+                    byte[] test10 = test.getNewPublicKeyPackage("".getBytes(), "");
+
+                    byte[] test11 = test.getNewSymmetricKeyPackage("".getBytes(), "");
+
+                    String test12 = test.encryptMessageAes("", "");
+
+                    String test13 = test.decryptMessageAes("", "");
+
+                    String test14 = test.encryptMailboxPWD("", "");
+
+                    String test15 = test.decryptMailboxPWD("", "");
+
+                    Log.d("", "");
 
 //                    File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
 //                    String d = "adsfasdfasdfasfasdfasdfasdf";
