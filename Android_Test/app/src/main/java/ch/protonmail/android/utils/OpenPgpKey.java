@@ -3,14 +3,14 @@
 
 package ch.protonmail.android.utils;
 
-public final class EncryptPackage {
+public final class OpenPgpKey {
 
 
     /*package*/ final String publicKey;
 
     /*package*/ final String privateKey;
 
-    public EncryptPackage(
+    public OpenPgpKey(
             String publicKey,
             String privateKey) {
         this.publicKey = publicKey;
@@ -27,7 +27,7 @@ public final class EncryptPackage {
 
     @Override
     public String toString() {
-        return "EncryptPackage{" +
+        return "OpenPgpKey{" +
                 "publicKey=" + publicKey +
                 "," + "privateKey=" + privateKey +
         "}";

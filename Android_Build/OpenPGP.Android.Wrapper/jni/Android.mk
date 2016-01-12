@@ -54,7 +54,9 @@ LOCAL_MODULE := openpgp_android
 LOCAL_SRC_FILES := djinni_main.cpp \
 djinni_support.cpp \
 openpgp_wrapper.cpp \
-NativeOpenPgpTest.cpp \
+NativeEncryptPackage.cpp \
+NativeOpenPgp.cpp \
+NativeOpenPgpKey.cpp \
 open_pgp_impl.cpp \
 Stdafx.cpp
 

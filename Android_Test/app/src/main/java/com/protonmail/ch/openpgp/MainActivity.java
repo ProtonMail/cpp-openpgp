@@ -2,41 +2,25 @@ package com.protonmail.ch.openpgp;
 
 import android.content.Context;
 import android.net.Uri;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.content.Intent;
-import android.widget.Toast;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 
-import ch.protonmail.android.utils.AppUtil;
-import ch.protonmail.android.utils.DecryptPackage;
-import ch.protonmail.android.utils.EncryptPackage;
-import ch.protonmail.android.utils.OpenPGP;
-import ch.protonmail.android.utils.OpenPGPKey;
+import ch.protonmail.android.utils.OpenPgp;
+import ch.protonmail.android.utils.OpenPgpKey;
 import ch.protonmail.android.utils.OpenPgpTest;
 
 
@@ -81,44 +65,44 @@ public class MainActivity extends ActionBarActivity {
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE = 200;
 
-    private void Encrypt_Message(){
-        final OpenPGP openPGP = new OpenPGP();
-
-        final File file = new File(MainActivity.uriSavedImage.getPath());
-        if (!file.exists()) {
-        } else {
-            try {
-                long size = file.getTotalSpace();
-                final String base64Content = getBase64String(file);
-
-                byte[] content = Base64.decode(base64Content, Base64.DEFAULT);
-                EncryptPackage EncryptPackage = openPGP.EncryptAttachment(content, publicKey, "temp.jp");
-
-                //TypedByteArray KeyPackage = new TypedByteArray(attachment.getMimeType(), EncryptPackage.KeyPackage);
-                //TypedByteArray DataPackage = new TypedByteArray(attachment.getMimeType(), EncryptPackage.DataPackage);
-                //AttachmentUploadResponse response = mApi.uploadAttachment(attachment, mMessage.getMessageId(), KeyPackage, DataPackage);
-
-                DecryptPackage image = openPGP.DecryptAttachment(EncryptPackage.KeyPackage, EncryptPackage.DataPackage, privateKey, "123");
-
-                File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-                File d_file = new File(path, "temp.jpg");
-                try {
-                    FileOutputStream stream = new FileOutputStream(d_file, true);
-                    stream.write(image.DecryptData);
-                    stream.close();
-                    Log.i("saveData", "Data Saved");
-                } catch (IOException e) {
-                    Log.e("SAVE DATA", "Could not write file " + e.getMessage());
-                }
-
-                Log.e("test", "error while attaching file: ");
-            } catch (Exception e) {
-                Log.e("test", "error while attaching file: " + MainActivity.uriSavedImage.getPath(), e);
-            }
-
-            Log.e("OpenPGP", "OpenFile Done");
-        }
-    }
+//    private void Encrypt_Message(){
+//        final OpenPGP openPGP = new OpenPGP();
+//
+//        final File file = new File(MainActivity.uriSavedImage.getPath());
+//        if (!file.exists()) {
+//        } else {
+//            try {
+//                long size = file.getTotalSpace();
+//                final String base64Content = getBase64String(file);
+//
+//                byte[] content = Base64.decode(base64Content, Base64.DEFAULT);
+//                EncryptPackage EncryptPackage = openPGP.EncryptAttachment(content, publicKey, "temp.jp");
+//
+//                //TypedByteArray KeyPackage = new TypedByteArray(attachment.getMimeType(), EncryptPackage.KeyPackage);
+//                //TypedByteArray DataPackage = new TypedByteArray(attachment.getMimeType(), EncryptPackage.DataPackage);
+//                //AttachmentUploadResponse response = mApi.uploadAttachment(attachment, mMessage.getMessageId(), KeyPackage, DataPackage);
+//
+//                DecryptPackage image = openPGP.DecryptAttachment(EncryptPackage.KeyPackage, EncryptPackage.DataPackage, privateKey, "123");
+//
+//                File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+//                File d_file = new File(path, "temp.jpg");
+//                try {
+//                    FileOutputStream stream = new FileOutputStream(d_file, true);
+//                    stream.write(image.DecryptData);
+//                    stream.close();
+//                    Log.i("saveData", "Data Saved");
+//                } catch (IOException e) {
+//                    Log.e("SAVE DATA", "Could not write file " + e.getMessage());
+//                }
+//
+//                Log.e("test", "error while attaching file: ");
+//            } catch (Exception e) {
+//                Log.e("test", "error while attaching file: " + MainActivity.uriSavedImage.getPath(), e);
+//            }
+//
+//            Log.e("OpenPGP", "OpenFile Done");
+//        }
+//    }
 //
 //    @Override
 //    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -347,8 +331,8 @@ public class MainActivity extends ActionBarActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             this.helloworld = (TextView) rootView.findViewById(R.id.hello_world);
-            String test = OpenPGP.test2(100);
-            this.helloworld.setText(test);
+            //String test = OpenPGP.test2(100);
+           // this.helloworld.setText(test);
 
 
             Button test_button = (Button) rootView.findViewById(R.id.pgp_test);
@@ -356,14 +340,18 @@ public class MainActivity extends ActionBarActivity {
                 @Override
                 public void onClick(View view) {
 
+                    OpenPgp test = OpenPgp.createInstance();
 
-                    OpenPgpTest test = OpenPgpTest.createWithListener();
+                    OpenPgpKey test1 = test.generateKey();
+                    boolean test2 = test.checkPassphrase("", "");
 
+                    String test3 = test.encryptMessage("", "");
 
-                    String out_hello_world = test.decryptMessage();
+                    String test4 = test.decryptMessage("", "");
+                    byte[] test5 = test.encryptAttachment("", "");
+                    String test6 = test.decryptAttachment("", "");
 
-                    Log.d("", "");
-
+           //         Log.d("", "");
 
 //                    File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
 //                    String d = "adsfasdfasdfasfasdfasdfasdf";
