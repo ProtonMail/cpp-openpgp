@@ -1,6 +1,6 @@
-#include "open_pgp_key.hpp"
+#include "bridge/open_pgp_key.hpp"
 #include "open_pgp_impl.hpp"
-#include "encrypt_package.hpp"
+#include "bridge/encrypt_package.hpp"
 
 namespace ProtonMail {
     std::shared_ptr <ProtonMail::OpenPgp> OpenPgp::create_instance() {

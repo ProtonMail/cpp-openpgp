@@ -3,10 +3,10 @@
 
 #pragma once
 
-#include "djinni_support.hpp"
-#include "open_pgp_key.hpp"
+#include "bridge/open_pgp_key.hpp"
+#include "jni_base/djinni_support.hpp"
 
-namespace djinni_generated {
+namespace ProtonMail {
 
 class NativeOpenPgpKey final {
 public:
@@ -26,8 +26,8 @@ private:
 
     const ::djinni::GlobalRef<jclass> clazz { ::djinni::jniFindClass("ch/protonmail/android/utils/OpenPgpKey") };
     const jmethodID jconstructor { ::djinni::jniGetMethodID(clazz.get(), "<init>", "(Ljava/lang/String;Ljava/lang/String;)V") };
-    const jfieldID field_publicKey { ::djinni::jniGetFieldID(clazz.get(), "publicKey", "Ljava/lang/String;") };
-    const jfieldID field_privateKey { ::djinni::jniGetFieldID(clazz.get(), "privateKey", "Ljava/lang/String;") };
+    const jfieldID field_mPublicKey { ::djinni::jniGetFieldID(clazz.get(), "mPublicKey", "Ljava/lang/String;") };
+    const jfieldID field_mPrivateKey { ::djinni::jniGetFieldID(clazz.get(), "mPrivateKey", "Ljava/lang/String;") };
 };
 
-}  // namespace djinni_generated
+}  // namespace ProtonMail

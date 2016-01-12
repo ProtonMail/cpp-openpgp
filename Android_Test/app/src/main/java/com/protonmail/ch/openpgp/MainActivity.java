@@ -23,8 +23,6 @@ import java.io.InputStream;
 import ch.protonmail.android.utils.EncryptPackage;
 import ch.protonmail.android.utils.OpenPgp;
 import ch.protonmail.android.utils.OpenPgpKey;
-import ch.protonmail.android.utils.OpenPgpTest;
-
 
 public class MainActivity extends ActionBarActivity {
 

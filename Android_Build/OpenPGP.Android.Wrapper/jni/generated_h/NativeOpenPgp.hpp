@@ -3,10 +3,10 @@
 
 #pragma once
 
-#include "djinni_support.hpp"
-#include "open_pgp.hpp"
+#include "bridge/open_pgp.hpp"
+#include "jni_base/djinni_support.hpp"
 
-namespace djinni_generated {
+namespace ProtonMail {
 
 class NativeOpenPgp final : ::djinni::JniInterface<::ProtonMail::OpenPgp, NativeOpenPgp> {
 public:
@@ -29,4 +29,4 @@ private:
 
 };
 
-}  // namespace djinni_generated
+}  // namespace ProtonMail

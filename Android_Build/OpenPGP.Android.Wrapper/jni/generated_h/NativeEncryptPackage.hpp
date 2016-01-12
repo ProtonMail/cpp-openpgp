@@ -3,10 +3,10 @@
 
 #pragma once
 
-#include "djinni_support.hpp"
-#include "encrypt_package.hpp"
+#include "bridge/encrypt_package.hpp"
+#include "jni_base/djinni_support.hpp"
 
-namespace djinni_generated {
+namespace ProtonMail {
 
 class NativeEncryptPackage final {
 public:
@@ -26,8 +26,8 @@ private:
 
     const ::djinni::GlobalRef<jclass> clazz { ::djinni::jniFindClass("ch/protonmail/android/utils/EncryptPackage") };
     const jmethodID jconstructor { ::djinni::jniGetMethodID(clazz.get(), "<init>", "([B[B)V") };
-    const jfieldID field_keyPackage { ::djinni::jniGetFieldID(clazz.get(), "keyPackage", "[B") };
-    const jfieldID field_dataPackage { ::djinni::jniGetFieldID(clazz.get(), "dataPackage", "[B") };
+    const jfieldID field_mKeyPackage { ::djinni::jniGetFieldID(clazz.get(), "mKeyPackage", "[B") };
+    const jfieldID field_mDataPackage { ::djinni::jniGetFieldID(clazz.get(), "mDataPackage", "[B") };
 };
 
-}  // namespace djinni_generated
+}  // namespace ProtonMail

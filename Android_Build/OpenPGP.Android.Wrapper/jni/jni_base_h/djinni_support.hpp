@@ -23,7 +23,7 @@
 #include <string>
 #include <unordered_map>
 
-#include "../proxy_cache_interface.hpp"
+#include "proxy_cache_interface.hpp"
 #include <jni.h>
 
 // work-around for missing noexcept and constexpr support in MSVC prior to 2015

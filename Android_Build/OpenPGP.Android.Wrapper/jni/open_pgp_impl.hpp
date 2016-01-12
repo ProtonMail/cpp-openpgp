@@ -1,6 +1,6 @@
 #pragma once
 
-#include "open_pgp.hpp"
+#include "bridge/open_pgp.hpp"
 
 namespace ProtonMail {
 
