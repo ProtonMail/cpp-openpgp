@@ -114,12 +114,13 @@ public class OpenPGPSmallAttachmentTest extends AndroidTestCase {
             assertNotNull("Count" + i, newSymKeyPackage);
             assertTrue(newSymKeyPackage.length > 0);
 
-//            byte[] out1 = OpenPGP.DecryptAttachmentWithPassword(newSymKeyPackage, encryptPackage.DataPackage, privatePassphrase);
-//            assertNotNull(out1);
-//            assertTrue(out1.length > 0);
 
-//            String test_out_msg2 = new String(out1);
-//            assertTrue("test_out_msg2 should be same as test_string", test_out_msg2.equalsIgnoreCase(test_string));
+            byte[] out1 = openPgp.decryptAttachmentWithPassword(newSymKeyPackage, encryptPackage.getDataPackage(), privatePassphrase);
+            assertNotNull(out1);
+            assertTrue(out1.length > 0);
+
+            String test_out_msg2 = new String(out1);
+            assertTrue("test_out_msg2 should be same as test_string", test_out_msg2.equalsIgnoreCase(test_string));
 
             Log.d("SmallAttachment", "Count: " + i);
         }
