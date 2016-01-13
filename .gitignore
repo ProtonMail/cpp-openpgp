@@ -30,3 +30,4 @@ obj
 #jni
 Android_Build/OpenPGP.Android/
 Android_Build/OpenPGP.Android.Wrapper/libs/
+Android_Build/OpenPGP.Android.Wrapper/jni/libs/
