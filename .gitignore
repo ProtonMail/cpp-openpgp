@@ -28,4 +28,4 @@ obj
 
 
 #jni
-Android_Build/OpenPGP.Android/libs/*.so
+Android_Build/OpenPGP.Android/
