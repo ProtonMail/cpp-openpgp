@@ -3,12 +3,17 @@
 
 package ch.protonmail.android.utils;
 
-import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
 public abstract class OpenPgp {
+    public abstract boolean addAddress();
+
+    public abstract boolean removeAddress();
+
+    public abstract boolean cleanAddresses();
+
     /**generat new key pair */
     @Nonnull
     public abstract OpenPgpKey generateKey();
@@ -61,7 +66,7 @@ public abstract class OpenPgp {
     public static native OpenPgp createInstance();
 
     @CheckForNull
-    public static native OpenPgp createInstanceWithKeys(@Nonnull ArrayList<OpenPgpKey> keys);
+    public static native OpenPgp createInstanceWithKeys(@Nonnull Address address);
 
     private static final class CppProxy extends OpenPgp
     {
@@ -85,6 +90,30 @@ public abstract class OpenPgp {
             destroy();
             super.finalize();
         }
+
+        @Override
+        public boolean addAddress()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_addAddress(this.nativeRef);
+        }
+        private native boolean native_addAddress(long _nativeRef);
+
+        @Override
+        public boolean removeAddress()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_removeAddress(this.nativeRef);
+        }
+        private native boolean native_removeAddress(long _nativeRef);
+
+        @Override
+        public boolean cleanAddresses()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_cleanAddresses(this.nativeRef);
+        }
+        private native boolean native_cleanAddresses(long _nativeRef);
 
         @Override
         public OpenPgpKey generateKey()

@@ -11,6 +11,13 @@ namespace ProtonMail {
 
         /**generat new key pair */
         OpenPgpKey generate_key();
+        
+        bool add_address();
+        
+        bool remove_address();
+        
+        bool clean_addresses();
+
 
         /**check is primary key passphrase ok */
         bool check_passphrase(const std::string &private_key, const std::string &passphrase);

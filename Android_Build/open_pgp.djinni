@@ -8,9 +8,21 @@ encrypt_package = record {
 	data_package : binary;
 }
 
+address = record {
+    address_id : string;
+    #optional
+    address_name : string;
+    keys: list<string>;
+}
+
 open_pgp = interface +c {
     static create_instance() : open_pgp;
-	static create_instance_with_keys(keys : list<open_pgp_key>) : open_pgp;
+	static create_instance_with_keys(address : address) : open_pgp;
+
+    add_address() : bool;
+    remove_address() : bool;
+    clean_addresses() : bool;
+
 
     #generat new key pair
     generate_key() : open_pgp_key;

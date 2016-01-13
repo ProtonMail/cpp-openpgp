@@ -7,8 +7,7 @@ namespace ProtonMail {
         return std::make_shared<OpenPgpImpl>();
     }
 
-    std::shared_ptr <ProtonMail::OpenPgp> OpenPgp::create_instance_with_keys(
-            const std::vector <OpenPgpKey> &keys) {
+    std::shared_ptr <ProtonMail::OpenPgp> OpenPgp::create_instance_with_keys(const Address & address) {
         return std::make_shared<OpenPgpImpl>();
     }
 
@@ -20,8 +19,20 @@ namespace ProtonMail {
     OpenPgpKey OpenPgpImpl::generate_key() {
         return OpenPgpKey("hello private key", "hello public key");
     }
-
-
+    
+    bool OpenPgpImpl::add_address() {
+        
+        return false;
+    }
+    
+    bool OpenPgpImpl::remove_address() {
+        return false;
+    }
+    
+    bool OpenPgpImpl::clean_addresses() {
+        return false;
+    }
+    
 /**check is primary key passphrase ok */
     bool OpenPgpImpl::check_passphrase(const std::string &private_key,
                                        const std::string &passphrase) {

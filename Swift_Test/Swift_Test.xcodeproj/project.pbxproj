@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7514AEC11A8D92F7000A1FAB /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7514AEBF1A8D92F7000A1FAB /* libcrypto.a */; };
-		7514AEC21A8D92F7000A1FAB /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7514AEC01A8D92F7000A1FAB /* libssl.a */; };
 		7514AEC41A8D92FD000A1FAB /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7514AEC31A8D92FD000A1FAB /* libbz2.dylib */; };
 		7514AEC61A8D9302000A1FAB /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7514AEC51A8D9302000A1FAB /* libz.dylib */; };
 		7514AECA1A8D95D3000A1FAB /* LoadString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7514AEC71A8D95D3000A1FAB /* LoadString.swift */; };
 		7514AECB1A8D95D3000A1FAB /* SwiftObjC-Bridging-Header.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7514AEC81A8D95D3000A1FAB /* SwiftObjC-Bridging-Header.cpp */; };
+		755958591C463253009D9B6C /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 755958571C463253009D9B6C /* libcrypto.a */; };
+		7559585A1C463253009D9B6C /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 755958581C463253009D9B6C /* libssl.a */; };
 		756C9B9C1A8D886E007B2B9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756C9B9B1A8D886E007B2B9B /* AppDelegate.swift */; };
 		756C9BA11A8D886E007B2B9B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 756C9B9F1A8D886E007B2B9B /* Main.storyboard */; };
 		756C9BA31A8D886E007B2B9B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 756C9BA21A8D886E007B2B9B /* Images.xcassets */; };
@@ -30,6 +30,12 @@
 		7514AEC71A8D95D3000A1FAB /* LoadString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadString.swift; sourceTree = "<group>"; };
 		7514AEC81A8D95D3000A1FAB /* SwiftObjC-Bridging-Header.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "SwiftObjC-Bridging-Header.cpp"; sourceTree = "<group>"; };
 		7514AEC91A8D95D3000A1FAB /* SwiftObjC-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SwiftObjC-Bridging-Header.h"; sourceTree = "<group>"; };
+		7559584D1C462FC8009D9B6C /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../../Source/libs/x86_64/libcrypto.a; sourceTree = "<group>"; };
+		7559584E1C462FC8009D9B6C /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../../Source/libs/x86_64/libssl.a; sourceTree = "<group>"; };
+		755958531C463024009D9B6C /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../../Source/libs/x86/libcrypto.a; sourceTree = "<group>"; };
+		755958541C463024009D9B6C /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../../Source/libs/x86/libssl.a; sourceTree = "<group>"; };
+		755958571C463253009D9B6C /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../../tmp_lib/libcrypto.a; sourceTree = "<group>"; };
+		755958581C463253009D9B6C /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../../tmp_lib/libssl.a; sourceTree = "<group>"; };
 		756C9B961A8D886E007B2B9B /* Swift_Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swift_Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		756C9B9A1A8D886E007B2B9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		756C9B9B1A8D886E007B2B9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -46,10 +52,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				755958591C463253009D9B6C /* libcrypto.a in Frameworks */,
+				7559585A1C463253009D9B6C /* libssl.a in Frameworks */,
 				7514AEC61A8D9302000A1FAB /* libz.dylib in Frameworks */,
 				7514AEC41A8D92FD000A1FAB /* libbz2.dylib in Frameworks */,
-				7514AEC11A8D92F7000A1FAB /* libcrypto.a in Frameworks */,
-				7514AEC21A8D92F7000A1FAB /* libssl.a in Frameworks */,
 				756C9D4C1A8D9191007B2B9B /* libOpenPGP.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,6 +108,12 @@
 		756C9D4A1A8D9171007B2B9B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				755958571C463253009D9B6C /* libcrypto.a */,
+				755958581C463253009D9B6C /* libssl.a */,
+				755958531C463024009D9B6C /* libcrypto.a */,
+				755958541C463024009D9B6C /* libssl.a */,
+				7559584D1C462FC8009D9B6C /* libcrypto.a */,
+				7559584E1C462FC8009D9B6C /* libssl.a */,
 				7514AEC51A8D9302000A1FAB /* libz.dylib */,
 				7514AEC31A8D92FD000A1FAB /* libbz2.dylib */,
 				7514AEBF1A8D92F7000A1FAB /* libcrypto.a */,
@@ -306,7 +318,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/Bin/libs/OpenSSL,
+					/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/tmp_lib,
 				);
 				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = (
 					"$(inherited)",
@@ -315,8 +327,9 @@
 				);
 				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../bin/libs/OpenSSL",
 					"$(PROJECT_DIR)/../bin/libs/Debug-iphonesimulator",
+					"/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/Bin/libs/Debug-iphonesimulator",
+					/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OpenPGP_OSX_Lib/../Bin/libs/Debug,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Swift_Test/SwiftObjC-Bridging-Header.h";
@@ -339,6 +352,9 @@
 					"$(inherited)",
 					"/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/Bin/libs/Debug-iphoneos",
 					/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/Bin/libs/OpenSSL,
+					/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/Source/libs/x86_64,
+					/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/Source/libs/x86,
+					/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/tmp_lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Swift_Test/SwiftObjC-Bridging-Header.h";

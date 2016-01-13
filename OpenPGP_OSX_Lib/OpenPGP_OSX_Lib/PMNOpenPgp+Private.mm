@@ -6,6 +6,7 @@
 #import "DJICppWrapperCache+Private.h"
 #import "DJIError.h"
 #import "DJIMarshal+Private.h"
+#import "PMNAddress+Private.h"
 #import "PMNEncryptPackage+Private.h"
 #import "PMNOpenPgp+Private.h"
 #import "PMNOpenPgpKey+Private.h"
@@ -39,10 +40,31 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (nullable PMNOpenPgp *)createInstanceWithKeys:(nonnull NSArray<PMNOpenPgpKey *> *)keys {
++ (nullable PMNOpenPgp *)createInstanceWithKeys:(nonnull PMNAddress *)address {
     try {
-        auto r = ::ProtonMail::OpenPgp::create_instance_with_keys(::djinni::List<::OBJ_ProtonMail::OpenPgpKey>::toCpp(keys));
+        auto r = ::ProtonMail::OpenPgp::create_instance_with_keys(::OBJ_ProtonMail::Address::toCpp(address));
         return ::OBJ_ProtonMail::OpenPgp::fromCpp(r);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (BOOL)addAddress {
+    try {
+        auto r = _cppRefHandle.get()->add_address();
+        return ::djinni::Bool::fromCpp(r);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (BOOL)removeAddress {
+    try {
+        auto r = _cppRefHandle.get()->remove_address();
+        return ::djinni::Bool::fromCpp(r);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (BOOL)cleanAddresses {
+    try {
+        auto r = _cppRefHandle.get()->clean_addresses();
+        return ::djinni::Bool::fromCpp(r);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 

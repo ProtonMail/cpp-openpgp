@@ -10,6 +10,7 @@
 
 namespace ProtonMail {
 
+struct Address;
 struct EncryptPackage;
 struct OpenPgpKey;
 
@@ -19,7 +20,13 @@ public:
 
     static std::shared_ptr<OpenPgp> create_instance();
 
-    static std::shared_ptr<OpenPgp> create_instance_with_keys(const std::vector<OpenPgpKey> & keys);
+    static std::shared_ptr<OpenPgp> create_instance_with_keys(const Address & address);
+
+    virtual bool add_address() = 0;
+
+    virtual bool remove_address() = 0;
+
+    virtual void clean_addresses() = 0;
 
     /**generat new key pair */
     virtual OpenPgpKey generate_key() = 0;
