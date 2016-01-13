@@ -12,7 +12,7 @@ address = record {
     address_id : string;
     #optional
     address_name : string;
-    keys: list<string>;
+    keys: list<open_pgp_key>;
 }
 
 open_pgp = interface +c {

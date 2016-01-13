@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include "open_pgp_key.hpp"
 #include <string>
 #include <utility>
 #include <vector>
@@ -13,11 +14,11 @@ struct Address final {
     std::string address_id;
     /**optional */
     std::string address_name;
-    std::vector<std::string> keys;
+    std::vector<OpenPgpKey> keys;
 
     Address(std::string address_id_,
             std::string address_name_,
-            std::vector<std::string> keys_)
+            std::vector<OpenPgpKey> keys_)
     : address_id(std::move(address_id_))
     , address_name(std::move(address_name_))
     , keys(std::move(keys_))

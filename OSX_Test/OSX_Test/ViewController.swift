@@ -344,8 +344,12 @@ class ViewController: NSViewController {
         }
     }
     @IBAction func new_jni_test(sender: AnyObject) {
-        let pgp:PMNOpenPgp? = PMNOpenPgp.createInstance()
         
+        let keys = [ PMNOpenPgpKey(publicKey: "publickey_1", privateKey: "privatekey_1"), PMNOpenPgpKey(publicKey: "publickey_2", privateKey: "privatekey_2"),PMNOpenPgpKey(publicKey: "publickey_3", privateKey: "privatekey_3"),PMNOpenPgpKey(publicKey: "publickey_4", privateKey: "privatekey_4") ]
+        
+        var address = PMNAddress(addressId: "1", addressName: "feng@protonmail.blue", keys: keys)
+        
+        let pgp:PMNOpenPgp? = PMNOpenPgp.createInstanceWithKeys(address)
         
         let newKey = pgp?.generateKey()
         

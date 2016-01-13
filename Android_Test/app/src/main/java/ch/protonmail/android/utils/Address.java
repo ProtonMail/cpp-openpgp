@@ -14,12 +14,12 @@ public final class Address {
 
     /*package*/ final String mAddressName;
 
-    /*package*/ final ArrayList<String> mKeys;
+    /*package*/ final ArrayList<OpenPgpKey> mKeys;
 
     public Address(
             @Nonnull String addressId,
             @Nonnull String addressName,
-            @Nonnull ArrayList<String> keys) {
+            @Nonnull ArrayList<OpenPgpKey> keys) {
         this.mAddressId = addressId;
         this.mAddressName = addressName;
         this.mKeys = keys;
@@ -37,7 +37,7 @@ public final class Address {
     }
 
     @Nonnull
-    public ArrayList<String> getKeys() {
+    public ArrayList<OpenPgpKey> getKeys() {
         return mKeys;
     }
 

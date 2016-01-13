@@ -26,7 +26,7 @@ public:
 
     virtual bool remove_address() = 0;
 
-    virtual void clean_addresses() = 0;
+    virtual bool clean_addresses() = 0;
 
     /**generat new key pair */
     virtual OpenPgpKey generate_key() = 0;
