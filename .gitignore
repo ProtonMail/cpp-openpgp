@@ -25,3 +25,7 @@ obj
 # http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
 #
 # Pods/
+
+
+#jni
+Android_Build/OpenPGP.Android/libs/*.so

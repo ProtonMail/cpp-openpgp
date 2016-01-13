@@ -254,13 +254,16 @@ namespace ProtonMail {
         return out_unencrypt_msg;
     }
     std::string OpenPgpImpl::encrypt_mailbox_pwd(const std::string & unencrypted_pwd, const std::string & salt) {
-        std::string outString = pm::encrypt_mailbox_password(unencrypted_pwd, salt);
-        return outString;
+        PGPMessage encrypted_sym = encrypt_sym(salt, unencrypted_pwd, "", 9, 0, true, nullptr, "");
+        std::string encrypt_message = hexlify(encrypted_sym.write(1));
+        return encrypt_message;
     }
     
     std::string OpenPgpImpl::decrypt_mailbox_pwd(const std::string & encrypted_pwd, const std::string & salt) {
-        std::string outString = pm::decrypt_mailbox_password(encrypted_pwd, salt);
-        return outString;
+        std::string str_encrypted_message = unhexlify(encrypted_pwd);
+        pm::PMPGPMessage pm_pgp_msg(str_encrypted_message, false);
+        std::string out_unencrypt_msg = decrypt_sym(pm_pgp_msg, salt);
+        return out_unencrypt_msg;
     }
 
 
