@@ -8,6 +8,7 @@
 
 import Cocoa
 
+
 class ViewController: NSViewController {
     
     @IBOutlet weak var labelDisplay: NSTextField!
@@ -341,6 +342,18 @@ class ViewController: NSViewController {
                 
             }
         }
+    }
+    @IBAction func new_jni_test(sender: AnyObject) {
+        let pgp:PMNOpenPgp? = PMNOpenPgp.createInstance()
+        
+        
+        let newKey = pgp?.generateKey()
+        
+         print(newKey?.publicKey)
+         print(newKey?.privateKey)
+        
+        
+        print("");
     }
 }
 

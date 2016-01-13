@@ -26,7 +26,7 @@ CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_OpenPgp_createInstan
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);
-        auto r = ::ProtonMail::OpenPgp::CreateInstance();
+        auto r = ::ProtonMail::OpenPgp::create_instance();
         return ::djinni::release(::ProtonMail::NativeOpenPgp::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
@@ -35,7 +35,7 @@ CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_OpenPgp_createInstan
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);
-        auto r = ::ProtonMail::OpenPgp::CreateInstanceWithKeys(::djinni::List<::ProtonMail::NativeOpenPgpKey>::toCpp(jniEnv, j_keys));
+        auto r = ::ProtonMail::OpenPgp::create_instance_with_keys(::djinni::List<::ProtonMail::NativeOpenPgpKey>::toCpp(jniEnv, j_keys));
         return ::djinni::release(::ProtonMail::NativeOpenPgp::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
@@ -45,7 +45,7 @@ CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_OpenPgp_00024CppProx
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::OpenPgp>(nativeRef);
-        auto r = ref->GenerateKey();
+        auto r = ref->generate_key();
         return ::djinni::release(::ProtonMail::NativeOpenPgpKey::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
@@ -55,8 +55,8 @@ CJNIEXPORT jboolean JNICALL Java_ch_protonmail_android_utils_OpenPgp_00024CppPro
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::OpenPgp>(nativeRef);
-        auto r = ref->CheckPassphrase(::djinni::String::toCpp(jniEnv, j_privateKey),
-                                      ::djinni::String::toCpp(jniEnv, j_passphrase));
+        auto r = ref->check_passphrase(::djinni::String::toCpp(jniEnv, j_privateKey),
+                                       ::djinni::String::toCpp(jniEnv, j_passphrase));
         return ::djinni::release(::djinni::Bool::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
@@ -66,8 +66,8 @@ CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_OpenPgp_00024CppProx
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::OpenPgp>(nativeRef);
-        auto r = ref->EncryptMessage(::djinni::String::toCpp(jniEnv, j_addressId),
-                                     ::djinni::String::toCpp(jniEnv, j_plainText));
+        auto r = ref->encrypt_message(::djinni::String::toCpp(jniEnv, j_addressId),
+                                      ::djinni::String::toCpp(jniEnv, j_plainText));
         return ::djinni::release(::djinni::String::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
@@ -77,8 +77,8 @@ CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_OpenPgp_00024CppProx
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::OpenPgp>(nativeRef);
-        auto r = ref->DecryptMessage(::djinni::String::toCpp(jniEnv, j_encryptText),
-                                     ::djinni::String::toCpp(jniEnv, j_passphras));
+        auto r = ref->decrypt_message(::djinni::String::toCpp(jniEnv, j_encryptText),
+                                      ::djinni::String::toCpp(jniEnv, j_passphras));
         return ::djinni::release(::djinni::String::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
@@ -88,9 +88,9 @@ CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_OpenPgp_00024CppProx
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::OpenPgp>(nativeRef);
-        auto r = ref->EncryptAttachment(::djinni::String::toCpp(jniEnv, j_addressId),
-                                        ::djinni::Binary::toCpp(jniEnv, j_unencryptData),
-                                        ::djinni::String::toCpp(jniEnv, j_fileName));
+        auto r = ref->encrypt_attachment(::djinni::String::toCpp(jniEnv, j_addressId),
+                                         ::djinni::Binary::toCpp(jniEnv, j_unencryptData),
+                                         ::djinni::String::toCpp(jniEnv, j_fileName));
         return ::djinni::release(::ProtonMail::NativeEncryptPackage::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
@@ -100,9 +100,9 @@ CJNIEXPORT jbyteArray JNICALL Java_ch_protonmail_android_utils_OpenPgp_00024CppP
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::OpenPgp>(nativeRef);
-        auto r = ref->DecryptAttachment(::djinni::Binary::toCpp(jniEnv, j_key),
-                                        ::djinni::Binary::toCpp(jniEnv, j_data),
-                                        ::djinni::String::toCpp(jniEnv, j_passphras));
+        auto r = ref->decrypt_attachment(::djinni::Binary::toCpp(jniEnv, j_key),
+                                         ::djinni::Binary::toCpp(jniEnv, j_data),
+                                         ::djinni::String::toCpp(jniEnv, j_passphras));
         return ::djinni::release(::djinni::Binary::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
@@ -112,9 +112,9 @@ CJNIEXPORT jbyteArray JNICALL Java_ch_protonmail_android_utils_OpenPgp_00024CppP
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::OpenPgp>(nativeRef);
-        auto r = ref->DecryptAttachmentWithPassword(::djinni::Binary::toCpp(jniEnv, j_key),
-                                                    ::djinni::Binary::toCpp(jniEnv, j_data),
-                                                    ::djinni::String::toCpp(jniEnv, j_password));
+        auto r = ref->decrypt_attachment_with_password(::djinni::Binary::toCpp(jniEnv, j_key),
+                                                       ::djinni::Binary::toCpp(jniEnv, j_data),
+                                                       ::djinni::String::toCpp(jniEnv, j_password));
         return ::djinni::release(::djinni::Binary::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
@@ -124,9 +124,9 @@ CJNIEXPORT jbyteArray JNICALL Java_ch_protonmail_android_utils_OpenPgp_00024CppP
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::OpenPgp>(nativeRef);
-        auto r = ref->GetPublicKeySessionKey(::djinni::Binary::toCpp(jniEnv, j_keyPackage),
-                                             ::djinni::String::toCpp(jniEnv, j_privateKey),
-                                             ::djinni::String::toCpp(jniEnv, j_passphrase));
+        auto r = ref->get_public_key_session_key(::djinni::Binary::toCpp(jniEnv, j_keyPackage),
+                                                 ::djinni::String::toCpp(jniEnv, j_privateKey),
+                                                 ::djinni::String::toCpp(jniEnv, j_passphrase));
         return ::djinni::release(::djinni::Binary::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
@@ -136,8 +136,8 @@ CJNIEXPORT jbyteArray JNICALL Java_ch_protonmail_android_utils_OpenPgp_00024CppP
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::OpenPgp>(nativeRef);
-        auto r = ref->GetSymmetricSessionKey(::djinni::Binary::toCpp(jniEnv, j_keyPackage),
-                                             ::djinni::String::toCpp(jniEnv, j_password));
+        auto r = ref->get_symmetric_session_key(::djinni::Binary::toCpp(jniEnv, j_keyPackage),
+                                                ::djinni::String::toCpp(jniEnv, j_password));
         return ::djinni::release(::djinni::Binary::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
@@ -147,8 +147,8 @@ CJNIEXPORT jbyteArray JNICALL Java_ch_protonmail_android_utils_OpenPgp_00024CppP
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::OpenPgp>(nativeRef);
-        auto r = ref->GetNewPublicKeyPackage(::djinni::Binary::toCpp(jniEnv, j_session),
-                                             ::djinni::String::toCpp(jniEnv, j_publicKey));
+        auto r = ref->get_new_public_key_package(::djinni::Binary::toCpp(jniEnv, j_session),
+                                                 ::djinni::String::toCpp(jniEnv, j_publicKey));
         return ::djinni::release(::djinni::Binary::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
@@ -158,8 +158,8 @@ CJNIEXPORT jbyteArray JNICALL Java_ch_protonmail_android_utils_OpenPgp_00024CppP
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::OpenPgp>(nativeRef);
-        auto r = ref->GetNewSymmetricKeyPackage(::djinni::Binary::toCpp(jniEnv, j_session),
-                                                ::djinni::String::toCpp(jniEnv, j_password));
+        auto r = ref->get_new_symmetric_key_package(::djinni::Binary::toCpp(jniEnv, j_session),
+                                                    ::djinni::String::toCpp(jniEnv, j_password));
         return ::djinni::release(::djinni::Binary::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
@@ -169,8 +169,8 @@ CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_OpenPgp_00024CppProx
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::OpenPgp>(nativeRef);
-        auto r = ref->EncryptMessageAes(::djinni::String::toCpp(jniEnv, j_plainText),
-                                        ::djinni::String::toCpp(jniEnv, j_password));
+        auto r = ref->encrypt_message_aes(::djinni::String::toCpp(jniEnv, j_plainText),
+                                          ::djinni::String::toCpp(jniEnv, j_password));
         return ::djinni::release(::djinni::String::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
@@ -180,8 +180,8 @@ CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_OpenPgp_00024CppProx
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::OpenPgp>(nativeRef);
-        auto r = ref->DecryptMessageAes(::djinni::String::toCpp(jniEnv, j_encryptedMessage),
-                                        ::djinni::String::toCpp(jniEnv, j_password));
+        auto r = ref->decrypt_message_aes(::djinni::String::toCpp(jniEnv, j_encryptedMessage),
+                                          ::djinni::String::toCpp(jniEnv, j_password));
         return ::djinni::release(::djinni::String::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
@@ -191,7 +191,7 @@ CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_OpenPgp_00024CppProx
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::OpenPgp>(nativeRef);
-        auto r = ref->EncryptMailboxPWD(::djinni::String::toCpp(jniEnv, j_unencryptedPwd),
+        auto r = ref->encryptMailboxPWD(::djinni::String::toCpp(jniEnv, j_unencryptedPwd),
                                         ::djinni::String::toCpp(jniEnv, j_salt));
         return ::djinni::release(::djinni::String::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
@@ -202,7 +202,7 @@ CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_OpenPgp_00024CppProx
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::OpenPgp>(nativeRef);
-        auto r = ref->DecryptMailboxPWD(::djinni::String::toCpp(jniEnv, j_encryptedPwd),
+        auto r = ref->decryptMailboxPWD(::djinni::String::toCpp(jniEnv, j_encryptedPwd),
                                         ::djinni::String::toCpp(jniEnv, j_salt));
         return ::djinni::release(::djinni::String::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)

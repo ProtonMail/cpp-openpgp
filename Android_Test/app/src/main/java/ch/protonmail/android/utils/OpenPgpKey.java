@@ -3,33 +3,38 @@
 
 package ch.protonmail.android.utils;
 
+import javax.annotation.CheckForNull;
+import javax.annotation.Nonnull;
+
 public final class OpenPgpKey {
 
 
-    /*package*/ final String publicKey;
+    /*package*/ final String mPublicKey;
 
-    /*package*/ final String privateKey;
+    /*package*/ final String mPrivateKey;
 
     public OpenPgpKey(
-            String publicKey,
-            String privateKey) {
-        this.publicKey = publicKey;
-        this.privateKey = privateKey;
+            @Nonnull String publicKey,
+            @Nonnull String privateKey) {
+        this.mPublicKey = publicKey;
+        this.mPrivateKey = privateKey;
     }
 
+    @Nonnull
     public String getPublicKey() {
-        return publicKey;
+        return mPublicKey;
     }
 
+    @Nonnull
     public String getPrivateKey() {
-        return privateKey;
+        return mPrivateKey;
     }
 
     @Override
     public String toString() {
         return "OpenPgpKey{" +
-                "publicKey=" + publicKey +
-                "," + "privateKey=" + privateKey +
+                "mPublicKey=" + mPublicKey +
+                "," + "mPrivateKey=" + mPrivateKey +
         "}";
     }
 

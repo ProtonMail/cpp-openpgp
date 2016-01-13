@@ -111,6 +111,17 @@ sub_package_2 := $(shell find $(sub_package_1) -name *.cpp)
 sub_package_3 := $(sort $(sub_package_2))
 sub_package := $(subst $(LOCAL_PATH)/,,$(sub_package_3))
 
+
+bridge1 := $(shell find $(LOCAL_PATH)/src/bridge -type d)
+bridge2 := $(shell find $(bridge1) -name *.cpp)
+bridge3:= $(sort $(bridge2))
+bridge := $(subst $(LOCAL_PATH)/,,$(bridge3))
+
+bridge_impl1 := $(shell find $(LOCAL_PATH)/src/bridge_impl -type d)
+bridge_impl2 := $(shell find $(bridge_impl1) -name *.cpp)
+bridge_impl3 := $(sort $(bridge_impl2))
+bridge_impl := $(subst $(LOCAL_PATH)/,,$(bridge_impl3))
+
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/include/ $(LOCAL_PATH)/include/bzlib/
 LOCAL_MODULE := libopenpgp
 LOCAL_SRC_FILES := $(bzlib) \
@@ -122,6 +133,8 @@ $(compress) \
 $(hash) \
 $(package) \
 $(sub_package) \
+$(bridge) \
+$(bridge_impl) \
 src/package/packet.cpp \
 src/package/packets.cpp \
 src/package/Partial.cpp \

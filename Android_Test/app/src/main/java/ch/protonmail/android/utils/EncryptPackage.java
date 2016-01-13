@@ -3,33 +3,38 @@
 
 package ch.protonmail.android.utils;
 
+import javax.annotation.CheckForNull;
+import javax.annotation.Nonnull;
+
 public final class EncryptPackage {
 
 
-    /*package*/ final byte[] keyPackage;
+    /*package*/ final byte[] mKeyPackage;
 
-    /*package*/ final byte[] dataPackage;
+    /*package*/ final byte[] mDataPackage;
 
     public EncryptPackage(
-            byte[] keyPackage,
-            byte[] dataPackage) {
-        this.keyPackage = keyPackage;
-        this.dataPackage = dataPackage;
+            @Nonnull byte[] keyPackage,
+            @Nonnull byte[] dataPackage) {
+        this.mKeyPackage = keyPackage;
+        this.mDataPackage = dataPackage;
     }
 
+    @Nonnull
     public byte[] getKeyPackage() {
-        return keyPackage;
+        return mKeyPackage;
     }
 
+    @Nonnull
     public byte[] getDataPackage() {
-        return dataPackage;
+        return mDataPackage;
     }
 
     @Override
     public String toString() {
         return "EncryptPackage{" +
-                "keyPackage=" + keyPackage +
-                "," + "dataPackage=" + dataPackage +
+                "mKeyPackage=" + mKeyPackage +
+                "," + "mDataPackage=" + mDataPackage +
         "}";
     }
 

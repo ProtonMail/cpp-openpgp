@@ -5,45 +5,63 @@ package ch.protonmail.android.utils;
 
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
+import javax.annotation.CheckForNull;
+import javax.annotation.Nonnull;
 
 public abstract class OpenPgp {
     /**generat new key pair */
+    @Nonnull
     public abstract OpenPgpKey generateKey();
 
     /**check is primary key passphrase ok */
-    public abstract boolean checkPassphrase(String privateKey, String passphrase);
+    public abstract boolean checkPassphrase(@Nonnull String privateKey, @Nonnull String passphrase);
 
     /**encrypt message */
-    public abstract String encryptMessage(String addressId, String plainText);
+    @Nonnull
+    public abstract String encryptMessage(@Nonnull String addressId, @Nonnull String plainText);
 
-    public abstract String decryptMessage(String encryptText, String passphras);
+    @Nonnull
+    public abstract String decryptMessage(@Nonnull String encryptText, @Nonnull String passphras);
 
-    public abstract EncryptPackage encryptAttachment(String addressId, byte[] unencryptData, String fileName);
+    @Nonnull
+    public abstract EncryptPackage encryptAttachment(@Nonnull String addressId, @Nonnull byte[] unencryptData, @Nonnull String fileName);
 
-    public abstract byte[] decryptAttachment(byte[] key, byte[] data, String passphras);
+    @Nonnull
+    public abstract byte[] decryptAttachment(@Nonnull byte[] key, @Nonnull byte[] data, @Nonnull String passphras);
 
     /**TODO : not done and not inuse */
-    public abstract byte[] decryptAttachmentWithPassword(byte[] key, byte[] data, String password);
+    @Nonnull
+    public abstract byte[] decryptAttachmentWithPassword(@Nonnull byte[] key, @Nonnull byte[] data, @Nonnull String password);
 
-    public abstract byte[] getPublicKeySessionKey(byte[] keyPackage, String privateKey, String passphrase);
+    @Nonnull
+    public abstract byte[] getPublicKeySessionKey(@Nonnull byte[] keyPackage, @Nonnull String privateKey, @Nonnull String passphrase);
 
-    public abstract byte[] getSymmetricSessionKey(byte[] keyPackage, String password);
+    @Nonnull
+    public abstract byte[] getSymmetricSessionKey(@Nonnull byte[] keyPackage, @Nonnull String password);
 
-    public abstract byte[] getNewPublicKeyPackage(byte[] session, String publicKey);
+    @Nonnull
+    public abstract byte[] getNewPublicKeyPackage(@Nonnull byte[] session, @Nonnull String publicKey);
 
-    public abstract byte[] getNewSymmetricKeyPackage(byte[] session, String password);
+    @Nonnull
+    public abstract byte[] getNewSymmetricKeyPackage(@Nonnull byte[] session, @Nonnull String password);
 
-    public abstract String encryptMessageAes(String plainText, String password);
+    @Nonnull
+    public abstract String encryptMessageAes(@Nonnull String plainText, @Nonnull String password);
 
-    public abstract String decryptMessageAes(String encryptedMessage, String password);
+    @Nonnull
+    public abstract String decryptMessageAes(@Nonnull String encryptedMessage, @Nonnull String password);
 
-    public abstract String encryptMailboxPWD(String unencryptedPwd, String salt);
+    @Nonnull
+    public abstract String encryptMailboxPWD(@Nonnull String unencryptedPwd, @Nonnull String salt);
 
-    public abstract String decryptMailboxPWD(String encryptedPwd, String salt);
+    @Nonnull
+    public abstract String decryptMailboxPWD(@Nonnull String encryptedPwd, @Nonnull String salt);
 
+    @CheckForNull
     public static native OpenPgp createInstance();
 
-    public static native OpenPgp createInstanceWithKeys(ArrayList<OpenPgpKey> keys);
+    @CheckForNull
+    public static native OpenPgp createInstanceWithKeys(@Nonnull ArrayList<OpenPgpKey> keys);
 
     private static final class CppProxy extends OpenPgp
     {

@@ -5,3 +5,4 @@
 
 #import <Foundation/Foundation.h>
 #import <OpenPGP.h>
+#import <PMNOpenPgp.h>

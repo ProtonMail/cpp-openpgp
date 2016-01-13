@@ -1,0 +1,42 @@
+open_pgp_key = record {
+	public_key : string;
+	private_key : string;
+}
+
+encrypt_package = record {
+	key_package : binary;
+	data_package : binary;
+}
+
+open_pgp = interface +c {
+    static create_instance() : open_pgp;
+	static create_instance_with_keys(keys : list<open_pgp_key>) : open_pgp;
+
+    #generat new key pair
+    generate_key() : open_pgp_key;
+
+    #check is primary key passphrase ok
+    check_passphrase(private_key : string, passphrase : string) : bool;
+
+    #encrypt message
+    encrypt_message(address_id : string, plain_text : string) : string;
+    decrypt_message(encrypt_text : string, passphras : string) : string;
+
+    encrypt_attachment(address_id : string, unencrypt_data : binary, file_name : string) : encrypt_package;
+    decrypt_attachment(key : binary, data : binary, passphras : string) : binary;
+    #TODO : not done and not inuse
+	decrypt_attachment_with_password(key : binary, data : binary, password : string) : binary;
+
+    get_public_key_session_key(keyPackage : binary, privateKey : string, passphrase : string): binary;
+	get_symmetric_session_key(keyPackage : binary, password : string): binary;
+	get_new_public_key_package(session : binary, publicKey : string) : binary;
+	get_new_symmetric_key_package(session : binary, password : string): binary;
+
+    encrypt_message_aes(plain_text : string, password : string) : string;
+    decrypt_message_aes(encrypted_message : string, password : string) : string;
+
+    encryptMailboxPWD(unencrypted_pwd : string, salt : string) : string;
+    decryptMailboxPWD(encrypted_pwd : string, salt : string) : string;
+}
+
+

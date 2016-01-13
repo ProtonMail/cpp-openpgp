@@ -341,7 +341,6 @@ public class MainActivity extends ActionBarActivity {
                 public void onClick(View view) {
 
                     OpenPgp test = OpenPgp.createInstance();
-
                     OpenPgpKey test1 = test.generateKey();
                     boolean test2 = test.checkPassphrase("", "");
                     String test3 = test.encryptMessage("", "");

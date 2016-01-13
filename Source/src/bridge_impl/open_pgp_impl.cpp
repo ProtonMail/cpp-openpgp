@@ -1,5 +1,5 @@
 #include "bridge/open_pgp_key.hpp"
-#include "open_pgp_impl.hpp"
+#include "bridge_impl/open_pgp_impl.hpp"
 #include "bridge/encrypt_package.hpp"
 
 namespace ProtonMail {
