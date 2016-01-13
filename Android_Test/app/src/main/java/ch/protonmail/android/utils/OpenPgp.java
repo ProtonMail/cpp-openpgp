@@ -14,6 +14,7 @@ public abstract class OpenPgp {
 
     public abstract boolean cleanAddresses();
 
+    /**disable/enable debug model */
     public abstract void enableDebug(boolean isDebug);
 
     /**generat new key pair */
@@ -22,6 +23,13 @@ public abstract class OpenPgp {
 
     /**check is primary key passphrase ok */
     public abstract boolean checkPassphrase(@Nonnull String privateKey, @Nonnull String passphrase);
+
+    /**update single private key password */
+    @Nonnull
+    public abstract String updateSinglePassphrase(@Nonnull String privateKey, @Nonnull String oldPassphrase, @Nonnull String newPassphrase);
+
+    /**update the information carried in the packet. //TODO need add more parameters */
+    public abstract void updatePrivateInfo(@Nonnull String privateKey);
 
     /**encrypt message */
     @Nonnull
@@ -140,6 +148,22 @@ public abstract class OpenPgp {
             return native_checkPassphrase(this.nativeRef, privateKey, passphrase);
         }
         private native boolean native_checkPassphrase(long _nativeRef, String privateKey, String passphrase);
+
+        @Override
+        public String updateSinglePassphrase(String privateKey, String oldPassphrase, String newPassphrase)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_updateSinglePassphrase(this.nativeRef, privateKey, oldPassphrase, newPassphrase);
+        }
+        private native String native_updateSinglePassphrase(long _nativeRef, String privateKey, String oldPassphrase, String newPassphrase);
+
+        @Override
+        public void updatePrivateInfo(String privateKey)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            native_updatePrivateInfo(this.nativeRef, privateKey);
+        }
+        private native void native_updatePrivateInfo(long _nativeRef, String privateKey);
 
         @Override
         public String encryptMessage(String addressId, String plainText)

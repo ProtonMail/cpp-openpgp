@@ -4,6 +4,8 @@ import android.test.AndroidTestCase;
 import android.util.Log;
 
 import ch.protonmail.android.utils.AppUtil;
+import ch.protonmail.android.utils.OpenPgp;
+import ch.protonmail.android.utils.OpenPgpKey;
 
 
 /**
@@ -35,44 +37,50 @@ public class OpenPGPTest extends AndroidTestCase {
         assertTrue("public is empty", !publicKey.isEmpty());
     }
 
-//    public void test_generateNewKey() {
-//        OpenPGPKey newKey = OpenPGP.GenerateKey("feng", "123123");
-//        assertNotNull(newKey);
-//        assertNotNull(newKey.PrivateKey);
-//        assertNotNull(newKey.PublicKey);
-//
-//        int check1 = OpenPGP.CheckPassphrase(newKey.PrivateKey, "");
-//        assertTrue("here should be a wrong pwd", check1 == 0);
-//        int check2 = OpenPGP.CheckPassphrase(newKey.PrivateKey, "123");
-//        assertTrue("here should be a wrong pwd", check2 == 0);
-//        int check3 = OpenPGP.CheckPassphrase(newKey.PrivateKey, "123123"); //ok
-//        assertTrue("here should be a right pwd", check3 == 1);
-//
-//        String newKey1 = OpenPGP.UpdateKeyPassphrase(newKey.PrivateKey, "", "123");
-//        assertTrue("here should be a wrong pwd and return a null new key", newKey1 == null);
-//        String newKey2 = OpenPGP.UpdateKeyPassphrase(newKey.PrivateKey, "123", "123");
-//        assertTrue("here should be a wrong pwd and return a null new key", newKey2 == null);
-//        String updatedPrivateKey = OpenPGP.UpdateKeyPassphrase(newKey.PrivateKey, "123123", "123"); //ok
-//        assertTrue("here should be a right pwd and return not null value", updatedPrivateKey != null);
-//        assertTrue("here should be a right pwd and return not empty value", !updatedPrivateKey.isEmpty());
-//
-//        int check4 = OpenPGP.CheckPassphrase(updatedPrivateKey, "");
-//        assertTrue("here should be a wrong pwd", check4 == 0);
-//        int check5 = OpenPGP.CheckPassphrase(updatedPrivateKey, "123"); //ok
-//        assertTrue("here should be a right pwd", check5 == 1);
-//        int check6 = OpenPGP.CheckPassphrase(updatedPrivateKey, "123123");
-//        assertTrue("here should be a wrong pwd", check6 == 0);
-//    }
-//
-//    public void test_checkPassword() {
-//        int isOk = OpenPGP.CheckPassphrase(privateKey, privatePassphrase);
-//        assertTrue("The password not match", isOk == 1);
-//
-//        int check4 = OpenPGP.CheckPassphrase(privateKey, "");
-//        int check5 = OpenPGP.CheckPassphrase(privateKey, privatePassphrase);
-//        int check6 = OpenPGP.CheckPassphrase(privateKey, "123123");
-//    }
-//
+    public void test_generateNewKey() {
+        OpenPgp openPgp = OpenPgp.createInstance();
+
+        OpenPgpKey newKey = openPgp.generateKey("feng", "protonmail.com", "123123");
+        assertNotNull(newKey);
+        assertNotNull(newKey.getPrivateKey());
+        assertNotNull(newKey.getPublicKey());
+
+        boolean check1 = openPgp.checkPassphrase(newKey.getPrivateKey(), "");
+        assertTrue("here should be a wrong pwd", check1 == false);
+        boolean check2 = openPgp.checkPassphrase(newKey.getPrivateKey(), "123");
+        assertTrue("here should be a wrong pwd", check2 == false);
+        boolean check3 = openPgp.checkPassphrase(newKey.getPrivateKey(), "123123"); //ok
+        assertTrue("here should be a right pwd", check3 == true);
+
+        String newKey1 = openPgp.updateSinglePassphrase(newKey.getPrivateKey(), "", "123");
+        assertTrue("here should be a wrong pwd and return a null new key", (newKey1 == null || newKey1.isEmpty()));
+        String newKey2 = openPgp.updateSinglePassphrase(newKey.getPrivateKey(), "123", "123");
+        assertTrue("here should be a wrong pwd and return a null new key", (newKey2 == null || newKey2.isEmpty()));
+        String updatedPrivateKey = openPgp.updateSinglePassphrase(newKey.getPrivateKey(), "123123", "123"); //ok
+        assertTrue("here should be a right pwd and return not null value", updatedPrivateKey != null);
+        assertTrue("here should be a right pwd and return not empty value", !updatedPrivateKey.isEmpty());
+
+        boolean check4 = openPgp.checkPassphrase(updatedPrivateKey, "");
+        assertTrue("here should be a wrong pwd", check4 == false);
+        boolean check5 = openPgp.checkPassphrase(updatedPrivateKey, "123"); //ok
+        assertTrue("here should be a right pwd", check5 == true);
+        boolean check6 = openPgp.checkPassphrase(updatedPrivateKey, "123123");
+        assertTrue("here should be a wrong pwd", check6 == false);
+    }
+
+    public void test_checkPassword() {
+        OpenPgp openPgp = OpenPgp.createInstance();
+
+        boolean isOk = openPgp.checkPassphrase(privateKey, privatePassphrase);
+        assertTrue("The password not match", isOk == true);
+        boolean check4 = openPgp.checkPassphrase(privateKey, "");
+        assertTrue("The password not match", isOk == false);
+        boolean check5 = openPgp.checkPassphrase(privateKey, privatePassphrase);
+        assertTrue("The password not match", isOk == true);
+        boolean check6 = openPgp.checkPassphrase(privateKey, "123123");
+        assertTrue("The password not match", isOk == false);
+    }
+
 ////    public void test_encryptMediumAttachment() {
 ////        byte[] data_in = AppUtil.readBytes(getContext(), R.raw.testpdf);
 ////

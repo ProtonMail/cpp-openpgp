@@ -23,15 +23,20 @@ open_pgp = interface +c {
     remove_address(address_id : string) : bool;
     clean_addresses() : bool;
 
+    #disable/enable debug model
     enable_debug(isDebug : bool);
-
-
 
     #generat new key pair
     generate_key(user_name : string, domain : string, passphrase : string) : open_pgp_key;
 
     #check is primary key passphrase ok
     check_passphrase(private_key : string, passphrase : string) : bool;
+
+    #update single private key password
+    update_single_passphrase(private_key : string, old_passphrase : string, new_passphrase : string) : string;
+
+    #update the information carried in the packet. //TODO need add more parameters
+    update_private_info(private_key : string);
 
     #encrypt message
     encrypt_message(address_id : string, plain_text : string) : string;

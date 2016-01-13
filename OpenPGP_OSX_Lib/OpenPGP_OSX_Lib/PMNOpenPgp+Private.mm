@@ -94,6 +94,23 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
+- (nonnull NSString *)updateSinglePassphrase:(nonnull NSString *)privateKey
+                               oldPassphrase:(nonnull NSString *)oldPassphrase
+                               newPassphrase:(nonnull NSString *)newPassphrase {
+    try {
+        auto r = _cppRefHandle.get()->update_single_passphrase(::djinni::String::toCpp(privateKey),
+                                                               ::djinni::String::toCpp(oldPassphrase),
+                                                               ::djinni::String::toCpp(newPassphrase));
+        return ::djinni::String::fromCpp(r);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (void)updatePrivateInfo:(nonnull NSString *)privateKey {
+    try {
+        _cppRefHandle.get()->update_private_info(::djinni::String::toCpp(privateKey));
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
 - (nonnull NSString *)encryptMessage:(nonnull NSString *)addressId
                            plainText:(nonnull NSString *)plainText {
     try {

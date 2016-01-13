@@ -28,6 +28,7 @@ public:
 
     virtual bool clean_addresses() = 0;
 
+    /**disable/enable debug model */
     virtual void enable_debug(bool isDebug) = 0;
 
     /**generat new key pair */
@@ -35,6 +36,12 @@ public:
 
     /**check is primary key passphrase ok */
     virtual bool check_passphrase(const std::string & private_key, const std::string & passphrase) = 0;
+
+    /**update single private key password */
+    virtual std::string update_single_passphrase(const std::string & private_key, const std::string & old_passphrase, const std::string & new_passphrase) = 0;
+
+    /**update the information carried in the packet. //TODO need add more parameters */
+    virtual void update_private_info(const std::string & private_key) = 0;
 
     /**encrypt message */
     virtual std::string encrypt_message(const std::string & address_id, const std::string & plain_text) = 0;

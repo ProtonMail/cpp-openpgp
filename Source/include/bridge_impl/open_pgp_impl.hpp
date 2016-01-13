@@ -39,6 +39,12 @@ namespace ProtonMail {
         
         /**check is primary key passphrase ok */
         bool check_passphrase(const std::string &private_key, const std::string &passphrase);
+        
+        /**update single private key password */
+        std::string update_single_passphrase(const std::string & private_key, const std::string & old_passphrase, const std::string & new_passphrase);
+        
+        /**update the information carried in the packet. //TODO need add more parameters */
+        void update_private_info(const std::string & private_key);
 
         /**encrypt message */
         std::string encrypt_message(const std::string &address_id, const std::string &plan_text);

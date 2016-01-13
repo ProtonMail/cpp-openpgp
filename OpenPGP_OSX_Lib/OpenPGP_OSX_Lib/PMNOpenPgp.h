@@ -20,6 +20,7 @@
 
 - (BOOL)cleanAddresses;
 
+/**disable/enable debug model */
 - (void)enableDebug:(BOOL)isDebug;
 
 /**generat new key pair */
@@ -30,6 +31,14 @@
 /**check is primary key passphrase ok */
 - (BOOL)checkPassphrase:(nonnull NSString *)privateKey
              passphrase:(nonnull NSString *)passphrase;
+
+/**update single private key password */
+- (nonnull NSString *)updateSinglePassphrase:(nonnull NSString *)privateKey
+                               oldPassphrase:(nonnull NSString *)oldPassphrase
+                               newPassphrase:(nonnull NSString *)newPassphrase;
+
+/**update the information carried in the packet. //TODO need add more parameters */
+- (void)updatePrivateInfo:(nonnull NSString *)privateKey;
 
 /**encrypt message */
 - (nonnull NSString *)encryptMessage:(nonnull NSString *)addressId

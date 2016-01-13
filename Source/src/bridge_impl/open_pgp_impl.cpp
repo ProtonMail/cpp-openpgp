@@ -5,7 +5,6 @@
 #include <openpgp/decrypt.h>
 #include <bridge/address.hpp>
 
-
 #include "bridge/open_pgp_key.hpp"
 #include "bridge_impl/open_pgp_impl.hpp"
 #include "bridge/encrypt_package.hpp"
@@ -13,8 +12,10 @@
 #include <exception/pgp_exception_define.h>
 #include <exception/pgp_exception.h>
 
-
 #include <utilities/utilities.h>
+
+#include <openpgp/private_key.h>
+
 
 
 namespace ProtonMail {
@@ -51,8 +52,14 @@ namespace ProtonMail {
     }
     
     bool OpenPgpImpl::add_address(const Address & address) {
+        m_addresses.insert (std::pair<std::string, Address>(address.address_id, address));
         
-        return false;
+        for (const auto &key : address.keys) {
+            std::string private_key = key.private_key;
+            m_private_key.read(private_key);
+        }
+        
+        return true;
     }
     
     bool OpenPgpImpl::remove_address(const std::string & address_id) {
@@ -67,7 +74,7 @@ namespace ProtonMail {
         
     }
     
-/**check is primary key passphrase ok */
+    /**check is primary key passphrase ok */
     bool OpenPgpImpl::check_passphrase(const std::string &private_key,
                                        const std::string &passphrase) {
     
@@ -98,10 +105,49 @@ namespace ProtonMail {
             
         }
         return false;
+    }
+    
+    std::string OpenPgpImpl::update_single_passphrase(const std::string & private_key, const std::string & old_passphrase, const std::string & new_passphrase) {
+        try
+        {
+            std::string str_private_key = private_key;
+            PGPSecretKey secret_key;
+            secret_key.set_is_debug(false);
+            secret_key.read(str_private_key);
+            
+            bool isOk = check_private_passphrase(secret_key, old_passphrase);
+            if (!isOk) {
+                return "";
+            }
+            std::string new_key = pm::pgp::update_passphrase(secret_key, old_passphrase, new_passphrase);
+            
+            return new_key;
+        }
+        catch (const pm::pgp_exception & pgp_ex)
+        {
+            
+        }
+        catch (const std::runtime_error& error)
+        {
+            
+        }
+        catch (const std::exception& e)
+        {
+            
+        }
+        catch (...)
+        {
+            
+        }
+        return "";
+    }
+    
+    /**update the information carried in the packet. //TODO need add more parameters */
+    void OpenPgpImpl::update_private_info(const std::string & private_key) {
         
     }
 
-/**encrypt message */
+    /**encrypt message */
     std::string OpenPgpImpl::encrypt_message(const std::string &address_id,
                                              const std::string &plan_text) {
         
