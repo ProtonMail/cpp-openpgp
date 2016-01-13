@@ -1,31 +1,46 @@
 #!/bin/bash
-temp_out=${PWD}/out;
-pm_namespace=$"ProtonMail";
+temp_out=${PWD}/out
 
-./run --idl open_pgp.djinni \
+cpp_pm_namespace="ProtonMail"
+jni_pm_namespace="ProtonMail"
+obj_pm_namespace="OBJ_ProtonMail"
+java_package="ch.protonmail.android.utils"
+
+cpp_out_location=${PWD}/../Source/src/bridge
+cpp_header_out_location=${PWD}/../Source/include/bridge
+
+java_out_location=${PWD}/../Android_Test/app/src/main/java/ch/protonmail/android/utils
+
+jni_cpp_out_location=${PWD}/OpenPGP.Android.Wrapper/jni/generated_cpp
+jni_cpp_header_out_location=${PWD}/OpenPGP.Android.Wrapper/jni/generated_h
+
+objc_out=${PWD}/../OpenPGP_OSX_Lib/OpenPGP_OSX_Lib
+objc_cpp_out=${PWD}/../OpenPGP_OSX_Lib/OpenPGP_OSX_Lib
+
+${PWD}/../../djinni/src/run --idl open_pgp.djinni \
 	\
-	--cpp-out "$temp_out/cpp" \
-	--cpp-header-out "$temp_out/cpp/bridge" \
-    --cpp-namespace $pm_namespace \
+	--cpp-out $cpp_out_location \
+	--cpp-header-out $cpp_header_out_location \
+    --cpp-namespace $cpp_pm_namespace \
     --ident-cpp-enum-type foo_bar \
     --ident-cpp-type-param fooBar \
     \
-	--java-out "$temp_out/java/src" \
-	--java-package ch.protonmail.android.utils \
+	--java-out $java_out_location \
+	--java-package $java_package \
 	--java-nullable-annotation "javax.annotation.CheckForNull" \
     --java-nonnull-annotation "javax.annotation.Nonnull" \
     --ident-java-field mFooBar \
 	\
-	--jni-out "$temp_out/java/jni/generated_cpp" \
-	--jni-header-out "$temp_out/java/jni/generated_h" \
-	--jni-namespace $pm_namespace \
-	--jni-base-lib-include-prefix jni_base/ \
+	--jni-out $jni_cpp_out_location \
+	--jni-header-out $jni_cpp_header_out_location \
+	--jni-namespace $jni_pm_namespace \
+	--jni-base-lib-include-prefix jni_base_h/ \
 	--jni-include-cpp-prefix bridge/ \
 	--ident-jni-class NativeFooBar \
 	--ident-jni-file NativeFooBar \
 	\
-	--objc-out "$temp_out/objc" \
-	--objcpp-out "$temp_out/objc" \
+	--objc-out $objc_out \
+	--objcpp-out $objc_cpp_out \
 	--objcpp-include-cpp-prefix bridge/ \
-	--objcpp-namespace OBJ_$pm_namespace \
+	--objcpp-namespace $obj_pm_namespace \
 	--objc-type-prefix PMN \

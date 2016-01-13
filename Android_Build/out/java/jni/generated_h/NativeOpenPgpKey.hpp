@@ -4,7 +4,7 @@
 #pragma once
 
 #include "bridge/open_pgp_key.hpp"
-#include "jni_base_h/djinni_support.hpp"
+#include "jni_base/djinni_support.hpp"
 
 namespace ProtonMail {
 

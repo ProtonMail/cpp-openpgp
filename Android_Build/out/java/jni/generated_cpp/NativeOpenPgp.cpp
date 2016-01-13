@@ -5,7 +5,7 @@
 #include "NativeEncryptPackage.hpp"
 #include "NativeOpenPgp.hpp"
 #include "NativeOpenPgpKey.hpp"
-#include "jni_base_h/Marshal.hpp"
+#include "jni_base/Marshal.hpp"
 
 namespace ProtonMail {
 
