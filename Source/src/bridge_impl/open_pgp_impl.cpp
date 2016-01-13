@@ -1,6 +1,21 @@
+#include <openpgp/PGPKey.h>
+#include <openpgp/openpgp.h>
+#include <openpgp/PGPMessage.h>
+#include <openpgp/encrypt.h>
+#include <openpgp/decrypt.h>
+#include <bridge/address.hpp>
+
+
 #include "bridge/open_pgp_key.hpp"
 #include "bridge_impl/open_pgp_impl.hpp"
 #include "bridge/encrypt_package.hpp"
+
+#include <exception/pgp_exception_define.h>
+#include <exception/pgp_exception.h>
+
+
+#include <utilities/utilities.h>
+
 
 namespace ProtonMail {
     std::shared_ptr <ProtonMail::OpenPgp> OpenPgp::create_instance() {
@@ -8,24 +23,39 @@ namespace ProtonMail {
     }
 
     std::shared_ptr <ProtonMail::OpenPgp> OpenPgp::create_instance_with_keys(const Address & address) {
-        return std::make_shared<OpenPgpImpl>();
+        std::shared_ptr <ProtonMail::OpenPgp> pOpenPGP = std::make_shared<OpenPgpImpl>();
+        pOpenPGP->add_address(address);
+        return pOpenPGP;
     }
 
     OpenPgpImpl::OpenPgpImpl() {
 
     }
-
-
-    OpenPgpKey OpenPgpImpl::generate_key() {
-        return OpenPgpKey("hello private key", "hello public key");
+    
+    OpenPgpImpl::~OpenPgpImpl() {
+        
     }
     
-    bool OpenPgpImpl::add_address() {
+    OpenPgpKey OpenPgpImpl::generate_key(const std::string & user_name, const std::string & domain, const std::string & passphrase) {
+        
+        pm::pgp::openpgp p;
+        
+        std::string email = user_name + "@" + domain;
+        std::string comments = "create by ios";
+        
+        std::string priv_key = "";
+        std::string pub_key = "";
+        p.generate_new_key(2048, passphrase, user_name, email, comments, pub_key, priv_key);
+        
+        return OpenPgpKey(pub_key, priv_key);
+    }
+    
+    bool OpenPgpImpl::add_address(const Address & address) {
         
         return false;
     }
     
-    bool OpenPgpImpl::remove_address() {
+    bool OpenPgpImpl::remove_address(const std::string & address_id) {
         return false;
     }
     
@@ -33,82 +63,206 @@ namespace ProtonMail {
         return false;
     }
     
+    void OpenPgpImpl::enable_debug(bool isDebug) {
+        
+    }
+    
 /**check is primary key passphrase ok */
     bool OpenPgpImpl::check_passphrase(const std::string &private_key,
                                        const std::string &passphrase) {
-        return true;
+    
+        try
+        {
+            std::string str_private_key = private_key;
+            if(m_is_debug_mode)
+                std::cout << private_key;
+            
+            PGPSecretKey privateKey(str_private_key);
+            
+            return check_private_passphrase(privateKey, passphrase);
+        }
+        catch (const pm::pgp_exception & pgp_ex)
+        {
+            
+        }
+        catch (const std::runtime_error& error)
+        {
+            
+        }
+        catch (const std::exception& e)
+        {
+            
+        }
+        catch (...)
+        {
+            
+        }
+        return false;
+        
     }
 
 /**encrypt message */
     std::string OpenPgpImpl::encrypt_message(const std::string &address_id,
                                              const std::string &plan_text) {
-        return "hello encrypt message";
+        
+        std::unordered_map<std::string, Address>::const_iterator got = m_addresses.find (address_id);
+        //        if ( got == m_addresses.end() )
+        //            std::cout << "not found";
+        //        else
+        //            std::cout << got->first << " is " << &got->second;
+        //
+        //        std::cout << std::endl;
+        //
+        //        //Address address = m_addresses[address_id];
+        std::string user_pub_key = got->second.keys[0].public_key; //m_addresses[address_id].keys[0].public_key;
+        PGPPublicKey pub(user_pub_key);
+        
+        std::string unencrypt_msg = plan_text;
+        
+        PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg);
+        std::string encrypt_message = encrypted_pgp.write();
+        
+        return encrypt_message;
     }
 
     std::string OpenPgpImpl::decrypt_message(const std::string &encrypt_text,
                                              const std::string &passphras) {
-        return "hello decrypt message";
+        std::string encrypt_msg = encrypt_text;
+        pm::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
+        
+        std::string plain_text = decrypt_pka(m_private_key, pm_pgp_msg, passphras, false);
+    
+        return plain_text;
     }
 
     EncryptPackage OpenPgpImpl::encrypt_attachment(const std::string & address_id, const std::vector<uint8_t> & unencrypt_data, const std::string & file_name) {
-        std::string out_string = "hello encrypt_attachment";
-        std::vector<uint8_t> myVector(out_string.begin(), out_string.end());
-        return EncryptPackage(myVector, myVector);
+        
+        //NSData to string  need error handling here
+        std::string unencrypt_msg(unencrypt_data.begin(), unencrypt_data.end());
+        
+        // here need add more check
+        std::unordered_map<std::string, Address>::const_iterator got = m_addresses.find (address_id);
+//        if ( got == m_addresses.end() )
+//            std::cout << "not found";
+//        else
+//            std::cout << got->first << " is " << &got->second;
+//        
+//        std::cout << std::endl;
+//        
+//        //Address address = m_addresses[address_id];
+        std::string user_pub_key = got->second.keys[0].public_key; //m_addresses[address_id].keys[0].public_key;
+        
+        PGPPublicKey pub(user_pub_key);
+        
+        PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg, file_name);
+        
+        std::string keyPackage = encrypted_pgp.write(1, 0, 1);
+        std::string dataPackage = encrypted_pgp.write(1, 0, 18);
+
+        return EncryptPackage(std::vector<uint8_t>(keyPackage.begin(), keyPackage.end()), std::vector<uint8_t>(dataPackage.begin(), dataPackage.end()));
     }
 
     std::vector<uint8_t> OpenPgpImpl::decrypt_attachment(const std::vector<uint8_t> & key, const std::vector<uint8_t> & data, const std::string & passphras) {
-        std::string out_string = "hello decrypt_attachment";
-        std::vector<uint8_t> myVector(out_string.begin(), out_string.end());
-        return myVector;
+        
+        std::string str_key_package(key.begin(), key.end());
+        std::string str_data_package (data.begin(), data.end());
+        
+        
+        pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
+        pm_pgp_msg.append(str_data_package, true);
+        
+        std::string test_plain_txt = decrypt_pka(m_private_key, pm_pgp_msg, passphras, false);
+        
+        std::vector<uint8_t> out_vector(test_plain_txt.begin(), test_plain_txt.end());
+        return out_vector;
     }
 
     /**TODO : not done and not inuse */
     std::vector<uint8_t> OpenPgpImpl::decrypt_attachment_with_password(const std::vector<uint8_t> & key, const std::vector<uint8_t> & data, const std::string & password){
-        std::string out_string = "hello decrypt_attachment";
-        std::vector<uint8_t> myVector(out_string.begin(), out_string.end());
-        return myVector;
+        std::string str_key_package(key.begin(), key.end());
+        std::string str_data_package(data.begin(), data.end());
+        
+        pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
+        pm_pgp_msg.append(str_data_package, true);
+        
+        std::string test_plain_txt = decrypt_sym(pm_pgp_msg, password);
+        
+        std::vector<uint8_t> out_vector(test_plain_txt.begin(), test_plain_txt.end());
+        return out_vector;
     }
 
     std::vector<uint8_t> OpenPgpImpl::get_public_key_session_key(const std::vector<uint8_t> & keyPackage, const std::string & privateKey, const std::string & passphrase)
     {
-        std::string out_string = "hello get_public_key_session_key";
-        std::vector<uint8_t> myVector(out_string.begin(), out_string.end());
-        return myVector;
+        std::string str_key_package(keyPackage.begin(), keyPackage.end());
+        pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
+        
+        std::string sessionKey = decrypt_pka_only_session(m_private_key, pm_pgp_msg, passphrase);
+        
+        std::vector<uint8_t> out_vector(sessionKey.begin(), sessionKey.end());
+        return out_vector;
     }
 
     std::vector<uint8_t> OpenPgpImpl::get_symmetric_session_key(const std::vector<uint8_t> & keyPackage, const std::string & password){
-        std::string out_string = "hello get_symmetric_session_key";
-        std::vector<uint8_t> myVector(out_string.begin(), out_string.end());
-        return myVector;
+        
+        std::string str_key_package(keyPackage.begin(), keyPackage.end());
+        pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
+        std::string sessionkey = decrypt_pka_only_sym_session(pm_pgp_msg, password);
+
+        std::vector<uint8_t> out_vector(sessionkey.begin(), sessionkey.end());
+        
+        return out_vector;
     }
 
     std::vector<uint8_t> OpenPgpImpl::get_new_public_key_package(const std::vector<uint8_t> & session, const std::string & publicKey) {
-        std::string out_string = "hello get_new_public_key_package";
-        std::vector<uint8_t> myVector(out_string.begin(), out_string.end());
-        return myVector;
+        std::string str_sessionKey (session.begin(), session.end());
+        
+        std::string user_pub_key = publicKey;
+        
+        PGPPublicKey pub(user_pub_key);
+        
+        PGPMessage out_msg = encrypt_pka_only_session(pub, str_sessionKey);
+        
+        std::string encrypted_data = out_msg.write(1);
+        
+        std::vector<uint8_t> out_vector(encrypted_data.begin(), encrypted_data.end());
+        
+        return out_vector;
     }
 
     std::vector<uint8_t> OpenPgpImpl::get_new_symmetric_key_package(const std::vector<uint8_t> & session, const std::string & password) {
-        std::string out_string = "hello get_new_symmetric_key_package";
-        std::vector<uint8_t> myVector(out_string.begin(), out_string.end());
-        return myVector;
+        std::string str_key_package(session.begin(), session.end());
+        
+        PGPMessage out_msg = encrypt_pka_only_sym_session(password, str_key_package);
+        
+        std::string encrypted_data = out_msg.write(1);
+        std::vector<uint8_t> out_vector(encrypted_data.begin(), encrypted_data.end());
+        
+        return out_vector;
     }
-
+    
     std::string OpenPgpImpl::encrypt_message_aes(const std::string & plain_text, const std::string & password) {
-        return "hello encrypt_message_aes";
+        PGPMessage encrypted_sym = encrypt_sym(password, plain_text, "", 9, 0, true, nullptr, "");
+        std::string encrypt_message = encrypted_sym.write();
+        return encrypt_message;
     }
 
     std::string OpenPgpImpl::decrypt_message_aes(const std::string & encrypted_message, const std::string & password) {
-        return "hello decrypt_message_aes";
+        std::string encrypt_msg = encrypted_message;
+        pm::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
+        std::string out_unencrypt_msg = decrypt_sym(pm_pgp_msg, password);
+        
+        return out_unencrypt_msg;
+    }
+    std::string OpenPgpImpl::encrypt_mailbox_pwd(const std::string & unencrypted_pwd, const std::string & salt) {
+        std::string outString = pm::encrypt_mailbox_password(unencrypted_pwd, salt);
+        return outString;
+    }
+    
+    std::string OpenPgpImpl::decrypt_mailbox_pwd(const std::string & encrypted_pwd, const std::string & salt) {
+        std::string outString = pm::decrypt_mailbox_password(encrypted_pwd, salt);
+        return outString;
     }
 
-    std::string OpenPgpImpl::encryptMailboxPWD(const std::string & unencrypted_pwd, const std::string & salt) {
-        return "hello encryptMailboxPWD";
-    }
-
-    std::string OpenPgpImpl::decryptMailboxPWD(const std::string & encrypted_pwd, const std::string & salt) {
-        return "hello decryptMailboxPWD";
-    }
 
 
 }

@@ -8,15 +8,17 @@ import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
 public abstract class OpenPgp {
-    public abstract boolean addAddress();
+    public abstract boolean addAddress(@Nonnull Address address);
 
-    public abstract boolean removeAddress();
+    public abstract boolean removeAddress(@Nonnull String addressId);
 
     public abstract boolean cleanAddresses();
 
+    public abstract void enableDebug(boolean isDebug);
+
     /**generat new key pair */
     @Nonnull
-    public abstract OpenPgpKey generateKey();
+    public abstract OpenPgpKey generateKey(@Nonnull String userName, @Nonnull String domain, @Nonnull String passphrase);
 
     /**check is primary key passphrase ok */
     public abstract boolean checkPassphrase(@Nonnull String privateKey, @Nonnull String passphrase);
@@ -57,10 +59,10 @@ public abstract class OpenPgp {
     public abstract String decryptMessageAes(@Nonnull String encryptedMessage, @Nonnull String password);
 
     @Nonnull
-    public abstract String encryptMailboxPWD(@Nonnull String unencryptedPwd, @Nonnull String salt);
+    public abstract String encryptMailboxPwd(@Nonnull String unencryptedPwd, @Nonnull String salt);
 
     @Nonnull
-    public abstract String decryptMailboxPWD(@Nonnull String encryptedPwd, @Nonnull String salt);
+    public abstract String decryptMailboxPwd(@Nonnull String encryptedPwd, @Nonnull String salt);
 
     @CheckForNull
     public static native OpenPgp createInstance();
@@ -92,20 +94,20 @@ public abstract class OpenPgp {
         }
 
         @Override
-        public boolean addAddress()
+        public boolean addAddress(Address address)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_addAddress(this.nativeRef);
+            return native_addAddress(this.nativeRef, address);
         }
-        private native boolean native_addAddress(long _nativeRef);
+        private native boolean native_addAddress(long _nativeRef, Address address);
 
         @Override
-        public boolean removeAddress()
+        public boolean removeAddress(String addressId)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_removeAddress(this.nativeRef);
+            return native_removeAddress(this.nativeRef, addressId);
         }
-        private native boolean native_removeAddress(long _nativeRef);
+        private native boolean native_removeAddress(long _nativeRef, String addressId);
 
         @Override
         public boolean cleanAddresses()
@@ -116,12 +118,20 @@ public abstract class OpenPgp {
         private native boolean native_cleanAddresses(long _nativeRef);
 
         @Override
-        public OpenPgpKey generateKey()
+        public void enableDebug(boolean isDebug)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_generateKey(this.nativeRef);
+            native_enableDebug(this.nativeRef, isDebug);
         }
-        private native OpenPgpKey native_generateKey(long _nativeRef);
+        private native void native_enableDebug(long _nativeRef, boolean isDebug);
+
+        @Override
+        public OpenPgpKey generateKey(String userName, String domain, String passphrase)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_generateKey(this.nativeRef, userName, domain, passphrase);
+        }
+        private native OpenPgpKey native_generateKey(long _nativeRef, String userName, String domain, String passphrase);
 
         @Override
         public boolean checkPassphrase(String privateKey, String passphrase)
@@ -220,19 +230,19 @@ public abstract class OpenPgp {
         private native String native_decryptMessageAes(long _nativeRef, String encryptedMessage, String password);
 
         @Override
-        public String encryptMailboxPWD(String unencryptedPwd, String salt)
+        public String encryptMailboxPwd(String unencryptedPwd, String salt)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_encryptMailboxPWD(this.nativeRef, unencryptedPwd, salt);
+            return native_encryptMailboxPwd(this.nativeRef, unencryptedPwd, salt);
         }
-        private native String native_encryptMailboxPWD(long _nativeRef, String unencryptedPwd, String salt);
+        private native String native_encryptMailboxPwd(long _nativeRef, String unencryptedPwd, String salt);
 
         @Override
-        public String decryptMailboxPWD(String encryptedPwd, String salt)
+        public String decryptMailboxPwd(String encryptedPwd, String salt)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_decryptMailboxPWD(this.nativeRef, encryptedPwd, salt);
+            return native_decryptMailboxPwd(this.nativeRef, encryptedPwd, salt);
         }
-        private native String native_decryptMailboxPWD(long _nativeRef, String encryptedPwd, String salt);
+        private native String native_decryptMailboxPwd(long _nativeRef, String encryptedPwd, String salt);
     }
 }

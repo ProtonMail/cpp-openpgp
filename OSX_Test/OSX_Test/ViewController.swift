@@ -14,7 +14,6 @@ class ViewController: NSViewController {
     @IBOutlet weak var labelDisplay: NSTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
     }
     
@@ -179,8 +178,6 @@ class ViewController: NSViewController {
         
         // pgp.Test_Attachment("", data: "")
         
-        
-        
         let pub_location = "/Users/Yanfeng/Desktop/publickey.net.txt"
         let priv_location = "/Users/Yanfeng/Desktop/privatekey.net.txt"
         let key_package_location = "/Users/Yanfeng/Desktop/keypackage.txt"
@@ -344,6 +341,47 @@ class ViewController: NSViewController {
         }
     }
     @IBAction func new_jni_test(sender: AnyObject) {
+        //let pgptest = PMNOpenPgp.createInstance()!;
+        
+//        if let localFile = NSBundle.mainBundle().pathForResource("feng_addresses", ofType: "geojson") {
+//            if let content = String(contentsOfFile:localFile, encoding:NSUTF8StringEncoding, error: nil) {
+//                
+//                let pgp:OpenPGP = OpenPGP()
+//                
+//                var parseError: NSError?
+//                let parsedObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(content.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, options: NSJSONReadingOptions.AllowFragments, error: nil)
+//                
+//                if let topApps = parsedObject as? NSDictionary {
+//                    if let feed = topApps["User"] as? NSDictionary {
+//                        if let addresses = feed["Addresses"] as? NSArray {
+//                            for address in addresses {
+//                                if let address = address as? NSDictionary {
+//                                    if let keys = address["Keys"] as? NSArray {
+//                                        for key in keys {
+//                                            if let key = key as? NSDictionary {
+//                                                print(key);
+//                                                if let priv_key = key["PrivateKey"] as? String {
+//                                                    pgp.AddKeys(priv_key, pubKey: "", error: nil)
+//                                                    let check_1 = pgptest.checkPassphrase(priv_key, passphrase: "111");
+//                                                    let check_2 = pgptest.checkPassphrase(priv_key, passphrase: "1112");
+//                                                    let check_3 = pgptest.checkPassphrase(priv_key, passphrase: "123");
+//                                                    
+//                                                    print(priv_key);
+//                                                }
+//                                            }
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//                let test_body = "/Users/Yanfeng/Desktop/test_new_key.txt"
+//                let test = NSString(contentsOfFile: test_body, encoding: NSUTF8StringEncoding, error: nil) as! String
+//                let out = pgp.decrypt_message(test, error: nil)
+//            }
+//        }
+
         
         let keys = [ PMNOpenPgpKey(publicKey: "publickey_1", privateKey: "privatekey_1"), PMNOpenPgpKey(publicKey: "publickey_2", privateKey: "privatekey_2"),PMNOpenPgpKey(publicKey: "publickey_3", privateKey: "privatekey_3"),PMNOpenPgpKey(publicKey: "publickey_4", privateKey: "privatekey_4") ]
         
@@ -351,7 +389,7 @@ class ViewController: NSViewController {
         
         let pgp:PMNOpenPgp? = PMNOpenPgp.createInstanceWithKeys(address)
         
-        let newKey = pgp?.generateKey()
+        let newKey = pgp?.generateKey("feng_test", domain: "protonmail.com", passphrase: "123");
         
          print(newKey?.publicKey)
          print(newKey?.privateKey)

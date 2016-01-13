@@ -1,24 +1,42 @@
 #pragma once
 
 #include "bridge/open_pgp.hpp"
+#include <unordered_map>
 
 namespace ProtonMail {
 
+    struct Address;
     class OpenPgpImpl : public ProtonMail::OpenPgp {
-
+        
+    private:
+        PGPSecretKey m_private_key;
+        PGPPublicKey m_public_key;
+        bool m_is_private_key_loaded;
+        bool m_is_public_key_loaded;
+        
+        
+        bool m_is_passpharse_right;
+        std::string m_str_passpharse;
+        
+        bool m_is_debug_mode;
+        
+        std::unordered_map<std::string, ProtonMail::Address> m_addresses;
+        
     public:
         OpenPgpImpl();
+        ~OpenPgpImpl();
 
         /**generat new key pair */
-        OpenPgpKey generate_key();
+        OpenPgpKey generate_key(const std::string & user_name, const std::string & domain, const std::string & passphrase);
         
-        bool add_address();
+        bool add_address(const Address & address) ;
         
-        bool remove_address();
+        bool remove_address(const std::string & address_id);
         
         bool clean_addresses();
 
-
+        void enable_debug(bool isDebug);
+        
         /**check is primary key passphrase ok */
         bool check_passphrase(const std::string &private_key, const std::string &passphrase);
 
@@ -46,10 +64,10 @@ namespace ProtonMail {
         std::string encrypt_message_aes(const std::string & plain_text, const std::string & password);
 
         std::string decrypt_message_aes(const std::string & encrypted_message, const std::string & password);
-
-        std::string encryptMailboxPWD(const std::string & unencrypted_pwd, const std::string & salt);
-
-        std::string decryptMailboxPWD(const std::string & encrypted_pwd, const std::string & salt);
+        
+        std::string encrypt_mailbox_pwd(const std::string & unencrypted_pwd, const std::string & salt);
+        
+        std::string decrypt_mailbox_pwd(const std::string & encrypted_pwd, const std::string & salt);
 
     };
 

@@ -14,14 +14,18 @@
 
 + (nullable PMNOpenPgp *)createInstanceWithKeys:(nonnull PMNAddress *)address;
 
-- (BOOL)addAddress;
+- (BOOL)addAddress:(nonnull PMNAddress *)address;
 
-- (BOOL)removeAddress;
+- (BOOL)removeAddress:(nonnull NSString *)addressId;
 
 - (BOOL)cleanAddresses;
 
+- (void)enableDebug:(BOOL)isDebug;
+
 /**generat new key pair */
-- (nonnull PMNOpenPgpKey *)generateKey;
+- (nonnull PMNOpenPgpKey *)generateKey:(nonnull NSString *)userName
+                                domain:(nonnull NSString *)domain
+                            passphrase:(nonnull NSString *)passphrase;
 
 /**check is primary key passphrase ok */
 - (BOOL)checkPassphrase:(nonnull NSString *)privateKey
@@ -66,10 +70,10 @@
 - (nonnull NSString *)decryptMessageAes:(nonnull NSString *)encryptedMessage
                                password:(nonnull NSString *)password;
 
-- (nonnull NSString *)encryptMailboxPWD:(nonnull NSString *)unencryptedPwd
+- (nonnull NSString *)encryptMailboxPwd:(nonnull NSString *)unencryptedPwd
                                    salt:(nonnull NSString *)salt;
 
-- (nonnull NSString *)decryptMailboxPWD:(nonnull NSString *)encryptedPwd
+- (nonnull NSString *)decryptMailboxPwd:(nonnull NSString *)encryptedPwd
                                    salt:(nonnull NSString *)salt;
 
 @end

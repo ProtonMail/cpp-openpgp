@@ -22,14 +22,16 @@ public:
 
     static std::shared_ptr<OpenPgp> create_instance_with_keys(const Address & address);
 
-    virtual bool add_address() = 0;
+    virtual bool add_address(const Address & address) = 0;
 
-    virtual bool remove_address() = 0;
+    virtual bool remove_address(const std::string & address_id) = 0;
 
     virtual bool clean_addresses() = 0;
 
+    virtual void enable_debug(bool isDebug) = 0;
+
     /**generat new key pair */
-    virtual OpenPgpKey generate_key() = 0;
+    virtual OpenPgpKey generate_key(const std::string & user_name, const std::string & domain, const std::string & passphrase) = 0;
 
     /**check is primary key passphrase ok */
     virtual bool check_passphrase(const std::string & private_key, const std::string & passphrase) = 0;
@@ -58,9 +60,9 @@ public:
 
     virtual std::string decrypt_message_aes(const std::string & encrypted_message, const std::string & password) = 0;
 
-    virtual std::string encryptMailboxPWD(const std::string & unencrypted_pwd, const std::string & salt) = 0;
+    virtual std::string encrypt_mailbox_pwd(const std::string & unencrypted_pwd, const std::string & salt) = 0;
 
-    virtual std::string decryptMailboxPWD(const std::string & encrypted_pwd, const std::string & salt) = 0;
+    virtual std::string decrypt_mailbox_pwd(const std::string & encrypted_pwd, const std::string & salt) = 0;
 };
 
 }  // namespace ProtonMail

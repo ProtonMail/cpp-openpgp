@@ -47,16 +47,16 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (BOOL)addAddress {
+- (BOOL)addAddress:(nonnull PMNAddress *)address {
     try {
-        auto r = _cppRefHandle.get()->add_address();
+        auto r = _cppRefHandle.get()->add_address(::OBJ_ProtonMail::Address::toCpp(address));
         return ::djinni::Bool::fromCpp(r);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (BOOL)removeAddress {
+- (BOOL)removeAddress:(nonnull NSString *)addressId {
     try {
-        auto r = _cppRefHandle.get()->remove_address();
+        auto r = _cppRefHandle.get()->remove_address(::djinni::String::toCpp(addressId));
         return ::djinni::Bool::fromCpp(r);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
@@ -68,9 +68,19 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (nonnull PMNOpenPgpKey *)generateKey {
+- (void)enableDebug:(BOOL)isDebug {
     try {
-        auto r = _cppRefHandle.get()->generate_key();
+        _cppRefHandle.get()->enable_debug(::djinni::Bool::toCpp(isDebug));
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (nonnull PMNOpenPgpKey *)generateKey:(nonnull NSString *)userName
+                                domain:(nonnull NSString *)domain
+                            passphrase:(nonnull NSString *)passphrase {
+    try {
+        auto r = _cppRefHandle.get()->generate_key(::djinni::String::toCpp(userName),
+                                                   ::djinni::String::toCpp(domain),
+                                                   ::djinni::String::toCpp(passphrase));
         return ::OBJ_ProtonMail::OpenPgpKey::fromCpp(r);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
@@ -191,20 +201,20 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (nonnull NSString *)encryptMailboxPWD:(nonnull NSString *)unencryptedPwd
+- (nonnull NSString *)encryptMailboxPwd:(nonnull NSString *)unencryptedPwd
                                    salt:(nonnull NSString *)salt {
     try {
-        auto r = _cppRefHandle.get()->encryptMailboxPWD(::djinni::String::toCpp(unencryptedPwd),
-                                                        ::djinni::String::toCpp(salt));
+        auto r = _cppRefHandle.get()->encrypt_mailbox_pwd(::djinni::String::toCpp(unencryptedPwd),
+                                                          ::djinni::String::toCpp(salt));
         return ::djinni::String::fromCpp(r);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (nonnull NSString *)decryptMailboxPWD:(nonnull NSString *)encryptedPwd
+- (nonnull NSString *)decryptMailboxPwd:(nonnull NSString *)encryptedPwd
                                    salt:(nonnull NSString *)salt {
     try {
-        auto r = _cppRefHandle.get()->decryptMailboxPWD(::djinni::String::toCpp(encryptedPwd),
-                                                        ::djinni::String::toCpp(salt));
+        auto r = _cppRefHandle.get()->decrypt_mailbox_pwd(::djinni::String::toCpp(encryptedPwd),
+                                                          ::djinni::String::toCpp(salt));
         return ::djinni::String::fromCpp(r);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

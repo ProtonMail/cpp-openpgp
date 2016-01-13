@@ -19,13 +19,16 @@ open_pgp = interface +c {
     static create_instance() : open_pgp;
 	static create_instance_with_keys(address : address) : open_pgp;
 
-    add_address() : bool;
-    remove_address() : bool;
+    add_address(address : address) : bool;
+    remove_address(address_id : string) : bool;
     clean_addresses() : bool;
+
+    enable_debug(isDebug : bool);
+
 
 
     #generat new key pair
-    generate_key() : open_pgp_key;
+    generate_key(user_name : string, domain : string, passphrase : string) : open_pgp_key;
 
     #check is primary key passphrase ok
     check_passphrase(private_key : string, passphrase : string) : bool;
@@ -47,8 +50,8 @@ open_pgp = interface +c {
     encrypt_message_aes(plain_text : string, password : string) : string;
     decrypt_message_aes(encrypted_message : string, password : string) : string;
 
-    encryptMailboxPWD(unencrypted_pwd : string, salt : string) : string;
-    decryptMailboxPWD(encrypted_pwd : string, salt : string) : string;
+    encrypt_mailbox_pwd(unencrypted_pwd : string, salt : string) : string;
+    decrypt_mailbox_pwd(encrypted_pwd : string, salt : string) : string;
 }
 
 
