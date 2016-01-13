@@ -110,8 +110,8 @@ namespace pm {
         std::cout << hexlify(match_hash_enc_data) << std::endl;
         std::cout << hexlify(hash_enc_data) << std::endl;
         
-        int compare =match_hash_enc_data.compare(hash_enc_data );
-        if( compare  != 0)
+        int compare = match_hash_enc_data.compare(hash_enc_data );
+        if( compare != 0)
         {
             std::cout << "hash_enc_data not match" << std::endl;
             return "hash_enc_data not match";
@@ -119,15 +119,15 @@ namespace pm {
         
         std::string decrypt_data = aes_cbc_256_decrypt(key_two, random_iv, enc_data);
         std::cout << decrypt_data << std::endl;
-        if(random_iv.find(salt_value) != 0 && salt_value.find(random_iv) != 0)
+        if(hexlify(random_iv).find(salt_value) != 0 && salt_value.find(hexlify(random_iv)) != 0)
         {
             std::cout << "random:" << hexlify(random_iv) << std::endl;
             std::cout << "salt_value:" << hexlify(salt_value) << std::endl;
             std::cout << "salt not match" << std::endl;
-            return random_iv;
+            return random_iv; //bad here
         }
         
-        return base64_encode(decrypt_data);
+        return decrypt_data; //base64_encode(decrypt_data);
 //        std::cout << hexlify(decrypt_data) << std::endl;
 //        //decrypt_data = unhexlify(decrypt_data);
 //

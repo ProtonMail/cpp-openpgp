@@ -341,31 +341,31 @@ public class MainActivity extends ActionBarActivity {
                 public void onClick(View view) {
 
                     OpenPgp test = OpenPgp.createInstance();
-                    OpenPgpKey test1 = test.generateKey();
-                    boolean test2 = test.checkPassphrase("", "");
-                    String test3 = test.encryptMessage("", "");
-                    String test4 = test.decryptMessage("", "");
-                    EncryptPackage test5 = test.encryptAttachment("", "".getBytes(), "");
-                    byte[] test6 = test.decryptAttachment("".getBytes(), "".getBytes(), "");
+                    OpenPgpKey test1 = test.generateKey("feng", "protonmail.ch", "123");
+//                    boolean test2 = test.checkPassphrase("", "");
+//                    String test3 = test.encryptMessage("", "");
+//                    String test4 = test.decryptMessage("", "");
+//                    EncryptPackage test5 = test.encryptAttachment("", "".getBytes(), "");
+//                    byte[] test6 = test.decryptAttachment("".getBytes(), "".getBytes(), "");
+//
+//                    /**TODO : not done and not inuse */
+//                    byte[] test7 = test.decryptAttachmentWithPassword("".getBytes(), "".getBytes(), "");
+//
+//                    byte[] test8 = test.getPublicKeySessionKey("".getBytes(), "", "");
+//
+//                    byte[] test9 = test.getSymmetricSessionKey("".getBytes(), "");
+//
+//                    byte[] test10 = test.getNewPublicKeyPackage("".getBytes(), "");
+//
+//                    byte[] test11 = test.getNewSymmetricKeyPackage("".getBytes(), "");
+//
+//                    String test12 = test.encryptMessageAes("", "");
+//
+//                    String test13 = test.decryptMessageAes("", "");
 
-                    /**TODO : not done and not inuse */
-                    byte[] test7 = test.decryptAttachmentWithPassword("".getBytes(), "".getBytes(), "");
+                    String test14 = test.encryptMailboxPwd("test pwd", "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
 
-                    byte[] test8 = test.getPublicKeySessionKey("".getBytes(), "", "");
-
-                    byte[] test9 = test.getSymmetricSessionKey("".getBytes(), "");
-
-                    byte[] test10 = test.getNewPublicKeyPackage("".getBytes(), "");
-
-                    byte[] test11 = test.getNewSymmetricKeyPackage("".getBytes(), "");
-
-                    String test12 = test.encryptMessageAes("", "");
-
-                    String test13 = test.decryptMessageAes("", "");
-
-                    String test14 = test.encryptMailboxPWD("", "");
-
-                    String test15 = test.decryptMailboxPWD("", "");
+                    String test15 = test.decryptMailboxPwd(test14, "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
 
                     Log.d("", "");
 
