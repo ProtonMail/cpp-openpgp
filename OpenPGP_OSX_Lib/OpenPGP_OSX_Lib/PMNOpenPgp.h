@@ -44,18 +44,33 @@
 - (nonnull NSString *)encryptMessage:(nonnull NSString *)addressId
                            plainText:(nonnull NSString *)plainText;
 
+- (nonnull NSString *)encryptMessageSingleKey:(nonnull NSString *)publicKey
+                                    plainText:(nonnull NSString *)plainText;
+
 - (nonnull NSString *)decryptMessage:(nonnull NSString *)encryptText
                            passphras:(nonnull NSString *)passphras;
+
+- (nonnull NSString *)decryptMessageSingleKey:(nonnull NSString *)encryptText
+                                   privateKey:(nonnull NSString *)privateKey
+                                    passphras:(nonnull NSString *)passphras;
 
 - (nonnull PMNEncryptPackage *)encryptAttachment:(nonnull NSString *)addressId
                                    unencryptData:(nonnull NSData *)unencryptData
                                         fileName:(nonnull NSString *)fileName;
 
+- (nonnull PMNEncryptPackage *)encryptAttachmentSingleKey:(nonnull NSString *)publicKey
+                                            unencryptData:(nonnull NSData *)unencryptData
+                                                 fileName:(nonnull NSString *)fileName;
+
 - (nonnull NSData *)decryptAttachment:(nonnull NSData *)key
                                  data:(nonnull NSData *)data
                             passphras:(nonnull NSString *)passphras;
 
-/**TODO : not done and not inuse */
+- (nonnull NSData *)decryptAttachmentSingleKey:(nonnull NSData *)key
+                                          data:(nonnull NSData *)data
+                                    privateKey:(nonnull NSString *)privateKey
+                                     passphras:(nonnull NSString *)passphras;
+
 - (nonnull NSData *)decryptAttachmentWithPassword:(nonnull NSData *)key
                                              data:(nonnull NSData *)data
                                          password:(nonnull NSString *)password;

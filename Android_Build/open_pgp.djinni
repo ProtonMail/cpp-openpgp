@@ -40,11 +40,16 @@ open_pgp = interface +c {
 
     #encrypt message
     encrypt_message(address_id : string, plain_text : string) : string;
+    encrypt_message_single_key(public_key : string, plain_text : string) : string;
     decrypt_message(encrypt_text : string, passphras : string) : string;
+    decrypt_message_single_key(encrypt_text : string, private_key : string, passphras : string) : string;
 
     encrypt_attachment(address_id : string, unencrypt_data : binary, file_name : string) : encrypt_package;
+    encrypt_attachment_single_key(public_key : string, unencrypt_data : binary, file_name : string) : encrypt_package;
     decrypt_attachment(key : binary, data : binary, passphras : string) : binary;
-    #TODO : not done and not inuse
+    decrypt_attachment_single_key(key : binary, data : binary, private_key : string, passphras : string) : binary;
+
+
 	decrypt_attachment_with_password(key : binary, data : binary, password : string) : binary;
 
     get_public_key_session_key(keyPackage : binary, privateKey : string, passphrase : string): binary;

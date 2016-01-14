@@ -152,15 +152,8 @@ namespace ProtonMail {
                                              const std::string &plan_text) {
         
         std::unordered_map<std::string, Address>::const_iterator got = m_addresses.find (address_id);
-        //        if ( got == m_addresses.end() )
-        //            std::cout << "not found";
-        //        else
-        //            std::cout << got->first << " is " << &got->second;
-        //
-        //        std::cout << std::endl;
-        //
-        //        //Address address = m_addresses[address_id];
-        std::string user_pub_key = got->second.keys[0].public_key; //m_addresses[address_id].keys[0].public_key;
+
+        std::string user_pub_key = got->second.keys[0].public_key;
         PGPPublicKey pub(user_pub_key);
         
         std::string unencrypt_msg = plan_text;
@@ -170,7 +163,20 @@ namespace ProtonMail {
         
         return encrypt_message;
     }
-
+    
+    std::string OpenPgpImpl::encrypt_message_single_key(const std::string & public_key, const std::string & plain_text) {
+        std::string str_user_public_key = public_key;
+        PGPPublicKey pub(str_user_public_key);
+        
+        std::string unencrypt_msg = plain_text;
+        
+        PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg);
+        std::string encrypt_message = encrypted_pgp.write();
+        
+        return encrypt_message;
+    }
+    
+    
     std::string OpenPgpImpl::decrypt_message(const std::string &encrypt_text,
                                              const std::string &passphras) {
         std::string encrypt_msg = encrypt_text;
@@ -178,6 +184,19 @@ namespace ProtonMail {
         
         std::string plain_text = decrypt_pka(m_private_key, pm_pgp_msg, passphras, false);
     
+        return plain_text;
+    }
+    
+    std::string OpenPgpImpl::decrypt_message_single_key(const std::string & encrypt_text, const std::string & private_key, const std::string & passphras) {
+        std::string str_private_key = private_key;
+        
+        PGPSecretKey pgp_private_key(str_private_key);
+        
+        std::string encrypt_msg = encrypt_text;
+        pm::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
+        
+        std::string plain_text = decrypt_pka(m_private_key, pm_pgp_msg, passphras, false);
+        
         return plain_text;
     }
 
@@ -188,15 +207,8 @@ namespace ProtonMail {
         
         // here need add more check
         std::unordered_map<std::string, Address>::const_iterator got = m_addresses.find (address_id);
-//        if ( got == m_addresses.end() )
-//            std::cout << "not found";
-//        else
-//            std::cout << got->first << " is " << &got->second;
-//        
-//        std::cout << std::endl;
-//        
-//        //Address address = m_addresses[address_id];
-        std::string user_pub_key = got->second.keys[0].public_key; //m_addresses[address_id].keys[0].public_key;
+        
+        std::string user_pub_key = got->second.keys[0].public_key;
         
         PGPPublicKey pub(user_pub_key);
         
@@ -205,6 +217,20 @@ namespace ProtonMail {
         std::string keyPackage = encrypted_pgp.write(1, 0, 1);
         std::string dataPackage = encrypted_pgp.write(1, 0, 18);
 
+        return EncryptPackage(std::vector<uint8_t>(keyPackage.begin(), keyPackage.end()), std::vector<uint8_t>(dataPackage.begin(), dataPackage.end()));
+    }
+    
+    EncryptPackage OpenPgpImpl::encrypt_attachment_single_key(const std::string & public_key, const std::vector<uint8_t> & unencrypt_data, const std::string & file_name) {
+        std::string str_public_key = public_key;
+        std::string unencrypt_msg(unencrypt_data.begin(), unencrypt_data.end());
+        
+        PGPPublicKey pub(str_public_key);
+        
+        PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg, file_name);
+        
+        std::string keyPackage = encrypted_pgp.write(1, 0, 1);
+        std::string dataPackage = encrypted_pgp.write(1, 0, 18);
+        
         return EncryptPackage(std::vector<uint8_t>(keyPackage.begin(), keyPackage.end()), std::vector<uint8_t>(dataPackage.begin(), dataPackage.end()));
     }
 
@@ -218,6 +244,24 @@ namespace ProtonMail {
         pm_pgp_msg.append(str_data_package, true);
         
         std::string test_plain_txt = decrypt_pka(m_private_key, pm_pgp_msg, passphras, false);
+        
+        std::vector<uint8_t> out_vector(test_plain_txt.begin(), test_plain_txt.end());
+        return out_vector;
+    }
+    
+    
+    std::vector<uint8_t> OpenPgpImpl::decrypt_attachment_single_key(const std::vector<uint8_t> & key, const std::vector<uint8_t> & data, const std::string & private_key, const std::string & passphras) {
+        
+        std::string str_key_package(key.begin(), key.end());
+        std::string str_data_package (data.begin(), data.end());
+        std::string str_private_key = private_key;
+        
+        PGPSecretKey pgp_private_key(str_private_key);
+        
+        pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
+        pm_pgp_msg.append(str_data_package, true);
+        
+        std::string test_plain_txt = decrypt_pka(pgp_private_key, pm_pgp_msg, passphras, false);
         
         std::vector<uint8_t> out_vector(test_plain_txt.begin(), test_plain_txt.end());
         return out_vector;

@@ -36,15 +36,26 @@ public abstract class OpenPgp {
     public abstract String encryptMessage(@Nonnull String addressId, @Nonnull String plainText);
 
     @Nonnull
+    public abstract String encryptMessageSingleKey(@Nonnull String publicKey, @Nonnull String plainText);
+
+    @Nonnull
     public abstract String decryptMessage(@Nonnull String encryptText, @Nonnull String passphras);
+
+    @Nonnull
+    public abstract String decryptMessageSingleKey(@Nonnull String encryptText, @Nonnull String privateKey, @Nonnull String passphras);
 
     @Nonnull
     public abstract EncryptPackage encryptAttachment(@Nonnull String addressId, @Nonnull byte[] unencryptData, @Nonnull String fileName);
 
     @Nonnull
+    public abstract EncryptPackage encryptAttachmentSingleKey(@Nonnull String publicKey, @Nonnull byte[] unencryptData, @Nonnull String fileName);
+
+    @Nonnull
     public abstract byte[] decryptAttachment(@Nonnull byte[] key, @Nonnull byte[] data, @Nonnull String passphras);
 
-    /**TODO : not done and not inuse */
+    @Nonnull
+    public abstract byte[] decryptAttachmentSingleKey(@Nonnull byte[] key, @Nonnull byte[] data, @Nonnull String privateKey, @Nonnull String passphras);
+
     @Nonnull
     public abstract byte[] decryptAttachmentWithPassword(@Nonnull byte[] key, @Nonnull byte[] data, @Nonnull String password);
 
@@ -174,12 +185,28 @@ public abstract class OpenPgp {
         private native String native_encryptMessage(long _nativeRef, String addressId, String plainText);
 
         @Override
+        public String encryptMessageSingleKey(String publicKey, String plainText)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_encryptMessageSingleKey(this.nativeRef, publicKey, plainText);
+        }
+        private native String native_encryptMessageSingleKey(long _nativeRef, String publicKey, String plainText);
+
+        @Override
         public String decryptMessage(String encryptText, String passphras)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
             return native_decryptMessage(this.nativeRef, encryptText, passphras);
         }
         private native String native_decryptMessage(long _nativeRef, String encryptText, String passphras);
+
+        @Override
+        public String decryptMessageSingleKey(String encryptText, String privateKey, String passphras)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_decryptMessageSingleKey(this.nativeRef, encryptText, privateKey, passphras);
+        }
+        private native String native_decryptMessageSingleKey(long _nativeRef, String encryptText, String privateKey, String passphras);
 
         @Override
         public EncryptPackage encryptAttachment(String addressId, byte[] unencryptData, String fileName)
@@ -190,12 +217,28 @@ public abstract class OpenPgp {
         private native EncryptPackage native_encryptAttachment(long _nativeRef, String addressId, byte[] unencryptData, String fileName);
 
         @Override
+        public EncryptPackage encryptAttachmentSingleKey(String publicKey, byte[] unencryptData, String fileName)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_encryptAttachmentSingleKey(this.nativeRef, publicKey, unencryptData, fileName);
+        }
+        private native EncryptPackage native_encryptAttachmentSingleKey(long _nativeRef, String publicKey, byte[] unencryptData, String fileName);
+
+        @Override
         public byte[] decryptAttachment(byte[] key, byte[] data, String passphras)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
             return native_decryptAttachment(this.nativeRef, key, data, passphras);
         }
         private native byte[] native_decryptAttachment(long _nativeRef, byte[] key, byte[] data, String passphras);
+
+        @Override
+        public byte[] decryptAttachmentSingleKey(byte[] key, byte[] data, String privateKey, String passphras)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_decryptAttachmentSingleKey(this.nativeRef, key, data, privateKey, passphras);
+        }
+        private native byte[] native_decryptAttachmentSingleKey(long _nativeRef, byte[] key, byte[] data, String privateKey, String passphras);
 
         @Override
         public byte[] decryptAttachmentWithPassword(byte[] key, byte[] data, String password)

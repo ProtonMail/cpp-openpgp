@@ -48,13 +48,21 @@ namespace ProtonMail {
 
         /**encrypt message */
         std::string encrypt_message(const std::string &address_id, const std::string &plan_text);
+        
+        std::string encrypt_message_single_key(const std::string & public_key, const std::string & plain_text);
 
         std::string decrypt_message(const std::string &encrypt_text, const std::string &passphras);
-
+        
+        std::string decrypt_message_single_key(const std::string & encrypt_text, const std::string & private_key, const std::string & passphras);
+        
         //
         EncryptPackage encrypt_attachment(const std::string & address_id, const std::vector<uint8_t> & unencrypt_data, const std::string & file_name);
+        
+        EncryptPackage encrypt_attachment_single_key(const std::string & public_key, const std::vector<uint8_t> & unencrypt_data, const std::string & file_name);
 
         std::vector<uint8_t> decrypt_attachment(const std::vector<uint8_t> & key, const std::vector<uint8_t> & data, const std::string & passphras);
+        
+        std::vector<uint8_t> decrypt_attachment_single_key(const std::vector<uint8_t> & key, const std::vector<uint8_t> & data, const std::string & private_key, const std::string & passphras);
 
         /**TODO : not done and not inuse */
         std::vector<uint8_t> decrypt_attachment_with_password(const std::vector<uint8_t> & key, const std::vector<uint8_t> & data, const std::string & password);
