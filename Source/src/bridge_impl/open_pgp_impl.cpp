@@ -195,7 +195,7 @@ namespace ProtonMail {
         std::string encrypt_msg = encrypt_text;
         pm::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
         
-        std::string plain_text = decrypt_pka(m_private_key, pm_pgp_msg, passphras, false);
+        std::string plain_text = decrypt_pka(pgp_private_key, pm_pgp_msg, passphras, false);
         
         return plain_text;
     }
@@ -238,7 +238,6 @@ namespace ProtonMail {
         
         std::string str_key_package(key.begin(), key.end());
         std::string str_data_package (data.begin(), data.end());
-        
         
         pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
         pm_pgp_msg.append(str_data_package, true);
@@ -283,10 +282,14 @@ namespace ProtonMail {
 
     std::vector<uint8_t> OpenPgpImpl::get_public_key_session_key(const std::vector<uint8_t> & keyPackage, const std::string & privateKey, const std::string & passphrase)
     {
+        std::string str_private_key = privateKey;
+        
+        PGPSecretKey pgp_private_key(str_private_key);
+        
         std::string str_key_package(keyPackage.begin(), keyPackage.end());
         pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
         
-        std::string sessionKey = decrypt_pka_only_session(m_private_key, pm_pgp_msg, passphrase);
+        std::string sessionKey = decrypt_pka_only_session(pgp_private_key, pm_pgp_msg, passphrase);
         
         std::vector<uint8_t> out_vector(sessionKey.begin(), sessionKey.end());
         return out_vector;
@@ -357,5 +360,8 @@ namespace ProtonMail {
     }
 
 
-
+    int32_t OpenPgpImpl::throw_an_exception() {
+        throw ExampleException();
+    }
+    
 }

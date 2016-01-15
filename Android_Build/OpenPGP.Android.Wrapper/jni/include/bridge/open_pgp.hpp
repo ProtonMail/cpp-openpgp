@@ -46,13 +46,20 @@ public:
     /**encrypt message */
     virtual std::string encrypt_message(const std::string & address_id, const std::string & plain_text) = 0;
 
+    virtual std::string encrypt_message_single_key(const std::string & public_key, const std::string & plain_text) = 0;
+
     virtual std::string decrypt_message(const std::string & encrypt_text, const std::string & passphras) = 0;
+
+    virtual std::string decrypt_message_single_key(const std::string & encrypt_text, const std::string & private_key, const std::string & passphras) = 0;
 
     virtual EncryptPackage encrypt_attachment(const std::string & address_id, const std::vector<uint8_t> & unencrypt_data, const std::string & file_name) = 0;
 
+    virtual EncryptPackage encrypt_attachment_single_key(const std::string & public_key, const std::vector<uint8_t> & unencrypt_data, const std::string & file_name) = 0;
+
     virtual std::vector<uint8_t> decrypt_attachment(const std::vector<uint8_t> & key, const std::vector<uint8_t> & data, const std::string & passphras) = 0;
 
-    /**TODO : not done and not inuse */
+    virtual std::vector<uint8_t> decrypt_attachment_single_key(const std::vector<uint8_t> & key, const std::vector<uint8_t> & data, const std::string & private_key, const std::string & passphras) = 0;
+
     virtual std::vector<uint8_t> decrypt_attachment_with_password(const std::vector<uint8_t> & key, const std::vector<uint8_t> & data, const std::string & password) = 0;
 
     virtual std::vector<uint8_t> get_public_key_session_key(const std::vector<uint8_t> & keyPackage, const std::string & privateKey, const std::string & passphrase) = 0;
@@ -70,6 +77,9 @@ public:
     virtual std::string encrypt_mailbox_pwd(const std::string & unencrypted_pwd, const std::string & salt) = 0;
 
     virtual std::string decrypt_mailbox_pwd(const std::string & encrypted_pwd, const std::string & salt) = 0;
+
+    /**test functions */
+    virtual int32_t throw_an_exception() = 0;
 };
 
 }  // namespace ProtonMail

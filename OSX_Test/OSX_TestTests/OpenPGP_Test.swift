@@ -411,4 +411,31 @@ class OpenPGP_Test: XCTestCase {
     
     
     
+    func test_singleKeyEncryptDecrypt() {
+        var plain_text : String = ""
+        if let localFile = bundleInstance.pathForResource("test_plain_message", ofType: "txt") {
+            if let content = String(contentsOfFile:localFile, encoding:NSUTF8StringEncoding, error: nil) {
+                plain_text = content;
+            }
+        }
+        XCTAssertFalse(plain_text.isEmpty, "test file can't be empty");
+        
+        let openPgp : PMNOpenPgp = PMNOpenPgp.createInstance()!
+        
+        for i in 0 ..< 100 {
+            print(" start \(i)");
+            let encryptedText = openPgp.encryptMessageSingleKey(publicKey, plainText: plain_text)
+            XCTAssertNotNil(encryptedText, "encryptedText can't null")
+            XCTAssertFalse(encryptedText.isEmpty, "cleartext can't empty")
+            
+            let decryptedText = openPgp.decryptMessageSingleKey(encryptedText, privateKey: privateKey, passphras: privatePassphrase)
+            XCTAssertNotNil(encryptedText, "decryptedText can't null")
+            XCTAssertFalse(encryptedText.isEmpty, "decryptedText can't empty")
+            XCTAssertTrue(decryptedText == plain_text, "decryptedText should be same as cleartext")
+            print(" end \(i)");
+        }
+
+    }
+    
+    
 }

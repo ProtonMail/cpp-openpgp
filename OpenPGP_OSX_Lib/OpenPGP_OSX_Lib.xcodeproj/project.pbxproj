@@ -359,6 +359,12 @@
 		7517E8D71AFABC35007EA967 /* utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6E01AFABC35007EA967 /* utility.cpp */; };
 		7517E8D81AFABC35007EA967 /* utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6E01AFABC35007EA967 /* utility.cpp */; };
 		7519BBE31A8D868000E0E570 /* libOpenPGP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7519BBD71A8D868000E0E570 /* libOpenPGP.a */; };
+		751C5FE21C49B17C00949FBF /* SwiftTryCatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 751C5FE11C49B17C00949FBF /* SwiftTryCatch.m */; };
+		751C5FE31C49B19500949FBF /* SwiftTryCatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 751C5FE11C49B17C00949FBF /* SwiftTryCatch.m */; };
+		751C5FE41C49B19500949FBF /* SwiftTryCatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 751C5FE11C49B17C00949FBF /* SwiftTryCatch.m */; };
+		751C5FE51C49B1B100949FBF /* SwiftTryCatch.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 751C5FE01C49B17C00949FBF /* SwiftTryCatch.h */; };
+		751C5FE61C49B1B800949FBF /* SwiftTryCatch.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 751C5FE01C49B17C00949FBF /* SwiftTryCatch.h */; };
+		751C5FE71C49B1C000949FBF /* SwiftTryCatch.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 751C5FE01C49B17C00949FBF /* SwiftTryCatch.h */; };
 		753FC8341AADB89E003EB084 /* OpenPGP.mm in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BBC1A8D8A47007B2B9B /* OpenPGP.mm */; };
 		75419DC51A97AF0E002A1F25 /* OpenPGP.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 756C9BBB1A8D8A47007B2B9B /* OpenPGP.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		75419F401A97E1A8002A1F25 /* OpenPGP.mm in Sources */ = {isa = PBXBuildFile; fileRef = 756C9BBC1A8D8A47007B2B9B /* OpenPGP.mm */; };
@@ -434,6 +440,7 @@
 			dstPath = "$(PROJECT_DIR)/../Bin/include/$(PRODUCT_NAME)_IOS";
 			dstSubfolderSpec = 0;
 			files = (
+				751C5FE51C49B1B100949FBF /* SwiftTryCatch.h in CopyFiles */,
 				7559584A1C462C9C009D9B6C /* PMNAddress.h in CopyFiles */,
 				7545D3F21C45A67E000D2F8D /* PMNEncryptPackage.h in CopyFiles */,
 				7545D3F31C45A67E000D2F8D /* PMNOpenPgp.h in CopyFiles */,
@@ -448,6 +455,7 @@
 			dstPath = "$(PROJECT_DIR)/../Bin/include/$(PRODUCT_NAME)_OSX";
 			dstSubfolderSpec = 0;
 			files = (
+				751C5FE61C49B1B800949FBF /* SwiftTryCatch.h in CopyFiles */,
 				755958491C462C94009D9B6C /* PMNAddress.h in CopyFiles */,
 				7545D3EF1C45A674000D2F8D /* PMNEncryptPackage.h in CopyFiles */,
 				7545D3F01C45A674000D2F8D /* PMNOpenPgp.h in CopyFiles */,
@@ -462,6 +470,7 @@
 			dstPath = "$(PROJECT_DIR)/../Bin/include/$(PRODUCT_NAME)_OSX";
 			dstSubfolderSpec = 0;
 			files = (
+				751C5FE71C49B1C000949FBF /* SwiftTryCatch.h in CopyFiles */,
 				7559584B1C462CA4009D9B6C /* PMNAddress.h in CopyFiles */,
 				7545D3EC1C45A664000D2F8D /* PMNEncryptPackage.h in CopyFiles */,
 				7545D3ED1C45A664000D2F8D /* PMNOpenPgp.h in CopyFiles */,
@@ -594,6 +603,8 @@
 		7519BBE21A8D868000E0E570 /* OpenPGP_OSX_LibTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenPGP_OSX_LibTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7519BBE81A8D868000E0E570 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7519BBFA1A8D869000E0E570 /* libOpenPGP_x86_64.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOpenPGP_x86_64.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		751C5FE01C49B17C00949FBF /* SwiftTryCatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftTryCatch.h; sourceTree = "<group>"; };
+		751C5FE11C49B17C00949FBF /* SwiftTryCatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwiftTryCatch.m; sourceTree = "<group>"; };
 		75419F471A97E1A8002A1F25 /* libOpenPGP_i386.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOpenPGP_i386.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7545D3C41C45A158000D2F8D /* PMNEncryptPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMNEncryptPackage.h; sourceTree = "<group>"; };
 		7545D3C51C45A158000D2F8D /* PMNEncryptPackage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PMNEncryptPackage.mm; sourceTree = "<group>"; };
@@ -942,6 +953,8 @@
 		7545D3DE1C45A24A000D2F8D /* obj_base */ = {
 			isa = PBXGroup;
 			children = (
+				751C5FE01C49B17C00949FBF /* SwiftTryCatch.h */,
+				751C5FE11C49B17C00949FBF /* SwiftTryCatch.m */,
 				7545D3E91C45A4D5000D2F8D /* djinni_common.hpp */,
 				7545D3EA1C45A4D5000D2F8D /* proxy_cache_impl.hpp */,
 				7545D3EB1C45A4D5000D2F8D /* proxy_cache_interface.hpp */,
@@ -1134,6 +1147,7 @@
 				7545D3D11C45A158000D2F8D /* PMNOpenPgp+Private.mm in Sources */,
 				758D70FA1C45DD07007F1A80 /* PMNAddress.mm in Sources */,
 				7517E88E1AFABC35007EA967 /* Tag6.cpp in Sources */,
+				751C5FE21C49B17C00949FBF /* SwiftTryCatch.m in Sources */,
 				7517E7BE1AFABC35007EA967 /* packets.cpp in Sources */,
 				7517E7121AFABC35007EA967 /* Blowfish.cpp in Sources */,
 				7517E73A1AFABC35007EA967 /* TDES.cpp in Sources */,
@@ -1278,6 +1292,7 @@
 				7517E7BB1AFABC35007EA967 /* packet.cpp in Sources */,
 				758D70FE1C45E38F007F1A80 /* PMNAddress.mm in Sources */,
 				7517E7CB1AFABC35007EA967 /* subpacket.cpp in Sources */,
+				751C5FE41C49B19500949FBF /* SwiftTryCatch.m in Sources */,
 				7517E71F1AFABC35007EA967 /* DES.cpp in Sources */,
 				7517E72B1AFABC35007EA967 /* IDEA.cpp in Sources */,
 				7517E89F1AFABC35007EA967 /* Tag63.cpp in Sources */,
@@ -1415,6 +1430,7 @@
 				7517E7BC1AFABC35007EA967 /* packet.cpp in Sources */,
 				758D70FD1C45E38F007F1A80 /* PMNAddress.mm in Sources */,
 				7517E7CC1AFABC35007EA967 /* subpacket.cpp in Sources */,
+				751C5FE31C49B19500949FBF /* SwiftTryCatch.m in Sources */,
 				7517E7201AFABC35007EA967 /* DES.cpp in Sources */,
 				7517E72C1AFABC35007EA967 /* IDEA.cpp in Sources */,
 				7517E8A01AFABC35007EA967 /* Tag63.cpp in Sources */,

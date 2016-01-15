@@ -77,6 +77,9 @@ public:
     virtual std::string encrypt_mailbox_pwd(const std::string & unencrypted_pwd, const std::string & salt) = 0;
 
     virtual std::string decrypt_mailbox_pwd(const std::string & encrypted_pwd, const std::string & salt) = 0;
+
+    /**test functions */
+    virtual int32_t throw_an_exception() = 0;
 };
 
 }  // namespace ProtonMail

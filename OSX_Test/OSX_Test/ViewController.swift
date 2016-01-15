@@ -383,16 +383,26 @@ class ViewController: NSViewController {
 //        }
 
         
-        let keys = [ PMNOpenPgpKey(publicKey: "publickey_1", privateKey: "privatekey_1"), PMNOpenPgpKey(publicKey: "publickey_2", privateKey: "privatekey_2"),PMNOpenPgpKey(publicKey: "publickey_3", privateKey: "privatekey_3"),PMNOpenPgpKey(publicKey: "publickey_4", privateKey: "privatekey_4") ]
+//        let keys = [ PMNOpenPgpKey(publicKey: "publickey_1", privateKey: "privatekey_1"), PMNOpenPgpKey(publicKey: "publickey_2", privateKey: "privatekey_2"),PMNOpenPgpKey(publicKey: "publickey_3", privateKey: "privatekey_3"),PMNOpenPgpKey(publicKey: "publickey_4", privateKey: "privatekey_4") ]
+//        
+//        var address = PMNAddress(addressId: "1", addressName: "feng@protonmail.blue", keys: keys)
         
-        var address = PMNAddress(addressId: "1", addressName: "feng@protonmail.blue", keys: keys)
+        let pgp:PMNOpenPgp = PMNOpenPgp.createInstance()!
         
-        let pgp:PMNOpenPgp? = PMNOpenPgp.createInstanceWithKeys(address)
+
+        SwiftTryCatch.tryBlock({ () -> Void in
+            pgp.throwAnException()
+        }, catchBlock: { (error) -> Void in
+            println("\(error.description)")
+        }) { () -> Void in
+            //
+        }
         
-        let newKey = pgp?.generateKey("feng_test", domain: "protonmail.com", passphrase: "123");
         
-         print(newKey?.publicKey)
-         print(newKey?.privateKey)
+        let newKey = pgp.generateKey("feng_test", domain: "protonmail.com", passphrase: "123");
+        
+         print(newKey.publicKey)
+         print(newKey.privateKey)
         //                    String test_encrypt = OpenPGP.EncryptMailboxPWD("thisisatestmailbox", "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
         //                    String test_plain_text = OpenPGP.DecryptMailboxPWD(test_encrypt, "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
         //let en_pwd = pgp?.encryptMailboxPwd("thisisatestmailbox", salt: "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
@@ -400,8 +410,8 @@ class ViewController: NSViewController {
         
         
         let openpgp_old = OpenPGP();
-        let en_pwd = pgp?.encryptMailboxPwd("thisisatestmailbox", salt: "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
-        let plain_pwd = pgp?.decryptMailboxPwd(en_pwd!, salt: "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
+        let en_pwd = pgp.encryptMailboxPwd("thisisatestmailbox", salt: "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
+        let plain_pwd = pgp.decryptMailboxPwd(en_pwd, salt: "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
 //        let en_pwd_old = openpgp_old.encrypt_mailbox_pwd("thisisatestmailbox", slat: "4428c82a118a2dc76f53dab507d3b1d69850ebb9" );
 //        
 //         let plain_pwd_old = openpgp_old.decrypt_mailbox_pwd(en_pwd_old!, slat: "4428c82a118a2dc76f53dab507d3b1d69850ebb9");

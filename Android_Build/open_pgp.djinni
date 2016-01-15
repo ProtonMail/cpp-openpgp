@@ -62,6 +62,10 @@ open_pgp = interface +c {
 
     encrypt_mailbox_pwd(unencrypted_pwd : string, salt : string) : string;
     decrypt_mailbox_pwd(encrypted_pwd : string, salt : string) : string;
+
+
+    #test functions
+    throw_an_exception(): i32;
 }
 
 

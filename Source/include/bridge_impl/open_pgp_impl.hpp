@@ -4,6 +4,14 @@
 #include <unordered_map>
 
 namespace ProtonMail {
+    
+    class ExampleException: public std::exception {
+        virtual const char* what() const throw() {
+            return "Exception Thrown";
+        }
+    };
+    
+    extern ExampleException EXAMPLE_EXCEPTION;
 
     struct Address;
     class OpenPgpImpl : public ProtonMail::OpenPgp {
@@ -82,6 +90,9 @@ namespace ProtonMail {
         std::string encrypt_mailbox_pwd(const std::string & unencrypted_pwd, const std::string & salt);
         
         std::string decrypt_mailbox_pwd(const std::string & encrypted_pwd, const std::string & salt);
+        
+        
+        int32_t throw_an_exception();
 
     };
 
