@@ -17,11 +17,11 @@ namespace ProtonMail {
     class OpenPgpImpl : public ProtonMail::OpenPgp {
         
     private:
-        PGPSecretKey m_private_key;
-        PGPPublicKey m_public_key;
+        std::shared_ptr<PGPSecretKey> m_private_key;
+        std::shared_ptr<PGPPublicKey> m_public_key;
+        
         bool m_is_private_key_loaded;
         bool m_is_public_key_loaded;
-        
         
         bool m_is_passpharse_right;
         std::string m_str_passpharse;

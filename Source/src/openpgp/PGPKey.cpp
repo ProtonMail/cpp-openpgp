@@ -272,6 +272,7 @@ PGPSecretKey::PGPSecretKey():
    PGPKey()
 {
     ASCII_Armor = 2;
+    //std::cout << "PGPSecretKey" << std::endl;
 }
 
 PGPSecretKey::PGPSecretKey(const PGPSecretKey & copy):
@@ -280,6 +281,7 @@ PGPSecretKey::PGPSecretKey(const PGPSecretKey & copy):
     if ((ASCII_Armor == 255) && meaningful()){
         ASCII_Armor = 2;
     }
+    //std::cout << "PGPSecretKey" << std::endl;
 }
 
 PGPSecretKey::PGPSecretKey(std::string & data):
@@ -288,6 +290,7 @@ PGPSecretKey::PGPSecretKey(std::string & data):
     if ((ASCII_Armor == 255) && meaningful()){
         ASCII_Armor = 2;
     }
+    //std::cout << "PGPSecretKey" << std::endl;
 }
 
 PGPSecretKey::PGPSecretKey(std::ifstream & f):
@@ -296,9 +299,12 @@ PGPSecretKey::PGPSecretKey(std::ifstream & f):
     if ((ASCII_Armor == 255) && meaningful()){
         ASCII_Armor = 2;
     }
+    //std::cout << "PGPSecretKey" << std::endl;
 }
 
-PGPSecretKey::~PGPSecretKey(){}
+PGPSecretKey::~PGPSecretKey(){
+    //std::cout << "~PGPSecretKey" << std::endl;
+}
 
 PGPPublicKey PGPSecretKey::pub() const {
     return Secret2PublicKey(*this);

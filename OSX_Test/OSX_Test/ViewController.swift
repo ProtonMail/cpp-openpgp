@@ -341,81 +341,115 @@ class ViewController: NSViewController {
         }
     }
     @IBAction func new_jni_test(sender: AnyObject) {
-        //let pgptest = PMNOpenPgp.createInstance()!;
-        
-//        if let localFile = NSBundle.mainBundle().pathForResource("feng_addresses", ofType: "geojson") {
-//            if let content = String(contentsOfFile:localFile, encoding:NSUTF8StringEncoding, error: nil) {
-//                
-//                let pgp:OpenPGP = OpenPGP()
-//                
-//                var parseError: NSError?
-//                let parsedObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(content.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, options: NSJSONReadingOptions.AllowFragments, error: nil)
-//                
-//                if let topApps = parsedObject as? NSDictionary {
-//                    if let feed = topApps["User"] as? NSDictionary {
-//                        if let addresses = feed["Addresses"] as? NSArray {
-//                            for address in addresses {
-//                                if let address = address as? NSDictionary {
-//                                    if let keys = address["Keys"] as? NSArray {
-//                                        for key in keys {
-//                                            if let key = key as? NSDictionary {
-//                                                print(key);
-//                                                if let priv_key = key["PrivateKey"] as? String {
-//                                                    pgp.AddKeys(priv_key, pubKey: "", error: nil)
-//                                                    let check_1 = pgptest.checkPassphrase(priv_key, passphrase: "111");
-//                                                    let check_2 = pgptest.checkPassphrase(priv_key, passphrase: "1112");
-//                                                    let check_3 = pgptest.checkPassphrase(priv_key, passphrase: "123");
-//                                                    
-//                                                    print(priv_key);
-//                                                }
-//                                            }
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//                let test_body = "/Users/Yanfeng/Desktop/test_new_key.txt"
-//                let test = NSString(contentsOfFile: test_body, encoding: NSUTF8StringEncoding, error: nil) as! String
-//                let out = pgp.decrypt_message(test, error: nil)
-//            }
-//        }
+        if let localFile = NSBundle.mainBundle().pathForResource("feng_addresses", ofType: "geojson") {
+            if let content = String(contentsOfFile:localFile, encoding:NSUTF8StringEncoding, error: nil) {
+                
+                let openPgp : PMNOpenPgp = PMNOpenPgp.createInstance()!
+                
+                var parseError: NSError?
+                let parsedObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(content.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, options: NSJSONReadingOptions.AllowFragments, error: nil)
+                
+                if let topApps = parsedObject as? NSDictionary {
+                    if let feed = topApps["User"] as? NSDictionary {
+                        if let addresses = feed["Addresses"] as? NSArray {
+                            for address in addresses {
+                                if let address = address as? NSDictionary {
+                                    let addressID = address["ID"] as! String;
+                                    let addressName = address["Email"] as! String;
+                                    var address_keys : [PMNOpenPgpKey] = [PMNOpenPgpKey]()
+                                    if let keys = address["Keys"] as? NSArray {
+                                        for key in keys {
+                                            if let key = key as? NSDictionary {
+                                                let keyo = PMNOpenPgpKey(publicKey: key["PublicKey"] as! String, privateKey: key["PrivateKey"] as! String);
+                                                address_keys.append(keyo)
+                                            }
+                                        }
+                                    }
+                                    let newAddress = PMNAddress(addressId: addressID, addressName: addressName, keys: address_keys);
+                                    openPgp.addAddress(newAddress);
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                let test_body = "/Users/Yanfeng/Desktop/test_new_key.txt"
+                let test = NSString(contentsOfFile: test_body, encoding: NSUTF8StringEncoding, error: nil) as! String
+                
+                for i in 0 ..< 200 {
+                    print(" start \(i)");
+                    let tmp_out = openPgp.decryptMessage(test, passphras: "123");
+                    println(" end \(i)");
+                }
+                
+                openPgp.cleanAddresses()
+                if let topApps = parsedObject as? NSDictionary {
+                    if let feed = topApps["User"] as? NSDictionary {
+                        if let addresses = feed["Addresses"] as? NSArray {
+                            for address in addresses {
+                                if let address = address as? NSDictionary {
+                                    let addressID = address["ID"] as! String;
+                                    let addressName = address["Email"] as! String;
+                                    var address_keys : [PMNOpenPgpKey] = [PMNOpenPgpKey]()
+                                    if let keys = address["Keys"] as? NSArray {
+                                        for key in keys {
+                                            if let key = key as? NSDictionary {
+                                                let keyo = PMNOpenPgpKey(publicKey: key["PublicKey"] as! String, privateKey: key["PrivateKey"] as! String);
+                                                address_keys.append(keyo)
+                                            }
+                                        }
+                                    }
+                                    let newAddress = PMNAddress(addressId: addressID, addressName: addressName, keys: address_keys);
+                                    openPgp.addAddress(newAddress);
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                for i in 0 ..< 200 {
+                    print(" start \(i)");
+                    let tmp_out = openPgp.decryptMessage(test, passphras: "123");
+                    println(" end \(i)");
+                }
+
+            }
+        }
 
         
 //        let keys = [ PMNOpenPgpKey(publicKey: "publickey_1", privateKey: "privatekey_1"), PMNOpenPgpKey(publicKey: "publickey_2", privateKey: "privatekey_2"),PMNOpenPgpKey(publicKey: "publickey_3", privateKey: "privatekey_3"),PMNOpenPgpKey(publicKey: "publickey_4", privateKey: "privatekey_4") ]
 //        
 //        var address = PMNAddress(addressId: "1", addressName: "feng@protonmail.blue", keys: keys)
         
-        let pgp:PMNOpenPgp = PMNOpenPgp.createInstance()!
-        
-
-        SwiftTryCatch.tryBlock({ () -> Void in
-            pgp.throwAnException()
-        }, catchBlock: { (error) -> Void in
-            println("\(error.description)")
-        }) { () -> Void in
-            //
-        }
-        
-        
-        let newKey = pgp.generateKey("feng_test", domain: "protonmail.com", passphrase: "123");
-        
-         print(newKey.publicKey)
-         print(newKey.privateKey)
-        //                    String test_encrypt = OpenPGP.EncryptMailboxPWD("thisisatestmailbox", "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
-        //                    String test_plain_text = OpenPGP.DecryptMailboxPWD(test_encrypt, "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
-        //let en_pwd = pgp?.encryptMailboxPwd("thisisatestmailbox", salt: "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
-        //let plain_pwd = pgp?.decryptMailboxPwd(en_pwd!, salt: "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
-        
-        
-        let openpgp_old = OpenPGP();
-        let en_pwd = pgp.encryptMailboxPwd("thisisatestmailbox", salt: "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
-        let plain_pwd = pgp.decryptMailboxPwd(en_pwd, salt: "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
-//        let en_pwd_old = openpgp_old.encrypt_mailbox_pwd("thisisatestmailbox", slat: "4428c82a118a2dc76f53dab507d3b1d69850ebb9" );
+//        let pgp:PMNOpenPgp = PMNOpenPgp.createInstance()!
 //        
-//         let plain_pwd_old = openpgp_old.decrypt_mailbox_pwd(en_pwd_old!, slat: "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
-        print("");
+////
+////        SwiftTryCatch.tryBlock({ () -> Void in
+////            pgp.throwAnException()
+////        }, catchBlock: { (error) -> Void in
+////            println("\(error.description)")
+////        }) { () -> Void in
+////            //
+////        }
+////        
+//        
+//        let newKey = pgp.generateKey("feng_test", domain: "protonmail.com", passphrase: "123");
+//        
+//         print(newKey.publicKey)
+//         print(newKey.privateKey)
+//        //                    String test_encrypt = OpenPGP.EncryptMailboxPWD("thisisatestmailbox", "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
+//        //                    String test_plain_text = OpenPGP.DecryptMailboxPWD(test_encrypt, "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
+//        //let en_pwd = pgp?.encryptMailboxPwd("thisisatestmailbox", salt: "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
+//        //let plain_pwd = pgp?.decryptMailboxPwd(en_pwd!, salt: "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
+//        
+//        
+//        let openpgp_old = OpenPGP();
+//        let en_pwd = pgp.encryptMailboxPwd("thisisatestmailbox", salt: "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
+//        let plain_pwd = pgp.decryptMailboxPwd(en_pwd, salt: "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
+////        let en_pwd_old = openpgp_old.encrypt_mailbox_pwd("thisisatestmailbox", slat: "4428c82a118a2dc76f53dab507d3b1d69850ebb9" );
+////        
+////         let plain_pwd_old = openpgp_old.decrypt_mailbox_pwd(en_pwd_old!, slat: "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
+//        print("");
     }
 }
 

@@ -30,11 +30,11 @@ namespace ProtonMail {
     }
 
     OpenPgpImpl::OpenPgpImpl() {
-
+        m_private_key = std::make_shared<PGPSecretKey>();
     }
     
     OpenPgpImpl::~OpenPgpImpl() {
-        
+        m_private_key.reset();
     }
     
     OpenPgpKey OpenPgpImpl::generate_key(const std::string & user_name, const std::string & domain, const std::string & passphrase) {
@@ -56,18 +56,21 @@ namespace ProtonMail {
         
         for (const auto &key : address.keys) {
             std::string private_key = key.private_key;
-            m_private_key.read(private_key);
+            m_private_key->read(private_key);
         }
         
         return true;
     }
     
     bool OpenPgpImpl::remove_address(const std::string & address_id) {
+        
         return false;
     }
     
     bool OpenPgpImpl::clean_addresses() {
-        return false;
+        m_addresses.clear();
+        m_private_key = std::make_shared<PGPSecretKey>();
+        return true;
     }
     
     void OpenPgpImpl::enable_debug(bool isDebug) {
@@ -182,7 +185,7 @@ namespace ProtonMail {
         std::string encrypt_msg = encrypt_text;
         pm::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
         
-        std::string plain_text = decrypt_pka(m_private_key, pm_pgp_msg, passphras, false);
+        std::string plain_text = decrypt_pka(*m_private_key, pm_pgp_msg, passphras, false);
     
         return plain_text;
     }
@@ -242,7 +245,7 @@ namespace ProtonMail {
         pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
         pm_pgp_msg.append(str_data_package, true);
         
-        std::string test_plain_txt = decrypt_pka(m_private_key, pm_pgp_msg, passphras, false);
+        std::string test_plain_txt = decrypt_pka(*m_private_key, pm_pgp_msg, passphras, false);
         
         std::vector<uint8_t> out_vector(test_plain_txt.begin(), test_plain_txt.end());
         return out_vector;
