@@ -49,10 +49,11 @@ open_pgp = interface +c {
     decrypt_attachment(key : binary, data : binary, passphras : string) : binary;
     decrypt_attachment_single_key(key : binary, data : binary, private_key : string, passphras : string) : binary;
 
-
 	decrypt_attachment_with_password(key : binary, data : binary, password : string) : binary;
 
-    get_public_key_session_key(keyPackage : binary, privateKey : string, passphrase : string): binary;
+    get_public_key_session_key(keyPackage : binary, passphrase : string): binary;
+    get_public_key_session_key_single_key(keyPackage : binary, privateKey : string, passphrase : string): binary;
+
 	get_symmetric_session_key(keyPackage : binary, password : string): binary;
 	get_new_public_key_package(session : binary, publicKey : string) : binary;
 	get_new_symmetric_key_package(session : binary, password : string): binary;

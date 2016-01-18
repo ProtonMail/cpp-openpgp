@@ -207,12 +207,21 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
 }
 
 - (nonnull NSData *)getPublicKeySessionKey:(nonnull NSData *)keyPackage
-                                privateKey:(nonnull NSString *)privateKey
                                 passphrase:(nonnull NSString *)passphrase {
     try {
         auto r = _cppRefHandle.get()->get_public_key_session_key(::djinni::Binary::toCpp(keyPackage),
-                                                                 ::djinni::String::toCpp(privateKey),
                                                                  ::djinni::String::toCpp(passphrase));
+        return ::djinni::Binary::fromCpp(r);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (nonnull NSData *)getPublicKeySessionKeySingleKey:(nonnull NSData *)keyPackage
+                                         privateKey:(nonnull NSString *)privateKey
+                                         passphrase:(nonnull NSString *)passphrase {
+    try {
+        auto r = _cppRefHandle.get()->get_public_key_session_key_single_key(::djinni::Binary::toCpp(keyPackage),
+                                                                            ::djinni::String::toCpp(privateKey),
+                                                                            ::djinni::String::toCpp(passphrase));
         return ::djinni::Binary::fromCpp(r);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

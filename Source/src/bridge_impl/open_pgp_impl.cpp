@@ -283,8 +283,18 @@ namespace ProtonMail {
         return out_vector;
     }
 
-    std::vector<uint8_t> OpenPgpImpl::get_public_key_session_key(const std::vector<uint8_t> & keyPackage, const std::string & privateKey, const std::string & passphrase)
+    std::vector<uint8_t> OpenPgpImpl::get_public_key_session_key(const std::vector<uint8_t> & keyPackage, const std::string & passphrase)
     {
+        std::string str_key_package(keyPackage.begin(), keyPackage.end());
+        pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
+        
+        std::string sessionKey = decrypt_pka_only_session(*m_private_key, pm_pgp_msg, passphrase);
+        
+        std::vector<uint8_t> out_vector(sessionKey.begin(), sessionKey.end());
+        return out_vector;
+    }
+    
+    std::vector<uint8_t> OpenPgpImpl::get_public_key_session_key_single_key(const std::vector<uint8_t> & keyPackage, const std::string & privateKey, const std::string & passphrase) {
         std::string str_private_key = privateKey;
         
         PGPSecretKey pgp_private_key(str_private_key);

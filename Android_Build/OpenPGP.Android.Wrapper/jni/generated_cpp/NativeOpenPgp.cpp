@@ -230,14 +230,25 @@ CJNIEXPORT jbyteArray JNICALL Java_ch_protonmail_android_utils_OpenPgp_00024CppP
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jbyteArray JNICALL Java_ch_protonmail_android_utils_OpenPgp_00024CppProxy_native_1getPublicKeySessionKey(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jbyteArray j_keyPackage, jstring j_privateKey, jstring j_passphrase)
+CJNIEXPORT jbyteArray JNICALL Java_ch_protonmail_android_utils_OpenPgp_00024CppProxy_native_1getPublicKeySessionKey(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jbyteArray j_keyPackage, jstring j_passphrase)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::OpenPgp>(nativeRef);
         auto r = ref->get_public_key_session_key(::djinni::Binary::toCpp(jniEnv, j_keyPackage),
-                                                 ::djinni::String::toCpp(jniEnv, j_privateKey),
                                                  ::djinni::String::toCpp(jniEnv, j_passphrase));
+        return ::djinni::release(::djinni::Binary::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
+}
+
+CJNIEXPORT jbyteArray JNICALL Java_ch_protonmail_android_utils_OpenPgp_00024CppProxy_native_1getPublicKeySessionKeySingleKey(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jbyteArray j_keyPackage, jstring j_privateKey, jstring j_passphrase)
+{
+    try {
+        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
+        const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::OpenPgp>(nativeRef);
+        auto r = ref->get_public_key_session_key_single_key(::djinni::Binary::toCpp(jniEnv, j_keyPackage),
+                                                            ::djinni::String::toCpp(jniEnv, j_privateKey),
+                                                            ::djinni::String::toCpp(jniEnv, j_passphrase));
         return ::djinni::release(::djinni::Binary::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }

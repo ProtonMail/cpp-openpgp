@@ -60,7 +60,10 @@ public abstract class OpenPgp {
     public abstract byte[] decryptAttachmentWithPassword(@Nonnull byte[] key, @Nonnull byte[] data, @Nonnull String password);
 
     @Nonnull
-    public abstract byte[] getPublicKeySessionKey(@Nonnull byte[] keyPackage, @Nonnull String privateKey, @Nonnull String passphrase);
+    public abstract byte[] getPublicKeySessionKey(@Nonnull byte[] keyPackage, @Nonnull String passphrase);
+
+    @Nonnull
+    public abstract byte[] getPublicKeySessionKeySingleKey(@Nonnull byte[] keyPackage, @Nonnull String privateKey, @Nonnull String passphrase);
 
     @Nonnull
     public abstract byte[] getSymmetricSessionKey(@Nonnull byte[] keyPackage, @Nonnull String password);
@@ -252,12 +255,20 @@ public abstract class OpenPgp {
         private native byte[] native_decryptAttachmentWithPassword(long _nativeRef, byte[] key, byte[] data, String password);
 
         @Override
-        public byte[] getPublicKeySessionKey(byte[] keyPackage, String privateKey, String passphrase)
+        public byte[] getPublicKeySessionKey(byte[] keyPackage, String passphrase)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getPublicKeySessionKey(this.nativeRef, keyPackage, privateKey, passphrase);
+            return native_getPublicKeySessionKey(this.nativeRef, keyPackage, passphrase);
         }
-        private native byte[] native_getPublicKeySessionKey(long _nativeRef, byte[] keyPackage, String privateKey, String passphrase);
+        private native byte[] native_getPublicKeySessionKey(long _nativeRef, byte[] keyPackage, String passphrase);
+
+        @Override
+        public byte[] getPublicKeySessionKeySingleKey(byte[] keyPackage, String privateKey, String passphrase)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_getPublicKeySessionKeySingleKey(this.nativeRef, keyPackage, privateKey, passphrase);
+        }
+        private native byte[] native_getPublicKeySessionKeySingleKey(long _nativeRef, byte[] keyPackage, String privateKey, String passphrase);
 
         @Override
         public byte[] getSymmetricSessionKey(byte[] keyPackage, String password)

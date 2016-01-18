@@ -76,8 +76,11 @@
                                          password:(nonnull NSString *)password;
 
 - (nonnull NSData *)getPublicKeySessionKey:(nonnull NSData *)keyPackage
-                                privateKey:(nonnull NSString *)privateKey
                                 passphrase:(nonnull NSString *)passphrase;
+
+- (nonnull NSData *)getPublicKeySessionKeySingleKey:(nonnull NSData *)keyPackage
+                                         privateKey:(nonnull NSString *)privateKey
+                                         passphrase:(nonnull NSString *)passphrase;
 
 - (nonnull NSData *)getSymmetricSessionKey:(nonnull NSData *)keyPackage
                                   password:(nonnull NSString *)password;
