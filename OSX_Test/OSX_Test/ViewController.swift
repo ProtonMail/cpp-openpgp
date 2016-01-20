@@ -8,12 +8,12 @@
 
 import Cocoa
 
+
 class ViewController: NSViewController {
     
     @IBOutlet weak var labelDisplay: NSTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
     }
     
@@ -178,8 +178,6 @@ class ViewController: NSViewController {
         
         // pgp.Test_Attachment("", data: "")
         
-        
-        
         let pub_location = "/Users/Yanfeng/Desktop/publickey.net.txt"
         let priv_location = "/Users/Yanfeng/Desktop/privatekey.net.txt"
         let key_package_location = "/Users/Yanfeng/Desktop/keypackage.txt"
@@ -342,61 +340,116 @@ class ViewController: NSViewController {
             }
         }
     }
-}
+    @IBAction func new_jni_test(sender: AnyObject) {
+        if let localFile = NSBundle.mainBundle().pathForResource("feng_addresses", ofType: "geojson") {
+            if let content = String(contentsOfFile:localFile, encoding:NSUTF8StringEncoding, error: nil) {
+                
+                let openPgp : PMNOpenPgp = PMNOpenPgp.createInstance()!
+                
+                var parseError: NSError?
+                let parsedObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(content.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, options: NSJSONReadingOptions.AllowFragments, error: nil)
+                
+                if let topApps = parsedObject as? NSDictionary {
+                    if let feed = topApps["User"] as? NSDictionary {
+                        if let addresses = feed["Addresses"] as? NSArray {
+                            for address in addresses {
+                                if let address = address as? NSDictionary {
+                                    let addressID = address["ID"] as! String;
+                                    let addressName = address["Email"] as! String;
+                                    var address_keys : [PMNOpenPgpKey] = [PMNOpenPgpKey]()
+                                    if let keys = address["Keys"] as? NSArray {
+                                        for key in keys {
+                                            if let key = key as? NSDictionary {
+                                                let keyo = PMNOpenPgpKey(publicKey: key["PublicKey"] as! String, privateKey: key["PrivateKey"] as! String);
+                                                address_keys.append(keyo)
+                                            }
+                                        }
+                                    }
+                                    let newAddress = PMNAddress(addressId: addressID, addressName: addressName, keys: address_keys);
+                                    openPgp.addAddress(newAddress);
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                let test_body = "/Users/Yanfeng/Desktop/test_new_key.txt"
+                let test = NSString(contentsOfFile: test_body, encoding: NSUTF8StringEncoding, error: nil) as! String
+                
+                for i in 0 ..< 200 {
+                    print(" start \(i)");
+                    let tmp_out = openPgp.decryptMessage(test, passphras: "123");
+                    println(" end \(i)");
+                }
+                
+                openPgp.cleanAddresses()
+                if let topApps = parsedObject as? NSDictionary {
+                    if let feed = topApps["User"] as? NSDictionary {
+                        if let addresses = feed["Addresses"] as? NSArray {
+                            for address in addresses {
+                                if let address = address as? NSDictionary {
+                                    let addressID = address["ID"] as! String;
+                                    let addressName = address["Email"] as! String;
+                                    var address_keys : [PMNOpenPgpKey] = [PMNOpenPgpKey]()
+                                    if let keys = address["Keys"] as? NSArray {
+                                        for key in keys {
+                                            if let key = key as? NSDictionary {
+                                                let keyo = PMNOpenPgpKey(publicKey: key["PublicKey"] as! String, privateKey: key["PrivateKey"] as! String);
+                                                address_keys.append(keyo)
+                                            }
+                                        }
+                                    }
+                                    let newAddress = PMNAddress(addressId: addressID, addressName: addressName, keys: address_keys);
+                                    openPgp.addAddress(newAddress);
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                for i in 0 ..< 200 {
+                    print(" start \(i)");
+                    let tmp_out = openPgp.decryptMessage(test, passphras: "123");
+                    println(" end \(i)");
+                }
 
-
-
-extension String {
-    
-    /// Create NSData from hexadecimal string representation
-    ///
-    /// This takes a hexadecimal representation and creates a NSData object. Note, if the string has any spaces, those are removed. Also if the string started with a '<' or ended with a '>', those are removed, too. This does no validation of the string to ensure it's a valid hexadecimal string
-    ///
-    /// The use of `strtoul` inspired by Martin R at http://stackoverflow.com/a/26284562/1271826
-    ///
-    /// :returns: NSData represented by this hexadecimal string. Returns nil if string contains characters outside the 0-9 and a-f range.
-    
-    func dataFromHexadecimalString() -> NSData? {
-        let trimmedString = self.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "<> ")).stringByReplacingOccurrencesOfString(" ", withString: "")
-        
-        // make sure the cleaned up string consists solely of hex digits, and that we have even number of them
-        
-        var error: NSError?
-        let regex = NSRegularExpression(pattern: "^[0-9a-f]*$", options: .CaseInsensitive, error: &error)
-        let found = regex?.firstMatchInString(trimmedString, options: nil, range: NSMakeRange(0, count(trimmedString)))
-        if found == nil || found?.range.location == NSNotFound || count(trimmedString) % 2 != 0 {
-            return nil
+            }
         }
+
         
-        // everything ok, so now let's build NSData
+//        let keys = [ PMNOpenPgpKey(publicKey: "publickey_1", privateKey: "privatekey_1"), PMNOpenPgpKey(publicKey: "publickey_2", privateKey: "privatekey_2"),PMNOpenPgpKey(publicKey: "publickey_3", privateKey: "privatekey_3"),PMNOpenPgpKey(publicKey: "publickey_4", privateKey: "privatekey_4") ]
+//        
+//        var address = PMNAddress(addressId: "1", addressName: "feng@protonmail.blue", keys: keys)
         
-        let data = NSMutableData(capacity: count(trimmedString) / 2)
-        
-        for var index = trimmedString.startIndex; index < trimmedString.endIndex; index = index.successor().successor() {
-            let byteString = trimmedString.substringWithRange(Range<String.Index>(start: index, end: index.successor().successor()))
-            let num = UInt8(byteString.withCString { strtoul($0, nil, 16) })
-            data?.appendBytes([num] as [UInt8], length: 1)
-        }
-        
-        return data
+//        let pgp:PMNOpenPgp = PMNOpenPgp.createInstance()!
+//        
+////
+////        SwiftTryCatch.tryBlock({ () -> Void in
+////            pgp.throwAnException()
+////        }, catchBlock: { (error) -> Void in
+////            println("\(error.description)")
+////        }) { () -> Void in
+////            //
+////        }
+////        
+//        
+//        let newKey = pgp.generateKey("feng_test", domain: "protonmail.com", passphrase: "123");
+//        
+//         print(newKey.publicKey)
+//         print(newKey.privateKey)
+//        //                    String test_encrypt = OpenPGP.EncryptMailboxPWD("thisisatestmailbox", "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
+//        //                    String test_plain_text = OpenPGP.DecryptMailboxPWD(test_encrypt, "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
+//        //let en_pwd = pgp?.encryptMailboxPwd("thisisatestmailbox", salt: "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
+//        //let plain_pwd = pgp?.decryptMailboxPwd(en_pwd!, salt: "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
+//        
+//        
+//        let openpgp_old = OpenPGP();
+//        let en_pwd = pgp.encryptMailboxPwd("thisisatestmailbox", salt: "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
+//        let plain_pwd = pgp.decryptMailboxPwd(en_pwd, salt: "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
+////        let en_pwd_old = openpgp_old.encrypt_mailbox_pwd("thisisatestmailbox", slat: "4428c82a118a2dc76f53dab507d3b1d69850ebb9" );
+////        
+////         let plain_pwd_old = openpgp_old.decrypt_mailbox_pwd(en_pwd_old!, slat: "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
+//        print("");
     }
 }
 
-extension NSData {
-    
-    /// Create hexadecimal string representation of NSData object.
-    ///
-    /// :returns: String representation of this NSData object.
-    
-    func hexadecimalString() -> String {
-        var string = NSMutableString(capacity: length * 2)
-        var byte: UInt8 = 0
-        
-        for i in 0 ..< length {
-            getBytes(&byte, range: NSMakeRange(i, 1))
-            string.appendFormat("%02x", byte)
-        }
-        
-        return string as String
-    }
-}

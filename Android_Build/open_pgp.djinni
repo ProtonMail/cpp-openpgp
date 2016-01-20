@@ -1,0 +1,72 @@
+open_pgp_key = record {
+	public_key : string;
+	private_key : string;
+}
+
+encrypt_package = record {
+	key_package : binary;
+	data_package : binary;
+}
+
+address = record {
+    address_id : string;
+    #optional
+    address_name : string;
+    keys: list<open_pgp_key>;
+}
+
+open_pgp = interface +c {
+    static create_instance() : open_pgp;
+	static create_instance_with_keys(address : address) : open_pgp;
+
+    add_address(address : address) : bool;
+    remove_address(address_id : string) : bool;
+    clean_addresses() : bool;
+
+    #disable/enable debug model
+    enable_debug(isDebug : bool);
+
+    #generat new key pair
+    generate_key(user_name : string, domain : string, passphrase : string) : open_pgp_key;
+
+    #check is primary key passphrase ok
+    check_passphrase(private_key : string, passphrase : string) : bool;
+
+    #update single private key password
+    update_single_passphrase(private_key : string, old_passphrase : string, new_passphrase : string) : string;
+
+    #update the information carried in the packet. //TODO need add more parameters
+    update_private_info(private_key : string);
+
+    #encrypt message
+    encrypt_message(address_id : string, plain_text : string) : string;
+    encrypt_message_single_key(public_key : string, plain_text : string) : string;
+    decrypt_message(encrypt_text : string, passphras : string) : string;
+    decrypt_message_single_key(encrypt_text : string, private_key : string, passphras : string) : string;
+
+    encrypt_attachment(address_id : string, unencrypt_data : binary, file_name : string) : encrypt_package;
+    encrypt_attachment_single_key(public_key : string, unencrypt_data : binary, file_name : string) : encrypt_package;
+    decrypt_attachment(key : binary, data : binary, passphras : string) : binary;
+    decrypt_attachment_single_key(key : binary, data : binary, private_key : string, passphras : string) : binary;
+
+	decrypt_attachment_with_password(key : binary, data : binary, password : string) : binary;
+
+    get_public_key_session_key(keyPackage : binary, passphrase : string): binary;
+    get_public_key_session_key_single_key(keyPackage : binary, privateKey : string, passphrase : string): binary;
+
+	get_symmetric_session_key(keyPackage : binary, password : string): binary;
+	get_new_public_key_package(session : binary, publicKey : string) : binary;
+	get_new_symmetric_key_package(session : binary, password : string): binary;
+
+    encrypt_message_aes(plain_text : string, password : string) : string;
+    decrypt_message_aes(encrypted_message : string, password : string) : string;
+
+    encrypt_mailbox_pwd(unencrypted_pwd : string, salt : string) : string;
+    decrypt_mailbox_pwd(encrypted_pwd : string, salt : string) : string;
+
+
+    #test functions
+    throw_an_exception(): i32;
+}
+
+

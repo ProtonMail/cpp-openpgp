@@ -10,6 +10,11 @@ OUT_PUT_DIR=${SCRIPT_DIR}/../Bin/android_libs/
 PGP_DIR=${SCRIPT_DIR}/OpenPGP.Android/
 PGP_ANDROID_WRAPPER_DIR=${SCRIPT_DIR}/OpenPGP.Android.Wrapper/
 
+if [  ! -d $PGP_DIR ]; then
+  mkdir $PGP_DIR
+fi
+
+
 cd ${PGP_DIR}
 printf "\e[0;37mEnterDirectory:\033[0m \e[0;36m ${PGP_DIR} \033[0m\n"
 printf "\e[0;32mSetup Project Enviroment \033[0m\n"

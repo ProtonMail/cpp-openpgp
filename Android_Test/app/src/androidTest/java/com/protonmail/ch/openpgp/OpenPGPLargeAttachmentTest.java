@@ -3,10 +3,14 @@ package com.protonmail.ch.openpgp;
 import android.test.AndroidTestCase;
 import android.util.Log;
 
+import java.util.ArrayList;
+
+import ch.protonmail.android.utils.Address;
 import ch.protonmail.android.utils.AppUtil;
 import ch.protonmail.android.utils.DecryptPackage;
 import ch.protonmail.android.utils.EncryptPackage;
-import ch.protonmail.android.utils.OpenPGP;
+import ch.protonmail.android.utils.OpenPgp;
+import ch.protonmail.android.utils.OpenPgpKey;
 
 
 /**
@@ -41,38 +45,42 @@ public class OpenPGPLargeAttachmentTest extends AndroidTestCase {
     public void test_encryptLargeAttachment() {
         byte[] data_in = AppUtil.readBytes(getContext(), R.raw.large);
 
-        for( int i = 0; i< 1; i++) {
+        OpenPgp openPgp = OpenPgp.createInstance();
 
-            EncryptPackage encryptPackage = OpenPGP.EncryptAttachment(data_in, publicKey, "large.txt");
+        ArrayList<OpenPgpKey> keys = new ArrayList<>();
+        keys.add(new OpenPgpKey(publicKey, privateKey));
+        openPgp.addAddress(new Address("1", "feng@protonmail.ch", keys));
+
+        for( int i = 0; i< 30; i++) {
+
+            EncryptPackage encryptPackage = openPgp.encryptAttachment("1", data_in, "testpdf.txt");
             assertNotNull(encryptPackage);
-            assertNotNull(encryptPackage.KeyPackage);
-            assertNotNull(encryptPackage.DataPackage);
+            assertNotNull(encryptPackage.getKeyPackage());
+            assertNotNull(encryptPackage.getDataPackage());
 
-            DecryptPackage new_out_data = OpenPGP.DecryptAttachment(encryptPackage.KeyPackage, encryptPackage.DataPackage, privateKey, privatePassphrase);
+            byte[] new_out_data = openPgp.decryptAttachment(encryptPackage.getKeyPackage(), encryptPackage.getDataPackage(), privatePassphrase);
             assertNotNull("Count" + i, new_out_data);
-            assertNotNull("Count" + i, new_out_data.DecryptData);
-            assertTrue("Count" + i, new_out_data.DecryptData.length > 0);
+            assertTrue("Count" + i, new_out_data.length > 0);
 
-            byte[] sessionBytes = OpenPGP.GetPublicKeySessionKey(encryptPackage.KeyPackage, privateKey, privatePassphrase);
+            byte[] sessionBytes = openPgp.getPublicKeySessionKey(encryptPackage.getKeyPackage(), privateKey, privatePassphrase);
             assertNotNull("Count" + i, sessionBytes);
             assertTrue(sessionBytes.length > 0);
 
-            byte[] newKeyPackage = OpenPGP.GetNewPublicKeyPackage(sessionBytes, publicKey);
+            byte[] newKeyPackage = openPgp.getNewPublicKeyPackage(sessionBytes, publicKey);
             assertNotNull("Count" + i, newKeyPackage);
             assertTrue(newKeyPackage.length > 0);
 
-            DecryptPackage out = OpenPGP.DecryptAttachment(newKeyPackage, encryptPackage.DataPackage, privateKey, privatePassphrase);
+            byte[] out = openPgp.decryptAttachment(newKeyPackage, encryptPackage.getDataPackage(), privatePassphrase);
             assertNotNull("Count" + i, out);
-            assertNotNull("Count" + i, out.DecryptData);
-            assertTrue("Count" + i, out.DecryptData.length > 0);
+            assertTrue(out.length > 0);
 
-            byte[] newSymKeyPackage = OpenPGP.GetNewSymmetricKeyPackage(sessionBytes, privatePassphrase);
-            assertNotNull("Count" + i, new_out_data);
+            byte[] newSymKeyPackage = openPgp.getNewSymmetricKeyPackage(sessionBytes, privatePassphrase);
+            assertNotNull("Count" + i, newSymKeyPackage);
             assertTrue(newSymKeyPackage.length > 0);
 
-//            byte[] out1 = OpenPGP.DecryptAttachmentWithPassword(newSymKeyPackage, encryptPackage.DataPackage, privatePassphrase);
-//            assertNotNull(out1);
-//            assertTrue(out1.length > 0);
+            byte[] out1 = openPgp.decryptAttachmentWithPassword(newSymKeyPackage,encryptPackage.getDataPackage(),privatePassphrase);
+            assertNotNull(out1);
+            assertTrue(out1.length > 0);
 
             Log.d("UnitTest", "Count: " + i);
         }

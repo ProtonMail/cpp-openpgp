@@ -49,11 +49,26 @@ ifeq ($(TARGET_ARCH_ABI),armeabi)
 endif # TARGET_ARCH_ABI == armeabi
 
 include $(CLEAR_VARS)
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/include/ $(LOCAL_PATH)/include/bzlib/
+base_class1 := $(shell find $(LOCAL_PATH)/jni_base_cpp -type d)
+base_class2 := $(shell find $(base_class1) -name *.cpp)
+base_class3 := $(sort $(base_class2))
+base_class := $(subst $(LOCAL_PATH)/,,$(base_class3))
+
+generated_cpp1 := $(shell find $(LOCAL_PATH)/generated_cpp -type d)
+generated_cpp2 := $(shell find $(generated_cpp1) -name *.cpp)
+generated_cpp3 := $(sort $(generated_cpp2))
+generated_cpp := $(subst $(LOCAL_PATH)/,,$(generated_cpp3))
+
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/include/ $(LOCAL_PATH)/jni_base_h $(LOCAL_PATH) $(LOCAL_PATH)/generated_h $(LOCAL_PATH)/include/bzlib/
 LOCAL_MODULE := openpgp_android
-LOCAL_SRC_FILES := openpgp_wrapper.cpp \
-GlobalInterface.cpp \
-Stdafx.cpp
+LOCAL_SRC_FILES := $(base_class) \
+$(generated_cpp) \
+\
+openpgp_wrapper.cpp \
+Stdafx.cpp \
+\
+
+#GlobalInterface.cpp \
 
 
 LOCAL_SHARED_LIBRARIES := openpgp

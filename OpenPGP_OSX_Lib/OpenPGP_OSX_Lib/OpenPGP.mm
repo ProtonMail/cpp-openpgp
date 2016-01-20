@@ -77,7 +77,6 @@
     delete public_key_;
 }
 
-
 - (BOOL) CheckPassphrase:(NSString *)priv_key pass:(NSString*) passphrase error:(NSError **) err{
     try
     {

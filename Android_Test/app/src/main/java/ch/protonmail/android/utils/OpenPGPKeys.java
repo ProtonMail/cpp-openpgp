@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class OpenPGPKeys {
 
-    public OpenPGPKey Primary;
-    public ArrayList<OpenPGPKey> Keys;
+    //public OpenPGPKey Primary;
+   // public ArrayList<OpenPGPKey> Keys;
 
 }

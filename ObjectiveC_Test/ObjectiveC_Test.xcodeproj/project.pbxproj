@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7559585F1C46340E009D9B6C /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7559585B1C463272009D9B6C /* libcrypto.a */; };
+		755958601C46340E009D9B6C /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7559585C1C463272009D9B6C /* libssl.a */; };
 		756C9B6A1A8D884A007B2B9B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 756C9B691A8D884A007B2B9B /* main.m */; };
 		756C9B6D1A8D884A007B2B9B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 756C9B6C1A8D884A007B2B9B /* AppDelegate.m */; };
 		756C9B731A8D884A007B2B9B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 756C9B711A8D884A007B2B9B /* Main.storyboard */; };
@@ -14,13 +16,14 @@
 		756C9B781A8D884A007B2B9B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 756C9B761A8D884A007B2B9B /* LaunchScreen.xib */; };
 		756C9D351A8D8F67007B2B9B /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 756C9D341A8D8F67007B2B9B /* ViewController.mm */; };
 		756C9D3A1A8D9090007B2B9B /* libOpenPGP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 756C9D391A8D9090007B2B9B /* libOpenPGP.a */; };
-		756C9D3D1A8D90B2007B2B9B /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 756C9D3B1A8D90B2007B2B9B /* libcrypto.a */; };
-		756C9D3E1A8D90B2007B2B9B /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 756C9D3C1A8D90B2007B2B9B /* libssl.a */; };
 		756C9D401A8D90C0007B2B9B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 756C9D3F1A8D90C0007B2B9B /* libz.dylib */; };
 		756C9D421A8D90C4007B2B9B /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 756C9D411A8D90C4007B2B9B /* libbz2.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7559585B1C463272009D9B6C /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../tmp_lib/libcrypto.a; sourceTree = "<group>"; };
+		7559585C1C463272009D9B6C /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../tmp_lib/libssl.a; sourceTree = "<group>"; };
+		755958611C463462009D9B6C /* libOpenPGP_x86_64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOpenPGP_x86_64.a; path = /Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OpenPGP_OSX_Lib/../Bin/libs/Debug/libOpenPGP_x86_64.a; sourceTree = "<absolute>"; };
 		756C9B641A8D884A007B2B9B /* ObjectiveC_Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjectiveC_Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		756C9B681A8D884A007B2B9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		756C9B691A8D884A007B2B9B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -43,10 +46,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7559585F1C46340E009D9B6C /* libcrypto.a in Frameworks */,
+				755958601C46340E009D9B6C /* libssl.a in Frameworks */,
 				756C9D421A8D90C4007B2B9B /* libbz2.dylib in Frameworks */,
 				756C9D401A8D90C0007B2B9B /* libz.dylib in Frameworks */,
-				756C9D3D1A8D90B2007B2B9B /* libcrypto.a in Frameworks */,
-				756C9D3E1A8D90B2007B2B9B /* libssl.a in Frameworks */,
 				756C9D3A1A8D9090007B2B9B /* libOpenPGP.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,6 +101,9 @@
 		756C9D381A8D9080007B2B9B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				755958611C463462009D9B6C /* libOpenPGP_x86_64.a */,
+				7559585B1C463272009D9B6C /* libcrypto.a */,
+				7559585C1C463272009D9B6C /* libssl.a */,
 				756C9D411A8D90C4007B2B9B /* libbz2.dylib */,
 				756C9D3F1A8D90C0007B2B9B /* libz.dylib */,
 				756C9D3B1A8D90B2007B2B9B /* libcrypto.a */,
@@ -305,13 +311,19 @@
 				INFOPLIST_FILE = ObjectiveC_Test/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
+					/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/tmp_lib,
+					/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OpenPGP_OSX_Lib/../Bin/libs/Debug,
+				);
+				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = (
 					"$(inherited)",
-					"/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/Bin/libs/Debug-iphoneos",
 					/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/Bin/libs/OpenSSL,
+					"$(PROJECT_DIR)/../bin/libs/Debug-iphoneos",
 				);
 				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = (
-					"$(PROJECT_DIR)/../Bin/libs/Debug-iphonesimulator",
-					"$(PROJECT_DIR)/../Bin/libs/OpenSSL",
+					"$(inherited)",
+					"$(PROJECT_DIR)/../bin/libs/Debug-iphonesimulator",
+					"/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/Bin/libs/Debug-iphonesimulator",
+					/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OpenPGP_OSX_Lib/../Bin/libs/Debug,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -329,9 +341,8 @@
 				INFOPLIST_FILE = ObjectiveC_Test/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/Bin/libs/Debug-iphoneos",
-					/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/Bin/libs/OpenSSL,
+					/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/tmp_lib,
+					/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OpenPGP_OSX_Lib/../Bin/libs/Debug,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

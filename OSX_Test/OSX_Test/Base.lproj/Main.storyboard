@@ -866,10 +866,13 @@
                                     <constraint firstAttribute="width" constant="218" id="zEw-Dr-npJ"/>
                                 </constraints>
                                 <animations/>
-                                <buttonCell key="cell" type="bevel" title="Test large Att encrypt" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dee-dH-Af6">
+                                <buttonCell key="cell" type="bevel" title="TestNewJni" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dee-dH-Af6">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="new_jni_test:" target="XfG-lQ-9wD" id="Ei1-fc-yBt"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>

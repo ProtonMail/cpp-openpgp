@@ -18,6 +18,7 @@ DerivedData
 *.xcuserstate
 build.release/
 obj
+out
 # CocoaPods
 #
 # We recommend against adding the Pods directory to your .gitignore. However
@@ -25,3 +26,10 @@ obj
 # http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
 #
 # Pods/
+
+
+#jni
+Android_Build/OpenPGP.Android/
+Android_Build/OpenPGP.Android.Wrapper/libs/
+Android_Build/OpenPGP.Android.Wrapper/jni/libs/
+Android_Test/app/src/main/jniLibs/
