@@ -20,28 +20,29 @@ extension String {
     /// :returns: NSData represented by this hexadecimal string. Returns nil if string contains characters outside the 0-9 and a-f range.
     
     func dataFromHexadecimalString() -> NSData? {
-        let trimmedString = self.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "<> ")).stringByReplacingOccurrencesOfString(" ", withString: "")
-        
-        // make sure the cleaned up string consists solely of hex digits, and that we have even number of them
-        
-        var error: NSError?
-        let regex = NSRegularExpression(pattern: "^[0-9a-f]*$", options: .CaseInsensitive, error: &error)
-        let found = regex?.firstMatchInString(trimmedString, options: nil, range: NSMakeRange(0, count(trimmedString)))
-        if found == nil || found?.range.location == NSNotFound || count(trimmedString) % 2 != 0 {
-            return nil
-        }
-        
-        // everything ok, so now let's build NSData
-        
-        let data = NSMutableData(capacity: count(trimmedString) / 2)
-        
-        for var index = trimmedString.startIndex; index < trimmedString.endIndex; index = index.successor().successor() {
-            let byteString = trimmedString.substringWithRange(Range<String.Index>(start: index, end: index.successor().successor()))
-            let num = UInt8(byteString.withCString { strtoul($0, nil, 16) })
-            data?.appendBytes([num] as [UInt8], length: 1)
-        }
-        
-        return data
+//        let trimmedString = self.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "<> ")).stringByReplacingOccurrencesOfString(" ", withString: "")
+//        
+//        // make sure the cleaned up string consists solely of hex digits, and that we have even number of them
+//        
+//        var error: NSError?
+//        let regex = NSRegularExpression(pattern: "^[0-9a-f]*$", options: .CaseInsensitive, error: &error)
+//        let found = regex?.firstMatchInString(trimmedString, options: nil, range: NSMakeRange(0, count(trimmedString)))
+//        if found == nil || found?.range.location == NSNotFound || count(trimmedString) % 2 != 0 {
+//            return nil
+//        }
+//        
+//        // everything ok, so now let's build NSData
+//        
+//        let data = NSMutableData(capacity: count(trimmedString) / 2)
+//        
+//        for var index = trimmedString.startIndex; index < trimmedString.endIndex; index = index.successor().successor() {
+//            let byteString = trimmedString.substringWithRange(Range<String.Index>(start: index, end: index.successor().successor()))
+//            let num = UInt8(byteString.withCString { strtoul($0, nil, 16) })
+//            data?.appendBytes([num] as [UInt8], length: 1)
+//        }
+//        
+//        return data
+        return nil
     }
 }
 
