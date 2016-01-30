@@ -84,6 +84,11 @@ public:
 
     /**test functions */
     virtual int32_t throw_an_exception() = 0;
+
+    /**PBE */
+    virtual std::string encrypt_hash_cbc(const std::string & plain_text, const std::string & password) = 0;
+
+    virtual std::string decrypt_hash_cbc(const std::string & encrypted_text, const std::string & password) = 0;
 };
 
 }  // namespace ProtonMail

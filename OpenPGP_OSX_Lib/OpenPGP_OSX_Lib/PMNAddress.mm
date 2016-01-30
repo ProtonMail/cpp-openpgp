@@ -8,7 +8,7 @@
 
 - (nonnull instancetype)initWithAddressId:(nonnull NSString *)addressId
                               addressName:(nonnull NSString *)addressName
-                                     keys:(nonnull NSArray *)keys
+                                     keys:(nonnull NSArray<PMNOpenPgpKey *> *)keys
 {
     if (self = [super init]) {
         _addressId = [addressId copy];
@@ -20,7 +20,7 @@
 
 + (nonnull instancetype)addressWithAddressId:(nonnull NSString *)addressId
                                  addressName:(nonnull NSString *)addressName
-                                        keys:(nonnull NSArray *)keys
+                                        keys:(nonnull NSArray<PMNOpenPgpKey *> *)keys
 {
     return [[self alloc] initWithAddressId:addressId
                                addressName:addressName

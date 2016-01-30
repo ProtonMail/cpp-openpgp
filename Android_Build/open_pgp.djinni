@@ -68,6 +68,13 @@ open_pgp = interface +c {
 
     #test functions
     throw_an_exception(): i32;
+
+    #PBE
+    encrypt_hash_cbc(plain_text : string, password : string) : string;
+    decrypt_hash_cbc(encrypted_text : string, password : string) : string;
+
+
+
 }
 
 

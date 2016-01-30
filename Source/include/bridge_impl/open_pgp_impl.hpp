@@ -96,6 +96,10 @@ namespace ProtonMail {
         std::string read_clearsigned_message(const std::string & signed_message);
 
         int32_t throw_an_exception();
+        
+        std::string encrypt_hash_cbc(const std::string & plain_text, const std::string & password);
+        
+        std::string decrypt_hash_cbc(const std::string & encrypted_text, const std::string & password);
 
     };
 

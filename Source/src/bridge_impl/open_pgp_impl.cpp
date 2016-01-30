@@ -383,5 +383,79 @@ namespace ProtonMail {
     int32_t OpenPgpImpl::throw_an_exception() {
         throw ExampleException();
     }
+
+    std::string OpenPgpImpl::encrypt_hash_cbc(const std::string & plain_text, const std::string & password) {
+        return "";
+    }
     
+    std::string OpenPgpImpl::decrypt_hash_cbc(const std::string & encrypted_text, const std::string & password) {
+        return "";
+    }
+    
+//    public static function encrypt_id( $MessageID, $isRandom = false ) {
+//        if ( !ENCRYPT_IDS ) {
+//            return strval($MessageID);
+//        }
+//        if ( !$isRandom && isset( self::$id_to_enc_[$MessageID] ) ) {
+//            return strval(self::$id_to_enc_[$MessageID]);
+//        }
+//        $key1 = pack( "H*", "5f8b0f69c2e711c19f43633f77f70a59a1198fd73b5ce2d53e1ec43b43b37e66" ); // need keep it forever
+//        $key2 = pack( "H*", "4b6b0acf4524565b756530b0383de0b8a801b79bf242ccfeab1906e8520a63fd" ); // need keep it forever
+//        $key3 = pack( "H*", "001190d069249177ce51ee891b9c4cea52d0323ca5f90ec18d23273f22205a83" );
+//        $text = $MessageID;
+//        $block_size = mcrypt_get_block_size( MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC );
+//        $pad = $block_size - ( strlen( $MessageID ) % $block_size );
+//        $text .= str_repeat( chr( $pad ), $pad );
+//        $iv_size = mcrypt_get_iv_size( MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC );
+//        if ( $isRandom ) {
+//            $iv = mcrypt_create_iv( $iv_size, MCRYPT_DEV_URANDOM );
+//        }
+//        else {
+//            $new_iv = hash_hmac( "sha256", $MessageID , $key3, true );
+//            $iv = substr( $new_iv, 0 , $iv_size );
+//        }
+//        $crypt = mcrypt_encrypt( MCRYPT_RIJNDAEL_128, $key1, $text, MCRYPT_MODE_CBC, $iv );
+//        $h_mac = hash_hmac( "sha256", $iv.$crypt, $key2, true );
+//        $output = base64_encode( $iv . $crypt . $h_mac );
+//        $output = str_replace( array( '/', '+' ), array( '_', '-' ), $output );
+//        //echo bin2hex($iv . $crypt . $h_mac) . "\r\n";
+//        if ( !$isRandom ) {
+//            self::$id_to_enc_[$MessageID] = $output;
+//        }
+//        return strval($output);
+//    }
+//    public static function decrypt_id( $EncMessageID ) {
+//        if ( !ENCRYPT_IDS ) {
+//            return intval($EncMessageID);
+//        }
+//        // Sanitization
+//        if ( strlen( $EncMessageID ) > 200 ) {
+//            return 0;
+//        }
+//        if ( isset( self::$enc_to_id_[$EncMessageID] ) ) {
+//            return intval(self::$enc_to_id_[$EncMessageID]);
+//        }
+//        $key1 = pack( "H*", "5f8b0f69c2e711c19f43633f77f70a59a1198fd73b5ce2d53e1ec43b43b37e66" );
+//        $key2 = pack( "H*", "4b6b0acf4524565b756530b0383de0b8a801b79bf242ccfeab1906e8520a63fd" );
+//        $EncMessageID = str_replace( array( '_', '-' ), array( '/', '+' ), $EncMessageID );
+//        $message = base64_decode( $EncMessageID );
+//        //echo bin2hex($message) . "\r\n";
+//        $iv_size = mcrypt_get_iv_size( MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC );
+//        $iv = substr( $message, 0, $iv_size );
+//        $h_mac_size = strlen( hash_hmac( "sha256", "", "", true ) );
+//        $h_mac = substr( $message, - $h_mac_size );
+//        $crypt = substr( $message, $iv_size, -$h_mac_size );
+//        $crypt_h_mac = hash_hmac( "sha256", $iv. $crypt, $key2, true );
+//        if ( !Util::hash_equals( $h_mac, $crypt_h_mac ) )
+//            return 0;
+//        $text = mcrypt_decrypt( MCRYPT_RIJNDAEL_128, $key1, $crypt, MCRYPT_MODE_CBC, $iv );
+//        $pad = ord( $text[strlen( $text )-1] );
+//        $text = substr( $text, 0, -1*$pad );
+//        self::$enc_to_id_[$EncMessageID] = $text;
+//        if ( self::is_int( $text ) ) {
+//            return intval($text);
+//        }
+//        return $text;
+//    }
+
 }

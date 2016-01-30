@@ -92,6 +92,13 @@ public abstract class OpenPgp {
     /**test functions */
     public abstract int throwAnException();
 
+    /**PBE */
+    @Nonnull
+    public abstract String encryptHashCbc(@Nonnull String plainText, @Nonnull String password);
+
+    @Nonnull
+    public abstract String decryptHashCbc(@Nonnull String encryptedText, @Nonnull String password);
+
     @CheckForNull
     public static native OpenPgp createInstance();
 
@@ -344,5 +351,21 @@ public abstract class OpenPgp {
             return native_throwAnException(this.nativeRef);
         }
         private native int native_throwAnException(long _nativeRef);
+
+        @Override
+        public String encryptHashCbc(String plainText, String password)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_encryptHashCbc(this.nativeRef, plainText, password);
+        }
+        private native String native_encryptHashCbc(long _nativeRef, String plainText, String password);
+
+        @Override
+        public String decryptHashCbc(String encryptedText, String password)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_decryptHashCbc(this.nativeRef, encryptedText, password);
+        }
+        private native String native_decryptHashCbc(long _nativeRef, String encryptedText, String password);
     }
 }

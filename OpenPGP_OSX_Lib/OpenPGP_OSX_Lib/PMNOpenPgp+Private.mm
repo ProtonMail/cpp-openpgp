@@ -303,6 +303,24 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
+- (nonnull NSString *)encryptHashCbc:(nonnull NSString *)plainText
+                            password:(nonnull NSString *)password {
+    try {
+        auto r = _cppRefHandle.get()->encrypt_hash_cbc(::djinni::String::toCpp(plainText),
+                                                       ::djinni::String::toCpp(password));
+        return ::djinni::String::fromCpp(r);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (nonnull NSString *)decryptHashCbc:(nonnull NSString *)encryptedText
+                            password:(nonnull NSString *)password {
+    try {
+        auto r = _cppRefHandle.get()->decrypt_hash_cbc(::djinni::String::toCpp(encryptedText),
+                                                       ::djinni::String::toCpp(password));
+        return ::djinni::String::fromCpp(r);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
 namespace OBJ_ProtonMail {
 
 auto OpenPgp::toCpp(ObjcType objc) -> CppType
