@@ -135,44 +135,23 @@ class TestView: UIViewController {
     
     @IBAction func generate_new_key_clicked(sender: AnyObject) {
         
+        let button:UIButton = sender as! UIButton;
+        button.enabled = false;
         
-        let pgp:OpenPGP = OpenPGP();
+        let openpgp = PMNOpenPgp.createInstance()
         
-       // pgp.TestEncryptPwd("test", pass: "a123");
+        let count:Int = 10
+        let startTime:CFTimeInterval  = CACurrentMediaTime()
+        for var i:Int = 0; i < count; ++i {
+            openpgp?.generateKey("feng", domain: "protonmail.com", passphrase: "123")
+        }
         
-//        let button:UIButton = sender as! UIButton;
-//        
-//        button.enabled = false;
-//        
-//        //let pgp:OpenPGP = OpenPGP()
-//        pgp.SetupKeys(private_key_, pubKey: public_key_, pass: "123", error:nil)
-//        
-//        let count:Int = 10
-//        let startTime:CFTimeInterval  = CACurrentMediaTime()
-//        for var i:Int = 0; i < count; ++i {
-//            let test_msg:String = GetStringFromSampleFile("new_test_enc_message")
-//            let cleartext:String = pgp.decrypt_message(test_msg, error:nil)
-//            
-//            //let new_enc_msg = pgp.encrypt_message(cleartext, error: nil)
-//            //            //println(new_enc_msg)
-//            //            let new_clear_txt = pgp.decrypt_message(new_enc_msg, error: nil)
-//            //            //println(new_clear_txt)
-//            //            if(new_clear_txt == cleartext)
-//            //            {
-//            //                println("ok")
-//            //            }
-//            //            else
-//            //            {
-//            //                println("error")
-//            //            }
-//        }
-//        
-//        let endTime:CFTimeInterval  = CACurrentMediaTime();
-//        let total = (endTime - startTime);
-//        let cot:Double = Double( count )
-//        let avg:Double = (endTime - startTime)/cot;
-//        log_lable_.text = NSString(format: "%d Times(ENC->DEC) --- Total Runtime: %g s --- Avg %g s", count, total , avg) as String;
-//        button.enabled = true;
+        let endTime:CFTimeInterval  = CACurrentMediaTime();
+        let total = (endTime - startTime);
+        let cot:Double = Double( count )
+        let avg:Double = (endTime - startTime)/cot;
+        log_lable_.text = NSString(format: "%d Times(ENC->DEC) --- Total Runtime: %g s --- Avg %g s", count, total , avg) as String;
+        button.enabled = true;
         
     }
     
