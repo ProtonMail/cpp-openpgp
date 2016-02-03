@@ -62,7 +62,7 @@ public class OpenPGPLargeAttachmentTest extends AndroidTestCase {
             assertNotNull("Count" + i, new_out_data);
             assertTrue("Count" + i, new_out_data.length > 0);
 
-            byte[] sessionBytes = openPgp.getPublicKeySessionKey(encryptPackage.getKeyPackage(), privateKey, privatePassphrase);
+            byte[] sessionBytes = openPgp.getPublicKeySessionKey(encryptPackage.getKeyPackage(), privatePassphrase);
             assertNotNull("Count" + i, sessionBytes);
             assertTrue(sessionBytes.length > 0);
 
