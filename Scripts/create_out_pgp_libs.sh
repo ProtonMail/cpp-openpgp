@@ -84,3 +84,9 @@ printf "\e[0;32mCopy Header file. \033[0m\n"
 cp -a ${XCODE_BUILD_HEADER_OUT}/. ${HEADER_OUT_PATH}/
 
 printf "\e[0;32mBuild Universal Library Complete. \033[0m\n"
+
+cd ${UNIVERSAL_OUT_PATH}
+printf "\e[0;32m OUTPUT PATH: \033[0m\n"
+pwd
+
+printf "\n\e[0;32m DONE \033[0m\n\n"

@@ -19,7 +19,7 @@ public abstract class OpenPgp {
 
     /**generat new key pair */
     @Nonnull
-    public abstract OpenPgpKey generateKey(@Nonnull String userName, @Nonnull String domain, @Nonnull String passphrase);
+    public abstract OpenPgpKey generateKey(@Nonnull String userName, @Nonnull String domain, @Nonnull String passphrase, int bits);
 
     /**check is primary key passphrase ok */
     public abstract boolean checkPassphrase(@Nonnull String privateKey, @Nonnull String passphrase);
@@ -161,12 +161,12 @@ public abstract class OpenPgp {
         private native void native_enableDebug(long _nativeRef, boolean isDebug);
 
         @Override
-        public OpenPgpKey generateKey(String userName, String domain, String passphrase)
+        public OpenPgpKey generateKey(String userName, String domain, String passphrase, int bits)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_generateKey(this.nativeRef, userName, domain, passphrase);
+            return native_generateKey(this.nativeRef, userName, domain, passphrase, bits);
         }
-        private native OpenPgpKey native_generateKey(long _nativeRef, String userName, String domain, String passphrase);
+        private native OpenPgpKey native_generateKey(long _nativeRef, String userName, String domain, String passphrase, int bits);
 
         @Override
         public boolean checkPassphrase(String privateKey, String passphrase)

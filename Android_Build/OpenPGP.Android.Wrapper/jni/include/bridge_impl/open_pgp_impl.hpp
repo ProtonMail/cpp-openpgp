@@ -35,8 +35,8 @@ namespace ProtonMail {
         ~OpenPgpImpl();
 
         /**generat new key pair */
-        OpenPgpKey generate_key(const std::string & user_name, const std::string & domain, const std::string & passphrase);
-
+        OpenPgpKey generate_key(const std::string & user_name, const std::string & domain, const std::string & passphrase, int32_t bits);
+        
         bool add_address(const Address & address) ;
 
         bool remove_address(const std::string & address_id);
@@ -76,15 +76,9 @@ namespace ProtonMail {
         std::vector<uint8_t> decrypt_attachment_with_password(const std::vector<uint8_t> & key, const std::vector<uint8_t> & data, const std::string & password);
 
         std::vector<uint8_t> get_public_key_session_key(const std::vector<uint8_t> & keyPackage, const std::string & passphrase);
-<<<<<<< HEAD
-
-        std::vector<uint8_t> get_public_key_session_key_single_key(const std::vector<uint8_t> & keyPackage, const std::string & privateKey, const std::string & passphrase);
-
-=======
         
         std::vector<uint8_t> get_public_key_session_key_single_key(const std::vector<uint8_t> & keyPackage, const std::string & privateKey, const std::string & passphrase);
         
->>>>>>> use the v3 keys
         std::vector<uint8_t> get_symmetric_session_key(const std::vector<uint8_t> & keyPackage, const std::string & password);
 
         std::vector<uint8_t> get_new_public_key_package(const std::vector<uint8_t> & session, const std::string & publicKey);
@@ -102,6 +96,10 @@ namespace ProtonMail {
         std::string read_clearsigned_message(const std::string & signed_message);
 
         int32_t throw_an_exception();
+        
+        std::string encrypt_hash_cbc(const std::string & plain_text, const std::string & password);
+        
+        std::string decrypt_hash_cbc(const std::string & encrypted_text, const std::string & password);
 
     };
 

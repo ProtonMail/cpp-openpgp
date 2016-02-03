@@ -35,8 +35,8 @@ namespace ProtonMail {
         ~OpenPgpImpl();
 
         /**generat new key pair */
-        OpenPgpKey generate_key(const std::string & user_name, const std::string & domain, const std::string & passphrase);
-
+        OpenPgpKey generate_key(const std::string & user_name, const std::string & domain, const std::string & passphrase, int32_t bits);
+        
         bool add_address(const Address & address) ;
 
         bool remove_address(const std::string & address_id);

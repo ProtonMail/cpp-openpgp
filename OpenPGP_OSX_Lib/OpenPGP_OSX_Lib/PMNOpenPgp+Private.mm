@@ -76,11 +76,13 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
 
 - (nonnull PMNOpenPgpKey *)generateKey:(nonnull NSString *)userName
                                 domain:(nonnull NSString *)domain
-                            passphrase:(nonnull NSString *)passphrase {
+                            passphrase:(nonnull NSString *)passphrase
+                                  bits:(int32_t)bits {
     try {
         auto r = _cppRefHandle.get()->generate_key(::djinni::String::toCpp(userName),
                                                    ::djinni::String::toCpp(domain),
-                                                   ::djinni::String::toCpp(passphrase));
+                                                   ::djinni::String::toCpp(passphrase),
+                                                   ::djinni::I32::toCpp(bits));
         return ::OBJ_ProtonMail::OpenPgpKey::fromCpp(r);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

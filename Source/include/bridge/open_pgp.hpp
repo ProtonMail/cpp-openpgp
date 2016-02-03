@@ -32,7 +32,7 @@ public:
     virtual void enable_debug(bool isDebug) = 0;
 
     /**generat new key pair */
-    virtual OpenPgpKey generate_key(const std::string & user_name, const std::string & domain, const std::string & passphrase) = 0;
+    virtual OpenPgpKey generate_key(const std::string & user_name, const std::string & domain, const std::string & passphrase, int32_t bits) = 0;
 
     /**check is primary key passphrase ok */
     virtual bool check_passphrase(const std::string & private_key, const std::string & passphrase) = 0;

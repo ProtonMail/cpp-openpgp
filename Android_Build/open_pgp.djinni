@@ -27,7 +27,7 @@ open_pgp = interface +c {
     enable_debug(isDebug : bool);
 
     #generat new key pair
-    generate_key(user_name : string, domain : string, passphrase : string) : open_pgp_key;
+    generate_key(user_name : string, domain : string, passphrase : string, bits : i32) : open_pgp_key;
 
     #check is primary key passphrase ok
     check_passphrase(private_key : string, passphrase : string) : bool;

@@ -32,7 +32,7 @@ public:
     virtual void enable_debug(bool isDebug) = 0;
 
     /**generat new key pair */
-    virtual OpenPgpKey generate_key(const std::string & user_name, const std::string & domain, const std::string & passphrase) = 0;
+    virtual OpenPgpKey generate_key(const std::string & user_name, const std::string & domain, const std::string & passphrase, int32_t bits) = 0;
 
     /**check is primary key passphrase ok */
     virtual bool check_passphrase(const std::string & private_key, const std::string & passphrase) = 0;
@@ -84,6 +84,11 @@ public:
 
     /**test functions */
     virtual int32_t throw_an_exception() = 0;
+
+    /**PBE */
+    virtual std::string encrypt_hash_cbc(const std::string & plain_text, const std::string & password) = 0;
+
+    virtual std::string decrypt_hash_cbc(const std::string & encrypted_text, const std::string & password) = 0;
 };
 
 }  // namespace ProtonMail

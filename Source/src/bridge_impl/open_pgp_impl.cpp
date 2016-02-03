@@ -38,7 +38,7 @@ namespace ProtonMail {
         m_private_key.reset();
     }
     
-    OpenPgpKey OpenPgpImpl::generate_key(const std::string & user_name, const std::string & domain, const std::string & passphrase) {
+    OpenPgpKey OpenPgpImpl::generate_key(const std::string & user_name, const std::string & domain, const std::string & passphrase, int32_t bits) {
         
         pm::pgp::openpgp p;
         

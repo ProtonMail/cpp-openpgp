@@ -341,6 +341,7 @@ public class MainActivity extends ActionBarActivity {
                 public void onClick(View view) {
 
                     OpenPgp test = OpenPgp.createInstance();
+                    test.generateKey("feng", "protonmail.com", "123", 2048);
 //                    OpenPgpKey test1 = test.generateKey("feng", "protonmail.ch", "123");
 //                    boolean test2 = test.checkPassphrase("", "");
 //                    String test3 = test.encryptMessage("", "");
@@ -349,12 +350,12 @@ public class MainActivity extends ActionBarActivity {
 //                    byte[] test6 = test.decryptAttachment("".getBytes(), "".getBytes(), "");
 //
 
-                    try {
-                        test.throwAnException();
-                    } catch (RuntimeException e) {
-                        String error = e.getMessage();
-                        Log.d("", error);
-                    }
+//                    try {
+//                        test.throwAnException();
+//                    } catch (RuntimeException e) {
+//                        String error = e.getMessage();
+//                        Log.d("", error);
+//                    }
 
                     /**TODO : not done and not inuse */
 //                    byte[] test7 = test.decryptAttachmentWithPassword("".getBytes(), "".getBytes(), "");
