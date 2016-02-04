@@ -21,24 +21,24 @@ class OpenPGP_Test: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        //        bundleInstance = NSBundle(forClass: self.dynamicType)
-        //        let filePath = bundleInstance.pathForResource("privatekey", ofType: "txt")
-        //        XCTAssertNotNil(filePath)
-        //
-        //        if let localFile = bundleInstance.pathForResource("privatekey", ofType: "txt") {
-        //            if let content = String(contentsOfFile:localFile, encoding:NSUTF8StringEncoding, error: nil) {
-        //                privateKey = content
-        //            }
-        //        }
-        //
-        //        if let localFile = bundleInstance.pathForResource("publickey", ofType: "txt") {
-        //            if let content = String(contentsOfFile:localFile, encoding:NSUTF8StringEncoding, error: nil) {
-        //                publicKey = content
-        //            }
-        //        }
-        //
-        //        XCTAssertFalse(privateKey.isEmpty, "private is empty");
-        //        XCTAssertFalse(publicKey.isEmpty, "public is empty");
+        bundleInstance = NSBundle(forClass: self.dynamicType)
+        let filePath = bundleInstance.pathForResource("privatekey", ofType: "txt")
+        XCTAssertNotNil(filePath)
+        
+        if let localFile = bundleInstance.pathForResource("privatekey", ofType: "txt") {
+            if let content = try? String(contentsOfFile:localFile, encoding:NSUTF8StringEncoding) {
+                privateKey = content
+            }
+        }
+        
+        if let localFile = bundleInstance.pathForResource("publickey", ofType: "txt") {
+            if let content = try?  String(contentsOfFile:localFile, encoding:NSUTF8StringEncoding) {
+                publicKey = content
+            }
+        }
+        
+        XCTAssertFalse(privateKey.isEmpty, "private is empty");
+        XCTAssertFalse(publicKey.isEmpty, "public is empty");
     }
     
     override func tearDown() {
@@ -140,50 +140,50 @@ class OpenPGP_Test: XCTestCase {
     }
     
     func test_encryptMessage_multiple_key() {
-        //        var plain_text : String = ""
-        //        if let localFile = bundleInstance.pathForResource("feng_mulitiple_test_message", ofType: "txt") {
-        //            if let content = String(contentsOfFile:localFile, encoding:NSUTF8StringEncoding, error: nil) {
-        //                plain_text = content
-        //            }
-        //        }
-        //
-        //        var multiple_key_json : String = ""
-        //        if let localFile = bundleInstance.pathForResource("feng_addresses", ofType: "geojson") {
-        //            if let content = String(contentsOfFile:localFile, encoding:NSUTF8StringEncoding, error: nil) {
-        //                multiple_key_json = content
-        //            }
-        //        }
-        //        XCTAssertFalse(multiple_key_json.isEmpty, "keys file can't be empty");
-        //        XCTAssertFalse(plain_text.isEmpty, "test file can't be empty");
-        //
-        //        let openPgp : PMNOpenPgp = PMNOpenPgp.createInstance()!
-        //
-        //        var parseError: NSError?
-        //        let parsedObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(multiple_key_json.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, options: NSJSONReadingOptions.AllowFragments, error: nil)
-        //
-        //        if let topApps = parsedObject as? NSDictionary {
-        //            if let feed = topApps["User"] as? NSDictionary {
-        //                if let addresses = feed["Addresses"] as? NSArray {
-        //                    for address in addresses {
-        //                        if let address = address as? NSDictionary {
-        //                            let addressID = address["ID"] as! String;
-        //                            let addressName = address["Email"] as! String;
-        //                            var address_keys : [PMNOpenPgpKey] = [PMNOpenPgpKey]()
-        //                            if let keys = address["Keys"] as? NSArray {
-        //                                for key in keys {
-        //                                    if let key = key as? NSDictionary {
-        //                                        let keyo = PMNOpenPgpKey(publicKey: key["PublicKey"] as! String, privateKey: key["PrivateKey"] as! String);
-        //                                        address_keys.append(keyo)
-        //                                    }
-        //                                }
-        //                            }
-        //                            let newAddress = PMNAddress(addressId: addressID, addressName: addressName, keys: address_keys);
-        //                            openPgp.addAddress(newAddress);
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //        }
+        var plain_text : String = ""
+        if let localFile = bundleInstance.pathForResource("feng_mulitiple_test_message", ofType: "txt") {
+            if let content = try? String(contentsOfFile:localFile, encoding:NSUTF8StringEncoding) {
+                plain_text = content
+            }
+        }
+        
+        var multiple_key_json : String = ""
+        if let localFile = bundleInstance.pathForResource("feng_addresses", ofType: "geojson") {
+            if let content = try? String(contentsOfFile:localFile, encoding:NSUTF8StringEncoding) {
+                multiple_key_json = content
+            }
+        }
+        XCTAssertFalse(multiple_key_json.isEmpty, "keys file can't be empty");
+        XCTAssertFalse(plain_text.isEmpty, "test file can't be empty");
+        
+        let openPgp : PMNOpenPgp = PMNOpenPgp.createInstance()!
+        
+        var parseError: NSError?
+        let parsedObject: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(multiple_key_json.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, options: NSJSONReadingOptions.AllowFragments)
+        
+        if let topApps = parsedObject as? NSDictionary {
+            if let feed = topApps["User"] as? NSDictionary {
+                if let addresses = feed["Addresses"] as? NSArray {
+                    for address in addresses {
+                        if let address = address as? NSDictionary {
+                            let addressID = address["ID"] as! String;
+                            let addressName = address["Email"] as! String;
+                            var address_keys : [PMNOpenPgpKey] = [PMNOpenPgpKey]()
+                            if let keys = address["Keys"] as? NSArray {
+                                for key in keys {
+                                    if let key = key as? NSDictionary {
+                                        let keyo = PMNOpenPgpKey(publicKey: key["PublicKey"] as! String, privateKey: key["PrivateKey"] as! String);
+                                        address_keys.append(keyo)
+                                    }
+                                }
+                            }
+                            let newAddress = PMNAddress(addressId: addressID, addressName: addressName, keys: address_keys);
+                            openPgp.addAddress(newAddress);
+                        }
+                    }
+                }
+            }
+        }
         //
         //        for i in 0 ..< 200 {
         //            print(" start \(i)");
@@ -216,26 +216,62 @@ class OpenPGP_Test: XCTestCase {
     }
     
     func test_badMsg_emojiOne() {
-        //        var plain_text : String = ""
-        //        if let localFile = bundleInstance.pathForResource("feng_bad_msg_emoji_1", ofType: "txt") {
-        //            if let content = String(contentsOfFile:localFile, encoding:NSUTF8StringEncoding, error: nil) {
-        //                plain_text = content
-        //            }
-        //        }
-        //        XCTAssertFalse(plain_text.isEmpty, "test file can't be empty");
-        //
-        //        let openPgp : PMNOpenPgp = PMNOpenPgp.createInstance()!
-        //        var keys : [PMNOpenPgpKey] = [PMNOpenPgpKey]()
-        //        let key = PMNOpenPgpKey(publicKey: publicKey, privateKey: privateKey)
-        //        keys.append(PMNOpenPgpKey(publicKey: publicKey, privateKey: privateKey))
-        //        openPgp.addAddress(PMNAddress(addressId: "1", addressName: "feng@protonmail.ch", keys: keys))
-        //
-        //        for i in 0 ..< 200 {
-        //            print(" start \(i)");
-        //            let out = openPgp.decryptMessage(plain_text, passphras: privatePassphrase);
-        //            XCTAssertNotNil(out, "decrypt out can't be nil");
-        //            print(" end \(i)");
-        //        }
+        
+        var multiple_key_json : String = ""
+        if let localFile = bundleInstance.pathForResource("feng_mulitiple_keys_f", ofType: "json") {
+            if let content = try? String(contentsOfFile:localFile, encoding:NSUTF8StringEncoding) {
+                multiple_key_json = content
+            }
+        }
+        XCTAssertFalse(multiple_key_json.isEmpty, "keys file can't be empty");
+        var priKey : String = "";
+        let openPgp : PMNOpenPgp = PMNOpenPgp.createInstance()!
+        
+        let parsedObject: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(multiple_key_json.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, options: NSJSONReadingOptions.AllowFragments)
+        
+        if let topApps = parsedObject as? NSDictionary {
+            if let feed = topApps["User"] as? NSDictionary {
+                priKey = feed["EncPrivateKey"] as! String;
+                var address_keys : [PMNOpenPgpKey] = [PMNOpenPgpKey]()
+                let keyo = PMNOpenPgpKey(publicKey:"", privateKey: priKey);
+                address_keys.append(keyo)
+//                if let addresses = feed["Addresses"] as? NSArray {
+//                    for address in addresses {
+//                        if let address = address as? NSDictionary {
+//                            let addressID = address["ID"] as! String;
+//                            let addressName = address["Email"] as! String;
+//                            var address_keys : [PMNOpenPgpKey] = [PMNOpenPgpKey]()
+//                            if let keys = address["Keys"] as? NSArray {
+//                                for key in keys {
+//                                    if let key = key as? NSDictionary {
+//                                        let keyo = PMNOpenPgpKey(publicKey: key["PublicKey"] as! String, privateKey: key["PrivateKey"] as! String);
+//                                        address_keys.append(keyo)
+//                                    }
+//                                }
+//                            }
+                            let newAddress = PMNAddress(addressId: "1", addressName: "feng", keys: address_keys);
+                            openPgp.addAddress(newAddress);
+//                        }
+//                    }
+               // }
+            }
+        }
+
+        var plain_text : String = ""
+        if let localFile = bundleInstance.pathForResource("feng_bad_msg_emoji_1", ofType: "txt") {
+            if let content = try? String(contentsOfFile:localFile, encoding:NSUTF8StringEncoding) {
+                plain_text = content
+            }
+        }
+        XCTAssertFalse(plain_text.isEmpty, "test file can't be empty");
+
+        for i in 0 ..< 200 {
+            print(" start \(i)");
+            let out = openPgp.decryptMessage(plain_text, passphras: privatePassphrase);
+            XCTAssertNotNil(out, "decrypt out can't be nil");
+            print(" end \(i)");
+        }
+        
     }
     
     func test_badCase() {

@@ -37,6 +37,7 @@
 		7588B96D1AA541D3006A8793 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7588B96C1AA541D3006A8793 /* libz.dylib */; };
 		759DA0901C5C2B3300EB0483 /* libUniversalPGP_OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 759DA08F1C5C2B3300EB0483 /* libUniversalPGP_OSX.a */; };
 		759DA0AB1C5C348F00EB0483 /* libUniversalPGP_OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 759DA0A91C5C346900EB0483 /* libUniversalPGP_OSX.a */; };
+		759DE1DD1C63EF600078D437 /* feng_mulitiple_keys_f.json in Resources */ = {isa = PBXBuildFile; fileRef = 759DE1DC1C63EF600078D437 /* feng_mulitiple_keys_f.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +138,7 @@
 		759DA0911C5C2B3B00EB0483 /* libUniversalPGP_OSX.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libUniversalPGP_OSX.a; path = /Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OpenPGP_OSX_Lib/../Bin/libs/Debug/libUniversalPGP_OSX.a; sourceTree = "<absolute>"; };
 		759DA0931C5C337500EB0483 /* libUniversalPGP_OSX.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libUniversalPGP_OSX.a; path = /Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OpenPGP_OSX_Lib/../Bin/libs/Debug/libUniversalPGP_OSX.a; sourceTree = "<absolute>"; };
 		759DA0951C5C346900EB0483 /* OpenPGP_OSX_Lib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OpenPGP_OSX_Lib.xcodeproj; path = ../OpenPGP_OSX_Lib/OpenPGP_OSX_Lib.xcodeproj; sourceTree = "<group>"; };
+		759DE1DC1C63EF600078D437 /* feng_mulitiple_keys_f.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = feng_mulitiple_keys_f.json; path = Resource/feng_mulitiple_keys_f.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 		755E3C1E1C471B6C006B1EE2 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				759DE1DC1C63EF600078D437 /* feng_mulitiple_keys_f.json */,
 				755E3C1F1C471BA6006B1EE2 /* feng_mulitiple_keys.json */,
 				755E3C201C471BA6006B1EE2 /* feng_mulitiple_test_message.txt */,
 				755E3C211C471BA6006B1EE2 /* feng_bad_msg_emoji_1.txt */,
@@ -437,6 +440,7 @@
 				755E3C271C471BA7006B1EE2 /* feng_mulitiple_keys.json in Resources */,
 				755E3C2D1C471BA7006B1EE2 /* test_plain_message.txt in Resources */,
 				755E3C2C1C471BA7006B1EE2 /* publickey.txt in Resources */,
+				759DE1DD1C63EF600078D437 /* feng_mulitiple_keys_f.json in Resources */,
 				755E3C2E1C471BA7006B1EE2 /* testpdf.pdf in Resources */,
 				755E3C2B1C471BA7006B1EE2 /* privatekey.txt in Resources */,
 				755E3C291C471BA7006B1EE2 /* feng_bad_msg_emoji_1.txt in Resources */,

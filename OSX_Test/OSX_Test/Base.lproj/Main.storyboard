@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -670,7 +670,6 @@
                                     <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" id="TZQ-Sl-K5F">
                                         <rect key="frame" x="0.0" y="0.0" width="96" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <animations/>
                                         <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="Tjp-A0-LNi">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -709,7 +708,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="18" id="yud-3o-ERw"/>
                                 </constraints>
-                                <animations/>
                             </progressIndicator>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="mbB-M2-h9u">
                                 <rect key="frame" x="18" y="352" width="222" height="58"/>
@@ -717,7 +715,6 @@
                                     <constraint firstAttribute="width" constant="218" id="HQr-8x-Fsu"/>
                                     <constraint firstAttribute="height" constant="53" id="X0c-wD-F8L"/>
                                 </constraints>
-                                <animations/>
                                 <buttonCell key="cell" type="bevel" title="Test_Import" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="12x-Ij-FII">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system" size="10"/>
@@ -732,7 +729,6 @@
                                     <constraint firstAttribute="height" constant="53" id="0Xu-jQ-Qc5"/>
                                     <constraint firstAttribute="width" constant="218" id="PSU-up-6Ms"/>
                                 </constraints>
-                                <animations/>
                                 <buttonCell key="cell" type="bevel" title="Change_Password" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="r3j-5u-JSK">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system" size="10"/>
@@ -747,7 +743,6 @@
                                     <constraint firstAttribute="width" constant="218" id="43z-6v-Z76"/>
                                     <constraint firstAttribute="height" constant="53" id="CbX-nR-bC7"/>
                                 </constraints>
-                                <animations/>
                                 <buttonCell key="cell" type="bevel" title="Generate_New_Key" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vMs-Tn-i8Y">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system" size="10"/>
@@ -762,7 +757,6 @@
                                     <constraint firstAttribute="height" constant="53" id="6Ia-U0-SXb"/>
                                     <constraint firstAttribute="width" constant="218" id="v8F-mw-hUu"/>
                                 </constraints>
-                                <animations/>
                                 <buttonCell key="cell" type="bevel" title="Test_AES" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1CM-t4-rZH">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system" size="10"/>
@@ -777,7 +771,6 @@
                                     <constraint firstAttribute="height" constant="53" id="28K-qQ-IMZ"/>
                                     <constraint firstAttribute="width" constant="218" id="gtT-j6-3lN"/>
                                 </constraints>
-                                <animations/>
                                 <buttonCell key="cell" type="bevel" title="Test Encrypt Mailbox PWD" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VeW-0Q-Z59">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -792,7 +785,6 @@
                                     <constraint firstAttribute="height" constant="53" id="Cvx-La-O8U"/>
                                     <constraint firstAttribute="width" constant="218" id="G9B-4V-pR5"/>
                                 </constraints>
-                                <animations/>
                                 <buttonCell key="cell" type="bevel" title="Test bad live message " bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="46U-bH-PJc">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -807,7 +799,6 @@
                                     <constraint firstAttribute="width" constant="218" id="Yoq-ZC-SjU"/>
                                     <constraint firstAttribute="height" constant="53" id="iYI-mc-nhf"/>
                                 </constraints>
-                                <animations/>
                                 <buttonCell key="cell" type="bevel" title="test encrypt/decrypt atts" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Dx1-6N-Jdy">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -822,7 +813,6 @@
                                     <constraint firstAttribute="height" constant="35" id="dUp-vU-cwB"/>
                                     <constraint firstAttribute="width" constant="503" id="gwv-JM-Rm4"/>
                                 </constraints>
-                                <animations/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="JzZ-sc-0Ut">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -835,7 +825,6 @@
                                     <constraint firstAttribute="height" constant="53" id="iOq-kF-P5F"/>
                                     <constraint firstAttribute="width" constant="218" id="kwY-QH-zy0"/>
                                 </constraints>
-                                <animations/>
                                 <buttonCell key="cell" type="bevel" title="Test large Att encrypt" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iqI-qH-Qh8">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -850,7 +839,6 @@
                                     <constraint firstAttribute="height" constant="53" id="Agh-LL-2rm"/>
                                     <constraint firstAttribute="width" constant="218" id="QOa-XX-bq3"/>
                                 </constraints>
-                                <animations/>
                                 <buttonCell key="cell" type="bevel" title="Multiple Keys Encrypt/Decrypt" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UvE-yJ-QqI">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -865,7 +853,6 @@
                                     <constraint firstAttribute="height" constant="53" id="dLO-pU-RTy"/>
                                     <constraint firstAttribute="width" constant="218" id="zEw-Dr-npJ"/>
                                 </constraints>
-                                <animations/>
                                 <buttonCell key="cell" type="bevel" title="TestNewJni" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dee-dH-Af6">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -902,7 +889,6 @@
                             <constraint firstItem="qhg-Uw-FmH" firstAttribute="leading" secondItem="mbB-M2-h9u" secondAttribute="trailing" constant="37" id="ubU-HO-XAk"/>
                             <constraint firstItem="W0v-ds-wrK" firstAttribute="top" secondItem="9mZ-Ao-wp6" secondAttribute="bottom" constant="21" id="yJC-dC-0VV"/>
                         </constraints>
-                        <animations/>
                     </view>
                     <connections>
                         <outlet property="labelDisplay" destination="W0v-ds-wrK" id="oJ7-ug-Bg7"/>
