@@ -100,14 +100,14 @@ namespace pm {
                 return false;
             }
             
-            iRet =RSA_generate_key_ex(rsa_key, 2048, e, NULL);
+            iRet =RSA_generate_key_ex(rsa_key, bits, e, NULL);
             if(!iRet)
             {
                 std::cout<<"RSA_generate_key_ex key error "<< std::endl;
                 return false;
             }
             
-            iRet = RSA_generate_key_ex(rsa_sub_key, 2048, e, NULL);
+            iRet = RSA_generate_key_ex(rsa_sub_key, bits, e, NULL);
             if(!iRet)
             {
                 std::cout<<"RSA_generate_key_ex sub_key error "<< std::endl;

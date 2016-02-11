@@ -143,7 +143,7 @@ class TestView: UIViewController {
         let count:Int = 10
         let startTime:CFTimeInterval  = CACurrentMediaTime()
         for var i:Int = 0; i < count; ++i {
-            openpgp?.generateKey("feng", domain: "protonmail.com", passphrase: "123")
+            openpgp?.generateKey("feng", domain: "protonmail.com", passphrase: "123", bits: 4096)
         }
         
         let endTime:CFTimeInterval  = CACurrentMediaTime();
