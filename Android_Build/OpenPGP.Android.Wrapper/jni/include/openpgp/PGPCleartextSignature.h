@@ -26,7 +26,7 @@ THE SOFTWARE.
 #ifndef __PGP_CLEARTEXT_SIGNATURE__
 #define __PGP_CLEARTEXT_SIGNATURE__
 
-#include "PGP.h"
+#include "pgp.h"
 #include "PGPDetachedSignature.h"
 
 class PGPCleartextSignature {

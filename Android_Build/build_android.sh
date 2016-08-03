@@ -7,8 +7,8 @@ SCRIPT_DIR=${PWD};
 SOURCE_DIR=${PWD}/../Source/
 OUT_PUT_DIR=${SCRIPT_DIR}/../Bin/android_libs/
 
-PGP_DIR=${SCRIPT_DIR}/OpenPGP.Android/
-PGP_ANDROID_WRAPPER_DIR=${SCRIPT_DIR}/OpenPGP.Android.Wrapper/
+PGP_DIR=${SCRIPT_DIR}/OpenPGP.Android
+PGP_ANDROID_WRAPPER_DIR=${SCRIPT_DIR}/OpenPGP.Android.Wrapper
 
 if [  ! -d $PGP_DIR ]; then
   mkdir $PGP_DIR
