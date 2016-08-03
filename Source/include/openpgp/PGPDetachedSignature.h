@@ -26,7 +26,7 @@ THE SOFTWARE.
 #ifndef __PGP_DETACHED_SIGNATURE__
 #define __PGP_DETACHED_SIGNATURE__
 
-#include "PGP.h"
+#include "pgp.h"
 
 class PGPDetachedSignature : public PGP {
     /*

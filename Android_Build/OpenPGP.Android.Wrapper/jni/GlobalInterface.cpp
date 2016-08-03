@@ -6,7 +6,7 @@
  */
 
 
-#include "Stdafx.h"
+#include "StdAfx.h"
 #include "GlobalInterface.h"
 
 JNIEXPORT JNICALL jint JNI_OnLoad(JavaVM* aVm, void* aReserved)

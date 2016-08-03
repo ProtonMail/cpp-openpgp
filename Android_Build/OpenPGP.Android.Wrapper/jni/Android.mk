@@ -65,7 +65,7 @@ LOCAL_SRC_FILES := $(base_class) \
 $(generated_cpp) \
 \
 openpgp_wrapper.cpp \
-Stdafx.cpp \
+StdAfx.cpp \
 \
 
 #GlobalInterface.cpp \
