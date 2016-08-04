@@ -62,7 +62,9 @@ public:
 
     virtual std::vector<uint8_t> decrypt_attachment_with_password(const std::vector<uint8_t> & key, const std::vector<uint8_t> & data, const std::string & password) = 0;
 
-    virtual std::vector<uint8_t> get_public_key_session_key(const std::vector<uint8_t> & keyPackage, const std::string & privateKey, const std::string & passphrase) = 0;
+    virtual std::vector<uint8_t> get_public_key_session_key(const std::vector<uint8_t> & keyPackage, const std::string & passphrase) = 0;
+
+    virtual std::vector<uint8_t> get_public_key_session_key_single_key(const std::vector<uint8_t> & keyPackage, const std::string & privateKey, const std::string & passphrase) = 0;
 
     virtual std::vector<uint8_t> get_symmetric_session_key(const std::vector<uint8_t> & keyPackage, const std::string & password) = 0;
 
@@ -77,6 +79,8 @@ public:
     virtual std::string encrypt_mailbox_pwd(const std::string & unencrypted_pwd, const std::string & salt) = 0;
 
     virtual std::string decrypt_mailbox_pwd(const std::string & encrypted_pwd, const std::string & salt) = 0;
+
+    virtual std::string read_clearsigned_message(const std::string & signed_message) = 0;
 
     /**test functions */
     virtual int32_t throw_an_exception() = 0;

@@ -86,6 +86,9 @@ public abstract class OpenPgp {
     @Nonnull
     public abstract String decryptMailboxPwd(@Nonnull String encryptedPwd, @Nonnull String salt);
 
+    @Nonnull
+    public abstract String readClearsignedMessage(@Nonnull String signedMessage);
+
     /**test functions */
     public abstract int throwAnException();
 
@@ -325,6 +328,14 @@ public abstract class OpenPgp {
             return native_decryptMailboxPwd(this.nativeRef, encryptedPwd, salt);
         }
         private native String native_decryptMailboxPwd(long _nativeRef, String encryptedPwd, String salt);
+
+        @Override
+        public String readClearsignedMessage(String signedMessage)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_readClearsignedMessage(this.nativeRef, signedMessage);
+        }
+        private native String native_readClearsignedMessage(long _nativeRef, String signedMessage);
 
         @Override
         public int throwAnException()

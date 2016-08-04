@@ -19,7 +19,7 @@ CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_OpenPgp_00024CppProxy_n
 {
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
-        delete reinterpret_cast<djinni::CppProxyHandle<::ProtonMail::OpenPgp>*>(nativeRef);
+        delete reinterpret_cast<::djinni::CppProxyHandle<::ProtonMail::OpenPgp>*>(nativeRef);
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
@@ -326,6 +326,16 @@ CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_OpenPgp_00024CppProx
         const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::OpenPgp>(nativeRef);
         auto r = ref->decrypt_mailbox_pwd(::djinni::String::toCpp(jniEnv, j_encryptedPwd),
                                           ::djinni::String::toCpp(jniEnv, j_salt));
+        return ::djinni::release(::djinni::String::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
+}
+
+CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_OpenPgp_00024CppProxy_native_1readClearsignedMessage(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jstring j_signedMessage)
+{
+    try {
+        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
+        const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::OpenPgp>(nativeRef);
+        auto r = ref->read_clearsigned_message(::djinni::String::toCpp(jniEnv, j_signedMessage));
         return ::djinni::release(::djinni::String::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }

@@ -1,5 +1,6 @@
 #include <openpgp/PGPKey.h>
 #include <openpgp/openpgp.h>
+#include <openpgp/PGPCleartextSignature.h>
 #include <openpgp/PGPMessage.h>
 #include <openpgp/encrypt.h>
 #include <openpgp/decrypt.h>
@@ -372,6 +373,12 @@ namespace ProtonMail {
         return out_unencrypt_msg;
     }
 
+    std::string OpenPgpImpl::read_clearsigned_message(const std::string & signed_message) {
+        std::string signed_copy = signed_message;
+        PGPCleartextSignature signature;
+        signature.read(signed_copy);
+        return signature.get_message();
+    }
 
     int32_t OpenPgpImpl::throw_an_exception() {
         throw ExampleException();

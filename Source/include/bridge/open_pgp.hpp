@@ -80,6 +80,8 @@ public:
 
     virtual std::string decrypt_mailbox_pwd(const std::string & encrypted_pwd, const std::string & salt) = 0;
 
+    virtual std::string read_clearsigned_message(const std::string & signed_message) = 0;
+
     /**test functions */
     virtual int32_t throw_an_exception() = 0;
 };
