@@ -38,6 +38,8 @@
 		759DA0901C5C2B3300EB0483 /* libUniversalPGP_OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 759DA08F1C5C2B3300EB0483 /* libUniversalPGP_OSX.a */; };
 		759DA0AB1C5C348F00EB0483 /* libUniversalPGP_OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 759DA0A91C5C346900EB0483 /* libUniversalPGP_OSX.a */; };
 		759DE1DD1C63EF600078D437 /* feng_mulitiple_keys_f.json in Resources */ = {isa = PBXBuildFile; fileRef = 759DE1DC1C63EF600078D437 /* feng_mulitiple_keys_f.json */; };
+		759F4F0A1D1B3A29004E551A /* privatekey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 755E3C231C471BA7006B1EE2 /* privatekey.txt */; };
+		759F4F0B1D1B3A29004E551A /* publickey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 755E3C241C471BA7006B1EE2 /* publickey.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -424,6 +426,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				759F4F0B1D1B3A29004E551A /* publickey.txt in Resources */,
+				759F4F0A1D1B3A29004E551A /* privatekey.txt in Resources */,
 				7588B9491AA53D6D006A8793 /* Images.xcassets in Resources */,
 				7588B94C1AA53D6D006A8793 /* Main.storyboard in Resources */,
 				7571EC3D1C3C6CBE00428F74 /* feng_addresses.geojson in Resources */,

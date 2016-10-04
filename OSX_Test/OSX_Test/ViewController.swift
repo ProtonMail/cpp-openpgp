@@ -168,7 +168,10 @@ class ViewController: NSViewController {
         
     }
     @IBAction func test_encrypt_decrypt_attachment(sender: AnyObject) {
-//        let pgp:OpenPGP = OpenPGP()
+        let pgp:OpenPGP = OpenPGP()
+        
+        
+        let tet_att = "/Users/Yanfeng/Downloads/2step.pdf.pgp"
 //        
 //        // pgp.Test_Attachment("", data: "")
 //        
@@ -180,7 +183,39 @@ class ViewController: NSViewController {
 //        let pubkey = NSString(contentsOfFile: pub_location, encoding: NSUTF8StringEncoding, error: nil) as! String
 //        let privkey = NSString(contentsOfFile: priv_location, encoding: NSUTF8StringEncoding, error: nil) as! String
 //        let key_package = NSString(contentsOfFile: key_package_location, encoding: NSUTF8StringEncoding, error: nil) as! String
-//        let data_package = NSString(contentsOfFile: data_package_location, encoding: NSUTF8StringEncoding, error: nil) as! String
+        do {
+            var privateKey = ""
+            var publicKey = ""
+            
+            let privatePassphrase = "123"
+            
+            let bundleInstance : NSBundle = NSBundle(forClass: self.dynamicType)
+           
+            if let localFile = bundleInstance.pathForResource("privatekey", ofType: "txt") {
+                if let content = try? String(contentsOfFile:localFile, encoding:NSUTF8StringEncoding) {
+                    privateKey = content
+                }
+            }
+            
+            if let localFile = bundleInstance.pathForResource("publickey", ofType: "txt") {
+                if let content = try?  String(contentsOfFile:localFile, encoding:NSUTF8StringEncoding) {
+                    publicKey = content
+                }
+            }
+            
+            try pgp.SetupKeys(privateKey, pubKey: publicKey, pass: privatePassphrase)
+            
+            let data_package = NSData(contentsOfFile:tet_att)
+            let decrypted_data = try pgp.decrypt_attachment(data_package, data: data_package)
+            
+            decrypted_data.writeToFile("/Users/Yanfeng/Downloads/2step.pdf", atomically: false)
+            
+        } catch let ex as NSError {
+            print(ex)
+        }
+        
+        
+        
 //        
 //        let value = pgp.SetupKeys(privkey, pubKey: pubkey, pass: "123", error:nil)
 //        
@@ -190,7 +225,7 @@ class ViewController: NSViewController {
 //        let armored_data_package_location = "/Users/Yanfeng/Desktop/new_att_data.txt"
 //        let armored_key_package = NSString(contentsOfFile: armored_key_package_location, encoding: NSUTF8StringEncoding, error: nil) as! String
 //        let armored_data_package = NSString(contentsOfFile: armored_data_package_location, encoding: NSUTF8StringEncoding, error: nil) as! String
-//        let decrypted_data = pgp.decrypt_attachment_armored(armored_key_package, data: armored_data_package, error:nil)
+      //  let decrypted_data = pgp.decrypt_attachment_armored(armored_key_package, data: armored_data_package, error:nil)
 //        decrypted_data.writeToFile("/Users/Yanfeng/Desktop/new_unencrypted.png", atomically: false)
 //        
 //        

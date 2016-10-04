@@ -805,7 +805,7 @@
     
     
     pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
-    pm_pgp_msg.append(str_data_package, true);
+   // pm_pgp_msg.append(str_data_package, true);
     
     std::string test_plain_txt = decrypt_pka(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String], false);
     
