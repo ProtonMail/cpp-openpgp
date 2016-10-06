@@ -111,6 +111,7 @@ class ViewController: NSViewController {
         
     }
     @IBAction func EncryptMailboxPWD(sender: AnyObject) {
+        
 //        let pgp:OpenPGP = OpenPGP();
 //        
 //        let v = pgp.encrypt_mailbox_pwd("thisisatestmailbox", slat: "4428c82a118a2dc76f53dab507d3b1d69850ebb9")
@@ -370,6 +371,11 @@ class ViewController: NSViewController {
 //        }
     }
     @IBAction func new_jni_test(sender: AnyObject) {
+        if let openPgp : PMNOpenPgp = PMNOpenPgp.createInstance() {
+            openPgp.encryptHashCbc("asdfsdfasdfsaf", "")
+        }
+        
+        
 //        if let localFile = NSBundle.mainBundle().pathForResource("feng_addresses", ofType: "geojson") {
 //            if let content = String(contentsOfFile:localFile, encoding:NSUTF8StringEncoding, error: nil) {
 //                

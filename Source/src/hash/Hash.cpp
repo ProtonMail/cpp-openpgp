@@ -18,11 +18,6 @@ std::string Hash::digest(){
 }
 
 
-
-
-
-
-
 namespace pm {
     
     

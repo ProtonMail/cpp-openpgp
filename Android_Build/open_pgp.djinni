@@ -73,7 +73,8 @@ open_pgp = interface +c {
     encrypt_hash_cbc(plain_text : string, password : string) : string;
     decrypt_hash_cbc(encrypted_text : string, password : string) : string;
 
-
+    #ExpandHash & SRP
+    expand_hash(input : binary): binary;
 
 }
 

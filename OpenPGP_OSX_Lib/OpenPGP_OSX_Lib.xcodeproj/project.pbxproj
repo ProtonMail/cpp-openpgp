@@ -684,6 +684,11 @@
 		75AE62EB1AFBCFED00131986 /* pgpzlib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75AE62E41AFBCFED00131986 /* pgpzlib.cpp */; };
 		75AE62EC1AFBCFED00131986 /* pgpzlib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75AE62E41AFBCFED00131986 /* pgpzlib.cpp */; };
 		75AE62ED1AFBCFED00131986 /* pgpzlib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75AE62E41AFBCFED00131986 /* pgpzlib.cpp */; };
+		75BF8F4A1DA7088B000F350F /* ExpandHash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75BF8F491DA7088A000F350F /* ExpandHash.cpp */; };
+		75BF8F4B1DA7088B000F350F /* ExpandHash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75BF8F491DA7088A000F350F /* ExpandHash.cpp */; };
+		75BF8F4C1DA7088B000F350F /* ExpandHash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75BF8F491DA7088A000F350F /* ExpandHash.cpp */; };
+		75BF8F4D1DA7088B000F350F /* ExpandHash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75BF8F491DA7088A000F350F /* ExpandHash.cpp */; };
+		75BF8F4E1DA7088B000F350F /* ExpandHash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75BF8F491DA7088A000F350F /* ExpandHash.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -924,6 +929,7 @@
 		75AE62E21AFBCFED00131986 /* compress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compress.cpp; sourceTree = "<group>"; };
 		75AE62E31AFBCFED00131986 /* pgpbzip2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pgpbzip2.cpp; sourceTree = "<group>"; };
 		75AE62E41AFBCFED00131986 /* pgpzlib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pgpzlib.cpp; sourceTree = "<group>"; };
+		75BF8F491DA7088A000F350F /* ExpandHash.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExpandHash.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1058,6 +1064,7 @@
 			children = (
 				7517E6791AFABC35007EA967 /* Hash.cpp */,
 				7517E67A1AFABC35007EA967 /* Hashes.cpp */,
+				75BF8F491DA7088A000F350F /* ExpandHash.cpp */,
 				7517E67B1AFABC35007EA967 /* MD5.cpp */,
 				7517E67C1AFABC35007EA967 /* RIPEMD160.cpp */,
 				7517E67D1AFABC35007EA967 /* SHA1.cpp */,
@@ -1462,6 +1469,7 @@
 				7517E8721AFABC35007EA967 /* Tag17.cpp in Sources */,
 				7517E7821AFABC35007EA967 /* decrypt.cpp in Sources */,
 				7517E83E1AFABC35007EA967 /* Tag2Sub4.cpp in Sources */,
+				75BF8F4A1DA7088B000F350F /* ExpandHash.cpp in Sources */,
 				7517E74A1AFABC35007EA967 /* Hash.cpp in Sources */,
 				7517E74E1AFABC35007EA967 /* Hashes.cpp in Sources */,
 				7517E7361AFABC35007EA967 /* SymAlg.cpp in Sources */,
@@ -1606,6 +1614,7 @@
 				7545D3FC1C45ABBC000D2F8D /* DJIProxyCaches.mm in Sources */,
 				7545D3FA1C45A995000D2F8D /* open_pgp_impl.cpp in Sources */,
 				7545D3D41C45A1B2000D2F8D /* PMNEncryptPackage.mm in Sources */,
+				75BF8F4B1DA7088B000F350F /* ExpandHash.cpp in Sources */,
 				7545D3D51C45A1B2000D2F8D /* PMNEncryptPackage+Private.mm in Sources */,
 				7545D3D61C45A1B2000D2F8D /* PMNOpenPgp+Private.mm in Sources */,
 				7545D3D71C45A1B2000D2F8D /* PMNOpenPgpKey.mm in Sources */,
@@ -1743,6 +1752,7 @@
 				7545D3E71C45A264000D2F8D /* DJIError.mm in Sources */,
 				7545D3E81C45A264000D2F8D /* DJIProxyCaches.mm in Sources */,
 				7545D3D91C45A1BC000D2F8D /* PMNEncryptPackage.mm in Sources */,
+				75BF8F4C1DA7088B000F350F /* ExpandHash.cpp in Sources */,
 				7545D3DA1C45A1BC000D2F8D /* PMNEncryptPackage+Private.mm in Sources */,
 				7545D3DB1C45A1BC000D2F8D /* PMNOpenPgp+Private.mm in Sources */,
 				7545D3DC1C45A1BC000D2F8D /* PMNOpenPgpKey.mm in Sources */,
@@ -1880,6 +1890,7 @@
 				759DA0031C5C2A3100EB0483 /* compress.cpp in Sources */,
 				759DA0041C5C2A3100EB0483 /* pgpbzip2.cpp in Sources */,
 				759DA0051C5C2A3100EB0483 /* pgpzlib.cpp in Sources */,
+				75BF8F4E1DA7088B000F350F /* ExpandHash.cpp in Sources */,
 				759DA0061C5C2A3100EB0483 /* rsa_key.cpp in Sources */,
 				759DA0071C5C2A3100EB0483 /* AES.cpp in Sources */,
 				759DA0081C5C2A3100EB0483 /* Blowfish.cpp in Sources */,
@@ -2017,6 +2028,7 @@
 				75AB6B4F1C5044F100E82A0E /* compress.cpp in Sources */,
 				75AB6B501C5044F100E82A0E /* pgpbzip2.cpp in Sources */,
 				75AB6B511C5044F100E82A0E /* pgpzlib.cpp in Sources */,
+				75BF8F4D1DA7088B000F350F /* ExpandHash.cpp in Sources */,
 				75AB6B521C5044F100E82A0E /* rsa_key.cpp in Sources */,
 				75AB6B531C5044F100E82A0E /* AES.cpp in Sources */,
 				75AB6B541C5044F100E82A0E /* Blowfish.cpp in Sources */,
