@@ -4,7 +4,6 @@
 #include "NativeOpenPgp.hpp"  // my header
 #include "NativeAddress.hpp"
 #include "NativeEncryptPackage.hpp"
-#include "NativeOpenPgp.hpp"
 #include "NativeOpenPgpKey.hpp"
 #include "jni_base_h/Marshal.hpp"
 

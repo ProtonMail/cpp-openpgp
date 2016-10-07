@@ -72,10 +72,20 @@ open_pgp = interface +c {
     #PBE
     encrypt_hash_cbc(plain_text : string, password : string) : string;
     decrypt_hash_cbc(encrypted_text : string, password : string) : string;
-
-    #ExpandHash & SRP
-    expand_hash(input : binary): binary;
-
 }
 
+srp_proofs = record {
+	client_ephemeral : binary;
+	client_proof : binary;
+	expected_server_proof : binary;
+}
+
+srp_client = interface +c {
+    #ExpandHash
+	static expand_hash(input : binary): binary;
+    #SRP
+	static generate_proofs(bit_length : i32, modulus_repr : binary, server_ephemeral_repr : binary, hashed_password_repr : binary): srp_proofs;
+	static generate_Verifier(bit_length : i32, modulus_repr : binary, hashed_password_repr : binary) : binary;
+    
+}
 
