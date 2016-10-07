@@ -25,7 +25,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@ %p publicKey:%@ privateKey:%@>", self.class, self, self.publicKey, self.privateKey];
+    return [NSString stringWithFormat:@"<%@ %p publicKey:%@ privateKey:%@>", self.class, (void *)self, self.publicKey, self.privateKey];
 }
 
 @end

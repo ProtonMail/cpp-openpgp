@@ -25,7 +25,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@ %p keyPackage:%@ dataPackage:%@>", self.class, self, self.keyPackage, self.dataPackage];
+    return [NSString stringWithFormat:@"<%@ %p keyPackage:%@ dataPackage:%@>", self.class, (void *)self, self.keyPackage, self.dataPackage];
 }
 
 @end

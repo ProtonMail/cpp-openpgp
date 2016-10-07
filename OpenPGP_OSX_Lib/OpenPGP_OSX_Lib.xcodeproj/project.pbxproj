@@ -689,6 +689,11 @@
 		75BF8F4C1DA7088B000F350F /* ExpandHash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75BF8F491DA7088A000F350F /* ExpandHash.cpp */; };
 		75BF8F4D1DA7088B000F350F /* ExpandHash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75BF8F491DA7088A000F350F /* ExpandHash.cpp */; };
 		75BF8F4E1DA7088B000F350F /* ExpandHash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75BF8F491DA7088A000F350F /* ExpandHash.cpp */; };
+		75BF8F501DA720EE000F350F /* srp_client_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75BF8F4F1DA720EE000F350F /* srp_client_impl.cpp */; };
+		75BF8F511DA720EF000F350F /* srp_client_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75BF8F4F1DA720EE000F350F /* srp_client_impl.cpp */; };
+		75BF8F521DA720EF000F350F /* srp_client_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75BF8F4F1DA720EE000F350F /* srp_client_impl.cpp */; };
+		75BF8F531DA720EF000F350F /* srp_client_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75BF8F4F1DA720EE000F350F /* srp_client_impl.cpp */; };
+		75BF8F541DA720EF000F350F /* srp_client_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75BF8F4F1DA720EE000F350F /* srp_client_impl.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -930,6 +935,7 @@
 		75AE62E31AFBCFED00131986 /* pgpbzip2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pgpbzip2.cpp; sourceTree = "<group>"; };
 		75AE62E41AFBCFED00131986 /* pgpzlib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pgpzlib.cpp; sourceTree = "<group>"; };
 		75BF8F491DA7088A000F350F /* ExpandHash.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExpandHash.cpp; sourceTree = "<group>"; };
+		75BF8F4F1DA720EE000F350F /* srp_client_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = srp_client_impl.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1287,6 +1293,7 @@
 			isa = PBXGroup;
 			children = (
 				7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */,
+				75BF8F4F1DA720EE000F350F /* srp_client_impl.cpp */,
 			);
 			path = bridge_impl;
 			sourceTree = "<group>";
@@ -1569,6 +1576,7 @@
 				7517E7DE1AFABC35007EA967 /* Tag2Sub11.cpp in Sources */,
 				7545D3E51C45A24A000D2F8D /* DJIError.mm in Sources */,
 				7517E85E1AFABC35007EA967 /* Tag10.cpp in Sources */,
+				75BF8F501DA720EE000F350F /* srp_client_impl.cpp in Sources */,
 				7517E82E1AFABC35007EA967 /* Tag2Sub3.cpp in Sources */,
 				7517E7761AFABC35007EA967 /* sign.cpp in Sources */,
 				7517E8021AFABC35007EA967 /* Tag2Sub2.cpp in Sources */,
@@ -1714,6 +1722,7 @@
 				7517E8331AFABC35007EA967 /* Tag2Sub30.cpp in Sources */,
 				7517E8231AFABC35007EA967 /* Tag2Sub27.cpp in Sources */,
 				7517E7C31AFABC35007EA967 /* Partial.cpp in Sources */,
+				75BF8F511DA720EF000F350F /* srp_client_impl.cpp in Sources */,
 				7517E7DF1AFABC35007EA967 /* Tag2Sub11.cpp in Sources */,
 				7517E85F1AFABC35007EA967 /* Tag10.cpp in Sources */,
 				7517E82F1AFABC35007EA967 /* Tag2Sub3.cpp in Sources */,
@@ -1852,6 +1861,7 @@
 				7517E8341AFABC35007EA967 /* Tag2Sub30.cpp in Sources */,
 				7517E8241AFABC35007EA967 /* Tag2Sub27.cpp in Sources */,
 				7517E7C41AFABC35007EA967 /* Partial.cpp in Sources */,
+				75BF8F521DA720EF000F350F /* srp_client_impl.cpp in Sources */,
 				7517E7E01AFABC35007EA967 /* Tag2Sub11.cpp in Sources */,
 				7517E8601AFABC35007EA967 /* Tag10.cpp in Sources */,
 				7517E8301AFABC35007EA967 /* Tag2Sub3.cpp in Sources */,
@@ -1990,6 +2000,7 @@
 				759DA0661C5C2A3100EB0483 /* Tag5.cpp in Sources */,
 				759DA0671C5C2A3100EB0483 /* Tag6.cpp in Sources */,
 				759DA0681C5C2A3100EB0483 /* Tag60.cpp in Sources */,
+				75BF8F541DA720EF000F350F /* srp_client_impl.cpp in Sources */,
 				759DA0691C5C2A3100EB0483 /* Tag61.cpp in Sources */,
 				759DA06A1C5C2A3100EB0483 /* Tag62.cpp in Sources */,
 				759DA06B1C5C2A3100EB0483 /* Tag63.cpp in Sources */,
@@ -2128,6 +2139,7 @@
 				75AB6BB21C5044F100E82A0E /* Tag5.cpp in Sources */,
 				75AB6BB31C5044F100E82A0E /* Tag6.cpp in Sources */,
 				75AB6BB41C5044F100E82A0E /* Tag60.cpp in Sources */,
+				75BF8F531DA720EF000F350F /* srp_client_impl.cpp in Sources */,
 				75AB6BB51C5044F100E82A0E /* Tag61.cpp in Sources */,
 				75AB6BB61C5044F100E82A0E /* Tag62.cpp in Sources */,
 				75AB6BB71C5044F100E82A0E /* Tag63.cpp in Sources */,

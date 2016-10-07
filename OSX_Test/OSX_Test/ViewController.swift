@@ -372,7 +372,7 @@ class ViewController: NSViewController {
     }
     @IBAction func new_jni_test(sender: AnyObject) {
         if let openPgp : PMNOpenPgp = PMNOpenPgp.createInstance() {
-            openPgp.encryptHashCbc("asdfsdfasdfsaf", "")
+            //openPgp.encryptHashCbc("asdfsdfasdfsaf", "")
         }
         
         
