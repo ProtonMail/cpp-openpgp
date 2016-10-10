@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		752B38651C46D9150019742F /* OpenPGP_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752B38641C46D9150019742F /* OpenPGP_Test.swift */; };
 		755E3C151C471197006B1EE2 /* SwiftObjC-Bridging-Header.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7588B9611AA53F4D006A8793 /* SwiftObjC-Bridging-Header.cpp */; };
-		755E3C181C4711A9006B1EE2 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7588B96C1AA541D3006A8793 /* libz.dylib */; };
-		755E3C191C4711B6006B1EE2 /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7588B96A1AA541CD006A8793 /* libbz2.dylib */; };
 		755E3C1C1C4711BE006B1EE2 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 755E3C1A1C4711BE006B1EE2 /* libcrypto.a */; };
 		755E3C1D1C4711BE006B1EE2 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 755E3C1B1C4711BE006B1EE2 /* libssl.a */; };
 		755E3C271C471BA7006B1EE2 /* feng_mulitiple_keys.json in Resources */ = {isa = PBXBuildFile; fileRef = 755E3C1F1C471BA6006B1EE2 /* feng_mulitiple_keys.json */; };
@@ -31,12 +29,11 @@
 		7588B94C1AA53D6D006A8793 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7588B94A1AA53D6D006A8793 /* Main.storyboard */; };
 		7588B9581AA53D6D006A8793 /* OSX_TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7588B9571AA53D6D006A8793 /* OSX_TestTests.swift */; };
 		7588B9631AA53F4D006A8793 /* SwiftObjC-Bridging-Header.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7588B9611AA53F4D006A8793 /* SwiftObjC-Bridging-Header.cpp */; };
-		7588B9681AA541C8006A8793 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7588B9661AA541C8006A8793 /* libcrypto.a */; };
-		7588B9691AA541C8006A8793 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7588B9671AA541C8006A8793 /* libssl.a */; };
-		7588B96B1AA541CD006A8793 /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7588B96A1AA541CD006A8793 /* libbz2.dylib */; };
-		7588B96D1AA541D3006A8793 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7588B96C1AA541D3006A8793 /* libz.dylib */; };
-		759DA0901C5C2B3300EB0483 /* libUniversalPGP_OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 759DA08F1C5C2B3300EB0483 /* libUniversalPGP_OSX.a */; };
-		759DA0AB1C5C348F00EB0483 /* libUniversalPGP_OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 759DA0A91C5C346900EB0483 /* libUniversalPGP_OSX.a */; };
+		7598C9DF1DAC576F002FD14A /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 755E3C1A1C4711BE006B1EE2 /* libcrypto.a */; };
+		7598C9E01DAC576F002FD14A /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 755E3C1B1C4711BE006B1EE2 /* libssl.a */; };
+		7598C9E21DAC577F002FD14A /* libUniversalPGP_OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7598C9E11DAC577F002FD14A /* libUniversalPGP_OSX.a */; };
+		7598C9E51DAC57DA002FD14A /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7598C9E31DAC57DA002FD14A /* libbz2.dylib */; };
+		7598C9E61DAC57DA002FD14A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7598C9E41DAC57DA002FD14A /* libz.dylib */; };
 		759DE1DD1C63EF600078D437 /* feng_mulitiple_keys_f.json in Resources */ = {isa = PBXBuildFile; fileRef = 759DE1DC1C63EF600078D437 /* feng_mulitiple_keys_f.json */; };
 		759F4F0A1D1B3A29004E551A /* privatekey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 755E3C231C471BA7006B1EE2 /* privatekey.txt */; };
 		759F4F0B1D1B3A29004E551A /* publickey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 755E3C241C471BA7006B1EE2 /* publickey.txt */; };
@@ -50,62 +47,10 @@
 			remoteGlobalIDString = 7588B93E1AA53D6D006A8793;
 			remoteInfo = OSX_Test;
 		};
-		759DA09E1C5C346900EB0483 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 759DA0951C5C346900EB0483 /* OpenPGP_OSX_Lib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7519BBD71A8D868000E0E570;
-			remoteInfo = OpenPGP_IOS;
-		};
-		759DA0A01C5C346900EB0483 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 759DA0951C5C346900EB0483 /* OpenPGP_OSX_Lib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7519BBFA1A8D869000E0E570;
-			remoteInfo = OpenPGP_x86_64;
-		};
-		759DA0A21C5C346900EB0483 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 759DA0951C5C346900EB0483 /* OpenPGP_OSX_Lib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 75419F471A97E1A8002A1F25;
-			remoteInfo = OpenPGP_i386;
-		};
-		759DA0A41C5C346900EB0483 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 759DA0951C5C346900EB0483 /* OpenPGP_OSX_Lib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7519BBE21A8D868000E0E570;
-			remoteInfo = OpenPGP_OSX_LibTests;
-		};
-		759DA0A61C5C346900EB0483 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 759DA0951C5C346900EB0483 /* OpenPGP_OSX_Lib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 75AB6B451C50436000E82A0E;
-			remoteInfo = UniversalPGP;
-		};
-		759DA0A81C5C346900EB0483 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 759DA0951C5C346900EB0483 /* OpenPGP_OSX_Lib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 759DA08E1C5C2A3100EB0483;
-			remoteInfo = UniversalPGP_OSX;
-		};
-		759DA0AC1C5C34CC00EB0483 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 759DA0951C5C346900EB0483 /* OpenPGP_OSX_Lib.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 759DA0001C5C2A3100EB0483;
-			remoteInfo = UniversalPGP_OSX;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		750BA0FB1AAA8582003FEA16 /* libOpenPGP_x86_64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOpenPGP_x86_64.a; path = /Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OpenPGP_OSX_Lib/../Bin/libs/Debug/libOpenPGP_x86_64.a; sourceTree = "<absolute>"; };
-		750BA5621AAA969A003FEA16 /* libOpenPGP.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOpenPGP.a; path = "../Bin/libs/Debug-iphoneos/libOpenPGP.a"; sourceTree = "<group>"; };
 		752B38641C46D9150019742F /* OpenPGP_Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenPGP_Test.swift; sourceTree = "<group>"; };
-		755E3C161C47119F006B1EE2 /* libOpenPGP_x86_64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOpenPGP_x86_64.a; path = /Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OpenPGP_OSX_Lib/../Bin/libs/Debug/libOpenPGP_x86_64.a; sourceTree = "<absolute>"; };
 		755E3C1A1C4711BE006B1EE2 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../tmp_lib/libcrypto.a; sourceTree = "<group>"; };
 		755E3C1B1C4711BE006B1EE2 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../tmp_lib/libssl.a; sourceTree = "<group>"; };
 		755E3C1F1C471BA6006B1EE2 /* feng_mulitiple_keys.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = feng_mulitiple_keys.json; path = Resource/feng_mulitiple_keys.json; sourceTree = "<group>"; };
@@ -129,17 +74,9 @@
 		7588B9571AA53D6D006A8793 /* OSX_TestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSX_TestTests.swift; sourceTree = "<group>"; };
 		7588B9611AA53F4D006A8793 /* SwiftObjC-Bridging-Header.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "SwiftObjC-Bridging-Header.cpp"; sourceTree = "<group>"; };
 		7588B9621AA53F4D006A8793 /* SwiftObjC-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SwiftObjC-Bridging-Header.h"; sourceTree = "<group>"; };
-		7588B9661AA541C8006A8793 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../Bin/libs/OpenSSL/libcrypto.a; sourceTree = "<group>"; };
-		7588B9671AA541C8006A8793 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../Bin/libs/OpenSSL/libssl.a; sourceTree = "<group>"; };
-		7588B96A1AA541CD006A8793 /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = usr/lib/libbz2.dylib; sourceTree = SDKROOT; };
-		7588B96C1AA541D3006A8793 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		759D9FFA1C5C271800EB0483 /* libUniversalPGP.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libUniversalPGP.a; path = "/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OpenPGP_OSX_Lib/../Bin/libs/Release-iphoneos/libUniversalPGP.a"; sourceTree = "<absolute>"; };
-		759D9FFC1C5C279300EB0483 /* libUniversalPGP.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libUniversalPGP.a; path = "/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OpenPGP_OSX_Lib/../Bin/libs/Release-iphoneos/libUniversalPGP.a"; sourceTree = "<absolute>"; };
-		759D9FFE1C5C282900EB0483 /* libUniversalPGP.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libUniversalPGP.a; path = "/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OpenPGP_OSX_Lib/../Bin/libs/Release-iphoneos/libUniversalPGP.a"; sourceTree = "<absolute>"; };
-		759DA08F1C5C2B3300EB0483 /* libUniversalPGP_OSX.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libUniversalPGP_OSX.a; path = /Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OpenPGP_OSX_Lib/../Bin/libs/Debug/libUniversalPGP_OSX.a; sourceTree = "<absolute>"; };
-		759DA0911C5C2B3B00EB0483 /* libUniversalPGP_OSX.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libUniversalPGP_OSX.a; path = /Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OpenPGP_OSX_Lib/../Bin/libs/Debug/libUniversalPGP_OSX.a; sourceTree = "<absolute>"; };
-		759DA0931C5C337500EB0483 /* libUniversalPGP_OSX.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libUniversalPGP_OSX.a; path = /Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OpenPGP_OSX_Lib/../Bin/libs/Debug/libUniversalPGP_OSX.a; sourceTree = "<absolute>"; };
-		759DA0951C5C346900EB0483 /* OpenPGP_OSX_Lib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OpenPGP_OSX_Lib.xcodeproj; path = ../OpenPGP_OSX_Lib/OpenPGP_OSX_Lib.xcodeproj; sourceTree = "<group>"; };
+		7598C9E11DAC577F002FD14A /* libUniversalPGP_OSX.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libUniversalPGP_OSX.a; path = ../Bin/libs/Debug/libUniversalPGP_OSX.a; sourceTree = "<group>"; };
+		7598C9E31DAC57DA002FD14A /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/lib/libbz2.dylib; sourceTree = DEVELOPER_DIR; };
+		7598C9E41DAC57DA002FD14A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
 		759DE1DC1C63EF600078D437 /* feng_mulitiple_keys_f.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = feng_mulitiple_keys_f.json; path = Resource/feng_mulitiple_keys_f.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,11 +85,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				759DA0AB1C5C348F00EB0483 /* libUniversalPGP_OSX.a in Frameworks */,
-				7588B96D1AA541D3006A8793 /* libz.dylib in Frameworks */,
-				7588B96B1AA541CD006A8793 /* libbz2.dylib in Frameworks */,
-				7588B9681AA541C8006A8793 /* libcrypto.a in Frameworks */,
-				7588B9691AA541C8006A8793 /* libssl.a in Frameworks */,
+				7598C9E21DAC577F002FD14A /* libUniversalPGP_OSX.a in Frameworks */,
+				7598C9DF1DAC576F002FD14A /* libcrypto.a in Frameworks */,
+				7598C9E01DAC576F002FD14A /* libssl.a in Frameworks */,
+				7598C9E51DAC57DA002FD14A /* libbz2.dylib in Frameworks */,
+				7598C9E61DAC57DA002FD14A /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,11 +97,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				759DA0901C5C2B3300EB0483 /* libUniversalPGP_OSX.a in Frameworks */,
 				755E3C1C1C4711BE006B1EE2 /* libcrypto.a in Frameworks */,
 				755E3C1D1C4711BE006B1EE2 /* libssl.a in Frameworks */,
-				755E3C191C4711B6006B1EE2 /* libbz2.dylib in Frameworks */,
-				755E3C181C4711A9006B1EE2 /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,22 +108,11 @@
 		750BA0E41AAA73BB003FEA16 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				759DA0951C5C346900EB0483 /* OpenPGP_OSX_Lib.xcodeproj */,
-				759DA0931C5C337500EB0483 /* libUniversalPGP_OSX.a */,
-				759DA0911C5C2B3B00EB0483 /* libUniversalPGP_OSX.a */,
-				759DA08F1C5C2B3300EB0483 /* libUniversalPGP_OSX.a */,
-				759D9FFE1C5C282900EB0483 /* libUniversalPGP.a */,
-				759D9FFC1C5C279300EB0483 /* libUniversalPGP.a */,
-				759D9FFA1C5C271800EB0483 /* libUniversalPGP.a */,
+				7598C9E31DAC57DA002FD14A /* libbz2.dylib */,
+				7598C9E41DAC57DA002FD14A /* libz.dylib */,
+				7598C9E11DAC577F002FD14A /* libUniversalPGP_OSX.a */,
 				755E3C1A1C4711BE006B1EE2 /* libcrypto.a */,
 				755E3C1B1C4711BE006B1EE2 /* libssl.a */,
-				755E3C161C47119F006B1EE2 /* libOpenPGP_x86_64.a */,
-				750BA5621AAA969A003FEA16 /* libOpenPGP.a */,
-				750BA0FB1AAA8582003FEA16 /* libOpenPGP_x86_64.a */,
-				7588B96C1AA541D3006A8793 /* libz.dylib */,
-				7588B96A1AA541CD006A8793 /* libbz2.dylib */,
-				7588B9661AA541C8006A8793 /* libcrypto.a */,
-				7588B9671AA541C8006A8793 /* libssl.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -280,19 +203,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		759DA0961C5C346900EB0483 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				759DA09F1C5C346900EB0483 /* libOpenPGP.a */,
-				759DA0A11C5C346900EB0483 /* libOpenPGP_x86_64.a */,
-				759DA0A31C5C346900EB0483 /* libOpenPGP_i386.a */,
-				759DA0A51C5C346900EB0483 /* OpenPGP_OSX_LibTests.xctest */,
-				759DA0A71C5C346900EB0483 /* libUniversalPGP.a */,
-				759DA0A91C5C346900EB0483 /* libUniversalPGP_OSX.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -307,7 +217,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				759DA0AD1C5C34CC00EB0483 /* PBXTargetDependency */,
 			);
 			name = OSX_Test;
 			productName = OSX_Test;
@@ -362,12 +271,6 @@
 			mainGroup = 7588B9361AA53D6D006A8793;
 			productRefGroup = 7588B9401AA53D6D006A8793 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 759DA0961C5C346900EB0483 /* Products */;
-					ProjectRef = 759DA0951C5C346900EB0483 /* OpenPGP_OSX_Lib.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				7588B93E1AA53D6D006A8793 /* OSX_Test */,
@@ -375,51 +278,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		759DA09F1C5C346900EB0483 /* libOpenPGP.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libOpenPGP.a;
-			remoteRef = 759DA09E1C5C346900EB0483 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		759DA0A11C5C346900EB0483 /* libOpenPGP_x86_64.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libOpenPGP_x86_64.a;
-			remoteRef = 759DA0A01C5C346900EB0483 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		759DA0A31C5C346900EB0483 /* libOpenPGP_i386.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libOpenPGP_i386.a;
-			remoteRef = 759DA0A21C5C346900EB0483 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		759DA0A51C5C346900EB0483 /* OpenPGP_OSX_LibTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = OpenPGP_OSX_LibTests.xctest;
-			remoteRef = 759DA0A41C5C346900EB0483 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		759DA0A71C5C346900EB0483 /* libUniversalPGP.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libUniversalPGP.a;
-			remoteRef = 759DA0A61C5C346900EB0483 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		759DA0A91C5C346900EB0483 /* libUniversalPGP_OSX.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libUniversalPGP_OSX.a;
-			remoteRef = 759DA0A81C5C346900EB0483 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		7588B93D1AA53D6D006A8793 /* Resources */ = {
@@ -483,11 +341,6 @@
 			isa = PBXTargetDependency;
 			target = 7588B93E1AA53D6D006A8793 /* OSX_Test */;
 			targetProxy = 7588B9521AA53D6D006A8793 /* PBXContainerItemProxy */;
-		};
-		759DA0AD1C5C34CC00EB0483 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = UniversalPGP_OSX;
-			targetProxy = 759DA0AC1C5C34CC00EB0483 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -590,7 +443,7 @@
 				"HEADER_SEARCH_PATHS[sdk=macosx*]" = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(PROJECT_DIR)/../Bin/include/OpenPGP_x86_64_OSX",
+					"$(PROJECT_DIR)/../Bin/include/UniversalPGP_OSX",
 					"$(PROJECT_DIR)/../Bin/include",
 				);
 				INFOPLIST_FILE = OSX_Test/Info.plist;
@@ -611,7 +464,7 @@
 				"HEADER_SEARCH_PATHS[sdk=macosx*]" = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(PROJECT_DIR)/../Bin/include/OpenPGP_x86_64_OSX",
+					"$(PROJECT_DIR)/../Bin/include/UniversalPGP_OSX",
 				);
 				INFOPLIST_FILE = OSX_Test/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";

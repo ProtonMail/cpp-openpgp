@@ -405,6 +405,31 @@
 		758D70FE1C45E38F007F1A80 /* PMNAddress.mm in Sources */ = {isa = PBXBuildFile; fileRef = 758D70F71C45DD07007F1A80 /* PMNAddress.mm */; };
 		758D70FF1C45E3AC007F1A80 /* PMNAddress+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 758D70F91C45DD07007F1A80 /* PMNAddress+Private.mm */; };
 		758D71001C45E3AC007F1A80 /* PMNAddress+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 758D70F91C45DD07007F1A80 /* PMNAddress+Private.mm */; };
+		7598C9BE1DAC4A2B002FD14A /* PMNSrpClient+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7598C9B91DAC4A2B002FD14A /* PMNSrpClient+Private.mm */; };
+		7598C9BF1DAC4A2B002FD14A /* PMNSrpProofs.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7598C9BB1DAC4A2B002FD14A /* PMNSrpProofs.mm */; };
+		7598C9C01DAC4A2B002FD14A /* PMNSrpProofs+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7598C9BD1DAC4A2B002FD14A /* PMNSrpProofs+Private.mm */; };
+		7598C9C11DAC4A7C002FD14A /* PMNSrpClient+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7598C9B91DAC4A2B002FD14A /* PMNSrpClient+Private.mm */; };
+		7598C9C21DAC4A7C002FD14A /* PMNSrpProofs.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7598C9BB1DAC4A2B002FD14A /* PMNSrpProofs.mm */; };
+		7598C9C31DAC4A7C002FD14A /* PMNSrpProofs+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7598C9BD1DAC4A2B002FD14A /* PMNSrpProofs+Private.mm */; };
+		7598C9C41DAC4A7D002FD14A /* PMNSrpClient+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7598C9B91DAC4A2B002FD14A /* PMNSrpClient+Private.mm */; };
+		7598C9C51DAC4A7D002FD14A /* PMNSrpProofs.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7598C9BB1DAC4A2B002FD14A /* PMNSrpProofs.mm */; };
+		7598C9C61DAC4A7D002FD14A /* PMNSrpProofs+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7598C9BD1DAC4A2B002FD14A /* PMNSrpProofs+Private.mm */; };
+		7598C9C71DAC4A7E002FD14A /* PMNSrpClient+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7598C9B91DAC4A2B002FD14A /* PMNSrpClient+Private.mm */; };
+		7598C9C81DAC4A7E002FD14A /* PMNSrpProofs.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7598C9BB1DAC4A2B002FD14A /* PMNSrpProofs.mm */; };
+		7598C9C91DAC4A7E002FD14A /* PMNSrpProofs+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7598C9BD1DAC4A2B002FD14A /* PMNSrpProofs+Private.mm */; };
+		7598C9CA1DAC4A7E002FD14A /* PMNSrpClient+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7598C9B91DAC4A2B002FD14A /* PMNSrpClient+Private.mm */; };
+		7598C9CB1DAC4A7E002FD14A /* PMNSrpProofs.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7598C9BB1DAC4A2B002FD14A /* PMNSrpProofs.mm */; };
+		7598C9CC1DAC4A7E002FD14A /* PMNSrpProofs+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7598C9BD1DAC4A2B002FD14A /* PMNSrpProofs+Private.mm */; };
+		7598C9CD1DAC4AE3002FD14A /* PMNSrpClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7598C9B71DAC4A2B002FD14A /* PMNSrpClient.h */; };
+		7598C9CE1DAC4AE3002FD14A /* PMNSrpProofs.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7598C9BA1DAC4A2B002FD14A /* PMNSrpProofs.h */; };
+		7598C9CF1DAC4B1B002FD14A /* PMNSrpClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7598C9B71DAC4A2B002FD14A /* PMNSrpClient.h */; };
+		7598C9D01DAC4B1B002FD14A /* PMNSrpProofs.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7598C9BA1DAC4A2B002FD14A /* PMNSrpProofs.h */; };
+		7598C9D11DAC4B28002FD14A /* PMNSrpClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7598C9B71DAC4A2B002FD14A /* PMNSrpClient.h */; };
+		7598C9D21DAC4B28002FD14A /* PMNSrpProofs.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7598C9BA1DAC4A2B002FD14A /* PMNSrpProofs.h */; };
+		7598C9D31DAC4B31002FD14A /* PMNSrpClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7598C9B71DAC4A2B002FD14A /* PMNSrpClient.h */; };
+		7598C9D41DAC4B31002FD14A /* PMNSrpProofs.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7598C9BA1DAC4A2B002FD14A /* PMNSrpProofs.h */; };
+		7598C9D51DAC4B47002FD14A /* PMNSrpClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7598C9B71DAC4A2B002FD14A /* PMNSrpClient.h */; };
+		7598C9D61DAC4B47002FD14A /* PMNSrpProofs.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7598C9BA1DAC4A2B002FD14A /* PMNSrpProofs.h */; };
 		759DA0021C5C2A3100EB0483 /* open_pgp_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */; };
 		759DA0031C5C2A3100EB0483 /* compress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75AE62E21AFBCFED00131986 /* compress.cpp */; };
 		759DA0041C5C2A3100EB0483 /* pgpbzip2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75AE62E31AFBCFED00131986 /* pgpbzip2.cpp */; };
@@ -713,6 +738,8 @@
 			dstPath = "$(PROJECT_DIR)/../Bin/include/$(PRODUCT_NAME)_IOS";
 			dstSubfolderSpec = 0;
 			files = (
+				7598C9CF1DAC4B1B002FD14A /* PMNSrpClient.h in CopyFiles */,
+				7598C9D01DAC4B1B002FD14A /* PMNSrpProofs.h in CopyFiles */,
 				7559584A1C462C9C009D9B6C /* PMNAddress.h in CopyFiles */,
 				7545D3F21C45A67E000D2F8D /* PMNEncryptPackage.h in CopyFiles */,
 				7545D3F31C45A67E000D2F8D /* PMNOpenPgp.h in CopyFiles */,
@@ -727,6 +754,8 @@
 			dstPath = "$(PROJECT_DIR)/../Bin/include/$(PRODUCT_NAME)_OSX";
 			dstSubfolderSpec = 0;
 			files = (
+				7598C9D11DAC4B28002FD14A /* PMNSrpClient.h in CopyFiles */,
+				7598C9D21DAC4B28002FD14A /* PMNSrpProofs.h in CopyFiles */,
 				755958491C462C94009D9B6C /* PMNAddress.h in CopyFiles */,
 				7545D3EF1C45A674000D2F8D /* PMNEncryptPackage.h in CopyFiles */,
 				7545D3F01C45A674000D2F8D /* PMNOpenPgp.h in CopyFiles */,
@@ -741,6 +770,8 @@
 			dstPath = "$(PROJECT_DIR)/../Bin/include/$(PRODUCT_NAME)_OSX";
 			dstSubfolderSpec = 0;
 			files = (
+				7598C9D31DAC4B31002FD14A /* PMNSrpClient.h in CopyFiles */,
+				7598C9D41DAC4B31002FD14A /* PMNSrpProofs.h in CopyFiles */,
 				7559584B1C462CA4009D9B6C /* PMNAddress.h in CopyFiles */,
 				7545D3EC1C45A664000D2F8D /* PMNEncryptPackage.h in CopyFiles */,
 				7545D3ED1C45A664000D2F8D /* PMNOpenPgp.h in CopyFiles */,
@@ -755,6 +786,8 @@
 			dstPath = "$(PROJECT_DIR)/../Bin/include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 0;
 			files = (
+				7598C9D51DAC4B47002FD14A /* PMNSrpClient.h in CopyFiles */,
+				7598C9D61DAC4B47002FD14A /* PMNSrpProofs.h in CopyFiles */,
 				759DA0861C5C2A3100EB0483 /* PMNEncryptPackage.h in CopyFiles */,
 				759DA0871C5C2A3100EB0483 /* PMNOpenPgp.h in CopyFiles */,
 				759DA0881C5C2A3100EB0483 /* PMNOpenPgpKey.h in CopyFiles */,
@@ -769,6 +802,8 @@
 			dstPath = "$(PROJECT_DIR)/../Bin/include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 0;
 			files = (
+				7598C9CD1DAC4AE3002FD14A /* PMNSrpClient.h in CopyFiles */,
+				7598C9CE1DAC4AE3002FD14A /* PMNSrpProofs.h in CopyFiles */,
 				75AB6BD01C50452800E82A0E /* PMNEncryptPackage.h in CopyFiles */,
 				75AB6BD11C50452800E82A0E /* PMNOpenPgp.h in CopyFiles */,
 				75AB6BD21C50452800E82A0E /* PMNOpenPgpKey.h in CopyFiles */,
@@ -929,6 +964,13 @@
 		758D70F81C45DD07007F1A80 /* PMNAddress+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PMNAddress+Private.h"; sourceTree = "<group>"; };
 		758D70F91C45DD07007F1A80 /* PMNAddress+Private.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "PMNAddress+Private.mm"; sourceTree = "<group>"; };
 		758D70FC1C45DD1D007F1A80 /* PMNAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMNAddress.h; sourceTree = "<group>"; };
+		7598C9B71DAC4A2B002FD14A /* PMNSrpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMNSrpClient.h; sourceTree = "<group>"; };
+		7598C9B81DAC4A2B002FD14A /* PMNSrpClient+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PMNSrpClient+Private.h"; sourceTree = "<group>"; };
+		7598C9B91DAC4A2B002FD14A /* PMNSrpClient+Private.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "PMNSrpClient+Private.mm"; sourceTree = "<group>"; };
+		7598C9BA1DAC4A2B002FD14A /* PMNSrpProofs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMNSrpProofs.h; sourceTree = "<group>"; };
+		7598C9BB1DAC4A2B002FD14A /* PMNSrpProofs.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PMNSrpProofs.mm; sourceTree = "<group>"; };
+		7598C9BC1DAC4A2B002FD14A /* PMNSrpProofs+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PMNSrpProofs+Private.h"; sourceTree = "<group>"; };
+		7598C9BD1DAC4A2B002FD14A /* PMNSrpProofs+Private.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "PMNSrpProofs+Private.mm"; sourceTree = "<group>"; };
 		759DA08E1C5C2A3100EB0483 /* libUniversalPGP_OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUniversalPGP_OSX.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		75AB6B451C50436000E82A0E /* libUniversalPGP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUniversalPGP.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		75AE62E21AFBCFED00131986 /* compress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compress.cpp; sourceTree = "<group>"; };
@@ -1246,6 +1288,13 @@
 				758D70F91C45DD07007F1A80 /* PMNAddress+Private.mm */,
 				756C9BBB1A8D8A47007B2B9B /* OpenPGP.h */,
 				756C9BBC1A8D8A47007B2B9B /* OpenPGP.mm */,
+				7598C9B71DAC4A2B002FD14A /* PMNSrpClient.h */,
+				7598C9B81DAC4A2B002FD14A /* PMNSrpClient+Private.h */,
+				7598C9B91DAC4A2B002FD14A /* PMNSrpClient+Private.mm */,
+				7598C9BA1DAC4A2B002FD14A /* PMNSrpProofs.h */,
+				7598C9BB1DAC4A2B002FD14A /* PMNSrpProofs.mm */,
+				7598C9BC1DAC4A2B002FD14A /* PMNSrpProofs+Private.h */,
+				7598C9BD1DAC4A2B002FD14A /* PMNSrpProofs+Private.mm */,
 			);
 			path = OpenPGP_OSX_Lib;
 			sourceTree = "<group>";
@@ -1494,6 +1543,8 @@
 				7517E7BA1AFABC35007EA967 /* packet.cpp in Sources */,
 				7517E7CA1AFABC35007EA967 /* subpacket.cpp in Sources */,
 				7517E71E1AFABC35007EA967 /* DES.cpp in Sources */,
+				7598C9BF1DAC4A2B002FD14A /* PMNSrpProofs.mm in Sources */,
+				7598C9BE1DAC4A2B002FD14A /* PMNSrpClient+Private.mm in Sources */,
 				7517E72A1AFABC35007EA967 /* IDEA.cpp in Sources */,
 				7517E89E1AFABC35007EA967 /* Tag63.cpp in Sources */,
 				75AE62E51AFBCFED00131986 /* compress.cpp in Sources */,
@@ -1506,6 +1557,7 @@
 				7517E7121AFABC35007EA967 /* Blowfish.cpp in Sources */,
 				7517E73A1AFABC35007EA967 /* TDES.cpp in Sources */,
 				7517E8A21AFABC35007EA967 /* Tag7.cpp in Sources */,
+				7598C9C01DAC4A2B002FD14A /* PMNSrpProofs+Private.mm in Sources */,
 				7545D3D31C45A158000D2F8D /* PMNOpenPgpKey+Private.mm in Sources */,
 				7517E7A21AFABC35007EA967 /* PGPMessage.cpp in Sources */,
 				7517E7561AFABC35007EA967 /* RIPEMD160.cpp in Sources */,
@@ -1640,6 +1692,8 @@
 				7517E8D31AFABC35007EA967 /* utilities.cpp in Sources */,
 				7517E78B1AFABC35007EA967 /* FindKey.cpp in Sources */,
 				7517E8531AFABC35007EA967 /* Tag2Sub9.cpp in Sources */,
+				7598C9C21DAC4A7C002FD14A /* PMNSrpProofs.mm in Sources */,
+				7598C9C11DAC4A7C002FD14A /* PMNSrpClient+Private.mm in Sources */,
 				7517E8071AFABC35007EA967 /* Tag2Sub20.cpp in Sources */,
 				7517E71B1AFABC35007EA967 /* CAST128.cpp in Sources */,
 				7517E75B1AFABC35007EA967 /* SHA1.cpp in Sources */,
@@ -1652,6 +1706,7 @@
 				7517E72B1AFABC35007EA967 /* IDEA.cpp in Sources */,
 				7517E89F1AFABC35007EA967 /* Tag63.cpp in Sources */,
 				75AE62E61AFBCFED00131986 /* compress.cpp in Sources */,
+				7598C9C31DAC4A7C002FD14A /* PMNSrpProofs+Private.mm in Sources */,
 				7517E75F1AFABC35007EA967 /* SHA224.cpp in Sources */,
 				7517E6E21AFABC35007EA967 /* rsa_key.cpp in Sources */,
 				7517E88F1AFABC35007EA967 /* Tag6.cpp in Sources */,
@@ -1779,6 +1834,8 @@
 				7517E8D41AFABC35007EA967 /* utilities.cpp in Sources */,
 				7517E78C1AFABC35007EA967 /* FindKey.cpp in Sources */,
 				7517E8541AFABC35007EA967 /* Tag2Sub9.cpp in Sources */,
+				7598C9C51DAC4A7D002FD14A /* PMNSrpProofs.mm in Sources */,
+				7598C9C41DAC4A7D002FD14A /* PMNSrpClient+Private.mm in Sources */,
 				7517E8081AFABC35007EA967 /* Tag2Sub20.cpp in Sources */,
 				7517E71C1AFABC35007EA967 /* CAST128.cpp in Sources */,
 				7517E75C1AFABC35007EA967 /* SHA1.cpp in Sources */,
@@ -1791,6 +1848,7 @@
 				7517E72C1AFABC35007EA967 /* IDEA.cpp in Sources */,
 				7517E8A01AFABC35007EA967 /* Tag63.cpp in Sources */,
 				75AE62E71AFBCFED00131986 /* compress.cpp in Sources */,
+				7598C9C61DAC4A7D002FD14A /* PMNSrpProofs+Private.mm in Sources */,
 				7517E7601AFABC35007EA967 /* SHA224.cpp in Sources */,
 				7517E6E31AFABC35007EA967 /* rsa_key.cpp in Sources */,
 				7517E8901AFABC35007EA967 /* Tag6.cpp in Sources */,
@@ -1918,6 +1976,9 @@
 				759DA0141C5C2A3100EB0483 /* pgp_exception.cpp in Sources */,
 				759DA0151C5C2A3100EB0483 /* pgp_exception_define.cpp in Sources */,
 				759DA0161C5C2A3100EB0483 /* Hash.cpp in Sources */,
+				7598C9CB1DAC4A7E002FD14A /* PMNSrpProofs.mm in Sources */,
+				7598C9CA1DAC4A7E002FD14A /* PMNSrpClient+Private.mm in Sources */,
+				7598C9CC1DAC4A7E002FD14A /* PMNSrpProofs+Private.mm in Sources */,
 				759DA0171C5C2A3100EB0483 /* Hashes.cpp in Sources */,
 				759DA0181C5C2A3100EB0483 /* MD5.cpp in Sources */,
 				759DA0191C5C2A3100EB0483 /* RIPEMD160.cpp in Sources */,
@@ -2057,6 +2118,8 @@
 				75AB6B601C5044F100E82A0E /* pgp_exception.cpp in Sources */,
 				75AB6B611C5044F100E82A0E /* pgp_exception_define.cpp in Sources */,
 				75AB6B621C5044F100E82A0E /* Hash.cpp in Sources */,
+				7598C9C81DAC4A7E002FD14A /* PMNSrpProofs.mm in Sources */,
+				7598C9C71DAC4A7E002FD14A /* PMNSrpClient+Private.mm in Sources */,
 				75AB6B631C5044F100E82A0E /* Hashes.cpp in Sources */,
 				75AB6B641C5044F100E82A0E /* MD5.cpp in Sources */,
 				75AB6B651C5044F100E82A0E /* RIPEMD160.cpp in Sources */,
@@ -2069,6 +2132,7 @@
 				75AB6B6C1C5044F100E82A0E /* sigcalc.cpp in Sources */,
 				75AB6B6D1C5044F100E82A0E /* sign.cpp in Sources */,
 				75AB6B6E1C5044F100E82A0E /* BaseObject.cpp in Sources */,
+				7598C9C91DAC4A7E002FD14A /* PMNSrpProofs+Private.mm in Sources */,
 				75AB6B6F1C5044F100E82A0E /* cfb.cpp in Sources */,
 				75AB6B701C5044F100E82A0E /* decrypt.cpp in Sources */,
 				75AB6B711C5044F100E82A0E /* encrypt.cpp in Sources */,

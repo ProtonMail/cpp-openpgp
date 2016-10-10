@@ -6,12 +6,14 @@
 //  Copyright © 2016 Yanfeng Zhang. All rights reserved.
 //
 
-#include "bridge_impl/srp_client_impl.hpp"
-
-#include "bridge/srp_proofs.hpp"
 #include <string>
 #include <sstream>
 #include <hash/SHA512.h>
+
+#include "bridge_impl/srp_client_impl.hpp"
+#include "bridge/srp_proofs.hpp"
+
+#include <openssl/rsa.h>
 
 namespace ProtonMail {
     
@@ -23,25 +25,26 @@ namespace ProtonMail {
         
     }
     
-    std::vector<uint8_t> SrpClientImpl::expand_hash(const std::vector<uint8_t> & input) {
+    std::vector<uint8_t> SrpClient::expand_hash(const std::vector<uint8_t> & input) {
         std::string str_input(input.begin(), input.end());
+        unsigned char i = 0;
+        std::cout << hexlify(SHA512(str_input).digest()) << std::endl;
         std::stringstream s;
         s << SHA512(str_input).digest();
-        s << 0x00;
+        s << i ++;
         s << SHA512(str_input).digest();
-        s << 0x01;
+        s << i ++;
         s << SHA512(str_input).digest();
-        s << 0x02;
+        s << i ++;
         s << SHA512(str_input).digest();
-        s << 0x03;
-
+        s << i;
         std::vector<uint8_t> buffer;
         buffer.insert(buffer.end(), s.str().begin(), s.str().end());
         return buffer;
     }
     
     
-    SrpProofs SrpClientImpl::generate_proofs(int32_t bit_length, const std::vector<uint8_t> & modulus_repr, const std::vector<uint8_t> & server_ephemeral_repr, const std::vector<uint8_t> & hashed_password_repr){
+    SrpProofs SrpClient::generate_proofs(int32_t bit_length, const std::vector<uint8_t> & modulus_repr, const std::vector<uint8_t> & server_ephemeral_repr, const std::vector<uint8_t> & hashed_password_repr){
         
         if (modulus_repr.size() * 8 != bit_length) {
            throw std::runtime_error("Error: modulus size is invalid");
@@ -50,18 +53,24 @@ namespace ProtonMail {
             throw std::runtime_error("Error: server ephemeral size is invalid");
         }
         if (hashed_password_repr.size() * 8 != bit_length) {
-            throw std::runtime_error("Error: modulus size is invalid");
+            throw std::runtime_error("Error: hased passowrd size is invalid");
         }
 
+        BIGNUM* modulus = BN_bin2bn((unsigned char*)modulus_repr.data(), modulus_repr.size(), NULL);
+        BIGNUM* serverEphemeral = BN_bin2bn((unsigned char*)server_ephemeral_repr.data(), server_ephemeral_repr.size(), NULL);
+        BIGNUM* hashedPassword = BN_bin2bn((unsigned char*)hashed_password_repr.data(), hashed_password_repr.size(), NULL);
+
+        int modulus_bites = BN_num_bits(modulus);
+        if (modulus_bites != bit_length) {
+            throw std::runtime_error("Error: modulus size is invalid");
+        }
         
         //
         //        final BigInteger modulus = toBI(modulusRepr);
         //        final BigInteger serverEphemeral = toBI(serverEphemeralRepr);
         //        final BigInteger hashedPassword = toBI(hashedPasswordRepr);
         //
-        //        if (modulus.bitLength() != bitLength) {
-        //            return null;
-        //        }
+
         //
         //        final BigInteger generator = BigInteger.valueOf(2);
         //
@@ -113,7 +122,7 @@ namespace ProtonMail {
         return s;
     }
     
-    std::vector<uint8_t> SrpClientImpl::generate_Verifier(int32_t bit_length, const std::vector<uint8_t> & modulus_repr, const std::vector<uint8_t> & hashed_password_repr) {
+    std::vector<uint8_t> SrpClient::generate_Verifier(int32_t bit_length, const std::vector<uint8_t> & modulus_repr, const std::vector<uint8_t> & hashed_password_repr) {
         return std::vector<uint8_t>();
     }
     

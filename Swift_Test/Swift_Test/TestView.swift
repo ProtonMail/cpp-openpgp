@@ -40,6 +40,11 @@ class TestView: UIViewController {
         
         button.enabled = false;
         
+        let data = NSData()
+        
+        
+        let out = PMNSrpClient.expandHash(data)
+        
 //        let pgp:OpenPGP = OpenPGP();
 //        pgp.SetupKeys(private_key_, pubKey: public_key_, pass: "123", error:nil)
 //        

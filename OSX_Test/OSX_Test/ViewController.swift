@@ -375,6 +375,11 @@ class ViewController: NSViewController {
             //openPgp.encryptHashCbc("asdfsdfasdfsaf", "")
         }
         
+        let data = NSData()
+        
+        
+        let out = PMNSrpClient.expandHash(data)
+        
         
 //        if let localFile = NSBundle.mainBundle().pathForResource("feng_addresses", ofType: "geojson") {
 //            if let content = String(contentsOfFile:localFile, encoding:NSUTF8StringEncoding, error: nil) {
