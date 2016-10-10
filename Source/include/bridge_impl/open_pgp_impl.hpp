@@ -100,9 +100,6 @@ namespace ProtonMail {
         std::string encrypt_hash_cbc(const std::string & plain_text, const std::string & password);
         
         std::string decrypt_hash_cbc(const std::string & encrypted_text, const std::string & password);
-        
-        std::vector<uint8_t> expand_hash(const std::vector<uint8_t> & input);
-
     };
 
 }

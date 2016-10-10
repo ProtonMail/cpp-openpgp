@@ -392,11 +392,6 @@ namespace ProtonMail {
         return "";
     }
     
-    std::vector<uint8_t> OpenPgpImpl::expand_hash(const std::vector<uint8_t> & input) {
-        return std::vector<uint8_t> ();
-    }
-
-    
 //    public static function encrypt_id( $MessageID, $isRandom = false ) {
 //        if ( !ENCRYPT_IDS ) {
 //            return strval($MessageID);

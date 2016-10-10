@@ -9,7 +9,9 @@
 #include "bridge_impl/srp_client_impl.hpp"
 
 #include "bridge/srp_proofs.hpp"
-
+#include <string>
+#include <sstream>
+#include <hash/SHA512.h>
 
 namespace ProtonMail {
     
@@ -22,11 +24,90 @@ namespace ProtonMail {
     }
     
     std::vector<uint8_t> SrpClientImpl::expand_hash(const std::vector<uint8_t> & input) {
-        return std::vector<uint8_t>();
+        std::string str_input(input.begin(), input.end());
+        std::stringstream s;
+        s << SHA512(str_input).digest();
+        s << 0x00;
+        s << SHA512(str_input).digest();
+        s << 0x01;
+        s << SHA512(str_input).digest();
+        s << 0x02;
+        s << SHA512(str_input).digest();
+        s << 0x03;
+
+        std::vector<uint8_t> buffer;
+        buffer.insert(buffer.end(), s.str().begin(), s.str().end());
+        return buffer;
     }
     
     
     SrpProofs SrpClientImpl::generate_proofs(int32_t bit_length, const std::vector<uint8_t> & modulus_repr, const std::vector<uint8_t> & server_ephemeral_repr, const std::vector<uint8_t> & hashed_password_repr){
+        
+        if (modulus_repr.size() * 8 != bit_length) {
+           throw std::runtime_error("Error: modulus size is invalid");
+        }
+        if (server_ephemeral_repr.size() * 8 != bit_length) {
+            throw std::runtime_error("Error: server ephemeral size is invalid");
+        }
+        if (hashed_password_repr.size() * 8 != bit_length) {
+            throw std::runtime_error("Error: modulus size is invalid");
+        }
+
+        
+        //
+        //        final BigInteger modulus = toBI(modulusRepr);
+        //        final BigInteger serverEphemeral = toBI(serverEphemeralRepr);
+        //        final BigInteger hashedPassword = toBI(hashedPasswordRepr);
+        //
+        //        if (modulus.bitLength() != bitLength) {
+        //            return null;
+        //        }
+        //
+        //        final BigInteger generator = BigInteger.valueOf(2);
+        //
+        //        final BigInteger multiplier = toBI(PasswordUtils.expandHash(ArrayUtils.addAll(fromBI(bitLength, generator), modulusRepr))).mod(modulus);
+        //        final BigInteger modulusMinusOne = modulus.clearBit(0);
+        //
+        //        if (multiplier.compareTo(BigInteger.ONE) <= 0 || multiplier.compareTo(modulusMinusOne) >= 0) {
+        //            return null;
+        //        }
+        //
+        //        if (serverEphemeral.compareTo(BigInteger.ONE) <= 0 || serverEphemeral.compareTo(modulusMinusOne) >= 0) {
+        //            return null;
+        //        }
+        //
+        //        if (!modulus.isProbablePrime(10) || !modulus.shiftRight(1).isProbablePrime(10)) {
+        //            return null;
+        //        }
+        //
+        //        final SecureRandom random = new SecureRandom();
+        //        BigInteger clientSecret;
+        //        BigInteger clientEphemeral;
+        //        BigInteger scramblingParam;
+        //        do {
+        //            do {
+        //                clientSecret = new BigInteger(bitLength, random);
+        //            }
+        //            while (clientSecret.compareTo(modulusMinusOne) >= 0 || clientSecret.compareTo(BigInteger.valueOf(bitLength * 2)) <= 0);
+        //            clientEphemeral = generator.modPow(clientSecret, modulus);
+        //            scramblingParam = toBI(PasswordUtils.expandHash(ArrayUtils.addAll(fromBI(bitLength, clientEphemeral), serverEphemeralRepr)));
+        //        } while (scramblingParam.equals(BigInteger.ZERO)); // Very unlikely
+        //
+        //        BigInteger subtracted = serverEphemeral.subtract(generator.modPow(hashedPassword, modulus).multiply(multiplier).mod(modulus));
+        //        if (subtracted.compareTo(BigInteger.ZERO) < 0) {
+        //            subtracted = subtracted.add(modulus);
+        //        }
+        //        final BigInteger exponent = scramblingParam.multiply(hashedPassword).add(clientSecret).mod(modulusMinusOne);
+        //        final BigInteger sharedSession = subtracted.modPow(exponent, modulus);
+        //
+        //        final byte[] clientEphemeralRepr = fromBI(bitLength, clientEphemeral);
+        //        final byte[] clientProof = PasswordUtils.expandHash(ArrayUtils.addAll(ArrayUtils.addAll(clientEphemeralRepr, serverEphemeralRepr), fromBI(bitLength, sharedSession)));
+        //        final byte[] serverProof = PasswordUtils.expandHash(ArrayUtils.addAll(ArrayUtils.addAll(clientEphemeralRepr, clientProof), fromBI(bitLength, sharedSession)));
+        //
+        //        return new Proofs(clientEphemeralRepr, clientProof, serverProof);
+        
+        
+        
         std::vector<uint8_t> a;
         ProtonMail::SrpProofs s(a,a,a);
         return s;
