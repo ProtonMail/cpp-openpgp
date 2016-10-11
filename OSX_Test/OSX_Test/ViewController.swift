@@ -380,6 +380,9 @@ class ViewController: NSViewController {
         
         let out = PMNSrpClient.expandHash(data)
         
+        PMNSrpClient.generateProofs(2048, modulusRepr: data, serverEphemeralRepr: data, hashedPasswordRepr: data)
+        PMNSrpClient.generateVerifier(2048, modulusRepr: data, hashedPasswordRepr: data)
+        
         
 //        if let localFile = NSBundle.mainBundle().pathForResource("feng_addresses", ofType: "geojson") {
 //            if let content = String(contentsOfFile:localFile, encoding:NSUTF8StringEncoding, error: nil) {
