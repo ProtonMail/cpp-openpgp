@@ -76,9 +76,9 @@ namespace ProtonMail {
         std::vector<uint8_t> decrypt_attachment_with_password(const std::vector<uint8_t> & key, const std::vector<uint8_t> & data, const std::string & password);
 
         std::vector<uint8_t> get_public_key_session_key(const std::vector<uint8_t> & keyPackage, const std::string & passphrase);
-        
+
         std::vector<uint8_t> get_public_key_session_key_single_key(const std::vector<uint8_t> & keyPackage, const std::string & privateKey, const std::string & passphrase);
-        
+
         std::vector<uint8_t> get_symmetric_session_key(const std::vector<uint8_t> & keyPackage, const std::string & password);
 
         std::vector<uint8_t> get_new_public_key_package(const std::vector<uint8_t> & session, const std::string & publicKey);
@@ -100,7 +100,6 @@ namespace ProtonMail {
         std::string encrypt_hash_cbc(const std::string & plain_text, const std::string & password);
         
         std::string decrypt_hash_cbc(const std::string & encrypted_text, const std::string & password);
-
     };
 
 }

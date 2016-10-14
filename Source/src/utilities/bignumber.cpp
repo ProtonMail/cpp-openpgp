@@ -9,7 +9,9 @@
 #include "utilities/bignumber.h"
 
 #include <vector>
-
+#include <string>
+#include <sstream>
+#include <algorithm>
 
 namespace ProtonMail {
     
@@ -117,7 +119,10 @@ namespace ProtonMail {
         
         // need release bignum
         BIGNUM* valueOf(int value) {
-            std::string str_value = std::to_string(value);
+            std::ostringstream os ;
+            os << value ;
+            std::string str_value =  os.str();
+            
             BIGNUM * str_bn = BN_new();
             BN_dec2bn(&str_bn, (char *)str_value.c_str());
             return str_bn;
