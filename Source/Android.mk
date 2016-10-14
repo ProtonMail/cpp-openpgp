@@ -165,8 +165,10 @@ $(encrypt) \
 
 LOCAL_SHARED_LIBRARIES := ssl crypto
 
+
+
 LOCAL_LDLIBS := -lz
-LOCAL_CFLAGS := -Wnarrowing
+LOCAL_CFLAGS := -Wnarrowing -fPIC
 #LOCAL_CFLAGS += -O3 -g3
 include $(BUILD_SHARED_LIBRARY)
 include $(CLEAR_VARS)
