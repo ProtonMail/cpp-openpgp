@@ -11,7 +11,7 @@ std::string ascii2radix64(std::string str, char char62, char char63){
     }
     unsigned int x = 0;
     while (x < bin.size()){
-        out += ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789" + std::string(1, char62) + std::string(1, char63))[toint(bin.substr(x, 6), 2)];
+        out += ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789" + std::string(1, char62) + std::string(1, char63))[static_cast<size_t>(toint(bin.substr(x, 6), 2))];
         x += 6;
     }
     if (pad.size() == 2){                                            // string length % 3 == 1

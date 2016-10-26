@@ -18,7 +18,8 @@ namespace ProtonMail {
     namespace BN {
         BIGNUM* toBI(const std::string &input) {
             std::vector<uint8_t> revered(input.rbegin(), input.rend());
-            BIGNUM* modulus = BN_bin2bn((unsigned char*)revered.data(), revered.size(), NULL);
+            
+            BIGNUM* modulus = BN_bin2bn((unsigned char*)revered.data(), static_cast<int>(revered.size()), NULL);
             return modulus;
         }
         
@@ -31,7 +32,7 @@ namespace ProtonMail {
             std::vector<uint8_t> buffer(tmp_out, tmp_out + i);
             std::reverse(buffer.begin(), buffer.end());
             
-            int buf_size = buffer.size();
+            size_t buf_size = buffer.size();
             int out_size = bit_length / 8;
             
             std::vector<uint8_t> out;

@@ -86,9 +86,9 @@ std::string BBS::randbit(){
     return (i == 1) ? "1" : "0";
 }
 
-void BBS::c_rand(unsigned char *dest, size_t length)
+void BBS::c_rand(unsigned char *dest, int length)
 {
-    RAND_bytes(dest, (int)length);
+    RAND_bytes(dest, length);
 }
 
 
