@@ -17,14 +17,9 @@ class ViewController: NSViewController {
         // Do any additional setup after loading the view.
     }
     
-    override var representedObject: AnyObject? {
-        didSet {
-            // Update the view, if already loaded.
-        }
-    }
     @IBOutlet weak var test_change_pwd: NSButton!
     
-    @IBAction func test_change_pwd_clicked(sender: AnyObject) {
+    @IBAction func test_change_pwd_clicked(_ sender: AnyObject) {
         //let pgp:OpenPGP = OpenPGP()
 //        let location = "/Users/Yanfeng/Desktop/testpub.txt"
 //        let location_1 = "/Users/Yanfeng/Desktop/testprivat.txt"
@@ -35,13 +30,13 @@ class ViewController: NSViewController {
 //        var keys = pgp.update_key_password("123", new_pwd:"321", error: nil)
         
     }
-    @IBAction func test_new_key(sender: AnyObject) {
+    @IBAction func test_new_key(_ sender: AnyObject) {
 //        let pgp:OpenPGP = OpenPGP();
 //        var pub_key:String?;
 //        var priv_key:String?;
 //        var keys = pgp.generate_key("123", username:"feng_test_1", error: nil);
     }
-    @IBAction func test_import_clicked(sender: AnyObject) {
+    @IBAction func test_import_clicked(_ sender: AnyObject) {
 //        let pgp:OpenPGP = OpenPGP();
 //        //pgp.SetupKeys("", pubKey: public_key_, pass: "123", error: nil)
 //        
@@ -72,7 +67,7 @@ class ViewController: NSViewController {
 //        pgp.Test_Privatekey(PrivateKey, pass: "123");
     }
     
-    @IBAction func test_aes_clicked(sender: AnyObject) {
+    @IBAction func test_aes_clicked(_ sender: AnyObject) {
         
 //        let pgp:OpenPGP = OpenPGP();
 //        
@@ -110,7 +105,7 @@ class ViewController: NSViewController {
 //        var strout = NSString(data: out, encoding:NSUTF8StringEncoding)
         
     }
-    @IBAction func EncryptMailboxPWD(sender: AnyObject) {
+    @IBAction func EncryptMailboxPWD(_ sender: AnyObject) {
         
 //        let pgp:OpenPGP = OpenPGP();
 //        
@@ -121,7 +116,7 @@ class ViewController: NSViewController {
 //        println(out);
     }
     
-    @IBAction func test_bad_message(sender: AnyObject) {
+    @IBAction func test_bad_message(_ sender: AnyObject) {
         
 //        let location = "/Users/Yanfeng/Desktop/publickey.txt"
 //        let location_1 = "/Users/Yanfeng/Desktop/privatekey.txt"
@@ -168,7 +163,7 @@ class ViewController: NSViewController {
 //        println(bad_file_1_check);
         
     }
-    @IBAction func test_encrypt_decrypt_attachment(sender: AnyObject) {
+    @IBAction func test_encrypt_decrypt_attachment(_ sender: AnyObject) {
         let pgp:OpenPGP = OpenPGP()
         
         
@@ -190,26 +185,26 @@ class ViewController: NSViewController {
             
             let privatePassphrase = "123"
             
-            let bundleInstance : NSBundle = NSBundle(forClass: self.dynamicType)
+            let bundleInstance : Bundle = Bundle(for: type(of: self))
            
-            if let localFile = bundleInstance.pathForResource("privatekey", ofType: "txt") {
-                if let content = try? String(contentsOfFile:localFile, encoding:NSUTF8StringEncoding) {
+            if let localFile = bundleInstance.path(forResource: "privatekey", ofType: "txt") {
+                if let content = try? String(contentsOfFile:localFile, encoding:String.Encoding.utf8) {
                     privateKey = content
                 }
             }
             
-            if let localFile = bundleInstance.pathForResource("publickey", ofType: "txt") {
-                if let content = try?  String(contentsOfFile:localFile, encoding:NSUTF8StringEncoding) {
+            if let localFile = bundleInstance.path(forResource: "publickey", ofType: "txt") {
+                if let content = try?  String(contentsOfFile:localFile, encoding:String.Encoding.utf8) {
                     publicKey = content
                 }
             }
             
-            try pgp.SetupKeys(privateKey, pubKey: publicKey, pass: privatePassphrase)
+            try pgp.setupKeys(privateKey, pubKey: publicKey, pass: privatePassphrase)
             
-            let data_package = NSData(contentsOfFile:tet_att)
+            let data_package = try? Data(contentsOf: URL(fileURLWithPath: tet_att))
             let decrypted_data = try pgp.decrypt_attachment(data_package, data: data_package)
             
-            decrypted_data.writeToFile("/Users/Yanfeng/Downloads/2step.pdf", atomically: false)
+            try? decrypted_data.write(to: URL(fileURLWithPath: "/Users/Yanfeng/Downloads/2step.pdf"), options: [])
             
         } catch let ex as NSError {
             print(ex)
@@ -252,7 +247,7 @@ class ViewController: NSViewController {
 //        println("Done");
     }
     
-    @IBAction func large_attachment_testing(sender: AnyObject) {
+    @IBAction func large_attachment_testing(_ sender: AnyObject) {
         
 //        let pgp:OpenPGP = OpenPGP()
 //        
@@ -329,7 +324,7 @@ class ViewController: NSViewController {
     }
     
     
-    @IBAction func multiple_keys_encrypt_decrypt(sender: NSButton) {
+    @IBAction func multiple_keys_encrypt_decrypt(_ sender: NSButton) {
 //        if let localFile = NSBundle.mainBundle().pathForResource("feng_addresses", ofType: "geojson") {
 //            if let content = String(contentsOfFile:localFile, encoding:NSUTF8StringEncoding, error: nil) {
 //                
@@ -370,12 +365,12 @@ class ViewController: NSViewController {
 //            }
 //        }
     }
-    @IBAction func new_jni_test(sender: AnyObject) {
+    @IBAction func new_jni_test(_ sender: AnyObject) {
         if let openPgp : PMNOpenPgp = PMNOpenPgp.createInstance() {
             //openPgp.encryptHashCbc("asdfsdfasdfsaf", "")
         }
         
-        let data = NSData()
+        let data = Data()
         
         
         let out = PMNSrpClient.expandHash(data)
