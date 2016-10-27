@@ -2,13 +2,13 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OpenPGP_OSX_Lib/OpenPGP.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/Swift_Test/Swift.xcodeproj">
+      location = "group:OpenPGP/OpenPGP.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:ObjectiveC/ObjectiveC.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/Swift_Test/Swift.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OSX_Test/macOS.xcodeproj">
