@@ -11,8 +11,8 @@ import UIKit
 
 class TestView: UIViewController {
     
-    private var public_key_:String!
-    private var private_key_:String!
+    fileprivate var public_key_:String!
+    fileprivate var private_key_:String!
     
     
     @IBOutlet weak var log_lable_: UILabel!
@@ -35,12 +35,12 @@ class TestView: UIViewController {
     
     
     
-    @IBAction func large_test_clicked(sender: AnyObject) {
+    @IBAction func large_test_clicked(_ sender: AnyObject) {
         let button:UIButton = sender as! UIButton;
         
-        button.enabled = false;
+        button.isEnabled = false;
         
-        let data = NSData()
+        let data = Data()
         
         
         let out = PMNSrpClient.expandHash(data)
@@ -85,10 +85,10 @@ class TestView: UIViewController {
 //        button.enabled = true;
     }
     
-    @IBAction func tiny_test_clicked(sender: AnyObject) {
+    @IBAction func tiny_test_clicked(_ sender: AnyObject) {
         let button:UIButton = sender as! UIButton;
         
-        button.enabled = false;
+        button.isEnabled = false;
         
 //        let pgp:OpenPGP = OpenPGP();
 //        pgp.SetupKeys(private_key_, pubKey: public_key_, pass: "123", error: nil)
@@ -118,11 +118,11 @@ class TestView: UIViewController {
 //        log_lable_.text = NSString(format: "%d Times(ENC->DEC) --- Total Runtime: %g s --- Avg %g s", count, total , avg) as String;
 //        button.enabled = true;
     }
-    @IBAction func other_test_clicked(sender: AnyObject) {
+    @IBAction func other_test_clicked(_ sender: AnyObject) {
         let button:UIButton = sender as! UIButton;
         
                
-        button.enabled = false;
+        button.isEnabled = false;
         
 //        public_key_ = GetStringFromSampleFile("PublicKey")
 //        
@@ -135,28 +135,28 @@ class TestView: UIViewController {
 //      //  pgp.Test_2();
 //        
         
-        button.enabled = true;
+        button.isEnabled = true;
     }
     
-    @IBAction func generate_new_key_clicked(sender: AnyObject) {
+    @IBAction func generate_new_key_clicked(_ sender: AnyObject) {
         
-        let button:UIButton = sender as! UIButton;
-        button.enabled = false;
+ //       let button:UIButton = sender as! UIButton;
+ //       button.isEnabled = false;
         
-        let openpgp = PMNOpenPgp.createInstance()
+//        let openpgp = PMNOpenPgp.createInstance()
         
-        let count:Int = 10
-        let startTime:CFTimeInterval  = CACurrentMediaTime()
-        for var i:Int = 0; i < count; ++i {
-            openpgp?.generateKey("feng", domain: "protonmail.com", passphrase: "123", bits: 4096)
-        }
+//        let count:Int = 10
+//        let startTime:CFTimeInterval  = CACurrentMediaTime()
+//        for i:Int in 0 ..< count += 1 {
+//            openpgp?.generateKey("feng", domain: "protonmail.com", passphrase: "123", bits: 4096)
+ //       }
         
-        let endTime:CFTimeInterval  = CACurrentMediaTime();
-        let total = (endTime - startTime);
-        let cot:Double = Double( count )
-        let avg:Double = (endTime - startTime)/cot;
-        log_lable_.text = NSString(format: "%d Times(ENC->DEC) --- Total Runtime: %g s --- Avg %g s", count, total , avg) as String;
-        button.enabled = true;
+ //       let endTime:CFTimeInterval  = CACurrentMediaTime();
+ //       let total = (endTime - startTime);
+ //       let cot:Double = Double( count )
+//        let avg:Double = (endTime - startTime)/cot;
+//        log_lable_.text = NSString(format: "%d Times(ENC->DEC) --- Total Runtime: %g s --- Avg %g s", count, total , avg) as String;
+//        button.isEnabled = true;
         
     }
     

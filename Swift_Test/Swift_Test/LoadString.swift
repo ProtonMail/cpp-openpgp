@@ -9,6 +9,6 @@
 import Foundation
 
 
-func GetStringFromSampleFile(key: String) -> String {
-    return NSBundle.mainBundle().localizedStringForKey(key, value: key, table: "sample")
+func GetStringFromSampleFile(_ key: String) -> String {
+    return Bundle.main.localizedString(forKey: key, value: key, table: "sample")
 }
