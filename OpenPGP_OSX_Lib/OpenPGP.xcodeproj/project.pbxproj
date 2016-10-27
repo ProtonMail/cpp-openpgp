@@ -767,7 +767,7 @@
 		7517E6DE1AFABC35007EA967 /* UTF8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UTF8.cpp; sourceTree = "<group>"; };
 		7517E6DF1AFABC35007EA967 /* utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utilities.cpp; sourceTree = "<group>"; };
 		7517E6E01AFABC35007EA967 /* utility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utility.cpp; sourceTree = "<group>"; };
-		7519BBE21A8D868000E0E570 /* OpenPGP_OSX_LibTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenPGP_OSX_LibTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7519BBE21A8D868000E0E570 /* OpenPGPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenPGPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7519BBE81A8D868000E0E570 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7519BBFA1A8D869000E0E570 /* libOpenPGP_x86_64.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOpenPGP_x86_64.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		75419F471A97E1A8002A1F25 /* libOpenPGP_i386.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOpenPGP_i386.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -805,7 +805,7 @@
 		7598C9BB1DAC4A2B002FD14A /* PMNSrpProofs.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PMNSrpProofs.mm; sourceTree = "<group>"; };
 		7598C9BC1DAC4A2B002FD14A /* PMNSrpProofs+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PMNSrpProofs+Private.h"; sourceTree = "<group>"; };
 		7598C9BD1DAC4A2B002FD14A /* PMNSrpProofs+Private.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "PMNSrpProofs+Private.mm"; sourceTree = "<group>"; };
-		759DA08E1C5C2A3100EB0483 /* libUniversalPGP_OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUniversalPGP_OSX.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		759DA08E1C5C2A3100EB0483 /* libUniversalPGP_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUniversalPGP_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		75AB6B451C50436000E82A0E /* libUniversalPGP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUniversalPGP.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		75AE62E21AFBCFED00131986 /* compress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compress.cpp; sourceTree = "<group>"; };
 		75AE62E31AFBCFED00131986 /* pgpbzip2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pgpbzip2.cpp; sourceTree = "<group>"; };
@@ -1076,8 +1076,8 @@
 			isa = PBXGroup;
 			children = (
 				750BA3D61AAA9583003FEA16 /* Source */,
-				7519BBD91A8D868000E0E570 /* OpenPGP_OSX_Lib */,
-				7519BBE61A8D868000E0E570 /* OpenPGP_OSX_LibTests */,
+				7519BBD91A8D868000E0E570 /* OpenPGPLib */,
+				7519BBE61A8D868000E0E570 /* OpenPGPLibTests */,
 				7519BBD81A8D868000E0E570 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -1085,16 +1085,16 @@
 		7519BBD81A8D868000E0E570 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7519BBE21A8D868000E0E570 /* OpenPGP_OSX_LibTests.xctest */,
+				7519BBE21A8D868000E0E570 /* OpenPGPTests.xctest */,
 				7519BBFA1A8D869000E0E570 /* libOpenPGP_x86_64.a */,
 				75419F471A97E1A8002A1F25 /* libOpenPGP_i386.a */,
 				75AB6B451C50436000E82A0E /* libUniversalPGP.a */,
-				759DA08E1C5C2A3100EB0483 /* libUniversalPGP_OSX.a */,
+				759DA08E1C5C2A3100EB0483 /* libUniversalPGP_macOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7519BBD91A8D868000E0E570 /* OpenPGP_OSX_Lib */ = {
+		7519BBD91A8D868000E0E570 /* OpenPGPLib */ = {
 			isa = PBXGroup;
 			children = (
 				7545D3DE1C45A24A000D2F8D /* obj_base */,
@@ -1123,14 +1123,16 @@
 				7598C9BC1DAC4A2B002FD14A /* PMNSrpProofs+Private.h */,
 				7598C9BD1DAC4A2B002FD14A /* PMNSrpProofs+Private.mm */,
 			);
+			name = OpenPGPLib;
 			path = OpenPGP_OSX_Lib;
 			sourceTree = "<group>";
 		};
-		7519BBE61A8D868000E0E570 /* OpenPGP_OSX_LibTests */ = {
+		7519BBE61A8D868000E0E570 /* OpenPGPLibTests */ = {
 			isa = PBXGroup;
 			children = (
 				7519BBE71A8D868000E0E570 /* Supporting Files */,
 			);
+			name = OpenPGPLibTests;
 			path = OpenPGP_OSX_LibTests;
 			sourceTree = "<group>";
 		};
@@ -1187,9 +1189,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7519BBE11A8D868000E0E570 /* OpenPGP_OSX_LibTests */ = {
+		7519BBE11A8D868000E0E570 /* OpenPGPTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7519BBEE1A8D868000E0E570 /* Build configuration list for PBXNativeTarget "OpenPGP_OSX_LibTests" */;
+			buildConfigurationList = 7519BBEE1A8D868000E0E570 /* Build configuration list for PBXNativeTarget "OpenPGPTests" */;
 			buildPhases = (
 				7519BBDE1A8D868000E0E570 /* Sources */,
 				7519BBDF1A8D868000E0E570 /* Frameworks */,
@@ -1199,9 +1201,9 @@
 			);
 			dependencies = (
 			);
-			name = OpenPGP_OSX_LibTests;
+			name = OpenPGPTests;
 			productName = OpenPGP_OSX_LibTests;
-			productReference = 7519BBE21A8D868000E0E570 /* OpenPGP_OSX_LibTests.xctest */;
+			productReference = 7519BBE21A8D868000E0E570 /* OpenPGPTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		7519BBF11A8D869000E0E570 /* OpenPGP_x86_64 */ = {
@@ -1238,9 +1240,9 @@
 			productReference = 75419F471A97E1A8002A1F25 /* libOpenPGP_i386.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		759DA0001C5C2A3100EB0483 /* UniversalPGP_OSX */ = {
+		759DA0001C5C2A3100EB0483 /* UniversalPGP_macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 759DA08B1C5C2A3100EB0483 /* Build configuration list for PBXNativeTarget "UniversalPGP_OSX" */;
+			buildConfigurationList = 759DA08B1C5C2A3100EB0483 /* Build configuration list for PBXNativeTarget "UniversalPGP_macOS" */;
 			buildPhases = (
 				759DA0011C5C2A3100EB0483 /* Sources */,
 				759DA0841C5C2A3100EB0483 /* Frameworks */,
@@ -1250,9 +1252,9 @@
 			);
 			dependencies = (
 			);
-			name = UniversalPGP_OSX;
+			name = UniversalPGP_macOS;
 			productName = UniversalPGP;
-			productReference = 759DA08E1C5C2A3100EB0483 /* libUniversalPGP_OSX.a */;
+			productReference = 759DA08E1C5C2A3100EB0483 /* libUniversalPGP_macOS.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		75AB6B441C50436000E82A0E /* UniversalPGP */ = {
@@ -1289,7 +1291,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7519BBD21A8D868000E0E570 /* Build configuration list for PBXProject "OpenPGP_OSX_Lib" */;
+			buildConfigurationList = 7519BBD21A8D868000E0E570 /* Build configuration list for PBXProject "OpenPGP" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1303,9 +1305,9 @@
 			targets = (
 				7519BBF11A8D869000E0E570 /* OpenPGP_x86_64 */,
 				75419EC81A97E1A8002A1F25 /* OpenPGP_i386 */,
-				7519BBE11A8D868000E0E570 /* OpenPGP_OSX_LibTests */,
+				7519BBE11A8D868000E0E570 /* OpenPGPTests */,
 				75AB6B441C50436000E82A0E /* UniversalPGP */,
-				759DA0001C5C2A3100EB0483 /* UniversalPGP_OSX */,
+				759DA0001C5C2A3100EB0483 /* UniversalPGP_macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -2143,7 +2145,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7519BBD21A8D868000E0E570 /* Build configuration list for PBXProject "OpenPGP_OSX_Lib" */ = {
+		7519BBD21A8D868000E0E570 /* Build configuration list for PBXProject "OpenPGP" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7519BBE91A8D868000E0E570 /* Debug */,
@@ -2152,7 +2154,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7519BBEE1A8D868000E0E570 /* Build configuration list for PBXNativeTarget "OpenPGP_OSX_LibTests" */ = {
+		7519BBEE1A8D868000E0E570 /* Build configuration list for PBXNativeTarget "OpenPGPTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7519BBEF1A8D868000E0E570 /* Debug */,
@@ -2179,7 +2181,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		759DA08B1C5C2A3100EB0483 /* Build configuration list for PBXNativeTarget "UniversalPGP_OSX" */ = {
+		759DA08B1C5C2A3100EB0483 /* Build configuration list for PBXNativeTarget "UniversalPGP_macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				759DA08C1C5C2A3100EB0483 /* Debug */,

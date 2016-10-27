@@ -26,7 +26,7 @@
 		750B3C851DC28538001391C3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		750B3C871DC2853B001391C3 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../ThirdLibs/openssl_ios/libcrypto.a; sourceTree = "<group>"; };
 		750B3C881DC2853B001391C3 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../ThirdLibs/openssl_ios/libssl.a; sourceTree = "<group>"; };
-		756C9B641A8D884A007B2B9B /* ObjectiveC_Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjectiveC_Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		756C9B641A8D884A007B2B9B /* ObjectiveC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjectiveC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		756C9B681A8D884A007B2B9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		756C9B691A8D884A007B2B9B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		756C9B6B1A8D884A007B2B9B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -66,7 +66,7 @@
 		756C9B651A8D884A007B2B9B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				756C9B641A8D884A007B2B9B /* ObjectiveC_Test.app */,
+				756C9B641A8D884A007B2B9B /* ObjectiveC.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -110,9 +110,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		756C9B631A8D884A007B2B9B /* ObjectiveC_Test */ = {
+		756C9B631A8D884A007B2B9B /* ObjectiveC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 756C9B871A8D884A007B2B9B /* Build configuration list for PBXNativeTarget "ObjectiveC_Test" */;
+			buildConfigurationList = 756C9B871A8D884A007B2B9B /* Build configuration list for PBXNativeTarget "ObjectiveC" */;
 			buildPhases = (
 				756C9B601A8D884A007B2B9B /* Sources */,
 				756C9B611A8D884A007B2B9B /* Frameworks */,
@@ -122,9 +122,9 @@
 			);
 			dependencies = (
 			);
-			name = ObjectiveC_Test;
+			name = ObjectiveC;
 			productName = ObjectiveC_Test;
-			productReference = 756C9B641A8D884A007B2B9B /* ObjectiveC_Test.app */;
+			productReference = 756C9B641A8D884A007B2B9B /* ObjectiveC.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -141,7 +141,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 756C9B5F1A8D884A007B2B9B /* Build configuration list for PBXProject "ObjectiveC_Test" */;
+			buildConfigurationList = 756C9B5F1A8D884A007B2B9B /* Build configuration list for PBXProject "ObjectiveC" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -154,7 +154,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				756C9B631A8D884A007B2B9B /* ObjectiveC_Test */,
+				756C9B631A8D884A007B2B9B /* ObjectiveC */,
 			);
 		};
 /* End PBXProject section */
@@ -345,7 +345,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		756C9B5F1A8D884A007B2B9B /* Build configuration list for PBXProject "ObjectiveC_Test" */ = {
+		756C9B5F1A8D884A007B2B9B /* Build configuration list for PBXProject "ObjectiveC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				756C9B851A8D884A007B2B9B /* Debug */,
@@ -354,7 +354,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		756C9B871A8D884A007B2B9B /* Build configuration list for PBXNativeTarget "ObjectiveC_Test" */ = {
+		756C9B871A8D884A007B2B9B /* Build configuration list for PBXNativeTarget "ObjectiveC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				756C9B881A8D884A007B2B9B /* Debug */,

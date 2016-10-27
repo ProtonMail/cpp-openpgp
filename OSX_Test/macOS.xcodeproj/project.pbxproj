@@ -63,13 +63,13 @@
 		755E3C261C471BA7006B1EE2 /* testpdf.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = testpdf.pdf; path = Resource/testpdf.pdf; sourceTree = "<group>"; };
 		755E3C2F1C472DBD006B1EE2 /* String_Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String_Extention.swift; sourceTree = "<group>"; };
 		7571EC3C1C3C6C2300428F74 /* feng_addresses.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; name = feng_addresses.geojson; path = OSX_Test/feng_addresses.geojson; sourceTree = "<group>"; };
-		7588B93F1AA53D6D006A8793 /* OSX_Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OSX_Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7588B93F1AA53D6D006A8793 /* macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7588B9431AA53D6D006A8793 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7588B9441AA53D6D006A8793 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7588B9461AA53D6D006A8793 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7588B9481AA53D6D006A8793 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7588B94B1AA53D6D006A8793 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		7588B9511AA53D6D006A8793 /* OSX_TestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSX_TestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7588B9511AA53D6D006A8793 /* macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = macOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7588B9561AA53D6D006A8793 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7588B9571AA53D6D006A8793 /* OSX_TestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSX_TestTests.swift; sourceTree = "<group>"; };
 		7588B9611AA53F4D006A8793 /* SwiftObjC-Bridging-Header.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "SwiftObjC-Bridging-Header.cpp"; sourceTree = "<group>"; };
@@ -151,8 +151,8 @@
 		7588B9401AA53D6D006A8793 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7588B93F1AA53D6D006A8793 /* OSX_Test.app */,
-				7588B9511AA53D6D006A8793 /* OSX_TestTests.xctest */,
+				7588B93F1AA53D6D006A8793 /* macOS.app */,
+				7588B9511AA53D6D006A8793 /* macOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -202,9 +202,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7588B93E1AA53D6D006A8793 /* OSX_Test */ = {
+		7588B93E1AA53D6D006A8793 /* macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7588B95B1AA53D6D006A8793 /* Build configuration list for PBXNativeTarget "OSX_Test" */;
+			buildConfigurationList = 7588B95B1AA53D6D006A8793 /* Build configuration list for PBXNativeTarget "macOS" */;
 			buildPhases = (
 				7588B93B1AA53D6D006A8793 /* Sources */,
 				7588B93C1AA53D6D006A8793 /* Frameworks */,
@@ -214,14 +214,14 @@
 			);
 			dependencies = (
 			);
-			name = OSX_Test;
+			name = macOS;
 			productName = OSX_Test;
-			productReference = 7588B93F1AA53D6D006A8793 /* OSX_Test.app */;
+			productReference = 7588B93F1AA53D6D006A8793 /* macOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		7588B9501AA53D6D006A8793 /* OSX_TestTests */ = {
+		7588B9501AA53D6D006A8793 /* macOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7588B95E1AA53D6D006A8793 /* Build configuration list for PBXNativeTarget "OSX_TestTests" */;
+			buildConfigurationList = 7588B95E1AA53D6D006A8793 /* Build configuration list for PBXNativeTarget "macOSTests" */;
 			buildPhases = (
 				7588B94D1AA53D6D006A8793 /* Sources */,
 				7588B94E1AA53D6D006A8793 /* Frameworks */,
@@ -232,9 +232,9 @@
 			dependencies = (
 				7588B9531AA53D6D006A8793 /* PBXTargetDependency */,
 			);
-			name = OSX_TestTests;
+			name = macOSTests;
 			productName = OSX_TestTests;
-			productReference = 7588B9511AA53D6D006A8793 /* OSX_TestTests.xctest */;
+			productReference = 7588B9511AA53D6D006A8793 /* macOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -257,7 +257,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7588B93A1AA53D6D006A8793 /* Build configuration list for PBXProject "OSX_Test" */;
+			buildConfigurationList = 7588B93A1AA53D6D006A8793 /* Build configuration list for PBXProject "macOS" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -270,8 +270,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7588B93E1AA53D6D006A8793 /* OSX_Test */,
-				7588B9501AA53D6D006A8793 /* OSX_TestTests */,
+				7588B93E1AA53D6D006A8793 /* macOS */,
+				7588B9501AA53D6D006A8793 /* macOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -336,7 +336,7 @@
 /* Begin PBXTargetDependency section */
 		7588B9531AA53D6D006A8793 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7588B93E1AA53D6D006A8793 /* OSX_Test */;
+			target = 7588B93E1AA53D6D006A8793 /* macOS */;
 			targetProxy = 7588B9521AA53D6D006A8793 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -516,7 +516,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.protonmail.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "OSX_Test/SwiftObjC-Bridging-Header.h";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OSX_Test.app/Contents/MacOS/OSX_Test";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/macOS.app/Contents/MacOS/macOS";
 			};
 			name = Debug;
 		};
@@ -535,14 +535,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.protonmail.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "OSX_Test/SwiftObjC-Bridging-Header.h";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OSX_Test.app/Contents/MacOS/OSX_Test";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/macOS.app/Contents/MacOS/macOS";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7588B93A1AA53D6D006A8793 /* Build configuration list for PBXProject "OSX_Test" */ = {
+		7588B93A1AA53D6D006A8793 /* Build configuration list for PBXProject "macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7588B9591AA53D6D006A8793 /* Debug */,
@@ -551,7 +551,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7588B95B1AA53D6D006A8793 /* Build configuration list for PBXNativeTarget "OSX_Test" */ = {
+		7588B95B1AA53D6D006A8793 /* Build configuration list for PBXNativeTarget "macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7588B95C1AA53D6D006A8793 /* Debug */,
@@ -560,7 +560,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7588B95E1AA53D6D006A8793 /* Build configuration list for PBXNativeTarget "OSX_TestTests" */ = {
+		7588B95E1AA53D6D006A8793 /* Build configuration list for PBXNativeTarget "macOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7588B95F1AA53D6D006A8793 /* Debug */,
