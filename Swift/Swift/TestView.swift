@@ -36,14 +36,14 @@ class TestView: UIViewController {
     
     
     @IBAction func large_test_clicked(_ sender: AnyObject) {
-        let button:UIButton = sender as! UIButton;
-        
-        button.isEnabled = false;
-        
-        let data = Data()
-        
-        
-        let out = PMNSrpClient.expandHash(data)
+//        let button:UIButton = sender as! UIButton;
+//        
+//        button.isEnabled = false;
+//        
+//        let data = Data()
+//        
+//        
+//        let out = PMNSrpClient.expandHash(data)
         
 //        let pgp:OpenPGP = OpenPGP();
 //        pgp.SetupKeys(private_key_, pubKey: public_key_, pass: "123", error:nil)

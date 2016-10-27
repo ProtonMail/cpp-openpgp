@@ -11,30 +11,26 @@
 		750B3C731DC275A2001391C3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 750B3C721DC275A2001391C3 /* libz.tbd */; };
 		750B3C751DC275D9001391C3 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 750B3C741DC275D9001391C3 /* libbz2.tbd */; };
 		750B3C761DC27873001391C3 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 750B3C701DC18142001391C3 /* libssl.dylib */; };
-		752B38651C46D9150019742F /* OpenPGP_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752B38641C46D9150019742F /* OpenPGP_Test.swift */; };
-		755E3C151C471197006B1EE2 /* SwiftObjC-Bridging-Header.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7588B9611AA53F4D006A8793 /* SwiftObjC-Bridging-Header.cpp */; };
-		755E3C271C471BA7006B1EE2 /* feng_mulitiple_keys.json in Resources */ = {isa = PBXBuildFile; fileRef = 755E3C1F1C471BA6006B1EE2 /* feng_mulitiple_keys.json */; };
-		755E3C281C471BA7006B1EE2 /* feng_mulitiple_test_message.txt in Resources */ = {isa = PBXBuildFile; fileRef = 755E3C201C471BA6006B1EE2 /* feng_mulitiple_test_message.txt */; };
-		755E3C291C471BA7006B1EE2 /* feng_bad_msg_emoji_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 755E3C211C471BA6006B1EE2 /* feng_bad_msg_emoji_1.txt */; };
-		755E3C2A1C471BA7006B1EE2 /* large.zip in Resources */ = {isa = PBXBuildFile; fileRef = 755E3C221C471BA6006B1EE2 /* large.zip */; };
-		755E3C2B1C471BA7006B1EE2 /* privatekey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 755E3C231C471BA7006B1EE2 /* privatekey.txt */; };
-		755E3C2C1C471BA7006B1EE2 /* publickey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 755E3C241C471BA7006B1EE2 /* publickey.txt */; };
-		755E3C2D1C471BA7006B1EE2 /* test_plain_message.txt in Resources */ = {isa = PBXBuildFile; fileRef = 755E3C251C471BA7006B1EE2 /* test_plain_message.txt */; };
-		755E3C2E1C471BA7006B1EE2 /* testpdf.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 755E3C261C471BA7006B1EE2 /* testpdf.pdf */; };
-		755E3C301C472DBD006B1EE2 /* String_Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755E3C2F1C472DBD006B1EE2 /* String_Extention.swift */; };
-		755E3C311C472DDD006B1EE2 /* String_Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755E3C2F1C472DBD006B1EE2 /* String_Extention.swift */; };
-		755E3C321C473928006B1EE2 /* feng_addresses.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 7571EC3C1C3C6C2300428F74 /* feng_addresses.geojson */; };
-		7571EC3D1C3C6CBE00428F74 /* feng_addresses.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 7571EC3C1C3C6C2300428F74 /* feng_addresses.geojson */; };
-		7588B9451AA53D6D006A8793 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7588B9441AA53D6D006A8793 /* AppDelegate.swift */; };
-		7588B9471AA53D6D006A8793 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7588B9461AA53D6D006A8793 /* ViewController.swift */; };
-		7588B9491AA53D6D006A8793 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7588B9481AA53D6D006A8793 /* Images.xcassets */; };
-		7588B94C1AA53D6D006A8793 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7588B94A1AA53D6D006A8793 /* Main.storyboard */; };
-		7588B9581AA53D6D006A8793 /* OSX_TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7588B9571AA53D6D006A8793 /* OSX_TestTests.swift */; };
-		7588B9631AA53F4D006A8793 /* SwiftObjC-Bridging-Header.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7588B9611AA53F4D006A8793 /* SwiftObjC-Bridging-Header.cpp */; };
-		7598C9E21DAC577F002FD14A /* libUniversalPGP_OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7598C9E11DAC577F002FD14A /* libUniversalPGP_OSX.a */; };
-		759DE1DD1C63EF600078D437 /* feng_mulitiple_keys_f.json in Resources */ = {isa = PBXBuildFile; fileRef = 759DE1DC1C63EF600078D437 /* feng_mulitiple_keys_f.json */; };
-		759F4F0A1D1B3A29004E551A /* privatekey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 755E3C231C471BA7006B1EE2 /* privatekey.txt */; };
-		759F4F0B1D1B3A29004E551A /* publickey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 755E3C241C471BA7006B1EE2 /* publickey.txt */; };
+		751D42211DC291EA001A3229 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751D42171DC291EA001A3229 /* AppDelegate.swift */; };
+		751D42221DC291EA001A3229 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 751D42181DC291EA001A3229 /* Main.storyboard */; };
+		751D42231DC291EA001A3229 /* feng_addresses.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 751D421A1DC291EA001A3229 /* feng_addresses.geojson */; };
+		751D42241DC291EA001A3229 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 751D421B1DC291EA001A3229 /* Images.xcassets */; };
+		751D42261DC291EA001A3229 /* String_Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751D421D1DC291EA001A3229 /* String_Extention.swift */; };
+		751D42271DC291EA001A3229 /* SwiftObjC-Bridging-Header.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D421E1DC291EA001A3229 /* SwiftObjC-Bridging-Header.cpp */; };
+		751D42281DC291EA001A3229 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751D42201DC291EA001A3229 /* ViewController.swift */; };
+		751D423C1DC2926E001A3229 /* OpenPGP_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751D422F1DC2926E001A3229 /* OpenPGP_Test.swift */; };
+		751D423D1DC2926E001A3229 /* OSX_TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751D42301DC2926E001A3229 /* OSX_TestTests.swift */; };
+		751D42481DC29296001A3229 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 751D42471DC29296001A3229 /* Info.plist */; };
+		751D42521DC292A3001A3229 /* feng_bad_msg_emoji_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 751D42491DC292A3001A3229 /* feng_bad_msg_emoji_1.txt */; };
+		751D42531DC292A3001A3229 /* feng_mulitiple_keys_f.json in Resources */ = {isa = PBXBuildFile; fileRef = 751D424A1DC292A3001A3229 /* feng_mulitiple_keys_f.json */; };
+		751D42541DC292A3001A3229 /* feng_mulitiple_keys.json in Resources */ = {isa = PBXBuildFile; fileRef = 751D424B1DC292A3001A3229 /* feng_mulitiple_keys.json */; };
+		751D42551DC292A3001A3229 /* feng_mulitiple_test_message.txt in Resources */ = {isa = PBXBuildFile; fileRef = 751D424C1DC292A3001A3229 /* feng_mulitiple_test_message.txt */; };
+		751D42561DC292A3001A3229 /* large.zip in Resources */ = {isa = PBXBuildFile; fileRef = 751D424D1DC292A3001A3229 /* large.zip */; };
+		751D42571DC292A3001A3229 /* privatekey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 751D424E1DC292A3001A3229 /* privatekey.txt */; };
+		751D42581DC292A3001A3229 /* publickey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 751D424F1DC292A3001A3229 /* publickey.txt */; };
+		751D42591DC292A3001A3229 /* test_plain_message.txt in Resources */ = {isa = PBXBuildFile; fileRef = 751D42501DC292A3001A3229 /* test_plain_message.txt */; };
+		751D425A1DC292A3001A3229 /* testpdf.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 751D42511DC292A3001A3229 /* testpdf.pdf */; };
+		751D425C1DC29375001A3229 /* libUniversalPGP_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 751D425B1DC29375001A3229 /* libUniversalPGP_macOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,30 +48,31 @@
 		750B3C701DC18142001391C3 /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = ../../../../../../usr/lib/libssl.dylib; sourceTree = "<group>"; };
 		750B3C721DC275A2001391C3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		750B3C741DC275D9001391C3 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
-		752B38641C46D9150019742F /* OpenPGP_Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenPGP_Test.swift; sourceTree = "<group>"; };
-		755E3C1F1C471BA6006B1EE2 /* feng_mulitiple_keys.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = feng_mulitiple_keys.json; path = Resource/feng_mulitiple_keys.json; sourceTree = "<group>"; };
-		755E3C201C471BA6006B1EE2 /* feng_mulitiple_test_message.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = feng_mulitiple_test_message.txt; path = Resource/feng_mulitiple_test_message.txt; sourceTree = "<group>"; };
-		755E3C211C471BA6006B1EE2 /* feng_bad_msg_emoji_1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = feng_bad_msg_emoji_1.txt; path = Resource/feng_bad_msg_emoji_1.txt; sourceTree = "<group>"; };
-		755E3C221C471BA6006B1EE2 /* large.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = large.zip; path = Resource/large.zip; sourceTree = "<group>"; };
-		755E3C231C471BA7006B1EE2 /* privatekey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = privatekey.txt; path = Resource/privatekey.txt; sourceTree = "<group>"; };
-		755E3C241C471BA7006B1EE2 /* publickey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = publickey.txt; path = Resource/publickey.txt; sourceTree = "<group>"; };
-		755E3C251C471BA7006B1EE2 /* test_plain_message.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test_plain_message.txt; path = Resource/test_plain_message.txt; sourceTree = "<group>"; };
-		755E3C261C471BA7006B1EE2 /* testpdf.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = testpdf.pdf; path = Resource/testpdf.pdf; sourceTree = "<group>"; };
-		755E3C2F1C472DBD006B1EE2 /* String_Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String_Extention.swift; sourceTree = "<group>"; };
-		7571EC3C1C3C6C2300428F74 /* feng_addresses.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; name = feng_addresses.geojson; path = OSX_Test/feng_addresses.geojson; sourceTree = "<group>"; };
+		751D42171DC291EA001A3229 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		751D42191DC291EA001A3229 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		751D421A1DC291EA001A3229 /* feng_addresses.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = feng_addresses.geojson; path = macOS/feng_addresses.geojson; sourceTree = "<group>"; };
+		751D421B1DC291EA001A3229 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		751D421D1DC291EA001A3229 /* String_Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String_Extention.swift; sourceTree = "<group>"; };
+		751D421E1DC291EA001A3229 /* SwiftObjC-Bridging-Header.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "SwiftObjC-Bridging-Header.cpp"; sourceTree = "<group>"; };
+		751D421F1DC291EA001A3229 /* SwiftObjC-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SwiftObjC-Bridging-Header.h"; sourceTree = "<group>"; };
+		751D42201DC291EA001A3229 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		751D422B1DC2920F001A3229 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = macOS/Info.plist; sourceTree = SOURCE_ROOT; };
+		751D422F1DC2926E001A3229 /* OpenPGP_Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenPGP_Test.swift; sourceTree = "<group>"; };
+		751D42301DC2926E001A3229 /* OSX_TestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSX_TestTests.swift; sourceTree = "<group>"; };
+		751D42471DC29296001A3229 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = macOSTests/Info.plist; sourceTree = SOURCE_ROOT; };
+		751D42491DC292A3001A3229 /* feng_bad_msg_emoji_1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = feng_bad_msg_emoji_1.txt; path = macOSTests/Resource/feng_bad_msg_emoji_1.txt; sourceTree = SOURCE_ROOT; };
+		751D424A1DC292A3001A3229 /* feng_mulitiple_keys_f.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = feng_mulitiple_keys_f.json; path = macOSTests/Resource/feng_mulitiple_keys_f.json; sourceTree = SOURCE_ROOT; };
+		751D424B1DC292A3001A3229 /* feng_mulitiple_keys.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = feng_mulitiple_keys.json; path = macOSTests/Resource/feng_mulitiple_keys.json; sourceTree = SOURCE_ROOT; };
+		751D424C1DC292A3001A3229 /* feng_mulitiple_test_message.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = feng_mulitiple_test_message.txt; path = macOSTests/Resource/feng_mulitiple_test_message.txt; sourceTree = SOURCE_ROOT; };
+		751D424D1DC292A3001A3229 /* large.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = large.zip; path = macOSTests/Resource/large.zip; sourceTree = SOURCE_ROOT; };
+		751D424E1DC292A3001A3229 /* privatekey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = privatekey.txt; path = macOSTests/Resource/privatekey.txt; sourceTree = SOURCE_ROOT; };
+		751D424F1DC292A3001A3229 /* publickey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = publickey.txt; path = macOSTests/Resource/publickey.txt; sourceTree = SOURCE_ROOT; };
+		751D42501DC292A3001A3229 /* test_plain_message.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test_plain_message.txt; path = macOSTests/Resource/test_plain_message.txt; sourceTree = SOURCE_ROOT; };
+		751D42511DC292A3001A3229 /* testpdf.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = testpdf.pdf; path = macOSTests/Resource/testpdf.pdf; sourceTree = SOURCE_ROOT; };
+		751D425B1DC29375001A3229 /* libUniversalPGP_macOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libUniversalPGP_macOS.a; path = /Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OpenPGP/../Bin/libs/Debug/libUniversalPGP_macOS.a; sourceTree = "<absolute>"; };
 		7588B93F1AA53D6D006A8793 /* macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7588B9431AA53D6D006A8793 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7588B9441AA53D6D006A8793 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7588B9461AA53D6D006A8793 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		7588B9481AA53D6D006A8793 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		7588B94B1AA53D6D006A8793 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7588B9511AA53D6D006A8793 /* macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = macOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7588B9561AA53D6D006A8793 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7588B9571AA53D6D006A8793 /* OSX_TestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSX_TestTests.swift; sourceTree = "<group>"; };
-		7588B9611AA53F4D006A8793 /* SwiftObjC-Bridging-Header.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "SwiftObjC-Bridging-Header.cpp"; sourceTree = "<group>"; };
-		7588B9621AA53F4D006A8793 /* SwiftObjC-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SwiftObjC-Bridging-Header.h"; sourceTree = "<group>"; };
 		7598C9E11DAC577F002FD14A /* libUniversalPGP_OSX.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libUniversalPGP_OSX.a; path = ../Bin/libs/Debug/libUniversalPGP_OSX.a; sourceTree = "<group>"; };
-		759DE1DC1C63EF600078D437 /* feng_mulitiple_keys_f.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = feng_mulitiple_keys_f.json; path = Resource/feng_mulitiple_keys_f.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,9 +80,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				751D425C1DC29375001A3229 /* libUniversalPGP_macOS.a in Frameworks */,
 				750B3C751DC275D9001391C3 /* libbz2.tbd in Frameworks */,
 				750B3C731DC275A2001391C3 /* libz.tbd in Frameworks */,
-				7598C9E21DAC577F002FD14A /* libUniversalPGP_OSX.a in Frameworks */,
 				750B3C6F1DC180E1001391C3 /* libcrypto.dylib in Frameworks */,
 				750B3C761DC27873001391C3 /* libssl.dylib in Frameworks */,
 			);
@@ -104,6 +101,7 @@
 		750BA0E41AAA73BB003FEA16 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				751D425B1DC29375001A3229 /* libUniversalPGP_macOS.a */,
 				750B3C741DC275D9001391C3 /* libbz2.tbd */,
 				750B3C721DC275A2001391C3 /* libz.tbd */,
 				750B3C701DC18142001391C3 /* libssl.dylib */,
@@ -113,37 +111,73 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		751D42161DC291EA001A3229 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				751D42171DC291EA001A3229 /* AppDelegate.swift */,
+				751D421D1DC291EA001A3229 /* String_Extention.swift */,
+				751D42201DC291EA001A3229 /* ViewController.swift */,
+				751D42181DC291EA001A3229 /* Main.storyboard */,
+				751D421B1DC291EA001A3229 /* Images.xcassets */,
+				751D42291DC291F5001A3229 /* Bridge */,
+				7571EC3E1C3C839800428F74 /* Resource */,
+				7588B9421AA53D6D006A8793 /* Supporting Files */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		751D42291DC291F5001A3229 /* Bridge */ = {
+			isa = PBXGroup;
+			children = (
+				751D421F1DC291EA001A3229 /* SwiftObjC-Bridging-Header.h */,
+				751D421E1DC291EA001A3229 /* SwiftObjC-Bridging-Header.cpp */,
+			);
+			name = Bridge;
+			sourceTree = "<group>";
+		};
+		751D422D1DC2926E001A3229 /* macOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				751D422F1DC2926E001A3229 /* OpenPGP_Test.swift */,
+				751D42301DC2926E001A3229 /* OSX_TestTests.swift */,
+				755E3C1E1C471B6C006B1EE2 /* Resource */,
+				7588B9551AA53D6D006A8793 /* Supporting Files */,
+			);
+			path = macOSTests;
+			sourceTree = SOURCE_ROOT;
+		};
 		755E3C1E1C471B6C006B1EE2 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				759DE1DC1C63EF600078D437 /* feng_mulitiple_keys_f.json */,
-				755E3C1F1C471BA6006B1EE2 /* feng_mulitiple_keys.json */,
-				755E3C201C471BA6006B1EE2 /* feng_mulitiple_test_message.txt */,
-				755E3C211C471BA6006B1EE2 /* feng_bad_msg_emoji_1.txt */,
-				755E3C221C471BA6006B1EE2 /* large.zip */,
-				755E3C231C471BA7006B1EE2 /* privatekey.txt */,
-				755E3C241C471BA7006B1EE2 /* publickey.txt */,
-				755E3C251C471BA7006B1EE2 /* test_plain_message.txt */,
-				755E3C261C471BA7006B1EE2 /* testpdf.pdf */,
+				751D42491DC292A3001A3229 /* feng_bad_msg_emoji_1.txt */,
+				751D424A1DC292A3001A3229 /* feng_mulitiple_keys_f.json */,
+				751D424B1DC292A3001A3229 /* feng_mulitiple_keys.json */,
+				751D424C1DC292A3001A3229 /* feng_mulitiple_test_message.txt */,
+				751D424D1DC292A3001A3229 /* large.zip */,
+				751D424E1DC292A3001A3229 /* privatekey.txt */,
+				751D424F1DC292A3001A3229 /* publickey.txt */,
+				751D42501DC292A3001A3229 /* test_plain_message.txt */,
+				751D42511DC292A3001A3229 /* testpdf.pdf */,
 			);
 			name = Resource;
+			path = ../OSX_TestTests;
 			sourceTree = "<group>";
 		};
 		7571EC3E1C3C839800428F74 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				7571EC3C1C3C6C2300428F74 /* feng_addresses.geojson */,
+				751D421A1DC291EA001A3229 /* feng_addresses.geojson */,
 			);
 			name = Resource;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		7588B9361AA53D6D006A8793 = {
 			isa = PBXGroup;
 			children = (
-				7588B9411AA53D6D006A8793 /* OSX_Test */,
-				7588B9541AA53D6D006A8793 /* OSX_TestTests */,
+				751D42161DC291EA001A3229 /* macOS */,
+				751D422D1DC2926E001A3229 /* macOSTests */,
 				7588B9401AA53D6D006A8793 /* Products */,
-				7571EC3E1C3C839800428F74 /* Resource */,
 				750BA0E41AAA73BB003FEA16 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -157,46 +191,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7588B9411AA53D6D006A8793 /* OSX_Test */ = {
-			isa = PBXGroup;
-			children = (
-				7588B9611AA53F4D006A8793 /* SwiftObjC-Bridging-Header.cpp */,
-				7588B9621AA53F4D006A8793 /* SwiftObjC-Bridging-Header.h */,
-				7588B9441AA53D6D006A8793 /* AppDelegate.swift */,
-				7588B9461AA53D6D006A8793 /* ViewController.swift */,
-				7588B9481AA53D6D006A8793 /* Images.xcassets */,
-				7588B94A1AA53D6D006A8793 /* Main.storyboard */,
-				7588B9421AA53D6D006A8793 /* Supporting Files */,
-				755E3C2F1C472DBD006B1EE2 /* String_Extention.swift */,
-			);
-			path = OSX_Test;
-			sourceTree = "<group>";
-		};
 		7588B9421AA53D6D006A8793 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7588B9431AA53D6D006A8793 /* Info.plist */,
+				751D422B1DC2920F001A3229 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		7588B9541AA53D6D006A8793 /* OSX_TestTests */ = {
-			isa = PBXGroup;
-			children = (
-				755E3C1E1C471B6C006B1EE2 /* Resource */,
-				752B38641C46D9150019742F /* OpenPGP_Test.swift */,
-				7588B9571AA53D6D006A8793 /* OSX_TestTests.swift */,
-				7588B9551AA53D6D006A8793 /* Supporting Files */,
-			);
-			path = OSX_TestTests;
+			path = ../OSX_Test;
 			sourceTree = "<group>";
 		};
 		7588B9551AA53D6D006A8793 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7588B9561AA53D6D006A8793 /* Info.plist */,
+				751D42471DC29296001A3229 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			path = ../OSX_TestTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,11 +291,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				759F4F0B1D1B3A29004E551A /* publickey.txt in Resources */,
-				759F4F0A1D1B3A29004E551A /* privatekey.txt in Resources */,
-				7588B9491AA53D6D006A8793 /* Images.xcassets in Resources */,
-				7588B94C1AA53D6D006A8793 /* Main.storyboard in Resources */,
-				7571EC3D1C3C6CBE00428F74 /* feng_addresses.geojson in Resources */,
+				751D42241DC291EA001A3229 /* Images.xcassets in Resources */,
+				751D42231DC291EA001A3229 /* feng_addresses.geojson in Resources */,
+				751D42221DC291EA001A3229 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,16 +301,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				755E3C321C473928006B1EE2 /* feng_addresses.geojson in Resources */,
-				755E3C281C471BA7006B1EE2 /* feng_mulitiple_test_message.txt in Resources */,
-				755E3C2A1C471BA7006B1EE2 /* large.zip in Resources */,
-				755E3C271C471BA7006B1EE2 /* feng_mulitiple_keys.json in Resources */,
-				755E3C2D1C471BA7006B1EE2 /* test_plain_message.txt in Resources */,
-				755E3C2C1C471BA7006B1EE2 /* publickey.txt in Resources */,
-				759DE1DD1C63EF600078D437 /* feng_mulitiple_keys_f.json in Resources */,
-				755E3C2E1C471BA7006B1EE2 /* testpdf.pdf in Resources */,
-				755E3C2B1C471BA7006B1EE2 /* privatekey.txt in Resources */,
-				755E3C291C471BA7006B1EE2 /* feng_bad_msg_emoji_1.txt in Resources */,
+				751D42531DC292A3001A3229 /* feng_mulitiple_keys_f.json in Resources */,
+				751D42571DC292A3001A3229 /* privatekey.txt in Resources */,
+				751D42481DC29296001A3229 /* Info.plist in Resources */,
+				751D42581DC292A3001A3229 /* publickey.txt in Resources */,
+				751D42591DC292A3001A3229 /* test_plain_message.txt in Resources */,
+				751D42521DC292A3001A3229 /* feng_bad_msg_emoji_1.txt in Resources */,
+				751D42551DC292A3001A3229 /* feng_mulitiple_test_message.txt in Resources */,
+				751D425A1DC292A3001A3229 /* testpdf.pdf in Resources */,
+				751D42541DC292A3001A3229 /* feng_mulitiple_keys.json in Resources */,
+				751D42561DC292A3001A3229 /* large.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,10 +321,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7588B9471AA53D6D006A8793 /* ViewController.swift in Sources */,
-				755E3C301C472DBD006B1EE2 /* String_Extention.swift in Sources */,
-				7588B9631AA53F4D006A8793 /* SwiftObjC-Bridging-Header.cpp in Sources */,
-				7588B9451AA53D6D006A8793 /* AppDelegate.swift in Sources */,
+				751D42271DC291EA001A3229 /* SwiftObjC-Bridging-Header.cpp in Sources */,
+				751D42261DC291EA001A3229 /* String_Extention.swift in Sources */,
+				751D42211DC291EA001A3229 /* AppDelegate.swift in Sources */,
+				751D42281DC291EA001A3229 /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,10 +332,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				755E3C311C472DDD006B1EE2 /* String_Extention.swift in Sources */,
-				755E3C151C471197006B1EE2 /* SwiftObjC-Bridging-Header.cpp in Sources */,
-				7588B9581AA53D6D006A8793 /* OSX_TestTests.swift in Sources */,
-				752B38651C46D9150019742F /* OpenPGP_Test.swift in Sources */,
+				751D423C1DC2926E001A3229 /* OpenPGP_Test.swift in Sources */,
+				751D423D1DC2926E001A3229 /* OSX_TestTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,10 +348,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		7588B94A1AA53D6D006A8793 /* Main.storyboard */ = {
+		751D42181DC291EA001A3229 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				7588B94B1AA53D6D006A8793 /* Base */,
+				751D42191DC291EA001A3229 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -444,13 +450,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				"HEADER_SEARCH_PATHS[sdk=macosx*]" = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(PROJECT_DIR)/../Bin/include/UniversalPGP_OSX",
-					"$(PROJECT_DIR)/../Bin/include",
-				);
-				INFOPLIST_FILE = OSX_Test/Info.plist;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../Bin/include/UniversalPGP";
+				INFOPLIST_FILE = "$(PROJECT_NAME)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/Bin/libs/Debug,
@@ -460,7 +461,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.protonmail.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "OSX_Test/SwiftObjC-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_NAME)/SwiftObjC-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -471,12 +472,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
-				"HEADER_SEARCH_PATHS[sdk=macosx*]" = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(PROJECT_DIR)/../Bin/include/UniversalPGP_OSX",
-				);
-				INFOPLIST_FILE = OSX_Test/Info.plist;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../Bin/include/UniversalPGP";
+				INFOPLIST_FILE = "$(PROJECT_NAME)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/Bin/libs/Debug,
@@ -486,7 +483,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.protonmail.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "OSX_Test/SwiftObjC-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_NAME)/SwiftObjC-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

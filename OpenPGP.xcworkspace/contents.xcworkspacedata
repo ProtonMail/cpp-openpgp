@@ -8,9 +8,9 @@
       location = "group:ObjectiveC/ObjectiveC.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/Swift_Test/Swift.xcodeproj">
+      location = "group:/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/Swift/SwiftIOS.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OSX_Test/macOS.xcodeproj">
+      location = "group:macOS/macOS.xcodeproj">
    </FileRef>
 </Workspace>
