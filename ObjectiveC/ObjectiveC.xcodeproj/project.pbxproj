@@ -12,12 +12,13 @@
 		750B3C861DC28538001391C3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 750B3C851DC28538001391C3 /* libz.tbd */; };
 		750B3C891DC2853B001391C3 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 750B3C871DC2853B001391C3 /* libcrypto.a */; };
 		750B3C8A1DC2853B001391C3 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 750B3C881DC2853B001391C3 /* libssl.a */; };
-		756C9B6A1A8D884A007B2B9B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 756C9B691A8D884A007B2B9B /* main.m */; };
-		756C9B6D1A8D884A007B2B9B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 756C9B6C1A8D884A007B2B9B /* AppDelegate.m */; };
-		756C9B731A8D884A007B2B9B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 756C9B711A8D884A007B2B9B /* Main.storyboard */; };
-		756C9B751A8D884A007B2B9B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 756C9B741A8D884A007B2B9B /* Images.xcassets */; };
-		756C9B781A8D884A007B2B9B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 756C9B761A8D884A007B2B9B /* LaunchScreen.xib */; };
-		756C9D351A8D8F67007B2B9B /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 756C9D341A8D8F67007B2B9B /* ViewController.mm */; };
+		750B3CA21DC28BA5001391C3 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 750B3C9A1DC28BA5001391C3 /* ViewController.mm */; };
+		750B3CA31DC28BA5001391C3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 750B3C9B1DC28BA5001391C3 /* Info.plist */; };
+		750B3CA41DC28BA5001391C3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 750B3C9D1DC28BA5001391C3 /* main.m */; };
+		750B3CA51DC28BA5001391C3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 750B3C9F1DC28BA5001391C3 /* AppDelegate.m */; };
+		750B3CA61DC28BA5001391C3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 750B3CA01DC28BA5001391C3 /* Images.xcassets */; };
+		750B3CAB1DC28BBB001391C3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 750B3CA71DC28BBB001391C3 /* LaunchScreen.xib */; };
+		750B3CAC1DC28BBB001391C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 750B3CA91DC28BBB001391C3 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,16 +27,16 @@
 		750B3C851DC28538001391C3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		750B3C871DC2853B001391C3 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../ThirdLibs/openssl_ios/libcrypto.a; sourceTree = "<group>"; };
 		750B3C881DC2853B001391C3 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../ThirdLibs/openssl_ios/libssl.a; sourceTree = "<group>"; };
+		750B3C9A1DC28BA5001391C3 /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ViewController.mm; path = ObjectiveC/ViewController.mm; sourceTree = "<group>"; };
+		750B3C9B1DC28BA5001391C3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ObjectiveC/Info.plist; sourceTree = "<group>"; };
+		750B3C9C1DC28BA5001391C3 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ObjectiveC/ViewController.h; sourceTree = "<group>"; };
+		750B3C9D1DC28BA5001391C3 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ObjectiveC/main.m; sourceTree = "<group>"; };
+		750B3C9E1DC28BA5001391C3 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ObjectiveC/AppDelegate.h; sourceTree = "<group>"; };
+		750B3C9F1DC28BA5001391C3 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ObjectiveC/AppDelegate.m; sourceTree = "<group>"; };
+		750B3CA01DC28BA5001391C3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ObjectiveC/Images.xcassets; sourceTree = "<group>"; };
+		750B3CA81DC28BBB001391C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = ObjectiveC/Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		750B3CAA1DC28BBB001391C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ObjectiveC/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		756C9B641A8D884A007B2B9B /* ObjectiveC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjectiveC.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		756C9B681A8D884A007B2B9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		756C9B691A8D884A007B2B9B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		756C9B6B1A8D884A007B2B9B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		756C9B6C1A8D884A007B2B9B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		756C9B6E1A8D884A007B2B9B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		756C9B721A8D884A007B2B9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		756C9B741A8D884A007B2B9B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		756C9B771A8D884A007B2B9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		756C9D341A8D8F67007B2B9B /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,10 +55,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		750B3C981DC28B98001391C3 /* ObjectiveC */ = {
+			isa = PBXGroup;
+			children = (
+				750B3CA71DC28BBB001391C3 /* LaunchScreen.xib */,
+				750B3CA91DC28BBB001391C3 /* Main.storyboard */,
+				750B3C9A1DC28BA5001391C3 /* ViewController.mm */,
+				750B3C9C1DC28BA5001391C3 /* ViewController.h */,
+				750B3C9D1DC28BA5001391C3 /* main.m */,
+				750B3C9E1DC28BA5001391C3 /* AppDelegate.h */,
+				750B3C9F1DC28BA5001391C3 /* AppDelegate.m */,
+				750B3CA01DC28BA5001391C3 /* Images.xcassets */,
+				750B3CAE1DC28BF8001391C3 /* Supporting Files */,
+			);
+			name = ObjectiveC;
+			sourceTree = "<group>";
+		};
+		750B3CAE1DC28BF8001391C3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				750B3C9B1DC28BA5001391C3 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		756C9B5B1A8D884A007B2B9B = {
 			isa = PBXGroup;
 			children = (
-				756C9B661A8D884A007B2B9B /* ObjectiveC_Test */,
+				750B3C981DC28B98001391C3 /* ObjectiveC */,
 				756C9B651A8D884A007B2B9B /* Products */,
 				756C9D381A8D9080007B2B9B /* Frameworks */,
 			);
@@ -69,30 +94,6 @@
 				756C9B641A8D884A007B2B9B /* ObjectiveC.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		756C9B661A8D884A007B2B9B /* ObjectiveC_Test */ = {
-			isa = PBXGroup;
-			children = (
-				756C9B6B1A8D884A007B2B9B /* AppDelegate.h */,
-				756C9B6C1A8D884A007B2B9B /* AppDelegate.m */,
-				756C9B6E1A8D884A007B2B9B /* ViewController.h */,
-				756C9D341A8D8F67007B2B9B /* ViewController.mm */,
-				756C9B711A8D884A007B2B9B /* Main.storyboard */,
-				756C9B741A8D884A007B2B9B /* Images.xcassets */,
-				756C9B761A8D884A007B2B9B /* LaunchScreen.xib */,
-				756C9B671A8D884A007B2B9B /* Supporting Files */,
-			);
-			path = ObjectiveC_Test;
-			sourceTree = "<group>";
-		};
-		756C9B671A8D884A007B2B9B /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				756C9B681A8D884A007B2B9B /* Info.plist */,
-				756C9B691A8D884A007B2B9B /* main.m */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		756C9D381A8D9080007B2B9B /* Frameworks */ = {
@@ -164,9 +165,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				756C9B731A8D884A007B2B9B /* Main.storyboard in Resources */,
-				756C9B781A8D884A007B2B9B /* LaunchScreen.xib in Resources */,
-				756C9B751A8D884A007B2B9B /* Images.xcassets in Resources */,
+				750B3CA61DC28BA5001391C3 /* Images.xcassets in Resources */,
+				750B3CAB1DC28BBB001391C3 /* LaunchScreen.xib in Resources */,
+				750B3CA31DC28BA5001391C3 /* Info.plist in Resources */,
+				750B3CAC1DC28BBB001391C3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,29 +179,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				756C9B6D1A8D884A007B2B9B /* AppDelegate.m in Sources */,
-				756C9B6A1A8D884A007B2B9B /* main.m in Sources */,
-				756C9D351A8D8F67007B2B9B /* ViewController.mm in Sources */,
+				750B3CA41DC28BA5001391C3 /* main.m in Sources */,
+				750B3CA21DC28BA5001391C3 /* ViewController.mm in Sources */,
+				750B3CA51DC28BA5001391C3 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		756C9B711A8D884A007B2B9B /* Main.storyboard */ = {
+		750B3CA71DC28BBB001391C3 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				756C9B721A8D884A007B2B9B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		756C9B761A8D884A007B2B9B /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				756C9B771A8D884A007B2B9B /* Base */,
+				750B3CA81DC28BBB001391C3 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		750B3CA91DC28BBB001391C3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				750B3CAA1DC28BBB001391C3 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -309,7 +311,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(PROJECT_DIR)/../Bin/include/UniversalPGP",
 				);
-				INFOPLIST_FILE = ObjectiveC_Test/Info.plist;
+				INFOPLIST_FILE = "$(PROJECT_NAME)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../ThirdLibs/openssl_ios";
 				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = (
@@ -334,7 +336,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(PROJECT_DIR)/../Bin/include/UniversalPGP",
 				);
-				INFOPLIST_FILE = ObjectiveC_Test/Info.plist;
+				INFOPLIST_FILE = "$(PROJECT_NAME)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../Bin/libs/Release-iphoneos";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.protonmail.$(PRODUCT_NAME:rfc1034identifier)";
