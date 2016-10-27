@@ -13,7 +13,6 @@
 		750B3C891DC2853B001391C3 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 750B3C871DC2853B001391C3 /* libcrypto.a */; };
 		750B3C8A1DC2853B001391C3 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 750B3C881DC2853B001391C3 /* libssl.a */; };
 		750B3CA21DC28BA5001391C3 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 750B3C9A1DC28BA5001391C3 /* ViewController.mm */; };
-		750B3CA31DC28BA5001391C3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 750B3C9B1DC28BA5001391C3 /* Info.plist */; };
 		750B3CA41DC28BA5001391C3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 750B3C9D1DC28BA5001391C3 /* main.m */; };
 		750B3CA51DC28BA5001391C3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 750B3C9F1DC28BA5001391C3 /* AppDelegate.m */; };
 		750B3CA61DC28BA5001391C3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 750B3CA01DC28BA5001391C3 /* Images.xcassets */; };
@@ -167,7 +166,6 @@
 			files = (
 				750B3CA61DC28BA5001391C3 /* Images.xcassets in Resources */,
 				750B3CAB1DC28BBB001391C3 /* LaunchScreen.xib in Resources */,
-				750B3CA31DC28BA5001391C3 /* Info.plist in Resources */,
 				750B3CAC1DC28BBB001391C3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
