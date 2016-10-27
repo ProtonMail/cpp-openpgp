@@ -59,10 +59,8 @@
 		750B3D021DC28E02001391C3 /* PMNSrpProofs+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 750B3CD01DC28E02001391C3 /* PMNSrpProofs+Private.mm */; };
 		750B3D031DC28E02001391C3 /* PMNSrpProofs+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 750B3CD01DC28E02001391C3 /* PMNSrpProofs+Private.mm */; };
 		750B3D041DC28E02001391C3 /* PMNSrpProofs+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 750B3CD01DC28E02001391C3 /* PMNSrpProofs+Private.mm */; };
-		750B3D061DC28E1A001391C3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 750B3D051DC28E1A001391C3 /* Info.plist */; };
 		7517E6E21AFABC35007EA967 /* rsa_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6591AFABC35007EA967 /* rsa_key.cpp */; };
 		7517E6E31AFABC35007EA967 /* rsa_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6591AFABC35007EA967 /* rsa_key.cpp */; };
-		7517E7011AFABC35007EA967 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7517E6621AFABC35007EA967 /* CMakeLists.txt */; };
 		7517E70F1AFABC35007EA967 /* AES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6681AFABC35007EA967 /* AES.cpp */; };
 		7517E7101AFABC35007EA967 /* AES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6681AFABC35007EA967 /* AES.cpp */; };
 		7517E7131AFABC35007EA967 /* Blowfish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6691AFABC35007EA967 /* Blowfish.cpp */; };
@@ -293,6 +291,20 @@
 		7517E8D41AFABC35007EA967 /* utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6DF1AFABC35007EA967 /* utilities.cpp */; };
 		7517E8D71AFABC35007EA967 /* utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6E01AFABC35007EA967 /* utility.cpp */; };
 		7517E8D81AFABC35007EA967 /* utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6E01AFABC35007EA967 /* utility.cpp */; };
+		751D425D1DC294E8001A3229 /* OpenPGP.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 750B3CB91DC28E02001391C3 /* OpenPGP.h */; };
+		751D425F1DC294E8001A3229 /* PMNAddress.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 750B3CBB1DC28E02001391C3 /* PMNAddress.h */; };
+		751D42631DC294E8001A3229 /* PMNEncryptPackage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 750B3CBF1DC28E02001391C3 /* PMNEncryptPackage.h */; };
+		751D42671DC294E8001A3229 /* PMNOpenPgp.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 750B3CC31DC28E02001391C3 /* PMNOpenPgp.h */; };
+		751D426A1DC294E8001A3229 /* PMNOpenPgpKey.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 750B3CC61DC28E02001391C3 /* PMNOpenPgpKey.h */; };
+		751D426E1DC294E8001A3229 /* PMNSrpClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 750B3CCA1DC28E02001391C3 /* PMNSrpClient.h */; };
+		751D42711DC294E8001A3229 /* PMNSrpProofs.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 750B3CCD1DC28E02001391C3 /* PMNSrpProofs.h */; };
+		751D42751DC29555001A3229 /* OpenPGP.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 750B3CB91DC28E02001391C3 /* OpenPGP.h */; };
+		751D42771DC29555001A3229 /* PMNAddress.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 750B3CBB1DC28E02001391C3 /* PMNAddress.h */; };
+		751D427B1DC29555001A3229 /* PMNEncryptPackage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 750B3CBF1DC28E02001391C3 /* PMNEncryptPackage.h */; };
+		751D427F1DC29555001A3229 /* PMNOpenPgp.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 750B3CC31DC28E02001391C3 /* PMNOpenPgp.h */; };
+		751D42821DC29555001A3229 /* PMNOpenPgpKey.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 750B3CC61DC28E02001391C3 /* PMNOpenPgpKey.h */; };
+		751D42861DC29555001A3229 /* PMNSrpClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 750B3CCA1DC28E02001391C3 /* PMNSrpClient.h */; };
+		751D42891DC29555001A3229 /* PMNSrpProofs.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 750B3CCD1DC28E02001391C3 /* PMNSrpProofs.h */; };
 		7545D3F91C45A990000D2F8D /* open_pgp_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */; };
 		7545D3FA1C45A995000D2F8D /* open_pgp_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */; };
 		759DA0021C5C2A3100EB0483 /* open_pgp_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */; };
@@ -577,18 +589,32 @@
 		759DA0851C5C2A3100EB0483 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "$(PROJECT_DIR)/../Bin/include/$(PRODUCT_NAME)";
+			dstPath = "$(PROJECT_DIR)/../Bin/include/OpenPGP";
 			dstSubfolderSpec = 0;
 			files = (
+				751D425D1DC294E8001A3229 /* OpenPGP.h in CopyFiles */,
+				751D425F1DC294E8001A3229 /* PMNAddress.h in CopyFiles */,
+				751D42631DC294E8001A3229 /* PMNEncryptPackage.h in CopyFiles */,
+				751D42671DC294E8001A3229 /* PMNOpenPgp.h in CopyFiles */,
+				751D426A1DC294E8001A3229 /* PMNOpenPgpKey.h in CopyFiles */,
+				751D426E1DC294E8001A3229 /* PMNSrpClient.h in CopyFiles */,
+				751D42711DC294E8001A3229 /* PMNSrpProofs.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		75AB6B431C50436000E82A0E /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "$(PROJECT_DIR)/../Bin/include/$(PRODUCT_NAME)";
+			dstPath = "$(PROJECT_DIR)/../Bin/include/OpenPGP";
 			dstSubfolderSpec = 0;
 			files = (
+				751D42751DC29555001A3229 /* OpenPGP.h in CopyFiles */,
+				751D42771DC29555001A3229 /* PMNAddress.h in CopyFiles */,
+				751D427B1DC29555001A3229 /* PMNEncryptPackage.h in CopyFiles */,
+				751D427F1DC29555001A3229 /* PMNOpenPgp.h in CopyFiles */,
+				751D42821DC29555001A3229 /* PMNOpenPgpKey.h in CopyFiles */,
+				751D42861DC29555001A3229 /* PMNSrpClient.h in CopyFiles */,
+				751D42891DC29555001A3229 /* PMNSrpProofs.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1263,8 +1289,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				750B3D061DC28E1A001391C3 /* Info.plist in Resources */,
-				7517E7011AFABC35007EA967 /* CMakeLists.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
