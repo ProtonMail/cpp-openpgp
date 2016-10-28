@@ -654,7 +654,6 @@
 		750B3CCE1DC28E02001391C3 /* PMNSrpProofs.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = PMNSrpProofs.mm; path = OpenPGPLib/PMNSrpProofs.mm; sourceTree = SOURCE_ROOT; };
 		750B3CCF1DC28E02001391C3 /* PMNSrpProofs+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PMNSrpProofs+Private.h"; path = "OpenPGPLib/PMNSrpProofs+Private.h"; sourceTree = SOURCE_ROOT; };
 		750B3CD01DC28E02001391C3 /* PMNSrpProofs+Private.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "PMNSrpProofs+Private.mm"; path = "OpenPGPLib/PMNSrpProofs+Private.mm"; sourceTree = SOURCE_ROOT; };
-		750B3D051DC28E1A001391C3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = OpenPGPLibTests/Info.plist; sourceTree = SOURCE_ROOT; };
 		7517E6591AFABC35007EA967 /* rsa_key.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rsa_key.cpp; sourceTree = "<group>"; };
 		7517E6621AFABC35007EA967 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		7517E6681AFABC35007EA967 /* AES.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AES.cpp; sourceTree = "<group>"; };
@@ -772,7 +771,6 @@
 		7517E6DE1AFABC35007EA967 /* UTF8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UTF8.cpp; sourceTree = "<group>"; };
 		7517E6DF1AFABC35007EA967 /* utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utilities.cpp; sourceTree = "<group>"; };
 		7517E6E01AFABC35007EA967 /* utility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utility.cpp; sourceTree = "<group>"; };
-		7519BBE21A8D868000E0E570 /* OpenPGPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenPGPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7519BBFA1A8D869000E0E570 /* libOpenPGP_x86_64.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOpenPGP_x86_64.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		75419F471A97E1A8002A1F25 /* libOpenPGP_i386.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOpenPGP_i386.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = open_pgp_impl.cpp; sourceTree = "<group>"; };
@@ -787,13 +785,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7519BBDF1A8D868000E0E570 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7519BBF41A8D869000E0E570 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1065,7 +1056,6 @@
 			children = (
 				750BA3D61AAA9583003FEA16 /* Source */,
 				7519BBD91A8D868000E0E570 /* OpenPGPLib */,
-				7519BBE61A8D868000E0E570 /* OpenPGPLibTests */,
 				7519BBD81A8D868000E0E570 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -1073,7 +1063,6 @@
 		7519BBD81A8D868000E0E570 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7519BBE21A8D868000E0E570 /* OpenPGPTests.xctest */,
 				7519BBFA1A8D869000E0E570 /* libOpenPGP_x86_64.a */,
 				75419F471A97E1A8002A1F25 /* libOpenPGP_i386.a */,
 				75AB6B451C50436000E82A0E /* libUniversalPGP.a */,
@@ -1115,23 +1104,6 @@
 			path = OpenPGP_OSX_Lib;
 			sourceTree = "<group>";
 		};
-		7519BBE61A8D868000E0E570 /* OpenPGPLibTests */ = {
-			isa = PBXGroup;
-			children = (
-				7519BBE71A8D868000E0E570 /* Supporting Files */,
-			);
-			name = OpenPGPLibTests;
-			path = OpenPGP_OSX_LibTests;
-			sourceTree = "<group>";
-		};
-		7519BBE71A8D868000E0E570 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				750B3D051DC28E1A001391C3 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		7545D3F51C45A964000D2F8D /* bridge */ = {
 			isa = PBXGroup;
 			children = (
@@ -1161,23 +1133,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7519BBE11A8D868000E0E570 /* OpenPGPTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7519BBEE1A8D868000E0E570 /* Build configuration list for PBXNativeTarget "OpenPGPTests" */;
-			buildPhases = (
-				7519BBDE1A8D868000E0E570 /* Sources */,
-				7519BBDF1A8D868000E0E570 /* Frameworks */,
-				7519BBE01A8D868000E0E570 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = OpenPGPTests;
-			productName = OpenPGP_OSX_LibTests;
-			productReference = 7519BBE21A8D868000E0E570 /* OpenPGPTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		7519BBF11A8D869000E0E570 /* OpenPGP_x86_64 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7519BBF71A8D869000E0E570 /* Build configuration list for PBXNativeTarget "OpenPGP_x86_64" */;
@@ -1255,9 +1210,6 @@
 				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = "Yanfeng Zhang";
 				TargetAttributes = {
-					7519BBE11A8D868000E0E570 = {
-						CreatedOnToolsVersion = 6.1.1;
-					};
 					75AB6B441C50436000E82A0E = {
 						CreatedOnToolsVersion = 7.2;
 					};
@@ -1277,31 +1229,13 @@
 			targets = (
 				7519BBF11A8D869000E0E570 /* OpenPGP_x86_64 */,
 				75419EC81A97E1A8002A1F25 /* OpenPGP_i386 */,
-				7519BBE11A8D868000E0E570 /* OpenPGPTests */,
 				75AB6B441C50436000E82A0E /* UniversalPGP */,
 				759DA0001C5C2A3100EB0483 /* UniversalPGP_macOS */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		7519BBE01A8D868000E0E570 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		7519BBDE1A8D868000E0E570 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7519BBF21A8D869000E0E570 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1967,38 +1901,6 @@
 			};
 			name = Release;
 		};
-		7519BBEF1A8D868000E0E570 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = OpenPGP_OSX_LibTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		7519BBF01A8D868000E0E570 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = OpenPGP_OSX_LibTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		7519BBF81A8D869000E0E570 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2117,15 +2019,6 @@
 			buildConfigurations = (
 				7519BBE91A8D868000E0E570 /* Debug */,
 				7519BBEA1A8D868000E0E570 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7519BBEE1A8D868000E0E570 /* Build configuration list for PBXNativeTarget "OpenPGPTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7519BBEF1A8D868000E0E570 /* Debug */,
-				7519BBF01A8D868000E0E570 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
