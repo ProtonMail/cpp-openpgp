@@ -324,6 +324,12 @@
 		751D43851DC3F47C001A3229 /* TestResults.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D433E1DC3F44A001A3229 /* TestResults.cpp */; };
 		751D43871DC3F47C001A3229 /* TestRunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D43401DC3F44A001A3229 /* TestRunner.cpp */; };
 		751D438D1DC3F47C001A3229 /* XmlTestReporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D435B1DC3F44A001A3229 /* XmlTestReporter.cpp */; };
+		751D45131DC415A9001A3229 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D448A1DC3FA95001A3229 /* stdafx.cpp */; };
+		751D45141DC415A9001A3229 /* base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D44841DC3FA95001A3229 /* base64.cpp */; };
+		751D45151DC415A9001A3229 /* datetime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D44861DC3FA95001A3229 /* datetime.cpp */; };
+		751D45171DC415A9001A3229 /* nonce_generator_tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D44891DC3FA95001A3229 /* nonce_generator_tests.cpp */; };
+		751D45181DC415A9001A3229 /* strings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D448C1DC3FA95001A3229 /* strings.cpp */; };
+		751D451C1DC41650001A3229 /* utils_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D45191DC4163E001A3229 /* utils_test.cpp */; };
 		7545D3F91C45A990000D2F8D /* open_pgp_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */; };
 		7545D3FA1C45A995000D2F8D /* open_pgp_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */; };
 		759DA0021C5C2A3100EB0483 /* open_pgp_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */; };
@@ -605,6 +611,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		751D44DA1DC40176001A3229 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		75419F421A97E1A8002A1F25 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -849,6 +864,20 @@
 		751D43571DC3F44A001A3229 /* TimeHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeHelpers.h; sourceTree = "<group>"; };
 		751D435B1DC3F44A001A3229 /* XmlTestReporter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = XmlTestReporter.cpp; sourceTree = "<group>"; };
 		751D435C1DC3F44A001A3229 /* XmlTestReporter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XmlTestReporter.h; sourceTree = "<group>"; };
+		751D44841DC3FA95001A3229 /* base64.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = base64.cpp; sourceTree = "<group>"; };
+		751D44851DC3FA95001A3229 /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
+		751D44861DC3FA95001A3229 /* datetime.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = datetime.cpp; sourceTree = "<group>"; };
+		751D44891DC3FA95001A3229 /* nonce_generator_tests.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = nonce_generator_tests.cpp; sourceTree = "<group>"; };
+		751D448A1DC3FA95001A3229 /* stdafx.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = stdafx.cpp; sourceTree = "<group>"; };
+		751D448B1DC3FA95001A3229 /* stdafx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stdafx.h; sourceTree = "<group>"; };
+		751D448C1DC3FA95001A3229 /* strings.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = strings.cpp; sourceTree = "<group>"; };
+		751D448D1DC3FA95001A3229 /* utils_tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utils_tests.h; sourceTree = "<group>"; };
+		751D44D71DC3FAA8001A3229 /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
+		751D44DC1DC40176001A3229 /* libutils_test.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libutils_test.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		751D44E71DC4056F001A3229 /* unittestpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = unittestpp.h; path = ../unittestpp.h; sourceTree = "<group>"; };
+		751D44E81DC4058C001A3229 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = config.h; path = ../config.h; sourceTree = "<group>"; };
+		751D45191DC4163E001A3229 /* utils_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utils_test.cpp; sourceTree = "<group>"; };
+		751D451A1DC4163E001A3229 /* utils_test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils_test.h; sourceTree = "<group>"; };
 		75419F471A97E1A8002A1F25 /* libOpenPGP_i386.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOpenPGP_i386.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = open_pgp_impl.cpp; sourceTree = "<group>"; };
 		759DA08E1C5C2A3100EB0483 /* libUniversalPGP_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUniversalPGP_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -870,6 +899,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		751D42981DC3F2BC001A3229 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		751D44D91DC40176001A3229 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -938,6 +974,8 @@
 		750BA4E91AAA9584003FEA16 /* tests */ = {
 			isa = PBXGroup;
 			children = (
+				751D43141DC3F44A001A3229 /* unittestpp */,
+				751D43951DC3FA94001A3229 /* functional */,
 			);
 			path = tests;
 			sourceTree = "<group>";
@@ -1140,7 +1178,6 @@
 			children = (
 				750BA3D61AAA9583003FEA16 /* Source */,
 				7519BBD91A8D868000E0E570 /* OpenPGPLib */,
-				751D43141DC3F44A001A3229 /* Unittestpp */,
 				7519BBD81A8D868000E0E570 /* Products */,
 				751D438F1DC3F660001A3229 /* Frameworks */,
 			);
@@ -1154,6 +1191,7 @@
 				75AB6B451C50436000E82A0E /* libUniversalPGP.a */,
 				759DA08E1C5C2A3100EB0483 /* libUniversalPGP_macOS.a */,
 				751D429B1DC3F2BC001A3229 /* libunittestpp.a */,
+				751D44DC1DC40176001A3229 /* libutils_test.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1191,9 +1229,11 @@
 			path = OpenPGP_OSX_Lib;
 			sourceTree = "<group>";
 		};
-		751D43141DC3F44A001A3229 /* Unittestpp */ = {
+		751D43141DC3F44A001A3229 /* unittestpp */ = {
 			isa = PBXGroup;
 			children = (
+				751D44E81DC4058C001A3229 /* config.h */,
+				751D44E71DC4056F001A3229 /* unittestpp.h */,
 				751D43151DC3F44A001A3229 /* AssertException.cpp */,
 				751D43161DC3F44A001A3229 /* AssertException.h */,
 				751D43171DC3F44A001A3229 /* CheckMacros.h */,
@@ -1240,8 +1280,8 @@
 				751D435B1DC3F44A001A3229 /* XmlTestReporter.cpp */,
 				751D435C1DC3F44A001A3229 /* XmlTestReporter.h */,
 			);
-			name = Unittestpp;
-			path = ../Source/tests/common/UnitTestpp/src;
+			name = unittestpp;
+			path = common/UnitTestpp/src;
 			sourceTree = "<group>";
 		};
 		751D43281DC3F44A001A3229 /* Posix */ = {
@@ -1260,6 +1300,32 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		751D43951DC3FA94001A3229 /* functional */ = {
+			isa = PBXGroup;
+			children = (
+				751D44D71DC3FAA8001A3229 /* CMakeLists.txt */,
+				751D44831DC3FA95001A3229 /* utils */,
+			);
+			path = functional;
+			sourceTree = "<group>";
+		};
+		751D44831DC3FA95001A3229 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				751D44851DC3FA95001A3229 /* CMakeLists.txt */,
+				751D448B1DC3FA95001A3229 /* stdafx.h */,
+				751D448D1DC3FA95001A3229 /* utils_tests.h */,
+				751D451A1DC4163E001A3229 /* utils_test.h */,
+				751D448A1DC3FA95001A3229 /* stdafx.cpp */,
+				751D44841DC3FA95001A3229 /* base64.cpp */,
+				751D44861DC3FA95001A3229 /* datetime.cpp */,
+				751D44891DC3FA95001A3229 /* nonce_generator_tests.cpp */,
+				751D448C1DC3FA95001A3229 /* strings.cpp */,
+				751D45191DC4163E001A3229 /* utils_test.cpp */,
+			);
+			path = utils;
 			sourceTree = "<group>";
 		};
 		7545D3F51C45A964000D2F8D /* bridge */ = {
@@ -1323,6 +1389,23 @@
 			name = unittestpp;
 			productName = unittestpp;
 			productReference = 751D429B1DC3F2BC001A3229 /* libunittestpp.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		751D44DB1DC40176001A3229 /* utils_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 751D44E21DC40177001A3229 /* Build configuration list for PBXNativeTarget "utils_test" */;
+			buildPhases = (
+				751D44D81DC40176001A3229 /* Sources */,
+				751D44D91DC40176001A3229 /* Frameworks */,
+				751D44DA1DC40176001A3229 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = utils_test;
+			productName = utils_test;
+			productReference = 751D44DC1DC40176001A3229 /* libutils_test.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		75419EC81A97E1A8002A1F25 /* OpenPGP_i386 */ = {
@@ -1389,6 +1472,10 @@
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
 					};
+					751D44DB1DC40176001A3229 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
 					75AB6B441C50436000E82A0E = {
 						CreatedOnToolsVersion = 7.2;
 					};
@@ -1411,6 +1498,7 @@
 				75AB6B441C50436000E82A0E /* UniversalPGP */,
 				759DA0001C5C2A3100EB0483 /* UniversalPGP_macOS */,
 				751D429A1DC3F2BC001A3229 /* unittestpp */,
+				751D44DB1DC40176001A3229 /* utils_test */,
 			);
 		};
 /* End PBXProject section */
@@ -1582,6 +1670,19 @@
 				751D43851DC3F47C001A3229 /* TestResults.cpp in Sources */,
 				751D43871DC3F47C001A3229 /* TestRunner.cpp in Sources */,
 				751D438D1DC3F47C001A3229 /* XmlTestReporter.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		751D44D81DC40176001A3229 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				751D45131DC415A9001A3229 /* stdafx.cpp in Sources */,
+				751D45141DC415A9001A3229 /* base64.cpp in Sources */,
+				751D45151DC415A9001A3229 /* datetime.cpp in Sources */,
+				751D451C1DC41650001A3229 /* utils_test.cpp in Sources */,
+				751D45171DC415A9001A3229 /* nonce_generator_tests.cpp in Sources */,
+				751D45181DC415A9001A3229 /* strings.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2144,7 +2245,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2162,7 +2263,43 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		751D44E31DC40177001A3229 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		751D44E41DC40177001A3229 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2279,6 +2416,14 @@
 			buildConfigurations = (
 				751D42A21DC3F2BC001A3229 /* Debug */,
 				751D42A31DC3F2BC001A3229 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		751D44E21DC40177001A3229 /* Build configuration list for PBXNativeTarget "utils_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				751D44E31DC40177001A3229 /* Debug */,
+				751D44E41DC40177001A3229 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

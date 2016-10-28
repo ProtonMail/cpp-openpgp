@@ -7,17 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		751D42A61DC3F2E9001A3229 /* libunittestpp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 751D42A51DC3F2E9001A3229 /* libunittestpp.a */; };
+		751D45041DC40D6A001A3229 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 751D45031DC40D6A001A3229 /* Security.framework */; };
+		751D45081DC40D71001A3229 /* libunittestpp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 751D45051DC40D71001A3229 /* libunittestpp.a */; };
+		751D45091DC40D71001A3229 /* libUniversalPGP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 751D45061DC40D71001A3229 /* libUniversalPGP.a */; };
+		751D450A1DC40D71001A3229 /* libutils_test.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 751D45071DC40D71001A3229 /* libutils_test.a */; };
+		751D450D1DC40D89001A3229 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 751D450B1DC40D89001A3229 /* libcrypto.a */; };
+		751D450E1DC40D89001A3229 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 751D450C1DC40D89001A3229 /* libssl.a */; };
+		751D45101DC40D92001A3229 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 751D450F1DC40D92001A3229 /* libbz2.tbd */; };
+		751D45121DC40D97001A3229 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 751D45111DC40D97001A3229 /* libz.tbd */; };
 		D5E513901A1BEA1D0060F252 /* ios_runnerTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = D5E5138F1A1BEA1D0060F252 /* ios_runnerTests.mm */; };
-		D5E513B71A1C02570060F252 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E513B61A1C02570060F252 /* Security.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		751D42A51DC3F2E9001A3229 /* libunittestpp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libunittestpp.a; path = "/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OpenPGP/../Bin/libs/Debug-iphoneos/libunittestpp.a"; sourceTree = "<absolute>"; };
+		751D45031DC40D6A001A3229 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		751D45051DC40D71001A3229 /* libunittestpp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libunittestpp.a; path = "../../../../../Bin/libs/Debug-iphonesimulator/libunittestpp.a"; sourceTree = "<group>"; };
+		751D45061DC40D71001A3229 /* libUniversalPGP.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libUniversalPGP.a; path = "../../../../../Bin/libs/Debug-iphonesimulator/libUniversalPGP.a"; sourceTree = "<group>"; };
+		751D45071DC40D71001A3229 /* libutils_test.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libutils_test.a; path = "../../../../../Bin/libs/Debug-iphonesimulator/libutils_test.a"; sourceTree = "<group>"; };
+		751D450B1DC40D89001A3229 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../../../../../ThirdLibs/openssl_ios/libcrypto.a; sourceTree = "<group>"; };
+		751D450C1DC40D89001A3229 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../../../../../ThirdLibs/openssl_ios/libssl.a; sourceTree = "<group>"; };
+		751D450F1DC40D92001A3229 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		751D45111DC40D97001A3229 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D5E513891A1BEA1D0060F252 /* ios_runnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ios_runnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5E5138E1A1BEA1D0060F252 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5E5138F1A1BEA1D0060F252 /* ios_runnerTests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ios_runnerTests.mm; sourceTree = "<group>"; };
-		D5E513B61A1C02570060F252 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -25,8 +37,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				751D42A61DC3F2E9001A3229 /* libunittestpp.a in Frameworks */,
-				D5E513B71A1C02570060F252 /* Security.framework in Frameworks */,
+				751D45121DC40D97001A3229 /* libz.tbd in Frameworks */,
+				751D45101DC40D92001A3229 /* libbz2.tbd in Frameworks */,
+				751D45081DC40D71001A3229 /* libunittestpp.a in Frameworks */,
+				751D45091DC40D71001A3229 /* libUniversalPGP.a in Frameworks */,
+				751D450A1DC40D71001A3229 /* libutils_test.a in Frameworks */,
+				751D45041DC40D6A001A3229 /* Security.framework in Frameworks */,
+				751D450D1DC40D89001A3229 /* libcrypto.a in Frameworks */,
+				751D450E1DC40D89001A3229 /* libssl.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -36,7 +54,14 @@
 		751D42A41DC3F2E8001A3229 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				751D42A51DC3F2E9001A3229 /* libunittestpp.a */,
+				751D45111DC40D97001A3229 /* libz.tbd */,
+				751D450F1DC40D92001A3229 /* libbz2.tbd */,
+				751D450B1DC40D89001A3229 /* libcrypto.a */,
+				751D450C1DC40D89001A3229 /* libssl.a */,
+				751D45051DC40D71001A3229 /* libunittestpp.a */,
+				751D45061DC40D71001A3229 /* libUniversalPGP.a */,
+				751D45071DC40D71001A3229 /* libutils_test.a */,
+				751D45031DC40D6A001A3229 /* Security.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -44,7 +69,6 @@
 		D5E513671A1BEA1D0060F252 = {
 			isa = PBXGroup;
 			children = (
-				D5E513B61A1C02570060F252 /* Security.framework */,
 				D5E5138C1A1BEA1D0060F252 /* ios_runnerTests */,
 				D5E513711A1BEA1D0060F252 /* Products */,
 				751D42A41DC3F2E8001A3229 /* Frameworks */,
@@ -243,10 +267,6 @@
 		D5E513971A1BEA1D0060F252 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -256,6 +276,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../../../../../Bin/libs/Debug-iphonesimulator",
+					"$(PROJECT_DIR)/../../../../../ThirdLibs/openssl_ios",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -274,10 +295,6 @@
 		D5E513981A1BEA1D0060F252 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = ios_runnerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";

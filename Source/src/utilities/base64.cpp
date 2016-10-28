@@ -12,7 +12,7 @@
 
 #include <utilities/base64.h>
 #include <utilities/utility.h>
-#include <utilities/UTF8.h> 
+#include <utilities/UTF8.h>
 #include <utilities/includes.h>
 
 
@@ -30,6 +30,9 @@ static inline bool is_base64(unsigned char c) {
 
 std::string base64_encode(const std::string &s)
 {
+    if (s==""){
+        return s;
+    }
     static const std::string base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     size_t i=0,ix=0,leng = s.length();
     std::string r; r.reserve( (1 + ((leng - 1) / 3))*4 );
@@ -67,7 +70,7 @@ std::string base64_encode(unsigned char const* bytes_to_encode, unsigned int in_
             char_array_4[3] = char_array_3[2] & 0x3f;
             
             for(i = 0; (i <4) ; i++)
-                ret += base64_chars[char_array_4[i]];
+            ret += base64_chars[char_array_4[i]];
             i = 0;
         }
     }
@@ -75,7 +78,7 @@ std::string base64_encode(unsigned char const* bytes_to_encode, unsigned int in_
     if (i)
     {
         for(j = i; j < 3; j++)
-            char_array_3[j] = '\0';
+        char_array_3[j] = '\0';
         
         char_array_4[0] = (char_array_3[0] & 0xfc) >> 2;
         char_array_4[1] = ((char_array_3[0] & 0x03) << 4) + ((char_array_3[1] & 0xf0) >> 4);
@@ -83,10 +86,10 @@ std::string base64_encode(unsigned char const* bytes_to_encode, unsigned int in_
         char_array_4[3] = char_array_3[2] & 0x3f;
         
         for (j = 0; (j < i + 1); j++)
-            ret += base64_chars[char_array_4[j]];
+        ret += base64_chars[char_array_4[j]];
         
         while((i++ < 3))
-            ret += '=';
+        ret += '=';
         
     }
     
@@ -106,24 +109,24 @@ std::string base64_decode(std::string const& encoded_string) {
         char_array_4[i++] = encoded_string[in_]; in_++;
         if (i ==4) {
             for (i = 0; i <4; i++)
-                char_array_4[i] = static_cast<unsigned char>(base64_chars.find(char_array_4[i]));
+            char_array_4[i] = static_cast<unsigned char>(base64_chars.find(char_array_4[i]));
             
             char_array_3[0] = (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
             char_array_3[1] = ((char_array_4[1] & 0xf) << 4) + ((char_array_4[2] & 0x3c) >> 2);
             char_array_3[2] = ((char_array_4[2] & 0x3) << 6) + char_array_4[3];
             
             for (i = 0; (i < 3); i++)
-                ret += char_array_3[i];
+            ret += char_array_3[i];
             i = 0;
         }
     }
     
     if (i) {
         for (j = i; j <4; j++)
-            char_array_4[j] = 0;
+        char_array_4[j] = 0;
         
         for (j = 0; j <4; j++)
-            char_array_4[j] = static_cast<unsigned char>(base64_chars.find(char_array_4[j]));
+        char_array_4[j] = static_cast<unsigned char>(base64_chars.find(char_array_4[j]));
         
         char_array_3[0] = (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
         char_array_3[1] = ((char_array_4[1] & 0xf) << 4) + ((char_array_4[2] & 0x3c) >> 2);
@@ -145,12 +148,12 @@ std::string base64_decode(std::string const& encoded_string) {
 //    //
 //    std::string base_decoded = js_unescape(aaa);
 //   // std::cout << base_decoded<<std::endl;
-//    
+//
 //    std::string decoded = base64_encode((unsigned char*)base_decoded.c_str(), static_cast<int>(base_decoded.size()));
-//    
+//
 //  //  std::cout << decoded<<std::endl;
 //    pm::optimized_trim(decoded);
-//    
+//
 //    return decoded;
 //}
 //
@@ -160,15 +163,15 @@ std::string base64_decode(std::string const& encoded_string) {
 //   // std::cout << in<<std::endl;
 //    std::string aaa =  encodeURIComponent(in);
 //   // std::cout << aaa<<std::endl;
-//    
+//
 //    std::string base_decoded = js_unescape(aaa);
 //   // std::cout << base_decoded<<std::endl;
-//    
+//
 //    std::string decoded = base64_encode((unsigned char*)base_decoded.c_str(), static_cast<int>(base_decoded.size()));
-//    
+//
 //  //  std::cout << decoded<<std::endl;
 //    pm::optimized_trim(decoded);
-//    
+//
 //    return decoded;
 //
 //}
@@ -183,12 +186,12 @@ std::string decode_utf8_base64(std::string & in)
     
     //return aaa;
     std::string base_decoded = encodeURIComponent(aaa);//js_escape(aaa);
-   // std::cout << base_decoded<<std::endl;
+    // std::cout << base_decoded<<std::endl;
     
     std::string decoded = js_decodeURIComponent(base_decoded);
     
-   // std::cout << decoded<<std::endl;
-  //  std::cout << hexlify( decoded) <<std::endl;
+    // std::cout << decoded<<std::endl;
+    //  std::cout << hexlify( decoded) <<std::endl;
     return decoded;
 }
 
@@ -203,12 +206,12 @@ std::string decode_utf8_base64_msg(std::string & in)
     
     //return aaa;
     std::string base_decoded = encodeURIComponent(aaa);//js_escape(aaa);
-   // std::cout << base_decoded<<std::endl;
+    // std::cout << base_decoded<<std::endl;
     
     std::string decoded = decodeURIComponent(base_decoded);
     
-  //  std::cout << decoded<<std::endl;
-  //  std::cout << hexlify( decoded) <<std::endl;
+    //  std::cout << decoded<<std::endl;
+    //  std::cout << hexlify( decoded) <<std::endl;
     return decoded;
 }
 
@@ -244,12 +247,12 @@ std::string hex_to_string(const std::string& input)
         char a = input[i];
         const char* p = std::lower_bound(lut, lut + 16, a);
         if (*p != a)
-            throw std::invalid_argument("not a hex digit");
+        throw std::invalid_argument("not a hex digit");
         
         char b = input[i + 1];
         const char* q = std::lower_bound(lut, lut + 16, b);
         if (*q != b)
-            throw std::invalid_argument("not a hex digit");
+        throw std::invalid_argument("not a hex digit");
         
         output.push_back(((p - lut) << 4) | (q - lut));
     }
