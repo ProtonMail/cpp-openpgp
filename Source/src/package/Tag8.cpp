@@ -54,7 +54,7 @@ void Tag8::read(std::string & data, const uint8_t part){
 }
 
 std::string Tag8::show(const uint8_t indents, const uint8_t indent_size) const{
-    unsigned int tab = indents * indent_size;
+    //unsigned int tab = indents * indent_size;
     std::string data = get_data();
     //PGPMessage decompressed;
     //decompressed.read_raw(data); // do this in case decompressed data contains headers

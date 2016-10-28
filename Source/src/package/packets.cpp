@@ -11,7 +11,7 @@ std::string read_packet_header(std::string & data, uint8_t & tag, bool & format,
     uint8_t ctb = data[0];		                                           // Name "ctb" came from Version 2 [RFC 1991]
     format = ctb & 0x40;                                                   // get packet length type (OLD = false; NEW = true)
     unsigned int remove = 1;                                               // how much more stuff to remove from raw string
-    uint64_t length = 0;                                                    // length of the data without the header
+    size_t length = 0;                                                    // length of the data without the header
     std::string partialPacket = "";
     if (!partial){                                                         // if partial continue packets have not been found
         if (!(ctb & 0x80)){
@@ -26,11 +26,11 @@ std::string read_packet_header(std::string & data, uint8_t & tag, bool & format,
             }
             else if ((ctb & 3) == 1){                                      // 1 - The packet has a two-octet length. The header is 3 octets long.
                 remove += 2;
-                length = toint(data.substr(1, 2), 256);
+                length = static_cast<size_t>(toint(data.substr(1, 2), 256));
             }
             else if ((ctb & 3) == 2){                                      // 2 - The packet has a four-octet length. The header is 5 octets long.
                 remove += 5;
-                length = toint(data.substr(2, 5), 256);
+                length = static_cast<size_t>(toint(data.substr(2, 5), 256));
             }
             else if ((ctb & 3) == 3){                                      // The packet is of indeterminate length. The header is 1 octet long, and the implementation must determine how long the packet is.
                 //here need more test
@@ -48,7 +48,7 @@ std::string read_packet_header(std::string & data, uint8_t & tag, bool & format,
             }
             else if (first_octet >= 192 && first_octet <= 223){          // 192 - 8383; A two-octet Body Length header encodes packet lengths of 192 to 8383 octets.
                 remove += 2;
-                length = toint(data.substr(1, 2), 256) - (192 << 8) + 192;
+                length = static_cast<size_t>(toint(data.substr(1, 2), 256) - (192 << 8) + 192);
             }
             else if (first_octet > 223 && first_octet <= 244){ //Partial Body Length headers encode a packet of indeterminate length, effectively making it a stream.
                 //partial = 1;  // set to partial start  not in use
@@ -69,7 +69,7 @@ std::string read_packet_header(std::string & data, uint8_t & tag, bool & format,
                         break;
                     } else if (first_octet_check >= 192 && first_octet_check <= 223) {
                         remove += 2;
-                        length = toint(data.substr(0, 2), 256) - (192 << 8) + 192;
+                        length = static_cast<size_t>(toint(data.substr(0, 2), 256) - (192 << 8) + 192);
                         break;
                     } else if (first_octet_check > 223 && first_octet_check <= 244) {
                         length = partialBodyLen(first_octet_check);
@@ -80,33 +80,18 @@ std::string read_packet_header(std::string & data, uint8_t & tag, bool & format,
                         length = 0;
                     } else if (first_octet == 255){
                         remove += 5;
-                        length = toint(data.substr(1, 4), 256);
+                        length = static_cast<size_t>(toint(data.substr(1, 4), 256));
                         break;
                     }
                 }
             } else if (first_octet == 255){ // 8384 - 4294967295; A five-octet Body Length header encodes packet lengths of up to 4,294,967,295 (0xFFFFFFFF) octets in length.
                 remove += 5;
-                length = toint(data.substr(2, 4), 256);
+                length = static_cast<size_t>(toint(data.substr(2, 4), 256));
             }
         }
     }
     else{ // partial continue removed not in use
         throw std::runtime_error("Error: failed parse packet !");
-        if (!format){                                                      // Old length type RFC4880 sec 4.2.1
-            tag = tag = (data[0] & 0x3F) >> 2;
-            int packet_length_type = data[0] & 0x03;
-            tag = 254;                                                     // set to partial body tag
-            remove += 1;                                                // set to partial continue
-            //int l = data[1];
-            length = data[1];// data.size() - 1;                                      // header is one octet long
-            partial = 2;
-        }
-        else{   												           // New length type RFC4880 sec 4.2.2
-            tag = 254;                                                     // set to partial body tag
-            // remove += 0;
-            length = partialBodyLen(data[1]);
-            partial = 2;                                                   // set to partial continue
-        }
     }
     std::string packet = partialPacket + data.substr(remove, length);						// Get packet
     data = data.substr(remove + length, data.size() - remove - length);		// Remove packet from key

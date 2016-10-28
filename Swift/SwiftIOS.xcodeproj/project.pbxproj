@@ -1,0 +1,405 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		750B3C781DC28108001391C3 /* libUniversalPGP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 750B3C771DC28108001391C3 /* libUniversalPGP.a */; };
+		750B3C7A1DC282E2001391C3 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 750B3C791DC282E2001391C3 /* libbz2.tbd */; };
+		750B3C7C1DC282E9001391C3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 750B3C7B1DC282E9001391C3 /* libz.tbd */; };
+		750B3C7F1DC284D3001391C3 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 750B3C7D1DC284D3001391C3 /* libcrypto.a */; };
+		750B3C801DC284D3001391C3 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 750B3C7E1DC284D3001391C3 /* libssl.a */; };
+		75AC0A9C1DC2900C004CE92B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AC0A901DC2900C004CE92B /* AppDelegate.swift */; };
+		75AC0A9D1DC2900C004CE92B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75AC0A911DC2900C004CE92B /* LaunchScreen.xib */; };
+		75AC0A9E1DC2900C004CE92B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75AC0A931DC2900C004CE92B /* Main.storyboard */; };
+		75AC0A9F1DC2900C004CE92B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75AC0A951DC2900C004CE92B /* Images.xcassets */; };
+		75AC0AA11DC2900C004CE92B /* LoadString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AC0A971DC2900C004CE92B /* LoadString.swift */; };
+		75AC0AA21DC2900C004CE92B /* sample.strings in Resources */ = {isa = PBXBuildFile; fileRef = 75AC0A981DC2900C004CE92B /* sample.strings */; };
+		75AC0AA31DC2900C004CE92B /* SwiftObjC-Bridging-Header.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75AC0A991DC2900C004CE92B /* SwiftObjC-Bridging-Header.cpp */; };
+		75AC0AA41DC2900C004CE92B /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AC0A9B1DC2900C004CE92B /* TestView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		750B3C771DC28108001391C3 /* libUniversalPGP.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libUniversalPGP.a; path = "/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OpenPGP_OSX_Lib/../Bin/libs/Release-iphoneos/libUniversalPGP.a"; sourceTree = "<absolute>"; };
+		750B3C791DC282E2001391C3 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		750B3C7B1DC282E9001391C3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		750B3C7D1DC284D3001391C3 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../../ThirdLibs/openssl_ios/libcrypto.a; sourceTree = "<group>"; };
+		750B3C7E1DC284D3001391C3 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../../ThirdLibs/openssl_ios/libssl.a; sourceTree = "<group>"; };
+		756C9B961A8D886E007B2B9B /* SwiftIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		75AC0A901DC2900C004CE92B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		75AC0A921DC2900C004CE92B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		75AC0A941DC2900C004CE92B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		75AC0A951DC2900C004CE92B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		75AC0A971DC2900C004CE92B /* LoadString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadString.swift; sourceTree = "<group>"; };
+		75AC0A981DC2900C004CE92B /* sample.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = sample.strings; sourceTree = "<group>"; };
+		75AC0A991DC2900C004CE92B /* SwiftObjC-Bridging-Header.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "SwiftObjC-Bridging-Header.cpp"; sourceTree = "<group>"; };
+		75AC0A9A1DC2900C004CE92B /* SwiftObjC-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SwiftObjC-Bridging-Header.h"; sourceTree = "<group>"; };
+		75AC0A9B1DC2900C004CE92B /* TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		75AC0AA51DC2902B004CE92B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Swift/Info.plist; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		756C9B931A8D886E007B2B9B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				750B3C7C1DC282E9001391C3 /* libz.tbd in Frameworks */,
+				750B3C7A1DC282E2001391C3 /* libbz2.tbd in Frameworks */,
+				750B3C781DC28108001391C3 /* libUniversalPGP.a in Frameworks */,
+				750B3C7F1DC284D3001391C3 /* libcrypto.a in Frameworks */,
+				750B3C801DC284D3001391C3 /* libssl.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		756C9B8D1A8D886E007B2B9B = {
+			isa = PBXGroup;
+			children = (
+				75AC0A8F1DC2900C004CE92B /* Swift */,
+				756C9B971A8D886E007B2B9B /* Products */,
+				75AC0AA81DC29060004CE92B /* Resource */,
+				756C9D4A1A8D9171007B2B9B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		756C9B971A8D886E007B2B9B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				756C9B961A8D886E007B2B9B /* SwiftIOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		756C9B991A8D886E007B2B9B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				75AC0AA51DC2902B004CE92B /* Info.plist */,
+			);
+			name = "Supporting Files";
+			path = Swift_Test;
+			sourceTree = SOURCE_ROOT;
+		};
+		756C9D4A1A8D9171007B2B9B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				750B3C7D1DC284D3001391C3 /* libcrypto.a */,
+				750B3C7E1DC284D3001391C3 /* libssl.a */,
+				750B3C7B1DC282E9001391C3 /* libz.tbd */,
+				750B3C791DC282E2001391C3 /* libbz2.tbd */,
+				750B3C771DC28108001391C3 /* libUniversalPGP.a */,
+			);
+			name = Frameworks;
+			path = Swift_Test;
+			sourceTree = "<group>";
+		};
+		75AC0A8F1DC2900C004CE92B /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				75AC0A901DC2900C004CE92B /* AppDelegate.swift */,
+				75AC0A971DC2900C004CE92B /* LoadString.swift */,
+				75AC0A9B1DC2900C004CE92B /* TestView.swift */,
+				75AC0A911DC2900C004CE92B /* LaunchScreen.xib */,
+				75AC0A931DC2900C004CE92B /* Main.storyboard */,
+				75AC0A951DC2900C004CE92B /* Images.xcassets */,
+				75AC0AA71DC29034004CE92B /* Bridge */,
+				756C9B991A8D886E007B2B9B /* Supporting Files */,
+			);
+			path = Swift;
+			sourceTree = "<group>";
+		};
+		75AC0AA71DC29034004CE92B /* Bridge */ = {
+			isa = PBXGroup;
+			children = (
+				75AC0A9A1DC2900C004CE92B /* SwiftObjC-Bridging-Header.h */,
+				75AC0A991DC2900C004CE92B /* SwiftObjC-Bridging-Header.cpp */,
+			);
+			name = Bridge;
+			sourceTree = "<group>";
+		};
+		75AC0AA81DC29060004CE92B /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				75AC0A981DC2900C004CE92B /* sample.strings */,
+			);
+			name = Resource;
+			path = Swift;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		756C9B951A8D886E007B2B9B /* SwiftIOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 756C9BB51A8D886E007B2B9B /* Build configuration list for PBXNativeTarget "SwiftIOS" */;
+			buildPhases = (
+				756C9B921A8D886E007B2B9B /* Sources */,
+				756C9B931A8D886E007B2B9B /* Frameworks */,
+				756C9B941A8D886E007B2B9B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftIOS;
+			productName = Swift_Test;
+			productReference = 756C9B961A8D886E007B2B9B /* SwiftIOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		756C9B8E1A8D886E007B2B9B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Yanfeng Zhang";
+				TargetAttributes = {
+					756C9B951A8D886E007B2B9B = {
+						CreatedOnToolsVersion = 6.1.1;
+						LastSwiftMigration = 0800;
+					};
+				};
+			};
+			buildConfigurationList = 756C9B911A8D886E007B2B9B /* Build configuration list for PBXProject "SwiftIOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 756C9B8D1A8D886E007B2B9B;
+			productRefGroup = 756C9B971A8D886E007B2B9B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				756C9B951A8D886E007B2B9B /* SwiftIOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		756C9B941A8D886E007B2B9B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75AC0AA21DC2900C004CE92B /* sample.strings in Resources */,
+				75AC0A9D1DC2900C004CE92B /* LaunchScreen.xib in Resources */,
+				75AC0A9F1DC2900C004CE92B /* Images.xcassets in Resources */,
+				75AC0A9E1DC2900C004CE92B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		756C9B921A8D886E007B2B9B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75AC0AA11DC2900C004CE92B /* LoadString.swift in Sources */,
+				75AC0AA31DC2900C004CE92B /* SwiftObjC-Bridging-Header.cpp in Sources */,
+				75AC0AA41DC2900C004CE92B /* TestView.swift in Sources */,
+				75AC0A9C1DC2900C004CE92B /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		75AC0A911DC2900C004CE92B /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				75AC0A921DC2900C004CE92B /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		75AC0A931DC2900C004CE92B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				75AC0A941DC2900C004CE92B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		756C9BB31A8D886E007B2B9B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../Bin/include/OpenPGP";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		756C9BB41A8D886E007B2B9B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../Bin/include/OpenPGP";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		756C9BB61A8D886E007B2B9B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(PROJECT_DIR)/../Bin/include/UniversalPGP",
+				);
+				INFOPLIST_FILE = Swift/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../ThirdLibs/openssl_ios",
+				);
+				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../Bin/libs/Debug-iphoneos",
+				);
+				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../Bin/libs/Debug-iphonesimulator",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.protonmail.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Swift/SwiftObjC-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		756C9BB71A8D886E007B2B9B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(PROJECT_DIR)/../Bin/include/UniversalPGP",
+				);
+				INFOPLIST_FILE = Swift/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../ThirdLibs/openssl_ios",
+					"$(PROJECT_DIR)/../Bin/libs/Release-iphoneos",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.protonmail.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Swift/SwiftObjC-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		756C9B911A8D886E007B2B9B /* Build configuration list for PBXProject "SwiftIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				756C9BB31A8D886E007B2B9B /* Debug */,
+				756C9BB41A8D886E007B2B9B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		756C9BB51A8D886E007B2B9B /* Build configuration list for PBXNativeTarget "SwiftIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				756C9BB61A8D886E007B2B9B /* Debug */,
+				756C9BB71A8D886E007B2B9B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 756C9B8E1A8D886E007B2B9B /* Project object */;
+}

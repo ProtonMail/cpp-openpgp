@@ -18,11 +18,6 @@ std::string Hash::digest(){
 }
 
 
-
-
-
-
-
 namespace pm {
     
     
@@ -32,7 +27,7 @@ namespace pm {
         
         HMAC_CTX hmac;
         HMAC_CTX_init(&hmac);
-        HMAC_Init_ex(&hmac, &key[0], (int)key.length(), EVP_sha256(), NULL);
+        HMAC_Init_ex(&hmac, &key[0], static_cast<int>(key.length()), EVP_sha256(), NULL);
         HMAC_Update(&hmac, (unsigned char*)&data[0], data.length());
         unsigned int len = 32;
         HMAC_Final(&hmac, hash, &len);

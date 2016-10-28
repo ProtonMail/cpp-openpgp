@@ -19,7 +19,7 @@ public abstract class OpenPgp {
 
     /**generat new key pair */
     @Nonnull
-    public abstract OpenPgpKey generateKey(@Nonnull String userName, @Nonnull String domain, @Nonnull String passphrase);
+    public abstract OpenPgpKey generateKey(@Nonnull String userName, @Nonnull String domain, @Nonnull String passphrase, int bits);
 
     /**check is primary key passphrase ok */
     public abstract boolean checkPassphrase(@Nonnull String privateKey, @Nonnull String passphrase);
@@ -92,6 +92,13 @@ public abstract class OpenPgp {
     /**test functions */
     public abstract int throwAnException();
 
+    /**PBE */
+    @Nonnull
+    public abstract String encryptHashCbc(@Nonnull String plainText, @Nonnull String password);
+
+    @Nonnull
+    public abstract String decryptHashCbc(@Nonnull String encryptedText, @Nonnull String password);
+
     @CheckForNull
     public static native OpenPgp createInstance();
 
@@ -154,12 +161,12 @@ public abstract class OpenPgp {
         private native void native_enableDebug(long _nativeRef, boolean isDebug);
 
         @Override
-        public OpenPgpKey generateKey(String userName, String domain, String passphrase)
+        public OpenPgpKey generateKey(String userName, String domain, String passphrase, int bits)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_generateKey(this.nativeRef, userName, domain, passphrase);
+            return native_generateKey(this.nativeRef, userName, domain, passphrase, bits);
         }
-        private native OpenPgpKey native_generateKey(long _nativeRef, String userName, String domain, String passphrase);
+        private native OpenPgpKey native_generateKey(long _nativeRef, String userName, String domain, String passphrase, int bits);
 
         @Override
         public boolean checkPassphrase(String privateKey, String passphrase)
@@ -344,5 +351,21 @@ public abstract class OpenPgp {
             return native_throwAnException(this.nativeRef);
         }
         private native int native_throwAnException(long _nativeRef);
+
+        @Override
+        public String encryptHashCbc(String plainText, String password)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_encryptHashCbc(this.nativeRef, plainText, password);
+        }
+        private native String native_encryptHashCbc(long _nativeRef, String plainText, String password);
+
+        @Override
+        public String decryptHashCbc(String encryptedText, String password)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_decryptHashCbc(this.nativeRef, encryptedText, password);
+        }
+        private native String native_decryptHashCbc(long _nativeRef, String encryptedText, String password);
     }
 }

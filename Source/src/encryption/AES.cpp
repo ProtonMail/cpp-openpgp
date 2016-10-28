@@ -763,7 +763,7 @@ namespace pm {
         EVP_CIPHER_CTX_init(&ctx);
         EVP_EncryptInit_ex(&ctx, EVP_aes_256_cfb(), NULL, (unsigned char*)key.c_str(), 0);
 
-        if(!EVP_EncryptUpdate(&ctx, &outbuf[0], &outlen, (unsigned char*)text.c_str(), (int)text.size()))
+        if(!EVP_EncryptUpdate(&ctx, &outbuf[0], &outlen, (unsigned char*)text.c_str(), static_cast<int>(text.size())))
         {
             /* Error */
             return 0;
@@ -805,7 +805,7 @@ namespace pm {
         EVP_CIPHER_CTX_init(&ctx);
         EVP_DecryptInit_ex(&ctx, EVP_aes_256_cfb(), NULL, (unsigned char*)key.c_str(), 0);
         
-        if(!EVP_DecryptUpdate(&ctx, &outbuf[0],  &outlen, (unsigned char*)enc_text.c_str(), (int)enc_text.size()))
+        if(!EVP_DecryptUpdate(&ctx, &outbuf[0],  &outlen, (unsigned char*)enc_text.c_str(), static_cast<int>(enc_text.size())))
         {
             /* Error */
             return 0;

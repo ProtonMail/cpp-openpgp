@@ -39,18 +39,13 @@ std::string rawtompi(const std::string & raw){
 }
 //
 std::string mpitohex(const std::string & a){
-    
-    BIGNUM* e = BN_new();
-    int ln = (int)a.size();
-    
-    BIGNUM* num = BN_mpi2bn((unsigned char *)a.c_str(), ln, e);
-    
+    int ln = static_cast<int>(a.size());
+    BIGNUM* e = BN_mpi2bn((unsigned char *)a.c_str(), ln, NULL);
     char * chex = BN_bn2hex(e);
-    
     std::string hex(chex);
     
     free(chex);
-    BN_free(num);
+    BN_free(e);
     
     return hex;
 }
@@ -73,9 +68,8 @@ std::string mpitoraw(const std::string & a){
 //}
 //
 unsigned int bitsize(const std::string &a){
-    BIGNUM* e = BN_new();
-    int ln = (int)a.size();
-    BN_mpi2bn((unsigned char *)a.c_str(), ln, e);
+    int ln = static_cast<int>(a.size());
+    BIGNUM* e = BN_mpi2bn((unsigned char *)a.c_str(), ln, NULL);
     int n = BN_num_bits(e);
     BN_free(e);
     return  n;

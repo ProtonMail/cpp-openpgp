@@ -54,8 +54,9 @@ std::string Tag2::read_subpacket(std::string & data){
         length = toint(data.substr(1, 4), 256);
         data = data.substr(5, data.size() - 5);
     }
-    std::string out = data.substr(0, length);                   // includes subpacket type
-    data = data.substr(length, data.size() - length);           // remove subpacket from main data
+    size_t s_length = static_cast<size_t>(length);
+    std::string out = data.substr(0, s_length);                   // includes subpacket type
+    data = data.substr(s_length, data.size() - s_length);           // remove subpacket from main data
     return out;
 }
 

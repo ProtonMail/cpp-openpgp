@@ -43,7 +43,7 @@ public class OpenPGPTest extends AndroidTestCase {
     public void test_generateNewKey() {
         OpenPgp openPgp = OpenPgp.createInstance();
 
-        OpenPgpKey newKey = openPgp.generateKey("feng", "protonmail.com", "123123");
+        OpenPgpKey newKey = openPgp.generateKey("feng", "protonmail.com", "123123", 4096);
         assertNotNull(newKey);
         assertNotNull(newKey.getPrivateKey());
         assertNotNull(newKey.getPublicKey());

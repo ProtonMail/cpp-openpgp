@@ -93,7 +93,7 @@ public class OpenPGPSmallAttachmentTest extends AndroidTestCase {
             String test_out_msg = new String(new_out_data);
             assertTrue("test_out_msg should be same as test_string", test_out_msg.equalsIgnoreCase(test_string));
 
-            byte[] sessionBytes = openPgp.getPublicKeySessionKey(encryptPackage.getKeyPackage(), privateKey, privatePassphrase);
+            byte[] sessionBytes = openPgp.getPublicKeySessionKey(encryptPackage.getKeyPackage(), privatePassphrase);
             assertNotNull(sessionBytes);
             assertTrue(sessionBytes.length > 0);
 

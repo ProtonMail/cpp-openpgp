@@ -1,9 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'coml.protonmail'
+            keyPassword '123456'
+            storeFile file('/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/Android_Test/keystore/android_test.keystore.jks')
+            storePassword '123456'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "21.1.2"
-
     defaultConfig {
         applicationId "com.protonmail.ch.openpgp"
         minSdkVersion 16
@@ -16,6 +23,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 }
@@ -23,5 +31,5 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.1.0'
-    compile group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.0'
+    compile 'com.google.code.findbugs:jsr305:3.0.0'
 }

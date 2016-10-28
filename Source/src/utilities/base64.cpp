@@ -146,7 +146,7 @@ std::string base64_decode(std::string const& encoded_string) {
 //    std::string base_decoded = js_unescape(aaa);
 //   // std::cout << base_decoded<<std::endl;
 //    
-//    std::string decoded = base64_encode((unsigned char*)base_decoded.c_str(), (int)base_decoded.size());
+//    std::string decoded = base64_encode((unsigned char*)base_decoded.c_str(), static_cast<int>(base_decoded.size()));
 //    
 //  //  std::cout << decoded<<std::endl;
 //    pm::optimized_trim(decoded);
@@ -164,7 +164,7 @@ std::string base64_decode(std::string const& encoded_string) {
 //    std::string base_decoded = js_unescape(aaa);
 //   // std::cout << base_decoded<<std::endl;
 //    
-//    std::string decoded = base64_encode((unsigned char*)base_decoded.c_str(), (int)base_decoded.size());
+//    std::string decoded = base64_encode((unsigned char*)base_decoded.c_str(), static_cast<int>(base_decoded.size()));
 //    
 //  //  std::cout << decoded<<std::endl;
 //    pm::optimized_trim(decoded);

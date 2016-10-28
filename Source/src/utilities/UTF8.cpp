@@ -502,7 +502,7 @@ std::string encodeURIComponent(const std::string & sSrc)
 //    
 //    
 //    int i = 0;
-//    int len = (int)str.length();
+//    int len = static_cast<int>(str.length());
 //    while (i < len) {
 //        int ch = str[i];
 //        if ('A' <= ch && ch <= 'Z') {    // 'A'..'Z' : as it was
@@ -543,7 +543,7 @@ std::string encodeURIComponent(const std::string & sSrc)
 //}
 
 std::string escape(std::string& s) {
-    const int SRC_LEN = (int)s.length();
+    const int SRC_LEN = static_cast<int>(s.length());
     std::string out;
     for (int i = 0; i < SRC_LEN; i++) {
         char ch = s.at(i);
@@ -661,7 +661,7 @@ std::string url_encode(const std::string &value) {
 std::string getHex(std::string buf) {
     std::string o;
     for (int i = 0; i < buf.length(); i++) {
-        int n = (int) buf[i] & 0xff;
+        int n = static_cast<int>( buf[i] & 0xff );
         
         char tmp[3];
         sprintf(tmp,"%02x",n);
@@ -730,7 +730,7 @@ std::string hex2bin(std::string& s_in)
         
         //        char out_a;
         //        sprintf(out, "%d", (a | b));
-        // out += std::string((int)(a | b));
+        // out += std::string(static_cast<int>(a | b));
         
         i+=2;
     }
@@ -817,7 +817,7 @@ void B_to_A(const char* input)
     {
         for(int a = 0; a < 8; a++)      //store info into binary[0] through binary[7]
         {
-            binary[a] = (int) input[z] - 48;      //z never resets
+            binary[a] = static_cast<int>( input[z] - 48 );      //z never resets
             z++;
         }
         
