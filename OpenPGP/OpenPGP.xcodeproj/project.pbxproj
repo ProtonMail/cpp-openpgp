@@ -305,6 +305,25 @@
 		751D42821DC29555001A3229 /* PMNOpenPgpKey.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 750B3CC61DC28E02001391C3 /* PMNOpenPgpKey.h */; };
 		751D42861DC29555001A3229 /* PMNSrpClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 750B3CCA1DC28E02001391C3 /* PMNSrpClient.h */; };
 		751D42891DC29555001A3229 /* PMNSrpProofs.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 750B3CCD1DC28E02001391C3 /* PMNSrpProofs.h */; };
+		751D435D1DC3F47C001A3229 /* AssertException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D43151DC3F44A001A3229 /* AssertException.cpp */; };
+		751D43611DC3F47C001A3229 /* CompositeTestReporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D43191DC3F44A001A3229 /* CompositeTestReporter.cpp */; };
+		751D43631DC3F47C001A3229 /* CurrentTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D431B1DC3F44A001A3229 /* CurrentTest.cpp */; };
+		751D43651DC3F47C001A3229 /* DeferredTestReporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D431D1DC3F44A001A3229 /* DeferredTestReporter.cpp */; };
+		751D43671DC3F47C001A3229 /* DeferredTestResult.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D431F1DC3F44A001A3229 /* DeferredTestResult.cpp */; };
+		751D436B1DC3F47C001A3229 /* GlobalSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D43231DC3F44A001A3229 /* GlobalSettings.cpp */; };
+		751D436E1DC3F47C001A3229 /* MemoryOutStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D43261DC3F44A001A3229 /* MemoryOutStream.cpp */; };
+		751D43701DC3F47C001A3229 /* SignalTranslator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D43291DC3F44A001A3229 /* SignalTranslator.cpp */; };
+		751D43721DC3F47C001A3229 /* TimeHelpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D432B1DC3F44A001A3229 /* TimeHelpers.cpp */; };
+		751D43741DC3F47C001A3229 /* ReportAssert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D432D1DC3F44A001A3229 /* ReportAssert.cpp */; };
+		751D43771DC3F47C001A3229 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D43301DC3F44A001A3229 /* stdafx.cpp */; };
+		751D43791DC3F47C001A3229 /* Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D43321DC3F44A001A3229 /* Test.cpp */; };
+		751D437B1DC3F47C001A3229 /* TestDetails.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D43341DC3F44A001A3229 /* TestDetails.cpp */; };
+		751D437D1DC3F47C001A3229 /* TestList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D43361DC3F44A001A3229 /* TestList.cpp */; };
+		751D43811DC3F47C001A3229 /* TestReporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D433A1DC3F44A001A3229 /* TestReporter.cpp */; };
+		751D43831DC3F47C001A3229 /* TestReporterStdout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D433C1DC3F44A001A3229 /* TestReporterStdout.cpp */; };
+		751D43851DC3F47C001A3229 /* TestResults.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D433E1DC3F44A001A3229 /* TestResults.cpp */; };
+		751D43871DC3F47C001A3229 /* TestRunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D43401DC3F44A001A3229 /* TestRunner.cpp */; };
+		751D438D1DC3F47C001A3229 /* XmlTestReporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D435B1DC3F44A001A3229 /* XmlTestReporter.cpp */; };
 		7545D3F91C45A990000D2F8D /* open_pgp_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */; };
 		7545D3FA1C45A995000D2F8D /* open_pgp_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */; };
 		759DA0021C5C2A3100EB0483 /* open_pgp_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */; };
@@ -577,6 +596,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		751D42991DC3F2BC001A3229 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		75419F421A97E1A8002A1F25 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -772,6 +800,55 @@
 		7517E6DF1AFABC35007EA967 /* utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utilities.cpp; sourceTree = "<group>"; };
 		7517E6E01AFABC35007EA967 /* utility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utility.cpp; sourceTree = "<group>"; };
 		7519BBFA1A8D869000E0E570 /* libOpenPGP_x86_64.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOpenPGP_x86_64.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		751D429B1DC3F2BC001A3229 /* libunittestpp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libunittestpp.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		751D43151DC3F44A001A3229 /* AssertException.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AssertException.cpp; sourceTree = "<group>"; };
+		751D43161DC3F44A001A3229 /* AssertException.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssertException.h; sourceTree = "<group>"; };
+		751D43171DC3F44A001A3229 /* CheckMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckMacros.h; sourceTree = "<group>"; };
+		751D43181DC3F44A001A3229 /* Checks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Checks.h; sourceTree = "<group>"; };
+		751D43191DC3F44A001A3229 /* CompositeTestReporter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CompositeTestReporter.cpp; sourceTree = "<group>"; };
+		751D431A1DC3F44A001A3229 /* CompositeTestReporter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompositeTestReporter.h; sourceTree = "<group>"; };
+		751D431B1DC3F44A001A3229 /* CurrentTest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CurrentTest.cpp; sourceTree = "<group>"; };
+		751D431C1DC3F44A001A3229 /* CurrentTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurrentTest.h; sourceTree = "<group>"; };
+		751D431D1DC3F44A001A3229 /* DeferredTestReporter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DeferredTestReporter.cpp; sourceTree = "<group>"; };
+		751D431E1DC3F44A001A3229 /* DeferredTestReporter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeferredTestReporter.h; sourceTree = "<group>"; };
+		751D431F1DC3F44A001A3229 /* DeferredTestResult.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DeferredTestResult.cpp; sourceTree = "<group>"; };
+		751D43201DC3F44A001A3229 /* DeferredTestResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeferredTestResult.h; sourceTree = "<group>"; };
+		751D43211DC3F44A001A3229 /* ExceptionMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExceptionMacros.h; sourceTree = "<group>"; };
+		751D43221DC3F44A001A3229 /* ExecuteTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExecuteTest.h; sourceTree = "<group>"; };
+		751D43231DC3F44A001A3229 /* GlobalSettings.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GlobalSettings.cpp; sourceTree = "<group>"; };
+		751D43241DC3F44A001A3229 /* GlobalSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalSettings.h; sourceTree = "<group>"; };
+		751D43251DC3F44A001A3229 /* HelperMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelperMacros.h; sourceTree = "<group>"; };
+		751D43261DC3F44A001A3229 /* MemoryOutStream.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryOutStream.cpp; sourceTree = "<group>"; };
+		751D43271DC3F44A001A3229 /* MemoryOutStream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemoryOutStream.h; sourceTree = "<group>"; };
+		751D43291DC3F44A001A3229 /* SignalTranslator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SignalTranslator.cpp; sourceTree = "<group>"; };
+		751D432A1DC3F44A001A3229 /* SignalTranslator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignalTranslator.h; sourceTree = "<group>"; };
+		751D432B1DC3F44A001A3229 /* TimeHelpers.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TimeHelpers.cpp; sourceTree = "<group>"; };
+		751D432C1DC3F44A001A3229 /* TimeHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeHelpers.h; sourceTree = "<group>"; };
+		751D432D1DC3F44A001A3229 /* ReportAssert.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ReportAssert.cpp; sourceTree = "<group>"; };
+		751D432E1DC3F44A001A3229 /* ReportAssert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReportAssert.h; sourceTree = "<group>"; };
+		751D432F1DC3F44A001A3229 /* ReportAssertImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReportAssertImpl.h; sourceTree = "<group>"; };
+		751D43301DC3F44A001A3229 /* stdafx.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = stdafx.cpp; sourceTree = "<group>"; };
+		751D43311DC3F44A001A3229 /* stdafx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stdafx.h; sourceTree = "<group>"; };
+		751D43321DC3F44A001A3229 /* Test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Test.cpp; sourceTree = "<group>"; };
+		751D43331DC3F44A001A3229 /* Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
+		751D43341DC3F44A001A3229 /* TestDetails.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestDetails.cpp; sourceTree = "<group>"; };
+		751D43351DC3F44A001A3229 /* TestDetails.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestDetails.h; sourceTree = "<group>"; };
+		751D43361DC3F44A001A3229 /* TestList.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestList.cpp; sourceTree = "<group>"; };
+		751D43371DC3F44A001A3229 /* TestList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestList.h; sourceTree = "<group>"; };
+		751D43381DC3F44A001A3229 /* TestMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestMacros.h; sourceTree = "<group>"; };
+		751D43391DC3F44A001A3229 /* TestProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestProperties.h; sourceTree = "<group>"; };
+		751D433A1DC3F44A001A3229 /* TestReporter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestReporter.cpp; sourceTree = "<group>"; };
+		751D433B1DC3F44A001A3229 /* TestReporter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestReporter.h; sourceTree = "<group>"; };
+		751D433C1DC3F44A001A3229 /* TestReporterStdout.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestReporterStdout.cpp; sourceTree = "<group>"; };
+		751D433D1DC3F44A001A3229 /* TestReporterStdout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestReporterStdout.h; sourceTree = "<group>"; };
+		751D433E1DC3F44A001A3229 /* TestResults.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestResults.cpp; sourceTree = "<group>"; };
+		751D433F1DC3F44A001A3229 /* TestResults.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestResults.h; sourceTree = "<group>"; };
+		751D43401DC3F44A001A3229 /* TestRunner.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestRunner.cpp; sourceTree = "<group>"; };
+		751D43411DC3F44A001A3229 /* TestRunner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestRunner.h; sourceTree = "<group>"; };
+		751D43561DC3F44A001A3229 /* TestSuite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestSuite.h; sourceTree = "<group>"; };
+		751D43571DC3F44A001A3229 /* TimeHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeHelpers.h; sourceTree = "<group>"; };
+		751D435B1DC3F44A001A3229 /* XmlTestReporter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = XmlTestReporter.cpp; sourceTree = "<group>"; };
+		751D435C1DC3F44A001A3229 /* XmlTestReporter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XmlTestReporter.h; sourceTree = "<group>"; };
 		75419F471A97E1A8002A1F25 /* libOpenPGP_i386.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOpenPGP_i386.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = open_pgp_impl.cpp; sourceTree = "<group>"; };
 		759DA08E1C5C2A3100EB0483 /* libUniversalPGP_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUniversalPGP_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -786,6 +863,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		7519BBF41A8D869000E0E570 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		751D42981DC3F2BC001A3229 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1056,7 +1140,9 @@
 			children = (
 				750BA3D61AAA9583003FEA16 /* Source */,
 				7519BBD91A8D868000E0E570 /* OpenPGPLib */,
+				751D43141DC3F44A001A3229 /* Unittestpp */,
 				7519BBD81A8D868000E0E570 /* Products */,
+				751D438F1DC3F660001A3229 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1067,6 +1153,7 @@
 				75419F471A97E1A8002A1F25 /* libOpenPGP_i386.a */,
 				75AB6B451C50436000E82A0E /* libUniversalPGP.a */,
 				759DA08E1C5C2A3100EB0483 /* libUniversalPGP_macOS.a */,
+				751D429B1DC3F2BC001A3229 /* libunittestpp.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1102,6 +1189,77 @@
 			);
 			name = OpenPGPLib;
 			path = OpenPGP_OSX_Lib;
+			sourceTree = "<group>";
+		};
+		751D43141DC3F44A001A3229 /* Unittestpp */ = {
+			isa = PBXGroup;
+			children = (
+				751D43151DC3F44A001A3229 /* AssertException.cpp */,
+				751D43161DC3F44A001A3229 /* AssertException.h */,
+				751D43171DC3F44A001A3229 /* CheckMacros.h */,
+				751D43181DC3F44A001A3229 /* Checks.h */,
+				751D43191DC3F44A001A3229 /* CompositeTestReporter.cpp */,
+				751D431A1DC3F44A001A3229 /* CompositeTestReporter.h */,
+				751D431B1DC3F44A001A3229 /* CurrentTest.cpp */,
+				751D431C1DC3F44A001A3229 /* CurrentTest.h */,
+				751D431D1DC3F44A001A3229 /* DeferredTestReporter.cpp */,
+				751D431E1DC3F44A001A3229 /* DeferredTestReporter.h */,
+				751D431F1DC3F44A001A3229 /* DeferredTestResult.cpp */,
+				751D43201DC3F44A001A3229 /* DeferredTestResult.h */,
+				751D43211DC3F44A001A3229 /* ExceptionMacros.h */,
+				751D43221DC3F44A001A3229 /* ExecuteTest.h */,
+				751D43231DC3F44A001A3229 /* GlobalSettings.cpp */,
+				751D43241DC3F44A001A3229 /* GlobalSettings.h */,
+				751D43251DC3F44A001A3229 /* HelperMacros.h */,
+				751D43261DC3F44A001A3229 /* MemoryOutStream.cpp */,
+				751D43271DC3F44A001A3229 /* MemoryOutStream.h */,
+				751D43281DC3F44A001A3229 /* Posix */,
+				751D432D1DC3F44A001A3229 /* ReportAssert.cpp */,
+				751D432E1DC3F44A001A3229 /* ReportAssert.h */,
+				751D432F1DC3F44A001A3229 /* ReportAssertImpl.h */,
+				751D43301DC3F44A001A3229 /* stdafx.cpp */,
+				751D43311DC3F44A001A3229 /* stdafx.h */,
+				751D43321DC3F44A001A3229 /* Test.cpp */,
+				751D43331DC3F44A001A3229 /* Test.h */,
+				751D43341DC3F44A001A3229 /* TestDetails.cpp */,
+				751D43351DC3F44A001A3229 /* TestDetails.h */,
+				751D43361DC3F44A001A3229 /* TestList.cpp */,
+				751D43371DC3F44A001A3229 /* TestList.h */,
+				751D43381DC3F44A001A3229 /* TestMacros.h */,
+				751D43391DC3F44A001A3229 /* TestProperties.h */,
+				751D433A1DC3F44A001A3229 /* TestReporter.cpp */,
+				751D433B1DC3F44A001A3229 /* TestReporter.h */,
+				751D433C1DC3F44A001A3229 /* TestReporterStdout.cpp */,
+				751D433D1DC3F44A001A3229 /* TestReporterStdout.h */,
+				751D433E1DC3F44A001A3229 /* TestResults.cpp */,
+				751D433F1DC3F44A001A3229 /* TestResults.h */,
+				751D43401DC3F44A001A3229 /* TestRunner.cpp */,
+				751D43411DC3F44A001A3229 /* TestRunner.h */,
+				751D43561DC3F44A001A3229 /* TestSuite.h */,
+				751D43571DC3F44A001A3229 /* TimeHelpers.h */,
+				751D435B1DC3F44A001A3229 /* XmlTestReporter.cpp */,
+				751D435C1DC3F44A001A3229 /* XmlTestReporter.h */,
+			);
+			name = Unittestpp;
+			path = ../Source/tests/common/UnitTestpp/src;
+			sourceTree = "<group>";
+		};
+		751D43281DC3F44A001A3229 /* Posix */ = {
+			isa = PBXGroup;
+			children = (
+				751D43291DC3F44A001A3229 /* SignalTranslator.cpp */,
+				751D432A1DC3F44A001A3229 /* SignalTranslator.h */,
+				751D432B1DC3F44A001A3229 /* TimeHelpers.cpp */,
+				751D432C1DC3F44A001A3229 /* TimeHelpers.h */,
+			);
+			path = Posix;
+			sourceTree = "<group>";
+		};
+		751D438F1DC3F660001A3229 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		7545D3F51C45A964000D2F8D /* bridge */ = {
@@ -1148,6 +1306,23 @@
 			name = OpenPGP_x86_64;
 			productName = OpenPGP_OSX_Lib;
 			productReference = 7519BBFA1A8D869000E0E570 /* libOpenPGP_x86_64.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		751D429A1DC3F2BC001A3229 /* unittestpp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 751D42A11DC3F2BC001A3229 /* Build configuration list for PBXNativeTarget "unittestpp" */;
+			buildPhases = (
+				751D42971DC3F2BC001A3229 /* Sources */,
+				751D42981DC3F2BC001A3229 /* Frameworks */,
+				751D42991DC3F2BC001A3229 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = unittestpp;
+			productName = unittestpp;
+			productReference = 751D429B1DC3F2BC001A3229 /* libunittestpp.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		75419EC81A97E1A8002A1F25 /* OpenPGP_i386 */ = {
@@ -1210,6 +1385,10 @@
 				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = "Yanfeng Zhang";
 				TargetAttributes = {
+					751D429A1DC3F2BC001A3229 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
 					75AB6B441C50436000E82A0E = {
 						CreatedOnToolsVersion = 7.2;
 					};
@@ -1231,6 +1410,7 @@
 				75419EC81A97E1A8002A1F25 /* OpenPGP_i386 */,
 				75AB6B441C50436000E82A0E /* UniversalPGP */,
 				759DA0001C5C2A3100EB0483 /* UniversalPGP_macOS */,
+				751D429A1DC3F2BC001A3229 /* unittestpp */,
 			);
 		};
 /* End PBXProject section */
@@ -1376,6 +1556,32 @@
 				7517E7171AFABC35007EA967 /* Camellia.cpp in Sources */,
 				7517E8A71AFABC35007EA967 /* Tag8.cpp in Sources */,
 				7517E8B71AFABC35007EA967 /* includes.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		751D42971DC3F2BC001A3229 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				751D435D1DC3F47C001A3229 /* AssertException.cpp in Sources */,
+				751D43611DC3F47C001A3229 /* CompositeTestReporter.cpp in Sources */,
+				751D43631DC3F47C001A3229 /* CurrentTest.cpp in Sources */,
+				751D43651DC3F47C001A3229 /* DeferredTestReporter.cpp in Sources */,
+				751D43671DC3F47C001A3229 /* DeferredTestResult.cpp in Sources */,
+				751D436B1DC3F47C001A3229 /* GlobalSettings.cpp in Sources */,
+				751D436E1DC3F47C001A3229 /* MemoryOutStream.cpp in Sources */,
+				751D43701DC3F47C001A3229 /* SignalTranslator.cpp in Sources */,
+				751D43721DC3F47C001A3229 /* TimeHelpers.cpp in Sources */,
+				751D43741DC3F47C001A3229 /* ReportAssert.cpp in Sources */,
+				751D43771DC3F47C001A3229 /* stdafx.cpp in Sources */,
+				751D43791DC3F47C001A3229 /* Test.cpp in Sources */,
+				751D437B1DC3F47C001A3229 /* TestDetails.cpp in Sources */,
+				751D437D1DC3F47C001A3229 /* TestList.cpp in Sources */,
+				751D43811DC3F47C001A3229 /* TestReporter.cpp in Sources */,
+				751D43831DC3F47C001A3229 /* TestReporterStdout.cpp in Sources */,
+				751D43851DC3F47C001A3229 /* TestResults.cpp in Sources */,
+				751D43871DC3F47C001A3229 /* TestRunner.cpp in Sources */,
+				751D438D1DC3F47C001A3229 /* XmlTestReporter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1927,6 +2133,42 @@
 			};
 			name = Release;
 		};
+		751D42A21DC3F2BC001A3229 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		751D42A31DC3F2BC001A3229 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		75419F451A97E1A8002A1F25 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2031,6 +2273,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		751D42A11DC3F2BC001A3229 /* Build configuration list for PBXNativeTarget "unittestpp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				751D42A21DC3F2BC001A3229 /* Debug */,
+				751D42A31DC3F2BC001A3229 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		75419F441A97E1A8002A1F25 /* Build configuration list for PBXNativeTarget "OpenPGP_i386" */ = {
 			isa = XCConfigurationList;
