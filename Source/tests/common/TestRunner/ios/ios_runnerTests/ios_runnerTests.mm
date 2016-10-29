@@ -45,7 +45,7 @@
     [super tearDown];
 }
 
-- (void)testCppRestSdk {
+- (void)testCppOpenPGP {
     UnitTest::TestReporterStdout testReporter;
     UnitTest::TestRunner testRunner(testReporter);
     
