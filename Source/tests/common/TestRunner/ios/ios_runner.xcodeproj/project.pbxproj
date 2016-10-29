@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		750A762A1DC422B200DE0E70 /* libcrypto_test.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 750A76291DC422B200DE0E70 /* libcrypto_test.a */; };
 		751D45041DC40D6A001A3229 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 751D45031DC40D6A001A3229 /* Security.framework */; };
 		751D45081DC40D71001A3229 /* libunittestpp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 751D45051DC40D71001A3229 /* libunittestpp.a */; };
 		751D45091DC40D71001A3229 /* libUniversalPGP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 751D45061DC40D71001A3229 /* libUniversalPGP.a */; };
@@ -19,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		750A76221DC420C300DE0E70 /* libcrypto_test.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto_test.a; path = "/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OpenPGP/../Bin/libs/Debug-iphoneos/libcrypto_test.a"; sourceTree = "<absolute>"; };
+		750A76291DC422B200DE0E70 /* libcrypto_test.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto_test.a; path = "../../../../../Bin/libs/Debug-iphonesimulator/libcrypto_test.a"; sourceTree = "<group>"; };
 		751D45031DC40D6A001A3229 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		751D45051DC40D71001A3229 /* libunittestpp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libunittestpp.a; path = "../../../../../Bin/libs/Debug-iphonesimulator/libunittestpp.a"; sourceTree = "<group>"; };
 		751D45061DC40D71001A3229 /* libUniversalPGP.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libUniversalPGP.a; path = "../../../../../Bin/libs/Debug-iphonesimulator/libUniversalPGP.a"; sourceTree = "<group>"; };
@@ -37,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				750A762A1DC422B200DE0E70 /* libcrypto_test.a in Frameworks */,
 				751D45121DC40D97001A3229 /* libz.tbd in Frameworks */,
 				751D45101DC40D92001A3229 /* libbz2.tbd in Frameworks */,
 				751D45081DC40D71001A3229 /* libunittestpp.a in Frameworks */,
@@ -54,6 +58,8 @@
 		751D42A41DC3F2E8001A3229 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				750A76291DC422B200DE0E70 /* libcrypto_test.a */,
+				750A76221DC420C300DE0E70 /* libcrypto_test.a */,
 				751D45111DC40D97001A3229 /* libz.tbd */,
 				751D450F1DC40D92001A3229 /* libbz2.tbd */,
 				751D450B1DC40D89001A3229 /* libcrypto.a */,

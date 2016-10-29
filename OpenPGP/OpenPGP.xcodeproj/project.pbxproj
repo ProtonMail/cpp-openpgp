@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		750A76281DC4228100DE0E70 /* md5_tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A76261DC421AA00DE0E70 /* md5_tests.cpp */; };
 		750B3CD11DC28E02001391C3 /* DJIError.mm in Sources */ = {isa = PBXBuildFile; fileRef = 750B3CB21DC28E02001391C3 /* DJIError.mm */; };
 		750B3CD21DC28E02001391C3 /* DJIError.mm in Sources */ = {isa = PBXBuildFile; fileRef = 750B3CB21DC28E02001391C3 /* DJIError.mm */; };
 		750B3CD31DC28E02001391C3 /* DJIError.mm in Sources */ = {isa = PBXBuildFile; fileRef = 750B3CB21DC28E02001391C3 /* DJIError.mm */; };
@@ -593,6 +594,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		750A761D1DC4205E00DE0E70 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7519BBF51A8D869000E0E570 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -664,6 +674,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		750A76211DC4205E00DE0E70 /* libcrypto_test.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcrypto_test.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		750A76261DC421AA00DE0E70 /* md5_tests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = md5_tests.cpp; sourceTree = "<group>"; };
 		750B3CB01DC28E02001391C3 /* DJICppWrapperCache+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DJICppWrapperCache+Private.h"; sourceTree = "<group>"; };
 		750B3CB11DC28E02001391C3 /* DJIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJIError.h; sourceTree = "<group>"; };
 		750B3CB21DC28E02001391C3 /* DJIError.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DJIError.mm; sourceTree = "<group>"; };
@@ -891,6 +903,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		750A761C1DC4205E00DE0E70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7519BBF41A8D869000E0E570 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -936,6 +955,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		750A76131DC4204D00DE0E70 /* crypto */ = {
+			isa = PBXGroup;
+			children = (
+				750A76241DC4215700DE0E70 /* hash */,
+				750A76251DC4215700DE0E70 /* cipher */,
+			);
+			path = crypto;
+			sourceTree = "<group>";
+		};
+		750A76241DC4215700DE0E70 /* hash */ = {
+			isa = PBXGroup;
+			children = (
+				750A76261DC421AA00DE0E70 /* md5_tests.cpp */,
+			);
+			path = hash;
+			sourceTree = "<group>";
+		};
+		750A76251DC4215700DE0E70 /* cipher */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = cipher;
+			sourceTree = "<group>";
+		};
 		750B3CAF1DC28E02001391C3 /* obj_base */ = {
 			isa = PBXGroup;
 			children = (
@@ -1192,6 +1235,7 @@
 				759DA08E1C5C2A3100EB0483 /* libUniversalPGP_macOS.a */,
 				751D429B1DC3F2BC001A3229 /* libunittestpp.a */,
 				751D44DC1DC40176001A3229 /* libutils_test.a */,
+				750A76211DC4205E00DE0E70 /* libcrypto_test.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1305,6 +1349,7 @@
 		751D43951DC3FA94001A3229 /* functional */ = {
 			isa = PBXGroup;
 			children = (
+				750A76131DC4204D00DE0E70 /* crypto */,
 				751D44D71DC3FAA8001A3229 /* CMakeLists.txt */,
 				751D44831DC3FA95001A3229 /* utils */,
 			);
@@ -1357,6 +1402,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		750A76141DC4205E00DE0E70 /* crypto_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 750A761E1DC4205E00DE0E70 /* Build configuration list for PBXNativeTarget "crypto_test" */;
+			buildPhases = (
+				750A76151DC4205E00DE0E70 /* Sources */,
+				750A761C1DC4205E00DE0E70 /* Frameworks */,
+				750A761D1DC4205E00DE0E70 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = crypto_test;
+			productName = utils_test;
+			productReference = 750A76211DC4205E00DE0E70 /* libcrypto_test.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		7519BBF11A8D869000E0E570 /* OpenPGP_x86_64 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7519BBF71A8D869000E0E570 /* Build configuration list for PBXNativeTarget "OpenPGP_x86_64" */;
@@ -1499,11 +1561,20 @@
 				759DA0001C5C2A3100EB0483 /* UniversalPGP_macOS */,
 				751D429A1DC3F2BC001A3229 /* unittestpp */,
 				751D44DB1DC40176001A3229 /* utils_test */,
+				750A76141DC4205E00DE0E70 /* crypto_test */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		750A76151DC4205E00DE0E70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				750A76281DC4228100DE0E70 /* md5_tests.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7519BBF21A8D869000E0E570 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2118,6 +2189,42 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		750A761F1DC4205E00DE0E70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		750A76201DC4205E00DE0E70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		7519BBE91A8D868000E0E570 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2393,6 +2500,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		750A761E1DC4205E00DE0E70 /* Build configuration list for PBXNativeTarget "crypto_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				750A761F1DC4205E00DE0E70 /* Debug */,
+				750A76201DC4205E00DE0E70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		7519BBD21A8D868000E0E570 /* Build configuration list for PBXProject "OpenPGP" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -2418,6 +2534,7 @@
 				751D42A31DC3F2BC001A3229 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		751D44E21DC40177001A3229 /* Build configuration list for PBXNativeTarget "utils_test" */ = {
 			isa = XCConfigurationList;
@@ -2426,6 +2543,7 @@
 				751D44E41DC40177001A3229 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		75419F441A97E1A8002A1F25 /* Build configuration list for PBXNativeTarget "OpenPGP_i386" */ = {
 			isa = XCConfigurationList;
