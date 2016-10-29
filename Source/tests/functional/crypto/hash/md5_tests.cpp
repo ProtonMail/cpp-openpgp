@@ -10,7 +10,7 @@
 #include <hash/MD5.h>
 
 namespace tests {
-    namespace md5_tests {
+    namespace hash_tests {
         SUITE(md5)
         {
             TEST(MD5_RFC_1321) {

@@ -28,15 +28,14 @@ THE SOFTWARE.
 
 #include "SHA256.h"
 
-class SHA224 : public SHA256{
-    private:
-        void original_h();
-
+class SHA224 : public Hash {
+    
     public:
         SHA224();
         SHA224(const std::string & data);
         std::string hexdigest();
         unsigned int blocksize() const;
         unsigned int digestsize() const;
+        void update(const std::string & str);
 };
 #endif

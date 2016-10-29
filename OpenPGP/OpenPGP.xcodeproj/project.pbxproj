@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		750A76281DC4228100DE0E70 /* md5_tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A76261DC421AA00DE0E70 /* md5_tests.cpp */; };
+		750A762C1DC4264000DE0E70 /* ripemd160_tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A762B1DC4264000DE0E70 /* ripemd160_tests.cpp */; };
+		750A762E1DC426CB00DE0E70 /* sha_tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A762D1DC426CB00DE0E70 /* sha_tests.cpp */; };
 		750B3CD11DC28E02001391C3 /* DJIError.mm in Sources */ = {isa = PBXBuildFile; fileRef = 750B3CB21DC28E02001391C3 /* DJIError.mm */; };
 		750B3CD21DC28E02001391C3 /* DJIError.mm in Sources */ = {isa = PBXBuildFile; fileRef = 750B3CB21DC28E02001391C3 /* DJIError.mm */; };
 		750B3CD31DC28E02001391C3 /* DJIError.mm in Sources */ = {isa = PBXBuildFile; fileRef = 750B3CB21DC28E02001391C3 /* DJIError.mm */; };
@@ -676,6 +678,8 @@
 /* Begin PBXFileReference section */
 		750A76211DC4205E00DE0E70 /* libcrypto_test.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcrypto_test.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		750A76261DC421AA00DE0E70 /* md5_tests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = md5_tests.cpp; sourceTree = "<group>"; };
+		750A762B1DC4264000DE0E70 /* ripemd160_tests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ripemd160_tests.cpp; sourceTree = "<group>"; };
+		750A762D1DC426CB00DE0E70 /* sha_tests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sha_tests.cpp; sourceTree = "<group>"; };
 		750B3CB01DC28E02001391C3 /* DJICppWrapperCache+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DJICppWrapperCache+Private.h"; sourceTree = "<group>"; };
 		750B3CB11DC28E02001391C3 /* DJIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJIError.h; sourceTree = "<group>"; };
 		750B3CB21DC28E02001391C3 /* DJIError.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DJIError.mm; sourceTree = "<group>"; };
@@ -968,6 +972,8 @@
 			isa = PBXGroup;
 			children = (
 				750A76261DC421AA00DE0E70 /* md5_tests.cpp */,
+				750A762B1DC4264000DE0E70 /* ripemd160_tests.cpp */,
+				750A762D1DC426CB00DE0E70 /* sha_tests.cpp */,
 			);
 			path = hash;
 			sourceTree = "<group>";
@@ -1571,7 +1577,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				750A762C1DC4264000DE0E70 /* ripemd160_tests.cpp in Sources */,
 				750A76281DC4228100DE0E70 /* md5_tests.cpp in Sources */,
+				750A762E1DC426CB00DE0E70 /* sha_tests.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
