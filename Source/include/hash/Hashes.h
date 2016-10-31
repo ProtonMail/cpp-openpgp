@@ -12,6 +12,7 @@
 #include "SHA224.h"
 #include "SHA512.h"
 #include "SHA384.h"
+#include "HMAC.h"
 
 std::string use_hash(uint8_t flag, const std::string & data);
 

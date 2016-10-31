@@ -15,6 +15,11 @@
 		750A76341DC7BC8E00DE0E70 /* cast5_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A76331DC7BC8E00DE0E70 /* cast5_test.cpp */; };
 		750A76361DC7BCAB00DE0E70 /* des_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A76351DC7BCAB00DE0E70 /* des_test.cpp */; };
 		750A76381DC7BCB900DE0E70 /* twofish_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A76371DC7BCB900DE0E70 /* twofish_test.cpp */; };
+		750A763D1DC7C50700DE0E70 /* hmac_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A763C1DC7C50700DE0E70 /* hmac_test.cpp */; };
+		750A76421DC7CCC000DE0E70 /* HMAC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A76391DC7C4DC00DE0E70 /* HMAC.cpp */; };
+		750A76431DC7CE2000DE0E70 /* HMAC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A76391DC7C4DC00DE0E70 /* HMAC.cpp */; };
+		750A76441DC7CE2000DE0E70 /* HMAC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A76391DC7C4DC00DE0E70 /* HMAC.cpp */; };
+		750A76451DC7CE2100DE0E70 /* HMAC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A76391DC7C4DC00DE0E70 /* HMAC.cpp */; };
 		750B3CD11DC28E02001391C3 /* DJIError.mm in Sources */ = {isa = PBXBuildFile; fileRef = 750B3CB21DC28E02001391C3 /* DJIError.mm */; };
 		750B3CD21DC28E02001391C3 /* DJIError.mm in Sources */ = {isa = PBXBuildFile; fileRef = 750B3CB21DC28E02001391C3 /* DJIError.mm */; };
 		750B3CD31DC28E02001391C3 /* DJIError.mm in Sources */ = {isa = PBXBuildFile; fileRef = 750B3CB21DC28E02001391C3 /* DJIError.mm */; };
@@ -690,6 +695,8 @@
 		750A76331DC7BC8E00DE0E70 /* cast5_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cast5_test.cpp; sourceTree = "<group>"; };
 		750A76351DC7BCAB00DE0E70 /* des_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = des_test.cpp; sourceTree = "<group>"; };
 		750A76371DC7BCB900DE0E70 /* twofish_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = twofish_test.cpp; sourceTree = "<group>"; };
+		750A76391DC7C4DC00DE0E70 /* HMAC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HMAC.cpp; sourceTree = "<group>"; };
+		750A763C1DC7C50700DE0E70 /* hmac_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hmac_test.cpp; sourceTree = "<group>"; };
 		750B3CB01DC28E02001391C3 /* DJICppWrapperCache+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DJICppWrapperCache+Private.h"; sourceTree = "<group>"; };
 		750B3CB11DC28E02001391C3 /* DJIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJIError.h; sourceTree = "<group>"; };
 		750B3CB21DC28E02001391C3 /* DJIError.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DJIError.mm; sourceTree = "<group>"; };
@@ -984,6 +991,7 @@
 				750A76261DC421AA00DE0E70 /* md5_tests.cpp */,
 				750A762B1DC4264000DE0E70 /* ripemd160_tests.cpp */,
 				750A762D1DC426CB00DE0E70 /* sha_tests.cpp */,
+				750A763C1DC7C50700DE0E70 /* hmac_test.cpp */,
 			);
 			path = hash;
 			sourceTree = "<group>";
@@ -1104,7 +1112,6 @@
 			children = (
 				7517E6791AFABC35007EA967 /* Hash.cpp */,
 				7517E67A1AFABC35007EA967 /* Hashes.cpp */,
-				75BF8F491DA7088A000F350F /* ExpandHash.cpp */,
 				7517E67B1AFABC35007EA967 /* MD5.cpp */,
 				7517E67D1AFABC35007EA967 /* SHA1.cpp */,
 				7517E67E1AFABC35007EA967 /* SHA224.cpp */,
@@ -1115,6 +1122,8 @@
 				7517E67C1AFABC35007EA967 /* RIPEMD160.cpp */,
 				7517E6831AFABC35007EA967 /* sigcalc.cpp */,
 				7517E6841AFABC35007EA967 /* sign.cpp */,
+				75BF8F491DA7088A000F350F /* ExpandHash.cpp */,
+				750A76391DC7C4DC00DE0E70 /* HMAC.cpp */,
 			);
 			path = hash;
 			sourceTree = "<group>";
@@ -1595,6 +1604,7 @@
 				750A76361DC7BCAB00DE0E70 /* des_test.cpp in Sources */,
 				750A762C1DC4264000DE0E70 /* ripemd160_tests.cpp in Sources */,
 				750A76321DC7BC7A00DE0E70 /* blowfish_test.cpp in Sources */,
+				750A763D1DC7C50700DE0E70 /* hmac_test.cpp in Sources */,
 				750A76341DC7BC8E00DE0E70 /* cast5_test.cpp in Sources */,
 				750A76381DC7BCB900DE0E70 /* twofish_test.cpp in Sources */,
 				750A76301DC7BBE900DE0E70 /* aes_test.cpp in Sources */,
@@ -1731,6 +1741,7 @@
 				7517E73F1AFABC35007EA967 /* Twofish.cpp in Sources */,
 				7517E8971AFABC35007EA967 /* Tag61.cpp in Sources */,
 				7517E7E71AFABC35007EA967 /* Tag2Sub13.cpp in Sources */,
+				750A76441DC7CE2000DE0E70 /* HMAC.cpp in Sources */,
 				7517E86B1AFABC35007EA967 /* Tag13.cpp in Sources */,
 				7517E87F1AFABC35007EA967 /* Tag2.cpp in Sources */,
 				7517E84F1AFABC35007EA967 /* Tag2Sub8.cpp in Sources */,
@@ -1913,6 +1924,7 @@
 				7517E7401AFABC35007EA967 /* Twofish.cpp in Sources */,
 				7517E8981AFABC35007EA967 /* Tag61.cpp in Sources */,
 				7517E7E81AFABC35007EA967 /* Tag2Sub13.cpp in Sources */,
+				750A76431DC7CE2000DE0E70 /* HMAC.cpp in Sources */,
 				7517E86C1AFABC35007EA967 /* Tag13.cpp in Sources */,
 				7517E8801AFABC35007EA967 /* Tag2.cpp in Sources */,
 				7517E8501AFABC35007EA967 /* Tag2Sub8.cpp in Sources */,
@@ -2056,6 +2068,7 @@
 				759DA06D1C5C2A3100EB0483 /* Tag8.cpp in Sources */,
 				759DA06E1C5C2A3100EB0483 /* Tag9.cpp in Sources */,
 				759DA06F1C5C2A3100EB0483 /* base64.cpp in Sources */,
+				750A76451DC7CE2100DE0E70 /* HMAC.cpp in Sources */,
 				759DA0701C5C2A3100EB0483 /* BBS.cpp in Sources */,
 				759DA0711C5C2A3100EB0483 /* includes.cpp in Sources */,
 				750B3CDC1DC28E02001391C3 /* OpenPGP.mm in Sources */,
@@ -2199,6 +2212,7 @@
 				75AB6BB91C5044F100E82A0E /* Tag8.cpp in Sources */,
 				75AB6BBA1C5044F100E82A0E /* Tag9.cpp in Sources */,
 				75AB6BBB1C5044F100E82A0E /* base64.cpp in Sources */,
+				750A76421DC7CCC000DE0E70 /* HMAC.cpp in Sources */,
 				75AB6BBC1C5044F100E82A0E /* BBS.cpp in Sources */,
 				75AB6BBD1C5044F100E82A0E /* includes.cpp in Sources */,
 				750B3CDB1DC28E02001391C3 /* OpenPGP.mm in Sources */,

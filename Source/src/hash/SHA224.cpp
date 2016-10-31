@@ -1,7 +1,6 @@
 #include <hash/SHA224.h>
 #include <openssl/sha.h>
 
-
 SHA224::SHA224()
 {
 
@@ -10,6 +9,10 @@ SHA224::SHA224()
 SHA224::SHA224(const std::string & str) : SHA224()
 {
     update(str);
+}
+
+void SHA224::update(const std::string &str){
+    stack = str;
 }
 
 std::string SHA224::hexdigest(){
@@ -36,9 +39,5 @@ unsigned int SHA224::blocksize() const{
 }
 
 unsigned int SHA224::digestsize() const{
-    return 224;
-}
-
-void SHA224::update(const std::string &str){
-    stack = str;
+    return 224; //SHA224_DIGEST_LENGTH * 8
 }
