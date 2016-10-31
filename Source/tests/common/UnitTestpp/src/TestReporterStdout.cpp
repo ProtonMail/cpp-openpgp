@@ -112,23 +112,27 @@ void TestReporterStdout::ReportTestStart(TestDetails const& test)
     std::fflush(stdout);
 }
 
-void TestReporterStdout::ReportTestFinish(TestDetails const& test, bool passed, float)
+void TestReporterStdout::ReportTestFinish(TestDetails const& test, bool passed, float secondsElapsed)
 {
     if(passed)
     {
         const char * format = "Test case %s:%s ";
         PrintfWrapper(format, test.suiteName, test.testName);
         ChangeConsoleTextColorToGreen();
-	    PrintfWrapper("PASSED\n");
+	    PrintfWrapper("PASSED");
         ChangeConsoleTextColorToGrey();
     }
     else
     {
         ChangeConsoleTextColorToRed();
-        const char * format = "Test case %s:%s FAILED\n";
+        const char * format = "Test case %s:%s FAILED";
 	    PrintfWrapper(format, test.suiteName, test.testName);
         ChangeConsoleTextColorToGrey();
     }
+    
+    const char * secondFormat = "  (%f)seconds\n";
+    PrintfWrapper(secondFormat, secondsElapsed);
+    
     std::fflush(stdout);
 }
 

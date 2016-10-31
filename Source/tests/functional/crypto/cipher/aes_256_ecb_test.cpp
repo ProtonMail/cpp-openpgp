@@ -887,6 +887,9 @@ namespace tests {
                     "7bfe9d876c6d63c1d035da8fe21c409d",
                     "acdace8078a32b1a182bfa4987ca1347",
                 };
+                //UNITTEST_TIME_CONSTRAINT_EXEMPT();
+               // UNITTEST_TIME_CONSTRAINT(50);
+                
                 VERIFY_ARE_EQUAL(AES256_ECB_VARTXT_PLAIN.size(), AES256_ECB_VARTXT_CIPHER.size());
                 const std::string UNHEX_AES256_ECB_VARTXT_KEY = unhexlify(AES256_ECB_VARTXT_KEY);
                 for ( unsigned int i = 0; i < AES256_ECB_VARTXT_PLAIN.size(); ++i ) {
