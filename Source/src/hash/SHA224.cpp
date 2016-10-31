@@ -13,7 +13,6 @@ SHA224::SHA224(const std::string & str) : SHA224()
 }
 
 std::string SHA224::hexdigest(){
-    
     char outputBuffer[65];
     unsigned char hash[SHA224_DIGEST_LENGTH];
     SHA256_CTX sha256;

@@ -10,6 +10,11 @@
 		750A76281DC4228100DE0E70 /* md5_tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A76261DC421AA00DE0E70 /* md5_tests.cpp */; };
 		750A762C1DC4264000DE0E70 /* ripemd160_tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A762B1DC4264000DE0E70 /* ripemd160_tests.cpp */; };
 		750A762E1DC426CB00DE0E70 /* sha_tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A762D1DC426CB00DE0E70 /* sha_tests.cpp */; };
+		750A76301DC7BBE900DE0E70 /* aes_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A762F1DC7BBE900DE0E70 /* aes_test.cpp */; };
+		750A76321DC7BC7A00DE0E70 /* blowfish_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A76311DC7BC7A00DE0E70 /* blowfish_test.cpp */; };
+		750A76341DC7BC8E00DE0E70 /* cast5_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A76331DC7BC8E00DE0E70 /* cast5_test.cpp */; };
+		750A76361DC7BCAB00DE0E70 /* des_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A76351DC7BCAB00DE0E70 /* des_test.cpp */; };
+		750A76381DC7BCB900DE0E70 /* twofish_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A76371DC7BCB900DE0E70 /* twofish_test.cpp */; };
 		750B3CD11DC28E02001391C3 /* DJIError.mm in Sources */ = {isa = PBXBuildFile; fileRef = 750B3CB21DC28E02001391C3 /* DJIError.mm */; };
 		750B3CD21DC28E02001391C3 /* DJIError.mm in Sources */ = {isa = PBXBuildFile; fileRef = 750B3CB21DC28E02001391C3 /* DJIError.mm */; };
 		750B3CD31DC28E02001391C3 /* DJIError.mm in Sources */ = {isa = PBXBuildFile; fileRef = 750B3CB21DC28E02001391C3 /* DJIError.mm */; };
@@ -680,6 +685,11 @@
 		750A76261DC421AA00DE0E70 /* md5_tests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = md5_tests.cpp; sourceTree = "<group>"; };
 		750A762B1DC4264000DE0E70 /* ripemd160_tests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ripemd160_tests.cpp; sourceTree = "<group>"; };
 		750A762D1DC426CB00DE0E70 /* sha_tests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sha_tests.cpp; sourceTree = "<group>"; };
+		750A762F1DC7BBE900DE0E70 /* aes_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aes_test.cpp; sourceTree = "<group>"; };
+		750A76311DC7BC7A00DE0E70 /* blowfish_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = blowfish_test.cpp; sourceTree = "<group>"; };
+		750A76331DC7BC8E00DE0E70 /* cast5_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cast5_test.cpp; sourceTree = "<group>"; };
+		750A76351DC7BCAB00DE0E70 /* des_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = des_test.cpp; sourceTree = "<group>"; };
+		750A76371DC7BCB900DE0E70 /* twofish_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = twofish_test.cpp; sourceTree = "<group>"; };
 		750B3CB01DC28E02001391C3 /* DJICppWrapperCache+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DJICppWrapperCache+Private.h"; sourceTree = "<group>"; };
 		750B3CB11DC28E02001391C3 /* DJIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJIError.h; sourceTree = "<group>"; };
 		750B3CB21DC28E02001391C3 /* DJIError.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DJIError.mm; sourceTree = "<group>"; };
@@ -981,6 +991,11 @@
 		750A76251DC4215700DE0E70 /* cipher */ = {
 			isa = PBXGroup;
 			children = (
+				750A762F1DC7BBE900DE0E70 /* aes_test.cpp */,
+				750A76311DC7BC7A00DE0E70 /* blowfish_test.cpp */,
+				750A76331DC7BC8E00DE0E70 /* cast5_test.cpp */,
+				750A76351DC7BCAB00DE0E70 /* des_test.cpp */,
+				750A76371DC7BCB900DE0E70 /* twofish_test.cpp */,
 			);
 			path = cipher;
 			sourceTree = "<group>";
@@ -1577,7 +1592,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				750A76361DC7BCAB00DE0E70 /* des_test.cpp in Sources */,
 				750A762C1DC4264000DE0E70 /* ripemd160_tests.cpp in Sources */,
+				750A76321DC7BC7A00DE0E70 /* blowfish_test.cpp in Sources */,
+				750A76341DC7BC8E00DE0E70 /* cast5_test.cpp in Sources */,
+				750A76381DC7BCB900DE0E70 /* twofish_test.cpp in Sources */,
+				750A76301DC7BBE900DE0E70 /* aes_test.cpp in Sources */,
 				750A76281DC4228100DE0E70 /* md5_tests.cpp in Sources */,
 				750A762E1DC426CB00DE0E70 /* sha_tests.cpp in Sources */,
 			);
