@@ -10,7 +10,7 @@
 		750A76281DC4228100DE0E70 /* md5_tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A76261DC421AA00DE0E70 /* md5_tests.cpp */; };
 		750A762C1DC4264000DE0E70 /* ripemd160_tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A762B1DC4264000DE0E70 /* ripemd160_tests.cpp */; };
 		750A762E1DC426CB00DE0E70 /* sha_tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A762D1DC426CB00DE0E70 /* sha_tests.cpp */; };
-		750A76301DC7BBE900DE0E70 /* aes_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A762F1DC7BBE900DE0E70 /* aes_test.cpp */; };
+		750A76301DC7BBE900DE0E70 /* aes_192_ecb_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A762F1DC7BBE900DE0E70 /* aes_192_ecb_test.cpp */; };
 		750A76321DC7BC7A00DE0E70 /* blowfish_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A76311DC7BC7A00DE0E70 /* blowfish_test.cpp */; };
 		750A76341DC7BC8E00DE0E70 /* cast5_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A76331DC7BC8E00DE0E70 /* cast5_test.cpp */; };
 		750A76361DC7BCAB00DE0E70 /* des_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750A76351DC7BCAB00DE0E70 /* des_test.cpp */; };
@@ -343,6 +343,8 @@
 		751D451C1DC41650001A3229 /* utils_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D45191DC4163E001A3229 /* utils_test.cpp */; };
 		7545D3F91C45A990000D2F8D /* open_pgp_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */; };
 		7545D3FA1C45A995000D2F8D /* open_pgp_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */; };
+		755BEAEA1DC7EE8500A0BE41 /* aes_128_ecb_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 755BEAE91DC7EE8500A0BE41 /* aes_128_ecb_test.cpp */; };
+		755BEAEC1DC7EEC800A0BE41 /* aes_256_ecb_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 755BEAEB1DC7EEC800A0BE41 /* aes_256_ecb_test.cpp */; };
 		759DA0021C5C2A3100EB0483 /* open_pgp_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */; };
 		759DA0031C5C2A3100EB0483 /* compress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75AE62E21AFBCFED00131986 /* compress.cpp */; };
 		759DA0041C5C2A3100EB0483 /* pgpbzip2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75AE62E31AFBCFED00131986 /* pgpbzip2.cpp */; };
@@ -686,7 +688,7 @@
 		750A76261DC421AA00DE0E70 /* md5_tests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = md5_tests.cpp; sourceTree = "<group>"; };
 		750A762B1DC4264000DE0E70 /* ripemd160_tests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ripemd160_tests.cpp; sourceTree = "<group>"; };
 		750A762D1DC426CB00DE0E70 /* sha_tests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sha_tests.cpp; sourceTree = "<group>"; };
-		750A762F1DC7BBE900DE0E70 /* aes_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aes_test.cpp; sourceTree = "<group>"; };
+		750A762F1DC7BBE900DE0E70 /* aes_192_ecb_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aes_192_ecb_test.cpp; sourceTree = "<group>"; };
 		750A76311DC7BC7A00DE0E70 /* blowfish_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = blowfish_test.cpp; sourceTree = "<group>"; };
 		750A76331DC7BC8E00DE0E70 /* cast5_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cast5_test.cpp; sourceTree = "<group>"; };
 		750A76351DC7BCAB00DE0E70 /* des_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = des_test.cpp; sourceTree = "<group>"; };
@@ -908,6 +910,8 @@
 		751D451A1DC4163E001A3229 /* utils_test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils_test.h; sourceTree = "<group>"; };
 		75419F471A97E1A8002A1F25 /* libOpenPGP_i386.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOpenPGP_i386.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = open_pgp_impl.cpp; sourceTree = "<group>"; };
+		755BEAE91DC7EE8500A0BE41 /* aes_128_ecb_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aes_128_ecb_test.cpp; sourceTree = "<group>"; };
+		755BEAEB1DC7EEC800A0BE41 /* aes_256_ecb_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aes_256_ecb_test.cpp; sourceTree = "<group>"; };
 		759DA08E1C5C2A3100EB0483 /* libUniversalPGP_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUniversalPGP_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		75AB6B451C50436000E82A0E /* libUniversalPGP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUniversalPGP.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		75AE62E21AFBCFED00131986 /* compress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compress.cpp; sourceTree = "<group>"; };
@@ -994,11 +998,13 @@
 		750A76251DC4215700DE0E70 /* cipher */ = {
 			isa = PBXGroup;
 			children = (
-				750A762F1DC7BBE900DE0E70 /* aes_test.cpp */,
 				750A76311DC7BC7A00DE0E70 /* blowfish_test.cpp */,
 				750A76331DC7BC8E00DE0E70 /* cast5_test.cpp */,
 				750A76351DC7BCAB00DE0E70 /* des_test.cpp */,
 				750A76371DC7BCB900DE0E70 /* twofish_test.cpp */,
+				755BEAE91DC7EE8500A0BE41 /* aes_128_ecb_test.cpp */,
+				750A762F1DC7BBE900DE0E70 /* aes_192_ecb_test.cpp */,
+				755BEAEB1DC7EEC800A0BE41 /* aes_256_ecb_test.cpp */,
 			);
 			path = cipher;
 			sourceTree = "<group>";
@@ -1597,11 +1603,13 @@
 			files = (
 				750A76361DC7BCAB00DE0E70 /* des_test.cpp in Sources */,
 				750A762C1DC4264000DE0E70 /* ripemd160_tests.cpp in Sources */,
+				755BEAEC1DC7EEC800A0BE41 /* aes_256_ecb_test.cpp in Sources */,
 				750A76321DC7BC7A00DE0E70 /* blowfish_test.cpp in Sources */,
 				750A763D1DC7C50700DE0E70 /* hmac_test.cpp in Sources */,
 				750A76341DC7BC8E00DE0E70 /* cast5_test.cpp in Sources */,
 				750A76381DC7BCB900DE0E70 /* twofish_test.cpp in Sources */,
-				750A76301DC7BBE900DE0E70 /* aes_test.cpp in Sources */,
+				750A76301DC7BBE900DE0E70 /* aes_192_ecb_test.cpp in Sources */,
+				755BEAEA1DC7EE8500A0BE41 /* aes_128_ecb_test.cpp in Sources */,
 				750A76281DC4228100DE0E70 /* md5_tests.cpp in Sources */,
 				750A762E1DC426CB00DE0E70 /* sha_tests.cpp in Sources */,
 			);
