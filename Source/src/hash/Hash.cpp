@@ -1,8 +1,8 @@
 #include <hash/Hash.h>
-
 #include <openssl/hmac.h>
 #include <iostream>
 #include <iomanip>
+
 Hash::Hash() :
 stack(),
 clen(0)

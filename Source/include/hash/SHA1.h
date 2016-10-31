@@ -31,25 +31,7 @@ THE SOFTWARE.
 #include <hash/Hash.h>
 
 class SHA1 : public Hash {
-    private:
-        struct context{
-            uint32_t h0, h1, h2, h3, h4;
-
-            context(uint32_t h0, uint32_t h1, uint32_t h2, uint32_t h3, uint32_t h4) :
-                h0(h0),
-                h1(h1),
-                h2(h2),
-                h3(h3),
-                h4(h4)
-            {}
-            ~context(){
-                h0 = h1 = h2 = h3 = h4 = 0;
-            }
-        };
-
-        context ctx;
-
-        void calc(const std::string & data, context & state) const;
+    
 
     public:
         SHA1();
