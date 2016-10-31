@@ -1,7 +1,6 @@
 #ifndef HASHES_H
 #define HASHES_H
 
-#include <openpgp/cryptomath.h>
 #include <utilities/includes.h>
 #include <hash/Hash.h>
 

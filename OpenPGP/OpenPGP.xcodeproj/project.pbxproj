@@ -118,8 +118,6 @@
 		7517E7601AFABC35007EA967 /* SHA224.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E67E1AFABC35007EA967 /* SHA224.cpp */; };
 		7517E7631AFABC35007EA967 /* SHA256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E67F1AFABC35007EA967 /* SHA256.cpp */; };
 		7517E7641AFABC35007EA967 /* SHA256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E67F1AFABC35007EA967 /* SHA256.cpp */; };
-		7517E7671AFABC35007EA967 /* SHA2_Functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6801AFABC35007EA967 /* SHA2_Functions.cpp */; };
-		7517E7681AFABC35007EA967 /* SHA2_Functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6801AFABC35007EA967 /* SHA2_Functions.cpp */; };
 		7517E76B1AFABC35007EA967 /* SHA384.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6811AFABC35007EA967 /* SHA384.cpp */; };
 		7517E76C1AFABC35007EA967 /* SHA384.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6811AFABC35007EA967 /* SHA384.cpp */; };
 		7517E76F1AFABC35007EA967 /* SHA512.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6821AFABC35007EA967 /* SHA512.cpp */; };
@@ -372,7 +370,6 @@
 		759DA01A1C5C2A3100EB0483 /* SHA1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E67D1AFABC35007EA967 /* SHA1.cpp */; };
 		759DA01B1C5C2A3100EB0483 /* SHA224.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E67E1AFABC35007EA967 /* SHA224.cpp */; };
 		759DA01C1C5C2A3100EB0483 /* SHA256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E67F1AFABC35007EA967 /* SHA256.cpp */; };
-		759DA01D1C5C2A3100EB0483 /* SHA2_Functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6801AFABC35007EA967 /* SHA2_Functions.cpp */; };
 		759DA01E1C5C2A3100EB0483 /* SHA384.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6811AFABC35007EA967 /* SHA384.cpp */; };
 		759DA01F1C5C2A3100EB0483 /* SHA512.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6821AFABC35007EA967 /* SHA512.cpp */; };
 		759DA0201C5C2A3100EB0483 /* sigcalc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6831AFABC35007EA967 /* sigcalc.cpp */; };
@@ -492,7 +489,6 @@
 		75AB6B661C5044F100E82A0E /* SHA1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E67D1AFABC35007EA967 /* SHA1.cpp */; };
 		75AB6B671C5044F100E82A0E /* SHA224.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E67E1AFABC35007EA967 /* SHA224.cpp */; };
 		75AB6B681C5044F100E82A0E /* SHA256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E67F1AFABC35007EA967 /* SHA256.cpp */; };
-		75AB6B691C5044F100E82A0E /* SHA2_Functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6801AFABC35007EA967 /* SHA2_Functions.cpp */; };
 		75AB6B6A1C5044F100E82A0E /* SHA384.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6811AFABC35007EA967 /* SHA384.cpp */; };
 		75AB6B6B1C5044F100E82A0E /* SHA512.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6821AFABC35007EA967 /* SHA512.cpp */; };
 		75AB6B6C1C5044F100E82A0E /* sigcalc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6831AFABC35007EA967 /* sigcalc.cpp */; };
@@ -754,7 +750,6 @@
 		7517E67D1AFABC35007EA967 /* SHA1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SHA1.cpp; sourceTree = "<group>"; };
 		7517E67E1AFABC35007EA967 /* SHA224.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SHA224.cpp; sourceTree = "<group>"; };
 		7517E67F1AFABC35007EA967 /* SHA256.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SHA256.cpp; sourceTree = "<group>"; };
-		7517E6801AFABC35007EA967 /* SHA2_Functions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SHA2_Functions.cpp; sourceTree = "<group>"; };
 		7517E6811AFABC35007EA967 /* SHA384.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SHA384.cpp; sourceTree = "<group>"; };
 		7517E6821AFABC35007EA967 /* SHA512.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SHA512.cpp; sourceTree = "<group>"; };
 		7517E6831AFABC35007EA967 /* sigcalc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sigcalc.cpp; sourceTree = "<group>"; };
@@ -1116,7 +1111,6 @@
 				7517E67D1AFABC35007EA967 /* SHA1.cpp */,
 				7517E67E1AFABC35007EA967 /* SHA224.cpp */,
 				7517E67F1AFABC35007EA967 /* SHA256.cpp */,
-				7517E6801AFABC35007EA967 /* SHA2_Functions.cpp */,
 				7517E6811AFABC35007EA967 /* SHA384.cpp */,
 				7517E6821AFABC35007EA967 /* SHA512.cpp */,
 				7517E67C1AFABC35007EA967 /* RIPEMD160.cpp */,
@@ -1639,7 +1633,6 @@
 				7517E71B1AFABC35007EA967 /* CAST128.cpp in Sources */,
 				750B3CFD1DC28E02001391C3 /* PMNSrpProofs.mm in Sources */,
 				7517E75B1AFABC35007EA967 /* SHA1.cpp in Sources */,
-				7517E7671AFABC35007EA967 /* SHA2_Functions.cpp in Sources */,
 				7517E72F1AFABC35007EA967 /* PKA.cpp in Sources */,
 				7517E7BB1AFABC35007EA967 /* packet.cpp in Sources */,
 				7517E7CB1AFABC35007EA967 /* subpacket.cpp in Sources */,
@@ -1822,7 +1815,6 @@
 				7517E71C1AFABC35007EA967 /* CAST128.cpp in Sources */,
 				750B3CFE1DC28E02001391C3 /* PMNSrpProofs.mm in Sources */,
 				7517E75C1AFABC35007EA967 /* SHA1.cpp in Sources */,
-				7517E7681AFABC35007EA967 /* SHA2_Functions.cpp in Sources */,
 				7517E7301AFABC35007EA967 /* PKA.cpp in Sources */,
 				7517E7BC1AFABC35007EA967 /* packet.cpp in Sources */,
 				7517E7CC1AFABC35007EA967 /* subpacket.cpp in Sources */,
@@ -1976,7 +1968,6 @@
 				759DA01A1C5C2A3100EB0483 /* SHA1.cpp in Sources */,
 				759DA01B1C5C2A3100EB0483 /* SHA224.cpp in Sources */,
 				759DA01C1C5C2A3100EB0483 /* SHA256.cpp in Sources */,
-				759DA01D1C5C2A3100EB0483 /* SHA2_Functions.cpp in Sources */,
 				759DA01E1C5C2A3100EB0483 /* SHA384.cpp in Sources */,
 				759DA01F1C5C2A3100EB0483 /* SHA512.cpp in Sources */,
 				759DA0201C5C2A3100EB0483 /* sigcalc.cpp in Sources */,
@@ -2120,7 +2111,6 @@
 				75AB6B661C5044F100E82A0E /* SHA1.cpp in Sources */,
 				75AB6B671C5044F100E82A0E /* SHA224.cpp in Sources */,
 				75AB6B681C5044F100E82A0E /* SHA256.cpp in Sources */,
-				75AB6B691C5044F100E82A0E /* SHA2_Functions.cpp in Sources */,
 				75AB6B6A1C5044F100E82A0E /* SHA384.cpp in Sources */,
 				75AB6B6B1C5044F100E82A0E /* SHA512.cpp in Sources */,
 				75AB6B6C1C5044F100E82A0E /* sigcalc.cpp in Sources */,

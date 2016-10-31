@@ -38,4 +38,5 @@ public:
     unsigned int digestsize() const;
     void update(const std::string & str);
 };
+
 #endif

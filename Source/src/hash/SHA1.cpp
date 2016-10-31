@@ -24,9 +24,10 @@ std::string SHA1::hexdigest(){
     SHA1_Final(hash, &sha1);
     
     std::stringstream ss;
+    ss << std::hex << std::setfill('0');
     for (int i = 0; i < SHA_DIGEST_LENGTH; i++)
     {
-        ss << std::hex << std::setw(2)  << hash[i];
+        ss << std::hex << std::setw(2)  << static_cast<unsigned int>(hash[i]);
     }
     return ss.str();
 }
