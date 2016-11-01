@@ -11,7 +11,7 @@
 
 
 namespace tests {
-    namespace hash_tests {
+    namespace cipher_tests {
         SUITE(aes_256_ecb)
         {
             

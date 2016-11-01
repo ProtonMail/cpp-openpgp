@@ -345,6 +345,8 @@
 		7545D3FA1C45A995000D2F8D /* open_pgp_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */; };
 		755BEAEA1DC7EE8500A0BE41 /* aes_128_ecb_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 755BEAE91DC7EE8500A0BE41 /* aes_128_ecb_test.cpp */; };
 		755BEAEC1DC7EEC800A0BE41 /* aes_256_ecb_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 755BEAEB1DC7EEC800A0BE41 /* aes_256_ecb_test.cpp */; };
+		755BEAEF1DC80AC900A0BE41 /* openpgp_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 755BEAEE1DC80AC900A0BE41 /* openpgp_test.cpp */; };
+		755BEAF11DC80B1B00A0BE41 /* openpgp_publickey_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 755BEAF01DC80B1B00A0BE41 /* openpgp_publickey_test.cpp */; };
 		759DA0021C5C2A3100EB0483 /* open_pgp_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */; };
 		759DA0031C5C2A3100EB0483 /* compress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75AE62E21AFBCFED00131986 /* compress.cpp */; };
 		759DA0041C5C2A3100EB0483 /* pgpbzip2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75AE62E31AFBCFED00131986 /* pgpbzip2.cpp */; };
@@ -912,6 +914,8 @@
 		7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = open_pgp_impl.cpp; sourceTree = "<group>"; };
 		755BEAE91DC7EE8500A0BE41 /* aes_128_ecb_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aes_128_ecb_test.cpp; sourceTree = "<group>"; };
 		755BEAEB1DC7EEC800A0BE41 /* aes_256_ecb_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aes_256_ecb_test.cpp; sourceTree = "<group>"; };
+		755BEAEE1DC80AC900A0BE41 /* openpgp_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = openpgp_test.cpp; path = general/openpgp_test.cpp; sourceTree = "<group>"; };
+		755BEAF01DC80B1B00A0BE41 /* openpgp_publickey_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = openpgp_publickey_test.cpp; path = general/openpgp_publickey_test.cpp; sourceTree = "<group>"; };
 		759DA08E1C5C2A3100EB0483 /* libUniversalPGP_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUniversalPGP_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		75AB6B451C50436000E82A0E /* libUniversalPGP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUniversalPGP.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		75AE62E21AFBCFED00131986 /* compress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compress.cpp; sourceTree = "<group>"; };
@@ -1379,6 +1383,7 @@
 		751D43951DC3FA94001A3229 /* functional */ = {
 			isa = PBXGroup;
 			children = (
+				755BEAED1DC808A400A0BE41 /* general */,
 				750A76131DC4204D00DE0E70 /* crypto */,
 				751D44D71DC3FAA8001A3229 /* CMakeLists.txt */,
 				751D44831DC3FA95001A3229 /* utils */,
@@ -1417,6 +1422,15 @@
 				75BF8F4F1DA720EE000F350F /* srp_client_impl.cpp */,
 			);
 			path = bridge_impl;
+			sourceTree = "<group>";
+		};
+		755BEAED1DC808A400A0BE41 /* general */ = {
+			isa = PBXGroup;
+			children = (
+				755BEAEE1DC80AC900A0BE41 /* openpgp_test.cpp */,
+				755BEAF01DC80B1B00A0BE41 /* openpgp_publickey_test.cpp */,
+			);
+			name = general;
 			sourceTree = "<group>";
 		};
 		75AE62E11AFBCFED00131986 /* compress */ = {
@@ -1602,6 +1616,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				750A76361DC7BCAB00DE0E70 /* des_test.cpp in Sources */,
+				755BEAF11DC80B1B00A0BE41 /* openpgp_publickey_test.cpp in Sources */,
 				750A762C1DC4264000DE0E70 /* ripemd160_tests.cpp in Sources */,
 				755BEAEC1DC7EEC800A0BE41 /* aes_256_ecb_test.cpp in Sources */,
 				750A76321DC7BC7A00DE0E70 /* blowfish_test.cpp in Sources */,
@@ -1610,6 +1625,7 @@
 				750A76381DC7BCB900DE0E70 /* twofish_test.cpp in Sources */,
 				750A76301DC7BBE900DE0E70 /* aes_192_ecb_test.cpp in Sources */,
 				755BEAEA1DC7EE8500A0BE41 /* aes_128_ecb_test.cpp in Sources */,
+				755BEAEF1DC80AC900A0BE41 /* openpgp_test.cpp in Sources */,
 				750A76281DC4228100DE0E70 /* md5_tests.cpp in Sources */,
 				750A762E1DC426CB00DE0E70 /* sha_tests.cpp in Sources */,
 			);
