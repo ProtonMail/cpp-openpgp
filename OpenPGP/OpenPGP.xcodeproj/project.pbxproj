@@ -78,6 +78,7 @@
 		75175A4B1DC90CC100BD770C /* openpgp_pka_encrypt_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75175A4A1DC90CC100BD770C /* openpgp_pka_encrypt_test.cpp */; };
 		75175A4E1DC90D1100BD770C /* opengpg_symmetric_encrypt_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75175A4D1DC90D1100BD770C /* opengpg_symmetric_encrypt_test.cpp */; };
 		75175A501DC90D4C00BD770C /* opengpg_clearsign_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75175A4F1DC90D4C00BD770C /* opengpg_clearsign_test.cpp */; };
+		75175A521DC9113700BD770C /* openpgpjs_testcases.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75175A511DC9113700BD770C /* openpgpjs_testcases.cpp */; };
 		7517E6E21AFABC35007EA967 /* rsa_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6591AFABC35007EA967 /* rsa_key.cpp */; };
 		7517E6E31AFABC35007EA967 /* rsa_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6591AFABC35007EA967 /* rsa_key.cpp */; };
 		7517E70F1AFABC35007EA967 /* AES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6681AFABC35007EA967 /* AES.cpp */; };
@@ -741,6 +742,7 @@
 		75175A4A1DC90CC100BD770C /* openpgp_pka_encrypt_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = openpgp_pka_encrypt_test.cpp; path = general/openpgp_pka_encrypt_test.cpp; sourceTree = "<group>"; };
 		75175A4D1DC90D1100BD770C /* opengpg_symmetric_encrypt_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opengpg_symmetric_encrypt_test.cpp; path = general/opengpg_symmetric_encrypt_test.cpp; sourceTree = "<group>"; };
 		75175A4F1DC90D4C00BD770C /* opengpg_clearsign_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opengpg_clearsign_test.cpp; path = general/opengpg_clearsign_test.cpp; sourceTree = "<group>"; };
+		75175A511DC9113700BD770C /* openpgpjs_testcases.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = openpgpjs_testcases.cpp; path = general/openpgpjs_testcases.cpp; sourceTree = "<group>"; };
 		7517E6591AFABC35007EA967 /* rsa_key.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rsa_key.cpp; sourceTree = "<group>"; };
 		7517E6621AFABC35007EA967 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		7517E6681AFABC35007EA967 /* AES.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AES.cpp; sourceTree = "<group>"; };
@@ -1437,6 +1439,7 @@
 		755BEAED1DC808A400A0BE41 /* general */ = {
 			isa = PBXGroup;
 			children = (
+				75175A511DC9113700BD770C /* openpgpjs_testcases.cpp */,
 				755BEAF01DC80B1B00A0BE41 /* openpgp_publickey_test.cpp */,
 				75175A441DC81F7200BD770C /* openpgp_privatekey_test.cpp */,
 				75175A461DC908DE00BD770C /* openpgp_revoke_test.cpp */,
@@ -1645,6 +1648,7 @@
 				750A76301DC7BBE900DE0E70 /* aes_192_ecb_test.cpp in Sources */,
 				755BEAEA1DC7EE8500A0BE41 /* aes_128_ecb_test.cpp in Sources */,
 				75175A471DC908DE00BD770C /* openpgp_revoke_test.cpp in Sources */,
+				75175A521DC9113700BD770C /* openpgpjs_testcases.cpp in Sources */,
 				75175A501DC90D4C00BD770C /* opengpg_clearsign_test.cpp in Sources */,
 				750A76281DC4228100DE0E70 /* md5_tests.cpp in Sources */,
 				750A762E1DC426CB00DE0E70 /* sha_tests.cpp in Sources */,

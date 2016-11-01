@@ -438,6 +438,7 @@ pm::PMPGPMessage encrypt_pka(const PGPPublicKey & pub, const std::string & data,
     return pm::PMPGPMessage();
 }
 
+//TODO::add multiple passphrase support
 PGPMessage encrypt_sym(const std::string & passphrase, const std::string & data, const std::string & filename, const uint8_t sym_alg, const uint8_t comp, const bool mdc, const PGPSecretKey::Ptr & signer, const std::string & sig_passphrase){
     //std::cerr << "Warning: encrypt_sym is untested. Potentially incorrect" << std::endl;
     

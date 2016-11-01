@@ -136,7 +136,9 @@ namespace tests {
                     
                     auto key = mpi[0];
                     VERIFY_ARE_EQUAL(bitsize(key), 2047);
-                    VERIFY_ARE_EQUAL(mpitohex(key), "53031ee2f4be3ea2808d4fc7258f75a652af233ad5be0cd910e615ed266691e8ac584b3960b09c6c5d65c8c68d4caa46c5fe172cba7042aaf23da1a7f7ca61aad28015f88935ecd91f8501f3f9f85302a507c862aad2d9b7ed975bd5704aaeb57a0eebc2c393315dbe6e27b0e3f3347ccc677f1952dfa9ad2bbc6980386b9086729687113cac9842f6bf802aeb376932770844f8e96bea683be14557f57ba6b735f1f9c5f2e5a56acbf810f7aacc9d9657be659f707aec6a9a6aa3616a6b2e10a8dc94cccbca39cf80e1dc3205803a0ebe6614871be4a52117b0a39b0bc67919c3a2dbcfbb6ca0b21f39cd8f5374f3adf2adc97f7697f663ffa985c47e7de16f");
+                    auto strHex_key = mpitohex(key);
+                    std::transform(strHex_key.begin(), strHex_key.end(), strHex_key.begin(), ::tolower);
+                    VERIFY_ARE_EQUAL(strHex_key, "53031ee2f4be3ea2808d4fc7258f75a652af233ad5be0cd910e615ed266691e8ac584b3960b09c6c5d65c8c68d4caa46c5fe172cba7042aaf23da1a7f7ca61aad28015f88935ecd91f8501f3f9f85302a507c862aad2d9b7ed975bd5704aaeb57a0eebc2c393315dbe6e27b0e3f3347ccc677f1952dfa9ad2bbc6980386b9086729687113cac9842f6bf802aeb376932770844f8e96bea683be14557f57ba6b735f1f9c5f2e5a56acbf810f7aacc9d9657be659f707aec6a9a6aa3616a6b2e10a8dc94cccbca39cf80e1dc3205803a0ebe6614871be4a52117b0a39b0bc67919c3a2dbcfbb6ca0b21f39cd8f5374f3adf2adc97f7697f663ffa985c47e7de16f");
                 }
                 // tag18
                 {
