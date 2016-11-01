@@ -39,4 +39,8 @@ std::string show_time(time_t T);
 
 // show time as Year-Month-Day
 std::string show_date(time_t T);
+
+
+time_t get_utc(int year, int month, int day, int hour, int minute, int second);
+
 #endif

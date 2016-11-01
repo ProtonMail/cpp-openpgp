@@ -13,38 +13,10 @@
 #include <openpgp/decrypt.h>
 #include <algorithm>
 #include <string>
+#include <openpgp/pgptime.h>
 
 namespace tests {
     namespace open_pgp_tests {
-        time_t get_utc(int year, int month, int day, int hour, int minute, int second) {
-            tm in;
-            in.tm_year = year - 1900;
-            in.tm_mon  = month - 1;
-            in.tm_mday = day;
-            in.tm_hour = hour;
-            in.tm_min  = minute;
-            in.tm_sec  = second;
-            time_t result = mktime(&in); // generate by local timezone
-            
-            // detect timezone
-            int utc = 0, local = 0;
-            tm *tmp;
-            tmp = gmtime(&result);
-            utc = tmp->tm_hour;
-            tmp = localtime(&result);
-            local = tmp->tm_hour;
-            if ( utc != local ) {
-                int diff = local - utc;
-                if ( diff < 0 && diff < -12 ) {
-                    diff += 24;
-                } else if (diff > 0 && diff > 12) {
-                    diff -= 24;
-                }
-                result += diff*60*60;
-            }
-            return result;
-        }
-
         SUITE(pgp_public_key)
         {
             
@@ -135,12 +107,12 @@ namespace tests {
                     VERIFY_ARE_EQUAL(bitsize(e), 17);    // 17-bit
                     VERIFY_ARE_EQUAL(mpitohex(e),"010001");
                 }
-
+                
                 // userid
                 {
                     VERIFY_ARE_EQUAL(userid->raw(), "alice (test key) <alice@example.com>");
                 }
-
+                
                 // pubsig
                 {
                     VERIFY_ARE_EQUAL(pubsig->get_type(), 0x13); // Positive certification of a User ID and Public-Key packet
@@ -237,7 +209,7 @@ namespace tests {
                         VERIFY_ARE_EQUAL(pubsub16->get_keyid(), "\xd5\xd7\xda\x71\xc3\x54\x96\x0e");
                     }
                 }
-
+                
                 // subkey
                 {
                     VERIFY_ARE_EQUAL(subkey->get_time(), gen_time); // 2014-06-22T12:50:48 UTC
