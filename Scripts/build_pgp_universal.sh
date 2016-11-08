@@ -70,7 +70,7 @@ FILESIZE=$(wc -c <$FILENAME)
 if [ $FILESIZE -ge $MAX_FILE_SIZE ]; then
 printf "\e[0;32mStart Stripping Debugging Symbols for iOS Device Library. \033[0m\n"
 printf "\e[0;37mStripping File:\033[0m \e[0;36m ${BIN_PGP_LIB_NAME} \033[0m\n"
-strip -S ${FILENAME}
+#strip -S ${FILENAME}
 printf "\e[0;37mStripping Done:\033[0m\n"
 else
 printf "iOS Device Library have been removed Debugging Symbols!\n"
@@ -82,7 +82,7 @@ FILESIZE=$(wc -c <$FILENAME)
 if [ $FILESIZE -ge $MAX_FILE_SIZE ]; then
 printf "\e[0;32mStart Stripping Debugging Symbols for Simulator Library. \033[0m\n"
 printf "\e[0;37mStripping File:\033[0m \e[0;36m ${BIN_PGP_LIB_NAME} \033[0m\n"
-strip -S ${FILENAME}
+#strip -S ${FILENAME}
 printf "\e[0;37mStripping Done\033[0m\n\n"
 else
 printf "Simulator Library have been removed Debugging Symbols!\n\n"
