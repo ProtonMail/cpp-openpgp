@@ -7,12 +7,12 @@
 
 namespace ProtonMail {
 
-NativeSrpClient::NativeSrpClient() : ::djinni::JniInterface<::ProtonMail::SrpClient, NativeSrpClient>("ch/protonmail/android/utils/SrpClient$CppProxy") {}
+NativeSrpClient::NativeSrpClient() : ::djinni::JniInterface<::ProtonMail::SrpClient, NativeSrpClient>("ch/protonmail/android/utils/nativelib/SrpClient$CppProxy") {}
 
 NativeSrpClient::~NativeSrpClient() = default;
 
 
-CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_SrpClient_00024CppProxy_nativeDestroy(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_SrpClient_00024CppProxy_nativeDestroy(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
@@ -20,7 +20,7 @@ CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_SrpClient_00024CppProxy
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT jbyteArray JNICALL Java_ch_protonmail_android_utils_SrpClient_expandHash(JNIEnv* jniEnv, jobject /*this*/, jbyteArray j_input)
+CJNIEXPORT jbyteArray JNICALL Java_ch_protonmail_android_utils_nativelib_SrpClient_expandHash(JNIEnv* jniEnv, jobject /*this*/, jbyteArray j_input)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);
@@ -29,7 +29,7 @@ CJNIEXPORT jbyteArray JNICALL Java_ch_protonmail_android_utils_SrpClient_expandH
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_SrpClient_generateProofs(JNIEnv* jniEnv, jobject /*this*/, jint j_bitLength, jbyteArray j_modulusRepr, jbyteArray j_serverEphemeralRepr, jbyteArray j_hashedPasswordRepr)
+CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_SrpClient_generateProofs(JNIEnv* jniEnv, jobject /*this*/, jint j_bitLength, jbyteArray j_modulusRepr, jbyteArray j_serverEphemeralRepr, jbyteArray j_hashedPasswordRepr)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);
@@ -41,7 +41,7 @@ CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_SrpClient_generatePr
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jbyteArray JNICALL Java_ch_protonmail_android_utils_SrpClient_generateVerifier(JNIEnv* jniEnv, jobject /*this*/, jint j_bitLength, jbyteArray j_modulusRepr, jbyteArray j_hashedPasswordRepr)
+CJNIEXPORT jbyteArray JNICALL Java_ch_protonmail_android_utils_nativelib_SrpClient_generateVerifier(JNIEnv* jniEnv, jobject /*this*/, jint j_bitLength, jbyteArray j_modulusRepr, jbyteArray j_hashedPasswordRepr)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);

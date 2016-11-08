@@ -5,10 +5,8 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import ch.protonmail.android.utils.Address;
 import ch.protonmail.android.utils.AppUtil;
-import ch.protonmail.android.utils.OpenPgp;
-import ch.protonmail.android.utils.OpenPgpKey;
+import ch.protonmail.android.utils.nativelib.*;
 
 
 /**

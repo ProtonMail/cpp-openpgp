@@ -15,6 +15,10 @@ address = record {
     keys: list<open_pgp_key>;
 }
 
+#open_pgp_key_manager = interface +c {
+#    static create_instance() : open_pgp_key_manager;
+#}
+
 open_pgp = interface +c {
     static create_instance() : open_pgp;
 	static create_instance_with_keys(address : address) : open_pgp;

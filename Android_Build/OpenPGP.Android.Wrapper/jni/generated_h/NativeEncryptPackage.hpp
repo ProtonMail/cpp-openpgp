@@ -24,7 +24,7 @@ private:
     NativeEncryptPackage();
     friend ::djinni::JniClass<NativeEncryptPackage>;
 
-    const ::djinni::GlobalRef<jclass> clazz { ::djinni::jniFindClass("ch/protonmail/android/utils/EncryptPackage") };
+    const ::djinni::GlobalRef<jclass> clazz { ::djinni::jniFindClass("ch/protonmail/android/utils/nativelib/EncryptPackage") };
     const jmethodID jconstructor { ::djinni::jniGetMethodID(clazz.get(), "<init>", "([B[B)V") };
     const jfieldID field_mKeyPackage { ::djinni::jniGetFieldID(clazz.get(), "mKeyPackage", "[B") };
     const jfieldID field_mDataPackage { ::djinni::jniGetFieldID(clazz.get(), "mDataPackage", "[B") };

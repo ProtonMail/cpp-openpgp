@@ -24,7 +24,7 @@ private:
     NativeOpenPgpKey();
     friend ::djinni::JniClass<NativeOpenPgpKey>;
 
-    const ::djinni::GlobalRef<jclass> clazz { ::djinni::jniFindClass("ch/protonmail/android/utils/OpenPgpKey") };
+    const ::djinni::GlobalRef<jclass> clazz { ::djinni::jniFindClass("ch/protonmail/android/utils/nativelib/OpenPgpKey") };
     const jmethodID jconstructor { ::djinni::jniGetMethodID(clazz.get(), "<init>", "(Ljava/lang/String;Ljava/lang/String;)V") };
     const jfieldID field_mPublicKey { ::djinni::jniGetFieldID(clazz.get(), "mPublicKey", "Ljava/lang/String;") };
     const jfieldID field_mPrivateKey { ::djinni::jniGetFieldID(clazz.get(), "mPrivateKey", "Ljava/lang/String;") };

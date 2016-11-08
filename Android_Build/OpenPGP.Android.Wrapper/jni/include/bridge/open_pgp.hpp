@@ -14,6 +14,11 @@ struct Address;
 struct EncryptPackage;
 struct OpenPgpKey;
 
+/**
+ *open_pgp_key_manager = interface +c {
+ *    static create_instance() : open_pgp_key_manager;
+ *}
+ */
 class OpenPgp {
 public:
     virtual ~OpenPgp() {}

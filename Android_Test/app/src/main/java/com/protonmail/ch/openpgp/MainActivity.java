@@ -18,7 +18,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import ch.protonmail.android.utils.OpenPgp;
+import ch.protonmail.android.utils.nativelib.OpenPgp;
 
 public class MainActivity extends AppCompatActivity {
 

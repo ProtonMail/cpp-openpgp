@@ -4,20 +4,24 @@ temp_out=${PWD}/out
 cpp_pm_namespace="ProtonMail"
 jni_pm_namespace="ProtonMail"
 obj_pm_namespace="OBJ_ProtonMail"
-java_package="ch.protonmail.android.utils"
+java_package="ch.protonmail.android.utils.nativelib"
 
-cpp_out_location=${PWD}/../Source/src/bridge
-cpp_header_out_location=${PWD}/../Source/include/bridge
+cpp_out_location=${PWD}/../../Source/src/bridge
+cpp_header_out_location=${PWD}/../../Source/include/bridge
 
-java_out_location=${PWD}/../Android_Test/app/src/main/java/ch/protonmail/android/utils
+java_out_location=${PWD}/../../Android_Test/app/src/main/java/ch/protonmail/android/utils/nativelib
 
-jni_cpp_out_location=${PWD}/OpenPGP.Android.Wrapper/jni/generated_cpp
-jni_cpp_header_out_location=${PWD}/OpenPGP.Android.Wrapper/jni/generated_h
+jni_cpp_out_location=${PWD}/../../Android_Build/OpenPGP.Android.Wrapper/jni/generated_cpp
+jni_cpp_header_out_location=${PWD}/../../Android_Build/OpenPGP.Android.Wrapper/jni/generated_h
 
-objc_out=${PWD}/../OpenPGP_OSX_Lib/OpenPGP_OSX_Lib
-objc_cpp_out=${PWD}/../OpenPGP_OSX_Lib/OpenPGP_OSX_Lib
+objc_out=${PWD}/../../OpenPGP_OSX_Lib/OpenPGP_OSX_Lib
+objc_cpp_out=${PWD}/../../OpenPGP_OSX_Lib/OpenPGP_OSX_Lib
 
-${PWD}/../../djinni/src/run --idl open_pgp.djinni \
+rm -rf $java_out_location
+rm -rf $jni_cpp_out_location
+rm -rf $jni_cpp_header_out_location
+
+${PWD}/../../../djinni/src/run --idl open_pgp.djinni \
 	\
 	--cpp-out $cpp_out_location \
 	--cpp-header-out $cpp_header_out_location \
