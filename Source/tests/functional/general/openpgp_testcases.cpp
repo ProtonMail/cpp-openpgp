@@ -16,6 +16,7 @@
 #include <openpgp/pgptime.h>
 
 #include "bridge_impl/open_pgp_impl.hpp"
+#include "bridge/open_pgp_key.hpp"
 
 
 namespace tests {
@@ -176,6 +177,142 @@ namespace tests {
             auto plaintext = "short message\nnext line\n한국어/조선말";
             auto password1 = "I am a password";
             auto password2 = "I am another password";
+            
+            
+            TEST(generate_key_test) {
+                
+                {// invalid user name input
+                    auto username = "";
+                    auto email = "test@example.com";
+                    auto passphrase = "";
+                    auto openPgp = ProtonMail::OpenPgpImpl::create_instance();
+                    VERIFY_THROWS_EQUAL( openPgp->generate_key(username, email, "", 2048), std::runtime_error, "Invalid user name format");
+                }
+                
+//                it('should fail for invalid user email address', function() {
+//                    var opt = {
+//                    userIds: [{ name: 'Test User', email: 'textexample.com' }]
+//                    };
+//                    var test = openpgp.generateKey.bind(null, opt);
+//                    expect(test).to.throw(/Invalid user id format/);
+//                });
+
+//                it('should fail for invalid user email address', function() {
+//                    var opt = {
+//                    userIds: [{ name: 'Test User', email: 'text@examplecom' }]
+//                    };
+//                    var test = openpgp.generateKey.bind(null, opt);
+//                    expect(test).to.throw(/Invalid user id format/);
+//                });
+
+//                it('should fail for invalid string user id', function() {
+//                    var opt = {
+//                    userIds: ['Test User text@example.com>']
+//                    };
+//                    var test = openpgp.generateKey.bind(null, opt);
+//                    expect(test).to.throw(/Invalid user id format/);
+//                });
+
+//                it('should fail for invalid single string user id', function() {
+//                    var opt = {
+//                    userIds: 'Test User text@example.com>'
+//                    };
+//                    var test = openpgp.generateKey.bind(null, opt);
+//                    expect(test).to.throw(/Invalid user id format/);
+//                });
+
+//                it('should work for valid single string user id', function(done) {
+//                    var opt = {
+//                    userIds: 'Test User <text@example.com>'
+//                    };
+//                    openpgp.generateKey(opt).then(function() { done(); });
+//                });
+
+//                it('should work for valid string user id', function(done) {
+//                    var opt = {
+//                    userIds: ['Test User <text@example.com>']
+//                    };
+//                    openpgp.generateKey(opt).then(function() { done(); });
+//                });
+
+//                it('should work for valid single user id hash', function(done) {
+//                    var opt = {
+//                    userIds: { name: 'Test User', email: 'text@example.com' }
+//                    };
+//                    openpgp.generateKey(opt).then(function() { done(); });
+//                });
+
+//                it('should work for valid single user id hash', function(done) {
+//                    var opt = {
+//                    userIds: [{ name: 'Test User', email: 'text@example.com' }]
+//                    };
+//                    openpgp.generateKey(opt).then(function() { done(); });
+//                });
+
+//                it('should work for an empty name', function(done) {
+//                    var opt = {
+//                    userIds: { email: 'text@example.com' }
+//                    };
+//                    openpgp.generateKey(opt).then(function() { done(); });
+//                });
+
+//                it('should work for an empty email address', function(done) {
+//                    var opt = {
+//                    userIds: { name: 'Test User' }
+//                    };
+//                    openpgp.generateKey(opt).then(function() { done(); });
+//                });
+                
+//                it('should have default params set', function(done) {
+//                    var opt = {
+//                    userIds: { name: 'Test User', email: 'text@example.com' },
+//                    passphrase: 'secret',
+//                    unlocked: true
+//                    };
+//                    openpgp.generateKey(opt).then(function(newKey) {
+//                        expect(keyGenStub.withArgs({
+//                        userIds: ['Test User <text@example.com>'],
+//                        passphrase: 'secret',
+//                        numBits: 2048,
+//                        unlocked: true
+//                        }).calledOnce).to.be.true;
+//                        expect(newKey.key).to.exist;
+//                        expect(newKey.privateKeyArmored).to.exist;
+//                        expect(newKey.publicKeyArmored).to.exist;
+//                        done();
+//                    });
+//                });
+
+//                it('should work for no params', function(done) {
+//                    openpgp.generateKey().then(function(newKey) {
+//                        expect(keyGenStub.withArgs({
+//                        userIds: [],
+//                        passphrase: undefined,
+//                        numBits: 2048,
+//                        unlocked: false
+//                        }).calledOnce).to.be.true;
+//                        expect(newKey.key).to.exist;
+//                        done();
+//                    });
+//                });
+
+//                it('should delegate to async proxy', function() {
+//                    var workerStub = {
+//                    postMessage: function() {}
+//                    };
+//                    openpgp.initWorker({
+//                    worker: workerStub
+//                    });
+//                    var proxyGenStub = sinon.stub(openpgp.getWorker(), 'delegate');
+//                    getWebCryptoAllStub.returns();
+//                    
+//                    openpgp.generateKey();
+//                    expect(proxyGenStub.calledOnce).to.be.true;
+//                    expect(keyGenStub.calledOnce).to.be.false;
+//                });
+            
+            }
+            
             
             TEST(aes_encrypt_test) {
                 {

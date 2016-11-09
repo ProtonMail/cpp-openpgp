@@ -108,6 +108,9 @@
 #endif
 
 #define VERIFY_THROWS(expression, exception) CHECK_THROW(expression, exception)
+
+#define VERIFY_THROWS_EQUAL(expression, exception, actual) CHECK_THROW_EQUAL(expression, exception, actual)
+
 #define VERIFY_IS_NOT_NULL(expression) CHECK_NOT_NULL(expression)
 #define VERIFY_IS_NULL(expression) CHECK_NULL(expression)
 
@@ -206,6 +209,25 @@
             } catch(const std::exception & _exc) { \
                 std::string _msg(_exc.what()); \
                 VERIFY_IS_TRUE(_msg.size() > 0); \
+                throw; \
+            } \
+        } \
+        catch (ExpectedExceptionType const&) { caught_ = true; } \
+        catch (...) {} \
+        if (!caught_) \
+            UnitTest::CurrentTest::Results()->OnTestFailure(UnitTest::TestDetails(*UnitTest::CurrentTest::Details(), __LINE__), "Expected exception: \"" #ExpectedExceptionType "\" not thrown"); \
+    UNITTEST_MULTILINE_MACRO_END
+
+#define CHECK_THROW_EQUAL(expression, ExpectedExceptionType, actual) \
+    UNITTEST_MULTILINE_MACRO_BEGIN \
+        bool caught_ = false; \
+        try { \
+            try { \
+                expression; \
+            } catch(const std::exception & _exc) { \
+                std::string _msg(_exc.what()); \
+                VERIFY_IS_TRUE(_msg.size() > 0); \
+                VERIFY_ARE_EQUAL(_msg, #actual); \
                 throw; \
             } \
         } \

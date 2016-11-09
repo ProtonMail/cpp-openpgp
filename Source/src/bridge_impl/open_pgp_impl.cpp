@@ -42,12 +42,17 @@ namespace ProtonMail {
         
         pm::pgp::openpgp p;
         
+        if (user_name.empty()) {
+            throw std::runtime_error("Invalid user name format");
+        }
+        
+        
         std::string email = user_name + "@" + domain;
         std::string comments = "create by ios";
         
         std::string priv_key = "";
         std::string pub_key = "";
-        p.generate_new_key(bits, passphrase, user_name, email, comments, pub_key, priv_key);//2048
+        p.generate_new_key(bits, passphrase, user_name, email, comments, pub_key, priv_key);
         
         return OpenPgpKey(pub_key, priv_key);
     }
