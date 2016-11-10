@@ -117,6 +117,11 @@ namespace ProtonMail {
     
     
     std::vector<OpenPgpKey> OpenPgp::update_keys_passphrase(const std::vector<OpenPgpKey> & private_keys, const std::string & old_passphrase, const std::string & new_passphrase) {
+        
+        
+        
+        
+        
         return private_keys;
     }
     

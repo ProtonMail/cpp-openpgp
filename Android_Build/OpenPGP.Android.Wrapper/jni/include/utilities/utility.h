@@ -13,7 +13,7 @@
 #include <string>
 
 
-namespace pm {
+namespace ProtonMail {
     
     void optimized_trim(std::string& s);
     

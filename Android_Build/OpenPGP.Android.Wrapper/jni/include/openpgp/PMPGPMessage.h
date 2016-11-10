@@ -12,7 +12,7 @@
 #include "PGPMessage.h"
 
 
-namespace pm {
+namespace ProtonMail {
     
 
 class PMPGPMessage : public PGPMessage {
