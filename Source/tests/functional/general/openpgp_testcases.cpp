@@ -21,7 +21,7 @@
 
 namespace tests {
     namespace open_pgp_tests {
-        SUITE(openpgojs_testcases)
+        SUITE(openpgo_testcases)
         {
             auto pub_key =
             "-----BEGIN PGP PUBLIC KEY BLOCK-----" "\n"
@@ -181,45 +181,43 @@ namespace tests {
             
             TEST(generate_key_test) {
                 
-                {// invalid user name input
-                    auto username = "";
+                { // invalid user name input
+                    auto user_id = "";
                     auto email = "test@example.com";
                     auto passphrase = "";
-                    auto openPgp = ProtonMail::OpenPgp::create_instance();
-                    VERIFY_THROWS_EQUAL( openPgp->generate_key(username, email, "", 2048), std::runtime_error, "Invalid user name format");
+                    VERIFY_THROWS_EQUAL(ProtonMail::OpenPgp::generate_new_key(user_id, email, passphrase, 2048), std::runtime_error, "Invalid user name format");
                 }
+                //TODO:: add email user id validation
+//                { //should fail for invalid user email address
+//                    auto user_id = "Test User";
+//                    auto email = "textexample.com";
+//                    auto passphrase = "";
+//                    VERIFY_THROWS_EQUAL(ProtonMail::OpenPgp::generate_new_key(user_id, email, passphrase, 2048), std::runtime_error, "Invalid user name format");
+//                }
+//                
+//                { //should fail for invalid user email address
+//                    auto user_id = "Test User";
+//                    auto email = "text@examplecom";
+//                    auto passphrase = "";
+//                    VERIFY_THROWS_EQUAL(ProtonMail::OpenPgp::generate_new_key(user_id, email, passphrase, 2048), std::runtime_error, "Invalid email format");
+//                }
+//                
+//                { //should fail for invalid string user id
+//                    auto user_id = "Test User text@example.com>";
+//                    auto email = "test@example.com";
+//                    auto passphrase = "";
+//                    VERIFY_THROWS_EQUAL(ProtonMail::OpenPgp::generate_new_key(user_id, email, passphrase, 2048), std::runtime_error, "Invalid passphrase format");
+//                }
                 
-//                it('should fail for invalid user email address', function() {
-//                    var opt = {
-//                    userIds: [{ name: 'Test User', email: 'textexample.com' }]
-//                    };
-//                    var test = openpgp.generateKey.bind(null, opt);
-//                    expect(test).to.throw(/Invalid user id format/);
-//                });
+                { //should work for valid single user id & email
+                    auto user_id = "Test User";
+                    auto email = "text@example.com";
+                    auto passphrase = "123";
+                    auto new_key = ProtonMail::OpenPgp::generate_new_key(user_id, email, passphrase, 2048);
+                    VERIFY_IS_FALSE( new_key.private_key.empty());
+                    VERIFY_IS_FALSE( new_key.public_key.empty());
+                }
 
-//                it('should fail for invalid user email address', function() {
-//                    var opt = {
-//                    userIds: [{ name: 'Test User', email: 'text@examplecom' }]
-//                    };
-//                    var test = openpgp.generateKey.bind(null, opt);
-//                    expect(test).to.throw(/Invalid user id format/);
-//                });
-
-//                it('should fail for invalid string user id', function() {
-//                    var opt = {
-//                    userIds: ['Test User text@example.com>']
-//                    };
-//                    var test = openpgp.generateKey.bind(null, opt);
-//                    expect(test).to.throw(/Invalid user id format/);
-//                });
-
-//                it('should fail for invalid single string user id', function() {
-//                    var opt = {
-//                    userIds: 'Test User text@example.com>'
-//                    };
-//                    var test = openpgp.generateKey.bind(null, opt);
-//                    expect(test).to.throw(/Invalid user id format/);
-//                });
 
 //                it('should work for valid single string user id', function(done) {
 //                    var opt = {
@@ -231,13 +229,6 @@ namespace tests {
 //                it('should work for valid string user id', function(done) {
 //                    var opt = {
 //                    userIds: ['Test User <text@example.com>']
-//                    };
-//                    openpgp.generateKey(opt).then(function() { done(); });
-//                });
-
-//                it('should work for valid single user id hash', function(done) {
-//                    var opt = {
-//                    userIds: { name: 'Test User', email: 'text@example.com' }
 //                    };
 //                    openpgp.generateKey(opt).then(function() { done(); });
 //                });
@@ -296,20 +287,6 @@ namespace tests {
 //                    });
 //                });
 
-//                it('should delegate to async proxy', function() {
-//                    var workerStub = {
-//                    postMessage: function() {}
-//                    };
-//                    openpgp.initWorker({
-//                    worker: workerStub
-//                    });
-//                    var proxyGenStub = sinon.stub(openpgp.getWorker(), 'delegate');
-//                    getWebCryptoAllStub.returns();
-//                    
-//                    openpgp.generateKey();
-//                    expect(proxyGenStub.calledOnce).to.be.true;
-//                    expect(keyGenStub.calledOnce).to.be.false;
-//                });
             
             }
             

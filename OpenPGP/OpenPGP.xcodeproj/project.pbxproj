@@ -609,6 +609,8 @@
 		75BF8F521DA720EF000F350F /* srp_client_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75BF8F4F1DA720EE000F350F /* srp_client_impl.cpp */; };
 		75BF8F531DA720EF000F350F /* srp_client_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75BF8F4F1DA720EE000F350F /* srp_client_impl.cpp */; };
 		75BF8F541DA720EF000F350F /* srp_client_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75BF8F4F1DA720EE000F350F /* srp_client_impl.cpp */; };
+		75E220271DD52FC600078D6C /* openpgp_keyrings_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75E220261DD52FC600078D6C /* openpgp_keyrings_test.cpp */; };
+		75E220291DD5332600078D6C /* openpgp_bad_cases_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75E220281DD5332600078D6C /* openpgp_bad_cases_test.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -936,6 +938,8 @@
 		75BB158D1DB0002600F28083 /* bignumber.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bignumber.cpp; sourceTree = "<group>"; };
 		75BF8F491DA7088A000F350F /* ExpandHash.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExpandHash.cpp; sourceTree = "<group>"; };
 		75BF8F4F1DA720EE000F350F /* srp_client_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = srp_client_impl.cpp; sourceTree = "<group>"; };
+		75E220261DD52FC600078D6C /* openpgp_keyrings_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = openpgp_keyrings_test.cpp; path = general/openpgp_keyrings_test.cpp; sourceTree = "<group>"; };
+		75E220281DD5332600078D6C /* openpgp_bad_cases_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = openpgp_bad_cases_test.cpp; path = general/openpgp_bad_cases_test.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1440,6 +1444,8 @@
 			isa = PBXGroup;
 			children = (
 				75175A511DC9113700BD770C /* openpgp_testcases.cpp */,
+				75E220261DD52FC600078D6C /* openpgp_keyrings_test.cpp */,
+				75E220281DD5332600078D6C /* openpgp_bad_cases_test.cpp */,
 				755BEAF01DC80B1B00A0BE41 /* openpgp_publickey_test.cpp */,
 				75175A441DC81F7200BD770C /* openpgp_privatekey_test.cpp */,
 				75175A461DC908DE00BD770C /* openpgp_revoke_test.cpp */,
@@ -1650,7 +1656,9 @@
 				755BEAEA1DC7EE8500A0BE41 /* aes_128_ecb_test.cpp in Sources */,
 				75175A471DC908DE00BD770C /* openpgp_revoke_test.cpp in Sources */,
 				75175A521DC9113700BD770C /* openpgp_testcases.cpp in Sources */,
+				75E220291DD5332600078D6C /* openpgp_bad_cases_test.cpp in Sources */,
 				75175A501DC90D4C00BD770C /* opengpg_clearsign_test.cpp in Sources */,
+				75E220271DD52FC600078D6C /* openpgp_keyrings_test.cpp in Sources */,
 				750A76281DC4228100DE0E70 /* md5_tests.cpp in Sources */,
 				750A762E1DC426CB00DE0E70 /* sha_tests.cpp in Sources */,
 			);
