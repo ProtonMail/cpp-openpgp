@@ -2,7 +2,7 @@
 #include <openpgp/private_key.h>
 #include <openpgp/FindKey.h>
 
-using namespace pm::pgp;
+using namespace ProtonMail::pgp;
 
 // possible to mess up
 ID::Ptr find_user_id(const PGPSecretKey & k){

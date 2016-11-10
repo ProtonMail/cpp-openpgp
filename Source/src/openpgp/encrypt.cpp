@@ -401,7 +401,7 @@ PGPMessage encrypt_pka_only_sym_session(const std::string & passphrase, std::str
 }
 
 
-pm::PMPGPMessage encrypt_pka(const PGPPublicKey & pub, const std::string & data, const std::string & filename, const uint8_t sym_alg, const uint8_t comp, const bool mdc, const PGPSecretKey::Ptr & signer, const std::string & sig_passphrase, bool is_pm_pka)
+ProtonMail::PMPGPMessage encrypt_pka(const PGPPublicKey & pub, const std::string & data, const std::string & filename, const uint8_t sym_alg, const uint8_t comp, const bool mdc, const PGPSecretKey::Ptr & signer, const std::string & sig_passphrase, bool is_pm_pka)
 {
 //    std::string unencrypt_msg = [unencrypt_message UTF8String];
 //    unencrypt_msg = encode_utf8_base64_msg(unencrypt_msg);
@@ -435,7 +435,7 @@ pm::PMPGPMessage encrypt_pka(const PGPPublicKey & pub, const std::string & data,
 //    std::string out_msg =  protonmail_cryoto_headerMessage + aes_encrypted_data + protonmail_cryoto_tailMessage + "||" + protonmail_cryoto_headerRandomKey + encrypted_random_key + protonmail_cryoto_tailRandomKey;
 //    
 //    return [[NSString alloc] initWithUTF8String:out_msg.c_str()];
-    return pm::PMPGPMessage();
+    return ProtonMail::PMPGPMessage();
 }
 
 //TODO::add multiple passphrase support

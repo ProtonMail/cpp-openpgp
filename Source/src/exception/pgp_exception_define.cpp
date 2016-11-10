@@ -8,7 +8,7 @@
 
 #include <exception/pgp_exception_define.h>
 
-namespace pm {
+namespace ProtonMail {
     
     std::string to_string (const exception_code& val)
     {

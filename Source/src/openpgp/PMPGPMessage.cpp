@@ -14,7 +14,7 @@
 #include <utilities/consts.h>
 #include <utilities/base64.h>
 
-namespace pm {
+namespace ProtonMail {
     
     PMPGPMessage::PMPGPMessage() : PGPMessage()
     {

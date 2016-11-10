@@ -11,7 +11,7 @@
 #include <iostream>
 #include <iomanip>
 
-namespace pm {
+namespace ProtonMail {
     std::string hash_hmac(std::string algo, std::string data, std::string key, bool is_raw_data)
     {
         unsigned char hash[32];

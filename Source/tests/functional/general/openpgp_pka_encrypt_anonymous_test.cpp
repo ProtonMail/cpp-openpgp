@@ -17,7 +17,7 @@
 #include <algorithm>
 #include <string>
 
-using namespace pm::pgp;
+using namespace ProtonMail::pgp;
 
 namespace tests {
     namespace open_pgp_tests {

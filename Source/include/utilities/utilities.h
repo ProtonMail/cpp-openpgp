@@ -9,7 +9,7 @@
 
 
 
-namespace pm {
+namespace ProtonMail {
 
     
     

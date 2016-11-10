@@ -46,7 +46,7 @@
     NSString* Passpharse;
     BOOL isDebugMode;
     
-    pm::pgp::openpgp test;
+    ProtonMail::pgp::openpgp test;
 }
 
 
@@ -88,7 +88,7 @@
         std::string str_passphrase = [passphrase UTF8String];
         return check_private_passphrase(privateKey, str_passphrase);
     }
-    catch (const pm::pgp_exception & pgp_ex)
+    catch (const ProtonMail::pgp_exception & pgp_ex)
     {
         if (err)
         {
@@ -158,7 +158,7 @@
         std::string encrypt_msg = [encrypted_message UTF8String];
         
         PGPSecretKey privateKey(str_private_key);
-        pm::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
+        ProtonMail::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
         
         std::string test_plain_txt = decrypt_pka(privateKey, pm_pgp_msg, [passphrase UTF8String], false);
         
@@ -467,7 +467,7 @@
         }
         std::string encrypt_msg = [encrypted_message UTF8String];
         
-        pm::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
+        ProtonMail::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
         
         std::string test_plain_txt = decrypt_pka(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String], false);
         
@@ -603,7 +603,7 @@
         }
         std::string encrypt_msg = [encrypted_message UTF8String];
         std::string pwd = [password UTF8String];
-        pm::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
+        ProtonMail::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
         std::string out_unencrypt_msg = decrypt_sym(pm_pgp_msg, pwd);
         return [[NSString alloc] initWithUTF8String:out_unencrypt_msg.c_str()];
     }
@@ -681,7 +681,7 @@
         std::string str_new_passphrase = [new_passphrase UTF8String];
         
 //need add more error handling
-        std::string new_key = pm::pgp::update_passphrase(*private_key_, str_old_passphrase, str_new_passphrase);
+        std::string new_key = ProtonMail::pgp::update_passphrase(*private_key_, str_old_passphrase, str_new_passphrase);
         
         return [[NSString alloc] initWithUTF8String:new_key.c_str()];
     }
@@ -727,7 +727,7 @@
 //Generate new key pair
 - (NSMutableDictionary* ) generate_key:(NSString*)passphrase username:(NSString*)user_name error:(NSError**) err
 {
-    pm::pgp::openpgp p;
+    ProtonMail::pgp::openpgp p;
     
     
     std::string pwd = [passphrase UTF8String];
@@ -776,13 +776,13 @@
 }
 - (NSString* ) encrypt_mailbox_pwd:(NSString *)plain slat:(NSString*) value
 {
-    std::string outString = pm::encrypt_mailbox_password( [plain UTF8String], [value UTF8String]);
+    std::string outString = ProtonMail::encrypt_mailbox_password( [plain UTF8String], [value UTF8String]);
     return [[NSString alloc] initWithUTF8String:outString.c_str()];
 }
 
 - (NSString* ) decrypt_mailbox_pwd:(NSString *)encrypt_text slat:(NSString*) value
 {
-    std::string outString = pm::decrypt_mailbox_password([encrypt_text UTF8String], [value UTF8String]);
+    std::string outString = ProtonMail::decrypt_mailbox_password([encrypt_text UTF8String], [value UTF8String]);
     
     NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:[[NSString alloc] initWithUTF8String:outString.c_str()] options:0];
     NSString *decodedString = [[NSString alloc] initWithData:decodedData encoding:NSUTF8StringEncoding];
@@ -804,7 +804,7 @@
     std::string str_data_package = std::string((char* )[dataPackage bytes], [dataPackage length]);
     
     
-    pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
+    ProtonMail::PMPGPMessage pm_pgp_msg(str_key_package, true);
    // pm_pgp_msg.append(str_data_package, true);
     
     std::string test_plain_txt = decrypt_pka(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String], false);
@@ -819,7 +819,7 @@
     std::string str_data_package = std::string((char* )[dataPackage bytes], [dataPackage length]);
     std::string str_pwd =  [pwd UTF8String];
     
-    pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
+    ProtonMail::PMPGPMessage pm_pgp_msg(str_key_package, true);
     pm_pgp_msg.append(str_data_package, true);
     
     std::string test_plain_txt = decrypt_sym(pm_pgp_msg, str_pwd);
@@ -833,7 +833,7 @@
     std::string str_key_package = [keyPackage UTF8String];
     std::string str_data_package = [dataPackage UTF8String];
     
-    pm::PMPGPMessage pm_pgp_msg(str_key_package, false);
+    ProtonMail::PMPGPMessage pm_pgp_msg(str_key_package, false);
     pm_pgp_msg.append(str_data_package, false);
     
     std::string test_plain_txt = decrypt_pka(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String], false);
@@ -848,8 +848,8 @@
     std::string str_data_package = std::string((char* )[dataPackage bytes], [dataPackage length]);
     std::string str_password = [password UTF8String];
     
-    pm::PMPGPMessage pmp_key(str_key_package, true);
-    pm::PMPGPMessage pmp_data(str_data_package, true);
+    ProtonMail::PMPGPMessage pmp_key(str_key_package, true);
+    ProtonMail::PMPGPMessage pmp_data(str_data_package, true);
 
     std::string test_plain_txt = decrypt_pka_use_sym_session(pmp_data, pmp_key, str_password);
     //std::cout  << test_plain_txt << std::endl;
@@ -951,7 +951,7 @@
 - (NSData*) getPublicKeySessionKey:(NSData *) keyPackage error:(NSError**) err
 {
     std::string str_key_package = std::string((char* )[keyPackage bytes], [keyPackage length]);
-    pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
+    ProtonMail::PMPGPMessage pm_pgp_msg(str_key_package, true);
     std::string sessionKey = decrypt_pka_only_session(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String]);
     return [NSData dataWithBytes: sessionKey.c_str() length:sessionKey.length()];
 }
@@ -961,7 +961,7 @@
     std::string str_key_package = std::string((char* )[keyPackage bytes], [keyPackage length]);
     std::string str_password = [pwd UTF8String];
     
-    pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
+    ProtonMail::PMPGPMessage pm_pgp_msg(str_key_package, true);
     std::string sessionkey = decrypt_pka_only_sym_session(pm_pgp_msg, str_password);
     
     //std::cout << hexlify(sessionkey) << std::endl;
@@ -978,7 +978,7 @@
     
             std::string sKey = "12345678912345678912345678912345";
             std::string intext = "Some Crypto Text";
-    pm::openssl_aes_cfb_256_encrypt(intext,sKey);
+    ProtonMail::openssl_aes_cfb_256_encrypt(intext,sKey);
     
     
     
@@ -997,7 +997,7 @@
     std::string two = base64_encode(one);
     //std::cout << two << std::endl;
     
-    pm::PMPGPMessage pm_pgp_msg(one, false);
+    ProtonMail::PMPGPMessage pm_pgp_msg(one, false);
     
     pm_pgp_msg.append(data, false);
     
@@ -1027,7 +1027,7 @@
     
     
     
-   // std::cout << pm::decrypt_message_id(test) << std::endl;
+   // std::cout << ProtonMail::decrypt_message_id(test) << std::endl;
     
     return @"";
 }

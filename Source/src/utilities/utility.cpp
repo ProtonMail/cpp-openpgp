@@ -29,7 +29,7 @@
 
 #include <string.h>
 
-namespace pm {
+namespace ProtonMail {
     void optimized_trim(std::string& s)
     {
         std::string::size_type pos = s.find_last_not_of(' ');

@@ -23,9 +23,6 @@ std::string ascii2radix64(std::string str, char char62, char char63){
     return out + pad;
 }
 
-
-
-
 std::string radix642ascii(std::string str, char char62, char char63){
     if (str.size() & 3){
         throw std::runtime_error("Error: Input string length is not a multiple of 4.");

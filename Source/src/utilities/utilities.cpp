@@ -7,7 +7,7 @@
 #include <hash/HMAC.h>
 #include <encryption/AES.h>
 
-namespace pm {
+namespace ProtonMail {
 
     
     

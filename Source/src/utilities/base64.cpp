@@ -152,7 +152,7 @@ std::string base64_decode(std::string const& encoded_string) {
 //    std::string decoded = base64_encode((unsigned char*)base_decoded.c_str(), static_cast<int>(base_decoded.size()));
 //
 //  //  std::cout << decoded<<std::endl;
-//    pm::optimized_trim(decoded);
+//    ProtonMail::optimized_trim(decoded);
 //
 //    return decoded;
 //}
@@ -170,7 +170,7 @@ std::string base64_decode(std::string const& encoded_string) {
 //    std::string decoded = base64_encode((unsigned char*)base_decoded.c_str(), static_cast<int>(base_decoded.size()));
 //
 //  //  std::cout << decoded<<std::endl;
-//    pm::optimized_trim(decoded);
+//    ProtonMail::optimized_trim(decoded);
 //
 //    return decoded;
 //
@@ -178,7 +178,7 @@ std::string base64_decode(std::string const& encoded_string) {
 
 std::string decode_utf8_base64(std::string & in)
 {
-    pm::optimized_trim(in);
+    ProtonMail::optimized_trim(in);
     //std::cout << in<<std::endl;
     std::string aaa = base64_decode(in); //atob(in); //decode
     //std::cout << hexlify( aaa) <<std::endl;
@@ -198,7 +198,7 @@ std::string decode_utf8_base64(std::string & in)
 
 std::string decode_utf8_base64_msg(std::string & in)
 {
-    pm::optimized_trim(in);
+    ProtonMail::optimized_trim(in);
     //std::cout << in<<std::endl;
     std::string aaa = base64_decode(in); //atob(in); //decode
     //std::cout << hexlify( aaa) <<std::endl;

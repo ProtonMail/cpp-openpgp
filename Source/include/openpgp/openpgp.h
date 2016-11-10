@@ -48,7 +48,7 @@ __RCSID("$NetBSD: openssl_crypto.c,v 1.32 2010/11/07 06:56:52 agc Exp $");
 #include <base/BaseObject.h>
 
 
-namespace pm {
+namespace ProtonMail {
 namespace pgp {
 
     class openpgp : public BaseObject {

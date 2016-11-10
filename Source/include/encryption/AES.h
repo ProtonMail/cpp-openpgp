@@ -31,7 +31,7 @@ class AES : public SymAlg{
 };
 
 
-namespace pm {
+namespace ProtonMail {
     
     std::string aes_cbc_256_encrypt(std::string key, std::string iv, std::string text);
     std::string aes_cbc_256_decrypt(std::string key, std::string iv, std::string enc_text);

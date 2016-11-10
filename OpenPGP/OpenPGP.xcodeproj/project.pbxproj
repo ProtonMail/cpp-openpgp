@@ -744,7 +744,7 @@
 		75175A4F1DC90D4C00BD770C /* opengpg_clearsign_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opengpg_clearsign_test.cpp; path = general/opengpg_clearsign_test.cpp; sourceTree = "<group>"; };
 		75175A511DC9113700BD770C /* openpgp_testcases.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = openpgp_testcases.cpp; path = general/openpgp_testcases.cpp; sourceTree = "<group>"; };
 		7517E6591AFABC35007EA967 /* rsa_key.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rsa_key.cpp; sourceTree = "<group>"; };
-		7517E6621AFABC35007EA967 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
+		7517E6621AFABC35007EA967 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CMakeLists.txt; path = src/CMakeLists.txt; sourceTree = "<group>"; };
 		7517E6681AFABC35007EA967 /* AES.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AES.cpp; sourceTree = "<group>"; };
 		7517E6691AFABC35007EA967 /* Blowfish.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Blowfish.cpp; sourceTree = "<group>"; };
 		7517E66A1AFABC35007EA967 /* Camellia.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camellia.cpp; sourceTree = "<group>"; };
@@ -1048,6 +1048,7 @@
 				7517E6571AFABC35007EA967 /* src */,
 				750BA3DF1AAA9583003FEA16 /* samples */,
 				750BA4E91AAA9584003FEA16 /* tests */,
+				7517E6621AFABC35007EA967 /* CMakeLists.txt */,
 			);
 			name = Source;
 			path = ../Source;
@@ -1076,7 +1077,6 @@
 				7545D3F61C45A964000D2F8D /* bridge_impl */,
 				75AE62E11AFBCFED00131986 /* compress */,
 				7517E6581AFABC35007EA967 /* base */,
-				7517E6621AFABC35007EA967 /* CMakeLists.txt */,
 				7517E6671AFABC35007EA967 /* encryption */,
 				7517E6751AFABC35007EA967 /* exception */,
 				7517E6781AFABC35007EA967 /* hash */,
