@@ -20,24 +20,37 @@ address = record {
 #}
 
 open_pgp = interface +c {
+
+    # create and init an instance those instance have addresses manager build in
+    # if want deal with single key should use the static functions
     static create_instance() : open_pgp;
-	static create_instance_with_keys(address : address) : open_pgp;
+    # create and init an instance with addresses
+	static create_instance_with_address(address : address) : open_pgp;
+	static create_instance_with_addresses(address : list<address>) : open_pgp;
 
-    add_address(address : address) : bool;
-    remove_address(address_id : string) : bool;
-    clean_addresses() : bool;
-
-    #disable/enable debug model
-    enable_debug(isDebug : bool);
-
-    #generat new key pair
-    generate_key(user_name : string, domain : string, passphrase : string, bits : i32) : open_pgp_key;
-
-    #check is primary key passphrase ok
-    check_passphrase(private_key : string, passphrase : string) : bool;
-
+    # generate new key 
+    static generate_new_key(user_id : string, email : string, passphrase : string, bits : i32) : open_pgp_key;
     #update single private key password
-    update_single_passphrase(private_key : string, old_passphrase : string, new_passphrase : string) : string;
+    static update_single_passphrase(private_key : string, old_passphrase : string, new_passphrase : string) : string;
+    #disable/enable debug model
+    static enable_debug(isDebug : bool);
+    #check is private key passphrase ok
+    static check_passphrase(private_key : string, passphrase : string) : bool;
+    #update multiple pgp private keys return are new keys
+    static update_keys_passphrase(private_keys : list<open_pgp_key>, old_passphrase : string, new_passphrase : string) : list<open_pgp_key>;
+    
+
+    #add a new address into addresses list
+    add_address(address : address) : bool;
+    #remove a exsit address from the list based on address id
+    remove_address(address_id : string) : bool;
+    #clean address list
+    clean_addresses() : bool;
+   
+    # old functions blow
+
+    #generat new key pair (will be deprecated)
+    generate_key(user_name : string, domain : string, passphrase : string, bits : i32) : open_pgp_key;
 
     #update the information carried in the packet. //TODO need add more parameters
     update_private_info(private_key : string);
@@ -78,6 +91,7 @@ open_pgp = interface +c {
     decrypt_hash_cbc(encrypted_text : string, password : string) : string;
 }
 
+
 srp_proofs = record {
 	client_ephemeral : binary;
 	client_proof : binary;
@@ -90,6 +104,5 @@ srp_client = interface +c {
     #SRP
 	static generate_proofs(bit_length : i32, modulus_repr : binary, server_ephemeral_repr : binary, hashed_password_repr : binary): srp_proofs;
 	static generate_Verifier(bit_length : i32, modulus_repr : binary, hashed_password_repr : binary) : binary;
-    
 }
 

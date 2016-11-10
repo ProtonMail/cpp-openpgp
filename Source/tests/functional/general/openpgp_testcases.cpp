@@ -185,7 +185,7 @@ namespace tests {
                     auto username = "";
                     auto email = "test@example.com";
                     auto passphrase = "";
-                    auto openPgp = ProtonMail::OpenPgpImpl::create_instance();
+                    auto openPgp = ProtonMail::OpenPgp::create_instance();
                     VERIFY_THROWS_EQUAL( openPgp->generate_key(username, email, "", 2048), std::runtime_error, "Invalid user name format");
                 }
                 

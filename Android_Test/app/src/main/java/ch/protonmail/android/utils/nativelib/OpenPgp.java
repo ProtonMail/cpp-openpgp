@@ -3,6 +3,7 @@
 
 package ch.protonmail.android.utils.nativelib;
 
+import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
@@ -13,25 +14,21 @@ import javax.annotation.Nonnull;
  *}
  */
 public abstract class OpenPgp {
+    /**add a new address into addresses list */
     public abstract boolean addAddress(@Nonnull Address address);
 
+    /**remove a exsit address from the list based on address id */
     public abstract boolean removeAddress(@Nonnull String addressId);
 
+    /**clean address list */
     public abstract boolean cleanAddresses();
 
-    /**disable/enable debug model */
-    public abstract void enableDebug(boolean isDebug);
-
-    /**generat new key pair */
+    /**
+     * old functions blow
+     *generat new key pair (will be deprecated)
+     */
     @Nonnull
     public abstract OpenPgpKey generateKey(@Nonnull String userName, @Nonnull String domain, @Nonnull String passphrase, int bits);
-
-    /**check is primary key passphrase ok */
-    public abstract boolean checkPassphrase(@Nonnull String privateKey, @Nonnull String passphrase);
-
-    /**update single private key password */
-    @Nonnull
-    public abstract String updateSinglePassphrase(@Nonnull String privateKey, @Nonnull String oldPassphrase, @Nonnull String newPassphrase);
 
     /**update the information carried in the packet. //TODO need add more parameters */
     public abstract void updatePrivateInfo(@Nonnull String privateKey);
@@ -104,11 +101,37 @@ public abstract class OpenPgp {
     @Nonnull
     public abstract String decryptHashCbc(@Nonnull String encryptedText, @Nonnull String password);
 
+    /**
+     * create and init an instance those instance have addresses manager build in
+     * if want deal with single key should use the static functions
+     */
     @CheckForNull
     public static native OpenPgp createInstance();
 
+    /** create and init an instance with addresses */
     @CheckForNull
-    public static native OpenPgp createInstanceWithKeys(@Nonnull Address address);
+    public static native OpenPgp createInstanceWithAddress(@Nonnull Address address);
+
+    @CheckForNull
+    public static native OpenPgp createInstanceWithAddresses(@Nonnull ArrayList<Address> address);
+
+    /** generate new key  */
+    @Nonnull
+    public static native OpenPgpKey generateNewKey(@Nonnull String userId, @Nonnull String email, @Nonnull String passphrase, int bits);
+
+    /**update single private key password */
+    @Nonnull
+    public static native String updateSinglePassphrase(@Nonnull String privateKey, @Nonnull String oldPassphrase, @Nonnull String newPassphrase);
+
+    /**disable/enable debug model */
+    public static native void enableDebug(boolean isDebug);
+
+    /**check is private key passphrase ok */
+    public static native boolean checkPassphrase(@Nonnull String privateKey, @Nonnull String passphrase);
+
+    /**update multiple pgp private keys return are new keys */
+    @Nonnull
+    public static native ArrayList<OpenPgpKey> updateKeysPassphrase(@Nonnull ArrayList<OpenPgpKey> privateKeys, @Nonnull String oldPassphrase, @Nonnull String newPassphrase);
 
     private static final class CppProxy extends OpenPgp
     {
@@ -158,36 +181,12 @@ public abstract class OpenPgp {
         private native boolean native_cleanAddresses(long _nativeRef);
 
         @Override
-        public void enableDebug(boolean isDebug)
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_enableDebug(this.nativeRef, isDebug);
-        }
-        private native void native_enableDebug(long _nativeRef, boolean isDebug);
-
-        @Override
         public OpenPgpKey generateKey(String userName, String domain, String passphrase, int bits)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
             return native_generateKey(this.nativeRef, userName, domain, passphrase, bits);
         }
         private native OpenPgpKey native_generateKey(long _nativeRef, String userName, String domain, String passphrase, int bits);
-
-        @Override
-        public boolean checkPassphrase(String privateKey, String passphrase)
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_checkPassphrase(this.nativeRef, privateKey, passphrase);
-        }
-        private native boolean native_checkPassphrase(long _nativeRef, String privateKey, String passphrase);
-
-        @Override
-        public String updateSinglePassphrase(String privateKey, String oldPassphrase, String newPassphrase)
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_updateSinglePassphrase(this.nativeRef, privateKey, oldPassphrase, newPassphrase);
-        }
-        private native String native_updateSinglePassphrase(long _nativeRef, String privateKey, String oldPassphrase, String newPassphrase);
 
         @Override
         public void updatePrivateInfo(String privateKey)

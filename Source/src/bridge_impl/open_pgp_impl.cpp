@@ -20,16 +20,113 @@
 
 
 namespace ProtonMail {
+    // static functions
+    
     std::shared_ptr <ProtonMail::OpenPgp> OpenPgp::create_instance() {
         return std::make_shared<OpenPgpImpl>();
     }
 
-    std::shared_ptr <ProtonMail::OpenPgp> OpenPgp::create_instance_with_keys(const Address & address) {
+    std::shared_ptr <ProtonMail::OpenPgp> OpenPgp::create_instance_with_address(const Address & address) {
         std::shared_ptr <ProtonMail::OpenPgp> pOpenPGP = std::make_shared<OpenPgpImpl>();
         pOpenPGP->add_address(address);
         return pOpenPGP;
     }
+    
+    std::shared_ptr <ProtonMail::OpenPgp> OpenPgp::create_instance_with_addresses(const std::vector<Address> & address) {
+        std::shared_ptr <ProtonMail::OpenPgp> pOpenPGP = std::make_shared<OpenPgpImpl>();
+        for (auto add : address) // access by reference to avoid copying
+        {
+            pOpenPGP->add_address(add);
+        }
+        return pOpenPGP;
+    }
+    
+    void OpenPgp::enable_debug(bool isDebug) {
+        //OpenPgpImpl::m_is_debug_mode = isDebug;
+    }
+    
+    OpenPgpKey OpenPgp::generate_new_key(const std::string & user_id, const std::string & email, const std::string & passphrase, int32_t bits) {
+        
+        pm::pgp::openpgp p;
+        
+        if (user_id.empty()) {
+            throw std::runtime_error("Invalid user name format");
+        }
+        
+        if (email.empty()) {
+            throw std::runtime_error("Invalid user name format");
+        }
+        
+        
+        if (passphrase.empty()) {
+            throw std::runtime_error("Invalid user name format");
+        }
+        
+        std::string comments = "create by ios";
+        
+        std::string priv_key = "";
+        std::string pub_key = "";
+        p.generate_new_key(bits, passphrase, user_id, email, comments, pub_key, priv_key);
+        
+        return OpenPgpKey(pub_key, priv_key);
+    }
+    
+    std::string OpenPgp::update_single_passphrase(const std::string & private_key, const std::string & old_passphrase, const std::string & new_passphrase) {
+        
+        std::string str_private_key = private_key;
+        PGPSecretKey secret_key;
+        secret_key.set_is_debug(false);
+        secret_key.read(str_private_key);
+        
+        bool isOk = check_private_passphrase(secret_key, old_passphrase);
+        if (!isOk) {
+            return "";
+        }
+        std::string new_key = pm::pgp::update_passphrase(secret_key, old_passphrase, new_passphrase);
+        
+        return new_key;
+    }
 
+
+    /**check is primary key passphrase ok */
+    bool OpenPgp::check_passphrase(const std::string &private_key, const std::string &passphrase) {
+        try
+        {
+            std::string str_private_key = private_key;
+//            if(OpenPgpImpl::m_is_debug_mode)
+//                std::cout << private_key;
+            
+            PGPSecretKey privateKey(str_private_key);
+            
+            return check_private_passphrase(privateKey, passphrase);
+        }
+        catch (const pm::pgp_exception & pgp_ex)
+        {
+            
+        }
+        catch (const std::runtime_error& error)
+        {
+            
+        }
+        catch (const std::exception& e)
+        {
+            
+        }
+        catch (...)
+        {
+            
+        }
+        return false;
+    }
+
+
+    std::vector<OpenPgpKey> OpenPgp::update_keys_passphrase(const std::vector<OpenPgpKey> & private_keys, const std::string & old_passphrase, const std::string & new_passphrase) {
+        return private_keys;
+    }
+    
+    
+    //
+    //
     OpenPgpImpl::OpenPgpImpl() {
         m_private_key = std::make_shared<PGPSecretKey>();
     }
@@ -77,78 +174,6 @@ namespace ProtonMail {
         m_addresses.clear();
         m_private_key = std::make_shared<PGPSecretKey>();
         return true;
-    }
-    
-    void OpenPgpImpl::enable_debug(bool isDebug) {
-        
-    }
-    
-    /**check is primary key passphrase ok */
-    bool OpenPgpImpl::check_passphrase(const std::string &private_key,
-                                       const std::string &passphrase) {
-    
-        try
-        {
-            std::string str_private_key = private_key;
-            if(m_is_debug_mode)
-                std::cout << private_key;
-            
-            PGPSecretKey privateKey(str_private_key);
-            
-            return check_private_passphrase(privateKey, passphrase);
-        }
-        catch (const pm::pgp_exception & pgp_ex)
-        {
-            
-        }
-        catch (const std::runtime_error& error)
-        {
-            
-        }
-        catch (const std::exception& e)
-        {
-            
-        }
-        catch (...)
-        {
-            
-        }
-        return false;
-    }
-    
-    std::string OpenPgpImpl::update_single_passphrase(const std::string & private_key, const std::string & old_passphrase, const std::string & new_passphrase) {
-        try
-        {
-            std::string str_private_key = private_key;
-            PGPSecretKey secret_key;
-            secret_key.set_is_debug(false);
-            secret_key.read(str_private_key);
-            
-            bool isOk = check_private_passphrase(secret_key, old_passphrase);
-            if (!isOk) {
-                return "";
-            }
-            std::string new_key = pm::pgp::update_passphrase(secret_key, old_passphrase, new_passphrase);
-            
-            return new_key;
-        }
-        catch (const pm::pgp_exception & pgp_ex)
-        {
-            
-        }
-        catch (const std::runtime_error& error)
-        {
-            
-        }
-        catch (const std::exception& e)
-        {
-            
-        }
-        catch (...)
-        {
-            
-        }
-        return "";
     }
     
     /**update the information carried in the packet. //TODO need add more parameters */

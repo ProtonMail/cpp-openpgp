@@ -23,27 +23,46 @@ class OpenPgp {
 public:
     virtual ~OpenPgp() {}
 
+    /**
+     * create and init an instance those instance have addresses manager build in
+     * if want deal with single key should use the static functions
+     */
     static std::shared_ptr<OpenPgp> create_instance();
 
-    static std::shared_ptr<OpenPgp> create_instance_with_keys(const Address & address);
+    /** create and init an instance with addresses */
+    static std::shared_ptr<OpenPgp> create_instance_with_address(const Address & address);
 
-    virtual bool add_address(const Address & address) = 0;
+    static std::shared_ptr<OpenPgp> create_instance_with_addresses(const std::vector<Address> & address);
 
-    virtual bool remove_address(const std::string & address_id) = 0;
-
-    virtual bool clean_addresses() = 0;
-
-    /**disable/enable debug model */
-    virtual void enable_debug(bool isDebug) = 0;
-
-    /**generat new key pair */
-    virtual OpenPgpKey generate_key(const std::string & user_name, const std::string & domain, const std::string & passphrase, int32_t bits) = 0;
-
-    /**check is primary key passphrase ok */
-    virtual bool check_passphrase(const std::string & private_key, const std::string & passphrase) = 0;
+    /** generate new key  */
+    static OpenPgpKey generate_new_key(const std::string & user_id, const std::string & email, const std::string & passphrase, int32_t bits);
 
     /**update single private key password */
-    virtual std::string update_single_passphrase(const std::string & private_key, const std::string & old_passphrase, const std::string & new_passphrase) = 0;
+    static std::string update_single_passphrase(const std::string & private_key, const std::string & old_passphrase, const std::string & new_passphrase);
+
+    /**disable/enable debug model */
+    static void enable_debug(bool isDebug);
+
+    /**check is private key passphrase ok */
+    static bool check_passphrase(const std::string & private_key, const std::string & passphrase);
+
+    /**update multiple pgp private keys return are new keys */
+    static std::vector<OpenPgpKey> update_keys_passphrase(const std::vector<OpenPgpKey> & private_keys, const std::string & old_passphrase, const std::string & new_passphrase);
+
+    /**add a new address into addresses list */
+    virtual bool add_address(const Address & address) = 0;
+
+    /**remove a exsit address from the list based on address id */
+    virtual bool remove_address(const std::string & address_id) = 0;
+
+    /**clean address list */
+    virtual bool clean_addresses() = 0;
+
+    /**
+     * old functions blow
+     *generat new key pair (will be deprecated)
+     */
+    virtual OpenPgpKey generate_key(const std::string & user_name, const std::string & domain, const std::string & passphrase, int32_t bits) = 0;
 
     /**update the information carried in the packet. //TODO need add more parameters */
     virtual void update_private_info(const std::string & private_key) = 0;

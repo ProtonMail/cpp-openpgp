@@ -40,10 +40,67 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (nullable PMNOpenPgp *)createInstanceWithKeys:(nonnull PMNAddress *)address {
++ (nullable PMNOpenPgp *)createInstanceWithAddress:(nonnull PMNAddress *)address {
     try {
-        auto objcpp_result_ = ::ProtonMail::OpenPgp::create_instance_with_keys(::OBJ_ProtonMail::Address::toCpp(address));
+        auto objcpp_result_ = ::ProtonMail::OpenPgp::create_instance_with_address(::OBJ_ProtonMail::Address::toCpp(address));
         return ::OBJ_ProtonMail::OpenPgp::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
++ (nullable PMNOpenPgp *)createInstanceWithAddresses:(nonnull NSArray<PMNAddress *> *)address {
+    try {
+        auto objcpp_result_ = ::ProtonMail::OpenPgp::create_instance_with_addresses(::djinni::List<::OBJ_ProtonMail::Address>::toCpp(address));
+        return ::OBJ_ProtonMail::OpenPgp::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
++ (nonnull PMNOpenPgpKey *)generateNewKey:(nonnull NSString *)userId
+                                    email:(nonnull NSString *)email
+                               passphrase:(nonnull NSString *)passphrase
+                                     bits:(int32_t)bits {
+    try {
+        auto objcpp_result_ = ::ProtonMail::OpenPgp::generate_new_key(::djinni::String::toCpp(userId),
+                                                                      ::djinni::String::toCpp(email),
+                                                                      ::djinni::String::toCpp(passphrase),
+                                                                      ::djinni::I32::toCpp(bits));
+        return ::OBJ_ProtonMail::OpenPgpKey::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
++ (nonnull NSString *)updateSinglePassphrase:(nonnull NSString *)privateKey
+                               oldPassphrase:(nonnull NSString *)oldPassphrase
+                               newPassphrase:(nonnull NSString *)newPassphrase {
+    try {
+        auto objcpp_result_ = ::ProtonMail::OpenPgp::update_single_passphrase(::djinni::String::toCpp(privateKey),
+                                                                              ::djinni::String::toCpp(oldPassphrase),
+                                                                              ::djinni::String::toCpp(newPassphrase));
+        return ::djinni::String::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
++ (void)enableDebug:(BOOL)isDebug {
+    try {
+        ::ProtonMail::OpenPgp::enable_debug(::djinni::Bool::toCpp(isDebug));
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
++ (BOOL)checkPassphrase:(nonnull NSString *)privateKey
+             passphrase:(nonnull NSString *)passphrase {
+    try {
+        auto objcpp_result_ = ::ProtonMail::OpenPgp::check_passphrase(::djinni::String::toCpp(privateKey),
+                                                                      ::djinni::String::toCpp(passphrase));
+        return ::djinni::Bool::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
++ (nonnull NSArray<PMNOpenPgpKey *> *)updateKeysPassphrase:(nonnull NSArray<PMNOpenPgpKey *> *)privateKeys
+                                             oldPassphrase:(nonnull NSString *)oldPassphrase
+                                             newPassphrase:(nonnull NSString *)newPassphrase {
+    try {
+        auto objcpp_result_ = ::ProtonMail::OpenPgp::update_keys_passphrase(::djinni::List<::OBJ_ProtonMail::OpenPgpKey>::toCpp(privateKeys),
+                                                                            ::djinni::String::toCpp(oldPassphrase),
+                                                                            ::djinni::String::toCpp(newPassphrase));
+        return ::djinni::List<::OBJ_ProtonMail::OpenPgpKey>::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
@@ -68,12 +125,6 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (void)enableDebug:(BOOL)isDebug {
-    try {
-        _cppRefHandle.get()->enable_debug(::djinni::Bool::toCpp(isDebug));
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
 - (nonnull PMNOpenPgpKey *)generateKey:(nonnull NSString *)userName
                                 domain:(nonnull NSString *)domain
                             passphrase:(nonnull NSString *)passphrase
@@ -84,26 +135,6 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
                                                                 ::djinni::String::toCpp(passphrase),
                                                                 ::djinni::I32::toCpp(bits));
         return ::OBJ_ProtonMail::OpenPgpKey::fromCpp(objcpp_result_);
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (BOOL)checkPassphrase:(nonnull NSString *)privateKey
-             passphrase:(nonnull NSString *)passphrase {
-    try {
-        auto objcpp_result_ = _cppRefHandle.get()->check_passphrase(::djinni::String::toCpp(privateKey),
-                                                                    ::djinni::String::toCpp(passphrase));
-        return ::djinni::Bool::fromCpp(objcpp_result_);
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (nonnull NSString *)updateSinglePassphrase:(nonnull NSString *)privateKey
-                               oldPassphrase:(nonnull NSString *)oldPassphrase
-                               newPassphrase:(nonnull NSString *)newPassphrase {
-    try {
-        auto objcpp_result_ = _cppRefHandle.get()->update_single_passphrase(::djinni::String::toCpp(privateKey),
-                                                                            ::djinni::String::toCpp(oldPassphrase),
-                                                                            ::djinni::String::toCpp(newPassphrase));
-        return ::djinni::String::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 

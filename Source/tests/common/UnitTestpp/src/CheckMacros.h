@@ -227,7 +227,7 @@
             } catch(const std::exception & _exc) { \
                 std::string _msg(_exc.what()); \
                 VERIFY_IS_TRUE(_msg.size() > 0); \
-                VERIFY_ARE_EQUAL(_msg, #actual); \
+                VERIFY_ARE_EQUAL(_msg, actual); \
                 throw; \
             } \
         } \

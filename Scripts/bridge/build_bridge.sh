@@ -14,8 +14,8 @@ java_out_location=${PWD}/../../Android_Test/app/src/main/java/ch/protonmail/andr
 jni_cpp_out_location=${PWD}/../../Android_Build/OpenPGP.Android.Wrapper/jni/generated_cpp
 jni_cpp_header_out_location=${PWD}/../../Android_Build/OpenPGP.Android.Wrapper/jni/generated_h
 
-objc_out=${PWD}/../../OpenPGP_OSX_Lib/OpenPGP_OSX_Lib
-objc_cpp_out=${PWD}/../../OpenPGP_OSX_Lib/OpenPGP_OSX_Lib
+objc_out=${PWD}/../../OpenPGP/OpenPGPLib
+objc_cpp_out=${PWD}/../../OpenPGP/OpenPGPLib
 
 rm -rf $java_out_location
 rm -rf $jni_cpp_out_location
