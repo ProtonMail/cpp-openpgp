@@ -1,6 +1,8 @@
 open_pgp_key = record {
+    key_id : string;
 	public_key : string;
 	private_key : string;
+    finger_print : string;
 }
 
 encrypt_package = record {

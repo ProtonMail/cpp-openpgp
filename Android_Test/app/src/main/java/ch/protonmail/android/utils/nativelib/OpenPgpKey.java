@@ -9,15 +9,28 @@ import javax.annotation.Nonnull;
 public final class OpenPgpKey {
 
 
+    /*package*/ final String mKeyId;
+
     /*package*/ final String mPublicKey;
 
     /*package*/ final String mPrivateKey;
 
+    /*package*/ final String mFingerPrint;
+
     public OpenPgpKey(
+            @Nonnull String keyId,
             @Nonnull String publicKey,
-            @Nonnull String privateKey) {
+            @Nonnull String privateKey,
+            @Nonnull String fingerPrint) {
+        this.mKeyId = keyId;
         this.mPublicKey = publicKey;
         this.mPrivateKey = privateKey;
+        this.mFingerPrint = fingerPrint;
+    }
+
+    @Nonnull
+    public String getKeyId() {
+        return mKeyId;
     }
 
     @Nonnull
@@ -30,11 +43,18 @@ public final class OpenPgpKey {
         return mPrivateKey;
     }
 
+    @Nonnull
+    public String getFingerPrint() {
+        return mFingerPrint;
+    }
+
     @Override
     public String toString() {
         return "OpenPgpKey{" +
-                "mPublicKey=" + mPublicKey +
+                "mKeyId=" + mKeyId +
+                "," + "mPublicKey=" + mPublicKey +
                 "," + "mPrivateKey=" + mPrivateKey +
+                "," + "mFingerPrint=" + mFingerPrint +
         "}";
     }
 

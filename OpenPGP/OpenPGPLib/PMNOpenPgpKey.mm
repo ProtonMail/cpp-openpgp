@@ -6,26 +6,34 @@
 
 @implementation PMNOpenPgpKey
 
-- (nonnull instancetype)initWithPublicKey:(nonnull NSString *)publicKey
-                               privateKey:(nonnull NSString *)privateKey
+- (nonnull instancetype)initWithKeyId:(nonnull NSString *)keyId
+                            publicKey:(nonnull NSString *)publicKey
+                           privateKey:(nonnull NSString *)privateKey
+                          fingerPrint:(nonnull NSString *)fingerPrint
 {
     if (self = [super init]) {
+        _keyId = [keyId copy];
         _publicKey = [publicKey copy];
         _privateKey = [privateKey copy];
+        _fingerPrint = [fingerPrint copy];
     }
     return self;
 }
 
-+ (nonnull instancetype)openPgpKeyWithPublicKey:(nonnull NSString *)publicKey
-                                     privateKey:(nonnull NSString *)privateKey
++ (nonnull instancetype)openPgpKeyWithKeyId:(nonnull NSString *)keyId
+                                  publicKey:(nonnull NSString *)publicKey
+                                 privateKey:(nonnull NSString *)privateKey
+                                fingerPrint:(nonnull NSString *)fingerPrint
 {
-    return [[self alloc] initWithPublicKey:publicKey
-                                privateKey:privateKey];
+    return [[self alloc] initWithKeyId:keyId
+                             publicKey:publicKey
+                            privateKey:privateKey
+                           fingerPrint:fingerPrint];
 }
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@ %p publicKey:%@ privateKey:%@>", self.class, (void *)self, self.publicKey, self.privateKey];
+    return [NSString stringWithFormat:@"<%@ %p keyId:%@ publicKey:%@ privateKey:%@ fingerPrint:%@>", self.class, (void *)self, self.keyId, self.publicKey, self.privateKey, self.fingerPrint];
 }
 
 @end

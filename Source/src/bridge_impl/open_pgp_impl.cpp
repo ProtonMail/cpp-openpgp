@@ -46,28 +46,22 @@ namespace ProtonMail {
     }
     
     OpenPgpKey OpenPgp::generate_new_key(const std::string & user_id, const std::string & email, const std::string & passphrase, int32_t bits) {
-        
         ProtonMail::pgp::openpgp p;
-        
         if (user_id.empty()) {
             throw std::runtime_error("Invalid user name format");
         }
-        
         if (email.empty()) {
             throw std::runtime_error("Invalid email format");
         }
-        
         if (passphrase.empty()) {
             throw std::runtime_error("Invalid passphrase format");
         }
-        
         std::string comments = "create by ios";
-        
         std::string priv_key = "";
         std::string pub_key = "";
         p.generate_new_key(bits, passphrase, user_id, email, comments, pub_key, priv_key);
         
-        return OpenPgpKey(pub_key, priv_key);
+        return OpenPgpKey("", pub_key, priv_key, "");
     }
     
     std::string OpenPgp::update_single_passphrase(const std::string & private_key, const std::string & old_passphrase, const std::string & new_passphrase)
@@ -115,16 +109,19 @@ namespace ProtonMail {
         return false;
     }
     
-    
     std::vector<OpenPgpKey> OpenPgp::update_keys_passphrase(const std::vector<OpenPgpKey> & private_keys, const std::string & old_passphrase, const std::string & new_passphrase) {
-        
-        
-        
-        
-        
-        return private_keys;
+        //any kind of exceptions will stop this update
+        auto updated_keys = std::vector<OpenPgpKey>();
+        for (auto key : private_keys) {
+            std::string str_private_key = key.private_key;
+            PGPSecretKey secret_key;
+            secret_key.set_is_debug(false);
+            secret_key.read(str_private_key);
+            std::string new_key = ProtonMail::pgp::update_passphrase(secret_key, old_passphrase, new_passphrase);
+            updated_keys.push_back(OpenPgpKey(key.key_id, key.public_key, key.private_key, key.finger_print));
+        }
+        return updated_keys;
     }
-    
     
     //
     //
@@ -137,14 +134,10 @@ namespace ProtonMail {
     }
     
     OpenPgpKey OpenPgpImpl::generate_key(const std::string & user_name, const std::string & domain, const std::string & passphrase, int32_t bits) {
-        
         ProtonMail::pgp::openpgp p;
-        
         if (user_name.empty()) {
             throw std::runtime_error("Invalid user name format");
         }
-        
-        
         std::string email = user_name + "@" + domain;
         std::string comments = "create by ios";
         
@@ -152,7 +145,7 @@ namespace ProtonMail {
         std::string pub_key = "";
         p.generate_new_key(bits, passphrase, user_name, email, comments, pub_key, priv_key);
         
-        return OpenPgpKey(pub_key, priv_key);
+        return OpenPgpKey("", pub_key, priv_key, "");
     }
     
     bool OpenPgpImpl::add_address(const Address & address) {

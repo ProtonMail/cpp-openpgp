@@ -10,14 +10,18 @@ namespace OBJ_ProtonMail {
 auto OpenPgpKey::toCpp(ObjcType obj) -> CppType
 {
     assert(obj);
-    return {::djinni::String::toCpp(obj.publicKey),
-            ::djinni::String::toCpp(obj.privateKey)};
+    return {::djinni::String::toCpp(obj.keyId),
+            ::djinni::String::toCpp(obj.publicKey),
+            ::djinni::String::toCpp(obj.privateKey),
+            ::djinni::String::toCpp(obj.fingerPrint)};
 }
 
 auto OpenPgpKey::fromCpp(const CppType& cpp) -> ObjcType
 {
-    return [[PMNOpenPgpKey alloc] initWithPublicKey:(::djinni::String::fromCpp(cpp.public_key))
-                                         privateKey:(::djinni::String::fromCpp(cpp.private_key))];
+    return [[PMNOpenPgpKey alloc] initWithKeyId:(::djinni::String::fromCpp(cpp.key_id))
+                                      publicKey:(::djinni::String::fromCpp(cpp.public_key))
+                                     privateKey:(::djinni::String::fromCpp(cpp.private_key))
+                                    fingerPrint:(::djinni::String::fromCpp(cpp.finger_print))];
 }
 
 }  // namespace OBJ_ProtonMail
