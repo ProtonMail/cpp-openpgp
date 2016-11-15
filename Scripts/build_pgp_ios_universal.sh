@@ -64,13 +64,19 @@ printf "\e[0;31mPlease copy the header !!! \033[0;31m\n"
 exit
 fi
 
+printf "\n\e[0;32mDo you wise to Strip the library \033[0m\n"
+while true; do
+    read -p "[Yy] or [Nn]:" yn
+    case $yn in
+        [Yy]* )
+
 printf "\e[0;32mStart Checking library Debugging Symbols Status.. \033[0m\n\n"
 FILENAME=${BIN_DEVICE_OUTPUT}/${BIN_PGP_LIB_NAME}
 FILESIZE=$(wc -c <$FILENAME)
 if [ $FILESIZE -ge $MAX_FILE_SIZE ]; then
 printf "\e[0;32mStart Stripping Debugging Symbols for iOS Device Library. \033[0m\n"
 printf "\e[0;37mStripping File:\033[0m \e[0;36m ${BIN_PGP_LIB_NAME} \033[0m\n"
-#strip -S ${FILENAME}
+strip -S ${FILENAME}
 printf "\e[0;37mStripping Done:\033[0m\n"
 else
 printf "iOS Device Library have been removed Debugging Symbols!\n"
@@ -82,11 +88,19 @@ FILESIZE=$(wc -c <$FILENAME)
 if [ $FILESIZE -ge $MAX_FILE_SIZE ]; then
 printf "\e[0;32mStart Stripping Debugging Symbols for Simulator Library. \033[0m\n"
 printf "\e[0;37mStripping File:\033[0m \e[0;36m ${BIN_PGP_LIB_NAME} \033[0m\n"
-#strip -S ${FILENAME}
+strip -S ${FILENAME}
 printf "\e[0;37mStripping Done\033[0m\n\n"
 else
 printf "Simulator Library have been removed Debugging Symbols!\n\n"
 fi
+
+        break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+
 
 printf "\e[0;32mStart Build Universal Library. \033[0m\n"
 

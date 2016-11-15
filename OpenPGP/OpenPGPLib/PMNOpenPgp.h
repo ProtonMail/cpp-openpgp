@@ -49,6 +49,9 @@
                                              oldPassphrase:(nonnull NSString *)oldPassphrase
                                              newPassphrase:(nonnull NSString *)newPassphrase;
 
+/**Random bits */
++ (nonnull NSData *)randomBits:(int32_t)bits;
+
 /**add a new address into addresses list */
 - (BOOL)addAddress:(nonnull PMNAddress *)address;
 

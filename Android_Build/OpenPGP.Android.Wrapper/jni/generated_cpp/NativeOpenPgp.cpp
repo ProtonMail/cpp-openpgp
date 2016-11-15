@@ -101,6 +101,15 @@ CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_OpenPgp_up
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
+CJNIEXPORT jbyteArray JNICALL Java_ch_protonmail_android_utils_nativelib_OpenPgp_randomBits(JNIEnv* jniEnv, jobject /*this*/, jint j_bits)
+{
+    try {
+        DJINNI_FUNCTION_PROLOGUE0(jniEnv);
+        auto r = ::ProtonMail::OpenPgp::random_bits(::djinni::I32::toCpp(jniEnv, j_bits));
+        return ::djinni::release(::djinni::Binary::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
+}
+
 CJNIEXPORT jboolean JNICALL Java_ch_protonmail_android_utils_nativelib_OpenPgp_00024CppProxy_native_1addAddress(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_address)
 {
     try {

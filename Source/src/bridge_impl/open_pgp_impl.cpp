@@ -14,6 +14,7 @@
 #include <exception/pgp_exception.h>
 
 #include <utilities/utilities.h>
+#include <utilities/BBS.h>
 
 #include <openpgp/private_key.h>
 
@@ -43,6 +44,12 @@ namespace ProtonMail {
     
     void OpenPgp::enable_debug(bool isDebug) {
         //OpenPgpImpl::m_is_debug_mode = isDebug;
+    }
+    
+    
+    std::vector<uint8_t> OpenPgp::random_bits(int32_t bits) {
+        auto random_out = BBS().rand_byts(bits);
+        return std::vector<uint8_t>(random_out.begin(), random_out.end());
     }
     
     OpenPgpKey OpenPgp::generate_new_key(const std::string & user_id,

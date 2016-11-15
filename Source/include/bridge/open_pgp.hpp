@@ -49,6 +49,9 @@ public:
     /**update multiple pgp private keys return are new keys */
     static std::vector<OpenPgpKey> update_keys_passphrase(const std::vector<OpenPgpKey> & private_keys, const std::string & old_passphrase, const std::string & new_passphrase);
 
+    /**Random bits */
+    static std::vector<uint8_t> random_bits(int32_t bits);
+
     /**add a new address into addresses list */
     virtual bool add_address(const Address & address) = 0;
 

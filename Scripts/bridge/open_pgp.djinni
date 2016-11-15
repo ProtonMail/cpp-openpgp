@@ -40,7 +40,10 @@ open_pgp = interface +c {
     static check_passphrase(private_key : string, passphrase : string) : bool;
     #update multiple pgp private keys return are new keys
     static update_keys_passphrase(private_keys : list<open_pgp_key>, old_passphrase : string, new_passphrase : string) : list<open_pgp_key>;
-    
+
+    #Random bits
+    static random_bits(bits : i32) : binary;
+
 
     #add a new address into addresses list
     add_address(address : address) : bool;

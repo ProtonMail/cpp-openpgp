@@ -133,6 +133,10 @@ public abstract class OpenPgp {
     @Nonnull
     public static native ArrayList<OpenPgpKey> updateKeysPassphrase(@Nonnull ArrayList<OpenPgpKey> privateKeys, @Nonnull String oldPassphrase, @Nonnull String newPassphrase);
 
+    /**Random bits */
+    @Nonnull
+    public static native byte[] randomBits(int bits);
+
     private static final class CppProxy extends OpenPgp
     {
         private final long nativeRef;

@@ -104,6 +104,13 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
++ (nonnull NSData *)randomBits:(int32_t)bits {
+    try {
+        auto objcpp_result_ = ::ProtonMail::OpenPgp::random_bits(::djinni::I32::toCpp(bits));
+        return ::djinni::Binary::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
 - (BOOL)addAddress:(nonnull PMNAddress *)address {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->add_address(::OBJ_ProtonMail::Address::toCpp(address));
