@@ -6,7 +6,7 @@
 //  Copyright © 2016 Yanfeng Zhang. All rights reserved.
 //
 
-#import "utils_test.h"
+#include "utils_test.h"
 
 #include <openpgp/PGPKey.h>
 #include <openpgp/encrypt.h>

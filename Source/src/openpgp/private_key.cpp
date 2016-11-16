@@ -426,11 +426,11 @@ namespace ProtonMail {
             
             // calculate and check checksum
             if(pri -> get_s2k_con() == 254){
-                //  std::cout << hexlify(checksum) << std::endl;
+                std::cout << hexlify(checksum) << std::endl;
                 
                 
                 std::string hash_check = use_hash(2, secret_key); //use_hash(s2k -> get_hash(), secret_key);
-                //  std::cout << hexlify(hash_check) << std::endl;
+                std::cout << hexlify(hash_check) << std::endl;
                 
                 if (hash_check != checksum){
                     throw ProtonMail::pgp_exception(ProtonMail::PM_DECRYPT_PRIVATE_KEY_SUMCHECK_NOT_MATCH, "Error: Secret key checksum and calculated checksum do not match.");

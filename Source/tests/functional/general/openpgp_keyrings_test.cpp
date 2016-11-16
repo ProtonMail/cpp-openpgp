@@ -7,7 +7,7 @@
 //
 
 
-#import "utils_test.h"
+#include "utils_test.h"
 
 #include <openpgp/PGPKey.h>
 #include <openpgp/encrypt.h>

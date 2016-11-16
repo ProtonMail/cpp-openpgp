@@ -1,12 +1,12 @@
 //
-//  openpgp_bad_cases_test.cpp
+//  openpgp_bad_pgp_test.cpp
 //  OpenPGP
 //
-//  Created by Yanfeng Zhang on 11/10/16.
+//  Created by Yanfeng Zhang on 11/16/16.
 //  Copyright © 2016 Yanfeng Zhang. All rights reserved.
 //
 
-
+#include "openpgp_bad_pgp_test.hpp"
 #include "utils_test.h"
 
 #include <openpgp/PGPKey.h>
@@ -22,15 +22,15 @@
 
 namespace tests {
     namespace open_pgp_tests {
-        SUITE(openpgo_bad_cases_test)
+        SUITE(openpgo_bad_pgp_testcases)
         {
-            
-            TEST(bad) {
-                
-                
-                
+            TEST(bad_pgp_tests) {
+                { //issus to update key
+                    ProtonMail::OpenPgp::update_single_passphrase(private_key_dino_nov_16_2016, "123", "xq1Su2WaUFv7pqvj8m0MCnZDUXg/Xce");
+                    
+                }
             }
-
         }
+        
     }
 }
