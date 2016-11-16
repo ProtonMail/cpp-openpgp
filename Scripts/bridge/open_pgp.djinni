@@ -3,6 +3,8 @@ open_pgp_key = record {
 	public_key : string;
 	private_key : string;
     finger_print : string;
+    # false default only used when update keys
+isUpdated : bool;
 }
 
 encrypt_package = record {

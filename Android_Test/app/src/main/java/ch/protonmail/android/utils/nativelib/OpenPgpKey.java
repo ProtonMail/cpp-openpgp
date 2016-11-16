@@ -17,15 +17,19 @@ public final class OpenPgpKey {
 
     /*package*/ final String mFingerPrint;
 
+    /*package*/ final boolean mIsUpdated;
+
     public OpenPgpKey(
             @Nonnull String keyId,
             @Nonnull String publicKey,
             @Nonnull String privateKey,
-            @Nonnull String fingerPrint) {
+            @Nonnull String fingerPrint,
+            boolean isUpdated) {
         this.mKeyId = keyId;
         this.mPublicKey = publicKey;
         this.mPrivateKey = privateKey;
         this.mFingerPrint = fingerPrint;
+        this.mIsUpdated = isUpdated;
     }
 
     @Nonnull
@@ -48,6 +52,11 @@ public final class OpenPgpKey {
         return mFingerPrint;
     }
 
+    /** false default only used when update keys */
+    public boolean getIsUpdated() {
+        return mIsUpdated;
+    }
+
     @Override
     public String toString() {
         return "OpenPgpKey{" +
@@ -55,6 +64,7 @@ public final class OpenPgpKey {
                 "," + "mPublicKey=" + mPublicKey +
                 "," + "mPrivateKey=" + mPrivateKey +
                 "," + "mFingerPrint=" + mFingerPrint +
+                "," + "mIsUpdated=" + mIsUpdated +
         "}";
     }
 

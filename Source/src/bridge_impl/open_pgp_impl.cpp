@@ -71,7 +71,7 @@ namespace ProtonMail {
         std::string pub_key = "";
         p.generate_new_key(bits, passphrase, user_id, email, comments, pub_key, priv_key);
         
-        return OpenPgpKey("", pub_key, priv_key, "");
+        return OpenPgpKey("", pub_key, priv_key, "", false);
     }
     
     std::string OpenPgp::update_single_passphrase(const std::string & private_key,
@@ -129,8 +129,15 @@ namespace ProtonMail {
             PGPSecretKey secret_key;
             secret_key.set_is_debug(false);
             secret_key.read(str_private_key);
-            std::string new_key = ProtonMail::pgp::update_passphrase(secret_key, old_passphrase, new_passphrase);
-            updated_keys.push_back(OpenPgpKey(key.key_id, key.public_key, key.private_key, key.finger_print));
+            
+            try {
+                std::string new_key = ProtonMail::pgp::update_passphrase(secret_key, old_passphrase, new_passphrase);
+                updated_keys.push_back(OpenPgpKey(key.key_id, key.public_key, new_key, key.finger_print, true));
+            }
+            catch (...)
+            {
+                updated_keys.push_back(OpenPgpKey(key.key_id, key.public_key, key.private_key, key.finger_print, false));
+            }
         }
         return updated_keys;
     }
@@ -160,7 +167,7 @@ namespace ProtonMail {
         std::string pub_key = "";
         p.generate_new_key(bits, passphrase, user_name, email, comments, pub_key, priv_key);
         
-        return OpenPgpKey("", pub_key, priv_key, "");
+        return OpenPgpKey("", pub_key, priv_key, "", false);
     }
     
     bool OpenPgpImpl::add_address(const Address & address) {

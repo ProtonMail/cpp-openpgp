@@ -5,6 +5,7 @@ SCRIPT_LOCATION=$(cd $(dirname $0);echo $PWD)
 CHECK="${1-0}"
 if [ ${CHECK} -eq "1" ]; then
 printf "\e[0;32mStart Cleaning library workingspace.. \033[0m\n\n"
+
 xcodebuild clean \
     -workspace ${SCRIPT_LOCATION}/../OpenPGP.xcworkspace \
     -scheme UniversalPGP \
@@ -17,6 +18,16 @@ xcodebuild clean \
     -sdk "iphoneos" \
     -configuration Release
 fi
+
+BIN_PGP_LIB_NAME="libUniversalPGP.a"
+XCODE_BUILD_BIN_OUT=${SCRIPT_LOCATION}/../Bin/libs/
+XCODE_BUILD_HEADER_OUT=${SCRIPT_LOCATION}/../Bin/include/OpenPGP
+MAX_FILE_SIZE=26214400
+
+BIN_DEVICE_OUTPUT=${XCODE_BUILD_BIN_OUT}/Release-iphoneos
+BIN_SIMULATOR_OUTPUT=${XCODE_BUILD_BIN_OUT}/Release-iphonesimulator
+rm -rf ${BIN_DEVICE_OUTPUT}
+rm -rf ${BIN_SIMULATOR_OUTPUT}
 
 printf "\e[0;32mStart Building library iphoneos.. \033[0m\n\n"
 
@@ -41,13 +52,6 @@ printf "\e[0;36m############ \e[0;32mProtonMail OpenPGP iOS Universal Library \0
 printf "\e[0;34m#######################################################################\033[0m\n";
 printf "\e[0;32mInitial Generation Scripts. \033[0m\n"
 
-BIN_PGP_LIB_NAME="libUniversalPGP.a"
-XCODE_BUILD_BIN_OUT=${SCRIPT_LOCATION}/../Bin/libs/
-XCODE_BUILD_HEADER_OUT=${SCRIPT_LOCATION}/../Bin/include/OpenPGP
-MAX_FILE_SIZE=26214400
-
-BIN_DEVICE_OUTPUT=${XCODE_BUILD_BIN_OUT}/Release-iphoneos
-BIN_SIMULATOR_OUTPUT=${XCODE_BUILD_BIN_OUT}/Release-iphonesimulator
 
 if [  ! -d $BIN_DEVICE_OUTPUT ]; then
 printf "\e[0;31mPlease build ARM library!!! \033[0;31m\n"
@@ -95,7 +99,7 @@ printf "Simulator Library have been removed Debugging Symbols!\n\n"
 fi
 
         break;;
-        [Nn]* ) exit;;
+        [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
 done

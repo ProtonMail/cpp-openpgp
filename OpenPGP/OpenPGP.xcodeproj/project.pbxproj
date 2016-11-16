@@ -79,8 +79,6 @@
 		75175A4E1DC90D1100BD770C /* opengpg_symmetric_encrypt_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75175A4D1DC90D1100BD770C /* opengpg_symmetric_encrypt_test.cpp */; };
 		75175A501DC90D4C00BD770C /* opengpg_clearsign_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75175A4F1DC90D4C00BD770C /* opengpg_clearsign_test.cpp */; };
 		75175A521DC9113700BD770C /* openpgp_testcases.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75175A511DC9113700BD770C /* openpgp_testcases.cpp */; };
-		7517E6E21AFABC35007EA967 /* rsa_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6591AFABC35007EA967 /* rsa_key.cpp */; };
-		7517E6E31AFABC35007EA967 /* rsa_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6591AFABC35007EA967 /* rsa_key.cpp */; };
 		7517E70F1AFABC35007EA967 /* AES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6681AFABC35007EA967 /* AES.cpp */; };
 		7517E7101AFABC35007EA967 /* AES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6681AFABC35007EA967 /* AES.cpp */; };
 		7517E7131AFABC35007EA967 /* Blowfish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6691AFABC35007EA967 /* Blowfish.cpp */; };
@@ -159,8 +157,6 @@
 		7517E7A81AFABC35007EA967 /* PMPGPMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6911AFABC35007EA967 /* PMPGPMessage.cpp */; };
 		7517E7AB1AFABC35007EA967 /* private_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6921AFABC35007EA967 /* private_key.cpp */; };
 		7517E7AC1AFABC35007EA967 /* private_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6921AFABC35007EA967 /* private_key.cpp */; };
-		7517E7AF1AFABC35007EA967 /* public_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6931AFABC35007EA967 /* public_key.cpp */; };
-		7517E7B01AFABC35007EA967 /* public_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6931AFABC35007EA967 /* public_key.cpp */; };
 		7517E7B31AFABC35007EA967 /* revoke.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6941AFABC35007EA967 /* revoke.cpp */; };
 		7517E7B41AFABC35007EA967 /* revoke.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6941AFABC35007EA967 /* revoke.cpp */; };
 		7517E7B71AFABC35007EA967 /* verify.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6951AFABC35007EA967 /* verify.cpp */; };
@@ -357,7 +353,6 @@
 		759DA0031C5C2A3100EB0483 /* compress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75AE62E21AFBCFED00131986 /* compress.cpp */; };
 		759DA0041C5C2A3100EB0483 /* pgpbzip2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75AE62E31AFBCFED00131986 /* pgpbzip2.cpp */; };
 		759DA0051C5C2A3100EB0483 /* pgpzlib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75AE62E41AFBCFED00131986 /* pgpzlib.cpp */; };
-		759DA0061C5C2A3100EB0483 /* rsa_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6591AFABC35007EA967 /* rsa_key.cpp */; };
 		759DA0071C5C2A3100EB0483 /* AES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6681AFABC35007EA967 /* AES.cpp */; };
 		759DA0081C5C2A3100EB0483 /* Blowfish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6691AFABC35007EA967 /* Blowfish.cpp */; };
 		759DA0091C5C2A3100EB0483 /* Camellia.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E66A1AFABC35007EA967 /* Camellia.cpp */; };
@@ -397,7 +392,6 @@
 		759DA02C1C5C2A3100EB0483 /* PGPMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6901AFABC35007EA967 /* PGPMessage.cpp */; };
 		759DA02D1C5C2A3100EB0483 /* PMPGPMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6911AFABC35007EA967 /* PMPGPMessage.cpp */; };
 		759DA02E1C5C2A3100EB0483 /* private_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6921AFABC35007EA967 /* private_key.cpp */; };
-		759DA02F1C5C2A3100EB0483 /* public_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6931AFABC35007EA967 /* public_key.cpp */; };
 		759DA0301C5C2A3100EB0483 /* revoke.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6941AFABC35007EA967 /* revoke.cpp */; };
 		759DA0311C5C2A3100EB0483 /* verify.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6951AFABC35007EA967 /* verify.cpp */; };
 		759DA0321C5C2A3100EB0483 /* packet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6971AFABC35007EA967 /* packet.cpp */; };
@@ -476,7 +470,6 @@
 		75AB6B4F1C5044F100E82A0E /* compress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75AE62E21AFBCFED00131986 /* compress.cpp */; };
 		75AB6B501C5044F100E82A0E /* pgpbzip2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75AE62E31AFBCFED00131986 /* pgpbzip2.cpp */; };
 		75AB6B511C5044F100E82A0E /* pgpzlib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75AE62E41AFBCFED00131986 /* pgpzlib.cpp */; };
-		75AB6B521C5044F100E82A0E /* rsa_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6591AFABC35007EA967 /* rsa_key.cpp */; };
 		75AB6B531C5044F100E82A0E /* AES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6681AFABC35007EA967 /* AES.cpp */; };
 		75AB6B541C5044F100E82A0E /* Blowfish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6691AFABC35007EA967 /* Blowfish.cpp */; };
 		75AB6B551C5044F100E82A0E /* Camellia.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E66A1AFABC35007EA967 /* Camellia.cpp */; };
@@ -516,7 +509,6 @@
 		75AB6B781C5044F100E82A0E /* PGPMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6901AFABC35007EA967 /* PGPMessage.cpp */; };
 		75AB6B791C5044F100E82A0E /* PMPGPMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6911AFABC35007EA967 /* PMPGPMessage.cpp */; };
 		75AB6B7A1C5044F100E82A0E /* private_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6921AFABC35007EA967 /* private_key.cpp */; };
-		75AB6B7B1C5044F100E82A0E /* public_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6931AFABC35007EA967 /* public_key.cpp */; };
 		75AB6B7C1C5044F100E82A0E /* revoke.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6941AFABC35007EA967 /* revoke.cpp */; };
 		75AB6B7D1C5044F100E82A0E /* verify.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6951AFABC35007EA967 /* verify.cpp */; };
 		75AB6B7E1C5044F100E82A0E /* packet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7517E6971AFABC35007EA967 /* packet.cpp */; };
@@ -745,7 +737,6 @@
 		75175A4D1DC90D1100BD770C /* opengpg_symmetric_encrypt_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opengpg_symmetric_encrypt_test.cpp; path = general/opengpg_symmetric_encrypt_test.cpp; sourceTree = "<group>"; };
 		75175A4F1DC90D4C00BD770C /* opengpg_clearsign_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opengpg_clearsign_test.cpp; path = general/opengpg_clearsign_test.cpp; sourceTree = "<group>"; };
 		75175A511DC9113700BD770C /* openpgp_testcases.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = openpgp_testcases.cpp; path = general/openpgp_testcases.cpp; sourceTree = "<group>"; };
-		7517E6591AFABC35007EA967 /* rsa_key.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rsa_key.cpp; sourceTree = "<group>"; };
 		7517E6621AFABC35007EA967 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CMakeLists.txt; path = src/CMakeLists.txt; sourceTree = "<group>"; };
 		7517E6681AFABC35007EA967 /* AES.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AES.cpp; sourceTree = "<group>"; };
 		7517E6691AFABC35007EA967 /* Blowfish.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Blowfish.cpp; sourceTree = "<group>"; };
@@ -786,7 +777,6 @@
 		7517E6901AFABC35007EA967 /* PGPMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PGPMessage.cpp; sourceTree = "<group>"; };
 		7517E6911AFABC35007EA967 /* PMPGPMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PMPGPMessage.cpp; sourceTree = "<group>"; };
 		7517E6921AFABC35007EA967 /* private_key.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = private_key.cpp; sourceTree = "<group>"; };
-		7517E6931AFABC35007EA967 /* public_key.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = public_key.cpp; sourceTree = "<group>"; };
 		7517E6941AFABC35007EA967 /* revoke.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = revoke.cpp; sourceTree = "<group>"; };
 		7517E6951AFABC35007EA967 /* verify.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = verify.cpp; sourceTree = "<group>"; };
 		7517E6971AFABC35007EA967 /* packet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = packet.cpp; sourceTree = "<group>"; };
@@ -1098,7 +1088,6 @@
 		7517E6581AFABC35007EA967 /* base */ = {
 			isa = PBXGroup;
 			children = (
-				7517E6591AFABC35007EA967 /* rsa_key.cpp */,
 			);
 			path = base;
 			sourceTree = "<group>";
@@ -1168,7 +1157,6 @@
 				7517E6901AFABC35007EA967 /* PGPMessage.cpp */,
 				7517E6911AFABC35007EA967 /* PMPGPMessage.cpp */,
 				7517E6921AFABC35007EA967 /* private_key.cpp */,
-				7517E6931AFABC35007EA967 /* public_key.cpp */,
 				7517E6941AFABC35007EA967 /* revoke.cpp */,
 				7517E6951AFABC35007EA967 /* verify.cpp */,
 			);
@@ -1724,7 +1712,6 @@
 				750B3CF51DC28E02001391C3 /* PMNOpenPgpKey+Private.mm in Sources */,
 				75AE62E61AFBCFED00131986 /* compress.cpp in Sources */,
 				7517E75F1AFABC35007EA967 /* SHA224.cpp in Sources */,
-				7517E6E21AFABC35007EA967 /* rsa_key.cpp in Sources */,
 				7517E88F1AFABC35007EA967 /* Tag6.cpp in Sources */,
 				7517E7BF1AFABC35007EA967 /* packets.cpp in Sources */,
 				7517E7131AFABC35007EA967 /* Blowfish.cpp in Sources */,
@@ -1781,7 +1768,6 @@
 				7517E70F1AFABC35007EA967 /* AES.cpp in Sources */,
 				7517E7231AFABC35007EA967 /* DSA.cpp in Sources */,
 				7517E8CF1AFABC35007EA967 /* UTF8.cpp in Sources */,
-				7517E7AF1AFABC35007EA967 /* public_key.cpp in Sources */,
 				7517E79B1AFABC35007EA967 /* PGPDetachedSignature.cpp in Sources */,
 				7517E7E31AFABC35007EA967 /* Tag2Sub12.cpp in Sources */,
 				7517E8271AFABC35007EA967 /* Tag2Sub28.cpp in Sources */,
@@ -1906,7 +1892,6 @@
 				750B3CF61DC28E02001391C3 /* PMNOpenPgpKey+Private.mm in Sources */,
 				75AE62E71AFBCFED00131986 /* compress.cpp in Sources */,
 				7517E7601AFABC35007EA967 /* SHA224.cpp in Sources */,
-				7517E6E31AFABC35007EA967 /* rsa_key.cpp in Sources */,
 				7517E8901AFABC35007EA967 /* Tag6.cpp in Sources */,
 				7517E7C01AFABC35007EA967 /* packets.cpp in Sources */,
 				7517E7141AFABC35007EA967 /* Blowfish.cpp in Sources */,
@@ -1963,7 +1948,6 @@
 				7517E7101AFABC35007EA967 /* AES.cpp in Sources */,
 				7517E7241AFABC35007EA967 /* DSA.cpp in Sources */,
 				7517E8D01AFABC35007EA967 /* UTF8.cpp in Sources */,
-				7517E7B01AFABC35007EA967 /* public_key.cpp in Sources */,
 				7517E79C1AFABC35007EA967 /* PGPDetachedSignature.cpp in Sources */,
 				7517E7E41AFABC35007EA967 /* Tag2Sub12.cpp in Sources */,
 				7517E8281AFABC35007EA967 /* Tag2Sub28.cpp in Sources */,
@@ -2023,7 +2007,6 @@
 				759DA0041C5C2A3100EB0483 /* pgpbzip2.cpp in Sources */,
 				759DA0051C5C2A3100EB0483 /* pgpzlib.cpp in Sources */,
 				75BF8F4E1DA7088B000F350F /* ExpandHash.cpp in Sources */,
-				759DA0061C5C2A3100EB0483 /* rsa_key.cpp in Sources */,
 				759DA0071C5C2A3100EB0483 /* AES.cpp in Sources */,
 				759DA0081C5C2A3100EB0483 /* Blowfish.cpp in Sources */,
 				759DA0091C5C2A3100EB0483 /* Camellia.cpp in Sources */,
@@ -2071,7 +2054,6 @@
 				759DA02D1C5C2A3100EB0483 /* PMPGPMessage.cpp in Sources */,
 				759DA02E1C5C2A3100EB0483 /* private_key.cpp in Sources */,
 				75BB15931DB0002600F28083 /* bignumber.cpp in Sources */,
-				759DA02F1C5C2A3100EB0483 /* public_key.cpp in Sources */,
 				759DA0301C5C2A3100EB0483 /* revoke.cpp in Sources */,
 				759DA0311C5C2A3100EB0483 /* verify.cpp in Sources */,
 				759DA0321C5C2A3100EB0483 /* packet.cpp in Sources */,
@@ -2166,7 +2148,6 @@
 				75AB6B501C5044F100E82A0E /* pgpbzip2.cpp in Sources */,
 				75AB6B511C5044F100E82A0E /* pgpzlib.cpp in Sources */,
 				75BF8F4D1DA7088B000F350F /* ExpandHash.cpp in Sources */,
-				75AB6B521C5044F100E82A0E /* rsa_key.cpp in Sources */,
 				75AB6B531C5044F100E82A0E /* AES.cpp in Sources */,
 				75AB6B541C5044F100E82A0E /* Blowfish.cpp in Sources */,
 				75AB6B551C5044F100E82A0E /* Camellia.cpp in Sources */,
@@ -2214,7 +2195,6 @@
 				75AB6B791C5044F100E82A0E /* PMPGPMessage.cpp in Sources */,
 				75AB6B7A1C5044F100E82A0E /* private_key.cpp in Sources */,
 				75BB15921DB0002600F28083 /* bignumber.cpp in Sources */,
-				75AB6B7B1C5044F100E82A0E /* public_key.cpp in Sources */,
 				75AB6B7C1C5044F100E82A0E /* revoke.cpp in Sources */,
 				75AB6B7D1C5044F100E82A0E /* verify.cpp in Sources */,
 				75AB6B7E1C5044F100E82A0E /* packet.cpp in Sources */,
