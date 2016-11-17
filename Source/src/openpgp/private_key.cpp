@@ -291,14 +291,14 @@ namespace ProtonMail {
         
         Tag5::Ptr find_decrypting_key(const PGPSecretKey & k, const std::string & keyid, const bool& find_default){
             
-            std::cout << hexlify(keyid) << std::endl;
+            //std::cout << hexlify(keyid) << std::endl;
             
             for(Packet::Ptr const & p : k.get_packets()){
                 if ((p -> get_tag() == 5) || (p -> get_tag() == 7)){
                     std::string raw = p -> raw();
                     Tag5::Ptr key = std::make_shared<Tag5>(raw);
                     
-                    std::cout << hexlify(key -> get_public_ptr() -> get_keyid()) << std::endl;
+                    //std::cout << hexlify(key -> get_public_ptr() -> get_keyid()) << std::endl;
                     
                     if (key -> get_public_ptr() -> get_keyid() != keyid && find_default == false){
                         key.reset();
@@ -426,11 +426,11 @@ namespace ProtonMail {
             
             // calculate and check checksum
             if(pri -> get_s2k_con() == 254){
-                std::cout << hexlify(checksum) << std::endl;
+                //std::cout << hexlify(checksum) << std::endl;
                 
                 
                 std::string hash_check = use_hash(2, secret_key); //use_hash(s2k -> get_hash(), secret_key);
-                std::cout << hexlify(hash_check) << std::endl;
+                //std::cout << hexlify(hash_check) << std::endl;
                 
                 if (hash_check != checksum){
                     throw ProtonMail::pgp_exception(ProtonMail::PM_DECRYPT_PRIVATE_KEY_SUMCHECK_NOT_MATCH, "Error: Secret key checksum and calculated checksum do not match.");

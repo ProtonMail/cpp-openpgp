@@ -31,12 +31,11 @@ namespace tests {
                 
                 
                 {
-                    
                     auto pgp = ProtonMail::OpenPgpImpl::create_instance();
                     auto decrypted = pgp->decrypt_message_single_key(feng30_bad_message_from_outside,
                                                                     feng30_private_key,
                                                                     feng30_passphrase);
-                    std::cout << decrypted;
+                    VERIFY_ARE_NOT_EQUAL(decrypted, "");
                 }
             }
         }

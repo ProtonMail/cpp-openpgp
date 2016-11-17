@@ -87,7 +87,7 @@ PGPMessage decrypt_data(const uint8_t sym, const PGPMessage & m, const std::stri
     else
         data = use_OpenPGP_CFB_decrypt(sym, packet, data, session_key);
 
-    std::cout << data << std::endl;
+    //std::cout << data << std::endl;
     
     // strip extra data
     if (packet == 18){ // Symmetrically Encrypted Integrity Protected Data Packet (Tag 18)
@@ -99,7 +99,7 @@ PGPMessage decrypt_data(const uint8_t sym, const PGPMessage & m, const std::stri
         data = data.substr(0, data.size() - 2);                     // get rid of \xd3\x14
     }
     data = data.substr(BS + 2, data.size() - BS - 2);               // get rid of prefix
-    std::cout << data << std::endl;
+    //std::cout << data << std::endl;
     // decompress and parse decrypted data
     return PGPMessage(data, true);
 }
