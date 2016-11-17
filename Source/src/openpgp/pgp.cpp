@@ -207,7 +207,6 @@ void PGP::read(std::ifstream & file){
 void PGP::read_raw(std::string & data){
     uint8_t partial = 0;
     while (data.size()){
-        std::cout << data.size() << std::endl;
         packets.push_back(read_packet(data, partial));
     }
     
