@@ -27,7 +27,16 @@ namespace tests {
             TEST(bad_pgp_tests) {
                 { //issus to update key
                     ProtonMail::OpenPgp::update_single_passphrase(private_key_dino_nov_16_2016, "123", "xq1Su2WaUFv7pqvj8m0MCnZDUXg/Xce");
+                }
+                
+                
+                {
                     
+                    auto pgp = ProtonMail::OpenPgpImpl::create_instance();
+                    auto decrypted = pgp->decrypt_message_single_key(feng30_bad_message_from_outside,
+                                                                    feng30_private_key,
+                                                                    feng30_passphrase);
+                    std::cout << decrypted;
                 }
             }
         }
