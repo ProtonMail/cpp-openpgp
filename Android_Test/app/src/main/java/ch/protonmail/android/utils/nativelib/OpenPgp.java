@@ -106,6 +106,9 @@ public abstract class OpenPgp {
     public abstract byte[] getNewPublicKeyPackage(@Nonnull byte[] session, @Nonnull String publicKey);
 
     @Nonnull
+    public abstract byte[] getNewPublicKeyPackageBinary(@Nonnull byte[] session, @Nonnull byte[] publicKey);
+
+    @Nonnull
     public abstract byte[] getNewSymmetricKeyPackage(@Nonnull byte[] session, @Nonnull String password);
 
     @Nonnull
@@ -172,6 +175,8 @@ public abstract class OpenPgp {
     /**Random bits */
     @Nonnull
     public static native byte[] randomBits(int bits);
+
+    public static native boolean findKeyid(@Nonnull String encryptText, @Nonnull String privateKey);
 
     @Nonnull
     public static native EncryptPackage splitMessage(@Nonnull String encrypted);
@@ -425,6 +430,14 @@ public abstract class OpenPgp {
             return native_getNewPublicKeyPackage(this.nativeRef, session, publicKey);
         }
         private native byte[] native_getNewPublicKeyPackage(long _nativeRef, byte[] session, String publicKey);
+
+        @Override
+        public byte[] getNewPublicKeyPackageBinary(byte[] session, byte[] publicKey)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_getNewPublicKeyPackageBinary(this.nativeRef, session, publicKey);
+        }
+        private native byte[] native_getNewPublicKeyPackageBinary(long _nativeRef, byte[] session, byte[] publicKey);
 
         @Override
         public byte[] getNewSymmetricKeyPackage(byte[] session, String password)

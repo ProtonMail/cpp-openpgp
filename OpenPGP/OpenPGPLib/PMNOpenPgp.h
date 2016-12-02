@@ -144,6 +144,9 @@
 - (BOOL)signDetachedVerify:(nonnull NSString *)signature
                  plainText:(nonnull NSString *)plainText;
 
++ (BOOL)findKeyid:(nonnull NSString *)encryptText
+       privateKey:(nonnull NSString *)privateKey;
+
 - (nonnull PMNEncryptPackage *)encryptAttachment:(nonnull NSString *)addressId
                                    unencryptData:(nonnull NSData *)unencryptData
                                         fileName:(nonnull NSString *)fileName
@@ -186,6 +189,9 @@
 
 - (nonnull NSData *)getNewPublicKeyPackage:(nonnull NSData *)session
                                  publicKey:(nonnull NSString *)publicKey;
+
+- (nonnull NSData *)getNewPublicKeyPackageBinary:(nonnull NSData *)session
+                                       publicKey:(nonnull NSData *)publicKey;
 
 - (nonnull NSData *)getNewSymmetricKeyPackage:(nonnull NSData *)session
                                      password:(nonnull NSString *)password;

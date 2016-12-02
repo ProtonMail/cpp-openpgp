@@ -1,0 +1,113 @@
+//
+//  photo.hpp
+//  OpenPGP
+//
+//  Created by Yanfeng Zhang on 1/10/17.
+//  Copyright © 2017 Yanfeng Zhang. All rights reserved.
+//
+
+#ifndef photo_hpp
+#define photo_hpp
+
+#include <stdio.h>
+#include "image_property.hpp"
+
+namespace ezvcard {
+    
+
+/**
+ * <p>
+ * Defines a photo, such as the person's portrait.
+ * </p>
+ *
+ * <p>
+ * <b>Code sample (creating)</b>
+ * </p>
+ *
+ * <pre class="brush:java">
+ * VCard vcard = new VCard();
+ *
+ * //URL
+ * Photo photo = new Photo("http://www.mywebsite.com/my-photo.jpg", ImageType.JPEG);
+ * vcard.addPhoto(photo);
+ *
+ * //binary data
+ * byte data[] = ...
+ * photo = new Photo(data, ImageType.JPEG);
+ * vcard.addPhoto(photo);
+ * </pre>
+ *
+ * <p>
+ * <b>Code sample (retrieving)</b>
+ * </p>
+ *
+ * <pre class="brush:java">
+ * VCard vcard = ...
+ * for (Photo photo : vcard.getPhotos()) {
+ *   PhotoType contentType = photo.getContentType(); //e.g. "image/jpeg"
+ *
+ *   String url = photo.getUrl();
+ *   if (url != null) {
+ *     //property value is a URL
+ *     continue;
+ *   }
+ *
+ *   byte[] data = photo.getData();
+ *   if (data != null) {
+ *     //property value is binary data
+ *     continue;
+ *   }
+ * }
+ * </pre>
+ *
+ * <p>
+ * <b>Property name:</b> {@code PHOTO}
+ * </p>
+ * <p>
+ * <b>Supported versions:</b> {@code 2.1, 3.0, 4.0}
+ * </p>
+ * @author Michael Angstadt
+ * @see <a href="http://tools.ietf.org/html/rfc6350#page-30">RFC 6350 p.30</a>
+ * @see <a href="http://tools.ietf.org/html/rfc2426#page-10">RFC 2426 p.10</a>
+ * @see <a href="http://www.imc.org/pdi/vcard-21.doc">vCard 2.1 p.10</a>
+ */
+class Photo : public ImageProperty {
+    
+public:
+    typedef std::shared_ptr<Photo> Ptr;
+    
+    const static std::string PROPERTYNAME;
+    const static std::string CLASSNAME;
+    
+    Photo(const std::string& url_or_data, const ImageType::Ptr& type, bool isBinary);
+    
+    //public Photo(InputStream in, ImageType type);
+    //public Photo(File file, ImageType type);
+    
+    //public Photo(Photo original);
+    //public Photo copy();
+    
+    
+protected:
+    std::string _className() {
+        return CLASSNAME;
+    }
+    
+    std::string _getPropertyName() {
+        return PROPERTYNAME;
+    }
+    
+    std::string getAltId() {
+        return "";
+    }
+    
+    void setAltId(const std::string& altId) {
+        
+    }
+    
+};
+
+    
+}
+
+#endif /* photo_hpp */

@@ -29,7 +29,7 @@ using namespace ProtonMail::pgp;
 namespace tests {
     namespace open_pgp_tests {
         const std::string RSA_SIGGEN_E = "10001";
-        const uint8_t PKA_RSA_TYPE = 1;
+//        const uint8_t PKA_RSA_TYPE = 1;
         
         const std::vector<std::string> RSA_SIGGEN_N = {
             "c8a2069182394a2ab7c3f4190c15589c56a2d4bc42dca675b34cc950e24663048441e8aa593b2bc59e198b8c257e882120c62336e5cc745012c7ffb063eebe53f3c6504cba6cfe51baa3b6d1074b2f398171f4b1982f4d65caf882ea4d56f32ab57d0c44e6ad4e9cf57a4339eb6962406e350c1b15397183fbf1f0353c9fc991",
