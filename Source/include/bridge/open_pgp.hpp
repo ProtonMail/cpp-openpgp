@@ -108,6 +108,8 @@ public:
 
     virtual bool sign_detached_verify(const std::string & signature, const std::string & plain_text) = 0;
 
+    static bool findKeyid(const std::string & encrypt_text, const std::string & private_key);
+
     virtual EncryptPackage encrypt_attachment(const std::string & address_id, const std::vector<uint8_t> & unencrypt_data, const std::string & file_name, const std::string & passphras) = 0;
 
     virtual EncryptPackage encrypt_attachment_single_key(const std::string & public_key, const std::vector<uint8_t> & unencrypt_data, const std::string & file_name, const std::string & private_key, const std::string & passphras) = 0;
@@ -127,6 +129,8 @@ public:
     virtual std::vector<uint8_t> get_symmetric_session_key(const std::vector<uint8_t> & keyPackage, const std::string & password) = 0;
 
     virtual std::vector<uint8_t> get_new_public_key_package(const std::vector<uint8_t> & session, const std::string & publicKey) = 0;
+
+    virtual std::vector<uint8_t> get_new_public_key_package_binary(const std::vector<uint8_t> & session, const std::vector<uint8_t> & publicKey) = 0;
 
     virtual std::vector<uint8_t> get_new_symmetric_key_package(const std::vector<uint8_t> & session, const std::string & password) = 0;
 

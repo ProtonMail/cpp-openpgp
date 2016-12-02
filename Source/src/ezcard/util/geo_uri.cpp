@@ -1,0 +1,653 @@
+//
+//  geo_uri.cpp
+//  OpenPGP
+//
+//  Created by Yanfeng Zhang on 1/18/17.
+//  Copyright © 2017 Yanfeng Zhang. All rights reserved.
+//
+
+#include "geo_uri.hpp"
+#include "string_util.hpp"
+#include <ezvcard/io/buffer.hpp>
+#include "messages.hpp"
+//
+//public final class GeoUri {
+//    /**
+//     * The coordinate reference system used by GPS (the default).
+//     */
+//    public static final String CRS_WGS84 = "wgs84";
+//
+//    /**
+//     * The characters which are allowed to exist un-encoded inside of a
+//     * parameter value.
+//     */
+//    private static final boolean validParameterValueCharacters[] = new boolean[128];
+//    static {
+//        for (int i = '0'; i <= '9'; i++) {
+//            validParameterValueCharacters[i] = true;
+//        }
+//        for (int i = 'A'; i <= 'Z'; i++) {
+//            validParameterValueCharacters[i] = true;
+//        }
+//        for (int i = 'a'; i <= 'z'; i++) {
+//            validParameterValueCharacters[i] = true;
+//        }
+//        String s = "!$&'()*+-.:[]_~";
+//        for (int i = 0; i < s.length(); i++) {
+//            char c = s.charAt(i);
+//            validParameterValueCharacters[c] = true;
+//        }
+//    }
+//
+//    /**
+//     * Finds hex values in a parameter value.
+//     */
+//    private static final Pattern hexPattern = Pattern.compile("(?i)%([0-9a-f]{2})");
+//
+//    private static final String PARAM_CRS = "crs";
+//    private static final String PARAM_UNCERTAINTY = "u";
+//
+//    private final Double coordA;
+//    private final Double coordB;
+//    private final Double coordC;
+//    private final String crs;
+//    private final Double uncertainty;
+//    private final Map<String, String> parameters;
+//
+//    private GeoUri(Builder builder) {
+//        this.coordA = (builder.coordA == null) ? Double.valueOf(0.0) : builder.coordA;
+//        this.coordB = (builder.coordB == null) ? Double.valueOf(0.0) : builder.coordB;
+//        this.coordC = builder.coordC;
+//        this.crs = builder.crs;
+//        this.uncertainty = builder.uncertainty;
+//        this.parameters = Collections.unmodifiableMap(builder.parameters);
+//    }
+
+/**
+ * Parses a geo URI string.
+ * @param uri the URI string (e.g. "geo:40.714623,-74.006605")
+ * @return the parsed geo URI
+ * @throws IllegalArgumentException if the string is not a valid geo URI
+ */
+GeoUri::Ptr GeoUri::parse(const std::string& uri) {
+    //URI format: geo:LAT,LONG;prop1=value1;prop2=value2
+    const std::string scheme = "geo:";
+    auto scheme_len = scheme.length();
+    
+    if (uri.length() < scheme_len || !str_equals(uri.substr(0, scheme_len), scheme)) {
+        //not a geo URI
+        throw Messages::getInstance()->getIllegalArgumentException(18, scheme);
+    }
+    auto builder = std::make_shared<GeoUriBuilder>(0, 0);
+    auto buffer = std::make_shared<Buffer>();
+    std::string paramName = "";
+    bool coordinatesDone = false;
+    auto uri_len = uri.length();
+    for (size_t i = scheme_len; i < uri_len; i++) {
+        char c = uri[i];
+        if (c == ',' && !coordinatesDone) {
+            //handleEndOfCoordinate(buffer, builder);
+            continue;
+        }
+        
+        if (c == ';') {
+            if (coordinatesDone) {
+                //handleEndOfParameter(buffer, paramName, builder);
+                paramName = "";
+            } else {
+                //handleEndOfCoordinate(buffer, builder);
+                if (builder->coordB() == 0) {
+                    throw std::runtime_error("21");
+                    //throw Messages.INSTANCE.getIllegalArgumentException(21);
+                }
+                coordinatesDone = true;
+            }
+            continue;
+        }
+        
+        if (c == '=' && coordinatesDone && paramName == "") {
+            paramName = buffer->getAndClear();
+            continue;
+        }
+        
+        buffer->append(c);
+    }
+    
+    if (coordinatesDone) {
+        //handleEndOfParameter(buffer, paramName, builder);
+    } else {
+        //handleEndOfCoordinate(buffer, builder);
+        if (builder->coordB() == 0) {
+            //throw Messages.INSTANCE.getIllegalArgumentException(21);
+        }
+    }
+    
+    return builder->build();
+}
+
+//    private static void handleEndOfCoordinate(ClearableStringBuilder buffer, Builder builder) {
+//        String s = buffer.getAndClear();
+//
+//        if (builder.coordA == null) {
+//            try {
+//                builder.coordA = Double.parseDouble(s);
+//            } catch (NumberFormatException e) {
+//                throw new IllegalArgumentException(Messages.INSTANCE.getExceptionMessage(22, "A"), e);
+//            }
+//            return;
+//        }
+//
+//        if (builder.coordB == null) {
+//            try {
+//                builder.coordB = Double.parseDouble(s);
+//            } catch (NumberFormatException e) {
+//                throw new IllegalArgumentException(Messages.INSTANCE.getExceptionMessage(22, "B"), e);
+//            }
+//            return;
+//        }
+//
+//        if (builder.coordC == null) {
+//            try {
+//                builder.coordC = Double.parseDouble(s);
+//            } catch (NumberFormatException e) {
+//                throw new IllegalArgumentException(Messages.INSTANCE.getExceptionMessage(22, "C"), e);
+//            }
+//            return;
+//        }
+//    }
+//
+//    private static void addParameter(String name, String value, Builder builder) {
+//        value = decodeParameterValue(value);
+//
+//        if (PARAM_CRS.equalsIgnoreCase(name)) {
+//            builder.crs = value;
+//            return;
+//        }
+//
+//        if (PARAM_UNCERTAINTY.equalsIgnoreCase(name)) {
+//            try {
+//                builder.uncertainty = Double.valueOf(value);
+//                return;
+//            } catch (NumberFormatException e) {
+//                //if it can't be parsed, then treat it as an ordinary parameter
+//            }
+//        }
+//
+//        builder.parameters.put(name, value);
+//    }
+//
+//    private static void handleEndOfParameter(ClearableStringBuilder buffer, String paramName, Builder builder) {
+//        String s = buffer.getAndClear();
+//
+//        if (paramName == null) {
+//            if (s.length() > 0) {
+//                addParameter(s, "", builder);
+//            }
+//            return;
+//        }
+//
+//        addParameter(paramName, s, builder);
+//    }
+//
+//    /**
+//     * Gets the first coordinate (latitude).
+//     * @return the first coordinate or null if there is none
+//     */
+//    public Double getCoordA() {
+//        return coordA;
+//    }
+//
+//    /**
+//     * Gets the second coordinate (longitude).
+//     * @return the second coordinate or null if there is none
+//     */
+//    public Double getCoordB() {
+//        return coordB;
+//    }
+//
+//    /**
+//     * Gets the third coordinate (altitude).
+//     * @return the third coordinate or null if there is none
+//     */
+//    public Double getCoordC() {
+//        return coordC;
+//    }
+//
+//    /**
+//     * Gets the coordinate reference system.
+//     * @return the coordinate reference system or null if using the default
+//     * (WGS-84)
+//     */
+//    public String getCrs() {
+//        return crs;
+//    }
+//
+//    /**
+//     * Gets the uncertainty (how accurate the coordinates are).
+//     * @return the uncertainty (in meters) or null if not set
+//     */
+//    public Double getUncertainty() {
+//        return uncertainty;
+//    }
+//
+//    /**
+//     * Gets a parameter value.
+//     * @param name the parameter name
+//     * @return the parameter value or null if not found
+//     */
+//    public String getParameter(String name) {
+//        return parameters.get(name);
+//    }
+//
+//    /**
+//     * Gets all the parameters.
+//     * @return all the parameters
+//     */
+//    public Map<String, String> getParameters() {
+//        return parameters;
+//    }
+//
+//    /**
+//     * Creates a {@link URI} object from this geo URI.
+//     * @return the {@link URI} object
+//     */
+//    public URI toUri() {
+//        return URI.create(toString());
+//    }
+//
+//    /**
+//     * Converts this geo URI to its string representation.
+//     * @return the geo URI's string representation
+//     */
+//    @Override
+//    public String toString() {
+//        return toString(6);
+//    }
+//
+//    /**
+//     * Converts this geo URI to its string representation.
+//     * @param decimals the number of decimals to display for floating point
+//     * values
+//     * @return the geo URI's string representation
+//     */
+//    public String toString(int decimals) {
+//        VCardFloatFormatter formatter = new VCardFloatFormatter(decimals);
+//        StringBuilder sb = new StringBuilder("geo:");
+//
+//        sb.append(formatter.format(coordA));
+//        sb.append(',');
+//        sb.append(formatter.format(coordB));
+//
+//        if (coordC != null) {
+//            sb.append(',');
+//            sb.append(coordC);
+//        }
+//
+//        //if the CRS is WGS-84, then it doesn't have to be displayed
+//        if (crs != null && !crs.equalsIgnoreCase(CRS_WGS84)) {
+//            writeParameter(PARAM_CRS, crs, sb);
+//        }
+//
+//        if (uncertainty != null) {
+//            writeParameter(PARAM_UNCERTAINTY, formatter.format(uncertainty), sb);
+//        }
+//
+//        for (Map.Entry<String, String> entry : parameters.entrySet()) {
+//            String name = entry.getKey();
+//            String value = entry.getValue();
+//            writeParameter(name, value, sb);
+//        }
+//
+//        return sb.toString();
+//    }
+//
+//    /**
+//     * Writes a parameter to a string.
+//     * @param name the parameter name
+//     * @param value the parameter value
+//     * @param sb the string to write to
+//     */
+//    private void writeParameter(String name, String value, StringBuilder sb) {
+//        sb.append(';').append(name).append('=').append(encodeParameterValue(value));
+//    }
+//
+//    /**
+//     * Encodes a string for safe inclusion in a parameter value.
+//     * @param value the string to encode
+//     * @return the encoded value
+//     */
+//    private static String encodeParameterValue(String value) {
+//        StringBuilder sb = null;
+//        for (int i = 0; i < value.length(); i++) {
+//            char c = value.charAt(i);
+//            if (c < validParameterValueCharacters.length && validParameterValueCharacters[c]) {
+//                if (sb != null) {
+//                    sb.append(c);
+//                }
+//            } else {
+//                if (sb == null) {
+//                    sb = new StringBuilder(value.length() * 2);
+//                    sb.append(value.substring(0, i));
+//                }
+//                String hex = Integer.toString(c, 16);
+//                sb.append('%').append(hex);
+//            }
+//        }
+//        return (sb == null) ? value : sb.toString();
+//    }
+//
+//    /**
+//     * Decodes escaped characters in a parameter value.
+//     * @param value the parameter value
+//     * @return the decoded value
+//     */
+//    private static String decodeParameterValue(String value) {
+//        Matcher m = hexPattern.matcher(value);
+//        StringBuffer sb = null;
+//
+//        while (m.find()) {
+//            if (sb == null) {
+//                sb = new StringBuffer(value.length());
+//            }
+//
+//            int hex = Integer.parseInt(m.group(1), 16);
+//            m.appendReplacement(sb, Character.toString((char) hex));
+//        }
+//
+//        if (sb == null) {
+//            return value;
+//        }
+//
+//        m.appendTail(sb);
+//        return sb.toString();
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        final int prime = 31;
+//        int result = 1;
+//        result = prime * result + ((coordA == null) ? 0 : coordA.hashCode());
+//        result = prime * result + ((coordB == null) ? 0 : coordB.hashCode());
+//        result = prime * result + ((coordC == null) ? 0 : coordC.hashCode());
+//        result = prime * result + ((crs == null) ? 0 : crs.toLowerCase().hashCode());
+//        result = prime * result + ((parameters == null) ? 0 : StringUtils.toLowerCase(parameters).hashCode());
+//        result = prime * result + ((uncertainty == null) ? 0 : uncertainty.hashCode());
+//        return result;
+//    }
+//
+//    @Override
+//    public boolean equals(Object obj) {
+//        if (this == obj) return true;
+//        if (obj == null) return false;
+//        if (getClass() != obj.getClass()) return false;
+//        GeoUri other = (GeoUri) obj;
+//        if (coordA == null) {
+//            if (other.coordA != null) return false;
+//        } else if (!coordA.equals(other.coordA)) return false;
+//        if (coordB == null) {
+//            if (other.coordB != null) return false;
+//        } else if (!coordB.equals(other.coordB)) return false;
+//        if (coordC == null) {
+//            if (other.coordC != null) return false;
+//        } else if (!coordC.equals(other.coordC)) return false;
+//        if (crs == null) {
+//            if (other.crs != null) return false;
+//        } else if (!crs.equalsIgnoreCase(other.crs)) return false;
+//        if (uncertainty == null) {
+//            if (other.uncertainty != null) return false;
+//        } else if (!uncertainty.equals(other.uncertainty)) return false;
+//        if (parameters == null) {
+//            if (other.parameters != null) return false;
+//        } else {
+//            if (other.parameters == null) return false;
+//            if (parameters.size() != other.parameters.size()) return false;
+//
+//            Map<String, String> parametersLower = StringUtils.toLowerCase(parameters);
+//            Map<String, String> otherParametersLower = StringUtils.toLowerCase(other.parameters);
+//            if (!parametersLower.equals(otherParametersLower)) return false;
+//        }
+//        return true;
+//    }
+//
+//    /**
+//     * Builder class for {@link GeoUri}.
+//     * @author Michael Angstadt
+//     */
+//    public static class Builder {
+//        private Double coordA;
+//        private Double coordB;
+//        private Double coordC;
+//        private String crs;
+//        private Double uncertainty;
+//        private Map<String, String> parameters;
+//        private CharacterBitSet validParamChars = new CharacterBitSet("a-zA-Z0-9-");
+//
+//        /**
+//         * Creates a new {@link GeoUri} builder.
+//         * @param coordA the first coordinate (i.e. latitude)
+//         * @param coordB the second coordinate (i.e. longitude)
+//         */
+//        public Builder(Double coordA, Double coordB) {
+//            parameters = new LinkedHashMap<String, String>(0); //set initial size to 0 because parameters are rarely used
+//            coordA(coordA);
+//            coordB(coordB);
+//        }
+//
+//        /**
+//         * Creates a new {@link GeoUri} builder.
+//         * @param original the {@link GeoUri} object to copy from
+//         */
+//        public Builder(GeoUri original) {
+//            coordA(original.coordA);
+//            coordB(original.coordB);
+//            this.coordC = original.coordC;
+//            this.crs = original.crs;
+//            this.uncertainty = original.uncertainty;
+//            this.parameters = new LinkedHashMap<String, String>(original.parameters);
+//        }
+//
+//        /**
+//         * Sets the first coordinate (latitude).
+//         * @param coordA the first coordinate
+//         * @return this
+//         */
+//        public Builder coordA(Double coordA) {
+//            this.coordA = coordA;
+//            return this;
+//        }
+//
+//        /**
+//         * Sets the second coordinate (longitude).
+//         * @param coordB the second coordinate
+//         * @return this
+//         */
+//        public Builder coordB(Double coordB) {
+//            this.coordB = coordB;
+//            return this;
+//        }
+//
+//        /**
+//         * Sets the third coordinate (altitude).
+//         * @param coordC the third coordinate or null to remove
+//         * @return this
+//         */
+//        public Builder coordC(Double coordC) {
+//            this.coordC = coordC;
+//            return this;
+//        }
+//
+//        /**
+//         * Sets the coordinate reference system.
+//         * @param crs the coordinate reference system (can only contain letters,
+//         * numbers, and hyphens) or null to use the default (WGS-84)
+//         * @throws IllegalArgumentException if the CRS name contains invalid
+//         * characters
+//         * @return this
+//         */
+//        public Builder crs(String crs) {
+//            if (crs != null && !validParamChars.containsOnly(crs)) {
+//                throw Messages.INSTANCE.getIllegalArgumentException(24);
+//            }
+//            this.crs = crs;
+//            return this;
+//        }
+//
+//        /**
+//         * Sets the uncertainty (how accurate the coordinates are).
+//         * @param uncertainty the uncertainty (in meters) or null to remove
+//         * @return this
+//         */
+//        public Builder uncertainty(Double uncertainty) {
+//            this.uncertainty = uncertainty;
+//            return this;
+//        }
+//
+//        /**
+//         * Adds a parameter.
+//         * @param name the parameter name (can only contain letters, numbers,
+//         * and hyphens)
+//         * @param value the parameter value or null to remove the parameter
+//         * @throws IllegalArgumentException if the parameter name contains
+//         * invalid characters
+//         * @return this
+//         */
+//        public Builder parameter(String name, String value) {
+//            if (!validParamChars.containsOnly(name)) {
+//                throw Messages.INSTANCE.getIllegalArgumentException(23);
+//            }
+//
+//            if (value == null) {
+//                parameters.remove(name);
+//            } else {
+//                parameters.put(name, value);
+//            }
+//            return this;
+//        }
+//
+//        /**
+//         * Builds the final {@link GeoUri} object.
+//         * @return the object
+//         */
+//        public GeoUri build() {
+//            return new GeoUri(this);
+//        }
+//    }
+//}
+
+
+
+//private CharacterBitSet validParamChars = new CharacterBitSet("a-zA-Z0-9-");
+
+/**
+ * Creates a new {@link GeoUri} builder.
+ * @param coordA the first coordinate (i.e. latitude)
+ * @param coordB the second coordinate (i.e. longitude)
+ */
+GeoUriBuilder::GeoUriBuilder(double coordA, double coordB) {
+//    parameters = new LinkedHashMap<String, String>(0); //set initial size to 0 because parameters are rarely used
+//    coordA(coordA);
+    //    coordB(coordB);
+    //private CharacterBitSet validParamChars = new CharacterBitSet("a-zA-Z0-9-");
+}
+
+/**
+ * Creates a new {@link GeoUri} builder.
+ * @param original the {@link GeoUri} object to copy from
+ */
+GeoUriBuilder::GeoUriBuilder(const GeoUri::Ptr& original) {
+//    coordA(original.coordA);
+//    coordB(original.coordB);
+//    this.coordC = original.coordC;
+//    this.crs = original.crs;
+//    this.uncertainty = original.uncertainty;
+    //    this.parameters = new LinkedHashMap<String, String>(original.parameters);
+    //private CharacterBitSet validParamChars = new CharacterBitSet("a-zA-Z0-9-");
+}
+
+/**
+ * Sets the first coordinate (latitude).
+ * @param coordA the first coordinate
+ * @return this
+ */
+void GeoUriBuilder::CoordA(double coordA) {
+    _coordA = coordA;
+}
+
+/**
+ * Sets the second coordinate (longitude).
+ * @param coordB the second coordinate
+ * @return this
+ */
+void GeoUriBuilder::CoordB(double coordB) {
+    _coordB = coordB;
+}
+
+double GeoUriBuilder::coordB() {
+    return _coordB;
+}
+
+/**
+ * Sets the third coordinate (altitude).
+ * @param coordC the third coordinate or null to remove
+ * @return this
+ */
+void GeoUriBuilder::CoordC(double coordC) {
+    _coordC = coordC;
+}
+
+/**
+ * Sets the coordinate reference system.
+ * @param crs the coordinate reference system (can only contain letters,
+ * numbers, and hyphens) or null to use the default (WGS-84)
+ * @throws IllegalArgumentException if the CRS name contains invalid
+ * characters
+ * @return this
+ */
+void GeoUriBuilder::Crs(const std::string& crs) {
+    if (!_crs.empty() && !_validParamChars->containsOnly(crs)) {
+        throw std::runtime_error("24");
+        //throw Messages.INSTANCE.getIllegalArgumentException(24);
+    }
+    _crs = crs;
+}
+
+/**
+ * Sets the uncertainty (how accurate the coordinates are).
+ * @param uncertainty the uncertainty (in meters) or null to remove
+ * @return this
+ */
+void GeoUriBuilder::Uncertainty(double uncertainty) {
+    _uncertainty = uncertainty;
+}
+
+/**
+ * Adds a parameter.
+ * @param name the parameter name (can only contain letters, numbers,
+ * and hyphens)
+ * @param value the parameter value or null to remove the parameter
+ * @throws IllegalArgumentException if the parameter name contains
+ * invalid characters
+ * @return this
+ */
+void GeoUriBuilder::Parameter(const std::string& name, const std::string& value) {
+    if (!_validParamChars->containsOnly(name)) {
+        throw std::runtime_error("23");
+        //throw Messages.INSTANCE.getIllegalArgumentException(23);
+    }
+    
+    if (value.empty()) {
+        _parameters.erase(name);
+    } else {
+        _parameters[name] = value;
+    }
+}
+
+/**
+ * Builds the final {@link GeoUri} object.
+ * @return the object
+ */
+GeoUri::Ptr GeoUriBuilder::build() {
+    
+  //  return new GeoUri(this);
+    return std::make_shared<GeoUri>();
+}

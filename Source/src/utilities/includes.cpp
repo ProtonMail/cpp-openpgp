@@ -5,7 +5,7 @@ uint64_t toint(const std::string & s, const int & base){
     uint64_t value = 0;
     switch (base){
         case 2:
-            for(const unsigned char & c : s){
+            for(const char & c : s){
                 value = (value << 1) + (static_cast <uint8_t> (c) - '\x30');
             }
             break;
@@ -19,7 +19,7 @@ uint64_t toint(const std::string & s, const int & base){
             std::stringstream(s) >> std::hex >> value;    // Thanks to Oli Charlesworth @ stackoverflow
             break;
         case 256:
-            for(const unsigned char & c : s){
+            for(const char & c : s){
                 value = (value << 8) + static_cast <uint8_t> (c);
             }
             break;

@@ -319,6 +319,15 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
++ (BOOL)findKeyid:(nonnull NSString *)encryptText
+       privateKey:(nonnull NSString *)privateKey {
+    try {
+        auto objcpp_result_ = ::ProtonMail::OpenPgp::findKeyid(::djinni::String::toCpp(encryptText),
+                                                               ::djinni::String::toCpp(privateKey));
+        return ::djinni::Bool::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
 - (nonnull PMNEncryptPackage *)encryptAttachment:(nonnull NSString *)addressId
                                    unencryptData:(nonnull NSData *)unencryptData
                                         fileName:(nonnull NSString *)fileName
@@ -431,6 +440,15 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     try {
         auto objcpp_result_ = _cppRefHandle.get()->get_new_public_key_package(::djinni::Binary::toCpp(session),
                                                                               ::djinni::String::toCpp(publicKey));
+        return ::djinni::Binary::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (nonnull NSData *)getNewPublicKeyPackageBinary:(nonnull NSData *)session
+                                       publicKey:(nonnull NSData *)publicKey {
+    try {
+        auto objcpp_result_ = _cppRefHandle.get()->get_new_public_key_package_binary(::djinni::Binary::toCpp(session),
+                                                                                     ::djinni::Binary::toCpp(publicKey));
         return ::djinni::Binary::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

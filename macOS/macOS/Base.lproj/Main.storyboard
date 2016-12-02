@@ -705,17 +705,17 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="macOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="545" height="427"/>
+                        <rect key="frame" x="0.0" y="0.0" width="545" height="504"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <progressIndicator hidden="YES" maxValue="100" doubleValue="50" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="4Bk-Cx-tNL">
-                                <rect key="frame" x="-10" y="413" width="594" height="20"/>
+                            <progressIndicator hidden="YES" wantsLayer="YES" maxValue="100" doubleValue="50" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="4Bk-Cx-tNL">
+                                <rect key="frame" x="-10" y="490" width="594" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="18" id="yud-3o-ERw"/>
                                 </constraints>
                             </progressIndicator>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="mbB-M2-h9u">
-                                <rect key="frame" x="18" y="352" width="222" height="58"/>
+                                <rect key="frame" x="18" y="429" width="222" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="218" id="HQr-8x-Fsu"/>
                                     <constraint firstAttribute="height" constant="53" id="X0c-wD-F8L"/>
@@ -729,7 +729,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="xii-Re-e8I">
-                                <rect key="frame" x="18" y="287" width="222" height="58"/>
+                                <rect key="frame" x="18" y="364" width="222" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="0Xu-jQ-Qc5"/>
                                     <constraint firstAttribute="width" constant="218" id="PSU-up-6Ms"/>
@@ -743,7 +743,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Wdu-7l-nEF">
-                                <rect key="frame" x="18" y="222" width="222" height="58"/>
+                                <rect key="frame" x="18" y="299" width="222" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="218" id="43z-6v-Z76"/>
                                     <constraint firstAttribute="height" constant="53" id="CbX-nR-bC7"/>
@@ -757,7 +757,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="OgY-UP-6po">
-                                <rect key="frame" x="18" y="157" width="222" height="58"/>
+                                <rect key="frame" x="18" y="234" width="222" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="6Ia-U0-SXb"/>
                                     <constraint firstAttribute="width" constant="218" id="v8F-mw-hUu"/>
@@ -771,7 +771,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="qhg-Uw-FmH">
-                                <rect key="frame" x="273" y="352" width="222" height="58"/>
+                                <rect key="frame" x="273" y="429" width="222" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="28K-qQ-IMZ"/>
                                     <constraint firstAttribute="width" constant="218" id="gtT-j6-3lN"/>
@@ -785,7 +785,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="XRG-Oz-yXW">
-                                <rect key="frame" x="273" y="287" width="222" height="58"/>
+                                <rect key="frame" x="273" y="364" width="222" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="Cvx-La-O8U"/>
                                     <constraint firstAttribute="width" constant="218" id="G9B-4V-pR5"/>
@@ -799,7 +799,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="wfX-db-HGn">
-                                <rect key="frame" x="273" y="222" width="222" height="58"/>
+                                <rect key="frame" x="273" y="299" width="222" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="218" id="Yoq-ZC-SjU"/>
                                     <constraint firstAttribute="height" constant="53" id="iYI-mc-nhf"/>
@@ -812,8 +812,8 @@
                                     <action selector="test_encrypt_decrypt_attachment:" target="XfG-lQ-9wD" id="2Pa-1B-F8Y"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="W0v-ds-wrK">
-                                <rect key="frame" x="20" y="38" width="507" height="35"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0v-ds-wrK">
+                                <rect key="frame" x="20" y="115" width="507" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="dUp-vU-cwB"/>
                                     <constraint firstAttribute="width" constant="503" id="gwv-JM-Rm4"/>
@@ -825,7 +825,7 @@
                                 </textFieldCell>
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Fmv-NR-reZ">
-                                <rect key="frame" x="273" y="157" width="222" height="58"/>
+                                <rect key="frame" x="273" y="234" width="222" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="iOq-kF-P5F"/>
                                     <constraint firstAttribute="width" constant="218" id="kwY-QH-zy0"/>
@@ -839,7 +839,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="jmF-gs-KYB">
-                                <rect key="frame" x="18" y="91" width="222" height="58"/>
+                                <rect key="frame" x="18" y="168" width="222" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="Agh-LL-2rm"/>
                                     <constraint firstAttribute="width" constant="218" id="QOa-XX-bq3"/>
@@ -853,7 +853,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="9mZ-Ao-wp6">
-                                <rect key="frame" x="273" y="91" width="222" height="58"/>
+                                <rect key="frame" x="273" y="168" width="222" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="dLO-pU-RTy"/>
                                     <constraint firstAttribute="width" constant="218" id="zEw-Dr-npJ"/>
@@ -866,12 +866,41 @@
                                     <action selector="new_jni_test:" target="XfG-lQ-9wD" id="iWL-S0-NKd"/>
                                 </connections>
                             </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="qxb-kR-gSj">
+                                <rect key="frame" x="273" y="103" width="222" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="53" id="Roe-D0-uSz"/>
+                                    <constraint firstAttribute="width" constant="218" id="rVk-fV-Wmt"/>
+                                </constraints>
+                                <buttonCell key="cell" type="bevel" title="Test VCard" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uvl-kq-Vrf">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <connections>
+                                        <action selector="test_vcard_action:" target="XfG-lQ-9wD" id="DvF-6B-xkZ"/>
+                                    </connections>
+                                </buttonCell>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="hww-8a-nht">
+                                <rect key="frame" x="273" y="33" width="222" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="218" id="CT8-cn-I7f"/>
+                                    <constraint firstAttribute="height" constant="53" id="aWe-D6-Pvg"/>
+                                </constraints>
+                                <buttonCell key="cell" type="bevel" title="Test VCard Write" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YPd-Pp-ldO">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="vcard_write_test_action:" target="XfG-lQ-9wD" id="EHO-yN-CWG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="9mZ-Ao-wp6" firstAttribute="top" secondItem="Fmv-NR-reZ" secondAttribute="bottom" constant="13" id="2dj-aU-7vG"/>
                             <constraint firstItem="jmF-gs-KYB" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="303-3u-d8m"/>
                             <constraint firstItem="Fmv-NR-reZ" firstAttribute="leading" secondItem="OgY-UP-6po" secondAttribute="trailing" constant="37" id="5fl-tr-U3E"/>
                             <constraint firstItem="xii-Re-e8I" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="5yG-mO-3E4"/>
+                            <constraint firstItem="qxb-kR-gSj" firstAttribute="trailing" secondItem="9mZ-Ao-wp6" secondAttribute="trailing" id="827-h8-rgj"/>
                             <constraint firstItem="wfX-db-HGn" firstAttribute="leading" secondItem="Wdu-7l-nEF" secondAttribute="trailing" constant="37" id="Eq9-aY-GXf"/>
                             <constraint firstItem="4Bk-Cx-tNL" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="-10" id="FaU-Bt-NKp"/>
                             <constraint firstItem="Wdu-7l-nEF" firstAttribute="top" secondItem="xii-Re-e8I" secondAttribute="bottom" constant="12" id="GPI-Th-fVc"/>
@@ -879,18 +908,24 @@
                             <constraint firstItem="qhg-Uw-FmH" firstAttribute="top" secondItem="4Bk-Cx-tNL" secondAttribute="bottom" constant="6" id="LSp-UF-hor"/>
                             <constraint firstItem="XRG-Oz-yXW" firstAttribute="leading" secondItem="xii-Re-e8I" secondAttribute="trailing" constant="37" id="LVP-oE-k5f"/>
                             <constraint firstItem="9mZ-Ao-wp6" firstAttribute="leading" secondItem="jmF-gs-KYB" secondAttribute="trailing" constant="37" id="O5b-lj-cJW"/>
+                            <constraint firstItem="hww-8a-nht" firstAttribute="top" secondItem="qxb-kR-gSj" secondAttribute="bottom" constant="17" id="QRQ-LX-wpg"/>
                             <constraint firstItem="Fmv-NR-reZ" firstAttribute="top" secondItem="wfX-db-HGn" secondAttribute="bottom" constant="12" id="T1o-Ma-xju"/>
                             <constraint firstItem="4Bk-Cx-tNL" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="-5" id="WSs-6g-ns4"/>
+                            <constraint firstItem="qxb-kR-gSj" firstAttribute="top" secondItem="9mZ-Ao-wp6" secondAttribute="bottom" constant="12" id="XgO-HM-JZO"/>
                             <constraint firstItem="W0v-ds-wrK" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="22" id="ZCc-hW-isH"/>
                             <constraint firstItem="jmF-gs-KYB" firstAttribute="top" secondItem="OgY-UP-6po" secondAttribute="bottom" constant="13" id="Zo0-W9-daW"/>
                             <constraint firstItem="mbB-M2-h9u" firstAttribute="top" secondItem="4Bk-Cx-tNL" secondAttribute="bottom" constant="6" id="aNC-Mz-ZrB"/>
                             <constraint firstAttribute="trailing" secondItem="4Bk-Cx-tNL" secondAttribute="trailing" constant="-39" id="ara-ad-9Oa"/>
+                            <constraint firstItem="hww-8a-nht" firstAttribute="leading" secondItem="qxb-kR-gSj" secondAttribute="leading" id="fvv-yg-GKd"/>
                             <constraint firstItem="wfX-db-HGn" firstAttribute="top" secondItem="XRG-Oz-yXW" secondAttribute="bottom" constant="12" id="gSN-17-Yhp"/>
                             <constraint firstItem="xii-Re-e8I" firstAttribute="top" secondItem="mbB-M2-h9u" secondAttribute="bottom" constant="12" id="h7F-Oy-gz6"/>
                             <constraint firstItem="OgY-UP-6po" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="hA8-6f-iIm"/>
                             <constraint firstItem="Wdu-7l-nEF" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="iOy-6q-nb1"/>
                             <constraint firstItem="XRG-Oz-yXW" firstAttribute="top" secondItem="qhg-Uw-FmH" secondAttribute="bottom" constant="12" id="lhZ-cM-3Zl"/>
+                            <constraint firstItem="qxb-kR-gSj" firstAttribute="leading" secondItem="9mZ-Ao-wp6" secondAttribute="leading" id="mSf-dP-0KM"/>
+                            <constraint firstItem="hww-8a-nht" firstAttribute="trailing" secondItem="qxb-kR-gSj" secondAttribute="trailing" id="pGv-0G-o68"/>
                             <constraint firstItem="OgY-UP-6po" firstAttribute="top" secondItem="Wdu-7l-nEF" secondAttribute="bottom" constant="12" id="qfS-bF-tHo"/>
+                            <constraint firstItem="qxb-kR-gSj" firstAttribute="height" secondItem="9mZ-Ao-wp6" secondAttribute="height" id="sxQ-UW-Jnw"/>
                             <constraint firstItem="qhg-Uw-FmH" firstAttribute="leading" secondItem="mbB-M2-h9u" secondAttribute="trailing" constant="37" id="ubU-HO-XAk"/>
                             <constraint firstItem="W0v-ds-wrK" firstAttribute="top" secondItem="9mZ-Ao-wp6" secondAttribute="bottom" constant="21" id="yJC-dC-0VV"/>
                         </constraints>
@@ -898,11 +933,12 @@
                     <connections>
                         <outlet property="labelDisplay" destination="W0v-ds-wrK" id="oJ7-ug-Bg7"/>
                         <outlet property="test_change_pwd" destination="xii-Re-e8I" id="Mzv-Sk-rll"/>
+                        <outlet property="vcard_write_test" destination="hww-8a-nht" id="NpJ-Pw-al1"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-81.5" y="754.5"/>
+            <point key="canvasLocation" x="-81.5" y="793"/>
         </scene>
     </scenes>
 </document>

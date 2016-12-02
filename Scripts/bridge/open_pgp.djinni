@@ -102,6 +102,8 @@ open_pgp = interface +c {
     sign_detached_verify_single_private_key(private_key: string, signature : string, plain_text : string) : bool;
     sign_detached_verify(signature : string, plain_text : string) : bool;
 
+    static findKeyid(encrypt_text : string, private_key : string) : bool;
+
 
     encrypt_attachment(address_id : string, unencrypt_data : binary, file_name : string, passphras: string) : encrypt_package;
     encrypt_attachment_single_key(public_key : string, unencrypt_data : binary, file_name : string, private_key: string, passphras: string) : encrypt_package;
@@ -117,6 +119,7 @@ open_pgp = interface +c {
 
 	get_symmetric_session_key(keyPackage : binary, password : string): binary;
 	get_new_public_key_package(session : binary, publicKey : string) : binary;
+    get_new_public_key_package_binary(session : binary, publicKey : binary) : binary;
 	get_new_symmetric_key_package(session : binary, password : string): binary;
 
     encrypt_message_aes(plain_text : string, password : string) : string;
@@ -171,6 +174,276 @@ b_crypt_hash = interface +c {
 #hash
     static hash_string(password: string, salt: string): string;
 }
+#ezvcard part
+
+i_formatted_name = interface +c {
+    getLanguage() : string;
+    setLanguage(language: string);
+
+    getParameter(name : string) : string;
+    getValue() : string;
+
+    static create_instance(name : string) : i_formatted_name;
+}
+
+i_address = interface +c {
+    getStreetAddress() : string;
+    getExtendedAddress() : string;
+    getLocality() : string;
+    getRegion() : string;
+    getPostalCode() : string;
+    getCountry() : string;
+    getTypes() : list<string>;
+    getPoBox() : string;
+    getPoBoxes() : list<string>;
+
+    static create_instance(type: string, street:string, extendstreet: string, locality: string, region:string, zip: string, country:string, pobox: string) : i_address;
+}
+
+i_organization = interface +c {
+    getValues() : list<string>;
+    getValue() : string;
+    static create_instance(type: string, value: string) : i_organization;
+}
+
+i_telephone = interface +c {
+    getTypes() : list<string>;
+    getText() : string;
+
+    static create_instance(type: string, number: string) : i_telephone;
+}
+
+i_email = interface +c {
+    getParameter(name : string) : string;
+    getValue() : string;
+    getTypes() : list<string>;
+    getGroup() : string;
+    setGroup(g: string);
+    static create_instance(type: string, email : string, group : string) : i_email;
+}
+
+i_title = interface +c {
+    getTitle() : string;
+    getType() : string;
+
+    static create_instance(type: string, value: string) : i_title;
+}
+
+i_url = interface +c {
+    getValue() : string;
+    getType() : string;
+    static create_instance(type: string, value: string) : i_url;
+}
+
+i_uid = interface +c {
+    getValue() : string;
+
+    static create_instance(uuid: string) : i_uid;
+}
+
+i_structured_name = interface +c {
+    getFamily() : string;
+    getGiven() : string;
+
+    static create_instance() : i_structured_name;
+}
+
+i_nickname = interface +c {
+    getNickname() : string;
+    getType() : string;
+    getValues() : list<string>;
+    static create_instance(type: string, value: string) : i_nickname;
+}
+
+i_photo = interface +c {
+
+}
+
+i_product_id = interface +c {
+
+}
+
+i_v_card_version = interface +c {
+    equals(rhs : i_v_card_version) : bool;
+
+    static VCard2_1() : i_v_card_version;
+    static VCard3_0() : i_v_card_version;
+    static VCard4_0() : i_v_card_version;
+}
+
+i_mailer = interface +c {
+
+}
+
+i_birthday = interface +c {
+    getDate() : string;
+    getType() : string;
+    getText() : string;
+    static create_instance(type: string, date: string) : i_birthday;
+}
+
+i_anniversary = interface +c {
+    getDate() : string;
+    getType() : string;
+    static create_instance(type: string, date: string) : i_anniversary;
+}
+
+i_note = interface +c {
+    getType() : string;
+    getNote() : string;
+    static create_instance(type: string, note: string) : i_note;
+}
+
+i_p_m_custom = interface +c {
+    getValue() : string;
+    getType() : string;
+    getGroup() : string;
+    static create_instance(type: string, value: string) : i_p_m_custom;
+}
+
+i_p_m_sign = interface +c {
+    getValue() : string;
+    getType() : string;
+    getGroup() : string;
+    static create_instance(type: string, value: string) : i_p_m_sign;
+}
+
+i_p_m_encrypt = interface +c {
+    getValue() : string;
+    getType() : string;
+    getGroup() : string;
+    static create_instance(type: string, value: string) : i_p_m_encrypt;
+}
+
+i_p_m_scheme = interface +c {
+    getValue() : string;
+    getType() : string;
+    getGroup() : string;
+    static create_instance(type: string, value: string) : i_p_m_scheme;
+}
+
+i_gender = interface +c {
+    getGender() : string;
+    getText() : string;
+    static create_instance(sex: string, text: string) : i_gender;
+}
 
 
 
+#static create_instance(type: string, email : string, group : string) : i_email;
+i_key = interface +c {
+    getText() : string;
+    setText(text : string);
+
+    getBinary() : binary;
+    setBinary(data: binary);
+
+    getGroup() : string;
+    setGroup(g: string);
+    getPref() : i32;
+    setPref(pref: i32);
+
+}
+
+
+i_v_card = interface +c {
+
+    getPropertyTypes() : list<string>;
+
+    getVersion() : i_v_card_version;
+    setVersion(version: i_v_card_version);
+
+    getFormattedName() : i_formatted_name;
+    setFormattedName(formattedName : i_formatted_name);
+    clearFormattedName();
+
+    getTelephoneNumbers() : list<i_telephone>;
+    addTelephone(cell: i_telephone);
+    setTelephones(cells: list<i_telephone>);
+    clearTelephones();
+
+    getEmails() : list<i_email>;
+    addEmail(email : i_email);
+    #set will replace all exsiting
+    setEmails(emails : list<i_email>);
+    clearEmails();
+
+    getKeys() : list<i_key>;
+    addKey(key : i_key);
+    #set will replace all exsiting
+    setKeys(keys : list<i_key>);
+    clearKeys();
+
+    getUid() : i_uid;
+    setUid(uuid : i_uid);
+
+    getAddresses() : list<i_address>;
+    addAddress(addr : i_address);
+    setAddresses(addrs : list<i_address>);
+    clearAddresses();
+
+    getOrganization() : i_organization;
+    addOrganization(org : i_organization);
+    setOrganizations(orgs : list<i_organization>);
+    clearOrganizations();
+
+    getNote() : i_note;
+    setNote(note: i_note);
+    clearNote();
+
+    getNickname() : i_nickname;
+    setNickname(nickname: i_nickname);
+    clearNickname();
+
+    getTitle() : i_title;
+    setTitle(title: i_title);
+    clearTitle();
+
+    getBirthdays() : list<i_birthday>;
+    addBirthday(birthday : i_birthday);
+    setBirthdays(birthdays : list<i_birthday>);
+    clearBirthdays();
+
+    getCustoms() : list<i_p_m_custom>;
+    addCustom(custom: i_p_m_custom);
+    setCustoms(customs: list<i_p_m_custom>);
+    clearCustoms();
+
+    getPMSign() : i_p_m_sign;
+    addPMSign(sign : i_p_m_sign);
+    setPMSign(sign: i_p_m_sign);
+    clearPMSign();
+
+    getPMEncrypt() : i_p_m_encrypt;
+    addPMEncrypt(encrypt : i_p_m_encrypt);
+    setPMEncrypt(encrypt: i_p_m_encrypt);
+    clearPMEncrypt();
+
+    getPMScheme() : i_p_m_scheme;
+    addPMScheme(scheme : i_p_m_scheme);
+    setPMScheme(scheme: i_p_m_scheme);
+    clearPMScheme();
+
+    getUrls() : list<i_url>;
+    addUrl(url : i_url);
+    setUrls(urls : list<i_url>);
+    clearUrls();
+
+    getGender() : i_gender;
+    setGender(gender: i_gender);
+    clearGender();
+
+    getStructuredName() : i_structured_name;
+    setStructuredName(name : i_structured_name);
+    clearStructuredName();
+
+    static create_instance() : i_v_card;
+}
+
+i_ezvcard = interface +c {
+    static parse_first(value: string) : i_v_card;
+    static parse_all(value: string) : list<i_v_card>;
+
+    static write(vcard: i_v_card) : string;
+    static write_all(vcards: list<i_v_card>) : string;
+}

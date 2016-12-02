@@ -27,9 +27,56 @@
 #include <openssl/pem.h>
 #include <openssl/evp.h>
 
-#include <string.h>
+
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <algorithm>
+#include <iterator>
+
+#include <bitset>         // std::bitset
 
 namespace ProtonMail {
+
+    
+    std::vector<std::string> str_split(const std::string &str, const std::string &delim) {
+        std::vector<std::string> tokens;
+        // Skip delimiters at beginning.
+        std::string::size_type lastPos = str.find_first_not_of(delim, 0);
+        // Find first "non-delimiter".
+        std::string::size_type pos     = str.find_first_of(delim, lastPos);
+        
+        while (std::string::npos != pos || std::string::npos != lastPos)
+        {
+            // Found a token, add it to the vector.
+            tokens.push_back(str.substr(lastPos, pos - lastPos));
+            // Skip delimiters.  Note the "not_of"
+            lastPos = str.find_first_not_of(delim, pos);
+            // Find next "non-delimiter"
+            pos = str.find_first_of(delim, lastPos);
+        }
+        return tokens;
+    }
+    
+    // trim from start
+    std::string &ltrim(std::string &s) {
+        s.erase(s.begin(), std::find_if(s.begin(), s.end(),
+                                        std::not1(std::ptr_fun<int, int>(std::isspace))));
+        return s;
+    }
+    
+    // trim from end
+    std::string &rtrim(std::string &s) {
+        s.erase(std::find_if(s.rbegin(), s.rend(),
+                             std::not1(std::ptr_fun<int, int>(std::isspace))).base(), s.end());
+        return s;
+    }
+    
+    // trim from both ends
+    std::string &str_trim(std::string &s) {
+        return ltrim(rtrim(s));
+    }
+    
     void optimized_trim(std::string& s)
     {
         std::string::size_type pos = s.find_last_not_of(' ');
@@ -206,6 +253,144 @@ namespace ProtonMail {
 //            EVP_CIPHER_CTX_cleanup(&ctx);
 //            return 1;
         
+    }
+    
+    std::string quote_printable_decode(const std::string &input) {
+        const int hexVal[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 0, 0, 0, 0, 0, 10, 11, 12, 13, 14, 15};
+        
+        /**
+         * BitSet of printable characters as defined in RFC 1521.
+         */
+        std::bitset<256> PRINTABLE_CHARS;
+        std::bitset<256> CRLF_CHARS;
+        std::bitset<256> HEX_CHARS;
+        
+        const char ESCAPE_CHAR = '=';
+        const char TAB = 9;
+        const char SPACE = 32;
+        const char CR = '\r';
+        const char LF = '\n';
+
+        for (int i = 33; i <= 60; i++) {
+            PRINTABLE_CHARS.set(i);
+        }
+        for (int i = 62; i <= 126; i++) {
+            PRINTABLE_CHARS.set(i);
+        }
+        PRINTABLE_CHARS.set(TAB);
+        PRINTABLE_CHARS.set(SPACE);
+        
+        CRLF_CHARS.set(CR);
+        CRLF_CHARS.set(LF);
+        
+        // normalized hex is numeric & upper alpha
+        for (int i = 48; i <= 57; i++) {
+            HEX_CHARS.set(i);
+        }
+        for (int i = 65; i <= 70; i++) {
+            HEX_CHARS.set(i);
+        }
+        //// Static initializer for printable chars collection
+        
+        std::vector<int> output;
+        auto size = input.size();
+        for (int i = 0; i < size; ++i)
+        {
+            auto b = input[i];
+            if (PRINTABLE_CHARS.test(b) || CRLF_CHARS.test(b)) {
+                output.push_back(b);
+            } else {
+                if (b == ESCAPE_CHAR) {
+                    if ((++i) < size) {
+                        auto b1 = input[i];
+                        if (HEX_CHARS.test(b1)) {
+                            if ((++i) < size) {
+                                auto b2 = input[i];
+                                if (HEX_CHARS.test(b2)) {
+                                    auto m = (hexVal[b1 - '0'] << 4) + hexVal[b2 - '0'];
+                                    output.push_back(m);
+                                } else {
+                                    throw std::runtime_error("Error: MALFORMED_INPUT.");
+                                }
+                            } else {
+                                throw std::runtime_error("Error: MALFORMED_INPUT.");
+                            }
+                        } else {
+                            // remove mta extra whitespace
+                            while (b1 != CR) {
+                                if (b1 != SPACE && b1 != TAB) {
+                                    throw std::runtime_error("Error: MALFORMED_INPUT.");
+                                }
+                                b1 = input[++i]; // eats the CR and WS
+                            }
+                            b1 = input[++i]; // eats the LF
+                        }
+                    } else {
+                        throw std::runtime_error("Error: MALFORMED_INPUT.");
+                    }
+                } else {
+                    throw std::runtime_error("Error: MALFORMED_INPUT.");
+                }
+            }
+        }
+
+
+        return std::string(output.begin(), output.end());
+
+
+//        std::vector<int> output;
+//        auto size = input.size();
+//        for (int i = 0; i < size; ++i)
+//        {
+//            if (input[i] == '=')
+//            {
+//                output.push_back((hexVal[input[++i] - '0'] << 4) + hexVal[input[++i] - '0']);
+//            }
+//            else
+//            {
+//                output.push_back(input[i]);
+//            }
+//        }
+//
+//        return std::string(output.begin(), output.end());
+    }
+
+    std::string quote_printable_encode(const std::string &s) {
+//        QString *output = new QString();
+//
+//        char byte;
+//        const char hex[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+//
+//        for (int i = 0; i < input.length() ; ++i)
+//        {
+//            byte = input[i];
+//            
+//            if ((byte == 0x20) || (byte >= 33) && (byte <= 126) && (byte != 61))
+//            {
+//                output->append(byte);
+//            }
+//            else
+//            {
+//                output->append('=');
+//                output->append(hex[((byte >> 4) & 0x0F)]);
+//                output->append(hex[(byte & 0x0F)]);
+//            }
+//        }
+//        
+//        return *output;
+        return "";
+    }
+    
+    std::string replaceAll(std::string& str_in, const std::string& from, const std::string& to) {
+        std::string str = str_in;
+        if(from.empty())
+            return str_in;
+        size_t start_pos = 0;
+        while((start_pos = str.find(from, start_pos)) != std::string::npos) {
+            str.replace(start_pos, from.length(), to);
+            start_pos += to.length(); // In case 'to' contains 'from', like replacing 'x' with 'yx'
+        }
+        return str;
     }
 }
 

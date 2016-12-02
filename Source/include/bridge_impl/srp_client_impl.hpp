@@ -2,6 +2,7 @@
 
 #include "bridge/srp_client.hpp"
 
+
 namespace ProtonMail {
 
     class SrpClientImpl : public ProtonMail::SrpClient {
