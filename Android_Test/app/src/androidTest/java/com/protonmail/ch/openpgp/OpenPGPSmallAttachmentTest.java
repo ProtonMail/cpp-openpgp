@@ -50,7 +50,7 @@ public class OpenPGPSmallAttachmentTest extends AndroidTestCase {
         OpenPgp openPgp = OpenPgp.createInstance();
 
         ArrayList<OpenPgpKey> keys = new ArrayList<>();
-        keys.add(new OpenPgpKey(publicKey, privateKey));
+        keys.add(new OpenPgpKey("", publicKey, privateKey, "",false));
         openPgp.addAddress(new Address("1", "feng@protonmail.ch", keys));
 
         byte[] new_out_data = openPgp.decryptAttachment(key, data, privatePassphrase);
@@ -70,7 +70,7 @@ public class OpenPGPSmallAttachmentTest extends AndroidTestCase {
         OpenPgp openPgp = OpenPgp.createInstance();
 
         ArrayList<OpenPgpKey> keys = new ArrayList<>();
-        keys.add(new OpenPgpKey(publicKey, privateKey));
+        keys.add(new OpenPgpKey("", publicKey, privateKey, "",false));
         openPgp.addAddress(new Address("1", "feng@protonmail.ch", keys));
 
         for( int i = 0; i< 200; i++) {

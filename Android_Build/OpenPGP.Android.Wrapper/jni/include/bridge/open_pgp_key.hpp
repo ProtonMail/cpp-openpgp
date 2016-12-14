@@ -9,13 +9,23 @@
 namespace ProtonMail {
 
 struct OpenPgpKey final {
+    std::string key_id;
     std::string public_key;
     std::string private_key;
+    std::string finger_print;
+    /** false default only used when update keys */
+    bool isUpdated;
 
-    OpenPgpKey(std::string public_key_,
-               std::string private_key_)
-    : public_key(std::move(public_key_))
+    OpenPgpKey(std::string key_id_,
+               std::string public_key_,
+               std::string private_key_,
+               std::string finger_print_,
+               bool isUpdated_)
+    : key_id(std::move(key_id_))
+    , public_key(std::move(public_key_))
     , private_key(std::move(private_key_))
+    , finger_print(std::move(finger_print_))
+    , isUpdated(std::move(isUpdated_))
     {}
 };
 

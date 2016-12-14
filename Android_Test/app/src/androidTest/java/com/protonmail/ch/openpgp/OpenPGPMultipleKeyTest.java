@@ -58,7 +58,7 @@ public class OpenPGPMultipleKeyTest extends AndroidTestCase {
                 JSONArray keys = address.getJSONArray("Keys");
                 for (int j = 0; j < keys.length(); ++j) {
                     JSONObject key = keys.getJSONObject(j);
-                    OpenPgpKey keyo = new OpenPgpKey(key.getString("PublicKey"), key.getString("PrivateKey"));
+                    OpenPgpKey keyo = new OpenPgpKey("", key.getString("PublicKey"), key.getString("PrivateKey"), "", false);
                     address_keys.add(keyo);
                 }
                 Address newAddress = new Address(addressID, addressName, address_keys);
