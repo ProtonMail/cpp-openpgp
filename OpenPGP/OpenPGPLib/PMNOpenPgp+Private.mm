@@ -104,6 +104,30 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
++ (nonnull NSString *)decryptMessageWithAddress:(nonnull PMNAddress *)address
+                                    encryptText:(nonnull NSString *)encryptText
+                                      passphras:(nonnull NSString *)passphras {
+    try {
+        auto objcpp_result_ = ::ProtonMail::OpenPgp::decrypt_message_with_address(::OBJ_ProtonMail::Address::toCpp(address),
+                                                                                  ::djinni::String::toCpp(encryptText),
+                                                                                  ::djinni::String::toCpp(passphras));
+        return ::djinni::String::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
++ (nonnull NSData *)decryptAttachmentWithAddress:(nonnull PMNAddress *)address
+                                             key:(nonnull NSData *)key
+                                            data:(nonnull NSData *)data
+                                       passphras:(nonnull NSString *)passphras {
+    try {
+        auto objcpp_result_ = ::ProtonMail::OpenPgp::decrypt_attachment_with_address(::OBJ_ProtonMail::Address::toCpp(address),
+                                                                                     ::djinni::Binary::toCpp(key),
+                                                                                     ::djinni::Binary::toCpp(data),
+                                                                                     ::djinni::String::toCpp(passphras));
+        return ::djinni::Binary::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
 + (nonnull NSData *)randomBits:(int32_t)bits {
     try {
         auto objcpp_result_ = ::ProtonMail::OpenPgp::random_bits(::djinni::I32::toCpp(bits));

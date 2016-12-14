@@ -194,6 +194,41 @@ namespace ProtonMail {
         
     }
     
+    
+    /**decrypt message use the address key ring with password */
+    std::string OpenPgp::decrypt_message_with_address(const Address & address, const std::string & encrypt_text, const std::string & passphras) {
+        std::string encrypt_msg = encrypt_text;
+        PGPSecretKey secret_key;
+        for (const auto &key : address.keys) {
+            std::string private_key = key.private_key;
+            secret_key.read(private_key);
+        }
+        ProtonMail::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
+        std::string plain_text = decrypt_pka(secret_key, pm_pgp_msg, passphras, false);
+        return plain_text;
+    }
+    
+    /**decrypt attachment use the address key ring with password */
+    std::vector<uint8_t> OpenPgp::decrypt_attachment_with_address(const Address & address, const std::vector<uint8_t> & key, const std::vector<uint8_t> & data, const std::string & passphras) {
+        
+        PGPSecretKey secret_key;
+        for (const auto &key : address.keys) {
+            std::string private_key = key.private_key;
+            secret_key.read(private_key);
+        }
+
+        std::string str_key_package(key.begin(), key.end());
+        std::string str_data_package (data.begin(), data.end());
+        
+        ProtonMail::PMPGPMessage pm_pgp_msg(str_key_package, true);
+        pm_pgp_msg.append(str_data_package, true);
+        
+        std::string test_plain_txt = decrypt_pka(secret_key, pm_pgp_msg, passphras, false);
+        
+        std::vector<uint8_t> out_vector(test_plain_txt.begin(), test_plain_txt.end());
+        return out_vector;
+    }
+    
     /**encrypt message */
     std::string OpenPgpImpl::encrypt_message(const std::string &address_id,
                                              const std::string &plan_text) {
