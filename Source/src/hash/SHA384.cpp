@@ -1,30 +1,35 @@
 #include <hash/SHA384.h>
+#include <openssl/sha.h>
 
-void SHA384::original_h(){
-    ctx.h0 = 0xcbbb9d5dc1059ed8ULL;
-    ctx.h1 = 0x629a292a367cd507ULL;
-    ctx.h2 = 0x9159015a3070dd17ULL;
-    ctx.h3 = 0x152fecd8f70e5939ULL;
-    ctx.h4 = 0x67332667ffc00b31ULL;
-    ctx.h5 = 0x8eb44a8768581511ULL;
-    ctx.h6 = 0xdb0c2e0d64f98fa7ULL;
-    ctx.h7 = 0x47b5481dbefa4fa4ULL;
-}
-
-SHA384::SHA384() :
-    SHA512()
+SHA384::SHA384()
 {
-    original_h();
+    
 }
 
-SHA384::SHA384(const std::string & str) :
-    SHA384()
+SHA384::SHA384(const std::string & str) : SHA384()
 {
     update(str);
 }
 
+void SHA384::update(const std::string &str){
+    stack = str;
+}
+
 std::string SHA384::hexdigest(){
-    return SHA512::hexdigest().substr(0, 96);
+    
+    unsigned char hash[SHA384_DIGEST_LENGTH];
+    SHA512_CTX sha512;
+    SHA384_Init(&sha512);
+    SHA384_Update(&sha512, stack.c_str(), stack.length());
+    SHA384_Final(hash, &sha512);
+    
+    std::stringstream ss;
+    ss << std::hex << std::setfill('0');
+    for (int i = 0; i < SHA384_DIGEST_LENGTH; i++)
+    {
+        ss << std::hex << std::setw(2)  << static_cast<unsigned int>(hash[i]);
+    }
+    return ss.str();
 }
 
 unsigned int SHA384::blocksize() const{
@@ -32,5 +37,5 @@ unsigned int SHA384::blocksize() const{
 }
 
 unsigned int SHA384::digestsize() const{
-    return 384;
+    return 384; //SHA384_DIGEST_LENGTH * 8
 }

@@ -79,10 +79,6 @@ std::string URLEncode(const std::string &sIn)
         {
             buf[0] = sIn[ix];
         }
-        //else if ( isspace( (BYTE)sIn[ix] ) ) //貌似把空格编码成%20或者+都可以
-        //{
-        //    buf[0] = '+';
-        //}
         else
         {
             buf[0] = '%';
@@ -122,7 +118,7 @@ std::string URLDecode(const std::string &sIn)
 
 
 
-const char HEX2DEC[256] =
+const signed char HEX2DEC[256] =
 {
     /*       0  1  2  3   4  5  6  7   8  9  A  B   C  D  E  F */
     /* 0 */ -1,-1,-1,-1, -1,-1,-1,-1, -1,-1,-1,-1, -1,-1,-1,-1,
@@ -149,7 +145,6 @@ const char HEX2DEC[256] =
 std::string ecape(std::string & sin)
 {
     std::string aa = sin;
-    //wchar_t *aa = L"冯a继b业";
     std::string ss = "";
     size_t size = aa.size();
     for(int i=0;i<size;i++)
@@ -168,7 +163,6 @@ std::string ecape(std::string & sin)
             ss += tmp;
         }
     }
-  //  std::cout << ss << std::endl;
     return 0;
 }
 
@@ -278,7 +272,6 @@ std::string js_encodeURIComponent(const std::string & sSrc)
     
     for (int i=0; i<size; i++) {
         unsigned char code = sSrc[i];
-        //std::cout << code << std::endl;
         if(code > 0x7f)
         {
             int charcode = code;
@@ -370,47 +363,7 @@ std::string js_decodeURIComponent(const std::string &input)
         {
             out_s += code;
         }
-        
-        //
-        //        if (code < 128)
-        //        {
-        //            if(code == '%')
-        //            {
-        //                int cint;
-        //                cint = (cint << 4) | e_val[input[i+1]];
-        //                cint = (cint << 4) | e_val[input[i+2]];
-        //                i+=2;
-        //                out_s += (char)cint;
-        //            }
-        //            else
-        //            {
-        //                out_s += code;
-        //            }
-        //        }
-        //        else
-        //        {
-        //                    }
     }
-    //        else if (ch == '%') {
-    //            int cint = 0;
-    //            std::wstring ci;
-    //            if ('u' != str[i+1]) {         // %XX : map to ascii(XX)
-    //                cint = (cint << 4) | e_val[str[i+1]];
-    //                cint = (cint << 4) | e_val[str[i+2]];
-    //                i+=2;
-    //                sbuf += (char)cint;
-    //            } else {                            // %uXXXX : map to unicode(XXXX)
-    //                cint = (cint << 4) | e_val[str[i+2]];
-    //                cint = (cint << 4) | e_val[str[i+3]];
-    //                cint = (cint << 4) | e_val[str[i+4]];
-    //                cint = (cint << 4) | e_val[str[i+5]];
-    //                i+=5;
-    //
-    //                ci = (wchar_t)cint;
-    //                sbuf += converter.to_bytes(ci);
-    //            }
-    //
-    //    }
     return out_s;
 }
 
@@ -432,14 +385,7 @@ std::string encodeURIComponent(const std::string & sSrc)
         {
             // escape this char
             *pEnd++ = '%';
-            //char a = DEC2HEX[*pSrc >> 4];
-            //char b = DEC2HEX[*pSrc & 0x0F];
-            
-           // std::cout << a << std::endl;
-            //*pEnd++
             *pEnd++ = DEC2HEX[*pSrc >> 4];
-           // std::cout << b << std::endl;
-            
             *pEnd++ = DEC2HEX[*pSrc & 0x0F];
         }
     }
@@ -448,99 +394,6 @@ std::string encodeURIComponent(const std::string & sSrc)
     delete [] pStart;
     return sResult;
 }
-
-
-
-
-////
-
-//std::string js_escape(std::string &str)
-//{
-//    std::wstring wcs;
-//    
-//    typedef std::codecvt_utf8_utf16<wchar_t> convert_type;
-//    std::wstring_convert<convert_type, wchar_t> converter;
-//    wcs = converter.from_bytes(str);
-//    
-//   // std::cout << wcs.length() << std::endl;
-//    str = "";
-//    for(int i=0;i<wcs.size();i++)
-//    {
-//        if(wcs[i]>0xff)
-//        {
-//            char tmp[5];
-//            sprintf(tmp,"%04X",wcs[i]);
-//            str += "%u";
-//            str += tmp;
-//        }
-//        else
-//        {
-//            
-//            if( (wcs[i]>='a' && wcs[i]<='z') || (wcs[i]>='A' && wcs[i]<='Z') || ( wcs[i]>='0' && wcs[i]<='9' ) || wcs[i] == '-' || wcs[i] == '_' || wcs[i] == '.')
-//            {
-//                str += converter.to_bytes(wcs[i]);
-//            }
-//            else
-//            {
-//                char tmp[3];
-//                sprintf(tmp,"%04x",wcs[i]);
-//                str += "%";
-//                str += tmp;
-//            }
-//        }
-//    }
-//    return str;
-//}
-//
-//
-//std::string js_unescape(std::string &str)
-//{
-//    std::string sbuf;
-//    
-//    typedef std::codecvt_utf8<wchar_t> convert_type;
-//    std::wstring_convert<convert_type, wchar_t> converter;
-//    
-//    
-//    int i = 0;
-//    int len = static_cast<int>(str.length());
-//    while (i < len) {
-//        int ch = str[i];
-//        if ('A' <= ch && ch <= 'Z') {    // 'A'..'Z' : as it was
-//            sbuf += ch;
-//        } else if ('a' <= ch && ch <= 'z') {    // 'a'..'z' : as it was
-//            sbuf += ch;
-//        } else if ('0' <= ch && ch <= '9') {    // '0'..'9' : as it was
-//            sbuf += ch;
-//        } else if (ch == '-' || ch == '_'       // unreserved : as it was
-//                   || ch == '.' || ch == '!'
-//                   || ch == '~' || ch == '*'
-//                   || ch == '\'' || ch == '('
-//                   || ch == ')' || ch == '+') {
-//            sbuf += ch;
-//        } else if (ch == '%') {
-//            int cint = 0;
-//            std::wstring ci;
-//            if ('u' != str[i+1]) {         // %XX : map to ascii(XX)
-//                cint = (cint << 4) | e_val[str[i+1]];
-//                cint = (cint << 4) | e_val[str[i+2]];
-//                i+=2;
-//                sbuf += (char)cint;
-//            } else {                            // %uXXXX : map to unicode(XXXX)
-//                cint = (cint << 4) | e_val[str[i+2]];
-//                cint = (cint << 4) | e_val[str[i+3]];
-//                cint = (cint << 4) | e_val[str[i+4]];
-//                cint = (cint << 4) | e_val[str[i+5]];
-//                i+=5;
-//                
-//                ci = (wchar_t)cint;
-//                sbuf += converter.to_bytes(ci);
-//            }
-//        }
-//        i++;
-//    }
-//    
-//    return sbuf;
-//}
 
 std::string escape(std::string& s) {
     const int SRC_LEN = static_cast<int>(s.length());
@@ -574,67 +427,16 @@ std::string escape(std::string& s) {
             for(int i = 0; i < 8; i++)
             {
                 stm << std::hex << std::uppercase << ((ch >> i) & 1) ;
-                // std::cout << ((ch >> i) & 1) << std::endl;
-                
             }
             
-          //  std::cout << hexlify(ch) << std::endl;
-            
             std::string h = e_hex[(ch >> 8)];
-          //  std::cout << h << std::endl;
             out += h ;
             h =  e_hex[(0x00FF & ch)];
-           // std::cout << h << std::endl;
             out += h;
         }
     }
     return out;
 }
-
-//
-//
-/////
-//
-//std::string unescape(std::string s) {
-//    StringBuffer sbuf = new StringBuffer();
-//    int i = 0;
-//    int len = s.length();
-//    while (i < len) {
-//        int ch = s.charAt(i);
-//        if (ch == '+') {                        // + : map to ' '
-//            sbuf.append(' ');
-//        } else if ('A' <= ch && ch <= 'Z') {    // 'A'..'Z' : as it was
-//            sbuf.append((char)ch);
-//        } else if ('a' <= ch && ch <= 'z') {    // 'a'..'z' : as it was
-//            sbuf.append((char)ch);
-//        } else if ('0' <= ch && ch <= '9') {    // '0'..'9' : as it was
-//            sbuf.append((char)ch);
-//        } else if (ch == '-' || ch == '_'       // unreserved : as it was
-//                   || ch == '.' || ch == '!'
-//                   || ch == '~' || ch == '*'
-//                   || ch == '\'' || ch == '('
-//                   || ch == ')') {
-//            sbuf.append((char)ch);
-//        } else if (ch == '%') {
-//            int cint = 0;
-//            if ('u' != s.charAt(i+1)) {         // %XX : map to ascii(XX)
-//                cint = (cint << 4) | val[s.charAt(i+1)];
-//                cint = (cint << 4) | val[s.charAt(i+2)];
-//                i+=2;
-//            } else {                            // %uXXXX : map to unicode(XXXX)
-//                cint = (cint << 4) | val[s.charAt(i+2)];
-//                cint = (cint << 4) | val[s.charAt(i+3)];
-//                cint = (cint << 4) | val[s.charAt(i+4)];
-//                cint = (cint << 4) | val[s.charAt(i+5)];
-//                i+=5;
-//            }
-//            sbuf.append((char)cint);
-//        }
-//        i++;
-//    }
-//    return sbuf.toString();
-//}
-
 
 std::string url_encode(const std::string &value) {
     std::ostringstream escaped;
@@ -670,34 +472,6 @@ std::string getHex(std::string buf) {
     }
     return o;
 }
-
-//std::string js_encodeURIComponent(const std::string &input) {
-//    if ("" == input) {
-//        return input;
-//    }
-//
-//    static std::string ALLOWED_CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_.!~*'()";
-//
-//    size_t l = input.length();
-//    std::string o_out;
-//    //  try {
-//    for (int i = 0; i < l; i++) {
-//        std::string e = input.substr(i, i + 1);
-//
-//        std::size_t found = ALLOWED_CHARS.find(e);
-//        if (found==std::string::npos)
-//        {
-//            o_out += getHex(e);
-//            continue;
-//        }
-//        o_out += e;
-//    }
-//    return o_out;
-//    //    } catch (UnsupportedEncodingException e) {
-//    //        e.printStackTrace();
-//    //    }
-//    // return input;
-//}
 
 int bin_value(char ch)
 {
@@ -797,8 +571,6 @@ void A_to_B(const char* input)
         delete [] binary_reverse;     //free the memory created by dynamic mem. allocation
         delete [] binary;
     }
-    
-   // std::cout << std::endl;
 }
 
 void B_to_A(const char* input)

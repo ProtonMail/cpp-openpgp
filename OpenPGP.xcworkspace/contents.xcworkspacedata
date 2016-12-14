@@ -5,6 +5,9 @@
       location = "group:OpenPGP/OpenPGP.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:Source/tests/common/TestRunner/ios/ios_runner.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:ObjectiveC/ObjectiveC.xcodeproj">
    </FileRef>
    <FileRef

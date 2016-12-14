@@ -25,15 +25,15 @@ namespace ProtonMail {
 
         bool m_is_passpharse_right;
         std::string m_str_passpharse;
-
-        bool m_is_debug_mode;
-
+        
         std::unordered_map<std::string, ProtonMail::Address> m_addresses;
 
     public:
         OpenPgpImpl();
         ~OpenPgpImpl();
-
+        
+        static bool m_is_debug_mode;
+        
         /**generat new key pair */
         OpenPgpKey generate_key(const std::string & user_name, const std::string & domain, const std::string & passphrase, int32_t bits);
         

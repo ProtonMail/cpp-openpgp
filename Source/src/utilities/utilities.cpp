@@ -4,10 +4,10 @@
 #include <utilities/BBS.h>
 #include <utilities/base64.h>
 #include <hash/Hash.h>
-
+#include <hash/HMAC.h>
 #include <encryption/AES.h>
 
-namespace pm {
+namespace ProtonMail {
 
     
     

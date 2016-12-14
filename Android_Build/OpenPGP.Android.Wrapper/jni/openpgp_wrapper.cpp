@@ -193,7 +193,7 @@ Java_ch_protonmail_android_utils_OpenPGP_SetupKeys(JNIEnv* env, jobject o, jstri
 //            env->ReleaseStringUTFChars(jpassphrase, c_passphrase);
 //        }
 //
-//        pm::PMPGPMessage pm_pgp_msg(str_encrypted_msg);
+//        ProtonMail::PMPGPMessage pm_pgp_msg(str_encrypted_msg);
 //
 //        PGPSecretKey secret_key;
 //	    secret_key.set_is_debug(false);
@@ -310,7 +310,7 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptMessage(JNIEnv* env, jobject o, 
             env->ReleaseStringUTFChars(j_passphrase, c_passphrase);
         }
 
-        pm::PMPGPMessage pm_pgp_msg(str_encrypted_msg, false);
+        ProtonMail::PMPGPMessage pm_pgp_msg(str_encrypted_msg, false);
 
         PGPSecretKey secret_key;
 	    secret_key.set_is_debug(false);
@@ -370,7 +370,7 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptMessageWithKeys(JNIEnv* env, job
             env->ReleaseStringUTFChars(j_passphrase, c_passphrase);
         }
 
-        pm::PMPGPMessage pm_pgp_msg(str_encrypted_msg, false);
+        ProtonMail::PMPGPMessage pm_pgp_msg(str_encrypted_msg, false);
 
         PGPSecretKey secret_key;
         secret_key.set_is_debug(false);
@@ -510,7 +510,7 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptMessageAES(JNIEnv* env, jobject 
             env->ReleaseStringUTFChars(jpassword, c_password);
         }
 
-        pm::PMPGPMessage pm_pgp_msg(str_encrypted_message, false);
+        ProtonMail::PMPGPMessage pm_pgp_msg(str_encrypted_message, false);
         std::string out_unencrypt_msg = decrypt_sym(pm_pgp_msg, str_password);
 
         (*env).DeleteLocalRef(jencrypted_message);
@@ -617,10 +617,10 @@ Java_ch_protonmail_android_utils_OpenPGP_EncryptMailboxPWD(JNIEnv* env, jobject 
 //         //std::string hash_salt = hash_hmac("sha256", salt_value, key_one, true);
 //         //std::cout << "hash_salt:" << hexlify(hash_salt) << std::endl;
 //         //std::cout << "hash+plain" << hexlify(hash_salt + plaintext) << std::endl;
-//         std::string enc_data = pm::aes_cbc_256_encrypt(key_two, random_iv, str_unencrypt_message);
+//         std::string enc_data = ProtonMail::aes_cbc_256_encrypt(key_two, random_iv, str_unencrypt_message);
 //         //std::cout << "enc_data:" << hexlify(enc_data) << std::endl;
 //         LOG_E("enc_data %s", hexlify(enc_data).c_str()); /* 1  */
-//         std::string hash_enc_data = pm::hash_hmac("sha256", random_iv + enc_data, key_three, true);
+//         std::string hash_enc_data = ProtonMail::hash_hmac("sha256", random_iv + enc_data, key_three, true);
 
 //         LOG_E("hash_enc_data %s", hexlify(hash_enc_data).c_str());
 //         //std::cout << "hash_enc_data:" << hexlify(hash_enc_data) << std::endl;
@@ -628,7 +628,7 @@ Java_ch_protonmail_android_utils_OpenPGP_EncryptMailboxPWD(JNIEnv* env, jobject 
 // LOG_E("encrypt_message %s", encrypt_message.c_str());
 //        // LOG_E("unencrypt_message %s", str_unencrypt_message.c_str()); /* 1  */
 
-//         //std::string encrypt_message = pm::encrypt_mailbox_password(str_unencrypt_message, str_password);
+//         //std::string encrypt_message = ProtonMail::encrypt_mailbox_password(str_unencrypt_message, str_password);
 //         jstring jsRet = 0;
 //         if (!encrypt_message.empty())
 //         {
@@ -672,7 +672,7 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptMailboxPWD(JNIEnv* env, jobject 
         }
 
         str_encrypted_message = unhexlify(str_encrypted_message);
-        pm::PMPGPMessage pm_pgp_msg(str_encrypted_message, false);
+        ProtonMail::PMPGPMessage pm_pgp_msg(str_encrypted_message, false);
         std::string out_unencrypt_msg = decrypt_sym(pm_pgp_msg, str_password);
 
         jstring jsRet = 0;
@@ -738,7 +738,7 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptMailboxPWD(JNIEnv* env, jobject 
     //     std::string enc_data = unhexlify_enc_value.substr(enc_data_start);
     //     // //std::cout << "enc_data:" << hexlify(enc_data) << std::endl;
 
-    //     std::string match_hash_enc_data = pm::hash_hmac("sha256", random_iv + enc_data, key_three, true);
+    //     std::string match_hash_enc_data = ProtonMail::hash_hmac("sha256", random_iv + enc_data, key_three, true);
     //     //LOG_E("match_hash_enc_data %s", hexlify(match_hash_enc_data).c_str()); /* 1  */
 
     //     // //std::cout << "match_hash_enc_data:" << hexlify(match_hash_enc_data) << std::endl;
@@ -774,7 +774,7 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptMailboxPWD(JNIEnv* env, jobject 
     //         LOG_E("2 check ok"); /* 1  */
     //     }
 
-    //     std::string decrypt_data = pm::aes_cbc_256_decrypt(key_two, random_iv, enc_data);
+    //     std::string decrypt_data = ProtonMail::aes_cbc_256_decrypt(key_two, random_iv, enc_data);
     //     LOG_E("decrypt_data %s", decrypt_data.c_str()); /* 1  */
     //     LOG_E("decrypt_data %s", hexlify(decrypt_data).c_str()); /* 1  */
     //     // //std::cout << decrypt_data << std::endl;
@@ -782,7 +782,7 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptMailboxPWD(JNIEnv* env, jobject 
 
     //     // LOG_E("encrypted_message %s", str_encrypted_message.c_str()); /* 1  */
     //     // LOG_E("salt %s", str_password.c_str()); /* 1  */
-    //     // std::string out_unencrypt_msg = pm::decrypt_mailbox_password(str_encrypted_message, str_password);
+    //     // std::string out_unencrypt_msg = ProtonMail::decrypt_mailbox_password(str_encrypted_message, str_password);
 
     //     std::string out_unencrypt_msg = decrypt_data;
     //     if (!out_unencrypt_msg.empty())
@@ -847,7 +847,7 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptAttachmentArmored(JNIEnv* env, j
             env->ReleaseStringUTFChars(jpassphrase, c_password);
         }
 
-        pm::PMPGPMessage pm_pgp_msg(str_key_package, false);
+        ProtonMail::PMPGPMessage pm_pgp_msg(str_key_package, false);
         pm_pgp_msg.append(str_data_package, false);
 
         PGPSecretKey secret_key;
@@ -914,7 +914,7 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptAttachment(JNIEnv* env, jobject 
         std::string str_private_key = (*env).GetStringUTFChars(jprivate_key, 0);
         std::string str_password = (*env).GetStringUTFChars(passphrase, 0);
 
-        pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
+        ProtonMail::PMPGPMessage pm_pgp_msg(str_key_package, true);
         pm_pgp_msg.append(str_data_package, true);
 
         PGPSecretKey secret_key;
@@ -1140,7 +1140,7 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptAttachmentWithPassword(JNIEnv* e
             env->ReleaseStringUTFChars(jpassword, c_password);
         }
 
-        pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
+        ProtonMail::PMPGPMessage pm_pgp_msg(str_key_package, true);
         pm_pgp_msg.append(str_data_package, true);
 
         std::string test_plain_txt = decrypt_sym(pm_pgp_msg, str_password);
@@ -1203,7 +1203,7 @@ Java_ch_protonmail_android_utils_OpenPGP_GetPublicKeySessionKey(JNIEnv* env, job
             env->ReleaseStringUTFChars(jpassphrase, c_passphrase);
         }
 
-        pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
+        ProtonMail::PMPGPMessage pm_pgp_msg(str_key_package, true);
 
         PGPSecretKey secret_key;
         secret_key.set_is_debug(false);
@@ -1268,7 +1268,7 @@ Java_ch_protonmail_android_utils_OpenPGP_GetSymmetricSessionKey(JNIEnv* env, job
             env->ReleaseStringUTFChars(jpassword, c_password);
         }
 
-        pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
+        ProtonMail::PMPGPMessage pm_pgp_msg(str_key_package, true);
 
         std::string sessionKey = decrypt_pka_only_sym_session(pm_pgp_msg, str_password);
 
@@ -1476,7 +1476,7 @@ Java_ch_protonmail_android_utils_OpenPGP_UpdateKeyPassphrase(JNIEnv* env, jobjec
             return 0;
         }
         //("check 1");
-        std::string new_key = pm::pgp::update_passphrase(secret_key, str_old_passphrase, str_new_passphrase);
+        std::string new_key = ProtonMail::pgp::update_passphrase(secret_key, str_old_passphrase, str_new_passphrase);
 
        // (*jvm).DetachCurrentThread();
         if (!new_key.empty())
@@ -1581,7 +1581,7 @@ Java_ch_protonmail_android_utils_OpenPGP_GenerateKey(JNIEnv* env, jobject o, jst
     }
 
 
-    pm::pgp::openpgp p;
+    ProtonMail::pgp::openpgp p;
     std::string pwd = str_passphrase;
 
     std::string name = str_user_name;

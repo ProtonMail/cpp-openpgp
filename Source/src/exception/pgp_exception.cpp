@@ -9,7 +9,7 @@
 #include <exception/pgp_exception.h>
 
 
-namespace pm {
+namespace ProtonMail {
    
     
     

@@ -7,20 +7,20 @@
 //
 
 
-#ifndef __OpenPGP_OSX_Lib__pgp_exception_define__
-#define __OpenPGP_OSX_Lib__pgp_exception_define__
+#ifndef __pgp_exception_define__
+#define __pgp_exception_define__
 
 
 #include <string>
 #include <iostream>
 
-namespace pm
+namespace ProtonMail
 {
     enum exception_code : uint32_t {
-        PM_EXC_DEC_SIZE_INVALID = 1000001,
+        PM_EXC_DEC_SIZE_INVALID = 0x1000001,
         
-        PM_DECRYPT_PRIVATE_KEY_SUMCHECK_NOT_MATCH = 1000002,
-        PM_DECRYPT_SESSION_SUMCHECK_NOT_MATCH = 1000003,
+        PM_DECRYPT_PRIVATE_KEY_SUMCHECK_NOT_MATCH = 0x1000002,
+        PM_DECRYPT_SESSION_SUMCHECK_NOT_MATCH = 0x1000003,
         
         PM_EXC_UNKNOW = 0xFFFFFFFF
     };
@@ -31,4 +31,4 @@ namespace pm
 };
 
 
-#endif /* defined(__OpenPGP_OSX_Lib__pgp_exception_define__) */
+#endif /* defined(__pgp_exception_define__) */

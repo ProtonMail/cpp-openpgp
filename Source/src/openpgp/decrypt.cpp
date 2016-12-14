@@ -9,7 +9,7 @@
 #include <exception/pgp_exception.h>
 
 
-using namespace pm::pgp;
+using namespace ProtonMail::pgp;
 
 
 std::string pka_decrypt(const uint8_t pka, std::vector <std::string> & data, const std::vector <std::string> & pri, const std::vector <std::string> & pub){
@@ -82,7 +82,10 @@ PGPMessage decrypt_data(const uint8_t sym, const PGPMessage & m, const std::stri
     }
 
     // decrypt data
-    data = use_OpenPGP_CFB_decrypt(data, session_key); //use_OpenPGP_CFB_decrypt(sym, packet, data, session_key);
+    if (sym == 9)
+        data = use_OpenPGP_CFB_decrypt(data, session_key);
+    else
+        data = use_OpenPGP_CFB_decrypt(sym, packet, data, session_key);
 
     //std::cout << data << std::endl;
     
@@ -187,7 +190,7 @@ std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const st
         sum += static_cast <uint8_t> (c);
     }
     if (unhexlify(makehex(sum, 4)) != checksum){                                  // check session key checksums
-        throw pm::pgp_exception(pm::PM_DECRYPT_SESSION_SUMCHECK_NOT_MATCH, "Error: Calculated session key checksum does not match given checksum.");
+        throw ProtonMail::pgp_exception(ProtonMail::PM_DECRYPT_SESSION_SUMCHECK_NOT_MATCH, "Error: Calculated session key checksum does not match given checksum.");
     }
     
     sec.reset();
@@ -215,7 +218,7 @@ std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const st
 }
 
 
-std::string decrypt_pka(const PGPSecretKey & pri, const pm::PMPGPMessage & m, const std::string & passphrase, const bool writefile, const PGPPublicKey::Ptr & verify)
+std::string decrypt_pka(const PGPSecretKey & pri, const ProtonMail::PMPGPMessage & m, const std::string & passphrase, const bool writefile, const PGPPublicKey::Ptr & verify)
 {
     bool isDebugMode = false;
     if(m.get_is_pm_pka())
@@ -375,7 +378,7 @@ std::string decrypt_pka_only_session(const PGPSecretKey & pri, const PGPMessage 
         sum += static_cast <uint8_t> (c);
     }
     if (unhexlify(makehex(sum, 4)) != checksum){                                  // check session key checksums
-        throw pm::pgp_exception(pm::PM_DECRYPT_SESSION_SUMCHECK_NOT_MATCH, "Error: Calculated session key checksum does not match given checksum.");
+        throw ProtonMail::pgp_exception(ProtonMail::PM_DECRYPT_SESSION_SUMCHECK_NOT_MATCH, "Error: Calculated session key checksum does not match given checksum.");
     }
     
     sec.reset();

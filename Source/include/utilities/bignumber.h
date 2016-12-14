@@ -11,29 +11,32 @@
 
 #include <stdio.h>
 #include <string>
+#include <memory>
 #include <openssl/rsa.h>
 
 
+typedef std::shared_ptr<BIGNUM> Biginteger;
+
 namespace ProtonMail {
-    
-    
     namespace BN {
         
-        BIGNUM* toBI(const std::string &input);
-        std::string fromBI(int bit_length, BIGNUM* input);
-        BIGNUM* nnmod_exp(BIGNUM* a, BIGNUM* e, BIGNUM* m);
-        BIGNUM* mul_add_nnmod(BIGNUM* a, BIGNUM* b, BIGNUM* c, BIGNUM* d);
-        BIGNUM* add(BIGNUM* a, BIGNUM* b);
-        BIGNUM* subtract(BIGNUM* a, BIGNUM* b);
-        BIGNUM* multiply(BIGNUM* a, BIGNUM* b);
-        BIGNUM* nnmod(BIGNUM* a, BIGNUM* b);
-        BIGNUM* valueOf(int value);
-        int compareToZero(BIGNUM* a);
-        
-        
-        
-    }
+        Biginteger toBI(const std::string &input);
+        int num_bits(const Biginteger &input);
+        Biginteger valueOf(int value);
+        std::string fromBI(int bit_length, const Biginteger &input);
+        Biginteger nnmod(const Biginteger &a, const Biginteger &b);
+        Biginteger dup(const Biginteger &a);
+        const Biginteger one();
+        Biginteger rand_and_comp(int bit_length, const Biginteger &compA, const Biginteger &compB);
+        Biginteger nnmod_exp(const Biginteger &a, const Biginteger &e, const Biginteger &m);
+        int compareToZero(const Biginteger &a);
+        Biginteger mul_add_nnmod(const Biginteger &a, const Biginteger &b, const Biginteger &c, const Biginteger &d);
+        Biginteger add(const Biginteger &a, const Biginteger &b);
+        Biginteger subtract(const Biginteger &a, const Biginteger &b);
+        Biginteger multiply(const Biginteger &a, const Biginteger &b);
+        Biginteger rshift(const Biginteger &a, int n);
     
+    }
 }
 
 #endif /* bignumber_hpp */

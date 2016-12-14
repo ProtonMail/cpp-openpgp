@@ -1,0 +1,115 @@
+open_pgp_key = record {
+    key_id : string;
+	public_key : string;
+	private_key : string;
+    finger_print : string;
+    # false default only used when update keys
+isUpdated : bool;
+}
+
+encrypt_package = record {
+	key_package : binary;
+	data_package : binary;
+}
+
+address = record {
+    address_id : string;
+    #optional
+    address_name : string;
+    keys: list<open_pgp_key>;
+}
+
+#open_pgp_key_manager = interface +c {
+#    static create_instance() : open_pgp_key_manager;
+#}
+
+open_pgp = interface +c {
+
+    # create and init an instance those instance have addresses manager build in
+    # if want deal with single key should use the static functions
+    static create_instance() : open_pgp;
+    # create and init an instance with addresses
+	static create_instance_with_address(address : address) : open_pgp;
+	static create_instance_with_addresses(address : list<address>) : open_pgp;
+
+    # generate new key 
+    static generate_new_key(user_id : string, email : string, passphrase : string, bits : i32) : open_pgp_key;
+    #update single private key password
+    static update_single_passphrase(private_key : string, old_passphrase : string, new_passphrase : string) : string;
+    #disable/enable debug model
+    static enable_debug(isDebug : bool);
+    #check is private key passphrase ok
+    static check_passphrase(private_key : string, passphrase : string) : bool;
+    #update multiple pgp private keys return are new keys
+    static update_keys_passphrase(private_keys : list<open_pgp_key>, old_passphrase : string, new_passphrase : string) : list<open_pgp_key>;
+
+    #Random bits
+    static random_bits(bits : i32) : binary;
+
+
+    #add a new address into addresses list
+    add_address(address : address) : bool;
+    #remove a exsit address from the list based on address id
+    remove_address(address_id : string) : bool;
+    #clean address list
+    clean_addresses() : bool;
+   
+    # old functions blow
+
+    #generat new key pair (will be deprecated)
+    generate_key(user_name : string, domain : string, passphrase : string, bits : i32) : open_pgp_key;
+
+    #update the information carried in the packet. //TODO need add more parameters
+    update_private_info(private_key : string);
+
+    #encrypt message
+    encrypt_message(address_id : string, plain_text : string) : string;
+    encrypt_message_single_key(public_key : string, plain_text : string) : string;
+    decrypt_message(encrypt_text : string, passphras : string) : string;
+    decrypt_message_single_key(encrypt_text : string, private_key : string, passphras : string) : string;
+
+    encrypt_attachment(address_id : string, unencrypt_data : binary, file_name : string) : encrypt_package;
+    encrypt_attachment_single_key(public_key : string, unencrypt_data : binary, file_name : string) : encrypt_package;
+    decrypt_attachment(key : binary, data : binary, passphras : string) : binary;
+    decrypt_attachment_single_key(key : binary, data : binary, private_key : string, passphras : string) : binary;
+
+	decrypt_attachment_with_password(key : binary, data : binary, password : string) : binary;
+
+    get_public_key_session_key(keyPackage : binary, passphrase : string): binary;
+    get_public_key_session_key_single_key(keyPackage : binary, privateKey : string, passphrase : string): binary;
+
+	get_symmetric_session_key(keyPackage : binary, password : string): binary;
+	get_new_public_key_package(session : binary, publicKey : string) : binary;
+	get_new_symmetric_key_package(session : binary, password : string): binary;
+
+    encrypt_message_aes(plain_text : string, password : string) : string;
+    decrypt_message_aes(encrypted_message : string, password : string) : string;
+
+    encrypt_mailbox_pwd(unencrypted_pwd : string, salt : string) : string;
+    decrypt_mailbox_pwd(encrypted_pwd : string, salt : string) : string;
+
+    read_clearsigned_message(signed_message : string) : string;
+
+    #test functions
+    throw_an_exception(): i32;
+
+    #PBE
+    encrypt_hash_cbc(plain_text : string, password : string) : string;
+    decrypt_hash_cbc(encrypted_text : string, password : string) : string;
+}
+
+
+srp_proofs = record {
+	client_ephemeral : binary;
+	client_proof : binary;
+	expected_server_proof : binary;
+}
+
+srp_client = interface +c {
+    #ExpandHash
+	static expand_hash(input : binary): binary;
+    #SRP
+	static generate_proofs(bit_length : i32, modulus_repr : binary, server_ephemeral_repr : binary, hashed_password_repr : binary): srp_proofs;
+	static generate_Verifier(bit_length : i32, modulus_repr : binary, hashed_password_repr : binary) : binary;
+}
+

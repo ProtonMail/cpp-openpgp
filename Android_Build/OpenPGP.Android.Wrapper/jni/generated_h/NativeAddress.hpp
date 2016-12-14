@@ -24,7 +24,7 @@ private:
     NativeAddress();
     friend ::djinni::JniClass<NativeAddress>;
 
-    const ::djinni::GlobalRef<jclass> clazz { ::djinni::jniFindClass("ch/protonmail/android/utils/Address") };
+    const ::djinni::GlobalRef<jclass> clazz { ::djinni::jniFindClass("ch/protonmail/android/utils/nativelib/Address") };
     const jmethodID jconstructor { ::djinni::jniGetMethodID(clazz.get(), "<init>", "(Ljava/lang/String;Ljava/lang/String;Ljava/util/ArrayList;)V") };
     const jfieldID field_mAddressId { ::djinni::jniGetFieldID(clazz.get(), "mAddressId", "Ljava/lang/String;") };
     const jfieldID field_mAddressName { ::djinni::jniGetFieldID(clazz.get(), "mAddressName", "Ljava/lang/String;") };

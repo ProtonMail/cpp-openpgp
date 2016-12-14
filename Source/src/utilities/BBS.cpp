@@ -94,25 +94,10 @@ void BBS::c_rand(unsigned char *dest, int length)
 
 std::string BBS::rand_byts(const unsigned int & bits, const std::string & par){
     // returns string because SIZE might be larger than 64 bits
-    
     int size = bits/8;
     unsigned char key[size];
     RAND_bytes(key, size);
-//    std::string b;
-    
-//    for (unsigned char& k : key)
-//    {
-//        b += std::string(1, (char)k);
-//        //std::cout << k << std::endl;
-//        printf("%c",k);
-//        printf("\n");
-//        //printf("%o", k);
-//    }
-//    
-
     std::string my_std_string(reinterpret_cast<const char *>(key), size);
-    
-  //  std::cout << my_std_string << std::endl;
     return my_std_string;
 }
 

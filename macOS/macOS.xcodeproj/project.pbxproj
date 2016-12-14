@@ -18,30 +18,8 @@
 		751D42261DC291EA001A3229 /* String_Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751D421D1DC291EA001A3229 /* String_Extention.swift */; };
 		751D42271DC291EA001A3229 /* SwiftObjC-Bridging-Header.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D421E1DC291EA001A3229 /* SwiftObjC-Bridging-Header.cpp */; };
 		751D42281DC291EA001A3229 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751D42201DC291EA001A3229 /* ViewController.swift */; };
-		751D423C1DC2926E001A3229 /* OpenPGP_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751D422F1DC2926E001A3229 /* OpenPGP_Test.swift */; };
-		751D423D1DC2926E001A3229 /* OSX_TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751D42301DC2926E001A3229 /* OSX_TestTests.swift */; };
-		751D42481DC29296001A3229 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 751D42471DC29296001A3229 /* Info.plist */; };
-		751D42521DC292A3001A3229 /* feng_bad_msg_emoji_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 751D42491DC292A3001A3229 /* feng_bad_msg_emoji_1.txt */; };
-		751D42531DC292A3001A3229 /* feng_mulitiple_keys_f.json in Resources */ = {isa = PBXBuildFile; fileRef = 751D424A1DC292A3001A3229 /* feng_mulitiple_keys_f.json */; };
-		751D42541DC292A3001A3229 /* feng_mulitiple_keys.json in Resources */ = {isa = PBXBuildFile; fileRef = 751D424B1DC292A3001A3229 /* feng_mulitiple_keys.json */; };
-		751D42551DC292A3001A3229 /* feng_mulitiple_test_message.txt in Resources */ = {isa = PBXBuildFile; fileRef = 751D424C1DC292A3001A3229 /* feng_mulitiple_test_message.txt */; };
-		751D42561DC292A3001A3229 /* large.zip in Resources */ = {isa = PBXBuildFile; fileRef = 751D424D1DC292A3001A3229 /* large.zip */; };
-		751D42571DC292A3001A3229 /* privatekey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 751D424E1DC292A3001A3229 /* privatekey.txt */; };
-		751D42581DC292A3001A3229 /* publickey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 751D424F1DC292A3001A3229 /* publickey.txt */; };
-		751D42591DC292A3001A3229 /* test_plain_message.txt in Resources */ = {isa = PBXBuildFile; fileRef = 751D42501DC292A3001A3229 /* test_plain_message.txt */; };
-		751D425A1DC292A3001A3229 /* testpdf.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 751D42511DC292A3001A3229 /* testpdf.pdf */; };
 		751D425C1DC29375001A3229 /* libUniversalPGP_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 751D425B1DC29375001A3229 /* libUniversalPGP_macOS.a */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		7588B9521AA53D6D006A8793 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7588B9371AA53D6D006A8793 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7588B93E1AA53D6D006A8793;
-			remoteInfo = OSX_Test;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		750B3C6E1DC180E1001391C3 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = ../../../../../../usr/lib/libcrypto.dylib; sourceTree = "<group>"; };
@@ -71,7 +49,6 @@
 		751D42511DC292A3001A3229 /* testpdf.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = testpdf.pdf; path = macOSTests/Resource/testpdf.pdf; sourceTree = SOURCE_ROOT; };
 		751D425B1DC29375001A3229 /* libUniversalPGP_macOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libUniversalPGP_macOS.a; path = /Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OpenPGP/../Bin/libs/Debug/libUniversalPGP_macOS.a; sourceTree = "<absolute>"; };
 		7588B93F1AA53D6D006A8793 /* macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7588B9511AA53D6D006A8793 /* macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = macOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7598C9E11DAC577F002FD14A /* libUniversalPGP_OSX.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libUniversalPGP_OSX.a; path = ../Bin/libs/Debug/libUniversalPGP_OSX.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,13 +62,6 @@
 				750B3C731DC275A2001391C3 /* libz.tbd in Frameworks */,
 				750B3C6F1DC180E1001391C3 /* libcrypto.dylib in Frameworks */,
 				750B3C761DC27873001391C3 /* libssl.dylib in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7588B94E1AA53D6D006A8793 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,7 +156,6 @@
 			isa = PBXGroup;
 			children = (
 				7588B93F1AA53D6D006A8793 /* macOS.app */,
-				7588B9511AA53D6D006A8793 /* macOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -229,24 +198,6 @@
 			productReference = 7588B93F1AA53D6D006A8793 /* macOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		7588B9501AA53D6D006A8793 /* macOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7588B95E1AA53D6D006A8793 /* Build configuration list for PBXNativeTarget "macOSTests" */;
-			buildPhases = (
-				7588B94D1AA53D6D006A8793 /* Sources */,
-				7588B94E1AA53D6D006A8793 /* Frameworks */,
-				7588B94F1AA53D6D006A8793 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7588B9531AA53D6D006A8793 /* PBXTargetDependency */,
-			);
-			name = macOSTests;
-			productName = OSX_TestTests;
-			productReference = 7588B9511AA53D6D006A8793 /* macOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -260,10 +211,6 @@
 					7588B93E1AA53D6D006A8793 = {
 						CreatedOnToolsVersion = 6.1.1;
 						LastSwiftMigration = 0800;
-					};
-					7588B9501AA53D6D006A8793 = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = 7588B93E1AA53D6D006A8793;
 					};
 				};
 			};
@@ -281,7 +228,6 @@
 			projectRoot = "";
 			targets = (
 				7588B93E1AA53D6D006A8793 /* macOS */,
-				7588B9501AA53D6D006A8793 /* macOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -294,23 +240,6 @@
 				751D42241DC291EA001A3229 /* Images.xcassets in Resources */,
 				751D42231DC291EA001A3229 /* feng_addresses.geojson in Resources */,
 				751D42221DC291EA001A3229 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7588B94F1AA53D6D006A8793 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				751D42531DC292A3001A3229 /* feng_mulitiple_keys_f.json in Resources */,
-				751D42571DC292A3001A3229 /* privatekey.txt in Resources */,
-				751D42481DC29296001A3229 /* Info.plist in Resources */,
-				751D42581DC292A3001A3229 /* publickey.txt in Resources */,
-				751D42591DC292A3001A3229 /* test_plain_message.txt in Resources */,
-				751D42521DC292A3001A3229 /* feng_bad_msg_emoji_1.txt in Resources */,
-				751D42551DC292A3001A3229 /* feng_mulitiple_test_message.txt in Resources */,
-				751D425A1DC292A3001A3229 /* testpdf.pdf in Resources */,
-				751D42541DC292A3001A3229 /* feng_mulitiple_keys.json in Resources */,
-				751D42561DC292A3001A3229 /* large.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,24 +257,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7588B94D1AA53D6D006A8793 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				751D423C1DC2926E001A3229 /* OpenPGP_Test.swift in Sources */,
-				751D423D1DC2926E001A3229 /* OSX_TestTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		7588B9531AA53D6D006A8793 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7588B93E1AA53D6D006A8793 /* macOS */;
-			targetProxy = 7588B9521AA53D6D006A8793 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		751D42181DC291EA001A3229 /* Main.storyboard */ = {
@@ -488,40 +400,6 @@
 			};
 			name = Release;
 		};
-		7588B95F1AA53D6D006A8793 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../Bin/include/OpenPGP";
-				INFOPLIST_FILE = OSX_TestTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.protonmail.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "OSX_Test/SwiftObjC-Bridging-Header.h";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/macOS.app/Contents/MacOS/macOS";
-			};
-			name = Debug;
-		};
-		7588B9601AA53D6D006A8793 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../Bin/include/OpenPGP";
-				INFOPLIST_FILE = OSX_TestTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.protonmail.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "OSX_Test/SwiftObjC-Bridging-Header.h";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/macOS.app/Contents/MacOS/macOS";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -539,15 +417,6 @@
 			buildConfigurations = (
 				7588B95C1AA53D6D006A8793 /* Debug */,
 				7588B95D1AA53D6D006A8793 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7588B95E1AA53D6D006A8793 /* Build configuration list for PBXNativeTarget "macOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7588B95F1AA53D6D006A8793 /* Debug */,
-				7588B9601AA53D6D006A8793 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

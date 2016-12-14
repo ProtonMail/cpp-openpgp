@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Yanfeng Zhang. All rights reserved.
 //
 
-#ifndef __OpenPGP_OSX_Lib__pgp_exception__
-#define __OpenPGP_OSX_Lib__pgp_exception__
+#ifndef __pgp_exception__
+#define __pgp_exception__
 
 #include <stdexcept>
 #include "pgp_exception_define.h"
 
-namespace pm {
+namespace ProtonMail {
     
     class pgp_exception: public std::runtime_error {
     public:
@@ -27,4 +27,4 @@ namespace pm {
     };
 }
 
-#endif /* defined(__OpenPGP_OSX_Lib__pgp_exception__) */
+#endif /* defined(__pgp_exception__) */

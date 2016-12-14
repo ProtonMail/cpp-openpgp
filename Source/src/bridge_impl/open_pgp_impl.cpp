@@ -14,22 +14,136 @@
 #include <exception/pgp_exception.h>
 
 #include <utilities/utilities.h>
+#include <utilities/BBS.h>
 
 #include <openpgp/private_key.h>
 
 
 
 namespace ProtonMail {
+    // static functions
+    
     std::shared_ptr <ProtonMail::OpenPgp> OpenPgp::create_instance() {
         return std::make_shared<OpenPgpImpl>();
     }
-
-    std::shared_ptr <ProtonMail::OpenPgp> OpenPgp::create_instance_with_keys(const Address & address) {
+    
+    std::shared_ptr <ProtonMail::OpenPgp> OpenPgp::create_instance_with_address(const Address & address) {
         std::shared_ptr <ProtonMail::OpenPgp> pOpenPGP = std::make_shared<OpenPgpImpl>();
         pOpenPGP->add_address(address);
         return pOpenPGP;
     }
-
+    
+    std::shared_ptr <ProtonMail::OpenPgp> OpenPgp::create_instance_with_addresses(const std::vector<Address> & address) {
+        std::shared_ptr <ProtonMail::OpenPgp> pOpenPGP = std::make_shared<OpenPgpImpl>();
+        for (auto add : address) // access by reference to avoid copying
+        {
+            pOpenPGP->add_address(add);
+        }
+        return pOpenPGP;
+    }
+    
+    void OpenPgp::enable_debug(bool isDebug) {
+        //OpenPgpImpl::m_is_debug_mode = isDebug;
+    }
+    
+    
+    std::vector<uint8_t> OpenPgp::random_bits(int32_t bits) {
+        auto random_out = BBS().rand_byts(bits);
+        return std::vector<uint8_t>(random_out.begin(), random_out.end());
+    }
+    
+    OpenPgpKey OpenPgp::generate_new_key(const std::string & user_id,
+                                         const std::string & email,
+                                         const std::string & passphrase,
+                                         int32_t bits) {
+        ProtonMail::pgp::openpgp p;
+        if (user_id.empty()) {
+            throw std::runtime_error("Invalid user name format");
+        }
+        if (email.empty()) {
+            throw std::runtime_error("Invalid email format");
+        }
+        if (passphrase.empty()) {
+            throw std::runtime_error("Invalid passphrase format");
+        }
+        std::string comments = "create by ios";
+        std::string priv_key = "";
+        std::string pub_key = "";
+        p.generate_new_key(bits, passphrase, user_id, email, comments, pub_key, priv_key);
+        
+        return OpenPgpKey("", pub_key, priv_key, "", false);
+    }
+    
+    std::string OpenPgp::update_single_passphrase(const std::string & private_key,
+                                                  const std::string & old_passphrase,
+                                                  const std::string & new_passphrase) {
+        std::string str_private_key = private_key;
+        PGPSecretKey secret_key;
+        secret_key.set_is_debug(false);
+        secret_key.read(str_private_key);
+        
+        bool isOk = check_private_passphrase(secret_key, old_passphrase);
+        if (!isOk) {
+            return "";
+        }
+        std::string new_key = ProtonMail::pgp::update_passphrase(secret_key, old_passphrase, new_passphrase);
+        return new_key;
+    }
+    
+    
+    /**check is primary key passphrase ok */
+    bool OpenPgp::check_passphrase(const std::string &private_key,
+                                   const std::string &passphrase) {
+        try
+        {
+            std::string str_private_key = private_key;
+            PGPSecretKey privateKey(str_private_key);
+            return check_private_passphrase(privateKey, passphrase);
+        }
+        catch (const ProtonMail::pgp_exception & pgp_ex)
+        {
+            
+        }
+        catch (const std::runtime_error& error)
+        {
+            
+        }
+        catch (const std::exception& e)
+        {
+            
+        }
+        catch (...)
+        {
+            
+        }
+        return false;
+    }
+    
+    std::vector<OpenPgpKey> OpenPgp::update_keys_passphrase(const std::vector<OpenPgpKey> & private_keys,
+                                                            const std::string & old_passphrase,
+                                                            const std::string & new_passphrase) {
+        //any kind of exceptions will stop this update
+        auto updated_keys = std::vector<OpenPgpKey>();
+        for (auto key : private_keys) {
+            std::string str_private_key = key.private_key;
+            PGPSecretKey secret_key;
+            secret_key.set_is_debug(false);
+            secret_key.read(str_private_key);
+            
+            try {
+                std::string new_key = ProtonMail::pgp::update_passphrase(secret_key, old_passphrase, new_passphrase);
+                updated_keys.push_back(OpenPgpKey(key.key_id, key.public_key, new_key, key.finger_print, true));
+            }
+            catch (...)
+            {
+                updated_keys.push_back(OpenPgpKey(key.key_id, key.public_key, key.private_key, key.finger_print, false));
+            }
+        }
+        return updated_keys;
+    }
+    
+    //
+    //
     OpenPgpImpl::OpenPgpImpl() {
         m_private_key = std::make_shared<PGPSecretKey>();
     }
@@ -38,33 +152,34 @@ namespace ProtonMail {
         m_private_key.reset();
     }
     
-    OpenPgpKey OpenPgpImpl::generate_key(const std::string & user_name, const std::string & domain, const std::string & passphrase, int32_t bits) {
-        
-        pm::pgp::openpgp p;
-        
+    OpenPgpKey OpenPgpImpl::generate_key(const std::string & user_name,
+                                         const std::string & domain,
+                                         const std::string & passphrase,
+                                         int32_t bits) {
+        ProtonMail::pgp::openpgp p;
+        if (user_name.empty()) {
+            throw std::runtime_error("Invalid user name format");
+        }
         std::string email = user_name + "@" + domain;
         std::string comments = "create by ios";
         
         std::string priv_key = "";
         std::string pub_key = "";
-        p.generate_new_key(bits, passphrase, user_name, email, comments, pub_key, priv_key);//2048
+        p.generate_new_key(bits, passphrase, user_name, email, comments, pub_key, priv_key);
         
-        return OpenPgpKey(pub_key, priv_key);
+        return OpenPgpKey("", pub_key, priv_key, "", false);
     }
     
     bool OpenPgpImpl::add_address(const Address & address) {
         m_addresses.insert (std::pair<std::string, Address>(address.address_id, address));
-        
         for (const auto &key : address.keys) {
             std::string private_key = key.private_key;
             m_private_key->read(private_key);
         }
-        
         return true;
     }
     
     bool OpenPgpImpl::remove_address(const std::string & address_id) {
-        
         return false;
     }
     
@@ -74,89 +189,17 @@ namespace ProtonMail {
         return true;
     }
     
-    void OpenPgpImpl::enable_debug(bool isDebug) {
-        
-    }
-    
-    /**check is primary key passphrase ok */
-    bool OpenPgpImpl::check_passphrase(const std::string &private_key,
-                                       const std::string &passphrase) {
-    
-        try
-        {
-            std::string str_private_key = private_key;
-            if(m_is_debug_mode)
-                std::cout << private_key;
-            
-            PGPSecretKey privateKey(str_private_key);
-            
-            return check_private_passphrase(privateKey, passphrase);
-        }
-        catch (const pm::pgp_exception & pgp_ex)
-        {
-            
-        }
-        catch (const std::runtime_error& error)
-        {
-            
-        }
-        catch (const std::exception& e)
-        {
-            
-        }
-        catch (...)
-        {
-            
-        }
-        return false;
-    }
-    
-    std::string OpenPgpImpl::update_single_passphrase(const std::string & private_key, const std::string & old_passphrase, const std::string & new_passphrase) {
-        try
-        {
-            std::string str_private_key = private_key;
-            PGPSecretKey secret_key;
-            secret_key.set_is_debug(false);
-            secret_key.read(str_private_key);
-            
-            bool isOk = check_private_passphrase(secret_key, old_passphrase);
-            if (!isOk) {
-                return "";
-            }
-            std::string new_key = pm::pgp::update_passphrase(secret_key, old_passphrase, new_passphrase);
-            
-            return new_key;
-        }
-        catch (const pm::pgp_exception & pgp_ex)
-        {
-            
-        }
-        catch (const std::runtime_error& error)
-        {
-            
-        }
-        catch (const std::exception& e)
-        {
-            
-        }
-        catch (...)
-        {
-            
-        }
-        return "";
-    }
-    
     /**update the information carried in the packet. //TODO need add more parameters */
     void OpenPgpImpl::update_private_info(const std::string & private_key) {
         
     }
-
+    
     /**encrypt message */
     std::string OpenPgpImpl::encrypt_message(const std::string &address_id,
                                              const std::string &plan_text) {
         
         std::unordered_map<std::string, Address>::const_iterator got = m_addresses.find (address_id);
-
+        
         std::string user_pub_key = got->second.keys[0].public_key;
         PGPPublicKey pub(user_pub_key);
         
@@ -168,7 +211,9 @@ namespace ProtonMail {
         return encrypt_message;
     }
     
-    std::string OpenPgpImpl::encrypt_message_single_key(const std::string & public_key, const std::string & plain_text) {
+    std::string OpenPgpImpl::encrypt_message_single_key(const std::string & public_key,
+                                                        const std::string & plain_text) {
+        
         std::string str_user_public_key = public_key;
         PGPPublicKey pub(str_user_public_key);
         
@@ -183,30 +228,35 @@ namespace ProtonMail {
     
     std::string OpenPgpImpl::decrypt_message(const std::string &encrypt_text,
                                              const std::string &passphras) {
+        
         std::string encrypt_msg = encrypt_text;
-        pm::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
+        ProtonMail::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
         
         std::string plain_text = decrypt_pka(*m_private_key, pm_pgp_msg, passphras, false);
-    
+        
         return plain_text;
     }
     
-    std::string OpenPgpImpl::decrypt_message_single_key(const std::string & encrypt_text, const std::string & private_key, const std::string & passphras) {
+    std::string OpenPgpImpl::decrypt_message_single_key(const std::string & encrypt_text,
+                                                        const std::string & private_key,
+                                                        const std::string & passphras) {
         std::string str_private_key = private_key;
         
         PGPSecretKey pgp_private_key(str_private_key);
         
         std::string encrypt_msg = encrypt_text;
-        pm::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
+        ProtonMail::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
         
         std::string plain_text = decrypt_pka(pgp_private_key, pm_pgp_msg, passphras, false);
         
         return plain_text;
     }
-
-    EncryptPackage OpenPgpImpl::encrypt_attachment(const std::string & address_id, const std::vector<uint8_t> & unencrypt_data, const std::string & file_name) {
+    
+    EncryptPackage OpenPgpImpl::encrypt_attachment(const std::string & address_id,
+                                                   const std::vector<uint8_t> & unencrypt_data,
+                                                   const std::string & file_name) {
         
-        //NSData to string  need error handling here
+        //NSData to string need error handling here
         std::string unencrypt_msg(unencrypt_data.begin(), unencrypt_data.end());
         
         // here need add more check
@@ -220,11 +270,14 @@ namespace ProtonMail {
         
         std::string keyPackage = encrypted_pgp.write(1, 0, 1);
         std::string dataPackage = encrypted_pgp.write(1, 0, 18);
-
+        
         return EncryptPackage(std::vector<uint8_t>(keyPackage.begin(), keyPackage.end()), std::vector<uint8_t>(dataPackage.begin(), dataPackage.end()));
     }
     
-    EncryptPackage OpenPgpImpl::encrypt_attachment_single_key(const std::string & public_key, const std::vector<uint8_t> & unencrypt_data, const std::string & file_name) {
+    EncryptPackage OpenPgpImpl::encrypt_attachment_single_key(const std::string & public_key,
+                                                              const std::vector<uint8_t> & unencrypt_data,
+                                                              const std::string & file_name) {
+        
         std::string str_public_key = public_key;
         std::string unencrypt_msg(unencrypt_data.begin(), unencrypt_data.end());
         
@@ -237,13 +290,15 @@ namespace ProtonMail {
         
         return EncryptPackage(std::vector<uint8_t>(keyPackage.begin(), keyPackage.end()), std::vector<uint8_t>(dataPackage.begin(), dataPackage.end()));
     }
-
-    std::vector<uint8_t> OpenPgpImpl::decrypt_attachment(const std::vector<uint8_t> & key, const std::vector<uint8_t> & data, const std::string & passphras) {
+    
+    std::vector<uint8_t> OpenPgpImpl::decrypt_attachment(const std::vector<uint8_t> & key,
+                                                         const std::vector<uint8_t> & data,
+                                                         const std::string & passphras) {
         
         std::string str_key_package(key.begin(), key.end());
         std::string str_data_package (data.begin(), data.end());
         
-        pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
+        ProtonMail::PMPGPMessage pm_pgp_msg(str_key_package, true);
         pm_pgp_msg.append(str_data_package, true);
         
         std::string test_plain_txt = decrypt_pka(*m_private_key, pm_pgp_msg, passphras, false);
@@ -253,7 +308,10 @@ namespace ProtonMail {
     }
     
     
-    std::vector<uint8_t> OpenPgpImpl::decrypt_attachment_single_key(const std::vector<uint8_t> & key, const std::vector<uint8_t> & data, const std::string & private_key, const std::string & passphras) {
+    std::vector<uint8_t> OpenPgpImpl::decrypt_attachment_single_key(const std::vector<uint8_t> & key,
+                                                                    const std::vector<uint8_t> & data,
+                                                                    const std::string & private_key,
+                                                                    const std::string & passphras) {
         
         std::string str_key_package(key.begin(), key.end());
         std::string str_data_package (data.begin(), data.end());
@@ -261,7 +319,7 @@ namespace ProtonMail {
         
         PGPSecretKey pgp_private_key(str_private_key);
         
-        pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
+        ProtonMail::PMPGPMessage pm_pgp_msg(str_key_package, true);
         pm_pgp_msg.append(str_data_package, true);
         
         std::string test_plain_txt = decrypt_pka(pgp_private_key, pm_pgp_msg, passphras, false);
@@ -269,13 +327,15 @@ namespace ProtonMail {
         std::vector<uint8_t> out_vector(test_plain_txt.begin(), test_plain_txt.end());
         return out_vector;
     }
-
+    
     /**TODO : not done and not inuse */
-    std::vector<uint8_t> OpenPgpImpl::decrypt_attachment_with_password(const std::vector<uint8_t> & key, const std::vector<uint8_t> & data, const std::string & password){
+    std::vector<uint8_t> OpenPgpImpl::decrypt_attachment_with_password(const std::vector<uint8_t> & key,
+                                                                       const std::vector<uint8_t> & data,
+                                                                       const std::string & password) {
         std::string str_key_package(key.begin(), key.end());
         std::string str_data_package(data.begin(), data.end());
         
-        pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
+        ProtonMail::PMPGPMessage pm_pgp_msg(str_key_package, true);
         pm_pgp_msg.append(str_data_package, true);
         
         std::string test_plain_txt = decrypt_sym(pm_pgp_msg, password);
@@ -283,11 +343,12 @@ namespace ProtonMail {
         std::vector<uint8_t> out_vector(test_plain_txt.begin(), test_plain_txt.end());
         return out_vector;
     }
-
-    std::vector<uint8_t> OpenPgpImpl::get_public_key_session_key(const std::vector<uint8_t> & keyPackage, const std::string & passphrase)
-    {
+    
+    std::vector<uint8_t> OpenPgpImpl::get_public_key_session_key(const std::vector<uint8_t> & keyPackage,
+                                                                 const std::string & passphrase) {
+        
         std::string str_key_package(keyPackage.begin(), keyPackage.end());
-        pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
+        ProtonMail::PMPGPMessage pm_pgp_msg(str_key_package, true);
         
         std::string sessionKey = decrypt_pka_only_session(*m_private_key, pm_pgp_msg, passphrase);
         
@@ -295,32 +356,38 @@ namespace ProtonMail {
         return out_vector;
     }
     
-    std::vector<uint8_t> OpenPgpImpl::get_public_key_session_key_single_key(const std::vector<uint8_t> & keyPackage, const std::string & privateKey, const std::string & passphrase) {
+    std::vector<uint8_t> OpenPgpImpl::get_public_key_session_key_single_key(const std::vector<uint8_t> & keyPackage,
+                                                                            const std::string & privateKey,
+                                                                            const std::string & passphrase) {
+        
         std::string str_private_key = privateKey;
         
         PGPSecretKey pgp_private_key(str_private_key);
         
         std::string str_key_package(keyPackage.begin(), keyPackage.end());
-        pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
+        ProtonMail::PMPGPMessage pm_pgp_msg(str_key_package, true);
         
         std::string sessionKey = decrypt_pka_only_session(pgp_private_key, pm_pgp_msg, passphrase);
         
         std::vector<uint8_t> out_vector(sessionKey.begin(), sessionKey.end());
         return out_vector;
     }
-
-    std::vector<uint8_t> OpenPgpImpl::get_symmetric_session_key(const std::vector<uint8_t> & keyPackage, const std::string & password){
+    
+    std::vector<uint8_t> OpenPgpImpl::get_symmetric_session_key(const std::vector<uint8_t> & keyPackage,
+                                                                const std::string & password){
         
         std::string str_key_package(keyPackage.begin(), keyPackage.end());
-        pm::PMPGPMessage pm_pgp_msg(str_key_package, true);
+        ProtonMail::PMPGPMessage pm_pgp_msg(str_key_package, true);
         std::string sessionkey = decrypt_pka_only_sym_session(pm_pgp_msg, password);
-
+        
         std::vector<uint8_t> out_vector(sessionkey.begin(), sessionkey.end());
         
         return out_vector;
     }
-
-    std::vector<uint8_t> OpenPgpImpl::get_new_public_key_package(const std::vector<uint8_t> & session, const std::string & publicKey) {
+    
+    std::vector<uint8_t> OpenPgpImpl::get_new_public_key_package(const std::vector<uint8_t> & session,
+                                                                 const std::string & publicKey) {
+        
         std::string str_sessionKey (session.begin(), session.end());
         
         std::string user_pub_key = publicKey;
@@ -335,8 +402,10 @@ namespace ProtonMail {
         
         return out_vector;
     }
-
-    std::vector<uint8_t> OpenPgpImpl::get_new_symmetric_key_package(const std::vector<uint8_t> & session, const std::string & password) {
+    
+    std::vector<uint8_t> OpenPgpImpl::get_new_symmetric_key_package(const std::vector<uint8_t> & session,
+                                                                    const std::string & password) {
+        
         std::string str_key_package(session.begin(), session.end());
         
         PGPMessage out_msg = encrypt_pka_only_sym_session(password, str_key_package);
@@ -347,115 +416,125 @@ namespace ProtonMail {
         return out_vector;
     }
     
-    std::string OpenPgpImpl::encrypt_message_aes(const std::string & plain_text, const std::string & password) {
+    std::string OpenPgpImpl::encrypt_message_aes(const std::string & plain_text,
+                                                 const std::string & password) {
+        
         PGPMessage encrypted_sym = encrypt_sym(password, plain_text, "", 9, 0, true, nullptr, "");
         std::string encrypt_message = encrypted_sym.write();
         return encrypt_message;
     }
-
-    std::string OpenPgpImpl::decrypt_message_aes(const std::string & encrypted_message, const std::string & password) {
+    
+    std::string OpenPgpImpl::decrypt_message_aes(const std::string & encrypted_message,
+                                                 const std::string & password) {
+        
         std::string encrypt_msg = encrypted_message;
-        pm::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
+        ProtonMail::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
         std::string out_unencrypt_msg = decrypt_sym(pm_pgp_msg, password);
         
         return out_unencrypt_msg;
     }
-    std::string OpenPgpImpl::encrypt_mailbox_pwd(const std::string & unencrypted_pwd, const std::string & salt) {
+    std::string OpenPgpImpl::encrypt_mailbox_pwd(const std::string & unencrypted_pwd,
+                                                 const std::string & salt) {
+        
         PGPMessage encrypted_sym = encrypt_sym(salt, unencrypted_pwd, "", 9, 0, true, nullptr, "");
         std::string encrypt_message = hexlify(encrypted_sym.write(1));
         return encrypt_message;
     }
     
-    std::string OpenPgpImpl::decrypt_mailbox_pwd(const std::string & encrypted_pwd, const std::string & salt) {
+    std::string OpenPgpImpl::decrypt_mailbox_pwd(const std::string & encrypted_pwd,
+                                                 const std::string & salt) {
+        
         std::string str_encrypted_message = unhexlify(encrypted_pwd);
-        pm::PMPGPMessage pm_pgp_msg(str_encrypted_message, false);
+        ProtonMail::PMPGPMessage pm_pgp_msg(str_encrypted_message, false);
         std::string out_unencrypt_msg = decrypt_sym(pm_pgp_msg, salt);
         return out_unencrypt_msg;
     }
-
+    
     std::string OpenPgpImpl::read_clearsigned_message(const std::string & signed_message) {
         std::string signed_copy = signed_message;
         PGPCleartextSignature signature;
         signature.read(signed_copy);
         return signature.get_message();
     }
-
+    
     int32_t OpenPgpImpl::throw_an_exception() {
         throw ExampleException();
     }
-
-    std::string OpenPgpImpl::encrypt_hash_cbc(const std::string & plain_text, const std::string & password) {
+    
+    std::string OpenPgpImpl::encrypt_hash_cbc(const std::string & plain_text,
+                                              const std::string & password) {
         return "";
     }
     
-    std::string OpenPgpImpl::decrypt_hash_cbc(const std::string & encrypted_text, const std::string & password) {
+    std::string OpenPgpImpl::decrypt_hash_cbc(const std::string & encrypted_text,
+                                              const std::string & password) {
         return "";
     }
     
-//    public static function encrypt_id( $MessageID, $isRandom = false ) {
-//        if ( !ENCRYPT_IDS ) {
-//            return strval($MessageID);
-//        }
-//        if ( !$isRandom && isset( self::$id_to_enc_[$MessageID] ) ) {
-//            return strval(self::$id_to_enc_[$MessageID]);
-//        }
-//        $key1 = pack( "H*", "5f8b0f69c2e711c19f43633f77f70a59a1198fd73b5ce2d53e1ec43b43b37e66" ); // need keep it forever
-//        $key2 = pack( "H*", "4b6b0acf4524565b756530b0383de0b8a801b79bf242ccfeab1906e8520a63fd" ); // need keep it forever
-//        $key3 = pack( "H*", "001190d069249177ce51ee891b9c4cea52d0323ca5f90ec18d23273f22205a83" );
-//        $text = $MessageID;
-//        $block_size = mcrypt_get_block_size( MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC );
-//        $pad = $block_size - ( strlen( $MessageID ) % $block_size );
-//        $text .= str_repeat( chr( $pad ), $pad );
-//        $iv_size = mcrypt_get_iv_size( MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC );
-//        if ( $isRandom ) {
-//            $iv = mcrypt_create_iv( $iv_size, MCRYPT_DEV_URANDOM );
-//        }
-//        else {
-//            $new_iv = hash_hmac( "sha256", $MessageID , $key3, true );
-//            $iv = substr( $new_iv, 0 , $iv_size );
-//        }
-//        $crypt = mcrypt_encrypt( MCRYPT_RIJNDAEL_128, $key1, $text, MCRYPT_MODE_CBC, $iv );
-//        $h_mac = hash_hmac( "sha256", $iv.$crypt, $key2, true );
-//        $output = base64_encode( $iv . $crypt . $h_mac );
-//        $output = str_replace( array( '/', '+' ), array( '_', '-' ), $output );
-//        //echo bin2hex($iv . $crypt . $h_mac) . "\r\n";
-//        if ( !$isRandom ) {
-//            self::$id_to_enc_[$MessageID] = $output;
-//        }
-//        return strval($output);
-//    }
-//    public static function decrypt_id( $EncMessageID ) {
-//        if ( !ENCRYPT_IDS ) {
-//            return intval($EncMessageID);
-//        }
-//        // Sanitization
-//        if ( strlen( $EncMessageID ) > 200 ) {
-//            return 0;
-//        }
-//        if ( isset( self::$enc_to_id_[$EncMessageID] ) ) {
-//            return intval(self::$enc_to_id_[$EncMessageID]);
-//        }
-//        $key1 = pack( "H*", "5f8b0f69c2e711c19f43633f77f70a59a1198fd73b5ce2d53e1ec43b43b37e66" );
-//        $key2 = pack( "H*", "4b6b0acf4524565b756530b0383de0b8a801b79bf242ccfeab1906e8520a63fd" );
-//        $EncMessageID = str_replace( array( '_', '-' ), array( '/', '+' ), $EncMessageID );
-//        $message = base64_decode( $EncMessageID );
-//        //echo bin2hex($message) . "\r\n";
-//        $iv_size = mcrypt_get_iv_size( MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC );
-//        $iv = substr( $message, 0, $iv_size );
-//        $h_mac_size = strlen( hash_hmac( "sha256", "", "", true ) );
-//        $h_mac = substr( $message, - $h_mac_size );
-//        $crypt = substr( $message, $iv_size, -$h_mac_size );
-//        $crypt_h_mac = hash_hmac( "sha256", $iv. $crypt, $key2, true );
-//        if ( !Util::hash_equals( $h_mac, $crypt_h_mac ) )
-//            return 0;
-//        $text = mcrypt_decrypt( MCRYPT_RIJNDAEL_128, $key1, $crypt, MCRYPT_MODE_CBC, $iv );
-//        $pad = ord( $text[strlen( $text )-1] );
-//        $text = substr( $text, 0, -1*$pad );
-//        self::$enc_to_id_[$EncMessageID] = $text;
-//        if ( self::is_int( $text ) ) {
-//            return intval($text);
-//        }
-//        return $text;
-//    }
-
+    //    public static function encrypt_id( $MessageID, $isRandom = false ) {
+    //        if ( !ENCRYPT_IDS ) {
+    //            return strval($MessageID);
+    //        }
+    //        if ( !$isRandom && isset( self::$id_to_enc_[$MessageID] ) ) {
+    //            return strval(self::$id_to_enc_[$MessageID]);
+    //        }
+    //        $key1 = pack( "H*", "5f8b0f69c2e711c19f43633f77f70a59a1198fd73b5ce2d53e1ec43b43b37e66" ); // need keep it forever
+    //        $key2 = pack( "H*", "4b6b0acf4524565b756530b0383de0b8a801b79bf242ccfeab1906e8520a63fd" ); // need keep it forever
+    //        $key3 = pack( "H*", "001190d069249177ce51ee891b9c4cea52d0323ca5f90ec18d23273f22205a83" );
+    //        $text = $MessageID;
+    //        $block_size = mcrypt_get_block_size( MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC );
+    //        $pad = $block_size - ( strlen( $MessageID ) % $block_size );
+    //        $text .= str_repeat( chr( $pad ), $pad );
+    //        $iv_size = mcrypt_get_iv_size( MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC );
+    //        if ( $isRandom ) {
+    //            $iv = mcrypt_create_iv( $iv_size, MCRYPT_DEV_URANDOM );
+    //        }
+    //        else {
+    //            $new_iv = hash_hmac( "sha256", $MessageID , $key3, true );
+    //            $iv = substr( $new_iv, 0 , $iv_size );
+    //        }
+    //        $crypt = mcrypt_encrypt( MCRYPT_RIJNDAEL_128, $key1, $text, MCRYPT_MODE_CBC, $iv );
+    //        $h_mac = hash_hmac( "sha256", $iv.$crypt, $key2, true );
+    //        $output = base64_encode( $iv . $crypt . $h_mac );
+    //        $output = str_replace( array( '/', '+' ), array( '_', '-' ), $output );
+    //        //echo bin2hex($iv . $crypt . $h_mac) . "\r\n";
+    //        if ( !$isRandom ) {
+    //            self::$id_to_enc_[$MessageID] = $output;
+    //        }
+    //        return strval($output);
+    //    }
+    //    public static function decrypt_id( $EncMessageID ) {
+    //        if ( !ENCRYPT_IDS ) {
+    //            return intval($EncMessageID);
+    //        }
+    //        // Sanitization
+    //        if ( strlen( $EncMessageID ) > 200 ) {
+    //            return 0;
+    //        }
+    //        if ( isset( self::$enc_to_id_[$EncMessageID] ) ) {
+    //            return intval(self::$enc_to_id_[$EncMessageID]);
+    //        }
+    //        $key1 = pack( "H*", "5f8b0f69c2e711c19f43633f77f70a59a1198fd73b5ce2d53e1ec43b43b37e66" );
+    //        $key2 = pack( "H*", "4b6b0acf4524565b756530b0383de0b8a801b79bf242ccfeab1906e8520a63fd" );
+    //        $EncMessageID = str_replace( array( '_', '-' ), array( '/', '+' ), $EncMessageID );
+    //        $message = base64_decode( $EncMessageID );
+    //        //echo bin2hex($message) . "\r\n";
+    //        $iv_size = mcrypt_get_iv_size( MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC );
+    //        $iv = substr( $message, 0, $iv_size );
+    //        $h_mac_size = strlen( hash_hmac( "sha256", "", "", true ) );
+    //        $h_mac = substr( $message, - $h_mac_size );
+    //        $crypt = substr( $message, $iv_size, -$h_mac_size );
+    //        $crypt_h_mac = hash_hmac( "sha256", $iv. $crypt, $key2, true );
+    //        if ( !Util::hash_equals( $h_mac, $crypt_h_mac ) )
+    //            return 0;
+    //        $text = mcrypt_decrypt( MCRYPT_RIJNDAEL_128, $key1, $crypt, MCRYPT_MODE_CBC, $iv );
+    //        $pad = ord( $text[strlen( $text )-1] );
+    //        $text = substr( $text, 0, -1*$pad );
+    //        self::$enc_to_id_[$EncMessageID] = $text;
+    //        if ( self::is_int( $text ) ) {
+    //            return intval($text);
+    //        }
+    //        return $text;
+    //    }
+    
 }

@@ -15,7 +15,7 @@
 #include <package/Tag13.h>
 #include <package/Tag7.h>
 
-namespace pm {
+namespace ProtonMail {
     namespace pgp
     {
         

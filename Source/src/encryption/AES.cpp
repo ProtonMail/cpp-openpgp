@@ -677,7 +677,7 @@ unsigned int AES::blocksize(){
 #include <openpgp/cfb.h>
 
 
-namespace pm {
+namespace ProtonMail {
     
     typedef unsigned char byte;
     

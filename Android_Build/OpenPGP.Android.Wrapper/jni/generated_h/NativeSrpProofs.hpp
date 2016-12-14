@@ -24,7 +24,7 @@ private:
     NativeSrpProofs();
     friend ::djinni::JniClass<NativeSrpProofs>;
 
-    const ::djinni::GlobalRef<jclass> clazz { ::djinni::jniFindClass("ch/protonmail/android/utils/SrpProofs") };
+    const ::djinni::GlobalRef<jclass> clazz { ::djinni::jniFindClass("ch/protonmail/android/utils/nativelib/SrpProofs") };
     const jmethodID jconstructor { ::djinni::jniGetMethodID(clazz.get(), "<init>", "([B[B[B)V") };
     const jfieldID field_mClientEphemeral { ::djinni::jniGetFieldID(clazz.get(), "mClientEphemeral", "[B") };
     const jfieldID field_mClientProof { ::djinni::jniGetFieldID(clazz.get(), "mClientProof", "[B") };

@@ -7,14 +7,14 @@
 //
 
 
-#ifndef __OpenPGP_OSX_Lib__pgp_exception_define__
-#define __OpenPGP_OSX_Lib__pgp_exception_define__
+#ifndef __pgp_exception_define__
+#define __pgp_exception_define__
 
 
 #include <string>
 #include <iostream>
 
-namespace pm
+namespace ProtonMail
 {
     enum exception_code : uint32_t {
         PM_EXC_DEC_SIZE_INVALID = 1000001,
@@ -31,4 +31,4 @@ namespace pm
 };
 
 
-#endif /* defined(__OpenPGP_OSX_Lib__pgp_exception_define__) */
+#endif /* defined(__pgp_exception_define__) */

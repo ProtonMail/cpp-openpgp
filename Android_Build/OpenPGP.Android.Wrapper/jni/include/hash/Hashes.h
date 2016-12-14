@@ -1,7 +1,6 @@
 #ifndef HASHES_H
 #define HASHES_H
 
-#include <openpgp/cryptomath.h>
 #include <utilities/includes.h>
 #include <hash/Hash.h>
 
@@ -12,6 +11,13 @@
 #include "SHA224.h"
 #include "SHA512.h"
 #include "SHA384.h"
+#include "HMAC.h"
+
+
+
+
+
+
 
 std::string use_hash(uint8_t flag, const std::string & data);
 

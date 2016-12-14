@@ -9,7 +9,7 @@
 
 
 
-namespace pm {
+namespace ProtonMail {
 
     
     
@@ -18,7 +18,7 @@ namespace pm {
     std::string decrypt_mailbox_password(std::string enc_value, std::string salt_value);
 
 
-
+    
 
 
 }

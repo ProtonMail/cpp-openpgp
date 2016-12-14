@@ -174,7 +174,26 @@ namespace djinni
 
         static LocalRef<JniType> fromCpp(JNIEnv* jniEnv, const CppType& c)
         {
-            return {jniEnv, jniStringFromUTF8(jniEnv, c.c_str())};
+            return {jniEnv, jniStringFromUTF8(jniEnv, c)};
+        }
+    };
+
+    struct WString
+    {
+        using CppType = std::wstring;
+        using JniType = jstring;
+
+        using Boxed = WString;
+
+        static CppType toCpp(JNIEnv* jniEnv, JniType j)
+        {
+            assert(j != nullptr);
+            return jniWStringFromString(jniEnv, j);
+        }
+
+        static LocalRef<JniType> fromCpp(JNIEnv* jniEnv, const CppType& c)
+        {
+            return {jniEnv, jniStringFromWString(jniEnv, c)};
         }
     };
 
@@ -230,7 +249,7 @@ namespace djinni
             // Using .data() on an empty vector is UB
             if(!c.empty())
             {
-                jniEnv->SetByteArrayRegion(j.get(), 0, c.size(), reinterpret_cast<const jbyte*>(c.data()));
+                jniEnv->SetByteArrayRegion(j.get(), 0, jsize(c.size()), reinterpret_cast<const jbyte*>(c.data()));
             }
             return j;
         }
@@ -291,7 +310,11 @@ namespace djinni
 
         static CppType toCpp(JNIEnv* jniEnv, JniType j)
         {
-            return j ? CppType(T::Boxed::toCpp(jniEnv, j)) : CppType();
+            if (j) {
+                return T::Boxed::toCpp(jniEnv, j);
+            } else {
+                return CppType();
+            }
         }
 
         static LocalRef<JniType> fromCpp(JNIEnv* jniEnv, const OptionalType<typename T::CppType> &c)
