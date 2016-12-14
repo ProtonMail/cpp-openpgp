@@ -22,4 +22,5 @@
 #define PM_VCARD_VERSION_BUILD = 1
 #define PM_VCARD_VERSION = "0.0.1" //0x00000001
 
-#define TO_STR(x) #x
+#define TO_STR2(x) #x
+#define TO_STR(x) TO_STR2(x)
