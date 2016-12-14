@@ -602,6 +602,10 @@
 		75BF8F531DA720EF000F350F /* srp_client_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75BF8F4F1DA720EE000F350F /* srp_client_impl.cpp */; };
 		75BF8F541DA720EF000F350F /* srp_client_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75BF8F4F1DA720EE000F350F /* srp_client_impl.cpp */; };
 		75CA5A451DDCFFF100A73238 /* openpgp_bad_pgp_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75CA5A431DDCFFF100A73238 /* openpgp_bad_pgp_test.cpp */; };
+		75D7B14F1E01134400DFF5FE /* lib_version_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75D7B14E1E01134400DFF5FE /* lib_version_impl.cpp */; };
+		75D7B1501E01134400DFF5FE /* lib_version_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75D7B14E1E01134400DFF5FE /* lib_version_impl.cpp */; };
+		75D7B1511E01134400DFF5FE /* lib_version_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75D7B14E1E01134400DFF5FE /* lib_version_impl.cpp */; };
+		75D7B1521E01134400DFF5FE /* lib_version_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75D7B14E1E01134400DFF5FE /* lib_version_impl.cpp */; };
 		75E220271DD52FC600078D6C /* openpgp_keyrings_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75E220261DD52FC600078D6C /* openpgp_keyrings_test.cpp */; };
 		75E220291DD5332600078D6C /* openpgp_bad_cases_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75E220281DD5332600078D6C /* openpgp_bad_cases_test.cpp */; };
 /* End PBXBuildFile section */
@@ -921,7 +925,6 @@
 		755BEAE91DC7EE8500A0BE41 /* aes_128_ecb_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aes_128_ecb_test.cpp; sourceTree = "<group>"; };
 		755BEAEB1DC7EEC800A0BE41 /* aes_256_ecb_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aes_256_ecb_test.cpp; sourceTree = "<group>"; };
 		755BEAF01DC80B1B00A0BE41 /* openpgp_publickey_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = openpgp_publickey_test.cpp; path = general/openpgp_publickey_test.cpp; sourceTree = "<group>"; };
-		759D34AD1DF0E87F00BD7F81 /* Version */ = {isa = PBXFileReference; lastKnownFileType = text; path = Version; sourceTree = "<group>"; };
 		759DA08E1C5C2A3100EB0483 /* libUniversalPGP_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUniversalPGP_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		75AB6B451C50436000E82A0E /* libUniversalPGP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUniversalPGP.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		75AE62E21AFBCFED00131986 /* compress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compress.cpp; sourceTree = "<group>"; };
@@ -1158,6 +1161,10 @@
 		75CA5B361DDE71B800A73238 /* UTF8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTF8.h; sourceTree = "<group>"; };
 		75CA5B371DDE71B800A73238 /* utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utilities.h; sourceTree = "<group>"; };
 		75CA5B381DDE71B800A73238 /* utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utility.h; sourceTree = "<group>"; };
+		75D7B14C1E0112AE00DFF5FE /* lib_version.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lib_version.hpp; sourceTree = "<group>"; };
+		75D7B14D1E0112E200DFF5FE /* lib_version_impl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lib_version_impl.hpp; sourceTree = "<group>"; };
+		75D7B14E1E01134400DFF5FE /* lib_version_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lib_version_impl.cpp; sourceTree = "<group>"; };
+		75D7B1531E0113D300DFF5FE /* version.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = version.hpp; sourceTree = "<group>"; };
 		75E220261DD52FC600078D6C /* openpgp_keyrings_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = openpgp_keyrings_test.cpp; path = general/openpgp_keyrings_test.cpp; sourceTree = "<group>"; };
 		75E220281DD5332600078D6C /* openpgp_bad_cases_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = openpgp_bad_cases_test.cpp; path = general/openpgp_bad_cases_test.cpp; sourceTree = "<group>"; };
 		75E220351DDA7EC300078D6C /* build_pgp_ios_universal.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = build_pgp_ios_universal.sh; path = ../Scripts/build_pgp_ios_universal.sh; sourceTree = "<group>"; };
@@ -1312,7 +1319,6 @@
 				7517E6851AFABC35007EA967 /* openpgp */,
 				7517E6961AFABC35007EA967 /* package */,
 				7517E6D51AFABC35007EA967 /* utilities */,
-				759D34AD1DF0E87F00BD7F81 /* Version */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -1661,6 +1667,7 @@
 			children = (
 				7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */,
 				75BF8F4F1DA720EE000F350F /* srp_client_impl.cpp */,
+				75D7B14E1E01134400DFF5FE /* lib_version_impl.cpp */,
 			);
 			path = bridge_impl;
 			sourceTree = "<group>";
@@ -1697,6 +1704,7 @@
 		75CA5A461DDE71B700A73238 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				75D7B1531E0113D300DFF5FE /* version.hpp */,
 				75CA5A471DDE71B700A73238 /* base */,
 				75CA5A4A1DDE71B700A73238 /* bridge */,
 				75CA5A521DDE71B700A73238 /* bridge_impl */,
@@ -1727,6 +1735,7 @@
 		75CA5A4A1DDE71B700A73238 /* bridge */ = {
 			isa = PBXGroup;
 			children = (
+				75D7B14C1E0112AE00DFF5FE /* lib_version.hpp */,
 				75CA5A4B1DDE71B700A73238 /* address.hpp */,
 				75CA5A4C1DDE71B700A73238 /* encrypt_package.hpp */,
 				75CA5A4D1DDE71B700A73238 /* open_pgp.hpp */,
@@ -1743,6 +1752,7 @@
 			children = (
 				75CA5A531DDE71B700A73238 /* open_pgp_impl.hpp */,
 				75CA5A541DDE71B700A73238 /* srp_client_impl.hpp */,
+				75D7B14D1E0112E200DFF5FE /* lib_version_impl.hpp */,
 			);
 			path = bridge_impl;
 			sourceTree = "<group>";
@@ -2389,6 +2399,7 @@
 				7517E7CF1AFABC35007EA967 /* Tag17Sub1.cpp in Sources */,
 				7517E8831AFABC35007EA967 /* Tag3.cpp in Sources */,
 				75AE62EC1AFBCFED00131986 /* pgpzlib.cpp in Sources */,
+				75D7B14F1E01134400DFF5FE /* lib_version_impl.cpp in Sources */,
 				7517E80F1AFABC35007EA967 /* Tag2Sub22.cpp in Sources */,
 				750B3CD91DC28E02001391C3 /* OpenPGP.mm in Sources */,
 				7517E7631AFABC35007EA967 /* SHA256.cpp in Sources */,
@@ -2569,6 +2580,7 @@
 				7517E7D01AFABC35007EA967 /* Tag17Sub1.cpp in Sources */,
 				7517E8841AFABC35007EA967 /* Tag3.cpp in Sources */,
 				75AE62ED1AFBCFED00131986 /* pgpzlib.cpp in Sources */,
+				75D7B1501E01134400DFF5FE /* lib_version_impl.cpp in Sources */,
 				7517E8101AFABC35007EA967 /* Tag2Sub22.cpp in Sources */,
 				750B3CDA1DC28E02001391C3 /* OpenPGP.mm in Sources */,
 				7517E7641AFABC35007EA967 /* SHA256.cpp in Sources */,
@@ -2710,6 +2722,7 @@
 				759DA0651C5C2A3100EB0483 /* Tag4.cpp in Sources */,
 				759DA0661C5C2A3100EB0483 /* Tag5.cpp in Sources */,
 				759DA0671C5C2A3100EB0483 /* Tag6.cpp in Sources */,
+				75D7B1521E01134400DFF5FE /* lib_version_impl.cpp in Sources */,
 				759DA0681C5C2A3100EB0483 /* Tag60.cpp in Sources */,
 				75BF8F541DA720EF000F350F /* srp_client_impl.cpp in Sources */,
 				759DA0691C5C2A3100EB0483 /* Tag61.cpp in Sources */,
@@ -2851,6 +2864,7 @@
 				75AB6BB11C5044F100E82A0E /* Tag4.cpp in Sources */,
 				75AB6BB21C5044F100E82A0E /* Tag5.cpp in Sources */,
 				75AB6BB31C5044F100E82A0E /* Tag6.cpp in Sources */,
+				75D7B1511E01134400DFF5FE /* lib_version_impl.cpp in Sources */,
 				75AB6BB41C5044F100E82A0E /* Tag60.cpp in Sources */,
 				75BF8F531DA720EF000F350F /* srp_client_impl.cpp in Sources */,
 				75AB6BB51C5044F100E82A0E /* Tag61.cpp in Sources */,
