@@ -606,6 +606,7 @@
 		75D7B1501E01134400DFF5FE /* lib_version_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75D7B14E1E01134400DFF5FE /* lib_version_impl.cpp */; };
 		75D7B1511E01134400DFF5FE /* lib_version_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75D7B14E1E01134400DFF5FE /* lib_version_impl.cpp */; };
 		75D7B1521E01134400DFF5FE /* lib_version_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75D7B14E1E01134400DFF5FE /* lib_version_impl.cpp */; };
+		75D7B1551E0117E300DFF5FE /* lib_version_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75D7B1541E0117E300DFF5FE /* lib_version_test.cpp */; };
 		75E220271DD52FC600078D6C /* openpgp_keyrings_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75E220261DD52FC600078D6C /* openpgp_keyrings_test.cpp */; };
 		75E220291DD5332600078D6C /* openpgp_bad_cases_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75E220281DD5332600078D6C /* openpgp_bad_cases_test.cpp */; };
 /* End PBXBuildFile section */
@@ -1165,6 +1166,7 @@
 		75D7B14D1E0112E200DFF5FE /* lib_version_impl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lib_version_impl.hpp; sourceTree = "<group>"; };
 		75D7B14E1E01134400DFF5FE /* lib_version_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lib_version_impl.cpp; sourceTree = "<group>"; };
 		75D7B1531E0113D300DFF5FE /* version.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = version.hpp; sourceTree = "<group>"; };
+		75D7B1541E0117E300DFF5FE /* lib_version_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lib_version_test.cpp; sourceTree = "<group>"; };
 		75E220261DD52FC600078D6C /* openpgp_keyrings_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = openpgp_keyrings_test.cpp; path = general/openpgp_keyrings_test.cpp; sourceTree = "<group>"; };
 		75E220281DD5332600078D6C /* openpgp_bad_cases_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = openpgp_bad_cases_test.cpp; path = general/openpgp_bad_cases_test.cpp; sourceTree = "<group>"; };
 		75E220351DDA7EC300078D6C /* build_pgp_ios_universal.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = build_pgp_ios_universal.sh; path = ../Scripts/build_pgp_ios_universal.sh; sourceTree = "<group>"; };
@@ -1641,6 +1643,7 @@
 		751D44831DC3FA95001A3229 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				75D7B1541E0117E300DFF5FE /* lib_version_test.cpp */,
 				751D44851DC3FA95001A3229 /* CMakeLists.txt */,
 				751D448B1DC3FA95001A3229 /* stdafx.h */,
 				751D448D1DC3FA95001A3229 /* utils_tests.h */,
@@ -2459,6 +2462,7 @@
 				751D45141DC415A9001A3229 /* base64.cpp in Sources */,
 				751D45151DC415A9001A3229 /* datetime.cpp in Sources */,
 				751D451C1DC41650001A3229 /* utils_test.cpp in Sources */,
+				75D7B1551E0117E300DFF5FE /* lib_version_test.cpp in Sources */,
 				751D45171DC415A9001A3229 /* nonce_generator_tests.cpp in Sources */,
 				751D45181DC415A9001A3229 /* strings.cpp in Sources */,
 			);

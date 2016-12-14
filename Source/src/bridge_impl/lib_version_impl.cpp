@@ -16,14 +16,14 @@ namespace ProtonMail {
     
     
     std::string LibVersion::get_lib_version() {
-        return TO_STR(PM_LIB_VERSION);
+        return PM_LIB_VERSION;
     }
 
     std::string LibVersion::get_pgp_version() {
-        return TO_STR(PM_OPENPGP_VERSION);
+        return PM_OPENPGP_VERSION;
     }
     
     std::string LibVersion::get_vcard_version(){
-        return TO_STR(PM_VCARD_VERSION);
+        return PM_VCARD_VERSION;
     }
 }
