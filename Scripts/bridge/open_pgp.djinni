@@ -43,6 +43,12 @@ open_pgp = interface +c {
     #update multiple pgp private keys return are new keys
     static update_keys_passphrase(private_keys : list<open_pgp_key>, old_passphrase : string, new_passphrase : string) : list<open_pgp_key>;
 
+
+    #decrypt message use the address key ring with password
+    static decrypt_message_with_address(address : address, encrypt_text : string, passphras : string) : string;
+    #decrypt attachment use the address key ring with password
+    static decrypt_attachment_with_address(address : address, key : binary, data : binary, passphras : string) : binary;
+
     #Random bits
     static random_bits(bits : i32) : binary;
 
@@ -113,3 +119,11 @@ srp_client = interface +c {
 	static generate_Verifier(bit_length : i32, modulus_repr : binary, hashed_password_repr : binary) : binary;
 }
 
+lib_version = interface +c {
+    #get lib version
+    static get_lib_version(): string;
+    #get pgp version
+    static get_pgp_version(): string;
+    #get vcard version
+    static get_vcard_version(): string;
+}

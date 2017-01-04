@@ -18,6 +18,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import ch.protonmail.android.utils.nativelib.LibVersion;
 import ch.protonmail.android.utils.nativelib.OpenPgp;
 
 public class MainActivity extends AppCompatActivity {
@@ -351,7 +352,7 @@ public class MainActivity extends AppCompatActivity {
                     double total = (endTime - startTime);
                     long cot = count;
                     double avg = (endTime - startTime)/cot;
-                    String outText = String.format("%d Times(Generation %d bits key) --- Total Runtime: %.2f s --- Avg %.2f s", count, key_bites, total/1000, avg/1000);
+                    String outText = String.format("%d Times(Generation %d bits key) --- Total Runtime: %.2f s --- Avg %.2f s ==== libVersion: %s", count, key_bites, total/1000, avg/1000, LibVersion.getPgpVersion());
 
                     helloworld.setText(outText);
 

@@ -133,6 +133,14 @@ public abstract class OpenPgp {
     @Nonnull
     public static native ArrayList<OpenPgpKey> updateKeysPassphrase(@Nonnull ArrayList<OpenPgpKey> privateKeys, @Nonnull String oldPassphrase, @Nonnull String newPassphrase);
 
+    /**decrypt message use the address key ring with password */
+    @Nonnull
+    public static native String decryptMessageWithAddress(@Nonnull Address address, @Nonnull String encryptText, @Nonnull String passphras);
+
+    /**decrypt attachment use the address key ring with password */
+    @Nonnull
+    public static native byte[] decryptAttachmentWithAddress(@Nonnull Address address, @Nonnull byte[] key, @Nonnull byte[] data, @Nonnull String passphras);
+
     /**Random bits */
     @Nonnull
     public static native byte[] randomBits(int bits);

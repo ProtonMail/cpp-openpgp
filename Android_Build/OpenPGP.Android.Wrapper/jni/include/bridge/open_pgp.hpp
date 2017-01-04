@@ -49,6 +49,15 @@ public:
     /**update multiple pgp private keys return are new keys */
     static std::vector<OpenPgpKey> update_keys_passphrase(const std::vector<OpenPgpKey> & private_keys, const std::string & old_passphrase, const std::string & new_passphrase);
 
+    /**decrypt message use the address key ring with password */
+    static std::string decrypt_message_with_address(const Address & address, const std::string & encrypt_text, const std::string & passphras);
+
+    /**decrypt attachment use the address key ring with password */
+    static std::vector<uint8_t> decrypt_attachment_with_address(const Address & address, const std::vector<uint8_t> & key, const std::vector<uint8_t> & data, const std::string & passphras);
+
+    /**Random bits */
+    static std::vector<uint8_t> random_bits(int32_t bits);
+
     /**add a new address into addresses list */
     virtual bool add_address(const Address & address) = 0;
 
