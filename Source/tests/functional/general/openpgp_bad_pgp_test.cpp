@@ -18,7 +18,10 @@
 
 #include "bridge_impl/open_pgp_impl.hpp"
 #include "bridge/open_pgp_key.hpp"
+#include <openpgp/private_key.h>
+#include <openpgp/pgptime.h>
 
+using namespace ProtonMail::pgp;
 
 namespace tests {
     namespace open_pgp_tests {
@@ -37,6 +40,21 @@ namespace tests {
                                                                     feng30_passphrase);
                     VERIFY_ARE_NOT_EQUAL(decrypted, "");
                 }
+            }
+            
+            TEST(test_from_user_test_one) {
+                std::string in = from_user_test_one;
+                PGPMessage pgp(in);
+                auto out = pgp.show();
+                
+                std::cout << out << std::endl;
+//                std::string keyin = private_key_dino_nov_16_2016;
+//                PGPSecretKey pgp_pri(keyin);
+//                std::string message = decrypt_pka(pgp_pri, pgp, "123", false);
+//                
+//  
+//                std::cout << message << std::endl;
+                
             }
         }
         
