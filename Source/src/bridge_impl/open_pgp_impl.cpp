@@ -161,11 +161,11 @@ namespace ProtonMail {
             throw std::runtime_error("Invalid user name format");
         }
         std::string email = user_name + "@" + domain;
-        std::string comments = "create by ios";
+        std::string comments = ""; //"create by ios"; //remove the comments because the frentend is not friendly with it.
         
         std::string priv_key = "";
         std::string pub_key = "";
-        p.generate_new_key(bits, passphrase, user_name, email, comments, pub_key, priv_key);
+        p.generate_new_key(bits, passphrase, email/*user_name*/, email, comments, pub_key, priv_key);
         
         return OpenPgpKey("", pub_key, priv_key, "", false);
     }

@@ -32,6 +32,8 @@ class ViewController: NSViewController {
     }
     @IBAction func test_new_key(_ sender: AnyObject) {
         if  let newKey = PMNOpenPgp.createInstance()?.generateKey("feng", domain: "protonmail.com", passphrase: "123", bits: 2048) {
+            let privateKey = newKey.privateKey
+            print(privateKey);
             NSLog(newKey.publicKey)
             NSLog(newKey.privateKey)
         } else {

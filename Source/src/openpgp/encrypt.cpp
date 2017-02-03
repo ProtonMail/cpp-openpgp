@@ -21,6 +21,7 @@
 #include <openpgp/revoke.h>
 #include <openpgp/cfb.h>
 #include <openpgp/FindKey.h>
+#include <version.hpp>
 
 Tag6::Ptr find_encrypting_key(const PGP & k){
     if ((k.get_ASCII_Armor() == 1) || (k.get_ASCII_Armor() == 2)){
@@ -261,9 +262,10 @@ PGPMessage encrypt_pka(const PGPPublicKey & pub, const std::string & data, const
     // write data to output container
     PGPMessage out;
     out.set_ASCII_Armor(0);
+    const std::string str_version = std::string("ProtonMail v") + std::string(PM_OPENPGP_VERSION);
     out.set_Armor_Header(std::vector <std::pair <std::string, std::string> > (
     {
-        std::pair <std::string, std::string> ("Version", "ProtonMail v0.1.0"),
+        std::pair <std::string, std::string> ("Version", str_version),
         std::pair <std::string, std::string> ("Comment", "https://protonmail.com")
     }));
     out.set_packets({tag1, encrypted});
@@ -295,8 +297,9 @@ PGPMessage encrypt_pka_only_data(const std::string & session_key, const std::str
     // write data to output container
     PGPMessage out;
     out.set_ASCII_Armor(0);
+    const std::string str_version = std::string("ProtonMail v") + std::string(PM_OPENPGP_VERSION);
     out.set_Armor_Header(std::vector <std::pair <std::string, std::string> > ( {
-        std::pair <std::string, std::string> ("Version", "ProtonMail v0.1.0"),
+        std::pair <std::string, std::string> ("Version", str_version),
         std::pair <std::string, std::string> ("Comment", "https://protonmail.com")
     }));
     out.set_packets({encrypted});
@@ -349,8 +352,9 @@ PGPMessage encrypt_pka_only_session(const PGPPublicKey & pub, std::string & sess
     // write data to output container
     PGPMessage out;
     out.set_ASCII_Armor(0);
+    const std::string str_version = std::string("ProtonMail v") + std::string(PM_OPENPGP_VERSION);
     out.set_Armor_Header(std::vector <std::pair <std::string, std::string> > ( {
-        std::pair <std::string, std::string> ("Version", "ProtonMail v0.1.0"),
+        std::pair <std::string, std::string> ("Version", str_version),
         std::pair <std::string, std::string> ("Comment", "https://protonmail.com")
     }));
     out.set_packets({tag1});
@@ -386,11 +390,12 @@ PGPMessage encrypt_pka_only_sym_session(const std::string & passphrase, std::str
     // write to output container
     PGPMessage out;
     out.set_ASCII_Armor(0);
+    const std::string str_version = std::string("ProtonMail v") + std::string(PM_OPENPGP_VERSION);
     out.set_Armor_Header(std::vector <std::pair <std::string, std::string> > (
-                                                                              {
-                                                                                  std::pair <std::string, std::string> ("Version", "ProtonMail v0.1.0"),
-                                                                                  std::pair <std::string, std::string> ("Comment", "https://protonmail.com")
-                                                                              }));
+    {
+        std::pair <std::string, std::string> ("Version", str_version),
+        std::pair <std::string, std::string> ("Comment", "https://protonmail.com")
+    }));
     out.set_packets({tag3});
     
     // clear data
@@ -475,9 +480,10 @@ PGPMessage encrypt_sym(const std::string & passphrase, const std::string & data,
     // write to output container
     PGPMessage out;
     out.set_ASCII_Armor(0);
+    const std::string str_version = std::string("ProtonMail v") + std::string(PM_OPENPGP_VERSION);
     out.set_Armor_Header(std::vector <std::pair <std::string, std::string> > (
     {
-        std::pair <std::string, std::string> ("Version", "ProtonMail v0.1.0"),
+        std::pair <std::string, std::string> ("Version", str_version),
         std::pair <std::string, std::string> ("Comment", "https://protonmail.com")
     }));
 

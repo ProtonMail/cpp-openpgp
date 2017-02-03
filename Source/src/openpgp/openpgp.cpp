@@ -68,6 +68,7 @@ __RCSID("$NetBSD: openssl_crypto.c,v 1.32 2010/11/07 06:56:52 agc Exp $");
 #include <encryption/RSA.h>
 #include <openpgp/sign.h>
 
+#include <version.hpp>
 
 namespace ProtonMail {
     namespace pgp {
@@ -281,9 +282,9 @@ namespace ProtonMail {
             
             PGPSecretKey private_key;
             private_key.set_ASCII_Armor(2);
-            
+            const std::string str_version = std::string("ProtonMail v") + std::string(PM_OPENPGP_VERSION);
             private_key.set_Armor_Header(std::vector <std::pair <std::string, std::string> > ({
-                std::pair <std::string, std::string> ("Version", "ProtonMail v0.1.0"),
+                std::pair <std::string, std::string> ("Version", str_version),
                 std::pair <std::string, std::string> ("Comment", "https://protonmail.com")
             }));
             private_key.set_packets({sec, uid, sig, ssb, subsig});
