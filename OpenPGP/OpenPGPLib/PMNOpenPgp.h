@@ -12,6 +12,10 @@
  *open_pgp_key_manager = interface +c {
  *    static create_instance() : open_pgp_key_manager;
  *}
+ *generat new key with email address. Fix the UserID issue in protonmail system. on Feb 28, 17
+ *static generate_key_with_email(email : string, passphrase : string, bits : i32) : open_pgp_key;
+ * generate new key
+ *static generate_new_key(user_id : string, email : string, passphrase : string, bits : i32) : open_pgp_key;
  */
 @interface PMNOpenPgp : NSObject
 
@@ -25,12 +29,6 @@
 + (nullable PMNOpenPgp *)createInstanceWithAddress:(nonnull PMNAddress *)address;
 
 + (nullable PMNOpenPgp *)createInstanceWithAddresses:(nonnull NSArray<PMNAddress *> *)address;
-
-/** generate new key  */
-+ (nonnull PMNOpenPgpKey *)generateNewKey:(nonnull NSString *)userId
-                                    email:(nonnull NSString *)email
-                               passphrase:(nonnull NSString *)passphrase
-                                     bits:(int32_t)bits;
 
 /**update single private key password */
 + (nonnull NSString *)updateSinglePassphrase:(nonnull NSString *)privateKey
@@ -72,16 +70,16 @@
 /**clean address list */
 - (BOOL)cleanAddresses;
 
-/**
- * old functions blow
- *generat new key pair (will be deprecated)
- */
+/**generat new key pair */
 - (nonnull PMNOpenPgpKey *)generateKey:(nonnull NSString *)userName
                                 domain:(nonnull NSString *)domain
                             passphrase:(nonnull NSString *)passphrase
                                   bits:(int32_t)bits;
 
-/**update the information carried in the packet. //TODO need add more parameters */
+/**
+ * old functions blow
+ *update the information carried in the packet. //TODO need add more parameters
+ */
 - (void)updatePrivateInfo:(nonnull NSString *)privateKey;
 
 /**encrypt message */

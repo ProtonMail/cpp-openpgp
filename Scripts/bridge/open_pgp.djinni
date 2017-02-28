@@ -23,6 +23,12 @@ address = record {
 #    static create_instance() : open_pgp_key_manager;
 #}
 
+
+#generat new key with email address. Fix the UserID issue in protonmail system. on Feb 28, 17
+#static generate_key_with_email(email : string, passphrase : string, bits : i32) : open_pgp_key;
+# generate new key
+#static generate_new_key(user_id : string, email : string, passphrase : string, bits : i32) : open_pgp_key;
+
 open_pgp = interface +c {
 
     # create and init an instance those instance have addresses manager build in
@@ -32,8 +38,6 @@ open_pgp = interface +c {
 	static create_instance_with_address(address : address) : open_pgp;
 	static create_instance_with_addresses(address : list<address>) : open_pgp;
 
-    # generate new key 
-    static generate_new_key(user_id : string, email : string, passphrase : string, bits : i32) : open_pgp_key;
     #update single private key password
     static update_single_passphrase(private_key : string, old_passphrase : string, new_passphrase : string) : string;
     #disable/enable debug model
@@ -43,7 +47,6 @@ open_pgp = interface +c {
     #update multiple pgp private keys return are new keys
     static update_keys_passphrase(private_keys : list<open_pgp_key>, old_passphrase : string, new_passphrase : string) : list<open_pgp_key>;
 
-
     #decrypt message use the address key ring with password
     static decrypt_message_with_address(address : address, encrypt_text : string, passphras : string) : string;
     #decrypt attachment use the address key ring with password
@@ -52,18 +55,19 @@ open_pgp = interface +c {
     #Random bits
     static random_bits(bits : i32) : binary;
 
-
     #add a new address into addresses list
     add_address(address : address) : bool;
     #remove a exsit address from the list based on address id
     remove_address(address_id : string) : bool;
     #clean address list
     clean_addresses() : bool;
-   
+
+
+    #generat new key pair
+    generate_key(user_name : string, domain : string, passphrase : string, bits : i32) : open_pgp_key;
+
     # old functions blow
 
-    #generat new key pair (will be deprecated)
-    generate_key(user_name : string, domain : string, passphrase : string, bits : i32) : open_pgp_key;
 
     #update the information carried in the packet. //TODO need add more parameters
     update_private_info(private_key : string);

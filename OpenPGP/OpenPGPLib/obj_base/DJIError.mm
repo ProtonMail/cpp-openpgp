@@ -29,11 +29,7 @@ namespace djinni {
 [[noreturn]] __attribute__((weak)) void throwNSExceptionFromCurrent(const char * /*ctx*/) {
     try {
         throw;
-    }
-//    catch () {
-//    
-//    }
-    catch (const std::exception & e) {
+    } catch (const std::exception & e) {
         NSString *message = [NSString stringWithCString:e.what() encoding:NSUTF8StringEncoding];
         [NSException raise:message format:@"%@", message];
         __builtin_unreachable();

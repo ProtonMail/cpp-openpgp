@@ -52,27 +52,27 @@ namespace ProtonMail {
         return std::vector<uint8_t>(random_out.begin(), random_out.end());
     }
     
-    OpenPgpKey OpenPgp::generate_new_key(const std::string & user_id,
-                                         const std::string & email,
-                                         const std::string & passphrase,
-                                         int32_t bits) {
-        ProtonMail::pgp::openpgp p;
-        if (user_id.empty()) {
-            throw std::runtime_error("Invalid user name format");
-        }
-        if (email.empty()) {
-            throw std::runtime_error("Invalid email format");
-        }
-        if (passphrase.empty()) {
-            throw std::runtime_error("Invalid passphrase format");
-        }
-        std::string comments = "create by ios";
-        std::string priv_key = "";
-        std::string pub_key = "";
-        p.generate_new_key(bits, passphrase, user_id, email, comments, pub_key, priv_key);
-        
-        return OpenPgpKey("", pub_key, priv_key, "", false);
-    }
+//    OpenPgpKey OpenPgp::generate_new_key(const std::string & user_id,
+//                                         const std::string & email,
+//                                         const std::string & passphrase,
+//                                         int32_t bits) {
+//        ProtonMail::pgp::openpgp p;
+//        if (user_id.empty()) {
+//            throw std::runtime_error("Invalid user name format");
+//        }
+//        if (email.empty()) {
+//            throw std::runtime_error("Invalid email format");
+//        }
+//        if (passphrase.empty()) {
+//            throw std::runtime_error("Invalid passphrase format");
+//        }
+//        std::string comments = "create by ios";
+//        std::string priv_key = "";
+//        std::string pub_key = "";
+//        p.generate_new_key(bits, passphrase, user_id, email, comments, pub_key, priv_key);
+//        
+//        return OpenPgpKey("", pub_key, priv_key, "", false);
+//    }
     
     std::string OpenPgp::update_single_passphrase(const std::string & private_key,
                                                   const std::string & old_passphrase,
@@ -151,6 +151,22 @@ namespace ProtonMail {
     OpenPgpImpl::~OpenPgpImpl() {
         m_private_key.reset();
     }
+    
+//    OpenPgpKey OpenPgp::generate_key_with_email(const std::string & email,
+//                                                    const std::string & passphrase,
+//                                                    int32_t bits) {
+//        ProtonMail::pgp::openpgp p;
+//        if (email.empty()) {
+//            throw std::runtime_error("Invalid email address");
+//        }
+//        //std::string email = user_name + "@" + domain;
+//        std::string comments = ""; //"create by ios"; //remove the comments because the frentend is not friendly with it.
+//        std::string priv_key = "";
+//        std::string pub_key = "";
+//        p.generate_new_key(bits, passphrase, email/*user_name*/, email, comments, pub_key, priv_key);
+//        
+//        return OpenPgpKey("", pub_key, priv_key, "", false);
+//    }
     
     OpenPgpKey OpenPgpImpl::generate_key(const std::string & user_name,
                                          const std::string & domain,

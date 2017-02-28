@@ -18,6 +18,10 @@ struct OpenPgpKey;
  *open_pgp_key_manager = interface +c {
  *    static create_instance() : open_pgp_key_manager;
  *}
+ *generat new key with email address. Fix the UserID issue in protonmail system. on Feb 28, 17
+ *static generate_key_with_email(email : string, passphrase : string, bits : i32) : open_pgp_key;
+ * generate new key
+ *static generate_new_key(user_id : string, email : string, passphrase : string, bits : i32) : open_pgp_key;
  */
 class OpenPgp {
 public:
@@ -33,9 +37,6 @@ public:
     static std::shared_ptr<OpenPgp> create_instance_with_address(const Address & address);
 
     static std::shared_ptr<OpenPgp> create_instance_with_addresses(const std::vector<Address> & address);
-
-    /** generate new key  */
-    static OpenPgpKey generate_new_key(const std::string & user_id, const std::string & email, const std::string & passphrase, int32_t bits);
 
     /**update single private key password */
     static std::string update_single_passphrase(const std::string & private_key, const std::string & old_passphrase, const std::string & new_passphrase);
@@ -67,13 +68,13 @@ public:
     /**clean address list */
     virtual bool clean_addresses() = 0;
 
-    /**
-     * old functions blow
-     *generat new key pair (will be deprecated)
-     */
+    /**generat new key pair */
     virtual OpenPgpKey generate_key(const std::string & user_name, const std::string & domain, const std::string & passphrase, int32_t bits) = 0;
 
-    /**update the information carried in the packet. //TODO need add more parameters */
+    /**
+     * old functions blow
+     *update the information carried in the packet. //TODO need add more parameters
+     */
     virtual void update_private_info(const std::string & private_key) = 0;
 
     /**encrypt message */

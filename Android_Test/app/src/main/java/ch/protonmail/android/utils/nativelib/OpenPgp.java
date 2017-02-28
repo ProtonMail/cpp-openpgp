@@ -12,6 +12,10 @@ import javax.annotation.Nonnull;
  *open_pgp_key_manager = interface +c {
  *    static create_instance() : open_pgp_key_manager;
  *}
+ *generat new key with email address. Fix the UserID issue in protonmail system. on Feb 28, 17
+ *static generate_key_with_email(email : string, passphrase : string, bits : i32) : open_pgp_key;
+ * generate new key
+ *static generate_new_key(user_id : string, email : string, passphrase : string, bits : i32) : open_pgp_key;
  */
 public abstract class OpenPgp {
     /**add a new address into addresses list */
@@ -23,14 +27,14 @@ public abstract class OpenPgp {
     /**clean address list */
     public abstract boolean cleanAddresses();
 
-    /**
-     * old functions blow
-     *generat new key pair (will be deprecated)
-     */
+    /**generat new key pair */
     @Nonnull
     public abstract OpenPgpKey generateKey(@Nonnull String userName, @Nonnull String domain, @Nonnull String passphrase, int bits);
 
-    /**update the information carried in the packet. //TODO need add more parameters */
+    /**
+     * old functions blow
+     *update the information carried in the packet. //TODO need add more parameters
+     */
     public abstract void updatePrivateInfo(@Nonnull String privateKey);
 
     /**encrypt message */
@@ -114,10 +118,6 @@ public abstract class OpenPgp {
 
     @CheckForNull
     public static native OpenPgp createInstanceWithAddresses(@Nonnull ArrayList<Address> address);
-
-    /** generate new key  */
-    @Nonnull
-    public static native OpenPgpKey generateNewKey(@Nonnull String userId, @Nonnull String email, @Nonnull String passphrase, int bits);
 
     /**update single private key password */
     @Nonnull
