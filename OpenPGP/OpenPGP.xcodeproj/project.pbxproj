@@ -936,6 +936,7 @@
 		751D451A1DC4163E001A3229 /* utils_test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils_test.h; sourceTree = "<group>"; };
 		75419F471A97E1A8002A1F25 /* libOpenPGP_i386.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOpenPGP_i386.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = open_pgp_impl.cpp; sourceTree = "<group>"; };
+		7557A4F31EEF05900049D83B /* build_pgp_mac_os_universal.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = build_pgp_mac_os_universal.sh; path = ../Scripts/build_pgp_mac_os_universal.sh; sourceTree = "<group>"; };
 		755BEAE91DC7EE8500A0BE41 /* aes_128_ecb_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aes_128_ecb_test.cpp; sourceTree = "<group>"; };
 		755BEAEB1DC7EEC800A0BE41 /* aes_256_ecb_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aes_256_ecb_test.cpp; sourceTree = "<group>"; };
 		755BEAF01DC80B1B00A0BE41 /* openpgp_publickey_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = openpgp_publickey_test.cpp; path = general/openpgp_publickey_test.cpp; sourceTree = "<group>"; };
@@ -2086,6 +2087,7 @@
 		75E220341DDA7E9700078D6C /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				7557A4F31EEF05900049D83B /* build_pgp_mac_os_universal.sh */,
 				75E220351DDA7EC300078D6C /* build_pgp_ios_universal.sh */,
 				75E220361DDA7EC300078D6C /* run_unittesting_ios.sh */,
 				75E220371DDA7EC300078D6C /* bridge */,
