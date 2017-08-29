@@ -79,9 +79,7 @@ void PGP::read(std::string & data){
     
     // find type of PGP block
     for(x = 0; x < 7; x++){
-        std::cout << ASCII_Armor_Header[x] << std::endl;
         std::string match = "-----BEGIN PGP " + ASCII_Armor_Header[x] + "-----";
-        std::cout << match << std::endl;
         if (match == data.substr(0, match.size())){
             break;
         }

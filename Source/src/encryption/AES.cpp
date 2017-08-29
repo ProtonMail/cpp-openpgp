@@ -5,7 +5,6 @@
 #include <openssl/evp.h>
 #include <openssl/hmac.h>
 
-#include "string.h"
 
 void AES::shiftrow(std::vector <uint32_t> & data){
     std::vector <uint32_t> temp;

@@ -621,7 +621,7 @@
 		75D7B1551E0117E300DFF5FE /* lib_version_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75D7B1541E0117E300DFF5FE /* lib_version_test.cpp */; };
 		75E220271DD52FC600078D6C /* openpgp_keyrings_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75E220261DD52FC600078D6C /* openpgp_keyrings_test.cpp */; };
 		75E220291DD5332600078D6C /* openpgp_bad_cases_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75E220281DD5332600078D6C /* openpgp_bad_cases_test.cpp */; };
-		75EEBFC81F54E9360023A797 /* openpgp_pka_verify_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75EEBFC71F54E9360023A797 /* openpgp_pka_verify_test.cpp */; };
+		75EEBFC81F54E9360023A797 /* openpgp_pka_rsa_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75EEBFC71F54E9360023A797 /* openpgp_pka_rsa_test.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -1195,7 +1195,7 @@
 		75E220361DDA7EC300078D6C /* run_unittesting_ios.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = run_unittesting_ios.sh; path = ../Scripts/run_unittesting_ios.sh; sourceTree = "<group>"; };
 		75E220381DDA7EC300078D6C /* build_bridge.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = build_bridge.sh; sourceTree = "<group>"; };
 		75E220391DDA7EC300078D6C /* open_pgp.djinni */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = open_pgp.djinni; sourceTree = "<group>"; };
-		75EEBFC71F54E9360023A797 /* openpgp_pka_verify_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = openpgp_pka_verify_test.cpp; path = general/openpgp_pka_verify_test.cpp; sourceTree = "<group>"; };
+		75EEBFC71F54E9360023A797 /* openpgp_pka_rsa_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = openpgp_pka_rsa_test.cpp; path = general/openpgp_pka_rsa_test.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1719,7 +1719,7 @@
 				75175A4D1DC90D1100BD770C /* opengpg_symmetric_encrypt_test.cpp */,
 				75175A4F1DC90D4C00BD770C /* opengpg_clearsign_test.cpp */,
 				75D3F3931F54B32600A38AD5 /* openpgp_signature_test.cpp */,
-				75EEBFC71F54E9360023A797 /* openpgp_pka_verify_test.cpp */,
+				75EEBFC71F54E9360023A797 /* openpgp_pka_rsa_test.cpp */,
 			);
 			name = general;
 			sourceTree = "<group>";
@@ -2289,7 +2289,7 @@
 				750A76361DC7BCAB00DE0E70 /* des_test.cpp in Sources */,
 				755BEAF11DC80B1B00A0BE41 /* openpgp_publickey_test.cpp in Sources */,
 				75D3F3941F54B32600A38AD5 /* openpgp_signature_test.cpp in Sources */,
-				75EEBFC81F54E9360023A797 /* openpgp_pka_verify_test.cpp in Sources */,
+				75EEBFC81F54E9360023A797 /* openpgp_pka_rsa_test.cpp in Sources */,
 				750A762C1DC4264000DE0E70 /* ripemd160_tests.cpp in Sources */,
 				75175A451DC81F7200BD770C /* openpgp_privatekey_test.cpp in Sources */,
 				755BEAEC1DC7EEC800A0BE41 /* aes_256_ecb_test.cpp in Sources */,
