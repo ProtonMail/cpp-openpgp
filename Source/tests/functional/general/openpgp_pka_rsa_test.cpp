@@ -617,23 +617,14 @@ namespace tests {
                 key.generate(512);
                 
                 auto message = rawtompi(MESSAGE);
-                auto encrypted = key.encrypt(message);
-                auto decrypted = key.decrypt(encrypted);
+                auto encrypted = key.encrypt(message, RSA_PKCS1_PADDING);
+                auto decrypted = key.decrypt(encrypted, RSA_PKCS1_PADDING);
                 auto check = mpitoraw(decrypted);
                 VERIFY_ARE_EQUAL(check, MESSAGE);
                 
-//                PKA::Values key = RSA_keygen(512);
-//                PKA::Values pub = {key[0], key[1]};
-//                PKA::Values pri = {key[2], key[3], key[4], key[5]};
-//                
-//                PGPMPI message = rawtompi(MESSAGE);
-//                
-//                auto encrypted = RSA_encrypt(message, pub);
-//                auto decrypted = RSA_decrypt(encrypted, pri, pub);
-//                EXPECT_EQ(decrypted, message);
-//                
-//                auto signature = RSA_sign(message, pri, pub);
-//                EXPECT_TRUE(RSA_verify(message, {signature}, pub));
+                auto signature = key.sign(message, RSA_PKCS1_PADDING);
+                
+                VERIFY_IS_TRUE(key.verify(message, signature, RSA_PKCS1_PADDING));
             }
         }
     }

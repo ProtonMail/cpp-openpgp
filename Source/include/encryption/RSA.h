@@ -34,6 +34,7 @@ THE SOFTWARE.
 #include <utilities/bignumber.h>
 #include <utilities/includes.h>
 #include <utilities/mpi.h>
+#include <utilities/PKCS1.h>
 
 
 //move to cpp later
@@ -75,18 +76,8 @@ namespace ProtonMail {
         private:
             bool inited = false;
             
-        public:
-            
-            
-            std::vector <std::string> rsa_pub_mpi;  //n e
-            std::vector <std::string> rsa_priv_mpi;  //d p q
-            
-            
-            PKA_RSA() {
-            }
-            
             //mpidata : mpi data with customized padding
-            std::string encrypt(const std::string& mpidata) {
+            std::string encrypt(const std::string& mpidata, const std::vector <std::string>& pub_mpi, int padding = RSA_NO_PADDING) {
                 
                 BIGNUM* b_e = BN_mpi2bn((unsigned char * )mpidata.c_str(), static_cast<int>(mpidata.size()), NULL);
                 uint8_t cleartext[8192];
@@ -103,9 +94,9 @@ namespace ProtonMail {
                 lin = static_cast<int>(t.size());
                 
                 RSA* orsa = RSA_new();
-                orsa->n = BN_mpi2bn((unsigned char *)rsa_pub_mpi[0].c_str(), static_cast<int>(rsa_pub_mpi[0].size()), NULL);
-                orsa->e = BN_mpi2bn((unsigned char *)rsa_pub_mpi[1].c_str(), static_cast<int>(rsa_pub_mpi[1].size()), NULL);
-                int n = RSA_public_encrypt(lin, (unsigned char*)t.c_str(), out, orsa, RSA_PKCS1_PADDING);
+                orsa->n = BN_mpi2bn((unsigned char *)pub_mpi[0].c_str(), static_cast<int>(pub_mpi[0].size()), NULL);
+                orsa->e = BN_mpi2bn((unsigned char *)pub_mpi[1].c_str(), static_cast<int>(pub_mpi[1].size()), NULL);
+                int n = RSA_public_encrypt(lin, (unsigned char*)t.c_str(), out, orsa, padding);
                 if (n == -1) {
                     BIO            *fd_out;
                     fd_out = BIO_new_fd(fileno(stderr), BIO_NOCLOSE);
@@ -122,11 +113,27 @@ namespace ProtonMail {
                 std::string mpi_out = std::string((char*)out, i);
                 //std::cout << hexlify(mpi_out) << std::endl;
                 return mpi_out;
-
+                
+            }
+            
+            
+        public:
+            
+            
+            std::vector <std::string> rsa_pub_mpi;  //n e
+            std::vector <std::string> rsa_priv_mpi;  //d p q
+            
+            
+            PKA_RSA() {
+            }
+            
+            //mpidata : mpi data with customized padding
+            std::string encrypt(const std::string& mpidata, int padding = RSA_NO_PADDING) {
+                return encrypt(mpidata, rsa_pub_mpi, padding);
             }
             
             //out : mpi data with customized padding
-            std::string decrypt(const std::string& encrypted) {
+            std::string decrypt(const std::string& encrypted, int padding = RSA_NO_PADDING) {
                 BIGNUM * e = BN_mpi2bn((unsigned char*)encrypted.c_str(), static_cast<int>(encrypted.size()), NULL);
                 uint8_t cleartext[8192];
                 BN_bn2bin(e, cleartext);
@@ -143,7 +150,7 @@ namespace ProtonMail {
                 rsa->p = BN_mpi2bn((unsigned char *)rsa_priv_mpi[1].c_str(), static_cast<int>(rsa_priv_mpi[1].size()), NULL);
                 rsa->q = BN_mpi2bn((unsigned char *)rsa_priv_mpi[2].c_str(), static_cast<int>(rsa_priv_mpi[2].size()), NULL);
                 
-                resultDecrypt = RSA_private_decrypt(size , cleartext, out, rsa, RSA_PKCS1_PADDING);
+                resultDecrypt = RSA_private_decrypt(size , cleartext, out, rsa, padding);
                 if(resultDecrypt == -1)
                 {
                     
@@ -154,12 +161,100 @@ namespace ProtonMail {
                 return mpi_out;
             }
             
-            std::string sign() {
-                return "";
+            std::string sign(const std::string& mpidata, int padding = RSA_NO_PADDING) {
+                
+                BIGNUM* b_e = BN_mpi2bn((unsigned char * )mpidata.c_str(), static_cast<int>(mpidata.size()), NULL);
+                uint8_t cleartext[8192];
+                int lin = BN_bn2bin(b_e, cleartext);
+                
+                //release
+                BN_free(b_e);
+                
+                std::string t = std::string((char*)cleartext , lin);
+                t = zero + t;
+                size_t length = 8192;
+                uint8_t out[length];
+                
+                lin = static_cast<int>(t.size());
+
+                RSA            *orsa;
+                int             n;
+                
+                orsa = RSA_new();
+                orsa->n = BN_mpi2bn((unsigned char *)rsa_pub_mpi[0].c_str(), static_cast<int>(rsa_pub_mpi[0].size()), NULL);
+                /* debug */
+                /* If this isn't set, it's very likely that the programmer hasn't */
+                /* decrypted the secret key. RSA_check_key segfaults in that case. */
+                /* Use __ops_decrypt_seckey() to do that. */
+                orsa->e = BN_mpi2bn((unsigned char *)rsa_pub_mpi[1].c_str(), static_cast<int>(rsa_pub_mpi[1].size()), NULL);
+                
+                orsa->d = BN_mpi2bn((unsigned char *)rsa_priv_mpi[0].c_str(), static_cast<int>(rsa_priv_mpi[0].size()), NULL);
+                orsa->p = BN_mpi2bn((unsigned char *)rsa_priv_mpi[1].c_str(), static_cast<int>(rsa_priv_mpi[1].size()), NULL);
+                orsa->q = BN_mpi2bn((unsigned char *)rsa_priv_mpi[2].c_str(), static_cast<int>(rsa_priv_mpi[2].size()), NULL);
+                
+                if (orsa->d == NULL) {
+                    (void) fprintf(stderr, "orsa is not set\n");
+                    return 0;
+                }
+                if (RSA_check_key(orsa) != 1) {
+                    (void) fprintf(stderr, "RSA_check_key is not set\n");
+                    return 0;
+                }
+//                /* end debug */
+//                int keysize = (BN_num_bits(orsa->n) + 7) / 8;
+////                //SHA256(data, dataLen, hash);
+////                std::string encoded = EMSA_PKCS1_v1_5(8, mpidata, keysize);
+////                encoded = zero + encoded;
+
+                n = RSA_private_encrypt(lin, (unsigned char*)t.c_str(), out, orsa, padding);
+                
+                std::string mpi_out = rawtompi(std::string((char*)out, n));
+                
+                RSA_free(orsa);
+                
+                return mpi_out;
             }
             
-            bool verify() {
-                return false;
+            bool verify(std::string mpidata, std::string signature, int padding = RSA_NO_PADDING) {
+                
+                
+                BIGNUM* b_e = BN_mpi2bn((unsigned char * )signature.c_str(), static_cast<int>(signature.size()), NULL);
+                uint8_t cleartext[8192];
+                int lin = BN_bn2bin(b_e, cleartext);
+                
+                //release
+                BN_free(b_e);
+                
+                std::string t = std::string((char*)cleartext , lin);
+                size_t length = 8192;
+                uint8_t out[length];
+                
+                lin = static_cast<int>(t.size());
+                
+                RSA* orsa = RSA_new();
+                orsa->n = BN_mpi2bn((unsigned char *)rsa_pub_mpi[0].c_str(), static_cast<int>(rsa_pub_mpi[0].size()), NULL);
+                orsa->e = BN_mpi2bn((unsigned char *)rsa_pub_mpi[1].c_str(), static_cast<int>(rsa_pub_mpi[1].size()), NULL);
+                int n = RSA_public_decrypt(lin, (unsigned char*)t.c_str(), out, orsa, padding);
+                if (n == -1) {
+                    BIO            *fd_out;
+                    fd_out = BIO_new_fd(fileno(stderr), BIO_NOCLOSE);
+                    ERR_print_errors(fd_out);
+                    std::cout << fd_out << std::endl;
+                }
+                
+                RSA_free(orsa);
+                
+                BIGNUM* e = BN_bin2bn(out, n, NULL);
+                int i = BN_bn2mpi(e, out);
+                BN_free(e);
+                
+                std::string mpi_out = std::string((char*)out, i);
+                //std::cout << hexlify(mpi_out) << std::endl;
+                return mpi_out == mpidata;
+
+                
+                
+               // return (encrypt(signature, rsa_pub_mpi, RSA_PKCS1_PADDING) == mpidata);
             }
             
             void generate(int bits) {
