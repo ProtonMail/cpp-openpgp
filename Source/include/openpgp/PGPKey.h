@@ -82,6 +82,8 @@ public:
     PGPSecretKey(std::ifstream & f);
     ~PGPSecretKey();
     
+    Packet::Ptr tag7(int index); //sub key
+    
     PGPPublicKey pub() const;
     
     bool meaningful() const;
@@ -107,6 +109,9 @@ public:
     bool meaningful() const;
     
     PGP::Ptr clone() const;
+    
+    
+    Tag6::Ptr tag6(int index); //sub key
 };
 
 #endif

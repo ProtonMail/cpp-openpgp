@@ -184,9 +184,9 @@ std::string RSA_sign(const std::string & data, const std::vector <std::string> &
 //    return RSA_decrypt(rawtompi(data), pri, pub);
 //}
 //
-//bool RSA_verify(const PGPMPI & data, const std::vector <PGPMPI> & signature, const std::vector <PGPMPI> & pub){
-//    return (RSA_encrypt(signature[0], pub) == data);
-//}
+bool RSA_verify(const std::string & data, const std::vector <std::string> & signature, const std::vector <std::string> & pub){
+    return (RSA_encrypt(signature[0], pub) == data);
+}
 //
 //bool RSA_verify(const std::string & data, const std::vector <PGPMPI> & signature, const std::vector <PGPMPI> & pub){
 //    return RSA_verify(rawtompi(data), signature, pub);

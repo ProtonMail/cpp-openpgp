@@ -367,4 +367,24 @@ PGP::Ptr PGPPublicKey::clone() const{
     return std::make_shared <PGPPublicKey> (*this);
 }
 
+Packet::Ptr PGPSecretKey::tag7(int index) {
+    for(Packet::Ptr const & p : get_packets()){
+        if ((p -> get_tag() == 7)){
+            return p;
+        }
+    }
+    return nullptr;
+}
 
+
+Tag6::Ptr PGPPublicKey::tag6(int index) {
+    for(Packet::Ptr const & p : get_packets()){
+        std::cout << p -> get_tag() << std::endl;
+        if ((p -> get_tag() == 14)){
+//            auto a = std::static_pointer_cast<Tag6>(p);
+//            std::cout << hexlify(a->get_keyid()) << std::endl;
+           return std::static_pointer_cast<Tag6>(p);
+        }
+    }
+    return nullptr;
+}

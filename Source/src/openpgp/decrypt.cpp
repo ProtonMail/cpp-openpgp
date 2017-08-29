@@ -14,7 +14,7 @@ using namespace ProtonMail::pgp;
 
 std::string pka_decrypt(const uint8_t pka, std::vector <std::string> & data, const std::vector <std::string> & pri, const std::vector <std::string> & pub){
     if (pka < 3){   // RSA
-        return  mpitoraw(RSA_decrypt(data[0], pri, pub));
+        return mpitoraw(RSA_decrypt(data[0], pri, pub));
     }
     if (pka == 16){ // ElGamal
         return "";//ElGamal_decrypt(data, pri, pub);
@@ -140,7 +140,7 @@ std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const st
             {
                 if (p -> get_tag() == 1) {
                     Tag1 tag1(data);
-                    sec = find_decrypting_key(pri, tag1.get_keyid());
+                    sec = find_decrypting_key(pri, tag1.get_keyid(), true);
                     if (!sec){
                         continue;
                     }
@@ -413,8 +413,8 @@ std::string decrypt_pka_only_sym_session(const PGPMessage & m, const std::string
         throw std::runtime_error("Error: No encrypted message found.");
     }
     
-    uint8_t packet = 0;                             // currently used packet tag
-    std::string data;                           // temp stuff
+    uint8_t packet = 0; // currently used packet tag
+    std::string data; // temp stuff
     
     // find session key packet; should be first packet
     for(Packet::Ptr const & p : m.get_packets()){
