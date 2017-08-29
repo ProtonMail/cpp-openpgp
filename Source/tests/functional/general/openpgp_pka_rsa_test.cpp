@@ -587,33 +587,42 @@ namespace tests {
         
         SUITE(openpgo_pka_rsa_test)
         {
-            TEST(sign_pkcs1_v1_5) {
+            TEST(sign_pkcs1_v1_5) { //TODO:: fix pka_sign and verify functions
                 VERIFY_IS_TRUE(RSA_SIGGEN_N.size() == RSA_SIGGEN_D.size());
                 auto e = hextompi(RSA_SIGGEN_E);
-//                for ( unsigned int i = 0; i < RSA_SIGGEN_N.size(); ++i ) {
-//                    auto n = hextompi(RSA_SIGGEN_N[i]);
-//                    auto d = hextompi(RSA_SIGGEN_D[i]);
-//                    
-//                    for ( unsigned int x = 0; x < RSA_SIGGEN_MSG[i].size(); ++x ) {
-//                        auto msg = RSA_SIGGEN_MSG[i][x];
-//                        int h = std::get<0>(msg);
-//                        std::string data = unhexlify(std::get<1>(msg));
-//                        std::string digest = use_hash(h, data);
-//                        std::string error;
-//                        
-//                        auto ret = pka_sign(digest, PKA_RSA_TYPE, {d}, {n, e}, h);
-//                        
-//                        VERIFY_IS_TRUE( ret.size() == (std::size_t) 1);
-//                        VERIFY_IS_TRUE(mpitohex(ret[0]) == RSA_SIGGEN_SIG[i][x]);
-//                        VERIFY_IS_TRUE(pka_verify(digest, h, PKA_RSA_TYPE, {n, e}, {hextompi(RSA_SIGGEN_SIG[i][x])}) == true);
-//                    }
-//                }
+                for ( unsigned int i = 0; i < RSA_SIGGEN_N.size(); ++i ) {
+                    auto n = hextompi(RSA_SIGGEN_N[i]);
+                    auto d = hextompi(RSA_SIGGEN_D[i]);
+                    
+                    for ( unsigned int x = 0; x < RSA_SIGGEN_MSG[i].size(); ++x ) {
+                        auto msg = RSA_SIGGEN_MSG[i][x];
+                        int h = std::get<0>(msg);
+                        std::string data = unhexlify(std::get<1>(msg));
+                        std::string digest = use_hash(h, data);
+                        std::string error;
+                        
+                        std::string encoded = EMSA_PKCS1_v1_5(h, digest, bitsize(n) >> 3);
+                        ProtonMail::crypto::rsa key(n, e, d, "", "");
+                        auto ret = key.sign(rawtompi( encoded ) );
+
+                        VERIFY_IS_TRUE( ret.size() > 0 );
+                        auto s = mpitohex(ret);
+                        std::transform(s.begin(), s.end(), s.begin(), ::tolower);
+                        auto c = RSA_SIGGEN_SIG[i][x];
+                        
+                        VERIFY_IS_TRUE( s == RSA_SIGGEN_SIG[i][x]);
+                        
+                        VERIFY_IS_TRUE(key.verify(rawtompi(encoded), hextompi(RSA_SIGGEN_SIG[i][x])) == true);
+                        
+                        // VERIFY_IS_TRUE(pka_verify(digest, h, PKA_RSA_TYPE, {n, e}, {hextompi(RSA_SIGGEN_SIG[i][x])}) == true);
+                    }
+                }
             }
             
             const std::string MESSAGE = "The magic words are squeamish ossifrage\n";
             TEST(keygen) {
                 
-                ProtonMail::crypto::PKA_RSA key;
+                ProtonMail::crypto::rsa key;
                 key.generate(512);
                 
                 auto message = rawtompi(MESSAGE);

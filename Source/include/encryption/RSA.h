@@ -72,7 +72,7 @@ __RCSID("$NetBSD: openssl_crypto.c,v 1.32 2010/11/07 06:56:52 agc Exp $");
 
 namespace ProtonMail {
     namespace crypto {
-        class PKA_RSA {
+        class rsa {
         private:
             bool inited = false;
             
@@ -124,7 +124,18 @@ namespace ProtonMail {
             std::vector <std::string> rsa_priv_mpi;  //d p q
             
             
-            PKA_RSA() {
+            rsa(const std::string& n, const std::string& e,
+                    const std::string& d, const std::string& p, const std::string& q) {
+                rsa_pub_mpi.push_back(n);
+                rsa_pub_mpi.push_back(e);
+                
+                rsa_priv_mpi.push_back(d);
+                rsa_priv_mpi.push_back(p);
+                rsa_priv_mpi.push_back(q);
+            }
+
+            
+            rsa() {
             }
             
             //mpidata : mpi data with customized padding
@@ -189,17 +200,18 @@ namespace ProtonMail {
                 orsa->e = BN_mpi2bn((unsigned char *)rsa_pub_mpi[1].c_str(), static_cast<int>(rsa_pub_mpi[1].size()), NULL);
                 
                 orsa->d = BN_mpi2bn((unsigned char *)rsa_priv_mpi[0].c_str(), static_cast<int>(rsa_priv_mpi[0].size()), NULL);
-                orsa->p = BN_mpi2bn((unsigned char *)rsa_priv_mpi[1].c_str(), static_cast<int>(rsa_priv_mpi[1].size()), NULL);
-                orsa->q = BN_mpi2bn((unsigned char *)rsa_priv_mpi[2].c_str(), static_cast<int>(rsa_priv_mpi[2].size()), NULL);
+                
+                //orsa->p = BN_mpi2bn((unsigned char *)rsa_priv_mpi[1].c_str(), static_cast<int>(rsa_priv_mpi[1].size()), NULL);
+                //orsa->q = BN_mpi2bn((unsigned char *)rsa_priv_mpi[2].c_str(), static_cast<int>(rsa_priv_mpi[2].size()), NULL);
                 
                 if (orsa->d == NULL) {
                     (void) fprintf(stderr, "orsa is not set\n");
                     return 0;
                 }
-                if (RSA_check_key(orsa) != 1) {
-                    (void) fprintf(stderr, "RSA_check_key is not set\n");
-                    return 0;
-                }
+//                if (RSA_check_key(orsa) != 1) {
+//                    (void) fprintf(stderr, "RSA_check_key is not set\n");
+//                    return 0;
+//                }
 //                /* end debug */
 //                int keysize = (BN_num_bits(orsa->n) + 7) / 8;
 ////                //SHA256(data, dataLen, hash);
@@ -215,8 +227,8 @@ namespace ProtonMail {
                 return mpi_out;
             }
             
-            bool verify(std::string mpidata, std::string signature, int padding = RSA_NO_PADDING) {
-                
+            //data is not mpi  -- signature is mpi
+            bool verify(const std::string& mpidata, const std::string& signature, int padding = RSA_NO_PADDING) {
                 
                 BIGNUM* b_e = BN_mpi2bn((unsigned char * )signature.c_str(), static_cast<int>(signature.size()), NULL);
                 uint8_t cleartext[8192];
@@ -241,20 +253,10 @@ namespace ProtonMail {
                     ERR_print_errors(fd_out);
                     std::cout << fd_out << std::endl;
                 }
-                
                 RSA_free(orsa);
-                
-                BIGNUM* e = BN_bin2bn(out, n, NULL);
-                int i = BN_bn2mpi(e, out);
-                BN_free(e);
-                
-                std::string mpi_out = std::string((char*)out, i);
-                //std::cout << hexlify(mpi_out) << std::endl;
+                std::string mpi_out = rawtompi(std::string((char*)out, n));
+//                std::string mpi_out = std::string((char*)out, n);
                 return mpi_out == mpidata;
-
-                
-                
-               // return (encrypt(signature, rsa_pub_mpi, RSA_PKCS1_PADDING) == mpidata);
             }
             
             void generate(int bits) {
