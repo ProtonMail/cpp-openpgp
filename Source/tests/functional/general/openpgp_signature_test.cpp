@@ -405,23 +405,22 @@ namespace tests {
             { //: SHA1. PK: RSA. Signature Type: 0x00 (binary document)
                 std::string signedArmor =
                 "-----BEGIN PGP MESSAGE-----" "\n"
-                 "Version: GnuPG v2.0.19 (GNU/Linux)" "\n"
-                 "" "\n"
-                 "owGbwMvMwMT4oOW7S46CznTGNeZJLCWpFSVBU3ZGF2fkF5Uo5KYWFyemp3LlAUUV" "\n"
-                 "cjLzUrneTp3zauvaN9O26L9ZuOFNy4LXyydwcXXMYWFgZGJgY2UCaWXg4hSAmblK" "\n"
-                 "nPmfsXYxd58Ka9eVrEnSpzilr520fXBrJsf2P/oTqzTj3hzyLG0o3TTzxFfrtOXf" "\n"
-                 "cw6U57n3/Z4X0pEZ68C5/o/6NpPICD7fuEOz3936raZ6wXGzueY8pfPnVjY0ajAc" "\n"
-                 "PtJzvvqj+ubYaT1sK9wWhd9lL3/V+9Zuua9QjOWC22buchsCroh8fLoZAA==" "\n"
-                 "=VH8F" "\n"
-                 "-----END PGP MESSAGE-----" "\n";
+                "Version: GnuPG v2.0.19 (GNU/Linux)" "\n"
+                "" "\n"
+                "owGbwMvMwMT4oOW7S46CznTGNeZJLCWpFSVBU3ZGF2fkF5Uo5KYWFyemp3LlAUUV" "\n"
+                "cjLzUrneTp3zauvaN9O26L9ZuOFNy4LXyydwcXXMYWFgZGJgY2UCaWXg4hSAmblK" "\n"
+                "nPmfsXYxd58Ka9eVrEnSpzilr520fXBrJsf2P/oTqzTj3hzyLG0o3TTzxFfrtOXf" "\n"
+                "cw6U57n3/Z4X0pEZ68C5/o/6NpPICD7fuEOz3936raZ6wXGzueY8pfPnVjY0ajAc" "\n"
+                "PtJzvvqj+ubYaT1sK9wWhd9lL3/V+9Zuua9QjOWC22buchsCroh8fLoZAA==" "\n"
+                "=VH8F" "\n"
+                "-----END PGP MESSAGE-----" "\n";
                 
-//                PGPSecretKey private_key(priv_key_gnupg_armored);
-//                PGPPublicKey pub_key(pub_key_arm2);
-//                PGPMessage msg(signedArmor);
-//                Tag6::Ptr tag6 = pub_key.tag6(0);
-//                
-//                bool check = verify_message(tag6, msg);
-//                std::cout << check << std::endl;
+                PGPPublicKey pub_key(pub_key_arm2);
+                PGPMessage msg(signedArmor);
+                Tag6::Ptr tag6 = pub_key.tag6(0);
+                
+                bool check = verify_message(tag6, msg);
+                std::cout << check << std::endl;
                 
 //                var sMsg = openpgp.message.readArmored(signedArmor);
 //                var pub_key = openpgp.key.readArmored(pub_key_arm2).keys[0];

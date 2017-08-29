@@ -269,7 +269,24 @@ bool verify_message(const Tag6::Ptr & signing_key, const PGPMessage & m){
                         }
                         
                         // check if the key matches this signature
-                        verify = pka_verify(digest, signing_key, *(SP.begin()));
+                        
+                        auto signature = *(SP.begin());
+                        auto signing = signing_key->get_mpi();
+                        
+                        ProtonMail::crypto::rsa key(signing[0], signing[1]);
+                        auto hash = signature -> get_hash();
+                        
+                        std::string encoded = EMSA_PKCS1_v1_5(hash, digest, bitsize(signing[0]) >> 3);
+                        
+                        auto verify = key.verify(rawtompi(encoded), signature->get_mpi()[0]);
+                        
+                        
+                        return verify;
+//                        signature->get_pka();
+//                        return RSA_verify(encoded, signature, signing);
+//                        
+//                        return pka_verify(digest, signature -> get_hash(), signature -> get_pka(), signing -> get_mpi(), signature -> get_mpi());
+//                        verify = pka_verify(digest, signing_key, *(SP.begin()));
                     }
                 }
             }

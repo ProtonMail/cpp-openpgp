@@ -75,6 +75,11 @@ namespace ProtonMail {
         class rsa {
         private:
             bool inited = false;
+            bool n_set = false;
+            bool e_set = false;
+            bool d_set = false;
+            bool p_set = false;
+            bool q_set = false;
             
             //mpidata : mpi data with customized padding
             std::string encrypt(const std::string& mpidata, const std::vector <std::string>& pub_mpi, int padding = RSA_NO_PADDING) {
@@ -125,15 +130,37 @@ namespace ProtonMail {
             
             
             rsa(const std::string& n, const std::string& e,
-                    const std::string& d, const std::string& p, const std::string& q) {
+                const std::string& d, const std::string& p, const std::string& q) {
+                
                 rsa_pub_mpi.push_back(n);
                 rsa_pub_mpi.push_back(e);
                 
+                n_set = true;
+                e_set = true;
+                
                 rsa_priv_mpi.push_back(d);
-                rsa_priv_mpi.push_back(p);
-                rsa_priv_mpi.push_back(q);
+                d_set = true;
+                
+                if (p.size() > 0 ) {
+                    rsa_priv_mpi.push_back(p);
+                    p_set = true;
+                    if (q.size() > 0) {
+                        rsa_priv_mpi.push_back(q);
+                        q_set = true;
+                    }
+                }
             }
-
+            
+            rsa(const std::string& n, const std::string& e) {
+                rsa_pub_mpi.push_back(n);
+                rsa_pub_mpi.push_back(e);
+                
+                n_set = true;
+                e_set = true;
+                d_set = false;
+                p_set = false;
+                q_set = false;
+            }
             
             rsa() {
             }
@@ -198,11 +225,13 @@ namespace ProtonMail {
                 /* decrypted the secret key. RSA_check_key segfaults in that case. */
                 /* Use __ops_decrypt_seckey() to do that. */
                 orsa->e = BN_mpi2bn((unsigned char *)rsa_pub_mpi[1].c_str(), static_cast<int>(rsa_pub_mpi[1].size()), NULL);
-                
                 orsa->d = BN_mpi2bn((unsigned char *)rsa_priv_mpi[0].c_str(), static_cast<int>(rsa_priv_mpi[0].size()), NULL);
-                
-                //orsa->p = BN_mpi2bn((unsigned char *)rsa_priv_mpi[1].c_str(), static_cast<int>(rsa_priv_mpi[1].size()), NULL);
-                //orsa->q = BN_mpi2bn((unsigned char *)rsa_priv_mpi[2].c_str(), static_cast<int>(rsa_priv_mpi[2].size()), NULL);
+                if (p_set) {
+                    orsa->p = BN_mpi2bn((unsigned char *)rsa_priv_mpi[1].c_str(), static_cast<int>(rsa_priv_mpi[1].size()), NULL);
+                }
+                if (q_set) {
+                    orsa->q = BN_mpi2bn((unsigned char *)rsa_priv_mpi[2].c_str(), static_cast<int>(rsa_priv_mpi[2].size()), NULL);
+                }
                 
                 if (orsa->d == NULL) {
                     (void) fprintf(stderr, "orsa is not set\n");
