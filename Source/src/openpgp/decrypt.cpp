@@ -140,7 +140,7 @@ std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const st
             {
                 if (p -> get_tag() == 1) {
                     Tag1 tag1(data);
-                    sec = find_decrypting_key(pri, tag1.get_keyid(), true);
+                    sec = find_decrypting_key(pri, tag1.get_keyid(), false);
                     if (!sec){
                         continue;
                     }
@@ -414,7 +414,7 @@ std::string decrypt_pka_only_sym_session(const PGPMessage & m, const std::string
     }
     
     uint8_t packet = 0; // currently used packet tag
-    std::string data; // temp stuff
+    std::string data;   // temp stuff
     
     // find session key packet; should be first packet
     for(Packet::Ptr const & p : m.get_packets()){
