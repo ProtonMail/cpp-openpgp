@@ -26,10 +26,10 @@
 #ifndef __PGP_KEY__
 #define __PGP_KEY__
 
-//#include "Packets/packets.h"
 #include <openpgp/pgp.h>
 #include <package/Tag5.h>
 #include <package/Tag6.h>
+#include <package/Tag14.h>
 
 class PGPKey : public PGP {
     /*
@@ -111,7 +111,9 @@ public:
     PGP::Ptr clone() const;
     
     
-    Tag6::Ptr tag6(int index); //sub key
+    Tag6::Ptr tag6(int index); //public key
+    
+    Tag14::Ptr tag14(int index); //sub public key
 };
 
 #endif

@@ -144,7 +144,7 @@ PGPKey::PGPKey(const PGPKey & copy):
 {}
 
 PGPKey::PGPKey(std::string & data):
-    PGP(data)
+PGP(data)
 {}
 
 PGPKey::PGPKey(std::ifstream & f):
@@ -380,10 +380,19 @@ Packet::Ptr PGPSecretKey::tag7(int index) {
 Tag6::Ptr PGPPublicKey::tag6(int index) {
     for(Packet::Ptr const & p : get_packets()){
         std::cout << p -> get_tag() << std::endl;
-        if ((p -> get_tag() == 14)){
-//            auto a = std::static_pointer_cast<Tag6>(p);
-//            std::cout << hexlify(a->get_keyid()) << std::endl;
+        if ((p -> get_tag() == 6)){
            return std::static_pointer_cast<Tag6>(p);
+        }
+    }
+    return nullptr;
+}
+
+
+Tag14::Ptr PGPPublicKey::tag14(int index) {
+    for(Packet::Ptr const & p : get_packets()){
+        std::cout << p -> get_tag() << std::endl;
+        if ((p -> get_tag() == 14)){
+            return std::static_pointer_cast<Tag14>(p);
         }
     }
     return nullptr;

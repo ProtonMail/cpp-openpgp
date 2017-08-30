@@ -135,7 +135,7 @@ namespace tests {
         //     "-----END PGP PRIVATE KEY BLOCK-----"
         //     ].join("\n");
         
-        std::string pub_key_arm2 =
+        const std::string pub_key_arm2 =
         "-----BEGIN PGP PUBLIC KEY BLOCK-----" "\n"
         "Version: GnuPG v2.0.19 (GNU/Linux)" "\n"
         "" "\n"
@@ -414,47 +414,37 @@ namespace tests {
                 "PtJzvvqj+ubYaT1sK9wWhd9lL3/V+9Zuua9QjOWC22buchsCroh8fLoZAA==" "\n"
                 "=VH8F" "\n"
                 "-----END PGP MESSAGE-----" "\n";
-                
-                PGPPublicKey pub_key(pub_key_arm2);
+                auto pubkey = pub_key_arm2;
+                PGPPublicKey pub_key(pubkey);
                 PGPMessage msg(signedArmor);
-                Tag6::Ptr tag6 = pub_key.tag6(0);
-                
-                bool check = verify_message(tag6, msg);
-                std::cout << check << std::endl;
-                
-//                var sMsg = openpgp.message.readArmored(signedArmor);
-//                var pub_key = openpgp.key.readArmored(pub_key_arm2).keys[0];
-//                var verified = sMsg.verify([pub_key]);
-//                expect(verified).to.exist;
-//                expect(verified).to.have.length(1);
-//                expect(verified[0].valid).to.be.true;
-//                expect(verified[0].signature.packets.length).to.equal(1);
-//                done();
+                Tag14::Ptr tag14 = pub_key.tag14(0);
+                VERIFY_IS_NOT_NULL(tag14);
+                bool check = verify_message(tag14, msg);
+                VERIFY_IS_TRUE(check);
             }
-            //
-            //    it("Verify V3 signature. Hash: MD5. PK: RSA. Signature Type: 0x01 (text document)" "\n" function(done) {
-            //        var signedArmor =
-            //        [ "-----BEGIN PGP MESSAGE-----" "\n"
-            //         "Version: GnuPG v2.0.19 (GNU/Linux)" "\n"
-            //         "" "\n"
-            //         "owGbwMvMyMj4oOW7S46CznTG09YlLCWpFSVBU47xFGfkF5Uo5KYWFyemp/Jy5QGF" "\n"
-            //         "FXIy84DMt1PnvNq69s20LfpvFm5407Lg9fIJvFy8XJ0MU5lZGUFa4eYxxiQz/6+/" "\n"
-            //         "aFt4/6+e76O6s1afLi65emmK9xsdh7Mr60UnT2UN0LwocWnT7t/nOMJubnypvzTu" "\n"
-            //         "aPJyvm9TTpobW/O+P1n2THLS4UCvWt12Oa2lJ04GLwk/bDF1u+8ZpfPCpsxLVzcs" "\n"
-            //         "ZGtbq/f23XxV/jkL47hr3s3Ic4yoZTW4oZO27GYf37TPp9L3VboCAA==" "\n"
-            //         "=pa6B" "\n"
-            //         "-----END PGP MESSAGE-----"
-            //         ].join("\n");
-            //
-            //        var sMsg = openpgp.message.readArmored(signedArmor);
-            //        var pub_key = openpgp.key.readArmored(pub_key_arm2).keys[0];
-            //        var verified = sMsg.verify([pub_key]);
-            //        expect(verified).to.exist;
-            //        expect(verified).to.have.length(1);
-            //        expect(verified[0].valid).to.be.true;
-            //        expect(verified[0].signature.packets.length).to.equal(1);
-            //        done();
-            //    });
+            
+            TEST(Verify_V3_signature)
+            {//. Hash: MD5. PK: RSA. Signature Type: 0x01 (text document)" "\n"
+                std::string signedArmor =
+                "-----BEGIN PGP MESSAGE-----" "\n"
+                "Version: GnuPG v2.0.19 (GNU/Linux)" "\n"
+                "" "\n"
+                "owGbwMvMyMj4oOW7S46CznTG09YlLCWpFSVBU47xFGfkF5Uo5KYWFyemp/Jy5QGF" "\n"
+                "FXIy84DMt1PnvNq69s20LfpvFm5407Lg9fIJvFy8XJ0MU5lZGUFa4eYxxiQz/6+/" "\n"
+                "aFt4/6+e76O6s1afLi65emmK9xsdh7Mr60UnT2UN0LwocWnT7t/nOMJubnypvzTu" "\n"
+                "aPJyvm9TTpobW/O+P1n2THLS4UCvWt12Oa2lJ04GLwk/bDF1u+8ZpfPCpsxLVzcs" "\n"
+                "ZGtbq/f23XxV/jkL47hr3s3Ic4yoZTW4oZO27GYf37TPp9L3VboCAA==" "\n"
+                "=pa6B" "\n"
+                "-----END PGP MESSAGE-----" "\n";
+                
+                PGPMessage msg(signedArmor);
+                auto pubkey = pub_key_arm2;
+                PGPPublicKey pub_key(pubkey);
+                Tag14::Ptr tag14 = pub_key.tag14(0);
+                VERIFY_IS_NOT_NULL(tag14);
+                bool check = verify_message(tag14, msg);
+                VERIFY_IS_TRUE(check);
+            }
             //
             //    it("Verify signature of signed and encrypted message from GPG2 with openpgp.decrypt" "\n" function(done) {
             //        var msg_armor =
