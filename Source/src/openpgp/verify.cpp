@@ -22,6 +22,24 @@ bool pka_verify(const std::string & digest, const Tag6::Ptr signing, const Tag2:
     return pka_verify(digest, signature -> get_hash(), signature -> get_pka(), signing -> get_mpi(), signature -> get_mpi());
 }
 
+bool pka_verify_new(const std::string & digest, const uint8_t hash, const uint8_t pka, const std::vector <std::string> & signing, const std::vector<std::string> & signature){
+    if ((pka == 1) || (pka == 3)){ // RSA
+        std::string encoded = EMSA_PKCS1_v1_5(hash, digest, bitsize(signing[0]) >> 3);
+        ProtonMail::crypto::rsa key(signing[0], signing[1]);
+        auto check = key.verify(rawtompi(encoded), signature[0]);
+        return check;
+        // return RSA_verify(encoded, signature, signing);
+    }
+    else if (pka == 17){ // DSA
+        return true;//DSA_verify(digest, signature, signing);
+    }
+    return false;
+}
+
+bool pka_verify_new(const std::string & digest, const Tag6::Ptr signing, const Tag2::Ptr & signature){
+    return pka_verify_new(digest, signature -> get_hash(), signature -> get_pka(), signing -> get_mpi(), signature -> get_mpi());
+}
+
 // Signature type 0x00 and 0x01
 bool verify_cleartext_signature(const PGPPublicKey & pub, const PGPCleartextSignature & message){
     if ((pub.get_ASCII_Armor() != 1) && (pub.get_ASCII_Armor() != 2)){
@@ -279,11 +297,11 @@ bool verify_message(const Tag6::Ptr & signing_key, const PGPMessage & m){
                         
                         
                         return verify;
-//                        signature->get_pka();
-//                        return RSA_verify(encoded, signature, signing);
-//                        
-//                        return pka_verify(digest, signature -> get_hash(), signature -> get_pka(), signing -> get_mpi(), signature -> get_mpi());
-//                        verify = pka_verify(digest, signing_key, *(SP.begin()));
+                        //                        signature->get_pka();
+                        //                        return RSA_verify(encoded, signature, signing);
+                        //
+                        //                        return pka_verify(digest, signature -> get_hash(), signature -> get_pka(), signing -> get_mpi(), signature -> get_mpi());
+                        //                        verify = pka_verify(digest, signing_key, *(SP.begin()));
                     }
                 }
             }
@@ -356,10 +374,10 @@ bool verify_message(const PGPPublicKey & pub, const PGPMessage & m){
             // if its a signing key packet
             if ((tag6 -> get_pka() == 1) || (tag6 -> get_pka() == 3) || (tag6 -> get_pka() == 17)){
                 // get keys
-//                if (tag6->get_keyid() == m.get_keyid()) {
-                    signing_key = tag6;
-                    break;
-//                }
+                //                if (tag6->get_keyid() == m.get_keyid()) {
+                signing_key = tag6;
+                break;
+                //                }
             }
             
             tag6.reset();
@@ -463,7 +481,7 @@ bool verify_key(const PGPPublicKey & signer, const PGPPublicKey & signee){
                 std::string with_trailer = addtrailer(k + u, tag2);
                 std::string hash = use_hash(tag2 -> get_hash(), with_trailer);
                 if (hash.substr(0, 2) == tag2 -> get_left16()){// quick signature check
-                    if (pka_verify(hash, signingkey, tag2)){ // proper signature check
+                    if (pka_verify_new(hash, signingkey, tag2)){ // proper signature check
                         out = true;
                     }
                 }

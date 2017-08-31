@@ -42,6 +42,36 @@ std::vector <std::string> pka_sign(const std::string & digest, const Tag5::Ptr &
     return pka_sign(digest, tag5 -> get_pka(), pub, pri, h);
 }
 
+
+std::vector <std::string> pka_sign_new(const std::string & digest, const Tag5::Ptr & tag5, const std::string & passphrase, const uint8_t h){
+    std::vector <std::string> pub = tag5 -> get_mpi();
+    std::vector <std::string> pri = decrypt_secret_key(tag5, passphrase);
+    return pka_sign_new(digest, tag5 -> get_pka(), pub, pri, h);
+}
+
+std::vector <std::string> pka_sign_new(const std::string & digest, const uint8_t pka, const std::vector <std::string> & pub, const std::vector <std::string> & pri, const uint8_t h){
+    if ((pka == 1) || (pka == 3)){ // RSA
+        
+        ProtonMail::crypto::rsa key(pub[0], pub[1],
+                                    pri[0], pri[1], pri[2]);
+        
+        // RFC 4880 sec 5.2.2
+        // If RSA, hash value is encoded using EMSA-PKCS1-v1_5
+        std::string encoded = EMSA_PKCS1_v1_5(h, digest, bitsize(pub[0]) >> 3);
+        return { key.sign(rawtompi(encoded)) };
+//        return {RSA_sign(encoded, pri, pub)};
+    }
+    else if (pka == 17){ // DSA
+        return {};//DSA_sign(digest, pri, pub);
+    }
+    else{
+        std::stringstream s; s << static_cast <unsigned int> (pka);
+        throw std::runtime_error("Error: Undefined or incorrect PKA number: " + s.str());
+    }
+    return {};
+}
+
+
 Tag2::Ptr create_sig_packet(const uint8_t type, const Tag5::Ptr & tag5, const ID::Ptr & id, const uint8_t hash){
     // Set up signature packet
     Tag2::Ptr tag2 = std::make_shared<Tag2>();
@@ -246,7 +276,7 @@ PGPCleartextSignature sign_cleartext(const PGPSecretKey & pri, const std::string
     Tag2::Ptr sig = create_sig_packet(0x01, signer, nullptr, hash);
     std::string digest = to_sign_01(text, sig);
     sig -> set_left16(digest.substr(0, 2));
-    sig -> set_mpi(pka_sign(digest, signer, passphrase, sig -> get_hash()));
+    sig -> set_mpi(pka_sign_new(digest, signer, passphrase, sig -> get_hash()));
 
     // put signature into Deatched Signature
     PGPDetachedSignature signature;
