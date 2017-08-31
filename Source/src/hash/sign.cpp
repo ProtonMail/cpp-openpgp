@@ -2,6 +2,8 @@
 #include <openpgp/private_key.h>
 #include <openpgp/FindKey.h>
 
+#include <version.hpp>
+
 using namespace ProtonMail::pgp;
 
 // possible to mess up
@@ -155,10 +157,13 @@ Tag2::Ptr sign_00(const PGPSecretKey & pri, const std::string & passphrase, cons
 PGPDetachedSignature sign_detach(const PGPSecretKey & pri, const std::string & passphrase, const std::string & data, const uint8_t hash){
     PGPDetachedSignature signature;
     signature.set_ASCII_Armor(5);
-    std::vector <std::pair <std::string, std::string> > h = {std::pair <std::string, std::string> ("Version", "cc")};
-    signature.set_Armor_Header(h);
+    const std::string str_version = std::string("ProtonMail v") + std::string(PM_OPENPGP_VERSION);
+    signature.set_Armor_Header(std::vector <std::pair <std::string, std::string> > (
+    {
+        std::pair <std::string, std::string> ("Version", str_version),
+        std::pair <std::string, std::string> ("Comment", "https://protonmail.com")
+    }));
     signature.set_packets({sign_00(pri, passphrase, data, hash)});
-
     return signature;
 }
 
@@ -221,13 +226,18 @@ PGPMessage sign_message(const PGPSecretKey & pri, const std::string & passphrase
     Tag2::Ptr tag2 = create_sig_packet(0, pri, hash);
     std::string digest = to_sign_00(tag11 -> get_literal(), tag2);
     tag2 -> set_left16(digest.substr(0, 2));
-    tag2 -> set_mpi(pka_sign(digest, tag5, passphrase, hash));
+    tag2 -> set_mpi(pka_sign_new(digest, tag5, passphrase, hash));
 
     // put everything together
     PGPMessage signature;
     signature.set_ASCII_Armor(5);
-    std::vector <std::pair <std::string, std::string> > h = {std::pair <std::string, std::string> ("Version", "cc")};
-    signature.set_Armor_Header(h);
+    const std::string str_version = std::string("ProtonMail v") + std::string(PM_OPENPGP_VERSION);
+    signature.set_Armor_Header(std::vector <std::pair <std::string, std::string> > (
+    {
+        std::pair <std::string, std::string> ("Version", str_version),
+        std::pair <std::string, std::string> ("Comment", "https://protonmail.com")
+    }));
+    
     signature.set_packets({tag4, tag11, tag2});
 
     if (compress){ // only use a Compressed Data Packet if compression was used; don't bother for uncompressed data
@@ -281,13 +291,18 @@ PGPCleartextSignature sign_cleartext(const PGPSecretKey & pri, const std::string
     // put signature into Deatched Signature
     PGPDetachedSignature signature;
     signature.set_ASCII_Armor(5);
-    std::vector <std::pair <std::string, std::string> > h = {std::pair <std::string, std::string> ("Version", "cc")};
-    signature.set_Armor_Header(h);
+    const std::string str_version = std::string("ProtonMail v") + std::string(PM_OPENPGP_VERSION);
+    signature.set_Armor_Header(std::vector <std::pair <std::string, std::string> > (
+    {
+        std::pair <std::string, std::string> ("Version", str_version),
+        std::pair <std::string, std::string> ("Comment", "https://protonmail.com")
+    }));
+    
     signature.set_packets({sig});
 
     // put signature under cleartext
     PGPCleartextSignature message;
-    h = {std::pair <std::string, std::string>("Hash", Hash_Algorithms.at(sig -> get_hash()))};
+    std::vector <std::pair <std::string, std::string> > h = {std::pair <std::string, std::string>("Hash", Hash_Algorithms.at(sig -> get_hash()))};
     message.set_Armor_Header(h);
     message.set_message(text);
     message.set_sig(signature);
