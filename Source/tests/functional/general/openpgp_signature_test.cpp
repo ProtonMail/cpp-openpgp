@@ -335,8 +335,10 @@ namespace tests {
                 
                 
                 PGPSecretKey private_key(priv_key_gnupg_armored);
-                PGPPublicKey pub_key(pub_key_arm1); //get pub key need to add function
-                PGPMessage msg(msg_arm1);
+                auto pubkey = pub_key_arm1;
+                PGPPublicKey pub_key(pubkey); //get pub key need to add function
+                auto msgArm1 = msg_arm1;
+                PGPMessage msg(msgArm1);
                 
                 //                auto tag7 = private_key.tag7(0);
                 //                uint8_t packet = 0;
@@ -410,12 +412,10 @@ namespace tests {
                 "PtJzvvqj+ubYaT1sK9wWhd9lL3/V+9Zuua9QjOWC22buchsCroh8fLoZAA==" "\n"
                 "=VH8F" "\n"
                 "-----END PGP MESSAGE-----" "\n";
-                auto pubkey = pub_key_arm2;
-                PGPPublicKey pub_key(pubkey);
                 PGPMessage msg(signedArmor);
-                Tag14::Ptr tag14 = pub_key.tag14(0);
-                VERIFY_IS_NOT_NULL(tag14);
-                bool check = verify_message(tag14, msg);
+                auto pubkey = pub_key_arm2;
+                auto pub_key = std::make_shared<PGPPublicKey>(pubkey);
+                bool check = msg.verify(pub_key);
                 VERIFY_IS_TRUE(check);
             }
             
@@ -435,176 +435,156 @@ namespace tests {
                 
                 PGPMessage msg(signedArmor);
                 auto pubkey = pub_key_arm2;
-                PGPPublicKey pub_key(pubkey);
-                Tag14::Ptr tag14 = pub_key.tag14(0);
-                VERIFY_IS_NOT_NULL(tag14);
-                bool check = verify_message(tag14, msg);
+                auto pub_key = std::make_shared<PGPPublicKey>(pubkey);
+                bool check = msg.verify(pub_key);
                 VERIFY_IS_TRUE(check);
             }
-            //
-            //    it("Verify signature of signed and encrypted message from GPG2 with openpgp.decrypt" "\n" function(done) {
-            //        var msg_armor =
-            //        [ "-----BEGIN PGP MESSAGE-----" "\n"
-            //         "Version: GnuPG v2.0.19 (GNU/Linux)" "\n"
-            //         "" "\n"
-            //         "hIwD4IT3RGwgLJcBBADEBdm+GEW7IV1K/Bykg0nB0WYO08ai7/8/+Y/O9xu6RiU0" "\n"
-            //         "q7/jWuKms7kSjw9gxMCjf2dGnAuT4Cg505Kj5WfeBuHh618ovO8qo4h0qHyp1/y3" "\n"
-            //         "o1P0IXPAb+LGJOeO7DyM9Xp2AOBiIKOVWzFTg+MBZOc+XZEVx3FioHfm9SSDudLA" "\n"
-            //         "WAEkDakCG6MRFj/7SmOiV8mQKH+YPMKT69eDZW7hjINabrpM2pdRU7c9lC7CMUBx" "\n"
-            //         "Vj7wZsQBMASSC8f2rhpGA2iKvYMsmW3g9R1xkvj1MXWftSPUS4jeNTAgEwvvF6Af" "\n"
-            //         "cP+OYSXKlTbwfEr73ES2O3/IFE9sHRjPqWaxWuv4DDQ5YfIxE54C1aE8Aq5/QaIH" "\n"
-            //         "v38TUSia0yEMCc/tJd58DikkT07AF162tcx9Ro0ZjhudyuvUyXIfPfxA+XWR2pdz" "\n"
-            //         "ifxyV4zia9RvaCUY8vXGM+gQJ3NNXx2LkZA3kWUEyxFVL1Vl/XUQY0M6U+uccSk4" "\n"
-            //         "eMXm6eyEWDcj0lBRckqKoKo1w/uan11jPuHsnRz6jO9DsuKEz79UDgI=" "\n"
-            //         "=cFi7" "\n"
-            //         "-----END PGP MESSAGE-----"
-            //         ].join("\n");
-            //
-            //        var plaintext = "short message\nnext line\n한국어/조선말";
-            //        var esMsg = openpgp.message.readArmored(msg_armor);
-            //        var pubKey = openpgp.key.readArmored(pub_key_arm2).keys[0];
-            //        var privKey = openpgp.key.readArmored(priv_key_arm2).keys[0];
-            //
-            //        var keyids = esMsg.getEncryptionKeyIds();
-            //        privKey.decryptKeyPacket(keyids, "hello world");
-            //
-            //        openpgp.decrypt({ privateKey: privKey, publicKeys:[pubKey], message:esMsg }).then(function(decrypted) {
-            //            expect(decrypted.data).to.exist;
-            //            expect(decrypted.data).to.equal(plaintext);
-            //            expect(decrypted.signatures).to.have.length(1);
-            //            expect(decrypted.signatures[0].valid).to.be.true;
-            //            expect(decrypted.signatures[0].signature.packets.length).to.equal(1);
-            //            done();
-            //        });
-            //    });
-            //
-            //    it("Verify signature of signed and encrypted message from PGP 10.3.0 with openpgp.decrypt" "\n" function(done) {
-            //        var msg_armor =
-            //        [ "-----BEGIN PGP MESSAGE-----" "\n"
-            //         "Version: Encryption Desktop 10.3.0 (Build 9307)" "\n"
-            //         "Charset: utf-8" "\n"
-            //         "" "\n"
-            //         "qANQR1DBjAPghPdEbCAslwED/2S4oNvCjO5TdLUMMUuVOQc8fi6c5XIBu7Y09fEX" "\n"
-            //         "Jm/UrkDHVgmPojLGBDF0CYENNZOVrNfpahY7A3r4HPzGucBzCO1uxuUIKjhtNAAM" "\n"
-            //         "mjD939ernjooOZrM6xDuRaX8adG0LSxpNaVJGxXd/EdlmKDJbYDI6aJ5INrUxzAR" "\n"
-            //         "DAqw0sBSAXgRWgiH6IIiAo5y5WFEDEN9sGStaEQT2wd32kX73M4iZuMt/GM2agiB" "\n"
-            //         "sWb7yLcNHiJ/3OnTfDg9+T543kFq9FlwFbwqygO/wm9e/kgMBq0ZsFOfV+GRtXep" "\n"
-            //         "3qNbJsmzGvdqiUHb/+hkdE191jaSVcO/zaMW4N0Vc1IwIEhZ8I9+9bKwusdVhHT5" "\n"
-            //         "MySnhIogv+0Ilag/aY+UiCt+Zcie69T7Eix48fC/VVW5w3INf1T2CMmDm5ZLZFRN" "\n"
-            //         "oyqzb9Vsgu1gS7SCb6qTbnbV9PlSyU4wJB6siX8hz/U0urokT5se3uYRjiV0KbkA" "\n"
-            //         "zl1/r/wCrmwX4Gl9VN9+33cQgYZAlJLsRw8N82GhbVweZS8qwv24GQ==" "\n"
-            //         "=nx90" "\n"
-            //         "-----END PGP MESSAGE-----"
-            //         ].join("\n");
-            //
-            //        var plaintext = "short message\nnext line\n한국어/조선말\n\n";
-            //        var esMsg = openpgp.message.readArmored(msg_armor);
-            //        var pubKey = openpgp.key.readArmored(pub_key_arm2).keys[0];
-            //        var privKey = openpgp.key.readArmored(priv_key_arm2).keys[0];
-            //
-            //        var keyids = esMsg.getEncryptionKeyIds();
-            //        privKey.decryptKeyPacket(keyids, "hello world");
-            //
-            //        openpgp.decrypt({ privateKey: privKey, publicKeys:[pubKey], message:esMsg }).then(function(decrypted) {
-            //            expect(decrypted.data).to.exist;
-            //            expect(decrypted.data).to.equal(plaintext);
-            //            expect(decrypted.signatures).to.have.length(1);
-            //            expect(decrypted.signatures[0].valid).to.be.true;
-            //            expect(decrypted.signatures[0].signature.packets.length).to.equal(1);
-            //            done();
-            //        });
-            //
-            //    });
-            //
-            //    it("Verify signed message with two one pass signatures" "\n" function(done) {
-            //        var msg_armor =
-            //        [ "-----BEGIN PGP MESSAGE-----" "\n"
-            //         "Version: GnuPG v2.0.19 (GNU/Linux)" "\n"
-            //         "" "\n"
-            //         "owGbwMvMwMF4+5Pyi4Jg3y8ME8DcBy3fXXIUdKYzrjFNYilJrSgJmsXDXJyRX1Si" "\n"
-            //         "kJtaXJyYnsqVBxRVyMnMS+V6O3XOq61r30zbov9m4YY3LQteL5/QMYeFgZGDgY2V" "\n"
-            //         "CaSRgYtTAGZiYxYLwySbQk07ptZel6gmjrKyBWsyWdkOG3oscLBdIpXXfDdb6fNv" "\n"
-            //         "8ULN5L1ed+xNo79P2dBotWud6vn7e9dtLJ7o12PunnvEz8gyyvP4/As/los0xsnZ" "\n"
-            //         "H+8ublrhvGtLxJUZuUKZO6QdHq2Nepuw8OrfiMXPBDQXXpV2q11Ze+rD3lndgv/C" "\n"
-            //         "bJQNOhll0J0H839jFvt/16m20h/ZmDoWqJywapnypjdIjcXr+7rJFess40yenV7Q" "\n"
-            //         "2LSu/EX6Aq29x+dv+GPUMfuhTNE3viWWUR4PD6T7XfmdViUwmSf8fkRNUn/t3a2n" "\n"
-            //         "cq46Xr36seCor/OLp0atSZwHrjx2SU5zPLheZn+zw/0d1/YZnD7AEeP9s/Cuycyv" "\n"
-            //         "CZ5HZNKufvB8fsh+dfdSXW0GfqkPfxk36Vw8ufpjaoZDyt2nxxg/6D4KS3UvZzv3" "\n"
-            //         "axdLZ9yd0OJNZv4P501If24W4vTGz6nI7Ser8Yd2PiOvE5MWMT0wLZQ+zPX1sv0/" "\n"
-            //         "s8PvkyWmVM0O0fB/ZSHovHNNPffDg/rWhzOmXQ9/7vTn477F+aWm5sYzJ75/BQA=" "\n"
-            //         "=+L0S" "\n"
-            //         "-----END PGP MESSAGE-----"
-            //         ].join("\n");
-            //
-            //        var plaintext = "short message\nnext line\n한국어/조선말";
-            //        var sMsg = openpgp.message.readArmored(msg_armor);
-            //        var pubKey2 = openpgp.key.readArmored(pub_key_arm2).keys[0];
-            //        var pubKey3 = openpgp.key.readArmored(pub_key_arm3).keys[0];
-            //
-            //        var keyids = sMsg.getSigningKeyIds();
-            //
-            //        expect(pubKey2.getKeyPacket(keyids)).to.exist;
-            //        expect(pubKey3.getKeyPacket(keyids)).to.exist;
-            //
-            //        expect(sMsg.getText()).to.equal(plaintext);
-            //
-            //        var verifiedSig = sMsg.verify([pubKey2, pubKey3]);
-            //
-            //        expect(verifiedSig).to.exist;
-            //        expect(verifiedSig).to.have.length(2);
-            //        expect(verifiedSig[0].valid).to.be.true;
-            //        expect(verifiedSig[1].valid).to.be.true;
-            //        expect(verifiedSig[0].signature.packets.length).to.equal(1);
-            //        expect(verifiedSig[1].signature.packets.length).to.equal(1);
-            //        done();
-            //    });
-            //
-            //    it("Verify cleartext signed message with two signatures with openpgp.verify" "\n" function(done) {
-            //        var msg_armor =
-            //        [ "-----BEGIN PGP SIGNED MESSAGE-----" "\n"
-            //         "Hash: SHA256" "\n"
-            //         "" "\n"
-            //         "short message" "\n"
-            //         "next line" "\n"
-            //         "한국어/조선말" "\n"
-            //         "-----BEGIN PGP SIGNATURE-----" "\n"
-            //         "Version: GnuPG v2.0.19 (GNU/Linux)" "\n"
-            //         "" "\n"
-            //         "iJwEAQEIAAYFAlKcju8ACgkQ4IT3RGwgLJci6gP/dCmIraUa6AGpJxzGfK+jYpjl" "\n"
-            //         "G0KunFyGmyPxeJVnPi2bBp3EPIbiayQ71CcDe9DKpF046tora07AA9eo+/YbvJ9P" "\n"
-            //         "PWeScw3oj/ejsmKQoDBGzyDMFUphevnhgc5lENjovJqmiu6FKjNmADTxcZ/qFTOq" "\n"
-            //         "44EWTgdW3IqXFkNpKjeJARwEAQEIAAYFAlKcju8ACgkQ2/Ij6HBTTfQi6gf9HxhE" "\n"
-            //         "ycLDhQ8iyC090TaYwsDytScU2vOMiI5rJCy2tfDV0pfn+UekYGMnKxZTpwtmno1j" "\n"
-            //         "mVOlieENszz5IcehS5TYwk4lmRFjoba+Z8qwPEYhYxP29GMbmRIsH811sQHFTigo" "\n"
-            //         "LI2t4pSSSUpAiXd9y6KtvkWcGGn8IfkNHCEHPh1ov28QvH0+ByIiKYK5N6ZB8hEo" "\n"
-            //         "0uMYhKQPVJdPCvMkAxQCRPw84EvmxuJ0HMCeSB9tHQXpz5un2m8D9yiGpBQPnqlW" "\n"
-            //         "vCCq7fgaUz8ksxvQ9bSwv0iIIbbBdTP7Z8y2c1Oof6NDl7irH+QCeNT7IIGs8Smn" "\n"
-            //         "BEzv/FqkQAhjy3Krxg==" "\n"
-            //         "=3Pkl" "\n"
-            //         "-----END PGP SIGNATURE-----"
-            //         ].join("\n");
-            //
-            //        var plaintext = "short message\nnext line\n한국어/조선말";
-            //        var csMsg = openpgp.cleartext.readArmored(msg_armor);
-            //        var pubKey2 = openpgp.key.readArmored(pub_key_arm2).keys[0];
-            //        var pubKey3 = openpgp.key.readArmored(pub_key_arm3).keys[0];
-            //
-            //        var keyids = csMsg.getSigningKeyIds();
-            //
-            //        expect(pubKey2.getKeyPacket(keyids)).to.exist;
-            //        expect(pubKey3.getKeyPacket(keyids)).to.exist;
-            //
-            //        openpgp.verify({ publicKeys:[pubKey2, pubKey3], message:csMsg }).then(function(cleartextSig) {
-            //            expect(cleartextSig).to.exist;
-            //            expect(cleartextSig.data).to.equal(plaintext);
-            //            expect(cleartextSig.signatures).to.have.length(2);
-            //            expect(cleartextSig.signatures[0].valid).to.be.true;
-            //            expect(cleartextSig.signatures[1].valid).to.be.true;
-            //            expect(cleartextSig.signatures[0].signature.packets.length).to.equal(1);
-            //            expect(cleartextSig.signatures[1].signature.packets.length).to.equal(1);
-            //            done();
-            //        });
-            //    });
+            
+            TEST(Verify_signature_of_signed_and_encrypted_message_from_GPG2_with_openpgp_decrypt) {
+                std::string msg_armor =
+                "-----BEGIN PGP MESSAGE-----" "\n"
+                "Version: GnuPG v2.0.19 (GNU/Linux)" "\n"
+                "" "\n"
+                "hIwD4IT3RGwgLJcBBADEBdm+GEW7IV1K/Bykg0nB0WYO08ai7/8/+Y/O9xu6RiU0" "\n"
+                "q7/jWuKms7kSjw9gxMCjf2dGnAuT4Cg505Kj5WfeBuHh618ovO8qo4h0qHyp1/y3" "\n"
+                "o1P0IXPAb+LGJOeO7DyM9Xp2AOBiIKOVWzFTg+MBZOc+XZEVx3FioHfm9SSDudLA" "\n"
+                "WAEkDakCG6MRFj/7SmOiV8mQKH+YPMKT69eDZW7hjINabrpM2pdRU7c9lC7CMUBx" "\n"
+                "Vj7wZsQBMASSC8f2rhpGA2iKvYMsmW3g9R1xkvj1MXWftSPUS4jeNTAgEwvvF6Af" "\n"
+                "cP+OYSXKlTbwfEr73ES2O3/IFE9sHRjPqWaxWuv4DDQ5YfIxE54C1aE8Aq5/QaIH" "\n"
+                "v38TUSia0yEMCc/tJd58DikkT07AF162tcx9Ro0ZjhudyuvUyXIfPfxA+XWR2pdz" "\n"
+                "ifxyV4zia9RvaCUY8vXGM+gQJ3NNXx2LkZA3kWUEyxFVL1Vl/XUQY0M6U+uccSk4" "\n"
+                "eMXm6eyEWDcj0lBRckqKoKo1w/uan11jPuHsnRz6jO9DsuKEz79UDgI=" "\n"
+                "=cFi7" "\n"
+                "-----END PGP MESSAGE-----" "\n";
+                
+                std::string plaintext = "short message\nnext line\n한국어/조선말";
+                
+                PGPMessage esMsg(msg_armor);
+                auto pubKeyArm2 = pub_key_arm2;
+                PGPPublicKey::Ptr pubKey = std::make_shared<PGPPublicKey>(pubKeyArm2);
+                auto privKeyArm2 = priv_key_arm2;
+                PGPSecretKey privKey(privKeyArm2);
+                std::string plain_text = decrypt_pka(privKey, esMsg, "hello world", false, pubKey);
+                VERIFY_ARE_EQUAL(plain_text, plaintext);
+            }
+            
+            TEST(Verify_signature_of_signed_and_encrypted_message) {
+                //from PGP 10.3.0 with openpgp.decrypt
+                std::string msg_armor =
+                "-----BEGIN PGP MESSAGE-----" "\n"
+                "Version: Encryption Desktop 10.3.0 (Build 9307)" "\n"
+                "Charset: utf-8" "\n"
+                "" "\n"
+                "qANQR1DBjAPghPdEbCAslwED/2S4oNvCjO5TdLUMMUuVOQc8fi6c5XIBu7Y09fEX" "\n"
+                "Jm/UrkDHVgmPojLGBDF0CYENNZOVrNfpahY7A3r4HPzGucBzCO1uxuUIKjhtNAAM" "\n"
+                "mjD939ernjooOZrM6xDuRaX8adG0LSxpNaVJGxXd/EdlmKDJbYDI6aJ5INrUxzAR" "\n"
+                "DAqw0sBSAXgRWgiH6IIiAo5y5WFEDEN9sGStaEQT2wd32kX73M4iZuMt/GM2agiB" "\n"
+                "sWb7yLcNHiJ/3OnTfDg9+T543kFq9FlwFbwqygO/wm9e/kgMBq0ZsFOfV+GRtXep" "\n"
+                "3qNbJsmzGvdqiUHb/+hkdE191jaSVcO/zaMW4N0Vc1IwIEhZ8I9+9bKwusdVhHT5" "\n"
+                "MySnhIogv+0Ilag/aY+UiCt+Zcie69T7Eix48fC/VVW5w3INf1T2CMmDm5ZLZFRN" "\n"
+                "oyqzb9Vsgu1gS7SCb6qTbnbV9PlSyU4wJB6siX8hz/U0urokT5se3uYRjiV0KbkA" "\n"
+                "zl1/r/wCrmwX4Gl9VN9+33cQgYZAlJLsRw8N82GhbVweZS8qwv24GQ==" "\n"
+                "=nx90" "\n"
+                "-----END PGP MESSAGE-----" "\n";
+                
+                auto plaintext = "short message\nnext line\n한국어/조선말\n\n";
+                
+                PGPMessage esMsg(msg_armor);
+                auto pubKeyArm2 = pub_key_arm2;
+                PGPPublicKey::Ptr pubKey = std::make_shared<PGPPublicKey>(pubKeyArm2);
+                auto privKeyArm2 = priv_key_arm2;
+                PGPSecretKey privKey(privKeyArm2);
+                
+                std::string plain_text = decrypt_pka(privKey, esMsg, "hello world", false, pubKey);
+                std::string find = "\r\n";
+                auto size = find.size();
+                for (std::size_t pos = plain_text.find(find); pos!= std::string::npos; pos = plain_text.find(find, pos + 1))
+                    plain_text.replace(pos, size, "\n");
+                
+                VERIFY_ARE_EQUAL(plain_text, plaintext);
+            }
+            
+            TEST(Verify_signed_message_with_two_one_pass_signatures) {
+                std::string msg_armor =
+                "-----BEGIN PGP MESSAGE-----" "\n"
+                "Version: GnuPG v2.0.19 (GNU/Linux)" "\n"
+                "" "\n"
+                "owGbwMvMwMF4+5Pyi4Jg3y8ME8DcBy3fXXIUdKYzrjFNYilJrSgJmsXDXJyRX1Si" "\n"
+                "kJtaXJyYnsqVBxRVyMnMS+V6O3XOq61r30zbov9m4YY3LQteL5/QMYeFgZGDgY2V" "\n"
+                "CaSRgYtTAGZiYxYLwySbQk07ptZel6gmjrKyBWsyWdkOG3oscLBdIpXXfDdb6fNv" "\n"
+                "8ULN5L1ed+xNo79P2dBotWud6vn7e9dtLJ7o12PunnvEz8gyyvP4/As/los0xsnZ" "\n"
+                "H+8ublrhvGtLxJUZuUKZO6QdHq2Nepuw8OrfiMXPBDQXXpV2q11Ze+rD3lndgv/C" "\n"
+                "bJQNOhll0J0H839jFvt/16m20h/ZmDoWqJywapnypjdIjcXr+7rJFess40yenV7Q" "\n"
+                "2LSu/EX6Aq29x+dv+GPUMfuhTNE3viWWUR4PD6T7XfmdViUwmSf8fkRNUn/t3a2n" "\n"
+                "cq46Xr36seCor/OLp0atSZwHrjx2SU5zPLheZn+zw/0d1/YZnD7AEeP9s/Cuycyv" "\n"
+                "CZ5HZNKufvB8fsh+dfdSXW0GfqkPfxk36Vw8ufpjaoZDyt2nxxg/6D4KS3UvZzv3" "\n"
+                "axdLZ9yd0OJNZv4P501If24W4vTGz6nI7Ser8Yd2PiOvE5MWMT0wLZQ+zPX1sv0/" "\n"
+                "s8PvkyWmVM0O0fB/ZSHovHNNPffDg/rWhzOmXQ9/7vTn477F+aWm5sYzJ75/BQA=" "\n"
+                "=+L0S" "\n"
+                "-----END PGP MESSAGE-----" "\n";
+                
+                auto plaintext = "short message\nnext line\n한국어/조선말";
+                
+                PGPMessage sMsg(msg_armor);
+                auto pubKeyArm2 = pub_key_arm2;
+                PGPPublicKey::Ptr pubKey = std::make_shared<PGPPublicKey>(pubKeyArm2);
+                auto pubKeyArm3 = pub_key_arm3;
+                pubKey->read(pubKeyArm3);
+                
+                std::string out = "";
+                for(Packet::Ptr const & p : sMsg.get_packets()){
+                    if (p -> get_tag() == 11){
+                        std::string raw = p -> raw();
+                        Tag11 tag11(raw);
+                        out += tag11.out(false);
+                    }
+                }
+                VERIFY_ARE_EQUAL(out, plaintext);
+                
+                auto check = sMsg.verify(pubKey);
+                VERIFY_IS_TRUE(check);
+            }
+            
+            
+            TEST(Verify_cleartext_signed_message_with_two_signatures) {
+                std::string msg_armor =
+                "-----BEGIN PGP SIGNED MESSAGE-----" "\n"
+                 "Hash: SHA256" "\n"
+                 "" "\n"
+                 "short message" "\n"
+                 "next line" "\n"
+                 "한국어/조선말" "\n"
+                 "-----BEGIN PGP SIGNATURE-----" "\n"
+                 "Version: GnuPG v2.0.19 (GNU/Linux)" "\n"
+                 "" "\n"
+                 "iJwEAQEIAAYFAlKcju8ACgkQ4IT3RGwgLJci6gP/dCmIraUa6AGpJxzGfK+jYpjl" "\n"
+                 "G0KunFyGmyPxeJVnPi2bBp3EPIbiayQ71CcDe9DKpF046tora07AA9eo+/YbvJ9P" "\n"
+                 "PWeScw3oj/ejsmKQoDBGzyDMFUphevnhgc5lENjovJqmiu6FKjNmADTxcZ/qFTOq" "\n"
+                 "44EWTgdW3IqXFkNpKjeJARwEAQEIAAYFAlKcju8ACgkQ2/Ij6HBTTfQi6gf9HxhE" "\n"
+                 "ycLDhQ8iyC090TaYwsDytScU2vOMiI5rJCy2tfDV0pfn+UekYGMnKxZTpwtmno1j" "\n"
+                 "mVOlieENszz5IcehS5TYwk4lmRFjoba+Z8qwPEYhYxP29GMbmRIsH811sQHFTigo" "\n"
+                 "LI2t4pSSSUpAiXd9y6KtvkWcGGn8IfkNHCEHPh1ov28QvH0+ByIiKYK5N6ZB8hEo" "\n"
+                 "0uMYhKQPVJdPCvMkAxQCRPw84EvmxuJ0HMCeSB9tHQXpz5un2m8D9yiGpBQPnqlW" "\n"
+                 "vCCq7fgaUz8ksxvQ9bSwv0iIIbbBdTP7Z8y2c1Oof6NDl7irH+QCeNT7IIGs8Smn" "\n"
+                 "BEzv/FqkQAhjy3Krxg==" "\n"
+                 "=3Pkl" "\n"
+                 "-----END PGP SIGNATURE-----" "\n";
+                
+                auto plaintext = "short message\nnext line\n한국어/조선말";
+                
+                PGPCleartextSignature sMsg(msg_armor);
+
+                auto pubKeyArm2 = pub_key_arm2;
+                PGPPublicKey::Ptr pubKey = std::make_shared<PGPPublicKey>(pubKeyArm2);
+                auto pubKeyArm3 = pub_key_arm3;
+                pubKey->read(pubKeyArm3);
+
+                std::string out = sMsg.get_message();
+                VERIFY_ARE_EQUAL(out, plaintext);
+                
+                auto check = sMsg.verify(pubKey);
+                VERIFY_IS_TRUE(check);
+            }
             //
             //    it("Sign text with openpgp.sign and verify with openpgp.verify leads to same string cleartext and valid signatures" "\n" function(done) {
             //        var plaintext = "short message\nnext line\n한국어/조선말";

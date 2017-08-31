@@ -114,6 +114,8 @@ public:
     Tag6::Ptr tag6(int index); //public key
     
     Tag14::Ptr tag14(int index); //sub public key
+    
+    Tag6::Ptr find_key(const std::string& keyid);
 };
 
 #endif

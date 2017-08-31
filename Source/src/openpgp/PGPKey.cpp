@@ -397,3 +397,17 @@ Tag14::Ptr PGPPublicKey::tag14(int index) {
     }
     return nullptr;
 }
+
+
+Tag6::Ptr PGPPublicKey::find_key(const std::string& keyid) {
+    for(Packet::Ptr const & p : get_packets()){
+        std::cout << p -> get_tag() << std::endl;
+        if ( p -> get_tag() == 14 || p -> get_tag() == 6 ) {
+            auto tag6 = std::static_pointer_cast<Tag6>(p);
+            if (tag6->get_keyid() == keyid) {
+                return tag6;
+            }
+        }
+    }
+    return nullptr;
+}

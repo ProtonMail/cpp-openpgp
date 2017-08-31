@@ -1,5 +1,9 @@
 #include <openpgp/PGPCleartextSignature.h>
 
+#include <package/Tag2.h>
+
+#include <encryption/RSA.h>
+
 PGPCleartextSignature::PGPCleartextSignature():
     Armor_Header(),
     message(),
@@ -169,3 +173,55 @@ PGPCleartextSignature & PGPCleartextSignature::operator=(const PGPCleartextSigna
     sig = copy.sig;
     return *this;
 }
+
+
+bool PGPCleartextSignature::verify(PGPPublicKey::Ptr verifier) {
+    if (verifier == nullptr) {
+        throw std::runtime_error("Error : verify can't be null");
+    }
+    
+    if ((verifier->get_ASCII_Armor() != 1) && (verifier->get_ASCII_Armor() != 2)){
+        throw std::runtime_error("Error: A PGP key is required.");
+    }
+    
+    bool verify = false;
+    auto packages = get_sig().get_packets();
+    for(Packet::Ptr const & p : packages) {
+        if ( p -> get_tag() == 2 ) {
+            auto signature = std::static_pointer_cast<Tag2>(p);
+            // check left 16 bits
+            std::string digest = to_sign_01(get_message(), signature);
+            if (digest.substr(0, 2) != signature -> get_left16()){
+                throw std::runtime_error("Error: Hash digest and given left 16 bits of hash do not match.");
+            }
+            
+            // Find key id from signature to match with public key
+            std::string keyid = signature -> get_keyid();
+            if (!keyid.size()){
+                throw std::runtime_error("Error: No Key ID subpacket found.");
+            }
+            
+            auto signing_key = verifier->find_key(keyid);
+            if (signing_key == nullptr) {
+                return false;
+            }
+            
+            auto signing = signing_key->get_mpi();
+            
+            ProtonMail::crypto::rsa key(signing[0], signing[1]);
+            auto hash = signature -> get_hash();
+            
+            std::string encoded = EMSA_PKCS1_v1_5(hash, digest, bitsize(signing[0]) >> 3);
+            
+            verify = key.verify(rawtompi(encoded), signature->get_mpi()[0]);
+
+            if (verify == false) return verify;
+        }
+    }
+    
+    return verify;
+}
+
+
+
+

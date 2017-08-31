@@ -237,10 +237,7 @@ bool verify_message(const Tag6::Ptr & signing_key, const PGPMessage & m){
                 // check signature
                 if (match){
                     auto signing_key_id = signing_key -> get_keyid();
-                    std::cout << hexlify(signing_key_id) << std::endl;
                     auto sp_key_id = (*(SP.begin())) -> get_keyid();
-                    std::cout << hexlify(sp_key_id) << std::endl;
-                    
                     
                     // if KeyID of given key matches this Tag4/Tag2 pair's KeyID
                     if (signing_key -> get_keyid() == (*(SP.begin())) -> get_keyid()) {
@@ -355,11 +352,14 @@ bool verify_message(const PGPPublicKey & pub, const PGPMessage & m){
             std::string data = p -> raw();
             Tag6::Ptr tag6(new Tag6(data));
             
+            
             // if its a signing key packet
             if ((tag6 -> get_pka() == 1) || (tag6 -> get_pka() == 3) || (tag6 -> get_pka() == 17)){
                 // get keys
-                signing_key = tag6;
-                break;
+//                if (tag6->get_keyid() == m.get_keyid()) {
+                    signing_key = tag6;
+                    break;
+//                }
             }
             
             tag6.reset();
