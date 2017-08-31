@@ -56,7 +56,6 @@ std::vector <std::string> pka_sign_new(const std::string & digest, const uint8_t
         
         ProtonMail::crypto::rsa key(pub[0], pub[1],
                                     pri[0], pri[1], pri[2]);
-        
         // RFC 4880 sec 5.2.2
         // If RSA, hash value is encoded using EMSA-PKCS1-v1_5
         std::string encoded = EMSA_PKCS1_v1_5(h, digest, bitsize(pub[0]) >> 3);
@@ -240,7 +239,7 @@ PGPMessage sign_message(const PGPSecretKey & pri, const std::string & passphrase
     
     signature.set_packets({tag4, tag11, tag2});
 
-    if (compress){ // only use a Compressed Data Packet if compression was used; don't bother for uncompressed data
+    if (compress){ //only use a Compressed Data Packet if compression was used; don't bother for uncompressed data
         Tag8 tag8;
         tag8.set_data(signature.raw());
         tag8.set_comp(compress);
