@@ -146,7 +146,7 @@ Tag2::Ptr sign_00(const PGPSecretKey & pri, const std::string & passphrase, cons
     Tag2::Ptr sig = create_sig_packet(0x00, pri, hash);
     std::string digest = to_sign_00(data, sig);
     sig -> set_left16(digest.substr(0, 2));
-    sig -> set_mpi(pka_sign(digest, signer, passphrase, sig -> get_hash()));
+    sig -> set_mpi(pka_sign_new(digest, signer, passphrase, sig -> get_hash()));
 
     signer.reset();
 

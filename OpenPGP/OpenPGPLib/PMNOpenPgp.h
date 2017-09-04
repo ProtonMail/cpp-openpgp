@@ -110,6 +110,14 @@
                                              encrypted:(nonnull NSString *)encrypted
                                              signature:(nonnull NSString *)signature;
 
+- (nonnull NSString *)signDetached:(nonnull NSString *)privateKey
+                         plainText:(nonnull NSString *)plainText
+                         passphras:(nonnull NSString *)passphras;
+
+- (BOOL)signDetachedVerify:(nonnull NSString *)publicKey
+                 signature:(nonnull NSString *)signature
+                 plainText:(nonnull NSString *)plainText;
+
 - (nonnull PMNEncryptPackage *)encryptAttachment:(nonnull NSString *)addressId
                                    unencryptData:(nonnull NSData *)unencryptData
                                         fileName:(nonnull NSString *)fileName;

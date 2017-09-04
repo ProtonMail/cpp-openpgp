@@ -120,7 +120,7 @@ bool verify_detachedsig(const PGPPublicKey & pub, const std::string & data, cons
         return false;
     }
     
-    bool out = pka_verify(digest, signingkey, signature);
+    bool out = pka_verify_new(digest, signingkey, signature);
     
     signingkey.reset();
     

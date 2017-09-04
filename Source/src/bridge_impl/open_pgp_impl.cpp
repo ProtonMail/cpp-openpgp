@@ -4,7 +4,9 @@
 #include <openpgp/PGPMessage.h>
 #include <openpgp/encrypt.h>
 #include <openpgp/decrypt.h>
+#include <openpgp/sign.h>
 #include <bridge/address.hpp>
+
 
 #include "bridge/open_pgp_key.hpp"
 #include "bridge_impl/open_pgp_impl.hpp"
@@ -632,5 +634,32 @@ namespace ProtonMail {
         
         return DecryptSignVerify("", false);
     }
+    
+    
+    
+    std::string OpenPgpImpl::sign_detached(const std::string & private_key, const std::string & plain_text, const std::string & passphras) {
+        auto privKeyIn = private_key;
+        PGPSecretKey privKey(privKeyIn);
+
+        auto signed_detached = sign_detach(privKey, passphras, plain_text, 2); //sha 1
+        
+        std::string pgpMsg = signed_detached.write();
+        
+        return pgpMsg;
+    }
+    
+    bool OpenPgpImpl::sign_detached_verify(const std::string & public_key, const std::string & signature, const std::string & plain_text) {
+        
+        std::string detached_sign = signature;
+        PGPDetachedSignature sig(detached_sign);
+
+        std::string str_user_public_key = public_key;
+        PGPPublicKey pubKey(str_user_public_key);
+        
+        auto check = verify_detachedsig(pubKey, plain_text, sig);
+
+        return check;
+    }
+
     
 }

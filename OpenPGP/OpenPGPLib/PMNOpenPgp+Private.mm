@@ -230,6 +230,28 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
+- (nonnull NSString *)signDetached:(nonnull NSString *)privateKey
+                         plainText:(nonnull NSString *)plainText
+                         passphras:(nonnull NSString *)passphras {
+    try {
+        auto objcpp_result_ = _cppRefHandle.get()->sign_detached(::djinni::String::toCpp(privateKey),
+                                                                 ::djinni::String::toCpp(plainText),
+                                                                 ::djinni::String::toCpp(passphras));
+        return ::djinni::String::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (BOOL)signDetachedVerify:(nonnull NSString *)publicKey
+                 signature:(nonnull NSString *)signature
+                 plainText:(nonnull NSString *)plainText {
+    try {
+        auto objcpp_result_ = _cppRefHandle.get()->sign_detached_verify(::djinni::String::toCpp(publicKey),
+                                                                        ::djinni::String::toCpp(signature),
+                                                                        ::djinni::String::toCpp(plainText));
+        return ::djinni::Bool::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
 - (nonnull PMNEncryptPackage *)encryptAttachment:(nonnull NSString *)addressId
                                    unencryptData:(nonnull NSData *)unencryptData
                                         fileName:(nonnull NSString *)fileName {

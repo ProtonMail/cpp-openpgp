@@ -26,6 +26,8 @@
 #include "bridge_impl/open_pgp_impl.hpp"
 #include "bridge/open_pgp_key.hpp"
 
+#include "bridge/open_pgp.hpp"
+
 using namespace ProtonMail::pgp;
 
 namespace tests {
@@ -708,6 +710,17 @@ namespace tests {
             //        expect(pubKey.users[0].selfCertifications).to.eql(pubKey2.users[0].selfCertifications);
             //    });
             //
+            
+            TEST(detached_signature_pm) {
+                //leads to same string cleartext and valid signatures
+                std::string plaintext = "short message\nnext line\n한국어/조선말";
+                auto pgp = ProtonMail::OpenPgp::create_instance();
+                auto pgpMsg = pgp->sign_detached(priv_key_arm2, plaintext, "hello world");
+                auto check1 = pgp->sign_detached_verify(pub_key_arm2, pgpMsg, plaintext);
+                VERIFY_IS_TRUE(check1);
+                auto check2 = pgp->sign_detached_verify(pub_key_arm3, pgpMsg, plaintext);
+                VERIFY_IS_FALSE(check2);
+            }
             //    it("Verify a detached signature using readSignedContent" "\n" function() {
             //        var detachedSig = ["-----BEGIN PGP SIGNATURE-----" "\n"
             //                           "Version: GnuPG v1.4.13 (Darwin)" "\n"

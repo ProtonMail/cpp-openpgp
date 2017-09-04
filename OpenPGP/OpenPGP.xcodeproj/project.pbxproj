@@ -362,6 +362,10 @@
 		755751501F5D1DC8004B162F /* PMNDecryptSignVerify+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7557513E1F5D1DB8004B162F /* PMNDecryptSignVerify+Private.mm */; };
 		755751511F5D1DC8004B162F /* PMNEncryptSignPackage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 755751401F5D1DB8004B162F /* PMNEncryptSignPackage.mm */; };
 		755751521F5D1DC8004B162F /* PMNEncryptSignPackage+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 755751421F5D1DB8004B162F /* PMNEncryptSignPackage+Private.mm */; };
+		755751531F5D2EAB004B162F /* PMNDecryptSignVerify.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7557513B1F5D1DB8004B162F /* PMNDecryptSignVerify.h */; };
+		755751551F5D2EAB004B162F /* PMNEncryptSignPackage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7557513F1F5D1DB8004B162F /* PMNEncryptSignPackage.h */; };
+		755751571F5D2EC8004B162F /* PMNDecryptSignVerify.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7557513B1F5D1DB8004B162F /* PMNDecryptSignVerify.h */; };
+		755751581F5D2EC8004B162F /* PMNEncryptSignPackage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7557513F1F5D1DB8004B162F /* PMNEncryptSignPackage.h */; };
 		755BEAEA1DC7EE8500A0BE41 /* aes_128_ecb_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 755BEAE91DC7EE8500A0BE41 /* aes_128_ecb_test.cpp */; };
 		755BEAEC1DC7EEC800A0BE41 /* aes_256_ecb_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 755BEAEB1DC7EEC800A0BE41 /* aes_256_ecb_test.cpp */; };
 		755BEAF11DC80B1B00A0BE41 /* openpgp_publickey_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 755BEAF01DC80B1B00A0BE41 /* openpgp_publickey_test.cpp */; };
@@ -692,6 +696,8 @@
 			dstPath = "$(PROJECT_DIR)/../Bin/include/OpenPGP";
 			dstSubfolderSpec = 0;
 			files = (
+				755751531F5D2EAB004B162F /* PMNDecryptSignVerify.h in CopyFiles */,
+				755751551F5D2EAB004B162F /* PMNEncryptSignPackage.h in CopyFiles */,
 				756ADF4B1E0A1CD90003CA9B /* PMNLibVersion.h in CopyFiles */,
 				751D425D1DC294E8001A3229 /* OpenPGP.h in CopyFiles */,
 				751D425F1DC294E8001A3229 /* PMNAddress.h in CopyFiles */,
@@ -709,6 +715,8 @@
 			dstPath = "$(PROJECT_DIR)/../Bin/include/OpenPGP";
 			dstSubfolderSpec = 0;
 			files = (
+				755751571F5D2EC8004B162F /* PMNDecryptSignVerify.h in CopyFiles */,
+				755751581F5D2EC8004B162F /* PMNEncryptSignPackage.h in CopyFiles */,
 				756ADF4A1E0A1CCB0003CA9B /* PMNLibVersion.h in CopyFiles */,
 				751D42751DC29555001A3229 /* OpenPGP.h in CopyFiles */,
 				751D42771DC29555001A3229 /* PMNAddress.h in CopyFiles */,

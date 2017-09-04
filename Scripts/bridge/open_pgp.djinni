@@ -92,6 +92,10 @@ open_pgp = interface +c {
     encrypt_message_sign_external(public_key : string, private_key : string, plain_text : string, passphras: string) : encrypt_sign_package;
     decrypt_message_verify(public_key: string, private_key: string, passphras: string, encrypted : string, signature : string) : decrypt_sign_verify;
 
+    sign_detached(private_key : string, plain_text : string, passphras: string) : string;
+    sign_detached_verify(public_key: string, signature : string, plain_text : string) : bool;
+
+
     encrypt_attachment(address_id : string, unencrypt_data : binary, file_name : string) : encrypt_package;
     encrypt_attachment_single_key(public_key : string, unencrypt_data : binary, file_name : string) : encrypt_package;
     decrypt_attachment(key : binary, data : binary, passphras : string) : binary;
