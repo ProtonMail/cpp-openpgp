@@ -275,6 +275,8 @@ std::vector<Packet::Ptr> encrypt(const std::string & session_key,
     return { encrypted };
 }
 
+
+
 std::string encrypt_pm_pka(const PGPPublicKey & pub, const std::string & data)
 {
     std::string body = "<div><br></div><div><br></div><div>Sent from <a href=\"https://protonmail.ch\">ProtonMail</a>, encrypted email based in Switzerland.<br></div>";
@@ -386,7 +388,16 @@ PGPMessage encrypt_pka(const PGPPublicKey & pub, const std::string & data, const
 }
 
 
-std::vector<PGPMessage::Ptr> encrypt(const PGPPublicKey & pub, const std::string & data, const std::string & filename, const uint8_t sym_alg, const uint8_t comp, const bool mdc, const PGPSecretKey::Ptr & signer, bool signerExternal, const std::string & sig_passphrase) {
+std::vector<PGPMessage::Ptr> encrypt(const PGPPublicKey & pub,
+                                     const std::string & data,
+                                     const std::string & filename,
+                                     const uint8_t sym_alg,
+                                     const uint8_t comp,
+                                     const bool mdc,
+                                     const PGPSecretKey::Ptr & signer,
+                                     bool signerExternal,
+                                     const std::string & sig_passphrase) {
+    
     if ((pub.get_ASCII_Armor() != 1) && (pub.get_ASCII_Armor() != 2)){
         throw std::runtime_error("Error: No encrypting key found.");
     }
@@ -421,9 +432,7 @@ std::vector<PGPMessage::Ptr> encrypt(const PGPPublicKey & pub, const std::string
     std::string session_key = BBS().rand_byts(key_len);//unhexlify("b7c29155cb37130673a2051132ac4debb3960668663ec76ba321e830074da8d6");//
     
     //   std::cout << "SESSION_KEY:" << hexlify(session_key) << std::endl;
-    
     //int size = key_len / 8;
-    
     //int buf_size =size + 1 + 2;
     
     std::string unencoded = "";

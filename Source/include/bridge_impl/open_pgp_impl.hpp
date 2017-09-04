@@ -63,6 +63,12 @@ namespace ProtonMail {
 
         std::string decrypt_message_single_key(const std::string & encrypt_text, const std::string & private_key, const std::string & passphras);
 
+        
+        /**for signature */
+        EncryptSignPackage encrypt_message_sign_external(const std::string & public_key, const std::string & private_key, const std::string & plain_text, const std::string & passphras);
+        DecryptSignVerify decrypt_message_verify(const std::string & public_key, const std::string & private_key, const std::string & passphras, const std::string & encrypted, const std::string & signature);
+        
+        
         //
         EncryptPackage encrypt_attachment(const std::string & address_id, const std::vector<uint8_t> & unencrypt_data, const std::string & file_name);
 
