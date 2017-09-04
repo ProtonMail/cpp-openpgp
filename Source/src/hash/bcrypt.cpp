@@ -28,6 +28,9 @@
 #include <utilities/includes.h>
 
 #include <exception>
+#include <time.h>
+#include <random>
+
 
 namespace ProtonMail {
 
@@ -486,7 +489,7 @@ namespace ProtonMail {
         if (rounds > 30) {
             throw std::invalid_argument("rounds exceeds maximum (30)");
         }
-        rs << std::to_string(rounds);
+        rs << to_string(rounds);
         rs << "$";
         rs << encode_base64(saltb, saltb.size());
         rs << encode_base64(hashed, (bf_crypt_ciphertext.size() * 4 - 1));
@@ -646,7 +649,7 @@ namespace ProtonMail {
             throw std::invalid_argument("log_rounds exceeds maximum (30)");
         }
         
-        rs << std::to_string(log_rounds);
+        rs << to_string(log_rounds);
         rs << "$";
         rs << encode_base64(rnd, rnd.size());
         return rs.str();
@@ -667,7 +670,12 @@ namespace ProtonMail {
         }
         
         int32_t modular = (high - low) + 1;
+        
+#ifdef __ANDROID__
+        int32_t random = rand(); //here need to check when use other platform
+#else
         int32_t random = arc4random(); //here need to check when use other platform
+#endif
         
         return (random % modular) + low;
     }

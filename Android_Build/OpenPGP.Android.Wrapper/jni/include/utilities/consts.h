@@ -403,6 +403,7 @@ const std::map <std::string, uint8_t> Symmetric_Algorithms_Numbers = {
 
 // Block size of Symmetric Key Algorithms
 const std::map <std::string, uint16_t> Symmetric_Algorithm_Block_Length = {
+                std::make_pair("PLAINTEXT", 0),
                 std::make_pair("IDEA", 64),
                 std::make_pair("TRIPLEDES", 64),
                 std::make_pair("CAST5", 64),
