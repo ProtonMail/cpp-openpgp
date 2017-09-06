@@ -53,6 +53,10 @@ ID::Ptr find_user_id(const PGPSecretKey & k);
 std::vector <std::string> pka_sign(const std::string & digest, const uint8_t pka, const std::vector <std::string> & pub, const std::vector <std::string> & pri, const uint8_t hash = 2);
 std::vector <std::string> pka_sign(const std::string & digest, const Tag5::Ptr & tag5, const std::string & passphrase, const uint8_t hash = 2);
 
+std::vector <std::string> pka_sign_new(const std::string & digest, const Tag5::Ptr & tag5, const std::string & passphrase, const uint8_t h);
+std::vector <std::string> pka_sign_new(const std::string & digest, const uint8_t pka, const std::vector <std::string> & pub, const std::vector <std::string> & pri, const uint8_t h);
+
+
 // Generates new default signature packet
 Tag2::Ptr create_sig_packet(const uint8_t type, const Tag5::Ptr & tag5, const ID::Ptr & id = nullptr, const uint8_t hash = 2);
 Tag2::Ptr create_sig_packet(const uint8_t type, const PGPSecretKey & pri, const uint8_t hash = 2);

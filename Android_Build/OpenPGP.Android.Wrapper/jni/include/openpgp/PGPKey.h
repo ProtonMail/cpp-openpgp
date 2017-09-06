@@ -26,10 +26,10 @@
 #ifndef __PGP_KEY__
 #define __PGP_KEY__
 
-//#include "Packets/packets.h"
 #include <openpgp/pgp.h>
 #include <package/Tag5.h>
 #include <package/Tag6.h>
+#include <package/Tag14.h>
 
 class PGPKey : public PGP {
     /*
@@ -82,6 +82,8 @@ public:
     PGPSecretKey(std::ifstream & f);
     ~PGPSecretKey();
     
+    Packet::Ptr tag7(int index); //sub key
+    
     PGPPublicKey pub() const;
     
     bool meaningful() const;
@@ -107,6 +109,13 @@ public:
     bool meaningful() const;
     
     PGP::Ptr clone() const;
+    
+    
+    Tag6::Ptr tag6(int index); //public key
+    
+    Tag14::Ptr tag14(int index); //sub public key
+    
+    Tag6::Ptr find_key(const std::string& keyid);
 };
 
 #endif

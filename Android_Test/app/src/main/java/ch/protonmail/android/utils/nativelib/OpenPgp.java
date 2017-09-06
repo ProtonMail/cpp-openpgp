@@ -50,6 +50,18 @@ public abstract class OpenPgp {
     @Nonnull
     public abstract String decryptMessageSingleKey(@Nonnull String encryptText, @Nonnull String privateKey, @Nonnull String passphras);
 
+    /**for signature */
+    @Nonnull
+    public abstract EncryptSignPackage encryptMessageSignExternal(@Nonnull String publicKey, @Nonnull String privateKey, @Nonnull String plainText, @Nonnull String passphras);
+
+    @Nonnull
+    public abstract DecryptSignVerify decryptMessageVerify(@Nonnull String publicKey, @Nonnull String privateKey, @Nonnull String passphras, @Nonnull String encrypted, @Nonnull String signature);
+
+    @Nonnull
+    public abstract String signDetached(@Nonnull String privateKey, @Nonnull String plainText, @Nonnull String passphras);
+
+    public abstract boolean signDetachedVerify(@Nonnull String publicKey, @Nonnull String signature, @Nonnull String plainText);
+
     @Nonnull
     public abstract EncryptPackage encryptAttachment(@Nonnull String addressId, @Nonnull byte[] unencryptData, @Nonnull String fileName);
 
@@ -239,6 +251,38 @@ public abstract class OpenPgp {
             return native_decryptMessageSingleKey(this.nativeRef, encryptText, privateKey, passphras);
         }
         private native String native_decryptMessageSingleKey(long _nativeRef, String encryptText, String privateKey, String passphras);
+
+        @Override
+        public EncryptSignPackage encryptMessageSignExternal(String publicKey, String privateKey, String plainText, String passphras)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_encryptMessageSignExternal(this.nativeRef, publicKey, privateKey, plainText, passphras);
+        }
+        private native EncryptSignPackage native_encryptMessageSignExternal(long _nativeRef, String publicKey, String privateKey, String plainText, String passphras);
+
+        @Override
+        public DecryptSignVerify decryptMessageVerify(String publicKey, String privateKey, String passphras, String encrypted, String signature)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_decryptMessageVerify(this.nativeRef, publicKey, privateKey, passphras, encrypted, signature);
+        }
+        private native DecryptSignVerify native_decryptMessageVerify(long _nativeRef, String publicKey, String privateKey, String passphras, String encrypted, String signature);
+
+        @Override
+        public String signDetached(String privateKey, String plainText, String passphras)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_signDetached(this.nativeRef, privateKey, plainText, passphras);
+        }
+        private native String native_signDetached(long _nativeRef, String privateKey, String plainText, String passphras);
+
+        @Override
+        public boolean signDetachedVerify(String publicKey, String signature, String plainText)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_signDetachedVerify(this.nativeRef, publicKey, signature, plainText);
+        }
+        private native boolean native_signDetachedVerify(long _nativeRef, String publicKey, String signature, String plainText);
 
         @Override
         public EncryptPackage encryptAttachment(String addressId, byte[] unencryptData, String fileName)

@@ -7,7 +7,9 @@
 #import "DJIError.h"
 #import "DJIMarshal+Private.h"
 #import "PMNAddress+Private.h"
+#import "PMNDecryptSignVerify+Private.h"
 #import "PMNEncryptPackage+Private.h"
+#import "PMNEncryptSignPackage+Private.h"
 #import "PMNOpenPgpKey+Private.h"
 #include <exception>
 #include <stdexcept>
@@ -197,6 +199,56 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
                                                                               ::djinni::String::toCpp(privateKey),
                                                                               ::djinni::String::toCpp(passphras));
         return ::djinni::String::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (nonnull PMNEncryptSignPackage *)encryptMessageSignExternal:(nonnull NSString *)publicKey
+                                                   privateKey:(nonnull NSString *)privateKey
+                                                    plainText:(nonnull NSString *)plainText
+                                                    passphras:(nonnull NSString *)passphras {
+    try {
+        auto objcpp_result_ = _cppRefHandle.get()->encrypt_message_sign_external(::djinni::String::toCpp(publicKey),
+                                                                                 ::djinni::String::toCpp(privateKey),
+                                                                                 ::djinni::String::toCpp(plainText),
+                                                                                 ::djinni::String::toCpp(passphras));
+        return ::OBJ_ProtonMail::EncryptSignPackage::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (nonnull PMNDecryptSignVerify *)decryptMessageVerify:(nonnull NSString *)publicKey
+                                            privateKey:(nonnull NSString *)privateKey
+                                             passphras:(nonnull NSString *)passphras
+                                             encrypted:(nonnull NSString *)encrypted
+                                             signature:(nonnull NSString *)signature {
+    try {
+        auto objcpp_result_ = _cppRefHandle.get()->decrypt_message_verify(::djinni::String::toCpp(publicKey),
+                                                                          ::djinni::String::toCpp(privateKey),
+                                                                          ::djinni::String::toCpp(passphras),
+                                                                          ::djinni::String::toCpp(encrypted),
+                                                                          ::djinni::String::toCpp(signature));
+        return ::OBJ_ProtonMail::DecryptSignVerify::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (nonnull NSString *)signDetached:(nonnull NSString *)privateKey
+                         plainText:(nonnull NSString *)plainText
+                         passphras:(nonnull NSString *)passphras {
+    try {
+        auto objcpp_result_ = _cppRefHandle.get()->sign_detached(::djinni::String::toCpp(privateKey),
+                                                                 ::djinni::String::toCpp(plainText),
+                                                                 ::djinni::String::toCpp(passphras));
+        return ::djinni::String::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (BOOL)signDetachedVerify:(nonnull NSString *)publicKey
+                 signature:(nonnull NSString *)signature
+                 plainText:(nonnull NSString *)plainText {
+    try {
+        auto objcpp_result_ = _cppRefHandle.get()->sign_detached_verify(::djinni::String::toCpp(publicKey),
+                                                                        ::djinni::String::toCpp(signature),
+                                                                        ::djinni::String::toCpp(plainText));
+        return ::djinni::Bool::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 

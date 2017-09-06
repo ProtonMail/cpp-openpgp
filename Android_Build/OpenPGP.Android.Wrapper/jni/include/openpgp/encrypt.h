@@ -49,6 +49,8 @@ std::vector <std::string> pka_encrypt(const uint8_t pka, const std::string & dat
 
 Packet::Ptr encrypt_data(const std::string & session_key, const std::string & data, const std::string & filename = "", const uint8_t sym_alg = 9, const uint8_t comp = 1, const bool mdc = true, const PGPSecretKey::Ptr & signer = nullptr, const std::string & sig_passphrase = "");
 
+std::vector<Packet::Ptr> encrypt(const std::string & session_key, const std::string & data, const std::string & filename = "", const uint8_t sym_alg = 9, const uint8_t comp = 1, const bool mdc = true, const PGPSecretKey::Ptr & signer = nullptr, bool signerExternal = true, const std::string & sig_passphrase = "");
+
 // Encrypt data
 // Default:
 //      Symmetric Key Algorithm: AES256
@@ -64,6 +66,9 @@ PGPMessage encrypt_pka_only_data(const std::string & sessionkey, const std::stri
 PGPMessage encrypt_pka_only_session(const PGPPublicKey & pub, std::string & session_key, const uint8_t sym_alg=9);
 PGPMessage encrypt_pka_only_sym_session(const std::string & passphrase, std::string & session_key, const uint8_t sym_alg=9);
 
+
+//this is new and will need refactor for this file
+std::vector<PGPMessage::Ptr> encrypt(const PGPPublicKey & pub, const std::string & data, const std::string & filename = "", const uint8_t sym_alg = 9, const uint8_t comp = 2, const bool mdc = true, const PGPSecretKey::Ptr & signer = nullptr, bool signerExternal = true, const std::string & sig_passphrase = "");
 
 
 PGPMessage encrypt_sym(const std::string & passphrase, const std::string & data, const std::string & filename = "", const uint8_t sym_alg = 9, const uint8_t comp = 2, const bool mdc = true, const PGPSecretKey::Ptr & signer = nullptr, const std::string & sig_passphrase = "");

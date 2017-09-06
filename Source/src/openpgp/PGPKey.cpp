@@ -144,7 +144,7 @@ PGPKey::PGPKey(const PGPKey & copy):
 {}
 
 PGPKey::PGPKey(std::string & data):
-    PGP(data)
+PGP(data)
 {}
 
 PGPKey::PGPKey(std::ifstream & f):
@@ -367,4 +367,47 @@ PGP::Ptr PGPPublicKey::clone() const{
     return std::make_shared <PGPPublicKey> (*this);
 }
 
+Packet::Ptr PGPSecretKey::tag7(int index) {
+    for(Packet::Ptr const & p : get_packets()){
+        if ((p -> get_tag() == 7)){
+            return p;
+        }
+    }
+    return nullptr;
+}
 
+
+Tag6::Ptr PGPPublicKey::tag6(int index) {
+    for(Packet::Ptr const & p : get_packets()){
+        std::cout << p -> get_tag() << std::endl;
+        if ((p -> get_tag() == 6)){
+           return std::static_pointer_cast<Tag6>(p);
+        }
+    }
+    return nullptr;
+}
+
+
+Tag14::Ptr PGPPublicKey::tag14(int index) {
+    for(Packet::Ptr const & p : get_packets()){
+        std::cout << p -> get_tag() << std::endl;
+        if ((p -> get_tag() == 14)){
+            return std::static_pointer_cast<Tag14>(p);
+        }
+    }
+    return nullptr;
+}
+
+
+Tag6::Ptr PGPPublicKey::find_key(const std::string& keyid) {
+    for(Packet::Ptr const & p : get_packets()){
+        std::cout << p -> get_tag() << std::endl;
+        if ( p -> get_tag() == 14 || p -> get_tag() == 6 ) {
+            auto tag6 = std::static_pointer_cast<Tag6>(p);
+            if (tag6->get_keyid() == keyid) {
+                return tag6;
+            }
+        }
+    }
+    return nullptr;
+}

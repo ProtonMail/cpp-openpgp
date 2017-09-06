@@ -346,6 +346,26 @@
 		751D451C1DC41650001A3229 /* utils_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751D45191DC4163E001A3229 /* utils_test.cpp */; };
 		7545D3F91C45A990000D2F8D /* open_pgp_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */; };
 		7545D3FA1C45A995000D2F8D /* open_pgp_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */; };
+		755751431F5D1DB8004B162F /* PMNDecryptSignVerify.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7557513C1F5D1DB8004B162F /* PMNDecryptSignVerify.mm */; };
+		755751441F5D1DB8004B162F /* PMNDecryptSignVerify+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7557513E1F5D1DB8004B162F /* PMNDecryptSignVerify+Private.mm */; };
+		755751451F5D1DB8004B162F /* PMNEncryptSignPackage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 755751401F5D1DB8004B162F /* PMNEncryptSignPackage.mm */; };
+		755751461F5D1DB8004B162F /* PMNEncryptSignPackage+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 755751421F5D1DB8004B162F /* PMNEncryptSignPackage+Private.mm */; };
+		755751471F5D1DC7004B162F /* PMNDecryptSignVerify.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7557513C1F5D1DB8004B162F /* PMNDecryptSignVerify.mm */; };
+		755751481F5D1DC7004B162F /* PMNDecryptSignVerify+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7557513E1F5D1DB8004B162F /* PMNDecryptSignVerify+Private.mm */; };
+		755751491F5D1DC7004B162F /* PMNEncryptSignPackage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 755751401F5D1DB8004B162F /* PMNEncryptSignPackage.mm */; };
+		7557514A1F5D1DC7004B162F /* PMNEncryptSignPackage+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 755751421F5D1DB8004B162F /* PMNEncryptSignPackage+Private.mm */; };
+		7557514B1F5D1DC7004B162F /* PMNDecryptSignVerify.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7557513C1F5D1DB8004B162F /* PMNDecryptSignVerify.mm */; };
+		7557514C1F5D1DC7004B162F /* PMNDecryptSignVerify+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7557513E1F5D1DB8004B162F /* PMNDecryptSignVerify+Private.mm */; };
+		7557514D1F5D1DC7004B162F /* PMNEncryptSignPackage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 755751401F5D1DB8004B162F /* PMNEncryptSignPackage.mm */; };
+		7557514E1F5D1DC7004B162F /* PMNEncryptSignPackage+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 755751421F5D1DB8004B162F /* PMNEncryptSignPackage+Private.mm */; };
+		7557514F1F5D1DC8004B162F /* PMNDecryptSignVerify.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7557513C1F5D1DB8004B162F /* PMNDecryptSignVerify.mm */; };
+		755751501F5D1DC8004B162F /* PMNDecryptSignVerify+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7557513E1F5D1DB8004B162F /* PMNDecryptSignVerify+Private.mm */; };
+		755751511F5D1DC8004B162F /* PMNEncryptSignPackage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 755751401F5D1DB8004B162F /* PMNEncryptSignPackage.mm */; };
+		755751521F5D1DC8004B162F /* PMNEncryptSignPackage+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 755751421F5D1DB8004B162F /* PMNEncryptSignPackage+Private.mm */; };
+		755751531F5D2EAB004B162F /* PMNDecryptSignVerify.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7557513B1F5D1DB8004B162F /* PMNDecryptSignVerify.h */; };
+		755751551F5D2EAB004B162F /* PMNEncryptSignPackage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7557513F1F5D1DB8004B162F /* PMNEncryptSignPackage.h */; };
+		755751571F5D2EC8004B162F /* PMNDecryptSignVerify.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7557513B1F5D1DB8004B162F /* PMNDecryptSignVerify.h */; };
+		755751581F5D2EC8004B162F /* PMNEncryptSignPackage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7557513F1F5D1DB8004B162F /* PMNEncryptSignPackage.h */; };
 		755BEAEA1DC7EE8500A0BE41 /* aes_128_ecb_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 755BEAE91DC7EE8500A0BE41 /* aes_128_ecb_test.cpp */; };
 		755BEAEC1DC7EEC800A0BE41 /* aes_256_ecb_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 755BEAEB1DC7EEC800A0BE41 /* aes_256_ecb_test.cpp */; };
 		755BEAF11DC80B1B00A0BE41 /* openpgp_publickey_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 755BEAF01DC80B1B00A0BE41 /* openpgp_publickey_test.cpp */; };
@@ -613,6 +633,7 @@
 		75BF8F531DA720EF000F350F /* srp_client_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75BF8F4F1DA720EE000F350F /* srp_client_impl.cpp */; };
 		75BF8F541DA720EF000F350F /* srp_client_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75BF8F4F1DA720EE000F350F /* srp_client_impl.cpp */; };
 		75CA5A451DDCFFF100A73238 /* openpgp_bad_pgp_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75CA5A431DDCFFF100A73238 /* openpgp_bad_pgp_test.cpp */; };
+		75D3F3941F54B32600A38AD5 /* openpgp_signature_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75D3F3931F54B32600A38AD5 /* openpgp_signature_test.cpp */; };
 		75D7B14F1E01134400DFF5FE /* lib_version_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75D7B14E1E01134400DFF5FE /* lib_version_impl.cpp */; };
 		75D7B1501E01134400DFF5FE /* lib_version_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75D7B14E1E01134400DFF5FE /* lib_version_impl.cpp */; };
 		75D7B1511E01134400DFF5FE /* lib_version_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75D7B14E1E01134400DFF5FE /* lib_version_impl.cpp */; };
@@ -620,6 +641,7 @@
 		75D7B1551E0117E300DFF5FE /* lib_version_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75D7B1541E0117E300DFF5FE /* lib_version_test.cpp */; };
 		75E220271DD52FC600078D6C /* openpgp_keyrings_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75E220261DD52FC600078D6C /* openpgp_keyrings_test.cpp */; };
 		75E220291DD5332600078D6C /* openpgp_bad_cases_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75E220281DD5332600078D6C /* openpgp_bad_cases_test.cpp */; };
+		75EEBFC81F54E9360023A797 /* openpgp_pka_rsa_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75EEBFC71F54E9360023A797 /* openpgp_pka_rsa_test.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -674,6 +696,8 @@
 			dstPath = "$(PROJECT_DIR)/../Bin/include/OpenPGP";
 			dstSubfolderSpec = 0;
 			files = (
+				755751531F5D2EAB004B162F /* PMNDecryptSignVerify.h in CopyFiles */,
+				755751551F5D2EAB004B162F /* PMNEncryptSignPackage.h in CopyFiles */,
 				756ADF4B1E0A1CD90003CA9B /* PMNLibVersion.h in CopyFiles */,
 				751D425D1DC294E8001A3229 /* OpenPGP.h in CopyFiles */,
 				751D425F1DC294E8001A3229 /* PMNAddress.h in CopyFiles */,
@@ -691,6 +715,8 @@
 			dstPath = "$(PROJECT_DIR)/../Bin/include/OpenPGP";
 			dstSubfolderSpec = 0;
 			files = (
+				755751571F5D2EC8004B162F /* PMNDecryptSignVerify.h in CopyFiles */,
+				755751581F5D2EC8004B162F /* PMNEncryptSignPackage.h in CopyFiles */,
 				756ADF4A1E0A1CCB0003CA9B /* PMNLibVersion.h in CopyFiles */,
 				751D42751DC29555001A3229 /* OpenPGP.h in CopyFiles */,
 				751D42771DC29555001A3229 /* PMNAddress.h in CopyFiles */,
@@ -936,6 +962,14 @@
 		751D451A1DC4163E001A3229 /* utils_test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils_test.h; sourceTree = "<group>"; };
 		75419F471A97E1A8002A1F25 /* libOpenPGP_i386.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOpenPGP_i386.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = open_pgp_impl.cpp; sourceTree = "<group>"; };
+		7557513B1F5D1DB8004B162F /* PMNDecryptSignVerify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PMNDecryptSignVerify.h; path = OpenPGPLib/PMNDecryptSignVerify.h; sourceTree = SOURCE_ROOT; };
+		7557513C1F5D1DB8004B162F /* PMNDecryptSignVerify.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = PMNDecryptSignVerify.mm; path = OpenPGPLib/PMNDecryptSignVerify.mm; sourceTree = SOURCE_ROOT; };
+		7557513D1F5D1DB8004B162F /* PMNDecryptSignVerify+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PMNDecryptSignVerify+Private.h"; path = "OpenPGPLib/PMNDecryptSignVerify+Private.h"; sourceTree = SOURCE_ROOT; };
+		7557513E1F5D1DB8004B162F /* PMNDecryptSignVerify+Private.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "PMNDecryptSignVerify+Private.mm"; path = "OpenPGPLib/PMNDecryptSignVerify+Private.mm"; sourceTree = SOURCE_ROOT; };
+		7557513F1F5D1DB8004B162F /* PMNEncryptSignPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PMNEncryptSignPackage.h; path = OpenPGPLib/PMNEncryptSignPackage.h; sourceTree = SOURCE_ROOT; };
+		755751401F5D1DB8004B162F /* PMNEncryptSignPackage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = PMNEncryptSignPackage.mm; path = OpenPGPLib/PMNEncryptSignPackage.mm; sourceTree = SOURCE_ROOT; };
+		755751411F5D1DB8004B162F /* PMNEncryptSignPackage+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PMNEncryptSignPackage+Private.h"; path = "OpenPGPLib/PMNEncryptSignPackage+Private.h"; sourceTree = SOURCE_ROOT; };
+		755751421F5D1DB8004B162F /* PMNEncryptSignPackage+Private.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "PMNEncryptSignPackage+Private.mm"; path = "OpenPGPLib/PMNEncryptSignPackage+Private.mm"; sourceTree = SOURCE_ROOT; };
 		7557A4F31EEF05900049D83B /* build_pgp_mac_os_universal.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = build_pgp_mac_os_universal.sh; path = ../Scripts/build_pgp_mac_os_universal.sh; sourceTree = "<group>"; };
 		755BEAE91DC7EE8500A0BE41 /* aes_128_ecb_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aes_128_ecb_test.cpp; sourceTree = "<group>"; };
 		755BEAEB1DC7EEC800A0BE41 /* aes_256_ecb_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aes_256_ecb_test.cpp; sourceTree = "<group>"; };
@@ -1181,6 +1215,7 @@
 		75CA5B361DDE71B800A73238 /* UTF8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTF8.h; sourceTree = "<group>"; };
 		75CA5B371DDE71B800A73238 /* utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utilities.h; sourceTree = "<group>"; };
 		75CA5B381DDE71B800A73238 /* utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utility.h; sourceTree = "<group>"; };
+		75D3F3931F54B32600A38AD5 /* openpgp_signature_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = openpgp_signature_test.cpp; path = general/openpgp_signature_test.cpp; sourceTree = "<group>"; };
 		75D7B14C1E0112AE00DFF5FE /* lib_version.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lib_version.hpp; sourceTree = "<group>"; };
 		75D7B14D1E0112E200DFF5FE /* lib_version_impl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lib_version_impl.hpp; sourceTree = "<group>"; };
 		75D7B14E1E01134400DFF5FE /* lib_version_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lib_version_impl.cpp; sourceTree = "<group>"; };
@@ -1192,6 +1227,7 @@
 		75E220361DDA7EC300078D6C /* run_unittesting_ios.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = run_unittesting_ios.sh; path = ../Scripts/run_unittesting_ios.sh; sourceTree = "<group>"; };
 		75E220381DDA7EC300078D6C /* build_bridge.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = build_bridge.sh; sourceTree = "<group>"; };
 		75E220391DDA7EC300078D6C /* open_pgp.djinni */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = open_pgp.djinni; sourceTree = "<group>"; };
+		75EEBFC71F54E9360023A797 /* openpgp_pka_rsa_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = openpgp_pka_rsa_test.cpp; path = general/openpgp_pka_rsa_test.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1547,6 +1583,14 @@
 		7519BBD91A8D868000E0E570 /* OpenPGPLib */ = {
 			isa = PBXGroup;
 			children = (
+				7557513B1F5D1DB8004B162F /* PMNDecryptSignVerify.h */,
+				7557513C1F5D1DB8004B162F /* PMNDecryptSignVerify.mm */,
+				7557513D1F5D1DB8004B162F /* PMNDecryptSignVerify+Private.h */,
+				7557513E1F5D1DB8004B162F /* PMNDecryptSignVerify+Private.mm */,
+				7557513F1F5D1DB8004B162F /* PMNEncryptSignPackage.h */,
+				755751401F5D1DB8004B162F /* PMNEncryptSignPackage.mm */,
+				755751411F5D1DB8004B162F /* PMNEncryptSignPackage+Private.h */,
+				755751421F5D1DB8004B162F /* PMNEncryptSignPackage+Private.mm */,
 				756ADF431E0A1CA10003CA9B /* PMNLibVersion.h */,
 				756ADF441E0A1CA10003CA9B /* PMNLibVersion+Private.h */,
 				756ADF451E0A1CA10003CA9B /* PMNLibVersion+Private.mm */,
@@ -1714,6 +1758,8 @@
 				75175A4A1DC90CC100BD770C /* openpgp_pka_encrypt_test.cpp */,
 				75175A4D1DC90D1100BD770C /* opengpg_symmetric_encrypt_test.cpp */,
 				75175A4F1DC90D4C00BD770C /* opengpg_clearsign_test.cpp */,
+				75D3F3931F54B32600A38AD5 /* openpgp_signature_test.cpp */,
+				75EEBFC71F54E9360023A797 /* openpgp_pka_rsa_test.cpp */,
 			);
 			name = general;
 			sourceTree = "<group>";
@@ -2282,6 +2328,8 @@
 				75175A4B1DC90CC100BD770C /* openpgp_pka_encrypt_test.cpp in Sources */,
 				750A76361DC7BCAB00DE0E70 /* des_test.cpp in Sources */,
 				755BEAF11DC80B1B00A0BE41 /* openpgp_publickey_test.cpp in Sources */,
+				75D3F3941F54B32600A38AD5 /* openpgp_signature_test.cpp in Sources */,
+				75EEBFC81F54E9360023A797 /* openpgp_pka_rsa_test.cpp in Sources */,
 				750A762C1DC4264000DE0E70 /* ripemd160_tests.cpp in Sources */,
 				75175A451DC81F7200BD770C /* openpgp_privatekey_test.cpp in Sources */,
 				755BEAEC1DC7EEC800A0BE41 /* aes_256_ecb_test.cpp in Sources */,
@@ -2325,6 +2373,7 @@
 				7517E78B1AFABC35007EA967 /* FindKey.cpp in Sources */,
 				7517E8531AFABC35007EA967 /* Tag2Sub9.cpp in Sources */,
 				750B3CED1DC28E02001391C3 /* PMNOpenPgp+Private.mm in Sources */,
+				755751451F5D1DB8004B162F /* PMNEncryptSignPackage.mm in Sources */,
 				750B3D011DC28E02001391C3 /* PMNSrpProofs+Private.mm in Sources */,
 				7517E8071AFABC35007EA967 /* Tag2Sub20.cpp in Sources */,
 				7517E71B1AFABC35007EA967 /* CAST128.cpp in Sources */,
@@ -2342,6 +2391,7 @@
 				7517E88F1AFABC35007EA967 /* Tag6.cpp in Sources */,
 				7517E7BF1AFABC35007EA967 /* packets.cpp in Sources */,
 				7517E7131AFABC35007EA967 /* Blowfish.cpp in Sources */,
+				755751441F5D1DB8004B162F /* PMNDecryptSignVerify+Private.mm in Sources */,
 				750B3CE11DC28E02001391C3 /* PMNAddress+Private.mm in Sources */,
 				7517E73B1AFABC35007EA967 /* TDES.cpp in Sources */,
 				7517E8A31AFABC35007EA967 /* Tag7.cpp in Sources */,
@@ -2401,6 +2451,7 @@
 				7517E7E31AFABC35007EA967 /* Tag2Sub12.cpp in Sources */,
 				7517E8271AFABC35007EA967 /* Tag2Sub28.cpp in Sources */,
 				7517E8171AFABC35007EA967 /* Tag2Sub24.cpp in Sources */,
+				755751461F5D1DB8004B162F /* PMNEncryptSignPackage+Private.mm in Sources */,
 				750B3CD11DC28E02001391C3 /* DJIError.mm in Sources */,
 				7517E76F1AFABC35007EA967 /* SHA512.cpp in Sources */,
 				7517E82B1AFABC35007EA967 /* Tag2Sub29.cpp in Sources */,
@@ -2439,6 +2490,7 @@
 				7517E8C71AFABC35007EA967 /* PKCS1.cpp in Sources */,
 				7517E8AB1AFABC35007EA967 /* Tag9.cpp in Sources */,
 				7517E81B1AFABC35007EA967 /* Tag2Sub25.cpp in Sources */,
+				755751431F5D1DB8004B162F /* PMNDecryptSignVerify.mm in Sources */,
 				7517E76B1AFABC35007EA967 /* SHA384.cpp in Sources */,
 				7517E81F1AFABC35007EA967 /* Tag2Sub26.cpp in Sources */,
 				750B3CE51DC28E02001391C3 /* PMNEncryptPackage.mm in Sources */,
@@ -2509,6 +2561,7 @@
 				7517E78C1AFABC35007EA967 /* FindKey.cpp in Sources */,
 				7517E8541AFABC35007EA967 /* Tag2Sub9.cpp in Sources */,
 				750B3CEE1DC28E02001391C3 /* PMNOpenPgp+Private.mm in Sources */,
+				755751491F5D1DC7004B162F /* PMNEncryptSignPackage.mm in Sources */,
 				750B3D021DC28E02001391C3 /* PMNSrpProofs+Private.mm in Sources */,
 				7517E8081AFABC35007EA967 /* Tag2Sub20.cpp in Sources */,
 				7517E71C1AFABC35007EA967 /* CAST128.cpp in Sources */,
@@ -2526,6 +2579,7 @@
 				7517E8901AFABC35007EA967 /* Tag6.cpp in Sources */,
 				7517E7C01AFABC35007EA967 /* packets.cpp in Sources */,
 				7517E7141AFABC35007EA967 /* Blowfish.cpp in Sources */,
+				755751481F5D1DC7004B162F /* PMNDecryptSignVerify+Private.mm in Sources */,
 				750B3CE21DC28E02001391C3 /* PMNAddress+Private.mm in Sources */,
 				7517E73C1AFABC35007EA967 /* TDES.cpp in Sources */,
 				7517E8A41AFABC35007EA967 /* Tag7.cpp in Sources */,
@@ -2585,6 +2639,7 @@
 				7517E7E41AFABC35007EA967 /* Tag2Sub12.cpp in Sources */,
 				7517E8281AFABC35007EA967 /* Tag2Sub28.cpp in Sources */,
 				7517E8181AFABC35007EA967 /* Tag2Sub24.cpp in Sources */,
+				7557514A1F5D1DC7004B162F /* PMNEncryptSignPackage+Private.mm in Sources */,
 				750B3CD21DC28E02001391C3 /* DJIError.mm in Sources */,
 				7517E7701AFABC35007EA967 /* SHA512.cpp in Sources */,
 				7517E82C1AFABC35007EA967 /* Tag2Sub29.cpp in Sources */,
@@ -2623,6 +2678,7 @@
 				7517E8C81AFABC35007EA967 /* PKCS1.cpp in Sources */,
 				7517E8AC1AFABC35007EA967 /* Tag9.cpp in Sources */,
 				7517E81C1AFABC35007EA967 /* Tag2Sub25.cpp in Sources */,
+				755751471F5D1DC7004B162F /* PMNDecryptSignVerify.mm in Sources */,
 				7517E76C1AFABC35007EA967 /* SHA384.cpp in Sources */,
 				7517E8201AFABC35007EA967 /* Tag2Sub26.cpp in Sources */,
 				750B3CE61DC28E02001391C3 /* PMNEncryptPackage.mm in Sources */,
@@ -2653,6 +2709,7 @@
 				759DA0101C5C2A3100EB0483 /* RSA.cpp in Sources */,
 				750B3CF41DC28E02001391C3 /* PMNOpenPgpKey.mm in Sources */,
 				759DA0111C5C2A3100EB0483 /* SymAlg.cpp in Sources */,
+				755751511F5D1DC8004B162F /* PMNEncryptSignPackage.mm in Sources */,
 				759DA0121C5C2A3100EB0483 /* TDES.cpp in Sources */,
 				759DA0131C5C2A3100EB0483 /* Twofish.cpp in Sources */,
 				759DA0141C5C2A3100EB0483 /* pgp_exception.cpp in Sources */,
@@ -2670,6 +2727,7 @@
 				759DA01E1C5C2A3100EB0483 /* SHA384.cpp in Sources */,
 				759DA01F1C5C2A3100EB0483 /* SHA512.cpp in Sources */,
 				759DA0201C5C2A3100EB0483 /* sigcalc.cpp in Sources */,
+				755751501F5D1DC8004B162F /* PMNDecryptSignVerify+Private.mm in Sources */,
 				750B3CF81DC28E02001391C3 /* PMNOpenPgpKey+Private.mm in Sources */,
 				759DA0211C5C2A3100EB0483 /* sign.cpp in Sources */,
 				759DA0221C5C2A3100EB0483 /* BaseObject.cpp in Sources */,
@@ -2729,6 +2787,7 @@
 				750B3CFC1DC28E02001391C3 /* PMNSrpClient+Private.mm in Sources */,
 				759DA0531C5C2A3100EB0483 /* Tag2Sub4.cpp in Sources */,
 				759DA0541C5C2A3100EB0483 /* Tag2Sub5.cpp in Sources */,
+				755751521F5D1DC8004B162F /* PMNEncryptSignPackage+Private.mm in Sources */,
 				759DA0551C5C2A3100EB0483 /* Tag2Sub6.cpp in Sources */,
 				759DA0561C5C2A3100EB0483 /* Tag2Sub7.cpp in Sources */,
 				759DA0571C5C2A3100EB0483 /* Tag2Sub8.cpp in Sources */,
@@ -2767,6 +2826,7 @@
 				759DA0721C5C2A3100EB0483 /* integer.cpp in Sources */,
 				759DA0731C5C2A3100EB0483 /* mpi.cpp in Sources */,
 				759DA0741C5C2A3100EB0483 /* pgptime.cpp in Sources */,
+				7557514F1F5D1DC8004B162F /* PMNDecryptSignVerify.mm in Sources */,
 				759DA0751C5C2A3100EB0483 /* PKCS1.cpp in Sources */,
 				759DA0761C5C2A3100EB0483 /* radix64.cpp in Sources */,
 				759DA0771C5C2A3100EB0483 /* UTF8.cpp in Sources */,
@@ -2797,6 +2857,7 @@
 				75AB6B5C1C5044F100E82A0E /* RSA.cpp in Sources */,
 				750B3CF31DC28E02001391C3 /* PMNOpenPgpKey.mm in Sources */,
 				75AB6B5D1C5044F100E82A0E /* SymAlg.cpp in Sources */,
+				7557514D1F5D1DC7004B162F /* PMNEncryptSignPackage.mm in Sources */,
 				75AB6B5E1C5044F100E82A0E /* TDES.cpp in Sources */,
 				75AB6B5F1C5044F100E82A0E /* Twofish.cpp in Sources */,
 				75AB6B601C5044F100E82A0E /* pgp_exception.cpp in Sources */,
@@ -2814,6 +2875,7 @@
 				75AB6B6A1C5044F100E82A0E /* SHA384.cpp in Sources */,
 				75AB6B6B1C5044F100E82A0E /* SHA512.cpp in Sources */,
 				75AB6B6C1C5044F100E82A0E /* sigcalc.cpp in Sources */,
+				7557514C1F5D1DC7004B162F /* PMNDecryptSignVerify+Private.mm in Sources */,
 				75AB6B6D1C5044F100E82A0E /* sign.cpp in Sources */,
 				750B3CF71DC28E02001391C3 /* PMNOpenPgpKey+Private.mm in Sources */,
 				75AB6B6E1C5044F100E82A0E /* BaseObject.cpp in Sources */,
@@ -2873,6 +2935,7 @@
 				750B3CFB1DC28E02001391C3 /* PMNSrpClient+Private.mm in Sources */,
 				75AB6B9F1C5044F100E82A0E /* Tag2Sub4.cpp in Sources */,
 				75AB6BA01C5044F100E82A0E /* Tag2Sub5.cpp in Sources */,
+				7557514E1F5D1DC7004B162F /* PMNEncryptSignPackage+Private.mm in Sources */,
 				75AB6BA11C5044F100E82A0E /* Tag2Sub6.cpp in Sources */,
 				75AB6BA21C5044F100E82A0E /* Tag2Sub7.cpp in Sources */,
 				75AB6BA31C5044F100E82A0E /* Tag2Sub8.cpp in Sources */,
@@ -2911,6 +2974,7 @@
 				75AB6BBE1C5044F100E82A0E /* integer.cpp in Sources */,
 				75AB6BBF1C5044F100E82A0E /* mpi.cpp in Sources */,
 				75AB6BC01C5044F100E82A0E /* pgptime.cpp in Sources */,
+				7557514B1F5D1DC7004B162F /* PMNDecryptSignVerify.mm in Sources */,
 				75AB6BC11C5044F100E82A0E /* PKCS1.cpp in Sources */,
 				75AB6BC21C5044F100E82A0E /* radix64.cpp in Sources */,
 				75AB6BC31C5044F100E82A0E /* UTF8.cpp in Sources */,

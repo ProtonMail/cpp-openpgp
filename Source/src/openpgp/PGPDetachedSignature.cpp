@@ -39,3 +39,5 @@ PGP::Ptr PGPDetachedSignature::clone() const{
 bool PGPDetachedSignature::meaningful() const{
     return ((packets.size() == 1) && (packets[0] -> get_tag() == 2));
 }
+
+

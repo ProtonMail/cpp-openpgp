@@ -12,6 +12,16 @@ encrypt_package = record {
 	data_package : binary;
 }
 
+encrypt_sign_package = record {
+    encrypted : string;
+    signature : string;
+}
+
+decrypt_sign_verify = record {
+    plain_text : string;
+    verify : bool;
+}
+
 address = record {
     address_id : string;
     #optional
@@ -77,6 +87,14 @@ open_pgp = interface +c {
     encrypt_message_single_key(public_key : string, plain_text : string) : string;
     decrypt_message(encrypt_text : string, passphras : string) : string;
     decrypt_message_single_key(encrypt_text : string, private_key : string, passphras : string) : string;
+
+    #for signature
+    encrypt_message_sign_external(public_key : string, private_key : string, plain_text : string, passphras: string) : encrypt_sign_package;
+    decrypt_message_verify(public_key: string, private_key: string, passphras: string, encrypted : string, signature : string) : decrypt_sign_verify;
+
+    sign_detached(private_key : string, plain_text : string, passphras: string) : string;
+    sign_detached_verify(public_key: string, signature : string, plain_text : string) : bool;
+
 
     encrypt_attachment(address_id : string, unencrypt_data : binary, file_name : string) : encrypt_package;
     encrypt_attachment_single_key(public_key : string, unencrypt_data : binary, file_name : string) : encrypt_package;

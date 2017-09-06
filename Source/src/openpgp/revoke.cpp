@@ -1,5 +1,10 @@
 #include <openpgp/revoke.h>
 #include <openpgp/FindKey.h>
+
+
+#include <version.hpp>
+
+
 bool check_revoked(const std::vector <Packet::Ptr> & packets, const std::string & keyid){
     for(Packet::Ptr const & p: packets){
         // if a signature packet
@@ -79,8 +84,11 @@ PGPPublicKey revoke_primary_key_cert_key(PGPSecretKey & pri, const std::string &
 
     PGPPublicKey signature;
     signature.set_ASCII_Armor(1);
-    std::vector <std::pair <std::string, std::string> > h = {std::make_pair("Version", "cc"),
-                                                             std::make_pair("Comment", "Revocation Certificate")};
+    const std::string str_version = std::string("ProtonMail v") + std::string(PM_OPENPGP_VERSION);
+    std::vector <std::pair <std::string, std::string> > h = {
+        std::make_pair("Version", str_version),
+        std::make_pair("Comment", "Revocation Certificate")
+    };
     signature.set_Armor_Header(h);
     signature.set_packets({sig});
 
@@ -141,8 +149,12 @@ PGPPublicKey revoke_subkey_cert_key(PGPSecretKey & pri, const std::string & pass
 
     PGPPublicKey signature;
     signature.set_ASCII_Armor(1);
-    std::vector <std::pair <std::string, std::string> > h = {std::make_pair("Version", "cc"),
-                                                             std::make_pair("Comment", "Revocation Certificate")};
+    
+    const std::string str_version = std::string("ProtonMail v") + std::string(PM_OPENPGP_VERSION);
+    std::vector <std::pair <std::string, std::string> > h = {
+        std::make_pair("Version", str_version),
+        std::make_pair("Comment", "Revocation Certificate")
+    };
     signature.set_Armor_Header(h);
     signature.set_packets({sig});
 

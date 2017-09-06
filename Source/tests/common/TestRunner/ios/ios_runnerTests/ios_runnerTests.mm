@@ -53,7 +53,7 @@
     testRunner.RunTestsIf(tests,
                           [&](UnitTest::Test *pTest)
                           {
-//                              if (std::string(pTest->m_details.testName) == "") {
+//                              if (std::string(pTest->m_details.suiteName) == "openpgo_signature_test") {
 //                                  return true;
 //                              } else {
 //                                  return false;

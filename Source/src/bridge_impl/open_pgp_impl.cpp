@@ -4,11 +4,15 @@
 #include <openpgp/PGPMessage.h>
 #include <openpgp/encrypt.h>
 #include <openpgp/decrypt.h>
+#include <openpgp/sign.h>
 #include <bridge/address.hpp>
+
 
 #include "bridge/open_pgp_key.hpp"
 #include "bridge_impl/open_pgp_impl.hpp"
 #include "bridge/encrypt_package.hpp"
+#include "bridge/encrypt_sign_package.hpp"
+#include "bridge/decrypt_sign_verify.hpp"
 
 #include <exception/pgp_exception_define.h>
 #include <exception/pgp_exception.h>
@@ -587,5 +591,75 @@ namespace ProtonMail {
     //        }
     //        return $text;
     //    }
+    
+    
+    
+    /**for signature */
+    EncryptSignPackage OpenPgpImpl::encrypt_message_sign_external(const std::string & public_key, const std::string & private_key, const std::string & plain_text, const std::string & passphras) {
+        
+        
+        std::string str_user_public_key = public_key;
+        PGPPublicKey pub(str_user_public_key);
+        
+        std::string unencrypt_msg = plain_text;
+        
+        std::string str_user_private_key = private_key;
+        auto pgp_private_key = std::make_shared<PGPSecretKey>(str_user_private_key);
+    
+        
+        auto c = encrypt(pub,
+                         unencrypt_msg,
+                         "",
+                         9,
+                         2,
+                         true,
+                         pgp_private_key, true, passphras);
+        
+        
+        
+//        PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg);
+//        std::string encrypt_message = encrypted_pgp.write();
+//        
+//        
+//        
+        
+        
+   
+        
+        
+        return EncryptSignPackage("", "");
+    }
+    
+    DecryptSignVerify OpenPgpImpl::OpenPgpImpl::decrypt_message_verify(const std::string & public_key, const std::string & private_key, const std::string & passphras, const std::string & encrypted, const std::string & signature) {
+        
+        return DecryptSignVerify("", false);
+    }
+    
+    
+    
+    std::string OpenPgpImpl::sign_detached(const std::string & private_key, const std::string & plain_text, const std::string & passphras) {
+        auto privKeyIn = private_key;
+        PGPSecretKey privKey(privKeyIn);
+
+        auto signed_detached = sign_detach(privKey, passphras, plain_text, 2); //sha 1
+        
+        std::string pgpMsg = signed_detached.write();
+        
+        return pgpMsg;
+    }
+    
+    bool OpenPgpImpl::sign_detached_verify(const std::string & public_key, const std::string & signature, const std::string & plain_text) {
+        
+        std::string detached_sign = signature;
+        PGPDetachedSignature sig(detached_sign);
+
+        std::string str_user_public_key = public_key;
+        PGPPublicKey pubKey(str_user_public_key);
+        
+        auto check = verify_detachedsig(pubKey, plain_text, sig);
+
+        return check;
+    }
+
     
 }

@@ -7,6 +7,7 @@
 #include <openpgp/private_key.h>
 #include <exception/pgp_exception_define.h>
 #include <exception/pgp_exception.h>
+#include <openpgp/verify.h>
 
 
 using namespace ProtonMail::pgp;
@@ -14,7 +15,7 @@ using namespace ProtonMail::pgp;
 
 std::string pka_decrypt(const uint8_t pka, std::vector <std::string> & data, const std::vector <std::string> & pri, const std::vector <std::string> & pub){
     if (pka < 3){   // RSA
-        return  mpitoraw(RSA_decrypt(data[0], pri, pub));
+        return mpitoraw(RSA_decrypt(data[0], pri, pub));
     }
     if (pka == 16){ // ElGamal
         return "";//ElGamal_decrypt(data, pri, pub);
@@ -82,15 +83,14 @@ PGPMessage decrypt_data(const uint8_t sym, const PGPMessage & m, const std::stri
     }
 
     // decrypt data
-    if (sym == 9)
+    if (sym == 9) {
         data = use_OpenPGP_CFB_decrypt(data, session_key);
-    else
+    } else {
         data = use_OpenPGP_CFB_decrypt(sym, packet, data, session_key);
-
-    //std::cout << data << std::endl;
+    }
     
     // strip extra data
-    if (packet == 18){ // Symmetrically Encrypted Integrity Protected Data Packet (Tag 18)
+    if (packet == 18) { // Symmetrically Encrypted Integrity Protected Data Packet (Tag 18)
         std::string checksum = data.substr(data.size() - 20, 20);   // get given SHA1 checksum
         data = data.substr(0, data.size() - 20);                    // remove SHA1 checksum
         if (use_hash(2, data) != checksum){                         // check SHA1 checksum
@@ -140,7 +140,7 @@ std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const st
             {
                 if (p -> get_tag() == 1) {
                     Tag1 tag1(data);
-                    sec = find_decrypting_key(pri, tag1.get_keyid());
+                    sec = find_decrypting_key(pri, tag1.get_keyid(), false);
                     if (!sec){
                         continue;
                     }
@@ -199,10 +199,18 @@ std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const st
     // decrypt the data with the extracted key
     PGPMessage decrypted = decrypt_data(sym, m, session_key, writefile, verify);
     
-    std::string out = "";
     // if signing key provided, check the signature
+    std::string out = "";
     if (verify){
-        // out = "Message was" + std::string(verify_message(*verify, decrypted)?"":" not") + " signed by key " + hexlify(verify -> keyid()) + ".\n";
+        auto check = decrypted.verify(verify);// verify_message(*verify, decrypted);
+        std::cout   << "Message was"
+                    << std::string(check ? "" : " not")
+                    << " signed by key "
+                    << hexlify(verify -> keyid())
+                    << "."
+                    << std::endl;
+        if (!check)
+            throw std::runtime_error("Error: verify signed by key " + hexlify(verify -> keyid()) + " failed.");
     }
     
     // extract data
@@ -413,8 +421,8 @@ std::string decrypt_pka_only_sym_session(const PGPMessage & m, const std::string
         throw std::runtime_error("Error: No encrypted message found.");
     }
     
-    uint8_t packet = 0;                             // currently used packet tag
-    std::string data;                           // temp stuff
+    uint8_t packet = 0; // currently used packet tag
+    std::string data;   // temp stuff
     
     // find session key packet; should be first packet
     for(Packet::Ptr const & p : m.get_packets()){

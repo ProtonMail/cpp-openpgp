@@ -102,6 +102,16 @@ typedef basic_nullbuf<wchar_t> wnullbuf;
 extern std::ostream null_out;
 extern std::wostream wnull_out;
 
+template <typename T>
+std::string to_string(T value)
+{
+    std::ostringstream os ;
+    os << value ;
+    return os.str() ;
+}
+
+
+
 //// in a concrete .cpp
 //nullbuf null_obj;
 //wnullbuf wnull_obj;
