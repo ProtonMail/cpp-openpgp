@@ -96,8 +96,21 @@ bool verify_detachedsig(const PGPPublicKey & pub, const std::string & data, cons
     std::string temp = sig.get_packets()[0] -> raw();
     Tag2::Ptr signature(new Tag2(temp));
     
+    auto type = signature->get_type();
+    
     // Check left 16 bits
-    std::string digest = to_sign_00(data, signature);
+    std::string digest = "";
+    switch (type) {
+        case 0x00:
+            digest = to_sign_00(data, signature);
+            break;
+        case 0x01:
+            digest = to_sign_01(data, signature);
+            break;
+        default:
+            throw std::runtime_error("Error: The detached signature type is not supported.");
+    }
+    
     if (digest.substr(0, 2) != signature -> get_left16()){
         throw std::runtime_error("Error: Hash digest and given left 16 bits of hash do not match.");
         // return false;
