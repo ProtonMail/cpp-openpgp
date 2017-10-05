@@ -4,7 +4,7 @@ open_pgp_key = record {
 	private_key : string;
     finger_print : string;
     # false default only used when update keys
-isUpdated : bool;
+    isUpdated : bool;
 }
 
 encrypt_package = record {
@@ -149,3 +149,15 @@ lib_version = interface +c {
     #get vcard version
     static get_vcard_version(): string;
 }
+
+
+b_crypt_hash = interface +c {
+#base 64 *DotSlash encode
+#base 64 *DotSlash decode
+
+#hash
+    static hash_string(password: string, salt: string): string;
+}
+
+
+

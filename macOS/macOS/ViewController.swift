@@ -373,14 +373,20 @@ class ViewController: NSViewController {
 //        if let openPgp : PMNOpenPgp = PMNOpenPgp.createInstance() {
 //            //openPgp.encryptHashCbc("asdfsdfasdfsaf", "")
 //        }
-//        
-       let data = Data()
-//        
-//        
-        //let out = PMNSrpClient.expandHash(data)
+        let expected = "$2a$06$DCq7YPn5Rq63x1Lad4cll.TV4S6ytwfsfvkgY8jIucDrjc8deX1s."
+        let hashed = PMNBCryptHash.hashString("", salt: "$2a$06$DCq7YPn5Rq63x1Lad4cll.")
+        if expected == hashed {
+            NSLog("expected == hashed")
+        }
         
-        PMNSrpClient.generateProofs(2048, modulusRepr: data, serverEphemeralRepr: data, hashedPasswordRepr: data)
-        PMNSrpClient.generateVerifier(2048, modulusRepr: data, hashedPasswordRepr: data)
+//        
+//       let data = Data()
+////
+////
+//        //let out = PMNSrpClient.expandHash(data)
+//
+//        PMNSrpClient.generateProofs(2048, modulusRepr: data, serverEphemeralRepr: data, hashedPasswordRepr: data)
+//        PMNSrpClient.generateVerifier(2048, modulusRepr: data, hashedPasswordRepr: data)
         
         
         //        if let localFile = NSBundle.mainBundle().pathForResource("feng_addresses", ofType: "geojson") {

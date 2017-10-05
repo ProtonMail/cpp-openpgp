@@ -49,7 +49,6 @@
 		751D42511DC292A3001A3229 /* testpdf.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = testpdf.pdf; path = macOSTests/Resource/testpdf.pdf; sourceTree = SOURCE_ROOT; };
 		751D425B1DC29375001A3229 /* libUniversalPGP_macOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libUniversalPGP_macOS.a; path = /Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/OpenPGP/../Bin/libs/Debug/libUniversalPGP_macOS.a; sourceTree = "<absolute>"; };
 		7588B93F1AA53D6D006A8793 /* macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7598C9E11DAC577F002FD14A /* libUniversalPGP_OSX.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libUniversalPGP_OSX.a; path = ../Bin/libs/Debug/libUniversalPGP_OSX.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +75,6 @@
 				750B3C721DC275A2001391C3 /* libz.tbd */,
 				750B3C701DC18142001391C3 /* libssl.dylib */,
 				750B3C6E1DC180E1001391C3 /* libcrypto.dylib */,
-				7598C9E11DAC577F002FD14A /* libUniversalPGP_OSX.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -166,7 +164,6 @@
 				751D422B1DC2920F001A3229 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			path = ../OSX_Test;
 			sourceTree = "<group>";
 		};
 		7588B9551AA53D6D006A8793 /* Supporting Files */ = {

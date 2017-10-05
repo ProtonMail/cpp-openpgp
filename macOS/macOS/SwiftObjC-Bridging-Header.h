@@ -6,4 +6,4 @@
 #import <Foundation/Foundation.h>
 #import <PMNOpenPgp.h>
 #import <PMNSrpClient.h>
-
+#import <PMNBCryptHash.h>
