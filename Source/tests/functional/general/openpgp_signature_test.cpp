@@ -611,8 +611,7 @@ namespace tests {
                 VERIFY_IS_TRUE(check);
             }
             
-            //            TEST(Sign_text_and_verify_leads_to_same_bytes_cleartext_and_valid_signatures) {
-            //                var plaintext = openpgp.util.str2Uint8Array("short message\nnext line\n한국어/조선말");
+            //            TEST(Sign_text_and_verify_leads_to_same_bytes_cdy("short message\nnext line\n한국어/조선말");
             //                var pubKey = openpgp.key.readArmored(pub_key_arm2).keys[0];
             //                var privKey = openpgp.key.readArmored(priv_key_arm2).keys[0];
             //                privKey.getSigningKeyPacket().decrypt("hello world");
@@ -843,6 +842,112 @@ namespace tests {
                 
                 bool check = verify_key(signerKey, signedKey);
                 VERIFY_IS_TRUE(check);
+            }
+            
+            TEST(dino_sign_verify_test) {
+                auto signedArmor =
+                "-----BEGIN PGP SIGNATURE-----" "\n"
+                "Version: ProtonMail" "\n"
+                "Comment: https://protonmail.com" "\n"
+                "" "\n"
+                "wsBcBAEBCAAQBQJZ8TzGCRDDtWY4RN39IwAAQ1cH/ioG9ilzZ+N2qS7xBOYy" "\n"
+                "CBp14lWLIrOodbh9P00FteA7vmpZreFnWCi596wn+gjcNa2wYvrWQrF13LnW" "\n"
+                "4GkifcLxjl/OHqLImVVOOxEQpX6rvdz2CcwDvRlj/CWxd3PL2VRfEJcAW8Jg" "\n"
+                "IiIigmPVT7YW26jJ5nuVa77kYzmnBEGL5A+WiIoJddCNBwlxn/C7K9rkXw1B" "\n"
+                "0Bd6J/jSAvMC6S5ElrwpuXPFUTZzxNXDyV6+qblR9T511gpTOAamFtEwpt8i" "\n"
+                "k7VLXIckMOLKavbly84/WKyg1ViWoGmEGzfNJbHPrxMZ+CwhsEeJMiBANhPn" "\n"
+                "4jQ49RU279/oD7LD6FovPg0=" "\n"
+                "=/jLE" "\n"
+                "-----END PGP SIGNATURE-----" "\n";
+                
+                auto pbkey =
+                "-----BEGIN PGP PUBLIC KEY BLOCK-----" "\n"
+                "Version: OpenPGP.js v2.5.8" "\n"
+                "Comment: https://openpgpjs.org" "\n"
+                "" "\n"
+                "xsBNBFjRE2EBCADGHT8HPRPWDlMdod/krvXKLjG1te+Jyf5BJY9ckpfmNu1X" "\n"
+                "uglKRUUkUdvuWwXDOVjMTLhQLXKWGueQmRm0rZj/z0Wze7CTDskvh81x/DlK" "\n"
+                "TU29Y+EjZ2ysEoIM1eaKv+/3sgn2dh7Ma6PHgAeb7wHOLY6+mmNQzuNrttHn" "\n"
+                "WZf/ISOVatgmxm4ds52yrG8wzoNUjwUwIpLutkgYs2+b91LR/P5z5ZXHydcE" "\n"
+                "3ZiMy6VYQ+wAzWwH9L+YwCuNi4kHXHzcX6J+szowHCkPDMJMejF1MwZ9WM+R" "\n"
+                "XugVAtiZ0fUPyTT/GVxsCaazGAiZIuseBkpGHB8nLyL9walIH/2kAU6NABEB" "\n"
+                "AAHNN2ouam92YW5vdnNraUBwcm90b25tYWlsLmNoIDxqLmpvdmFub3Zza2lA" "\n"
+                "cHJvdG9ubWFpbC5jaD7CwHUEEAEIACkFAljcRn0GCwkHCAMCCRDDtWY4RN39" "\n"
+                "IwQVCAoCAxYCAQIZAQIbAwIeAQAAYK0IAJPTVgUnNKpj4K9WbzcVOI68Bf8r" "\n"
+                "ap0Yku6KjgTTuVowUg4Bvn225a5FLN0jWJBtbexxG0KGn5uh1DfiIJRdLuzK" "\n"
+                "pCd4Jbntb1ay2i7CkD25kYXopGUUk8aE2QGS4sI8ThBzX8auG64/LWFMdoPO" "\n"
+                "oZDausgqSFUYzKLIwmuF1LLLIhvBjlaCjx2GnZwBvsgvipoD8CpRJxByk/qv" "\n"
+                "WYP6Mns3j180l+NixUHlpmGKR/lg0ppUpG8EoWalnoPXTBSdYnR90lywBRIe" "\n"
+                "FvGnAOsH5mAAttdc5j9gyMetzVCZ5btVDUVwuP4pf+O+CXYWjWwHSvR5+Gxc" "\n"
+                "Ra9oFugox34dkHPOwE0EWNETYQEIALvo2uYZ+TJ8ju86xqpxmkS1uYaezDVf" "\n"
+                "UWVcYFWTxOssTfsZVDVGbCVtV76pR95jwzxCfXVxq1WUBiv618UmZ0mpTFEr" "\n"
+                "agRaordfrj0NAu1KAIlj1VPjpFOjQUMejc0dhlhonKXSj34bHzaI+u/BdBOu" "\n"
+                "rWS1Atn/32J4oUf+HzpweuqgP37SWUH/ahAdbiqyg9hcZR+pm91yj2GLCgTn" "\n"
+                "8chUuDtY/CLtViX//6V1NpHauBvmB/B17smC0wb4VkCTAbV9VvvkgTkj1taA" "\n"
+                "dA2FN0Icg2fBUXUuv4HRE3I2Ck+0btSUY6gQDPG4PIQlN+kF/8tVryOa3QAq" "\n"
+                "ZZQqK0MJXLEAEQEAAcLAXwQYAQgAEwUCWNxGfQkQw7VmOETd/SMCGwwAAIfD" "\n"
+                "CAC6GK4bBYKj5jFHk8d5Bnk/H4B2puZzEPPSAoJts/WKgTmY6sMoY6MTUCCn" "\n"
+                "VOPIFOVCvU/SjRmDOk4ZDRr5IPRsBiY1ziFxsLOu4+/XI455quaHxhwQlTDM" "\n"
+                "ZJh9hEh6Dsv7AOtp4dqpHk0s5tmm1oZa5mAzdrPDZ+llmAxpscauc4WYBxIs" "\n"
+                "RuxqHKpd+QfwHDW0CPq0bMlwN3/q5/uLv9wfwrlYvaLmJO++qy0sLWNqzeWN" "\n"
+                "aVx5TNc9JD+G6k1rFKof561vvff5WGr/4Rfe8FiyD27MXz0Et/RcGZrr4IUE" "\n"
+                "ncPm/RJPHxIp6ZPNeC/vCSl6o7wi0pnCaH+Oo9WWXHYg" "\n"
+                "=S3I+" "\n"
+                "-----END PGP PUBLIC KEY BLOCK-----" "\n";
+                
+                auto signedKeyArmor = signedArmor;
+                auto publicKey = pbkey;
+                
+//                auto pgp = ProtonMail::OpenPgp::create_instance();
+//                auto check = pgp->sign_detached_verify(publicKey, signedKeyArmor, "");
+//                VERIFY_IS_TRUE(check);
+            }
+            
+            TEST(dino_sign_verify_test_2) {
+                auto signedArmor = "-----BEGIN PGP SIGNATURE-----\nVersion: ProtonMail\nComment: https://protonmail.com\n\nwsBcBAEBCAAQBQJZ8TzSCRDDtWY4RN39IwAAfN8IAIeWN8oQj4MCGEpgoE5W\nfZZ4zZG1aBp3TSEnsiYAPpP/uIkg5MNdfay/EGlgJXIjxFxdDvgX51b7GL93\nil/HZ91yL6HX8oNNnC/r28ksuRobTQ74btVc5Qi3Pk6gaoBLIvHPCJB2zK7d\nUF0njZ8dltJEiWI5rKUa4fCEABhSUaeUDCIqEj/7kaedqAdbjw2DcbqRacAb\nJW8nyk3zVrXtk+WMejcRqGNgOLIPINa43iet2Ta9mqS/3t1eRB/IQl/kUVMR\nrOp0faZmab7ZAN9HO1R7Z2cMS8rGzBbseZsUhmYozAwoU7KY47TdrENIE/cz\nIAsc5bpYjbbN7yooFejYISA=\n=fPZg\n-----END PGP SIGNATURE-----\n";
+                auto pbkey =
+                "-----BEGIN PGP PUBLIC KEY BLOCK-----" "\n"
+                "Version: OpenPGP.js v2.5.8" "\n"
+                "Comment: https://openpgpjs.org" "\n"
+                "" "\n"
+                "xsBNBFjRE2EBCADGHT8HPRPWDlMdod/krvXKLjG1te+Jyf5BJY9ckpfmNu1X" "\n"
+                "uglKRUUkUdvuWwXDOVjMTLhQLXKWGueQmRm0rZj/z0Wze7CTDskvh81x/DlK" "\n"
+                "TU29Y+EjZ2ysEoIM1eaKv+/3sgn2dh7Ma6PHgAeb7wHOLY6+mmNQzuNrttHn" "\n"
+                "WZf/ISOVatgmxm4ds52yrG8wzoNUjwUwIpLutkgYs2+b91LR/P5z5ZXHydcE" "\n"
+                "3ZiMy6VYQ+wAzWwH9L+YwCuNi4kHXHzcX6J+szowHCkPDMJMejF1MwZ9WM+R" "\n"
+                "XugVAtiZ0fUPyTT/GVxsCaazGAiZIuseBkpGHB8nLyL9walIH/2kAU6NABEB" "\n"
+                "AAHNN2ouam92YW5vdnNraUBwcm90b25tYWlsLmNoIDxqLmpvdmFub3Zza2lA" "\n"
+                "cHJvdG9ubWFpbC5jaD7CwHUEEAEIACkFAljcRn0GCwkHCAMCCRDDtWY4RN39" "\n"
+                "IwQVCAoCAxYCAQIZAQIbAwIeAQAAYK0IAJPTVgUnNKpj4K9WbzcVOI68Bf8r" "\n"
+                "ap0Yku6KjgTTuVowUg4Bvn225a5FLN0jWJBtbexxG0KGn5uh1DfiIJRdLuzK" "\n"
+                "pCd4Jbntb1ay2i7CkD25kYXopGUUk8aE2QGS4sI8ThBzX8auG64/LWFMdoPO" "\n"
+                "oZDausgqSFUYzKLIwmuF1LLLIhvBjlaCjx2GnZwBvsgvipoD8CpRJxByk/qv" "\n"
+                "WYP6Mns3j180l+NixUHlpmGKR/lg0ppUpG8EoWalnoPXTBSdYnR90lywBRIe" "\n"
+                "FvGnAOsH5mAAttdc5j9gyMetzVCZ5btVDUVwuP4pf+O+CXYWjWwHSvR5+Gxc" "\n"
+                "Ra9oFugox34dkHPOwE0EWNETYQEIALvo2uYZ+TJ8ju86xqpxmkS1uYaezDVf" "\n"
+                "UWVcYFWTxOssTfsZVDVGbCVtV76pR95jwzxCfXVxq1WUBiv618UmZ0mpTFEr" "\n"
+                "agRaordfrj0NAu1KAIlj1VPjpFOjQUMejc0dhlhonKXSj34bHzaI+u/BdBOu" "\n"
+                "rWS1Atn/32J4oUf+HzpweuqgP37SWUH/ahAdbiqyg9hcZR+pm91yj2GLCgTn" "\n"
+                "8chUuDtY/CLtViX//6V1NpHauBvmB/B17smC0wb4VkCTAbV9VvvkgTkj1taA" "\n"
+                "dA2FN0Icg2fBUXUuv4HRE3I2Ck+0btSUY6gQDPG4PIQlN+kF/8tVryOa3QAq" "\n"
+                "ZZQqK0MJXLEAEQEAAcLAXwQYAQgAEwUCWNxGfQkQw7VmOETd/SMCGwwAAIfD" "\n"
+                "CAC6GK4bBYKj5jFHk8d5Bnk/H4B2puZzEPPSAoJts/WKgTmY6sMoY6MTUCCn" "\n"
+                "VOPIFOVCvU/SjRmDOk4ZDRr5IPRsBiY1ziFxsLOu4+/XI455quaHxhwQlTDM" "\n"
+                "ZJh9hEh6Dsv7AOtp4dqpHk0s5tmm1oZa5mAzdrPDZ+llmAxpscauc4WYBxIs" "\n"
+                "RuxqHKpd+QfwHDW0CPq0bMlwN3/q5/uLv9wfwrlYvaLmJO++qy0sLWNqzeWN" "\n"
+                "aVx5TNc9JD+G6k1rFKof561vvff5WGr/4Rfe8FiyD27MXz0Et/RcGZrr4IUE" "\n"
+                "ncPm/RJPHxIp6ZPNeC/vCSl6o7wi0pnCaH+Oo9WWXHYg" "\n"
+                "=S3I+" "\n"
+                "-----END PGP PUBLIC KEY BLOCK-----" "\n";
+                
+                auto signedKeyArmor = signedArmor;
+                auto publicKey = pbkey;
+                auto str_check = "BEGIN:VCARD\nVERSION:4.0\nitem1.EMAIL;TYPE=xINTERNET:aaronlura@yahoo.com\nUID:proton-web-2d8ced50-cee1-a3a6-cb24-18b06d6eb4d3\nFN:    \nEND:VCARD";
+                
+                auto pgp = ProtonMail::OpenPgp::create_instance();
+                auto check = pgp->sign_detached_verify(publicKey, signedKeyArmor, str_check);
+                VERIFY_IS_TRUE(check);
+                
             }
         }
     }
