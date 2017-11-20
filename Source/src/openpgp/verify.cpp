@@ -9,7 +9,7 @@
 
 bool pka_verify(const std::string & digest, const uint8_t hash, const uint8_t pka, const std::vector <std::string> & signing, const std::vector<std::string> & signature){
     if ((pka == 1) || (pka == 3)){ // RSA
-        std::string encoded = EMSA_PKCS1_v1_5(hash, digest, bitsize(signing[0]) >> 3);
+        std::string encoded = EMSA_PKCS1_v1_5(hash, digest, bitsize(signing[0]) >> 3); //bitsize() >> 3 could be wrong use auto bits = (bitsize(pub[0]) + 7) / 8;
         return RSA_verify(encoded, signature, signing);
     }
     else if (pka == 17){ // DSA
@@ -24,7 +24,8 @@ bool pka_verify(const std::string & digest, const Tag6::Ptr signing, const Tag2:
 
 bool pka_verify_new(const std::string & digest, const uint8_t hash, const uint8_t pka, const std::vector <std::string> & signing, const std::vector<std::string> & signature){
     if ((pka == 1) || (pka == 3)){ // RSA
-        std::string encoded = EMSA_PKCS1_v1_5(hash, digest, bitsize(signing[0]) >> 3);
+        auto bits = (bitsize(signing[0]) + 7) / 8; //bitsize(signing[0]) >> 3
+        std::string encoded = EMSA_PKCS1_v1_5(hash, digest, bits);
         ProtonMail::crypto::rsa key(signing[0], signing[1]);
         auto check = key.verify(rawtompi(encoded), signature[0]);
         return check;
@@ -304,7 +305,7 @@ bool verify_message(const Tag6::Ptr & signing_key, const PGPMessage & m){
                         ProtonMail::crypto::rsa key(signing[0], signing[1]);
                         auto hash = signature -> get_hash();
                         
-                        std::string encoded = EMSA_PKCS1_v1_5(hash, digest, bitsize(signing[0]) >> 3);
+                        std::string encoded = EMSA_PKCS1_v1_5(hash, digest, bitsize(signing[0]) >> 3); // need change to auto bits = (bitsize(signing[0]) + 7) / 8; 
                         
                         auto verify = key.verify(rawtompi(encoded), signature->get_mpi()[0]);
                         

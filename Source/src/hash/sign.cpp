@@ -25,7 +25,7 @@ std::vector <std::string> pka_sign(const std::string & digest, const uint8_t pka
     if ((pka == 1) || (pka == 3)){ // RSA
         // RFC 4880 sec 5.2.2
         // If RSA, hash value is encoded using EMSA-PKCS1-v1_5
-        std::string encoded = EMSA_PKCS1_v1_5(h, digest, bitsize(pub[0]) >> 3);
+        std::string encoded = EMSA_PKCS1_v1_5(h, digest, bitsize(pub[0]) >> 3); //bitsize(pub[0]) >> 3 could be wrong should use (bitsize + 7) /8
         return {RSA_sign(encoded, pri, pub)};
     }
     else if (pka == 17){ // DSA
@@ -53,12 +53,13 @@ std::vector <std::string> pka_sign_new(const std::string & digest, const Tag5::P
 
 std::vector <std::string> pka_sign_new(const std::string & digest, const uint8_t pka, const std::vector <std::string> & pub, const std::vector <std::string> & pri, const uint8_t h){
     if ((pka == 1) || (pka == 3)){ // RSA
-        
+        auto pri_c = pri.size();
         ProtonMail::crypto::rsa key(pub[0], pub[1],
-                                    pri[0], pri[1], pri[2]);
+                                    pri[0], pri_c > 1 ? pri[1] : "",  pri_c > 2 ? pri[2] : "");
         // RFC 4880 sec 5.2.2
         // If RSA, hash value is encoded using EMSA-PKCS1-v1_5
-        std::string encoded = EMSA_PKCS1_v1_5(h, digest, bitsize(pub[0]) >> 3);
+        auto bits = (bitsize(pub[0]) + 7) / 8; //bitsize(pub[0]) >> 3;
+        std::string encoded = EMSA_PKCS1_v1_5(h, digest, bits);
         return { key.sign(rawtompi(encoded)) };
 //        return {RSA_sign(encoded, pri, pub)};
     }
