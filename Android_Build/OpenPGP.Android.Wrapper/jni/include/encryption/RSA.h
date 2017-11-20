@@ -246,8 +246,13 @@ namespace ProtonMail {
 ////                //SHA256(data, dataLen, hash);
 ////                std::string encoded = EMSA_PKCS1_v1_5(8, mpidata, keysize);
 ////                encoded = zero + encoded;
-
                 n = RSA_private_encrypt(lin, (unsigned char*)t.c_str(), out, orsa, padding);
+                if (n == -1) {
+                    BIO            *fd_out;
+                    fd_out = BIO_new_fd(fileno(stderr), BIO_NOCLOSE);
+                    ERR_print_errors(fd_out);
+                    std::cout << fd_out << std::endl;
+                }
                 
                 std::string mpi_out = rawtompi(std::string((char*)out, n));
                 

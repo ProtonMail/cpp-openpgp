@@ -39,9 +39,13 @@ unset NDK_PROJECT_PATH
 printf "\e[0;37mLeaveDirectory:\033[0m \e[0;36m ${PGP_ANDROID_WRAPPER_DIR} \033[0m\n"
 cd ../
 
-printf "\e[0;36mCopying files to Bin folder ... \033[0m\n"
+printf "\e[0;36mStart Copy files ... \033[0m\n"
+
+printf "\e[0;36mCopying lib files to ${OUT_PUT_DIR}... \033[0m\n"
 cp -rf ${PGP_ANDROID_WRAPPER_DIR}/libs/ ${OUT_PUT_DIR}/
-cp -rf ${PGP_ANDROID_WRAPPER_DIR}/libs/ ${PWD}/../Android_Test/app/src/main/jniLibs/
+WRAPPER_LIBS=${PWD}/../Android_Test/app/src/main/jniLibs/
+printf "\e[0;36mCopying lib files to ${WRAPPER_LIBS}... \033[0m\n"
+cp -rf ${PGP_ANDROID_WRAPPER_DIR}/libs/ ${WRAPPER_LIBS}
 
 
 
