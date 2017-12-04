@@ -78,8 +78,9 @@ void PGP::read(std::string & data){
     }
     
     // find type of PGP block
-    for(x = 0; x < 7; x++){
-        std::string match = "-----BEGIN PGP " + ASCII_Armor_Header[x] + "-----";
+    for(x = 0; x < ASCII_ARMOR::MAX; x++) {
+        auto armor = ASCII_ARMOR(x);
+        std::string match = "-----BEGIN PGP " + toString(armor) + "-----";
         if (match == data.substr(0, match.size())){
             break;
         }
@@ -246,12 +247,13 @@ std::string PGP::write(const uint8_t armor, const uint8_t header, const uint8_t 
     if ((armor == 1) || (!armor && !armored)){ // if no armor or if default, and not armored
         return packet_string;                  // return raw data
     }
-    std::string out = "-----BEGIN PGP " + ASCII_Armor_Header[ASCII_Armor] + "-----\n";
+    auto eArmor = ASCII_ARMOR(ASCII_Armor);
+    std::string out = "-----BEGIN PGP " + toString(eArmor) + "-----\n";
     for(std::pair <std::string, std::string> const & key : Armor_Header){
         out += key.first + ": " + key.second + "\n";
     }
     out += "\n";
-    return out + format_string(ascii2radix64(packet_string), MAX_LINE_LENGTH) + "=" + ascii2radix64(unhexlify(makehex(crc24(packet_string), 6))) +  "\n-----END PGP " + ASCII_Armor_Header[ASCII_Armor] + "-----\n";
+    return out + format_string(ascii2radix64(packet_string), MAX_LINE_LENGTH) + "=" + ascii2radix64(unhexlify(makehex(crc24(packet_string), 6))) +  "\n-----END PGP " + toString(eArmor) + "-----\n";
 }
 
 
