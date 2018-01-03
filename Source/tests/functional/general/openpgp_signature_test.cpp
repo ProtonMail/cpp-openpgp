@@ -472,6 +472,30 @@ namespace tests {
                 VERIFY_ARE_EQUAL(plain_text, plaintext);
             }
             
+            TEST(Encrypt_Sign_Verify_test_1) {
+                std::string plaintext = "short message\nnext line\n한국어/조선말丰张feng";
+                
+                auto pubKeyArm2 = pub_key_arm2;
+                PGPPublicKey::Ptr pubKey = std::make_shared<PGPPublicKey>(pubKeyArm2);
+                auto privKeyArm2 = priv_key_arm2;
+                PGPSecretKey::Ptr privKey = std::make_shared<PGPSecretKey>(privKeyArm2);
+                
+                auto encrypted_pgp = encrypt_pka(*pubKey, plaintext, "", 9, 0, true, privKey, "hello world");
+
+                std::string encrypt_message = encrypted_pgp.write();
+                std::cout << encrypt_message << std::endl;
+                
+                PGPMessage esMsg(encrypt_message);
+                std::string plain_text = decrypt_pka(*privKey, esMsg, "hello world", false, pubKey);
+                
+                std::cout << plain_text << std::endl;
+                
+                
+                std::cout << plaintext << std::endl;
+                
+                VERIFY_ARE_EQUAL(plain_text, plaintext);
+            }
+            
             TEST(Verify_signature_of_signed_and_encrypted_message) {
                 //from PGP 10.3.0 with openpgp.decrypt
                 std::string msg_armor =

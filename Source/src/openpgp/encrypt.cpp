@@ -83,17 +83,7 @@ Packet::Ptr encrypt_data(const std::string & session_key, const std::string & da
     std::string prefix = unhexlify(zfill(bintohex(BBS().rand_b(BS << 3)), BS << 1, '0'));
     
     std::string to_encrypt;
-    
-    // put data in Literal Data Packet
-    Tag11 tag11;
-    tag11.set_format('t');
-    tag11.set_filename(filename);
-    time_t t = now();
-    tag11.set_time(static_cast<uint32_t>(t));
-    tag11.set_literal(data);
-    
-    to_encrypt = tag11.write(2);
-    
+
     // if message is to be signed
     if (signer){
         // find preferred hash and compression algorithms of the signer
@@ -133,7 +123,17 @@ Packet::Ptr encrypt_data(const std::string & session_key, const std::string & da
                 h = tag2sub22.get_pca()[0]; // use first preferred compression algorithm
             }
         }
-        to_encrypt = sign_message(*signer, sig_passphrase, filename, tag11.write(2), h, c).write(2);
+        to_encrypt = sign_message(*signer, sig_passphrase, filename, data, h, c).write(1);
+    } else {
+        // put data in Literal Data Packet
+        Tag11 tag11;
+        tag11.set_format('t');
+        tag11.set_filename(filename);
+        time_t t = now();
+        tag11.set_time(static_cast<uint32_t>(t));
+        tag11.set_literal(data);
+        
+        to_encrypt = tag11.write(2);
     }
     
     if (comp){

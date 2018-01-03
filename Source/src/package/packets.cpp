@@ -8,9 +8,7 @@ std::string read_packet_header(std::string & data, uint8_t & tag, bool & format,
     
   
     
-   
-//
-//
+
 //    // used for partial body lengths
 //    var real_packet_length = -1;
 //    if (!format) {

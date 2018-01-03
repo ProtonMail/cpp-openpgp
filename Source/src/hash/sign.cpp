@@ -217,9 +217,10 @@ PGPMessage sign_message(const PGPSecretKey & pri, const std::string & passphrase
 
     // put source data into Literal Data Packet
     Tag11::Ptr tag11(new Tag11);
-    tag11 -> set_format('b');
+    tag11 -> set_format('t');
     tag11 -> set_filename(filename);
-    tag11 -> set_time((uint32_t)now()); //Notes: Convert
+    time_t t = now();
+    tag11->set_time(static_cast<uint32_t>(t));
     tag11 -> set_literal(data);
 
     // sign data
