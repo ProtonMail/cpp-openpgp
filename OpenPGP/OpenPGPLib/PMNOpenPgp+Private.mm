@@ -260,22 +260,28 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
 
 - (nonnull PMNEncryptPackage *)encryptAttachment:(nonnull NSString *)addressId
                                    unencryptData:(nonnull NSData *)unencryptData
-                                        fileName:(nonnull NSString *)fileName {
+                                        fileName:(nonnull NSString *)fileName
+                                       passphras:(nonnull NSString *)passphras {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->encrypt_attachment(::djinni::String::toCpp(addressId),
                                                                       ::djinni::Binary::toCpp(unencryptData),
-                                                                      ::djinni::String::toCpp(fileName));
+                                                                      ::djinni::String::toCpp(fileName),
+                                                                      ::djinni::String::toCpp(passphras));
         return ::OBJ_ProtonMail::EncryptPackage::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
 - (nonnull PMNEncryptPackage *)encryptAttachmentSingleKey:(nonnull NSString *)publicKey
                                             unencryptData:(nonnull NSData *)unencryptData
-                                                 fileName:(nonnull NSString *)fileName {
+                                                 fileName:(nonnull NSString *)fileName
+                                               privateKey:(nonnull NSString *)privateKey
+                                                passphras:(nonnull NSString *)passphras {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->encrypt_attachment_single_key(::djinni::String::toCpp(publicKey),
                                                                                  ::djinni::Binary::toCpp(unencryptData),
-                                                                                 ::djinni::String::toCpp(fileName));
+                                                                                 ::djinni::String::toCpp(fileName),
+                                                                                 ::djinni::String::toCpp(privateKey),
+                                                                                 ::djinni::String::toCpp(passphras));
         return ::OBJ_ProtonMail::EncryptPackage::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

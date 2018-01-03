@@ -123,11 +123,14 @@
 
 - (nonnull PMNEncryptPackage *)encryptAttachment:(nonnull NSString *)addressId
                                    unencryptData:(nonnull NSData *)unencryptData
-                                        fileName:(nonnull NSString *)fileName;
+                                        fileName:(nonnull NSString *)fileName
+                                       passphras:(nonnull NSString *)passphras;
 
 - (nonnull PMNEncryptPackage *)encryptAttachmentSingleKey:(nonnull NSString *)publicKey
                                             unencryptData:(nonnull NSData *)unencryptData
-                                                 fileName:(nonnull NSString *)fileName;
+                                                 fileName:(nonnull NSString *)fileName
+                                               privateKey:(nonnull NSString *)privateKey
+                                                passphras:(nonnull NSString *)passphras;
 
 - (nonnull NSData *)decryptAttachment:(nonnull NSData *)key
                                  data:(nonnull NSData *)data

@@ -262,7 +262,11 @@ namespace ProtonMail {
         
         std::string unencrypt_msg = plan_text;
         
-        auto privKey = std::make_shared<PGPSecretKey>(user_priv_key);
+        PGPSecretKey::Ptr privKey = nullptr;
+        
+        if (!user_priv_key.empty() && !passphras.empty()) {
+            privKey = std::make_shared<PGPSecretKey>(user_priv_key);
+        }
         
         PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg, "", 9, 2, true, privKey, passphras);
         std::string encrypt_message = encrypted_pgp.write();
@@ -280,7 +284,11 @@ namespace ProtonMail {
         std::string unencrypt_msg = plain_text;
         
         std::string user_priv_key = private_key;
-        auto privKey = std::make_shared<PGPSecretKey>(user_priv_key);
+        
+        PGPSecretKey::Ptr privKey = nullptr;
+        if (!private_key.empty() && !passphras.empty()) {
+            privKey = std::make_shared<PGPSecretKey>(user_priv_key);
+        }
         
         PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg, "", 9, 2, true, privKey, passphras);
         std::string encrypt_message = encrypted_pgp.write();
@@ -317,7 +325,7 @@ namespace ProtonMail {
     
     EncryptPackage OpenPgpImpl::encrypt_attachment(const std::string & address_id,
                                                    const std::vector<uint8_t> & unencrypt_data,
-                                                   const std::string & file_name) {
+                                                   const std::string & file_name, const std::string & passphras) {
         
         //NSData to string need error handling here
         std::string unencrypt_msg(unencrypt_data.begin(), unencrypt_data.end());
@@ -326,10 +334,17 @@ namespace ProtonMail {
         std::unordered_map<std::string, Address>::const_iterator got = m_addresses.find (address_id);
         
         std::string user_pub_key = got->second.keys[0].public_key;
+        std::string user_priv_key = got->second.keys[0].private_key;
         
         PGPPublicKey pub(user_pub_key);
         
-        PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg, file_name);
+        PGPSecretKey::Ptr privKey = nullptr;
+        
+        if (!user_priv_key.empty() && !passphras.empty()) {
+            privKey = std::make_shared<PGPSecretKey>(user_priv_key);
+        }
+        
+        PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg, file_name, 9, 2, true, privKey, passphras);
         
         std::string keyPackage = encrypted_pgp.write(1, 0, 1);
         std::string dataPackage = encrypted_pgp.write(1, 0, 18);
@@ -339,14 +354,20 @@ namespace ProtonMail {
     
     EncryptPackage OpenPgpImpl::encrypt_attachment_single_key(const std::string & public_key,
                                                               const std::vector<uint8_t> & unencrypt_data,
-                                                              const std::string & file_name) {
+                                                              const std::string & file_name, const std::string & private_key, const std::string & passphras) {
         
         std::string str_public_key = public_key;
         std::string unencrypt_msg(unencrypt_data.begin(), unencrypt_data.end());
         
         PGPPublicKey pub(str_public_key);
         
-        PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg, file_name);
+        
+        std::string user_priv_key = private_key;
+        PGPSecretKey::Ptr privKey = nullptr;
+        if (!private_key.empty() && !passphras.empty()) {
+            privKey = std::make_shared<PGPSecretKey>(user_priv_key);
+        }
+        PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg, file_name, 9, 2, true, privKey, passphras);
         
         std::string keyPackage = encrypted_pgp.write(1, 0, 1);
         std::string dataPackage = encrypted_pgp.write(1, 0, 18);

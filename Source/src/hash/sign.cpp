@@ -176,10 +176,17 @@ PGPDetachedSignature sign_detach(const PGPSecretKey & pri, const std::string & p
 }
 
 PGPMessage sign_message(const PGPSecretKey & pri, const std::string & passphrase, const std::string & filename, const std::string & data, const uint8_t hash, const uint8_t compress){
+    
+    uint8_t def_hash = hash;
+    
     // find signing key
     Tag5::Ptr tag5 = find_signing_key(pri, 5);
     if (!tag5){
         throw std::runtime_error("Error: No signing key found.");
+    }
+    
+    if (tag5 -> get_s2k()){
+        def_hash = tag5 -> get_s2k() -> get_hash();
     }
 
     // find matching signature packet
@@ -210,7 +217,7 @@ PGPMessage sign_message(const PGPSecretKey & pri, const std::string & passphrase
     // create One-Pass Signature Packet
     Tag4::Ptr tag4(new Tag4);
     tag4 -> set_type(0);
-    tag4 -> set_hash(hash);
+    tag4 -> set_hash(def_hash);// hash);
     tag4 -> set_pka(tag5 -> get_pka());
     tag4 -> set_keyid(keysig -> get_keyid());
     tag4 -> set_nested(1); // 1 for no nesting
@@ -224,10 +231,10 @@ PGPMessage sign_message(const PGPSecretKey & pri, const std::string & passphrase
     tag11 -> set_literal(data);
 
     // sign data
-    Tag2::Ptr tag2 = create_sig_packet(0, pri, hash);
+    Tag2::Ptr tag2 = create_sig_packet(0, pri, def_hash);// hash);
     std::string digest = to_sign_00(tag11 -> get_literal(), tag2);
     tag2 -> set_left16(digest.substr(0, 2));
-    tag2 -> set_mpi(pka_sign_new(digest, tag5, passphrase, hash));
+    tag2 -> set_mpi(pka_sign_new(digest, tag5, passphrase, def_hash));// hash));
 
     // put everything together
     PGPMessage signature;
