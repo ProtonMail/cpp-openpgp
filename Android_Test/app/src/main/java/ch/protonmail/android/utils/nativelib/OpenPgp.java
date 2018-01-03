@@ -39,10 +39,10 @@ public abstract class OpenPgp {
 
     /**encrypt message */
     @Nonnull
-    public abstract String encryptMessage(@Nonnull String addressId, @Nonnull String plainText);
+    public abstract String encryptMessage(@Nonnull String addressId, @Nonnull String plainText, @Nonnull String passphras);
 
     @Nonnull
-    public abstract String encryptMessageSingleKey(@Nonnull String publicKey, @Nonnull String plainText);
+    public abstract String encryptMessageSingleKey(@Nonnull String publicKey, @Nonnull String plainText, @Nonnull String privateKey, @Nonnull String passphras);
 
     @Nonnull
     public abstract String decryptMessage(@Nonnull String encryptText, @Nonnull String passphras);
@@ -221,20 +221,20 @@ public abstract class OpenPgp {
         private native void native_updatePrivateInfo(long _nativeRef, String privateKey);
 
         @Override
-        public String encryptMessage(String addressId, String plainText)
+        public String encryptMessage(String addressId, String plainText, String passphras)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_encryptMessage(this.nativeRef, addressId, plainText);
+            return native_encryptMessage(this.nativeRef, addressId, plainText, passphras);
         }
-        private native String native_encryptMessage(long _nativeRef, String addressId, String plainText);
+        private native String native_encryptMessage(long _nativeRef, String addressId, String plainText, String passphras);
 
         @Override
-        public String encryptMessageSingleKey(String publicKey, String plainText)
+        public String encryptMessageSingleKey(String publicKey, String plainText, String privateKey, String passphras)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_encryptMessageSingleKey(this.nativeRef, publicKey, plainText);
+            return native_encryptMessageSingleKey(this.nativeRef, publicKey, plainText, privateKey, passphras);
         }
-        private native String native_encryptMessageSingleKey(long _nativeRef, String publicKey, String plainText);
+        private native String native_encryptMessageSingleKey(long _nativeRef, String publicKey, String plainText, String privateKey, String passphras);
 
         @Override
         public String decryptMessage(String encryptText, String passphras)

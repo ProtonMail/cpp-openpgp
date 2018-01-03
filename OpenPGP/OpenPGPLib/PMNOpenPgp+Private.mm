@@ -165,19 +165,25 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
 }
 
 - (nonnull NSString *)encryptMessage:(nonnull NSString *)addressId
-                           plainText:(nonnull NSString *)plainText {
+                           plainText:(nonnull NSString *)plainText
+                           passphras:(nonnull NSString *)passphras {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->encrypt_message(::djinni::String::toCpp(addressId),
-                                                                   ::djinni::String::toCpp(plainText));
+                                                                   ::djinni::String::toCpp(plainText),
+                                                                   ::djinni::String::toCpp(passphras));
         return ::djinni::String::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
 - (nonnull NSString *)encryptMessageSingleKey:(nonnull NSString *)publicKey
-                                    plainText:(nonnull NSString *)plainText {
+                                    plainText:(nonnull NSString *)plainText
+                                   privateKey:(nonnull NSString *)privateKey
+                                    passphras:(nonnull NSString *)passphras {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->encrypt_message_single_key(::djinni::String::toCpp(publicKey),
-                                                                              ::djinni::String::toCpp(plainText));
+                                                                              ::djinni::String::toCpp(plainText),
+                                                                              ::djinni::String::toCpp(privateKey),
+                                                                              ::djinni::String::toCpp(passphras));
         return ::djinni::String::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

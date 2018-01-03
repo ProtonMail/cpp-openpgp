@@ -86,10 +86,13 @@
 
 /**encrypt message */
 - (nonnull NSString *)encryptMessage:(nonnull NSString *)addressId
-                           plainText:(nonnull NSString *)plainText;
+                           plainText:(nonnull NSString *)plainText
+                           passphras:(nonnull NSString *)passphras;
 
 - (nonnull NSString *)encryptMessageSingleKey:(nonnull NSString *)publicKey
-                                    plainText:(nonnull NSString *)plainText;
+                                    plainText:(nonnull NSString *)plainText
+                                   privateKey:(nonnull NSString *)privateKey
+                                    passphras:(nonnull NSString *)passphras;
 
 - (nonnull NSString *)decryptMessage:(nonnull NSString *)encryptText
                            passphras:(nonnull NSString *)passphras;

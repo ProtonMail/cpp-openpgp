@@ -480,7 +480,7 @@ namespace tests {
                 auto privKeyArm2 = priv_key_arm2;
                 PGPSecretKey::Ptr privKey = std::make_shared<PGPSecretKey>(privKeyArm2);
                 
-                auto encrypted_pgp = encrypt_pka(*pubKey, plaintext, "", 9, 0, true, privKey, "hello world");
+                auto encrypted_pgp = encrypt_pka(*pubKey, plaintext, "", 9, 2, true, privKey, "hello world");
 
                 std::string encrypt_message = encrypted_pgp.write();
                 std::cout << encrypt_message << std::endl;

@@ -80,9 +80,9 @@ public:
     virtual void update_private_info(const std::string & private_key) = 0;
 
     /**encrypt message */
-    virtual std::string encrypt_message(const std::string & address_id, const std::string & plain_text) = 0;
+    virtual std::string encrypt_message(const std::string & address_id, const std::string & plain_text, const std::string & passphras) = 0;
 
-    virtual std::string encrypt_message_single_key(const std::string & public_key, const std::string & plain_text) = 0;
+    virtual std::string encrypt_message_single_key(const std::string & public_key, const std::string & plain_text, const std::string & private_key, const std::string & passphras) = 0;
 
     virtual std::string decrypt_message(const std::string & encrypt_text, const std::string & passphras) = 0;
 

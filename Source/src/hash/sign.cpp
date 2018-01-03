@@ -241,13 +241,13 @@ PGPMessage sign_message(const PGPSecretKey & pri, const std::string & passphrase
     
     signature.set_packets({tag4, tag11, tag2});
 
-    if (compress){ //only use a Compressed Data Packet if compression was used; don't bother for uncompressed data
-        Tag8 tag8;
-        tag8.set_data(signature.raw());
-        tag8.set_comp(compress);
-        std::string raw = tag8.write(2);
-        signature = PGPMessage(raw);
-    }
+//    if (compress){ //only use a Compressed Data Packet if compression was used; don't bother for uncompressed data
+//        Tag8 tag8;
+//        tag8.set_data(signature.raw());
+//        tag8.set_comp(compress);
+//        std::string raw = tag8.write(2);
+//        signature = PGPMessage(raw);
+//    }
 
     tag4.reset();
     tag11.reset();
