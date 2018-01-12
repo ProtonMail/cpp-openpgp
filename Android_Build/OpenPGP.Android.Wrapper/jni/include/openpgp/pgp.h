@@ -20,6 +20,8 @@
 #include <vector>
 #include <utility>
 
+#include <config/rfc4880_ascii_armor.h>
+
 #include <utilities/consts.h>
 #include <openpgp/pgptime.h>
 #include <utilities/radix64.h>

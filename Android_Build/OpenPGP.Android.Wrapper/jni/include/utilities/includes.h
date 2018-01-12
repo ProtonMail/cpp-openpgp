@@ -13,6 +13,7 @@ Some functions were heavily influenced by python 2.7.2
 
 // Some useful constants
 const std::string zero("\x00", 1);
+const std::string one("\x01", 1);
 const std::string b = "01";
 const std::string d = b + "23456789";
 const std::string h_lower = d + "abcdef";
