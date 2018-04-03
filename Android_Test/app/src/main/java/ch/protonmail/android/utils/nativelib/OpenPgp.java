@@ -157,6 +157,12 @@ public abstract class OpenPgp {
     @Nonnull
     public static native byte[] randomBits(int bits);
 
+    @Nonnull
+    public static native EncryptPackage splitMessage(@Nonnull String encrypted);
+
+    @Nonnull
+    public static native String combinePackages(@Nonnull byte[] key, @Nonnull byte[] data);
+
     private static final class CppProxy extends OpenPgp
     {
         private final long nativeRef;

@@ -118,12 +118,16 @@ open_pgp = interface +c {
 
     read_clearsigned_message(signed_message : string) : string;
 
+    static split_message(encrypted: string) : encrypt_package;
+    static combine_packages(key: binary, data: binary) : string;
+
     #test functions
     throw_an_exception(): i32;
 
     #PBE
     encrypt_hash_cbc(plain_text : string, password : string) : string;
     decrypt_hash_cbc(encrypted_text : string, password : string) : string;
+
 }
 
 

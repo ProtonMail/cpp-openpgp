@@ -412,6 +412,31 @@ namespace ProtonMail {
         return out_vector;
     }
     
+    
+    
+    EncryptPackage OpenPgp::split_message(const std::string & encrypted) {
+        std::string encrypted_message = encrypted;
+        
+        ProtonMail::PMPGPMessage pm_pgp_msg(encrypted_message, false);
+        
+        std::string keyPackage = pm_pgp_msg.write(1, 0, 1);
+        std::string dataPackage = pm_pgp_msg.write(1, 0, 18);
+        
+        return EncryptPackage(std::vector<uint8_t>(keyPackage.begin(), keyPackage.end()), std::vector<uint8_t>(dataPackage.begin(), dataPackage.end()));
+    }
+    
+    std::string  OpenPgp::combine_packages(const std::vector<uint8_t> & key, const std::vector<uint8_t> & data) {
+        std::string str_key_package(key.begin(), key.end());
+        std::string str_data_package (data.begin(), data.end());
+        
+        ProtonMail::PMPGPMessage pm_pgp_msg(str_key_package, true);
+        pm_pgp_msg.append(str_data_package, true);
+        
+        return pm_pgp_msg.write();
+    }
+
+    
+    
     /**TODO : not done and not inuse */
     std::vector<uint8_t> OpenPgpImpl::decrypt_attachment_with_password(const std::vector<uint8_t> & key,
                                                                        const std::vector<uint8_t> & data,

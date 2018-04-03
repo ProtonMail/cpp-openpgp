@@ -127,6 +127,10 @@ public:
 
     virtual std::string read_clearsigned_message(const std::string & signed_message) = 0;
 
+    static EncryptPackage split_message(const std::string & encrypted);
+
+    static std::string combine_packages(const std::vector<uint8_t> & key, const std::vector<uint8_t> & data);
+
     /**test functions */
     virtual int32_t throw_an_exception() = 0;
 

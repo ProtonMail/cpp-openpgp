@@ -15,6 +15,8 @@
 #include <string>
 #include <openpgp/pgptime.h>
 
+
+#include "bridge/encrypt_package.hpp"
 #include "bridge_impl/open_pgp_impl.hpp"
 #include "bridge/open_pgp_key.hpp"
 
@@ -295,13 +297,17 @@ namespace tests {
             
             TEST(aes_encrypt_test) {
                 {
-                    //'should encrypt and decrypt with one password'
                     auto openpgp = ProtonMail::OpenPgpImpl::create_instance();
-                    auto encrypted= openpgp->encrypt_message_aes(plaintext, password1);
-                    VERIFY_ARE_NOT_EQUAL(encrypted, "");
-                    auto decrypted = openpgp->decrypt_message_aes(encrypted, password1);
-                    VERIFY_ARE_NOT_EQUAL(decrypted, "");
-                    VERIFY_ARE_EQUAL(decrypted, plaintext);
+                    auto encrypted = openpgp->encrypt_message_single_key(pub_key, plaintext, "", "");
+                    auto spited = openpgp->split_message(encrypted);
+                    
+                    auto out = openpgp->decrypt_attachment_single_key(spited.key_package, spited.data_package, priv_key, passphrase);
+                    std::string output(out.begin(), out.end());
+                    VERIFY_ARE_EQUAL(output, plaintext);
+                    auto combined = openpgp->combine_packages(spited.key_package, spited.data_package);
+                    auto out1 = openpgp->decrypt_message_single_key(combined, priv_key, passphrase);
+                    VERIFY_ARE_EQUAL(out1, plaintext);
+                    
                 }
                 
                 
@@ -326,7 +332,16 @@ namespace tests {
             }
             
             
-            
+            TEST(encrypt_decrypt_test) {
+                
+                //'should encrypt and decrypt with one password'
+                auto openpgp = ProtonMail::OpenPgpImpl::create_instance();
+                auto encrypted= openpgp->encrypt_message_aes(plaintext, password1);
+                VERIFY_ARE_NOT_EQUAL(encrypted, "");
+                auto decrypted = openpgp->decrypt_message_aes(encrypted, password1);
+                VERIFY_ARE_NOT_EQUAL(decrypted, "");
+                VERIFY_ARE_EQUAL(decrypted, plaintext);
+            }
             
             //            describe('AES encrypt, decrypt', function() {
             //

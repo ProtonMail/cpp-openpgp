@@ -411,6 +411,22 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
++ (nonnull PMNEncryptPackage *)splitMessage:(nonnull NSString *)encrypted {
+    try {
+        auto objcpp_result_ = ::ProtonMail::OpenPgp::split_message(::djinni::String::toCpp(encrypted));
+        return ::OBJ_ProtonMail::EncryptPackage::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
++ (nonnull NSString *)combinePackages:(nonnull NSData *)key
+                                 data:(nonnull NSData *)data {
+    try {
+        auto objcpp_result_ = ::ProtonMail::OpenPgp::combine_packages(::djinni::Binary::toCpp(key),
+                                                                      ::djinni::Binary::toCpp(data));
+        return ::djinni::String::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
 - (int32_t)throwAnException {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->throw_an_exception();
