@@ -166,11 +166,13 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
 
 - (nonnull NSString *)encryptMessage:(nonnull NSString *)addressId
                            plainText:(nonnull NSString *)plainText
-                           passphras:(nonnull NSString *)passphras {
+                           passphras:(nonnull NSString *)passphras
+                                trim:(BOOL)trim {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->encrypt_message(::djinni::String::toCpp(addressId),
                                                                    ::djinni::String::toCpp(plainText),
-                                                                   ::djinni::String::toCpp(passphras));
+                                                                   ::djinni::String::toCpp(passphras),
+                                                                   ::djinni::Bool::toCpp(trim));
         return ::djinni::String::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
@@ -178,12 +180,14 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
 - (nonnull NSString *)encryptMessageSingleKey:(nonnull NSString *)publicKey
                                     plainText:(nonnull NSString *)plainText
                                    privateKey:(nonnull NSString *)privateKey
-                                    passphras:(nonnull NSString *)passphras {
+                                    passphras:(nonnull NSString *)passphras
+                                         trim:(BOOL)trim {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->encrypt_message_single_key(::djinni::String::toCpp(publicKey),
                                                                               ::djinni::String::toCpp(plainText),
                                                                               ::djinni::String::toCpp(privateKey),
-                                                                              ::djinni::String::toCpp(passphras));
+                                                                              ::djinni::String::toCpp(passphras),
+                                                                              ::djinni::Bool::toCpp(trim));
         return ::djinni::String::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

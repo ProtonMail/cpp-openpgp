@@ -8,6 +8,7 @@
 
 #import "utils_test.h"
 #include <utilities/base64.h>
+#include <regex>
 
 namespace tests {
     
@@ -15,7 +16,16 @@ namespace tests {
         
         SUITE(base64)
         {
-            // Note: base64 works by encoding any 3 bytes as a four-byte string. Each triple is encoded independently of
+            
+            TEST(trim_string_) {
+                std::string body = "Asdhfjkhsadfsad asdfasdf.    \nAsdfsadf.  Asdfsdaf      \nAsdfs.    ";
+                std::regex re("([ \t]+)(?=(\\r\\n|\\n)|$)");
+                body = std::regex_replace(body, re, "");
+                std::cout << body << std::endl;
+                VERIFY_ARE_EQUAL("Asdhfjkhsadfsad asdfasdf.\nAsdfsadf.  Asdfsdaf\nAsdfs.", body);
+            }
+            
+            // Note: base64 works6 by encoding any 3 bytes as a four-byte string. Each triple is encoded independently of
             // previous and subsequent triples. If, for a given set of input bytes, the number is not an even multiple of 3,
             // the remaining 1 or two bytes are encoded and padded using '=' characters at the end. The encoding format is
             // defined by IETF RFC 4648. Such padding is only allowed at the end of a encoded string, which makes it impossible

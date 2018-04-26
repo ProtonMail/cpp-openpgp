@@ -175,19 +175,20 @@ CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_OpenPgp_00024
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_nativelib_OpenPgp_00024CppProxy_native_1encryptMessage(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jstring j_addressId, jstring j_plainText, jstring j_passphras)
+CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_nativelib_OpenPgp_00024CppProxy_native_1encryptMessage(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jstring j_addressId, jstring j_plainText, jstring j_passphras, jboolean j_trim)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::OpenPgp>(nativeRef);
         auto r = ref->encrypt_message(::djinni::String::toCpp(jniEnv, j_addressId),
                                       ::djinni::String::toCpp(jniEnv, j_plainText),
-                                      ::djinni::String::toCpp(jniEnv, j_passphras));
+                                      ::djinni::String::toCpp(jniEnv, j_passphras),
+                                      ::djinni::Bool::toCpp(jniEnv, j_trim));
         return ::djinni::release(::djinni::String::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_nativelib_OpenPgp_00024CppProxy_native_1encryptMessageSingleKey(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jstring j_publicKey, jstring j_plainText, jstring j_privateKey, jstring j_passphras)
+CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_nativelib_OpenPgp_00024CppProxy_native_1encryptMessageSingleKey(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jstring j_publicKey, jstring j_plainText, jstring j_privateKey, jstring j_passphras, jboolean j_trim)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
@@ -195,7 +196,8 @@ CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_nativelib_OpenPgp_00
         auto r = ref->encrypt_message_single_key(::djinni::String::toCpp(jniEnv, j_publicKey),
                                                  ::djinni::String::toCpp(jniEnv, j_plainText),
                                                  ::djinni::String::toCpp(jniEnv, j_privateKey),
-                                                 ::djinni::String::toCpp(jniEnv, j_passphras));
+                                                 ::djinni::String::toCpp(jniEnv, j_passphras),
+                                                 ::djinni::Bool::toCpp(jniEnv, j_trim));
         return ::djinni::release(::djinni::String::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }

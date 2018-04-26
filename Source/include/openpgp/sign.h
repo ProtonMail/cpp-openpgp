@@ -69,9 +69,9 @@ Tag2::Ptr sign_00(const PGPSecretKey & pri, const std::string & passphrase, cons
 PGPDetachedSignature sign_detach(const PGPSecretKey & pri, const std::string & passphrase, const std::string & data, const uint8_t hash = 2);
 PGPDetachedSignature sign_detach(const PGPSecretKey & pri, const std::string & passphrase, std::ifstream & f, const uint8_t hash = 2);
 // Includes signed file
-PGPMessage sign_message(const PGPSecretKey & pri, const std::string & passphrase, const std::string & filename, const std::string & data, const uint8_t hash = 2, const uint8_t compress = 2);
-PGPMessage sign_message(const PGPSecretKey & pri, const std::string & passphrase, const std::string & filename, const uint8_t hash = 2, const uint8_t compress = 2);
-PGPMessage sign_message(const PGPSecretKey & pri, const std::string & passphrase, const std::string & filename, std::ifstream & f, const uint8_t hash = 2, const uint8_t compress = 2);
+PGPMessage sign_message(const PGPSecretKey & pri, const std::string & passphrase, const std::string & filename, const std::string & data, const uint8_t hash = 2, const uint8_t compress = 2, const uint8_t sign_type = 0x01);
+PGPMessage sign_message(const PGPSecretKey & pri, const std::string & passphrase, const std::string & filename, const uint8_t hash = 2, const uint8_t compress = 2, const uint8_t sign_type = 0x01);
+PGPMessage sign_message(const PGPSecretKey & pri, const std::string & passphrase, const std::string & filename, std::ifstream & f, const uint8_t hash = 2, const uint8_t compress = 2, const uint8_t sign_type = 0x01);
 
 // 0x01: Signature of a canonical text document.
 PGPCleartextSignature sign_cleartext(const PGPSecretKey & pri, const std::string & passphrase, const std::string & text, const uint8_t hash = 2);

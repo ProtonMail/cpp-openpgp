@@ -77,7 +77,7 @@ std::vector <std::string> pka_encrypt(const uint8_t pka, const std::string & dat
     
 }
 
-Packet::Ptr encrypt_data(const std::string & session_key, const std::string & data, const std::string & filename, const uint8_t sym_alg, const uint8_t comp, const bool mdc, const PGPSecretKey::Ptr & signer, const std::string & sig_passphrase){
+Packet::Ptr encrypt_data(const std::string & session_key, const std::string & data, const std::string & filename, const uint8_t sym_alg, const uint8_t comp, const bool mdc, const PGPSecretKey::Ptr & signer, const std::string & sig_passphrase, const uint8_t sign_type){
     // generate prefix
     uint16_t BS = Symmetric_Algorithm_Block_Length.at(Symmetric_Algorithms.at(sym_alg)) >> 3;
     std::string prefix = unhexlify(zfill(bintohex(BBS().rand_b(BS << 3)), BS << 1, '0'));
@@ -123,7 +123,7 @@ Packet::Ptr encrypt_data(const std::string & session_key, const std::string & da
                 h = tag2sub22.get_pca()[0]; // use first preferred compression algorithm
             }
         }
-        to_encrypt = sign_message(*signer, sig_passphrase, filename, data, h, c).write(1);
+        to_encrypt = sign_message(*signer, sig_passphrase, filename, data, h, c, sign_type).write(1);
     } else {
         // put data in Literal Data Packet
         Tag11 tag11;
@@ -301,7 +301,7 @@ std::string encrypt_pm_pka(const PGPPublicKey & pub, const std::string & data)
     return encoded_msg_body;
 }
 
-PGPMessage encrypt_pka(const PGPPublicKey & pub, const std::string & data, const std::string & filename, const uint8_t sym_alg, const uint8_t comp, const bool mdc, const PGPSecretKey::Ptr & signer, const std::string & sig_passphrase)
+PGPMessage encrypt_pka(const PGPPublicKey & pub, const std::string & data, const std::string & filename, const uint8_t sym_alg, const uint8_t comp, const bool mdc, const PGPSecretKey::Ptr & signer, const std::string & sig_passphrase, const uint8_t sign_type)
 {
     
     if ((pub.get_ASCII_Armor() != 1) && (pub.get_ASCII_Armor() != 2)){
@@ -363,7 +363,7 @@ PGPMessage encrypt_pka(const PGPPublicKey & pub, const std::string & data, const
     tag1->set_mpi(pka_encrypt(public_key->get_pka(), m, mpi));
     
     // encrypt data and put it into a packet
-    Packet::Ptr encrypted = encrypt_data(session_key, data, filename, sym_alg, comp, mdc, signer, sig_passphrase);
+    Packet::Ptr encrypted = encrypt_data(session_key, data, filename, sym_alg, comp, mdc, signer, sig_passphrase, sign_type);
     
     // write data to output container
     PGPMessage out;
@@ -396,7 +396,8 @@ std::vector<PGPMessage::Ptr> encrypt(const PGPPublicKey & pub,
                                      const bool mdc,
                                      const PGPSecretKey::Ptr & signer,
                                      bool signerExternal,
-                                     const std::string & sig_passphrase) {
+                                     const std::string & sig_passphrase,
+                                     const uint8_t sign_type) {
     
     if ((pub.get_ASCII_Armor() != 1) && (pub.get_ASCII_Armor() != 2)){
         throw std::runtime_error("Error: No encrypting key found.");
@@ -455,7 +456,7 @@ std::vector<PGPMessage::Ptr> encrypt(const PGPPublicKey & pub,
     tag1->set_mpi(pka_encrypt(public_key->get_pka(), m, mpi));
     
     // encrypt data and put it into a packet
-    Packet::Ptr encrypted = encrypt_data(session_key, data, filename, sym_alg, comp, mdc, signer, sig_passphrase);
+    Packet::Ptr encrypted = encrypt_data(session_key, data, filename, sym_alg, comp, mdc, signer, sig_passphrase, sign_type);
     
     // write data to output container
     PGPMessage out;
@@ -492,10 +493,10 @@ std::string generat_session_key (const uint8_t sym_alg)
     return session_key;
 }
 
-PGPMessage encrypt_pka_only_data(const std::string & session_key, const std::string & data, const std::string & filename, const uint8_t sym_alg, const uint8_t comp, const bool mdc, const PGPSecretKey::Ptr & signer, const std::string & sig_passphrase)
+PGPMessage encrypt_pka_only_data(const std::string & session_key, const std::string & data, const std::string & filename, const uint8_t sym_alg, const uint8_t comp, const bool mdc, const PGPSecretKey::Ptr & signer, const std::string & sig_passphrase, const uint8_t sign_type)
 {
     // encrypt data and put it into a packet
-    Packet::Ptr encrypted = encrypt_data(session_key, data, filename, sym_alg, comp, mdc, signer, sig_passphrase);
+    Packet::Ptr encrypted = encrypt_data(session_key, data, filename, sym_alg, comp, mdc, signer, sig_passphrase, sign_type);
     
     // write data to output container
     PGPMessage out;
@@ -647,7 +648,7 @@ ProtonMail::PMPGPMessage encrypt_pka(const PGPPublicKey & pub, const std::string
 }
 
 //TODO::add multiple passphrase support
-PGPMessage encrypt_sym(const std::string & passphrase, const std::string & data, const std::string & filename, const uint8_t sym_alg, const uint8_t comp, const bool mdc, const PGPSecretKey::Ptr & signer, const std::string & sig_passphrase){
+PGPMessage encrypt_sym(const std::string & passphrase, const std::string & data, const std::string & filename, const uint8_t sym_alg, const uint8_t comp, const bool mdc, const PGPSecretKey::Ptr & signer, const std::string & sig_passphrase, const uint8_t sign_type){
     //std::cerr << "Warning: encrypt_sym is untested. Potentially incorrect" << std::endl;
     
     // generate Symmetric-Key Encrypted Session Key Packets (Tag 3)
@@ -678,7 +679,7 @@ PGPMessage encrypt_sym(const std::string & passphrase, const std::string & data,
 //    std::string encrypted_session_key = session_key;
     
     // encrypt data
-    Packet::Ptr encrypted = encrypt_data(session_key, data, filename, sym_alg, comp, mdc, signer, sig_passphrase);
+    Packet::Ptr encrypted = encrypt_data(session_key, data, filename, sym_alg, comp, mdc, signer, sig_passphrase, sign_type);
     
     // write to output container
     PGPMessage out;

@@ -298,7 +298,7 @@ namespace tests {
             TEST(aes_encrypt_test) {
                 {
                     auto openpgp = ProtonMail::OpenPgpImpl::create_instance();
-                    auto encrypted = openpgp->encrypt_message_single_key(pub_key, plaintext, "", "");
+                    auto encrypted = openpgp->encrypt_message_single_key(pub_key, plaintext, "", "", false);
                     auto spited = openpgp->split_message(encrypted);
                     
                     auto out = openpgp->decrypt_attachment_single_key(spited.key_package, spited.data_package, priv_key, passphrase);

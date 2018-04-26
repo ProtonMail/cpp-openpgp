@@ -82,9 +82,11 @@ open_pgp = interface +c {
     #update the information carried in the packet. //TODO need add more parameters
     update_private_info(private_key : string);
 
-    #encrypt message
-    encrypt_message(address_id : string, plain_text : string, passphras: string) : string;
-    encrypt_message_single_key(public_key : string, plain_text : string, private_key: string, passphras: string) : string;
+
+    #encrypt message use address id
+    encrypt_message(address_id : string, plain_text : string, passphras: string, trim : bool) : string;
+    #encrypt message use public key
+    encrypt_message_single_key(public_key : string, plain_text : string, private_key: string, passphras: string, trim : bool) : string;
     decrypt_message(encrypt_text : string, passphras : string) : string;
     decrypt_message_single_key(encrypt_text : string, private_key : string, passphras : string) : string;
 

@@ -175,7 +175,7 @@ PGPDetachedSignature sign_detach(const PGPSecretKey & pri, const std::string & p
     return sign_detach(pri, passphrase, s.str(), hash);
 }
 
-PGPMessage sign_message(const PGPSecretKey & pri, const std::string & passphrase, const std::string & filename, const std::string & data, const uint8_t hash, const uint8_t compress){
+PGPMessage sign_message(const PGPSecretKey & pri, const std::string & passphrase, const std::string & filename, const std::string & data, const uint8_t hash, const uint8_t compress, const uint8_t sign_type){
     
     uint8_t def_hash = hash;
     
@@ -216,7 +216,7 @@ PGPMessage sign_message(const PGPSecretKey & pri, const std::string & passphrase
 
     // create One-Pass Signature Packet
     Tag4::Ptr tag4(new Tag4);
-    tag4 -> set_type(0);
+    tag4 -> set_type(sign_type);
     tag4 -> set_hash(def_hash);// hash);
     tag4 -> set_pka(tag5 -> get_pka());
     tag4 -> set_keyid(keysig -> get_keyid());
@@ -231,8 +231,20 @@ PGPMessage sign_message(const PGPSecretKey & pri, const std::string & passphrase
     tag11 -> set_literal(data);
 
     // sign data
-    Tag2::Ptr tag2 = create_sig_packet(0, pri, def_hash);// hash);
-    std::string digest = to_sign_00(tag11 -> get_literal(), tag2);
+    Tag2::Ptr tag2 = create_sig_packet(sign_type, pri, def_hash);// hash);
+    
+    std::string digest = "";
+    switch (sign_type) {
+        case 0x00:
+            digest = to_sign_00(tag11 -> get_literal(), tag2);
+            break;
+        case 0x01:
+            digest = to_sign_01(tag11 -> get_literal(), tag2);
+            break;
+        default:
+            throw std::runtime_error("Error: The detached signature type is not supported.");
+    }
+    
     tag2 -> set_left16(digest.substr(0, 2));
     tag2 -> set_mpi(pka_sign_new(digest, tag5, passphrase, def_hash));// hash));
 
@@ -263,21 +275,21 @@ PGPMessage sign_message(const PGPSecretKey & pri, const std::string & passphrase
     return signature;
 }
 
-PGPMessage sign_message(const PGPSecretKey & pri, const std::string & passphrase, const std::string & filename, const uint8_t hash, const uint8_t compress){
+PGPMessage sign_message(const PGPSecretKey & pri, const std::string & passphrase, const std::string & filename, const uint8_t hash, const uint8_t compress, const uint8_t sign_type){
     std::ifstream f(filename.c_str(), std::ios::binary);
     if (!f){
         throw std::runtime_error("Error: Unable to open file '" + filename + "'.");
     }
     std::stringstream s; s << f.rdbuf();
-    return sign_message(pri, passphrase, filename, s.str(), hash);
+    return sign_message(pri, passphrase, filename, s.str(), hash, compress, sign_type);
 }
 
-PGPMessage sign_message(const PGPSecretKey & pri, const std::string & passphrase,  const std::string & filename, std::ifstream & f, const uint8_t hash, const uint8_t compress){
+PGPMessage sign_message(const PGPSecretKey & pri, const std::string & passphrase,  const std::string & filename, std::ifstream & f, const uint8_t hash, const uint8_t compress, const uint8_t sign_type){
     if (!f){
         throw std::runtime_error("Error: Bad file.");
     }
     std::stringstream s; s << f.rdbuf();
-    return sign_message(pri, passphrase, filename, s.str(), hash);
+    return sign_message(pri, passphrase, filename, s.str(), hash, compress, sign_type);
 }
 
 PGPCleartextSignature sign_cleartext(const PGPSecretKey & pri, const std::string & passphrase, const std::string & text, const uint8_t hash){

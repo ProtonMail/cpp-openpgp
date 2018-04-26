@@ -22,6 +22,8 @@
 
 #include <openpgp/private_key.h>
 
+#include <regex>
+
 
 
 namespace ProtonMail {
@@ -252,7 +254,8 @@ namespace ProtonMail {
     /**encrypt message */
     std::string OpenPgpImpl::encrypt_message(const std::string &address_id,
                                              const std::string &plan_text,
-                                             const std::string &passphras) {
+                                             const std::string &passphras,
+                                             bool trim) {
         
         std::unordered_map<std::string, Address>::const_iterator got = m_addresses.find (address_id);
         
@@ -260,7 +263,8 @@ namespace ProtonMail {
         std::string user_priv_key = got->second.keys[0].private_key;
         PGPPublicKey pub(user_pub_key);
         
-        std::string unencrypt_msg = plan_text;
+        std::regex re("([ \t]+)(?=(\\r\\n|\\n)|$)");
+        std::string unencrypt_msg = trim ? std::regex_replace(plan_text, re, "") : plan_text;
         
         PGPSecretKey::Ptr privKey = nullptr;
         
@@ -268,7 +272,7 @@ namespace ProtonMail {
             privKey = std::make_shared<PGPSecretKey>(user_priv_key);
         }
         
-        PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg, "", 9, 2, true, privKey, passphras);
+        PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg, "", 9, 2, true, privKey, passphras, 0x01);
         std::string encrypt_message = encrypted_pgp.write();
         return encrypt_message;
     }
@@ -276,12 +280,14 @@ namespace ProtonMail {
     std::string OpenPgpImpl::encrypt_message_single_key(const std::string & public_key,
                                                         const std::string & plain_text,
                                                         const std::string & private_key,
-                                                        const std::string & passphras) {
+                                                        const std::string & passphras,
+                                                        bool trim) {
         
         std::string str_user_public_key = public_key;
         PGPPublicKey pub(str_user_public_key);
         
-        std::string unencrypt_msg = plain_text;
+        std::regex re("([ \t]+)(?=(\\r\\n|\\n)|$)");
+        std::string unencrypt_msg = trim ? std::regex_replace(plain_text, re, "") : plain_text;
         
         std::string user_priv_key = private_key;
         
@@ -290,7 +296,7 @@ namespace ProtonMail {
             privKey = std::make_shared<PGPSecretKey>(user_priv_key);
         }
         
-        PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg, "", 9, 2, true, privKey, passphras);
+        PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg, "", 9, 2, true, privKey, passphras, 0x01);
         std::string encrypt_message = encrypted_pgp.write();
         
         return encrypt_message;
@@ -344,7 +350,7 @@ namespace ProtonMail {
             privKey = std::make_shared<PGPSecretKey>(user_priv_key);
         }
         
-        PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg, file_name, 9, 2, true, privKey, passphras);
+        PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg, file_name, 9, 2, true, privKey, passphras, 0x00);
         
         std::string keyPackage = encrypted_pgp.write(1, 0, 1);
         std::string dataPackage = encrypted_pgp.write(1, 0, 18);
@@ -367,7 +373,7 @@ namespace ProtonMail {
         if (!private_key.empty() && !passphras.empty()) {
             privKey = std::make_shared<PGPSecretKey>(user_priv_key);
         }
-        PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg, file_name, 9, 2, true, privKey, passphras);
+        PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg, file_name, 9, 2, true, privKey, passphras, 0x00);
         
         std::string keyPackage = encrypted_pgp.write(1, 0, 1);
         std::string dataPackage = encrypted_pgp.write(1, 0, 18);
@@ -673,14 +679,7 @@ namespace ProtonMail {
         
 //        PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg);
 //        std::string encrypt_message = encrypted_pgp.write();
-//        
-//        
-//        
-        
-        
-   
-        
-        
+
         return EncryptSignPackage("", "");
     }
     
