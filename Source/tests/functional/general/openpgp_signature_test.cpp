@@ -468,8 +468,16 @@ namespace tests {
                 PGPPublicKey::Ptr pubKey = std::make_shared<PGPPublicKey>(pubKeyArm2);
                 auto privKeyArm2 = priv_key_arm2;
                 PGPSecretKey privKey(privKeyArm2);
-                std::string plain_text = decrypt_pka(privKey, esMsg, "hello world", false, pubKey);
-                VERIFY_ARE_EQUAL(plain_text, plaintext);
+                bool verify1 = false;
+                std::string plain_text1 = decrypt_pka(privKey, esMsg, "hello world", verify1, false, pubKey);
+                
+                bool verify2 = false;
+                auto verifier = privKey.pubkey();
+                std::string plain_text2 = decrypt_pka(privKey, esMsg, "hello world", verify2, false, verifier);
+                
+                VERIFY_ARE_EQUAL(plain_text1, plaintext);
+                VERIFY_ARE_EQUAL(plain_text2, plaintext);
+                VERIFY_ARE_EQUAL(verify1, verify2);
             }
             
             TEST(Encrypt_Sign_Verify_test_1) {
@@ -486,7 +494,8 @@ namespace tests {
                 std::cout << encrypt_message << std::endl;
                 
                 PGPMessage esMsg(encrypt_message);
-                std::string plain_text = decrypt_pka(*privKey, esMsg, "hello world", false, pubKey);
+                bool verify = false;
+                std::string plain_text = decrypt_pka(*privKey, esMsg, "hello world", verify, false, pubKey);
                 
                 std::cout << plain_text << std::endl;
                 
@@ -512,7 +521,8 @@ namespace tests {
                 std::cout << encrypt_message << std::endl;
                 
                 PGPMessage esMsg(encrypt_message);
-                std::string plain_text = decrypt_pka(*privKey, esMsg, "XE1AdSmjIXJCz0yI3r9gL6viA251TLG", false, pubKey);
+                bool verify = false;
+                std::string plain_text = decrypt_pka(*privKey, esMsg, "XE1AdSmjIXJCz0yI3r9gL6viA251TLG", verify, false, pubKey);
                 
                 std::cout << plain_text << std::endl;
                 
@@ -548,8 +558,8 @@ namespace tests {
                 PGPPublicKey::Ptr pubKey = std::make_shared<PGPPublicKey>(pubKeyArm2);
                 auto privKeyArm2 = priv_key_arm2;
                 PGPSecretKey privKey(privKeyArm2);
-                
-                std::string plain_text = decrypt_pka(privKey, esMsg, "hello world", false, pubKey);
+                bool verify = false;
+                std::string plain_text = decrypt_pka(privKey, esMsg, "hello world", verify, false, pubKey);
                 std::string find = "\r\n";
                 auto size = find.size();
                 for (std::size_t pos = plain_text.find(find); pos!= std::string::npos; pos = plain_text.find(find, pos + 1))
@@ -765,9 +775,8 @@ namespace tests {
                 std::string signature = "-----BEGIN PGP SIGNATURE-----\nVersion: ProtonMail\nComment: https://protonmail.com\n\nwsBcBAEBCAAQBQJZusbZCRBtyZmxRiNPQAAAB5AH/0GPInPKbQF245ZO/ekk\nq9+ZJY5zRglfTBPt5RZvC0dWrXlFIIJ/h001k5hUlZH3OnsM8vQB3t4kQQqg\nQ04IH8M2AaO47vpKeQMWv2gr+0b5vpT++oR2/t9gT351iLC30LN8e4iCArJo\nZHXmymuGYHt+rAGM6Bg0g/PwSlnh57bQGCMciIxIizCWEAQvKrtp+BJnTViI\nYzojqNKTa9YT4riHwArt0zL3dNkKH6Wwdf0quWgp2u3T2SPZ6vvIopY89brd\nJnpj+YAvo9HelBdD5WgQEg5UaVjuTmZ8axLE4EVHnJN1onfi3Q3VOj8MM2Uz\nJ3hbi6awz4bhiiV34Jh4gx0=\n=bEYF\n-----END PGP SIGNATURE-----\n";
                 std::string publickey = "-----BEGIN PGP PUBLIC KEY BLOCK-----\r\nVersion: OpenPGP.js v2.5.8\r\nComment: https://openpgpjs.org\r\n\r\nxsBNBFlewwUBCACX0HZ5EqxFh+4es4YSGZKbbxlFo+Jj/2BQxs7iH4VPzvDV\nxanVBD5D7NFywyQ8ud4X8eM81dhP9oGXs+BHNOJ9/Xf72V43lBzBSEOjnoY5\nVTBWTYE4IxkBDZWU4xoLch3DhTgWUHfKECdg/1VBpJzH9pkko0o2l8uLaz2q\n6HWFntipsxgwxc/Dr6r/HbkAFBh7+/Eow5PoDv5a//juWG+0rUu0PrYt1XuH\n9XBOiHgOmYxaoDhC4osXIFBGRqwVbtZa92yO2WQ7t4AznSPk4XSJO77DQUwl\nIhNodbMCLq94P6fhy0gTgrptZmaQ9nWno+mBxW0m3+xC9jAnJeuu7MMtABEB\nAAHNL2ZlbmcxMDBAcHJvdG9ubWFpbC5jb20gPGZlbmcxMDBAcHJvdG9ubWFp\nbC5jb20+wsB1BBABCAApBQJZXsMGBgsJBwgDAgkQbcmZsUYjT0AEFQgKAgMW\nAgECGQECGwMCHgEAAPisB/47Cv9DMuitxImo9iBKTG2Av7dpvj7s6AVNvQVj\nMW4Yo4FHu8UqF9h/MCdMLAwNelcoUCieuvemH5FICyDWtKory33eXnA+pI3b\nrdCfyoO58t4kiapfjQBdBaB+wjpnAIEQ6yfp9vSG/qM0PbwgAy+HJPkvjtZi\n1PJK4mv2fFjYozXB4yTVIV7i5Yl5PbWNzZEjpaeYZRhH+s9xZTHYSo/M8s9x\ndjTQ9/kdegqTlLRP8m+/iAheIxIrWJma/jjovN+2OCEj7nyBVV5a2yfBoCJ6\nOdZAeANJGQ7UNFsjjwCFoToY2uU3U40WFAcq4wTxXhp/UHmWu+BbozJj4+tW\nuef8zsBNBFlewwUBCADI/Byo35dRWbcOLBFZWh2xghd3FLHPsT/JaB8vr1Ac\nm8UqRV2yoperkzof+QdtFaMgh1u8Za6tdRl5lBsisx6Mcb3Bag6X/TO7sj7h\njeb9xR5s44DvXywZATqTsdrzC05K56Mk7mr+S11k/U+hcLeb9vt+juMorlHx\nSr+jYRdC8w3EcTIuhD3DszaqhSC2ioSd9sCfg5chY3i/UOy2sPistIWjWkF9\nKjERTWg7T7AQNGad6uWiRqrF6ClzTUkShfgFM0oA2gH5u279AIEfAiogol5I\nllTfTljnQr6kW91JDeMKQjZgBX9s0MAgLiiIzX1ipw8EU4EwqcszYMSte3kN\nABEBAAHCwF8EGAEIABMFAllewwYJEG3JmbFGI09AAhsMAAC9kwf/Rfh8mUvm\n8TlBl5DOQWLHfpQYP4Y4AI66zYCSLGh9W8K07DYODGdHD9Otxrb3IR6ItD3+\n3pA2LgiWq7AHCoqh8iei1q75+a11xzFI/RPct7coxPUPHSMf0nKZ+FtP/B4/\n06CCRAv9EMTB9UI7HCNaut0jLmT/qeQ0C8DjeHXrM055tvaRz72KXMs95bCn\nMVahehFRUoWugkSBwqnVeRIXjyPYQRmLCobzmtZFcoo59LK+pM5SNw43uPb6\nEYvFxEzts49UIchNOy2VDJyGuW5aC+ZPknpf3W+RnxgboqChY1RdksiECjJ+\n19ZrhcGdZW7Pr0TSvGhdqZbL3BmZoO+eXw==\r\n=PJ77\r\n-----END PGP PUBLIC KEY BLOCK-----\r\n\r\n";
                 
-                
                 auto pgp = ProtonMail::OpenPgp::create_instance();
-                auto check2 = pgp->sign_detached_verify(publickey, signature, data);
+                auto check2 = pgp->sign_detached_verify_singal_pub_key(publickey, signature, data);
                 VERIFY_IS_TRUE(check2);
             }
             
@@ -776,10 +785,15 @@ namespace tests {
                 std::string plaintext = "short message\nnext line\n한국어/조선말";
                 auto pgp = ProtonMail::OpenPgp::create_instance();
                 auto pgpMsg = pgp->sign_detached(priv_key_arm2, plaintext, "hello world");
-                auto check1 = pgp->sign_detached_verify(pub_key_arm2, pgpMsg, plaintext);
+                auto check1 = pgp->sign_detached_verify_singal_pub_key(pub_key_arm2, pgpMsg, plaintext);
                 VERIFY_IS_TRUE(check1);
-                auto check2 = pgp->sign_detached_verify(pub_key_arm3, pgpMsg, plaintext);
+                auto check2 = pgp->sign_detached_verify_singal_pub_key(pub_key_arm3, pgpMsg, plaintext);
                 VERIFY_IS_FALSE(check2);
+                
+                auto check3 = pgp->sign_detached_verify_singal_private_key(priv_key_arm2, pgpMsg, plaintext);
+                VERIFY_IS_TRUE(check3);
+                auto check4 = pgp->sign_detached_verify_singal_private_key(priv_key_arm1, pgpMsg, plaintext);
+                VERIFY_IS_FALSE(check4);
             }
             
             //    it("Verify a detached signature using readSignedContent" "\n" function() {

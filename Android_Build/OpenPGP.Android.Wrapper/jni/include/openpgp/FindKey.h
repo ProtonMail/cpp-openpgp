@@ -18,6 +18,8 @@ std::ostream & operator <<(std::ostream & stream, const PGPPublicKey & pgp);
 
 // Extract Public Key data from a Secret Key
 PGPPublicKey Secret2PublicKey(const PGPSecretKey & pri);
+PGPPublicKey::Ptr Secret2PublicKeyPtr(const PGPSecretKey & pri);
+PGPPublicKey::Ptr Secret2PublicKey(const PGPSecretKey::Ptr &pri);
 
 // Search PGP keys for signing keys
 // leave keyid empty to find the signing key without matching the key id

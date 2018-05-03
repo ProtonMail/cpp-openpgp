@@ -161,7 +161,8 @@ namespace tests {
                 {
                     std::string in_pri = GPG_PRIKEY_ALICE;
                     PGPSecretKey pgp_pri(in_pri);
-                    std::string message = decrypt_pka(pgp_pri, pgp, PASSPHRASE, false);
+                    bool verify = false;
+                    std::string message = decrypt_pka(pgp_pri, pgp, PASSPHRASE, verify, false);
                     VERIFY_ARE_EQUAL(message, "The magic words are squeamish ossifrage\n");
                 }
             }

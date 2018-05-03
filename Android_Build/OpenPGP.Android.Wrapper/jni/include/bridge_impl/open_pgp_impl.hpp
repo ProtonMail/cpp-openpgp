@@ -55,9 +55,9 @@ namespace ProtonMail {
         void update_private_info(const std::string & private_key);
 
         /**encrypt message */
-        std::string encrypt_message(const std::string &address_id, const std::string &plan_text, const std::string & passphras);
+        std::string encrypt_message(const std::string &address_id, const std::string &plan_text, const std::string & passphras, bool trim);
 
-        std::string encrypt_message_single_key(const std::string & public_key, const std::string & plain_text, const std::string & private_key, const std::string & passphras);
+        std::string encrypt_message_single_key(const std::string & public_key, const std::string & plain_text, const std::string & private_key, const std::string & passphras, bool trim);
 
         std::string decrypt_message(const std::string &encrypt_text, const std::string &passphras);
 
@@ -66,13 +66,16 @@ namespace ProtonMail {
         
         /**for signature */
         EncryptSignPackage encrypt_message_sign_external(const std::string & public_key, const std::string & private_key, const std::string & plain_text, const std::string & passphras);
-        DecryptSignVerify decrypt_message_verify(const std::string & public_key, const std::string & private_key, const std::string & passphras, const std::string & encrypted, const std::string & signature);
+        DecryptSignVerify decrypt_message_verify_singal_key(const std::string & private_key, const std::string & passphras, const std::string & encrypted, const std::string & signature);
+        DecryptSignVerify decrypt_message_verify(const std::string & passphras, const std::string & encrypted, const std::string & signature);
+
         
         std::string sign_detached(const std::string & private_key, const std::string & plain_text, const std::string & passphras);
         
-        bool sign_detached_verify(const std::string & public_key, const std::string & signature, const std::string & plain_text);
+        bool sign_detached_verify_singal_pub_key(const std::string & public_key, const std::string & signature, const std::string & plain_text) ;
+        bool sign_detached_verify_singal_private_key(const std::string & private_key, const std::string & signature, const std::string & plain_text) ;
+        bool sign_detached_verify(const std::string & signature, const std::string & plain_text) ;
 
-        
         //
         EncryptPackage encrypt_attachment(const std::string & address_id, const std::vector<uint8_t> & unencrypt_data, const std::string & file_name, const std::string & passphras);
 

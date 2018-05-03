@@ -22,6 +22,7 @@
 
 #include <openpgp/private_key.h>
 
+#include <openpgp/FindKey.h>
 #include <regex>
 
 
@@ -226,7 +227,8 @@ namespace ProtonMail {
             secret_key.read(private_key);
         }
         ProtonMail::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
-        std::string plain_text = decrypt_pka(secret_key, pm_pgp_msg, passphras, false);
+        bool verify = false; //ignore
+        std::string plain_text = decrypt_pka(secret_key, pm_pgp_msg, passphras, verify, false);
         return plain_text;
     }
     
@@ -245,7 +247,8 @@ namespace ProtonMail {
         ProtonMail::PMPGPMessage pm_pgp_msg(str_key_package, true);
         pm_pgp_msg.append(str_data_package, true);
         
-        std::string test_plain_txt = decrypt_pka(secret_key, pm_pgp_msg, passphras, false);
+        bool verify = false;
+        std::string test_plain_txt = decrypt_pka(secret_key, pm_pgp_msg, passphras, verify, false);
         
         std::vector<uint8_t> out_vector(test_plain_txt.begin(), test_plain_txt.end());
         return out_vector;
@@ -309,7 +312,8 @@ namespace ProtonMail {
         std::string encrypt_msg = encrypt_text;
         ProtonMail::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
         
-        std::string plain_text = decrypt_pka(*m_private_key, pm_pgp_msg, passphras, false);
+        bool verify = false;
+        std::string plain_text = decrypt_pka(*m_private_key, pm_pgp_msg, passphras, verify, false);
         
         return plain_text;
     }
@@ -324,7 +328,8 @@ namespace ProtonMail {
         std::string encrypt_msg = encrypt_text;
         ProtonMail::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
         
-        std::string plain_text = decrypt_pka(pgp_private_key, pm_pgp_msg, passphras, false);
+        bool verify = false;
+        std::string plain_text = decrypt_pka(pgp_private_key, pm_pgp_msg, passphras, verify, false);
         
         return plain_text;
     }
@@ -391,7 +396,8 @@ namespace ProtonMail {
         ProtonMail::PMPGPMessage pm_pgp_msg(str_key_package, true);
         pm_pgp_msg.append(str_data_package, true);
         
-        std::string test_plain_txt = decrypt_pka(*m_private_key, pm_pgp_msg, passphras, false);
+        bool verify = false;
+        std::string test_plain_txt = decrypt_pka(*m_private_key, pm_pgp_msg, passphras, verify, false);
         
         std::vector<uint8_t> out_vector(test_plain_txt.begin(), test_plain_txt.end());
         return out_vector;
@@ -412,7 +418,8 @@ namespace ProtonMail {
         ProtonMail::PMPGPMessage pm_pgp_msg(str_key_package, true);
         pm_pgp_msg.append(str_data_package, true);
         
-        std::string test_plain_txt = decrypt_pka(pgp_private_key, pm_pgp_msg, passphras, false);
+        bool verify = false;
+        std::string test_plain_txt = decrypt_pka(pgp_private_key, pm_pgp_msg, passphras, verify, false);
         
         std::vector<uint8_t> out_vector(test_plain_txt.begin(), test_plain_txt.end());
         return out_vector;
@@ -683,11 +690,28 @@ namespace ProtonMail {
         return EncryptSignPackage("", "");
     }
     
-    DecryptSignVerify OpenPgpImpl::OpenPgpImpl::decrypt_message_verify(const std::string & public_key, const std::string & private_key, const std::string & passphras, const std::string & encrypted, const std::string & signature) {
+    DecryptSignVerify OpenPgpImpl::OpenPgpImpl::decrypt_message_verify_singal_key(const std::string & private_key, const std::string & passphras, const std::string & encrypted, const std::string & signature) {
+        std::string str_private_key = private_key;
+        PGPSecretKey pgp_private_key(str_private_key);
+        std::string encrypt_msg = encrypted;
+        ProtonMail::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
         
-        return DecryptSignVerify("", false);
+        auto verifier = pgp_private_key.pubkey();
+        bool verify = false;
+        std::string plain_text = decrypt_pka(pgp_private_key, pm_pgp_msg, passphras, verify, false, verifier);
+        
+        return DecryptSignVerify(plain_text, verify);
     }
     
+    DecryptSignVerify OpenPgpImpl::decrypt_message_verify(const std::string & passphras, const std::string & encrypted, const std::string & signature) {
+        std::string encrypt_msg = encrypted;
+        ProtonMail::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
+
+        auto verifier = Secret2PublicKey(m_private_key);
+        bool verify = false;
+        std::string plain_text = decrypt_pka(*m_private_key, pm_pgp_msg, passphras, verify, false, verifier);
+        return DecryptSignVerify(plain_text, verify);
+    }
     
     
     std::string OpenPgpImpl::sign_detached(const std::string & private_key, const std::string & plain_text, const std::string & passphras) {
@@ -701,18 +725,38 @@ namespace ProtonMail {
         return pgpMsg;
     }
     
-    bool OpenPgpImpl::sign_detached_verify(const std::string & public_key, const std::string & signature, const std::string & plain_text) {
-        
+    bool OpenPgpImpl::sign_detached_verify(const std::string & signature, const std::string & plain_text) {
         std::string detached_sign = signature;
         PGPDetachedSignature sig(detached_sign);
+        auto verifier = m_private_key->pub();
+        auto check = verify_detachedsig(verifier, plain_text, sig);
+        return check;
+    }
 
+    bool OpenPgpImpl::sign_detached_verify_singal_pub_key(const std::string & public_key, const std::string & signature, const std::string & plain_text) {
+        std::string detached_sign = signature;
+        PGPDetachedSignature sig(detached_sign);
+        
         std::string str_user_public_key = public_key;
         PGPPublicKey pubKey(str_user_public_key);
         
         auto check = verify_detachedsig(pubKey, plain_text, sig);
-
         return check;
     }
-
+    
+    bool OpenPgpImpl::sign_detached_verify_singal_private_key(const std::string & private_key, const std::string & signature, const std::string & plain_text) {
+        std::string detached_sign = signature;
+        PGPDetachedSignature sig(detached_sign);
+        
+        std::string str_user_private_key = private_key;
+        PGPSecretKey privKey(str_user_private_key);
+        
+        auto verifier = privKey.pub();
+        
+        auto check = verify_detachedsig(verifier, plain_text, sig);
+        
+        return check;
+    }
+    
     
 }

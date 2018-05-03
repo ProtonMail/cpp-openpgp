@@ -54,6 +54,80 @@ PGPPublicKey Secret2PublicKey(const PGPSecretKey & pri){
     return pub;
 }
 
+PGPPublicKey::Ptr Secret2PublicKeyPtr(const PGPSecretKey & pri) {
+    PGPPublicKey::Ptr pub = std::make_shared<PGPPublicKey>();
+    
+    pub->set_armored(pri.get_armored());
+    pub->set_ASCII_Armor(1); // public key ASCII Armor Header value
+    pub->set_Armor_Header(pri.get_Armor_Header());
+    
+    // clone packets; convert secret packets into public ones
+    std::vector <Packet::Ptr> packets;
+    for(Packet::Ptr const & p : pri.get_packets()){
+        switch (p -> get_tag()){
+            case 5:
+            {
+                std::string data = p -> raw();
+                packets.push_back(Tag5(data).get_public_ptr());
+                break;
+            }
+            case 7:
+            {
+                std::string data = p -> raw();
+                packets.push_back(Tag7(data).get_public_ptr());
+                break;
+            }
+            default:
+                packets.push_back(p -> clone());
+                break;
+        }
+    }
+    pub->set_packets(packets);
+    
+    for(Packet::Ptr & p : packets){
+        p.reset();
+    }
+    
+    return pub;
+}
+
+PGPPublicKey::Ptr Secret2PublicKey(const PGPSecretKey::Ptr &pri) {
+    PGPPublicKey::Ptr pub = std::make_shared<PGPPublicKey>();
+    
+    
+    pub->set_armored(pri->get_armored());
+    pub->set_ASCII_Armor(1); // public key ASCII Armor Header value
+    pub->set_Armor_Header(pri->get_Armor_Header());
+    
+    // clone packets; convert secret packets into public ones
+    std::vector <Packet::Ptr> packets;
+    for(Packet::Ptr const & p : pri->get_packets()){
+        switch (p -> get_tag()){
+            case 5:
+            {
+                std::string data = p -> raw();
+                packets.push_back(Tag5(data).get_public_ptr());
+                break;
+            }
+            case 7:
+            {
+                std::string data = p -> raw();
+                packets.push_back(Tag7(data).get_public_ptr());
+                break;
+            }
+            default:
+                packets.push_back(p -> clone());
+                break;
+        }
+    }
+    pub->set_packets(packets);
+    
+    for(Packet::Ptr & p : packets){
+        p.reset();
+    }
+    
+    return pub;
+}
 
 Key::Ptr find_signing_key(const PGPKey::Ptr & key, const uint8_t tag, const std::string & keyid){
     if ((key -> get_ASCII_Armor() == 1) || (key -> get_ASCII_Armor() == 2)){

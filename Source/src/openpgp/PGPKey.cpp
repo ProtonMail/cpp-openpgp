@@ -310,6 +310,11 @@ PGPPublicKey PGPSecretKey::pub() const {
     return Secret2PublicKey(*this);
 }
 
+
+PGPPublicKey::Ptr PGPSecretKey::pubkey() const {
+    return  Secret2PublicKeyPtr(*this);
+}
+
 bool PGPSecretKey::meaningful() const{
     return PGPKey::meaningful(2);
 }

@@ -96,7 +96,8 @@ Java_ch_protonmail_android_utils_OpenPGP_SetupKeys(JNIEnv* env, jobject o, jstri
 	    //("Start encrypt check");
 	    PGPMessage encrypted = encrypt_pka(public_key, verifyString);
 		//LOG_E("Start decroypt check");
-	    std::string clain_txt = decrypt_pka(secret_key, encrypted, str_passphrase, false);
+        bool verify = false;
+	    std::string clain_txt = decrypt_pka(secret_key, encrypted, str_passphrase, verify, false);
 	    //LOG_E("Check pwd");
 
 	    if(verifyString == clain_txt)
@@ -315,8 +316,8 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptMessage(JNIEnv* env, jobject o, 
         PGPSecretKey secret_key;
 	    secret_key.set_is_debug(false);
 		secret_key.read(str_priv_key);
-
-        std::string test_plain_txt = decrypt_pka(secret_key, pm_pgp_msg, str_passphrase, false);
+        bool verify = false;
+        std::string test_plain_txt = decrypt_pka(secret_key, pm_pgp_msg, str_passphrase, verify, false);
 
         int len = test_plain_txt.size();
         jbyteArray array = env->NewByteArray(len);
@@ -400,7 +401,8 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptMessageWithKeys(JNIEnv* env, job
         }
 
         LOG_E("Key Set");
-        std::string test_plain_txt = decrypt_pka(secret_key, pm_pgp_msg, str_passphrase, false);
+        bool verify = false;
+        std::string test_plain_txt = decrypt_pka(secret_key, pm_pgp_msg, str_passphrase, verify, false);
 
         //LOG_E("Decrypted");
 
@@ -853,8 +855,8 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptAttachmentArmored(JNIEnv* env, j
         PGPSecretKey secret_key;
         secret_key.set_is_debug(false);
         secret_key.read(str_private_key);
-
-        std::string test_plain_txt = decrypt_pka(secret_key, pm_pgp_msg, str_password, false);
+        bool verify = false;
+        std::string test_plain_txt = decrypt_pka(secret_key, pm_pgp_msg, str_password, verify, false);
 
         int len = test_plain_txt.size();
         jbyteArray array = env->NewByteArray(len);
@@ -920,8 +922,8 @@ Java_ch_protonmail_android_utils_OpenPGP_DecryptAttachment(JNIEnv* env, jobject 
         PGPSecretKey secret_key;
         secret_key.set_is_debug(false);
         secret_key.read(str_private_key);
-
-        std::string test_plain_txt = decrypt_pka(secret_key, pm_pgp_msg, str_password, false);
+        bool verify = false;
+        std::string test_plain_txt = decrypt_pka(secret_key, pm_pgp_msg, str_password, verify, false);
 
 //        int len = test_plain_txt.size();
 //        jbyteArray array = env->NewByteArray(len);

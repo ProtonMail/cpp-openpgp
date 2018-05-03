@@ -85,6 +85,7 @@ public:
     Packet::Ptr tag7(int index); //sub key
     
     PGPPublicKey pub() const;
+    std::shared_ptr <PGPPublicKey> pubkey() const;
     
     bool meaningful() const;
     

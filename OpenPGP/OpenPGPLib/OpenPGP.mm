@@ -159,8 +159,8 @@
         
         PGPSecretKey privateKey(str_private_key);
         ProtonMail::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
-        
-        std::string test_plain_txt = decrypt_pka(privateKey, pm_pgp_msg, [passphrase UTF8String], false);
+        bool verify = false;
+        std::string test_plain_txt = decrypt_pka(privateKey, pm_pgp_msg, [passphrase UTF8String], verify, false);
         
         return [[NSString alloc] initWithUTF8String:test_plain_txt.c_str()];
     }
@@ -221,8 +221,8 @@
         
         std::string verifyString = "this is a protonmail encryption test string";
         PGPMessage encrypted = encrypt_pka(*public_key_, verifyString);
-        
-        std::string clain_txt = decrypt_pka(*private_key_, encrypted, [passphrase UTF8String], false);
+        bool verify = false;
+        std::string clain_txt = decrypt_pka(*private_key_, encrypted, [passphrase UTF8String], verify, false);
         if(verifyString == clain_txt)
         {
             Passpharse = passphrase;
@@ -468,8 +468,8 @@
         std::string encrypt_msg = [encrypted_message UTF8String];
         
         ProtonMail::PMPGPMessage pm_pgp_msg(encrypt_msg, false);
-        
-        std::string test_plain_txt = decrypt_pka(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String], false);
+        bool verify = false;
+        std::string test_plain_txt = decrypt_pka(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String], verify, false);
         
         std::cout << test_plain_txt << std::endl;
         
@@ -806,8 +806,8 @@
     
     ProtonMail::PMPGPMessage pm_pgp_msg(str_key_package, true);
    // pm_pgp_msg.append(str_data_package, true);
-    
-    std::string test_plain_txt = decrypt_pka(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String], false);
+    bool verify = false;
+    std::string test_plain_txt = decrypt_pka(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String], verify, false);
     
     //std::cout  << test_plain_txt << std::endl;
     return [NSData dataWithBytes: test_plain_txt.c_str() length:test_plain_txt.length()];
@@ -835,8 +835,8 @@
     
     ProtonMail::PMPGPMessage pm_pgp_msg(str_key_package, false);
     pm_pgp_msg.append(str_data_package, false);
-    
-    std::string test_plain_txt = decrypt_pka(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String], false);
+    bool verify = false;
+    std::string test_plain_txt = decrypt_pka(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String], verify, false);
     
     //std::cout  << test_plain_txt << std::endl;
     return [NSData dataWithBytes: test_plain_txt.c_str() length:test_plain_txt.length()];
@@ -1000,8 +1000,8 @@
     ProtonMail::PMPGPMessage pm_pgp_msg(one, false);
     
     pm_pgp_msg.append(data, false);
-    
-    std::string test_plain_txt = decrypt_pka(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String], false);
+    bool verify = false;
+    std::string test_plain_txt = decrypt_pka(*private_key_, pm_pgp_msg, [self->Passpharse UTF8String], verify, false);
     
     //std::cout  << test_plain_txt << std::endl;
     

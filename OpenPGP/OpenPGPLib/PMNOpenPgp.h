@@ -110,9 +110,12 @@
                                                     plainText:(nonnull NSString *)plainText
                                                     passphras:(nonnull NSString *)passphras;
 
-- (nonnull PMNDecryptSignVerify *)decryptMessageVerify:(nonnull NSString *)publicKey
-                                            privateKey:(nonnull NSString *)privateKey
-                                             passphras:(nonnull NSString *)passphras
+- (nonnull PMNDecryptSignVerify *)decryptMessageVerifySingalKey:(nonnull NSString *)privateKey
+                                                      passphras:(nonnull NSString *)passphras
+                                                      encrypted:(nonnull NSString *)encrypted
+                                                      signature:(nonnull NSString *)signature;
+
+- (nonnull PMNDecryptSignVerify *)decryptMessageVerify:(nonnull NSString *)passphras
                                              encrypted:(nonnull NSString *)encrypted
                                              signature:(nonnull NSString *)signature;
 
@@ -120,8 +123,15 @@
                          plainText:(nonnull NSString *)plainText
                          passphras:(nonnull NSString *)passphras;
 
-- (BOOL)signDetachedVerify:(nonnull NSString *)publicKey
-                 signature:(nonnull NSString *)signature
+- (BOOL)signDetachedVerifySingalPubKey:(nonnull NSString *)publicKey
+                             signature:(nonnull NSString *)signature
+                             plainText:(nonnull NSString *)plainText;
+
+- (BOOL)signDetachedVerifySingalPrivateKey:(nonnull NSString *)privateKey
+                                 signature:(nonnull NSString *)signature
+                                 plainText:(nonnull NSString *)plainText;
+
+- (BOOL)signDetachedVerify:(nonnull NSString *)signature
                  plainText:(nonnull NSString *)plainText;
 
 - (nonnull PMNEncryptPackage *)encryptAttachment:(nonnull NSString *)addressId

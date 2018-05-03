@@ -109,7 +109,7 @@ std::string decrypt_pm_pka(const PGPSecretKey & pri, const std::string & passphr
     return "";
 }
 
-std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const std::string & passphrase, const bool writefile, const PGPPublicKey::Ptr & verify){
+std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const std::string & passphrase, bool & retVerify, const bool writefile, const PGPPublicKey::Ptr & verify){
     bool isDebugMode = false;
     
     if ((m.get_ASCII_Armor() != 0)/* && (m.get_ASCII_Armor() != 3) && (m.get_ASCII_Armor() != 4)*/){
@@ -202,15 +202,22 @@ std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const st
     // if signing key provided, check the signature
     std::string out = "";
     if (verify){
-        auto check = decrypted.verify(verify);// verify_message(*verify, decrypted);
-        std::cout   << "Message was"
-                    << std::string(check ? "" : " not")
-                    << " signed by key "
-                    << hexlify(verify -> keyid())
-                    << "."
-                    << std::endl;
-        if (!check)
-            throw std::runtime_error("Error: verify signed by key " + hexlify(verify -> keyid()) + " failed.");
+        try {
+            auto check = decrypted.verify(verify);// verify_message(*verify, decrypted);
+            std::cout   << "Message was"
+            << std::string(check ? "" : " not")
+            << " signed by key "
+            << hexlify(verify -> keyid())
+            << "."
+            << std::endl;
+            
+            //if (!check)
+            //  throw std::runtime_error("Error: verify signed by key " + hexlify(verify -> keyid()) + " failed.");
+            retVerify = check;
+        } catch (...) {
+            retVerify = false;
+        }
+
     }
     
     // extract data
@@ -226,13 +233,13 @@ std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const st
 }
 
 
-std::string decrypt_pka(const PGPSecretKey & pri, const ProtonMail::PMPGPMessage & m, const std::string & passphrase, const bool writefile, const PGPPublicKey::Ptr & verify)
+std::string decrypt_pka(const PGPSecretKey & pri, const ProtonMail::PMPGPMessage & m, const std::string & passphrase, bool & retVerify, const bool writefile, const PGPPublicKey::Ptr & verify)
 {
     bool isDebugMode = false;
     if(m.get_is_pm_pka())
     {
         PGPMessage pgp_msg = m;
-        std::string random_key = decrypt_pka(pri, pgp_msg, passphrase, writefile, verify);
+        std::string random_key = decrypt_pka(pri, pgp_msg, passphrase, retVerify, writefile, verify);
         
         if(isDebugMode)
             std::cout << random_key << std::endl;
@@ -260,14 +267,13 @@ std::string decrypt_pka(const PGPSecretKey & pri, const ProtonMail::PMPGPMessage
             std::cout << data2.length() << std::endl;
             std::cout << data2 << std::endl;
         }
-        
-        
+
         return data2;
     }
     else
     {
         PGPMessage pgp_msg = m;
-        return decrypt_pka(pri, pgp_msg, passphrase, writefile, verify);
+        return decrypt_pka(pri, pgp_msg, passphrase, retVerify, writefile, verify);
     }
 }
 

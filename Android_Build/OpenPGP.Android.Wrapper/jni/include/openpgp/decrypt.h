@@ -53,8 +53,8 @@ std::string decrypt_pm_pka(const PGPSecretKey & pri, const std::string & passphr
 
 // called from outside
 // session key encrypted with public key algorithm; will call decrypt_sym if tag3 is found
-std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const std::string & passphrase, const bool writefile = true, const PGPPublicKey::Ptr & verify = nullptr);
-std::string decrypt_pka(const PGPSecretKey & pri, const ProtonMail::PMPGPMessage & m, const std::string & passphrase, const bool writefile = true, const PGPPublicKey::Ptr & verify = nullptr);
+std::string decrypt_pka(const PGPSecretKey & pri, const PGPMessage & m, const std::string & passphrase, bool & retVerify, const bool writefile = true, const PGPPublicKey::Ptr & verify = nullptr);
+std::string decrypt_pka(const PGPSecretKey & pri, const ProtonMail::PMPGPMessage & m, const std::string & passphrase, bool & retVerify, const bool writefile = true, const PGPPublicKey::Ptr & verify = nullptr);
 // session key encrypted with symmetric algorithm
 std::string decrypt_sym(const PGPMessage & m, const std::string & passphrase, const bool writefile = false, const PGPPublicKey::Ptr & verify = nullptr);
 
