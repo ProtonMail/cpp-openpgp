@@ -87,23 +87,26 @@ open_pgp = interface +c {
     encrypt_message(address_id : string, plain_text : string, passphras: string, trim : bool) : string;
     #encrypt message use public key
     encrypt_message_single_key(public_key : string, plain_text : string, private_key: string, passphras: string, trim : bool) : string;
+    encrypt_message_single_binary_pub_key(public_key : binary, plain_text : string, private_key: string, passphras: string, trim : bool) : string;
     decrypt_message(encrypt_text : string, passphras : string) : string;
     decrypt_message_single_key(encrypt_text : string, private_key : string, passphras : string) : string;
 
     #for signature
     encrypt_message_sign_external(public_key : string, private_key : string, plain_text : string, passphras: string) : encrypt_sign_package;
-    decrypt_message_verify_singal_key(private_key: string, passphras: string, encrypted : string, signature : string) : decrypt_sign_verify;
+    decrypt_message_verify_single_key(private_key: string, passphras: string, encrypted : string, signature : string) : decrypt_sign_verify;
     decrypt_message_verify(passphras: string, encrypted : string, signature : string) : decrypt_sign_verify;
 
     sign_detached(private_key : string, plain_text : string, passphras: string) : string;
-
-    sign_detached_verify_singal_pub_key(public_key: string, signature : string, plain_text : string) : bool;
-    sign_detached_verify_singal_private_key(private_key: string, signature : string, plain_text : string) : bool;
+    sign_detached_verify_single_pub_key(public_key: string, signature : string, plain_text : string) : bool;
+    sign_detached_verify_single_binary_pub_key(public_key: binary, signature : string, plain_text : string) : bool;
+    sign_detached_verify_single_private_key(private_key: string, signature : string, plain_text : string) : bool;
     sign_detached_verify(signature : string, plain_text : string) : bool;
 
 
     encrypt_attachment(address_id : string, unencrypt_data : binary, file_name : string, passphras: string) : encrypt_package;
     encrypt_attachment_single_key(public_key : string, unencrypt_data : binary, file_name : string, private_key: string, passphras: string) : encrypt_package;
+
+    encrypt_attachment_single_binary_key(public_key : binary, unencrypt_data : binary, file_name : string, private_key: string, passphras: string) : encrypt_package;
     decrypt_attachment(key : binary, data : binary, passphras : string) : binary;
     decrypt_attachment_single_key(key : binary, data : binary, private_key : string, passphras : string) : binary;
 

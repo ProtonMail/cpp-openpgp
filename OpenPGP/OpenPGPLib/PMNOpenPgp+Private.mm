@@ -192,6 +192,21 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
+- (nonnull NSString *)encryptMessageSingleBinaryPubKey:(nonnull NSData *)publicKey
+                                             plainText:(nonnull NSString *)plainText
+                                            privateKey:(nonnull NSString *)privateKey
+                                             passphras:(nonnull NSString *)passphras
+                                                  trim:(BOOL)trim {
+    try {
+        auto objcpp_result_ = _cppRefHandle.get()->encrypt_message_single_binary_pub_key(::djinni::Binary::toCpp(publicKey),
+                                                                                         ::djinni::String::toCpp(plainText),
+                                                                                         ::djinni::String::toCpp(privateKey),
+                                                                                         ::djinni::String::toCpp(passphras),
+                                                                                         ::djinni::Bool::toCpp(trim));
+        return ::djinni::String::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
 - (nonnull NSString *)decryptMessage:(nonnull NSString *)encryptText
                            passphras:(nonnull NSString *)passphras {
     try {
@@ -225,12 +240,12 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (nonnull PMNDecryptSignVerify *)decryptMessageVerifySingalKey:(nonnull NSString *)privateKey
+- (nonnull PMNDecryptSignVerify *)decryptMessageVerifySingleKey:(nonnull NSString *)privateKey
                                                       passphras:(nonnull NSString *)passphras
                                                       encrypted:(nonnull NSString *)encrypted
                                                       signature:(nonnull NSString *)signature {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->decrypt_message_verify_singal_key(::djinni::String::toCpp(privateKey),
+        auto objcpp_result_ = _cppRefHandle.get()->decrypt_message_verify_single_key(::djinni::String::toCpp(privateKey),
                                                                                      ::djinni::String::toCpp(passphras),
                                                                                      ::djinni::String::toCpp(encrypted),
                                                                                      ::djinni::String::toCpp(signature));
@@ -260,22 +275,33 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (BOOL)signDetachedVerifySingalPubKey:(nonnull NSString *)publicKey
+- (BOOL)signDetachedVerifySinglePubKey:(nonnull NSString *)publicKey
                              signature:(nonnull NSString *)signature
                              plainText:(nonnull NSString *)plainText {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->sign_detached_verify_singal_pub_key(::djinni::String::toCpp(publicKey),
+        auto objcpp_result_ = _cppRefHandle.get()->sign_detached_verify_single_pub_key(::djinni::String::toCpp(publicKey),
                                                                                        ::djinni::String::toCpp(signature),
                                                                                        ::djinni::String::toCpp(plainText));
         return ::djinni::Bool::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (BOOL)signDetachedVerifySingalPrivateKey:(nonnull NSString *)privateKey
+- (BOOL)signDetachedVerifySingleBinaryPubKey:(nonnull NSData *)publicKey
+                                   signature:(nonnull NSString *)signature
+                                   plainText:(nonnull NSString *)plainText {
+    try {
+        auto objcpp_result_ = _cppRefHandle.get()->sign_detached_verify_single_binary_pub_key(::djinni::Binary::toCpp(publicKey),
+                                                                                              ::djinni::String::toCpp(signature),
+                                                                                              ::djinni::String::toCpp(plainText));
+        return ::djinni::Bool::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (BOOL)signDetachedVerifySinglePrivateKey:(nonnull NSString *)privateKey
                                  signature:(nonnull NSString *)signature
                                  plainText:(nonnull NSString *)plainText {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->sign_detached_verify_singal_private_key(::djinni::String::toCpp(privateKey),
+        auto objcpp_result_ = _cppRefHandle.get()->sign_detached_verify_single_private_key(::djinni::String::toCpp(privateKey),
                                                                                            ::djinni::String::toCpp(signature),
                                                                                            ::djinni::String::toCpp(plainText));
         return ::djinni::Bool::fromCpp(objcpp_result_);
@@ -315,6 +341,21 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
                                                                                  ::djinni::String::toCpp(fileName),
                                                                                  ::djinni::String::toCpp(privateKey),
                                                                                  ::djinni::String::toCpp(passphras));
+        return ::OBJ_ProtonMail::EncryptPackage::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (nonnull PMNEncryptPackage *)encryptAttachmentSingleBinaryKey:(nonnull NSData *)publicKey
+                                                  unencryptData:(nonnull NSData *)unencryptData
+                                                       fileName:(nonnull NSString *)fileName
+                                                     privateKey:(nonnull NSString *)privateKey
+                                                      passphras:(nonnull NSString *)passphras {
+    try {
+        auto objcpp_result_ = _cppRefHandle.get()->encrypt_attachment_single_binary_key(::djinni::Binary::toCpp(publicKey),
+                                                                                        ::djinni::Binary::toCpp(unencryptData),
+                                                                                        ::djinni::String::toCpp(fileName),
+                                                                                        ::djinni::String::toCpp(privateKey),
+                                                                                        ::djinni::String::toCpp(passphras));
         return ::OBJ_ProtonMail::EncryptPackage::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

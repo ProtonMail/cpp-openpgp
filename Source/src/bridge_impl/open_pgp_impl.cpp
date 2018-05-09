@@ -305,6 +305,26 @@ namespace ProtonMail {
         return encrypt_message;
     }
     
+    std::string OpenPgpImpl::encrypt_message_single_binary_pub_key(const std::vector<uint8_t> & public_key, const std::string & plain_text, const std::string & private_key, const std::string & passphras, bool trim) {
+        std::string str_user_public_key(public_key.begin(), public_key.end());
+        PGPPublicKey pub(str_user_public_key);
+        
+        std::regex re("([ \t]+)(?=(\\r\\n|\\n)|$)");
+        std::string unencrypt_msg = trim ? std::regex_replace(plain_text, re, "") : plain_text;
+        
+        std::string user_priv_key = private_key;
+        
+        PGPSecretKey::Ptr privKey = nullptr;
+        if (!private_key.empty() && !passphras.empty()) {
+            privKey = std::make_shared<PGPSecretKey>(user_priv_key);
+        }
+        
+        PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg, "", 9, 2, true, privKey, passphras, 0x01);
+        std::string encrypt_message = encrypted_pgp.write();
+        
+        return encrypt_message;
+    }
+    
     
     std::string OpenPgpImpl::decrypt_message(const std::string &encrypt_text,
                                              const std::string &passphras) {
@@ -384,6 +404,29 @@ namespace ProtonMail {
         std::string dataPackage = encrypted_pgp.write(1, 0, 18);
         
         return EncryptPackage(std::vector<uint8_t>(keyPackage.begin(), keyPackage.end()), std::vector<uint8_t>(dataPackage.begin(), dataPackage.end()));
+    }
+    
+    EncryptPackage OpenPgpImpl::encrypt_attachment_single_binary_key(const std::vector<uint8_t> & public_key, const std::vector<uint8_t> & unencrypt_data, const std::string & file_name, const std::string & private_key, const std::string & passphras) {
+        
+        
+        std::string str_public_key(public_key.begin(), public_key.end());
+        std::string unencrypt_msg(unencrypt_data.begin(), unencrypt_data.end());
+        
+        PGPPublicKey pub(str_public_key);
+        
+        
+        std::string user_priv_key = private_key;
+        PGPSecretKey::Ptr privKey = nullptr;
+        if (!private_key.empty() && !passphras.empty()) {
+            privKey = std::make_shared<PGPSecretKey>(user_priv_key);
+        }
+        PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg, file_name, 9, 2, true, privKey, passphras, 0x00);
+        
+        std::string keyPackage = encrypted_pgp.write(1, 0, 1);
+        std::string dataPackage = encrypted_pgp.write(1, 0, 18);
+        
+        return EncryptPackage(std::vector<uint8_t>(keyPackage.begin(), keyPackage.end()), std::vector<uint8_t>(dataPackage.begin(), dataPackage.end()));
+        
     }
     
     std::vector<uint8_t> OpenPgpImpl::decrypt_attachment(const std::vector<uint8_t> & key,
@@ -690,7 +733,7 @@ namespace ProtonMail {
         return EncryptSignPackage("", "");
     }
     
-    DecryptSignVerify OpenPgpImpl::OpenPgpImpl::decrypt_message_verify_singal_key(const std::string & private_key, const std::string & passphras, const std::string & encrypted, const std::string & signature) {
+    DecryptSignVerify OpenPgpImpl::decrypt_message_verify_single_key(const std::string & private_key, const std::string & passphras, const std::string & encrypted, const std::string & signature) {
         std::string str_private_key = private_key;
         PGPSecretKey pgp_private_key(str_private_key);
         std::string encrypt_msg = encrypted;
@@ -733,7 +776,7 @@ namespace ProtonMail {
         return check;
     }
 
-    bool OpenPgpImpl::sign_detached_verify_singal_pub_key(const std::string & public_key, const std::string & signature, const std::string & plain_text) {
+    bool OpenPgpImpl::sign_detached_verify_single_pub_key(const std::string & public_key, const std::string & signature, const std::string & plain_text) {
         std::string detached_sign = signature;
         PGPDetachedSignature sig(detached_sign);
         
@@ -744,7 +787,18 @@ namespace ProtonMail {
         return check;
     }
     
-    bool OpenPgpImpl::sign_detached_verify_singal_private_key(const std::string & private_key, const std::string & signature, const std::string & plain_text) {
+    bool OpenPgpImpl::sign_detached_verify_single_binary_pub_key(const std::vector<uint8_t> & public_key, const std::string & signature, const std::string & plain_text) {
+        std::string detached_sign = signature;
+        PGPDetachedSignature sig(detached_sign);
+        
+        std::string str_user_public_key(public_key.begin(), public_key.end());
+        PGPPublicKey pubKey(str_user_public_key);
+        
+        auto check = verify_detachedsig(pubKey, plain_text, sig);
+        return check;
+    }
+    
+    bool OpenPgpImpl::sign_detached_verify_single_private_key(const std::string & private_key, const std::string & signature, const std::string & plain_text) {
         std::string detached_sign = signature;
         PGPDetachedSignature sig(detached_sign);
         

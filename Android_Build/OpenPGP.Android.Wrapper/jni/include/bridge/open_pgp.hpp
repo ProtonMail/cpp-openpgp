@@ -85,6 +85,8 @@ public:
     /**encrypt message use public key */
     virtual std::string encrypt_message_single_key(const std::string & public_key, const std::string & plain_text, const std::string & private_key, const std::string & passphras, bool trim) = 0;
 
+    virtual std::string encrypt_message_single_binary_pub_key(const std::vector<uint8_t> & public_key, const std::string & plain_text, const std::string & private_key, const std::string & passphras, bool trim) = 0;
+
     virtual std::string decrypt_message(const std::string & encrypt_text, const std::string & passphras) = 0;
 
     virtual std::string decrypt_message_single_key(const std::string & encrypt_text, const std::string & private_key, const std::string & passphras) = 0;
@@ -92,21 +94,25 @@ public:
     /**for signature */
     virtual EncryptSignPackage encrypt_message_sign_external(const std::string & public_key, const std::string & private_key, const std::string & plain_text, const std::string & passphras) = 0;
 
-    virtual DecryptSignVerify decrypt_message_verify_singal_key(const std::string & private_key, const std::string & passphras, const std::string & encrypted, const std::string & signature) = 0;
+    virtual DecryptSignVerify decrypt_message_verify_single_key(const std::string & private_key, const std::string & passphras, const std::string & encrypted, const std::string & signature) = 0;
 
     virtual DecryptSignVerify decrypt_message_verify(const std::string & passphras, const std::string & encrypted, const std::string & signature) = 0;
 
     virtual std::string sign_detached(const std::string & private_key, const std::string & plain_text, const std::string & passphras) = 0;
 
-    virtual bool sign_detached_verify_singal_pub_key(const std::string & public_key, const std::string & signature, const std::string & plain_text) = 0;
+    virtual bool sign_detached_verify_single_pub_key(const std::string & public_key, const std::string & signature, const std::string & plain_text) = 0;
 
-    virtual bool sign_detached_verify_singal_private_key(const std::string & private_key, const std::string & signature, const std::string & plain_text) = 0;
+    virtual bool sign_detached_verify_single_binary_pub_key(const std::vector<uint8_t> & public_key, const std::string & signature, const std::string & plain_text) = 0;
+
+    virtual bool sign_detached_verify_single_private_key(const std::string & private_key, const std::string & signature, const std::string & plain_text) = 0;
 
     virtual bool sign_detached_verify(const std::string & signature, const std::string & plain_text) = 0;
 
     virtual EncryptPackage encrypt_attachment(const std::string & address_id, const std::vector<uint8_t> & unencrypt_data, const std::string & file_name, const std::string & passphras) = 0;
 
     virtual EncryptPackage encrypt_attachment_single_key(const std::string & public_key, const std::vector<uint8_t> & unencrypt_data, const std::string & file_name, const std::string & private_key, const std::string & passphras) = 0;
+
+    virtual EncryptPackage encrypt_attachment_single_binary_key(const std::vector<uint8_t> & public_key, const std::vector<uint8_t> & unencrypt_data, const std::string & file_name, const std::string & private_key, const std::string & passphras) = 0;
 
     virtual std::vector<uint8_t> decrypt_attachment(const std::vector<uint8_t> & key, const std::vector<uint8_t> & data, const std::string & passphras) = 0;
 

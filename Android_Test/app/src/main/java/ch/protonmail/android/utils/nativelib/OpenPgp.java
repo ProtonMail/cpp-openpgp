@@ -46,6 +46,9 @@ public abstract class OpenPgp {
     public abstract String encryptMessageSingleKey(@Nonnull String publicKey, @Nonnull String plainText, @Nonnull String privateKey, @Nonnull String passphras, boolean trim);
 
     @Nonnull
+    public abstract String encryptMessageSingleBinaryPubKey(@Nonnull byte[] publicKey, @Nonnull String plainText, @Nonnull String privateKey, @Nonnull String passphras, boolean trim);
+
+    @Nonnull
     public abstract String decryptMessage(@Nonnull String encryptText, @Nonnull String passphras);
 
     @Nonnull
@@ -56,7 +59,7 @@ public abstract class OpenPgp {
     public abstract EncryptSignPackage encryptMessageSignExternal(@Nonnull String publicKey, @Nonnull String privateKey, @Nonnull String plainText, @Nonnull String passphras);
 
     @Nonnull
-    public abstract DecryptSignVerify decryptMessageVerifySingalKey(@Nonnull String privateKey, @Nonnull String passphras, @Nonnull String encrypted, @Nonnull String signature);
+    public abstract DecryptSignVerify decryptMessageVerifySingleKey(@Nonnull String privateKey, @Nonnull String passphras, @Nonnull String encrypted, @Nonnull String signature);
 
     @Nonnull
     public abstract DecryptSignVerify decryptMessageVerify(@Nonnull String passphras, @Nonnull String encrypted, @Nonnull String signature);
@@ -64,9 +67,11 @@ public abstract class OpenPgp {
     @Nonnull
     public abstract String signDetached(@Nonnull String privateKey, @Nonnull String plainText, @Nonnull String passphras);
 
-    public abstract boolean signDetachedVerifySingalPubKey(@Nonnull String publicKey, @Nonnull String signature, @Nonnull String plainText);
+    public abstract boolean signDetachedVerifySinglePubKey(@Nonnull String publicKey, @Nonnull String signature, @Nonnull String plainText);
 
-    public abstract boolean signDetachedVerifySingalPrivateKey(@Nonnull String privateKey, @Nonnull String signature, @Nonnull String plainText);
+    public abstract boolean signDetachedVerifySingleBinaryPubKey(@Nonnull byte[] publicKey, @Nonnull String signature, @Nonnull String plainText);
+
+    public abstract boolean signDetachedVerifySinglePrivateKey(@Nonnull String privateKey, @Nonnull String signature, @Nonnull String plainText);
 
     public abstract boolean signDetachedVerify(@Nonnull String signature, @Nonnull String plainText);
 
@@ -75,6 +80,9 @@ public abstract class OpenPgp {
 
     @Nonnull
     public abstract EncryptPackage encryptAttachmentSingleKey(@Nonnull String publicKey, @Nonnull byte[] unencryptData, @Nonnull String fileName, @Nonnull String privateKey, @Nonnull String passphras);
+
+    @Nonnull
+    public abstract EncryptPackage encryptAttachmentSingleBinaryKey(@Nonnull byte[] publicKey, @Nonnull byte[] unencryptData, @Nonnull String fileName, @Nonnull String privateKey, @Nonnull String passphras);
 
     @Nonnull
     public abstract byte[] decryptAttachment(@Nonnull byte[] key, @Nonnull byte[] data, @Nonnull String passphras);
@@ -251,6 +259,14 @@ public abstract class OpenPgp {
         private native String native_encryptMessageSingleKey(long _nativeRef, String publicKey, String plainText, String privateKey, String passphras, boolean trim);
 
         @Override
+        public String encryptMessageSingleBinaryPubKey(byte[] publicKey, String plainText, String privateKey, String passphras, boolean trim)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_encryptMessageSingleBinaryPubKey(this.nativeRef, publicKey, plainText, privateKey, passphras, trim);
+        }
+        private native String native_encryptMessageSingleBinaryPubKey(long _nativeRef, byte[] publicKey, String plainText, String privateKey, String passphras, boolean trim);
+
+        @Override
         public String decryptMessage(String encryptText, String passphras)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
@@ -275,12 +291,12 @@ public abstract class OpenPgp {
         private native EncryptSignPackage native_encryptMessageSignExternal(long _nativeRef, String publicKey, String privateKey, String plainText, String passphras);
 
         @Override
-        public DecryptSignVerify decryptMessageVerifySingalKey(String privateKey, String passphras, String encrypted, String signature)
+        public DecryptSignVerify decryptMessageVerifySingleKey(String privateKey, String passphras, String encrypted, String signature)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_decryptMessageVerifySingalKey(this.nativeRef, privateKey, passphras, encrypted, signature);
+            return native_decryptMessageVerifySingleKey(this.nativeRef, privateKey, passphras, encrypted, signature);
         }
-        private native DecryptSignVerify native_decryptMessageVerifySingalKey(long _nativeRef, String privateKey, String passphras, String encrypted, String signature);
+        private native DecryptSignVerify native_decryptMessageVerifySingleKey(long _nativeRef, String privateKey, String passphras, String encrypted, String signature);
 
         @Override
         public DecryptSignVerify decryptMessageVerify(String passphras, String encrypted, String signature)
@@ -299,20 +315,28 @@ public abstract class OpenPgp {
         private native String native_signDetached(long _nativeRef, String privateKey, String plainText, String passphras);
 
         @Override
-        public boolean signDetachedVerifySingalPubKey(String publicKey, String signature, String plainText)
+        public boolean signDetachedVerifySinglePubKey(String publicKey, String signature, String plainText)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_signDetachedVerifySingalPubKey(this.nativeRef, publicKey, signature, plainText);
+            return native_signDetachedVerifySinglePubKey(this.nativeRef, publicKey, signature, plainText);
         }
-        private native boolean native_signDetachedVerifySingalPubKey(long _nativeRef, String publicKey, String signature, String plainText);
+        private native boolean native_signDetachedVerifySinglePubKey(long _nativeRef, String publicKey, String signature, String plainText);
 
         @Override
-        public boolean signDetachedVerifySingalPrivateKey(String privateKey, String signature, String plainText)
+        public boolean signDetachedVerifySingleBinaryPubKey(byte[] publicKey, String signature, String plainText)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_signDetachedVerifySingalPrivateKey(this.nativeRef, privateKey, signature, plainText);
+            return native_signDetachedVerifySingleBinaryPubKey(this.nativeRef, publicKey, signature, plainText);
         }
-        private native boolean native_signDetachedVerifySingalPrivateKey(long _nativeRef, String privateKey, String signature, String plainText);
+        private native boolean native_signDetachedVerifySingleBinaryPubKey(long _nativeRef, byte[] publicKey, String signature, String plainText);
+
+        @Override
+        public boolean signDetachedVerifySinglePrivateKey(String privateKey, String signature, String plainText)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_signDetachedVerifySinglePrivateKey(this.nativeRef, privateKey, signature, plainText);
+        }
+        private native boolean native_signDetachedVerifySinglePrivateKey(long _nativeRef, String privateKey, String signature, String plainText);
 
         @Override
         public boolean signDetachedVerify(String signature, String plainText)
@@ -337,6 +361,14 @@ public abstract class OpenPgp {
             return native_encryptAttachmentSingleKey(this.nativeRef, publicKey, unencryptData, fileName, privateKey, passphras);
         }
         private native EncryptPackage native_encryptAttachmentSingleKey(long _nativeRef, String publicKey, byte[] unencryptData, String fileName, String privateKey, String passphras);
+
+        @Override
+        public EncryptPackage encryptAttachmentSingleBinaryKey(byte[] publicKey, byte[] unencryptData, String fileName, String privateKey, String passphras)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_encryptAttachmentSingleBinaryKey(this.nativeRef, publicKey, unencryptData, fileName, privateKey, passphras);
+        }
+        private native EncryptPackage native_encryptAttachmentSingleBinaryKey(long _nativeRef, byte[] publicKey, byte[] unencryptData, String fileName, String privateKey, String passphras);
 
         @Override
         public byte[] decryptAttachment(byte[] key, byte[] data, String passphras)

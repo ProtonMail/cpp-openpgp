@@ -36,6 +36,8 @@ class ViewController: NSViewController {
             print(privateKey);
             NSLog(newKey.publicKey)
             NSLog(newKey.privateKey)
+            
+            
         } else {
             
         }
