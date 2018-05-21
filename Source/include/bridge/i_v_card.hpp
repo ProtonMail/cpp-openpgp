@@ -20,6 +20,7 @@ class INote;
 class IOrganization;
 class IPMCustom;
 class IPMEncrypt;
+class IPMMimeType;
 class IPMScheme;
 class IPMSign;
 class IStructuredName;
@@ -148,6 +149,14 @@ public:
     virtual void setPMScheme(const std::shared_ptr<IPMScheme> & scheme) = 0;
 
     virtual void clearPMScheme() = 0;
+
+    virtual std::shared_ptr<IPMMimeType> getPMMimeType() = 0;
+
+    virtual void addPMMimeType(const std::shared_ptr<IPMMimeType> & mimetype) = 0;
+
+    virtual void setPMMimeType(const std::shared_ptr<IPMMimeType> & mimetype) = 0;
+
+    virtual void clearPMMimeType() = 0;
 
     virtual std::vector<std::shared_ptr<IUrl>> getUrls() = 0;
 

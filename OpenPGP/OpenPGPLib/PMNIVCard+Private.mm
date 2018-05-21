@@ -17,6 +17,7 @@
 #import "PMNIOrganization+Private.h"
 #import "PMNIPMCustom+Private.h"
 #import "PMNIPMEncrypt+Private.h"
+#import "PMNIPMMimeType+Private.h"
 #import "PMNIPMScheme+Private.h"
 #import "PMNIPMSign+Private.h"
 #import "PMNIStructuredName+Private.h"
@@ -405,6 +406,31 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
 - (void)clearPMScheme {
     try {
         _cppRefHandle.get()->clearPMScheme();
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (nullable PMNIPMMimeType *)getPMMimeType {
+    try {
+        auto objcpp_result_ = _cppRefHandle.get()->getPMMimeType();
+        return ::OBJ_ProtonMail::IPMMimeType::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (void)addPMMimeType:(nullable PMNIPMMimeType *)mimetype {
+    try {
+        _cppRefHandle.get()->addPMMimeType(::OBJ_ProtonMail::IPMMimeType::toCpp(mimetype));
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (void)setPMMimeType:(nullable PMNIPMMimeType *)mimetype {
+    try {
+        _cppRefHandle.get()->setPMMimeType(::OBJ_ProtonMail::IPMMimeType::toCpp(mimetype));
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (void)clearPMMimeType {
+    try {
+        _cppRefHandle.get()->clearPMMimeType();
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 

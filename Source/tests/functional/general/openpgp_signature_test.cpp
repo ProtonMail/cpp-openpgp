@@ -622,7 +622,8 @@ namespace tests {
                     std::cout << encrypt_message << std::endl;
                     
                     PGPMessage esMsg(encrypt_message);
-                    std::string plain_text = decrypt_pka(*privKey, esMsg, "XE1AdSmjIXJCz0yI3r9gL6viA251TLG", false, pubKey);
+                    bool verify = false;
+                    std::string plain_text = decrypt_pka(*privKey, esMsg, "XE1AdSmjIXJCz0yI3r9gL6viA251TLG", verify, false, pubKey);
                     
                     std::cout << plain_text << std::endl;
                     
@@ -642,9 +643,9 @@ namespace tests {
                     std::string str_data_package (dataPackage.begin(), dataPackage.end());
                     
                     ProtonMail::PMPGPMessage esMsg(str_key_package, true);
-                
+                    bool verify = false;
                     esMsg.append(str_data_package, true);
-                    std::string plain_text = decrypt_pka(*privKey, esMsg, "XE1AdSmjIXJCz0yI3r9gL6viA251TLG", false, pubKey);
+                    std::string plain_text = decrypt_pka(*privKey, esMsg, "XE1AdSmjIXJCz0yI3r9gL6viA251TLG", verify, false, pubKey);
                     
                     std::cout << plain_text << std::endl;
                     std::cout << plaintext << std::endl;

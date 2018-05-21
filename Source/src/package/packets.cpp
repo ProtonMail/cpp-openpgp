@@ -5,9 +5,6 @@ unsigned int partialBodyLen(uint8_t first_octet){
 }
 
 std::string read_packet_header(std::string & data, uint8_t & tag, bool & format, uint8_t & partial){
-    
-  
-    
 
 //    // used for partial body lengths
 //    var real_packet_length = -1;

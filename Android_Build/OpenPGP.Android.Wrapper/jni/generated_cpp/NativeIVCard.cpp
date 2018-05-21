@@ -13,6 +13,7 @@
 #include "NativeIOrganization.hpp"
 #include "NativeIPMCustom.hpp"
 #include "NativeIPMEncrypt.hpp"
+#include "NativeIPMMimeType.hpp"
 #include "NativeIPMScheme.hpp"
 #include "NativeIPMSign.hpp"
 #include "NativeIStructuredName.hpp"
@@ -565,6 +566,43 @@ CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024C
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IVCard>(nativeRef);
         ref->clearPMScheme();
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
+}
+
+CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1getPMMimeType(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+{
+    try {
+        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
+        const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IVCard>(nativeRef);
+        auto r = ref->getPMMimeType();
+        return ::djinni::release(::ProtonMail::NativeIPMMimeType::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
+}
+
+CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1addPMMimeType(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_mimetype)
+{
+    try {
+        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
+        const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IVCard>(nativeRef);
+        ref->addPMMimeType(::ProtonMail::NativeIPMMimeType::toCpp(jniEnv, j_mimetype));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
+}
+
+CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1setPMMimeType(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_mimetype)
+{
+    try {
+        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
+        const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IVCard>(nativeRef);
+        ref->setPMMimeType(::ProtonMail::NativeIPMMimeType::toCpp(jniEnv, j_mimetype));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
+}
+
+CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1clearPMMimeType(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+{
+    try {
+        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
+        const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IVCard>(nativeRef);
+        ref->clearPMMimeType();
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 

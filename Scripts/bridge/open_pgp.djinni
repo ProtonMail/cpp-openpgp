@@ -322,6 +322,13 @@ i_p_m_scheme = interface +c {
     static create_instance(type: string, value: string) : i_p_m_scheme;
 }
 
+i_p_m_mime_type = interface +c {
+    getValue() : string;
+    getType() : string;
+    getGroup() : string;
+    static create_instance(type: string, value: string) : i_p_m_mime_type;
+}
+
 i_gender = interface +c {
     getGender() : string;
     getText() : string;
@@ -423,6 +430,11 @@ i_v_card = interface +c {
     addPMScheme(scheme : i_p_m_scheme);
     setPMScheme(scheme: i_p_m_scheme);
     clearPMScheme();
+
+    getPMMimeType() : i_p_m_mime_type;
+    addPMMimeType(mimetype : i_p_m_mime_type);
+    setPMMimeType(mimetype: i_p_m_mime_type);
+    clearPMMimeType();
 
     getUrls() : list<i_url>;
     addUrl(url : i_url);
