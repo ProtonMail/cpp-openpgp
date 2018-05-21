@@ -602,6 +602,18 @@
 		758180CA20759A1C00123100 /* data_uri.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 758180C720759A1C00123100 /* data_uri.cpp */; };
 		758180CB20759A1C00123100 /* data_uri.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 758180C720759A1C00123100 /* data_uri.cpp */; };
 		758180CC20759A1C00123100 /* data_uri.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 758180C720759A1C00123100 /* data_uri.cpp */; };
+		75873DF720B26AB700012E28 /* pm_mimetype_property.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75873DF620B26AB600012E28 /* pm_mimetype_property.cpp */; };
+		75873DF820B26AB700012E28 /* pm_mimetype_property.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75873DF620B26AB600012E28 /* pm_mimetype_property.cpp */; };
+		75873DF920B26AB700012E28 /* pm_mimetype_property.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75873DF620B26AB600012E28 /* pm_mimetype_property.cpp */; };
+		75873DFA20B26AB700012E28 /* pm_mimetype_property.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75873DF620B26AB600012E28 /* pm_mimetype_property.cpp */; };
+		75873DFE20B26DA400012E28 /* pm_mime_type_scribe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75873DFD20B26DA200012E28 /* pm_mime_type_scribe.cpp */; };
+		75873DFF20B26DA400012E28 /* pm_mime_type_scribe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75873DFD20B26DA200012E28 /* pm_mime_type_scribe.cpp */; };
+		75873E0020B26DA400012E28 /* pm_mime_type_scribe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75873DFD20B26DA200012E28 /* pm_mime_type_scribe.cpp */; };
+		75873E0120B26DA400012E28 /* pm_mime_type_scribe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75873DFD20B26DA200012E28 /* pm_mime_type_scribe.cpp */; };
+		75873E0620B26F1F00012E28 /* PMNIPMMimeType+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 75873E0420B26F1700012E28 /* PMNIPMMimeType+Private.mm */; };
+		75873E0720B26F2000012E28 /* PMNIPMMimeType+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 75873E0420B26F1700012E28 /* PMNIPMMimeType+Private.mm */; };
+		75873E0820B26F4D00012E28 /* PMNIPMMimeType.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75873E0220B26F1500012E28 /* PMNIPMMimeType.h */; };
+		75873E0920B26F5A00012E28 /* PMNIPMMimeType.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75873E0220B26F1500012E28 /* PMNIPMMimeType.h */; };
 		7587833C1F60C7F100C1B683 /* uid_scribe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7587833A1F60C7F100C1B683 /* uid_scribe.cpp */; };
 		7587833D1F60C7F100C1B683 /* uid_scribe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7587833A1F60C7F100C1B683 /* uid_scribe.cpp */; };
 		7587833E1F60C7F100C1B683 /* uid_scribe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7587833A1F60C7F100C1B683 /* uid_scribe.cpp */; };
@@ -1535,6 +1547,7 @@
 			dstPath = "$(PROJECT_DIR)/../Bin/include/OpenPGP";
 			dstSubfolderSpec = 0;
 			files = (
+				75873E0920B26F5A00012E28 /* PMNIPMMimeType.h in CopyFiles */,
 				75E637422081C054005FE42E /* PMNIPMScheme.h in CopyFiles */,
 				758180C42075826E00123100 /* PMNIKey.h in CopyFiles */,
 				758180C52075826E00123100 /* PMNIPMEncrypt.h in CopyFiles */,
@@ -1580,6 +1593,7 @@
 			dstPath = "$(PROJECT_DIR)/../Bin/include/OpenPGP";
 			dstSubfolderSpec = 0;
 			files = (
+				75873E0820B26F4D00012E28 /* PMNIPMMimeType.h in CopyFiles */,
 				75E637432081C069005FE42E /* PMNIPMScheme.h in CopyFiles */,
 				758180C12075825C00123100 /* PMNIKey.h in CopyFiles */,
 				758180C22075825C00123100 /* PMNIPMEncrypt.h in CopyFiles */,
@@ -1999,6 +2013,14 @@
 		758180B42075821300123100 /* PMNIPMEncrypt+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PMNIPMEncrypt+Private.h"; path = "OpenPGPLib/PMNIPMEncrypt+Private.h"; sourceTree = "<group>"; };
 		758180C720759A1C00123100 /* data_uri.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = data_uri.cpp; sourceTree = "<group>"; };
 		758180C820759A1C00123100 /* data_uri.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = data_uri.hpp; sourceTree = "<group>"; };
+		75873DF520B26AB400012E28 /* pm_mimetype_property.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = pm_mimetype_property.hpp; sourceTree = "<group>"; };
+		75873DF620B26AB600012E28 /* pm_mimetype_property.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pm_mimetype_property.cpp; sourceTree = "<group>"; };
+		75873DFB20B26BAD00012E28 /* i_p_m_mime_type.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = i_p_m_mime_type.hpp; sourceTree = "<group>"; };
+		75873DFC20B26DA100012E28 /* pm_mime_type_scribe.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = pm_mime_type_scribe.hpp; sourceTree = "<group>"; };
+		75873DFD20B26DA200012E28 /* pm_mime_type_scribe.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pm_mime_type_scribe.cpp; sourceTree = "<group>"; };
+		75873E0220B26F1500012E28 /* PMNIPMMimeType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PMNIPMMimeType.h; path = OpenPGPLib/PMNIPMMimeType.h; sourceTree = "<group>"; };
+		75873E0320B26F1600012E28 /* PMNIPMMimeType+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PMNIPMMimeType+Private.h"; path = "OpenPGPLib/PMNIPMMimeType+Private.h"; sourceTree = "<group>"; };
+		75873E0420B26F1700012E28 /* PMNIPMMimeType+Private.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "PMNIPMMimeType+Private.mm"; path = "OpenPGPLib/PMNIPMMimeType+Private.mm"; sourceTree = "<group>"; };
 		758783381F60C6D100C1B683 /* i_uid.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = i_uid.hpp; sourceTree = "<group>"; };
 		7587833A1F60C7F100C1B683 /* uid_scribe.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uid_scribe.cpp; sourceTree = "<group>"; };
 		7587833B1F60C7F100C1B683 /* uid_scribe.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = uid_scribe.hpp; sourceTree = "<group>"; };
@@ -2955,6 +2977,9 @@
 		7519BBD91A8D868000E0E570 /* OpenPGPLib */ = {
 			isa = PBXGroup;
 			children = (
+				75873E0220B26F1500012E28 /* PMNIPMMimeType.h */,
+				75873E0320B26F1600012E28 /* PMNIPMMimeType+Private.h */,
+				75873E0420B26F1700012E28 /* PMNIPMMimeType+Private.mm */,
 				753E309F1F86F2DC00CE5AF8 /* PMNBCryptHash.h */,
 				753E30A01F86F2DC00CE5AF8 /* PMNBCryptHash+Private.h */,
 				753E30A11F86F2DD00CE5AF8 /* PMNBCryptHash+Private.mm */,
@@ -3517,6 +3542,8 @@
 				7581809E207578F300123100 /* pm_encrypt_scribe.cpp */,
 				7581809F207578F300123100 /* pm_encrypt_scribe.hpp */,
 				75E637332081BDD1005FE42E /* pm_scheme_scribe.cpp */,
+				75873DFC20B26DA100012E28 /* pm_mime_type_scribe.hpp */,
+				75873DFD20B26DA200012E28 /* pm_mime_type_scribe.cpp */,
 				75E637322081BDD1005FE42E /* pm_scheme_scribe.hpp */,
 				758180A42075790700123100 /* pm_sign_scribe.cpp */,
 				758180A52075790700123100 /* pm_sign_scribe.hpp */,
@@ -3658,6 +3685,8 @@
 				7581808C207571CA00123100 /* pm_encrypt_property.hpp */,
 				75E6372C2081BC3F005FE42E /* pm_scheme_property.cpp */,
 				75E6372D2081BC40005FE42E /* pm_scheme_property.hpp */,
+				75873DF620B26AB600012E28 /* pm_mimetype_property.cpp */,
+				75873DF520B26AB400012E28 /* pm_mimetype_property.hpp */,
 				758180922075722900123100 /* pm_sign_property.cpp */,
 				758180912075722800123100 /* pm_sign_property.hpp */,
 				75E8B86E1E25F613005BE7F9 /* product_id.cpp */,
@@ -3801,6 +3830,7 @@
 		75CA5A4A1DDE71B700A73238 /* bridge */ = {
 			isa = PBXGroup;
 			children = (
+				75873DFB20B26BAD00012E28 /* i_p_m_mime_type.hpp */,
 				75E637382081BEE5005FE42E /* i_p_m_scheme.hpp */,
 				75E13B87200900E900472B06 /* i_anniversary.hpp */,
 				75E13B86200900E800472B06 /* i_gender.hpp */,
@@ -4419,6 +4449,7 @@
 				75E6373E2081C034005FE42E /* PMNIPMScheme+Private.mm in Sources */,
 				75BA19951EC61EC100153A1A /* README.md in Sources */,
 				7517E7831AFABC35007EA967 /* decrypt.cpp in Sources */,
+				75873DFA20B26AB700012E28 /* pm_mimetype_property.cpp in Sources */,
 				7517E83F1AFABC35007EA967 /* Tag2Sub4.cpp in Sources */,
 				7580A9721EB9125A00428E9F /* email_scribe.cpp in Sources */,
 				755EA0C71ECD26CA007B155C /* stream_writer.cpp in Sources */,
@@ -4645,6 +4676,7 @@
 				7517E7AB1AFABC35007EA967 /* private_key.cpp in Sources */,
 				7517E8331AFABC35007EA967 /* Tag2Sub30.cpp in Sources */,
 				75E8B8A01E25F6CB005BE7F9 /* sound.cpp in Sources */,
+				75873E0120B26DA400012E28 /* pm_mime_type_scribe.cpp in Sources */,
 				75542A9F1EE3522F000F4ABA /* tel_uri.cpp in Sources */,
 				7517E8231AFABC35007EA967 /* Tag2Sub27.cpp in Sources */,
 				758180A62075790700123100 /* pm_sign_scribe.cpp in Sources */,
@@ -4947,6 +4979,7 @@
 				75AE62EA1AFBCFED00131986 /* pgpbzip2.cpp in Sources */,
 				7517E7A81AFABC35007EA967 /* PMPGPMessage.cpp in Sources */,
 				753522181EC143A1000B660F /* chaining_writer.cpp in Sources */,
+				75873DF920B26AB700012E28 /* pm_mimetype_property.cpp in Sources */,
 				75E8B7C31E25F219005BE7F9 /* classification.cpp in Sources */,
 				7517E7901AFABC35007EA967 /* openpgp.cpp in Sources */,
 				759D35BA1DF5E3EA00BD7F81 /* syntax_rules.cpp in Sources */,
@@ -4969,6 +5002,7 @@
 				7517E7801AFABC35007EA967 /* cfb.cpp in Sources */,
 				7517E7541AFABC35007EA967 /* MD5.cpp in Sources */,
 				7517E7D41AFABC35007EA967 /* Tag2Sub0.cpp in Sources */,
+				75873E0020B26DA400012E28 /* pm_mime_type_scribe.cpp in Sources */,
 				7517E8001AFABC35007EA967 /* Tag2Sub19.cpp in Sources */,
 				7517E8C01AFABC35007EA967 /* mpi.cpp in Sources */,
 				7517E7881AFABC35007EA967 /* encrypt.cpp in Sources */,
@@ -5235,6 +5269,7 @@
 				75E8B9271E25FAD2005BE7F9 /* key_type.cpp in Sources */,
 				759D35D81DF603B400BD7F81 /* vobject_parameters.cpp in Sources */,
 				759DA0221C5C2A3100EB0483 /* BaseObject.cpp in Sources */,
+				75873E0720B26F2000012E28 /* PMNIPMMimeType+Private.mm in Sources */,
 				759DA0231C5C2A3100EB0483 /* cfb.cpp in Sources */,
 				759DA0241C5C2A3100EB0483 /* decrypt.cpp in Sources */,
 				75A5B7B91E31834700E498A9 /* list_multi_map.cpp in Sources */,
@@ -5271,6 +5306,7 @@
 				759D35851DF24B4E00BD7F81 /* vcard_property.cpp in Sources */,
 				75B132331F0255CA0071033A /* PMNITitle+Private.mm in Sources */,
 				750B3CEC1DC28E02001391C3 /* PMNEncryptPackage+Private.mm in Sources */,
+				75873DFF20B26DA400012E28 /* pm_mime_type_scribe.cpp in Sources */,
 				75E8B7BF1E25F1F4005BE7F9 /* categories.cpp in Sources */,
 				75E8B8671E25F5DD005BE7F9 /* photo.cpp in Sources */,
 				75F5B86C1EE8B794004FEE1C /* PMNIStructuredName+Private.mm in Sources */,
@@ -5363,6 +5399,7 @@
 				75E8B9751E270A2B005BE7F9 /* agent_scribe.cpp in Sources */,
 				759DA0501C5C2A3100EB0483 /* Tag2Sub30.cpp in Sources */,
 				759DA0511C5C2A3100EB0483 /* Tag2Sub31.cpp in Sources */,
+				75873DF820B26AB700012E28 /* pm_mimetype_property.cpp in Sources */,
 				759DA0521C5C2A3100EB0483 /* Tag2Sub32.cpp in Sources */,
 				750B3CFC1DC28E02001391C3 /* PMNSrpClient+Private.mm in Sources */,
 				759DA0531C5C2A3100EB0483 /* Tag2Sub4.cpp in Sources */,
@@ -5571,6 +5608,7 @@
 				75E8B9261E25FAD2005BE7F9 /* key_type.cpp in Sources */,
 				759D35D71DF603B400BD7F81 /* vobject_parameters.cpp in Sources */,
 				75AB6B6E1C5044F100E82A0E /* BaseObject.cpp in Sources */,
+				75873E0620B26F1F00012E28 /* PMNIPMMimeType+Private.mm in Sources */,
 				75AB6B6F1C5044F100E82A0E /* cfb.cpp in Sources */,
 				75AB6B701C5044F100E82A0E /* decrypt.cpp in Sources */,
 				75A5B7B81E31834700E498A9 /* list_multi_map.cpp in Sources */,
@@ -5607,6 +5645,7 @@
 				759D35841DF24B4E00BD7F81 /* vcard_property.cpp in Sources */,
 				75B132321F0255CA0071033A /* PMNITitle+Private.mm in Sources */,
 				750B3CEB1DC28E02001391C3 /* PMNEncryptPackage+Private.mm in Sources */,
+				75873DFE20B26DA400012E28 /* pm_mime_type_scribe.cpp in Sources */,
 				75E8B7BE1E25F1F4005BE7F9 /* categories.cpp in Sources */,
 				75E8B8661E25F5DD005BE7F9 /* photo.cpp in Sources */,
 				75F5B8761EE8B795004FEE1C /* PMNIStructuredName+Private.mm in Sources */,
@@ -5699,6 +5738,7 @@
 				75E8B9741E270A2B005BE7F9 /* agent_scribe.cpp in Sources */,
 				75AB6B9C1C5044F100E82A0E /* Tag2Sub30.cpp in Sources */,
 				75AB6B9D1C5044F100E82A0E /* Tag2Sub31.cpp in Sources */,
+				75873DF720B26AB700012E28 /* pm_mimetype_property.cpp in Sources */,
 				75AB6B9E1C5044F100E82A0E /* Tag2Sub32.cpp in Sources */,
 				750B3CFB1DC28E02001391C3 /* PMNSrpClient+Private.mm in Sources */,
 				75AB6B9F1C5044F100E82A0E /* Tag2Sub4.cpp in Sources */,

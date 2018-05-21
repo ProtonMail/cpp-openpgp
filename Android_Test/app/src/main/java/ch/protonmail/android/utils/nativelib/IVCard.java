@@ -142,6 +142,15 @@ public abstract class IVCard {
 
     public abstract void clearPMScheme();
 
+    @CheckForNull
+    public abstract IPMMimeType getPMMimeType();
+
+    public abstract void addPMMimeType(@CheckForNull IPMMimeType mimetype);
+
+    public abstract void setPMMimeType(@CheckForNull IPMMimeType mimetype);
+
+    public abstract void clearPMMimeType();
+
     @Nonnull
     public abstract ArrayList<IUrl> getUrls();
 
@@ -646,6 +655,38 @@ public abstract class IVCard {
             native_clearPMScheme(this.nativeRef);
         }
         private native void native_clearPMScheme(long _nativeRef);
+
+        @Override
+        public IPMMimeType getPMMimeType()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_getPMMimeType(this.nativeRef);
+        }
+        private native IPMMimeType native_getPMMimeType(long _nativeRef);
+
+        @Override
+        public void addPMMimeType(IPMMimeType mimetype)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            native_addPMMimeType(this.nativeRef, mimetype);
+        }
+        private native void native_addPMMimeType(long _nativeRef, IPMMimeType mimetype);
+
+        @Override
+        public void setPMMimeType(IPMMimeType mimetype)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            native_setPMMimeType(this.nativeRef, mimetype);
+        }
+        private native void native_setPMMimeType(long _nativeRef, IPMMimeType mimetype);
+
+        @Override
+        public void clearPMMimeType()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            native_clearPMMimeType(this.nativeRef);
+        }
+        private native void native_clearPMMimeType(long _nativeRef);
 
         @Override
         public ArrayList<IUrl> getUrls()

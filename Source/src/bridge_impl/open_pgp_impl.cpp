@@ -327,7 +327,7 @@ namespace ProtonMail {
             privKey = std::make_shared<PGPSecretKey>(user_priv_key);
         }
         
-        PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg, "", 9, 2, true, privKey, passphras, 0x01);
+        PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg, "", 9, 0, true, privKey, passphras, 0x01);
         std::string encrypt_message = encrypted_pgp.write();
         
         return encrypt_message;

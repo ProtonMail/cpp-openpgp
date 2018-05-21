@@ -38,6 +38,7 @@
 #include "pm_encrypt_scribe.hpp"
 #include "pm_sign_scribe.hpp"
 #include "pm_scheme_scribe.hpp"
+#include "pm_mime_type_scribe.hpp"
 
 ////2.1, RFC 2426, RFC 6350
 //!!!ScribeIndex::registerStandard(new AddressScribe());
@@ -120,6 +121,7 @@ namespace ezvcard {
         registerExtended(std::make_shared<PMEncryptScribe>());
         registerExtended(std::make_shared<PMSignScribe>());
         registerExtended(std::make_shared<PMSchemeScribe>());
+        registerExtended(std::make_shared<PMMimeTypeScribe>());
         
     }
     

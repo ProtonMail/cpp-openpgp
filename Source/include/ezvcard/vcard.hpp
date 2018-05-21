@@ -36,6 +36,7 @@
 #include "pm_sign_property.hpp"
 #include "pm_custom_property.hpp"
 #include "pm_scheme_property.hpp"
+#include "pm_mimetype_property.hpp"
 #include "gender.hpp"
 
 
@@ -469,6 +470,11 @@ namespace ezvcard {
         void addPMScheme(const std::shared_ptr<IPMScheme> & scheme) final;
         void setPMScheme(const std::shared_ptr<IPMScheme> & scheme) final;
         void clearPMScheme() final;
+        
+        std::shared_ptr<IPMMimeType> getPMMimeType() final;
+        void addPMMimeType(const std::shared_ptr<IPMMimeType> & mimetype) final;
+        void setPMMimeType(const std::shared_ptr<IPMMimeType> & mimetype) final;
+        void clearPMMimeType() final;
     };
     
 }

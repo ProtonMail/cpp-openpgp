@@ -3535,6 +3535,23 @@ namespace ezvcard {
     }
     
     
+    std::shared_ptr<IPMMimeType> VCard::getPMMimeType() {
+        auto found = getProperty<PMMimeType>();
+        return found;
+    }
+    
+    void VCard::addPMMimeType(const std::shared_ptr<IPMMimeType> & mimetype){
+        addProperty<IPMMimeType, PMMimeType>(mimetype);
+    }
+    
+    void VCard::setPMMimeType(const std::shared_ptr<IPMMimeType> & mimetype){
+        setProperty<IPMMimeType, PMMimeType>(mimetype);
+    }
+    
+    void VCard::clearPMMimeType() {
+        clearProperties(PMMimeType::CLASSNAME);
+    }
+    
     
     //    /**
     //     * <p>

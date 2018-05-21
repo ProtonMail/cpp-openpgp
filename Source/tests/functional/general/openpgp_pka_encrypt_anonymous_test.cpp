@@ -104,6 +104,26 @@ namespace tests {
             
             const std::string PASSPHRASE = "test";
             
+            
+            TEST(parse_message_pgp) {
+                
+                
+                std::string test = "-----BEGIN PGP MESSAGE-----" "\n"
+                "" "\n"
+                "wcBMA2tjJVxNCRhtAQgAXvfJI3Bj6wtrUkchV11PeKwBfjCxHpH/gsn3tezgVKTU" "\n"
+                "uSvrNGFKl49iV29nOYqx31jh7rDKATQ8KVJDw09ndZ0blKyZm8E+iS+PLr3UmvfG" "\n"
+                "albLFckixUVZXPFPkrVRqAsfg9h9FLjlOfLQsXQPruS4K/HKbaIafJk79bMlbYfH" "\n"
+                "1WDj1GM5JBDNk6bheqjUsI8LVvAxUZHx4YxbwwqLabhtV72pqc1DBqxZeYvBvvfG" "\n"
+                "Eo/wbBSvui83prYfyN6BJzDZFcnQ2l6Ye6SPB4PQOFjOekQx/tlan7d/HPQ4U8D6" "\n"
+                "vxfPQxhveSKXTnKlChzOOfKoscgqBr3bTOTvsFfJEdLgAeTfYIZSXbz2LPzQHcjE" "\n"
+                "vCmT4d1U4N/gsOF6RuC94llUZLLgA+KXMQk34Ljk5ShcpTzHlmzHDmc5lf+Q2eIH" "\n"
+                "owMF4Z5DAA==" "\n"
+                "=Dvy9" "\n"
+                "-----END PGP MESSAGE-----";
+                PGPMessage pgp(test);
+                
+                
+            }
             TEST(anonymous) {
                 
                 std::string in = GPG_PKA_ENCRYPT_TO_ALICE;
