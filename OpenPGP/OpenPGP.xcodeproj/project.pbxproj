@@ -3542,9 +3542,9 @@
 				7581809E207578F300123100 /* pm_encrypt_scribe.cpp */,
 				7581809F207578F300123100 /* pm_encrypt_scribe.hpp */,
 				75E637332081BDD1005FE42E /* pm_scheme_scribe.cpp */,
-				75873DFC20B26DA100012E28 /* pm_mime_type_scribe.hpp */,
-				75873DFD20B26DA200012E28 /* pm_mime_type_scribe.cpp */,
 				75E637322081BDD1005FE42E /* pm_scheme_scribe.hpp */,
+				75873DFD20B26DA200012E28 /* pm_mime_type_scribe.cpp */,
+				75873DFC20B26DA100012E28 /* pm_mime_type_scribe.hpp */,
 				758180A42075790700123100 /* pm_sign_scribe.cpp */,
 				758180A52075790700123100 /* pm_sign_scribe.hpp */,
 			);

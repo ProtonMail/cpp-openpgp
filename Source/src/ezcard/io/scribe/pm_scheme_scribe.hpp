@@ -29,7 +29,7 @@ namespace ezvcard {
         }
         
         std::string _className() {
-            return "PMEncryptScribe";
+            return "PMSchemeScribe";
         }
         
     };

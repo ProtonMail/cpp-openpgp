@@ -54,7 +54,7 @@
                           [&](UnitTest::Test *pTest)
                           {
                               auto suiteName = std::string(pTest->m_details.suiteName);
-                              if (suiteName == "openpgo_testcases") {
+                              if (suiteName == "ez_vcard_test") {
                                   return true;
                               } else {
                                   return false;

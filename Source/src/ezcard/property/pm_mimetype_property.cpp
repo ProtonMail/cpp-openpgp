@@ -20,7 +20,7 @@ namespace ProtonMail {
 namespace ezvcard {
     
     const std::string PMMimeType::PROPERTYNAME = "X-PM-MIMETYPE";
-    const std::string PMMimeType::CLASSNAME = "PMScheme";
+    const std::string PMMimeType::CLASSNAME = "PMMimeType";
     
     std::string PMMimeType::_className() {
         return CLASSNAME;

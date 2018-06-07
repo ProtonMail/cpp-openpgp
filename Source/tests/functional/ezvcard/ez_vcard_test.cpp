@@ -91,6 +91,48 @@ namespace tests {
                     }
                 }
                 
+                
+                {
+                    std::string str =
+                    "BEGIN:VCARD\r\n"
+                    "VERSION:4.0\r\n"
+                    "FN:1 zhj4478\r\n"
+                    "item1.EMAIL:zhj4478@gmail.com\r\n"
+                    "item1.KEY;PREF=1:data\:application/pgp-keys\;base64\,mQEN\r\n"
+                    "item1.KEY;PREF=2:data\:application/pgp-keys\;base64\,mQGNB\r\n"
+                    "item1.KEY;PREF=3:data\:application/pgp-keys\;base64\,mQINB\r\n"
+                    "uv42KhFJHVMS2Bf5Izrg\r\n"
+                    "item1.X-PM-ENCRYPT:true\r\n"
+                    "item1.X-PM-SIGN:true\r\n"
+                    "item1.X-PM-SCHEME:pgp-inline\r\n"
+                    "item1.X-PM-MIMETYPE:text/plain\r\n"
+                    "UID:protonmail-ios-D4B86760-944C-455F-B9B1-B03B9AFD1881\r\n"
+                    "END:VCARD";
+                    auto vcard = Ezvcard::parse(str).first();
+                    auto keys = vcard->getKeys();
+                    auto vcardVersion = std::dynamic_pointer_cast<VCardVersion>(vcard->getVersion());
+                    VERIFY_IS_TRUE(VCardVersion::V4_0()->equals(vcardVersion));
+                    auto fn = vcard->getFormattedName();
+                    VERIFY_IS_NOT_NULL(fn);
+                    VERIFY_ARE_EQUAL("1 zhj4478", fn->getValue());
+                    for (auto key : keys) {
+                        auto pref = key->getPref();
+                        auto group = key->getGroup();
+                        // auto keyData = key->getKey();
+                        
+                        //                        VERIFY_ARE_EQUAL(INT32_MIN, pref);
+                        VERIFY_IS_TRUE(group == "item1");
+                        // VERIFY_IS_TRUE(keyData != "");
+                    }
+                    
+                    auto mimeType = vcard->getPMMimeType();
+                    
+                    
+                    auto value = mimeType->getValue();
+                }
+                
+                
+                
                 {
                     std::string str =
                     "BEGIN:VCARD\r\n"
