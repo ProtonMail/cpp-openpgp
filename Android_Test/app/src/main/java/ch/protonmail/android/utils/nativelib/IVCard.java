@@ -43,16 +43,6 @@ public abstract class IVCard {
 
     public abstract void clearEmails();
 
-    @Nonnull
-    public abstract ArrayList<IKey> getKeys();
-
-    public abstract void addKey(@CheckForNull IKey key);
-
-    /**set will replace all exsiting */
-    public abstract void setKeys(@Nonnull ArrayList<IKey> keys);
-
-    public abstract void clearKeys();
-
     @CheckForNull
     public abstract IUid getUid();
 
@@ -116,7 +106,7 @@ public abstract class IVCard {
     public abstract void clearCustoms();
 
     @CheckForNull
-    public abstract IPMSign getPMSign();
+    public abstract IPMSign getPMSign(@Nonnull String group);
 
     public abstract void addPMSign(@CheckForNull IPMSign sign);
 
@@ -125,7 +115,7 @@ public abstract class IVCard {
     public abstract void clearPMSign();
 
     @CheckForNull
-    public abstract IPMEncrypt getPMEncrypt();
+    public abstract IPMEncrypt getPMEncrypt(@Nonnull String group);
 
     public abstract void addPMEncrypt(@CheckForNull IPMEncrypt encrypt);
 
@@ -134,7 +124,7 @@ public abstract class IVCard {
     public abstract void clearPMEncrypt();
 
     @CheckForNull
-    public abstract IPMScheme getPMScheme();
+    public abstract IPMScheme getPMScheme(@Nonnull String group);
 
     public abstract void addPMScheme(@CheckForNull IPMScheme scheme);
 
@@ -143,13 +133,23 @@ public abstract class IVCard {
     public abstract void clearPMScheme();
 
     @CheckForNull
-    public abstract IPMMimeType getPMMimeType();
+    public abstract IPMMimeType getPMMimeType(@Nonnull String group);
 
     public abstract void addPMMimeType(@CheckForNull IPMMimeType mimetype);
 
     public abstract void setPMMimeType(@CheckForNull IPMMimeType mimetype);
 
     public abstract void clearPMMimeType();
+
+    @Nonnull
+    public abstract ArrayList<IKey> getKeys(@Nonnull String group);
+
+    public abstract void addKey(@CheckForNull IKey key);
+
+    /**set will replace all exsiting */
+    public abstract void setKeys(@Nonnull ArrayList<IKey> keys);
+
+    public abstract void clearKeys();
 
     @Nonnull
     public abstract ArrayList<IUrl> getUrls();
@@ -311,38 +311,6 @@ public abstract class IVCard {
             native_clearEmails(this.nativeRef);
         }
         private native void native_clearEmails(long _nativeRef);
-
-        @Override
-        public ArrayList<IKey> getKeys()
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getKeys(this.nativeRef);
-        }
-        private native ArrayList<IKey> native_getKeys(long _nativeRef);
-
-        @Override
-        public void addKey(IKey key)
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_addKey(this.nativeRef, key);
-        }
-        private native void native_addKey(long _nativeRef, IKey key);
-
-        @Override
-        public void setKeys(ArrayList<IKey> keys)
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_setKeys(this.nativeRef, keys);
-        }
-        private native void native_setKeys(long _nativeRef, ArrayList<IKey> keys);
-
-        @Override
-        public void clearKeys()
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_clearKeys(this.nativeRef);
-        }
-        private native void native_clearKeys(long _nativeRef);
 
         @Override
         public IUid getUid()
@@ -561,12 +529,12 @@ public abstract class IVCard {
         private native void native_clearCustoms(long _nativeRef);
 
         @Override
-        public IPMSign getPMSign()
+        public IPMSign getPMSign(String group)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getPMSign(this.nativeRef);
+            return native_getPMSign(this.nativeRef, group);
         }
-        private native IPMSign native_getPMSign(long _nativeRef);
+        private native IPMSign native_getPMSign(long _nativeRef, String group);
 
         @Override
         public void addPMSign(IPMSign sign)
@@ -593,12 +561,12 @@ public abstract class IVCard {
         private native void native_clearPMSign(long _nativeRef);
 
         @Override
-        public IPMEncrypt getPMEncrypt()
+        public IPMEncrypt getPMEncrypt(String group)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getPMEncrypt(this.nativeRef);
+            return native_getPMEncrypt(this.nativeRef, group);
         }
-        private native IPMEncrypt native_getPMEncrypt(long _nativeRef);
+        private native IPMEncrypt native_getPMEncrypt(long _nativeRef, String group);
 
         @Override
         public void addPMEncrypt(IPMEncrypt encrypt)
@@ -625,12 +593,12 @@ public abstract class IVCard {
         private native void native_clearPMEncrypt(long _nativeRef);
 
         @Override
-        public IPMScheme getPMScheme()
+        public IPMScheme getPMScheme(String group)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getPMScheme(this.nativeRef);
+            return native_getPMScheme(this.nativeRef, group);
         }
-        private native IPMScheme native_getPMScheme(long _nativeRef);
+        private native IPMScheme native_getPMScheme(long _nativeRef, String group);
 
         @Override
         public void addPMScheme(IPMScheme scheme)
@@ -657,12 +625,12 @@ public abstract class IVCard {
         private native void native_clearPMScheme(long _nativeRef);
 
         @Override
-        public IPMMimeType getPMMimeType()
+        public IPMMimeType getPMMimeType(String group)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getPMMimeType(this.nativeRef);
+            return native_getPMMimeType(this.nativeRef, group);
         }
-        private native IPMMimeType native_getPMMimeType(long _nativeRef);
+        private native IPMMimeType native_getPMMimeType(long _nativeRef, String group);
 
         @Override
         public void addPMMimeType(IPMMimeType mimetype)
@@ -687,6 +655,38 @@ public abstract class IVCard {
             native_clearPMMimeType(this.nativeRef);
         }
         private native void native_clearPMMimeType(long _nativeRef);
+
+        @Override
+        public ArrayList<IKey> getKeys(String group)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_getKeys(this.nativeRef, group);
+        }
+        private native ArrayList<IKey> native_getKeys(long _nativeRef, String group);
+
+        @Override
+        public void addKey(IKey key)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            native_addKey(this.nativeRef, key);
+        }
+        private native void native_addKey(long _nativeRef, IKey key);
+
+        @Override
+        public void setKeys(ArrayList<IKey> keys)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            native_setKeys(this.nativeRef, keys);
+        }
+        private native void native_setKeys(long _nativeRef, ArrayList<IKey> keys);
+
+        @Override
+        public void clearKeys()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            native_clearKeys(this.nativeRef);
+        }
+        private native void native_clearKeys(long _nativeRef);
 
         @Override
         public ArrayList<IUrl> getUrls()

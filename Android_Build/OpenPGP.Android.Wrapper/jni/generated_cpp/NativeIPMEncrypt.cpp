@@ -49,6 +49,15 @@ CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_nativelib_IPMEncrypt
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
+CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IPMEncrypt_00024CppProxy_native_1setGroup(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jstring j_g)
+{
+    try {
+        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
+        const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IPMEncrypt>(nativeRef);
+        ref->setGroup(::djinni::String::toCpp(jniEnv, j_g));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
+}
+
 CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IPMEncrypt_createInstance(JNIEnv* jniEnv, jobject /*this*/, jstring j_type, jstring j_value)
 {
     try {

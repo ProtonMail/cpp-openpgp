@@ -170,43 +170,6 @@ CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024C
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1getKeys(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
-{
-    try {
-        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
-        const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IVCard>(nativeRef);
-        auto r = ref->getKeys();
-        return ::djinni::release(::djinni::List<::ProtonMail::NativeIKey>::fromCpp(jniEnv, r));
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
-}
-
-CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1addKey(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_key)
-{
-    try {
-        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
-        const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IVCard>(nativeRef);
-        ref->addKey(::ProtonMail::NativeIKey::toCpp(jniEnv, j_key));
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
-}
-
-CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1setKeys(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_keys)
-{
-    try {
-        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
-        const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IVCard>(nativeRef);
-        ref->setKeys(::djinni::List<::ProtonMail::NativeIKey>::toCpp(jniEnv, j_keys));
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
-}
-
-CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1clearKeys(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
-{
-    try {
-        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
-        const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IVCard>(nativeRef);
-        ref->clearKeys();
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
-}
-
 CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1getUid(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
@@ -458,12 +421,12 @@ CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024C
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1getPMSign(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1getPMSign(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jstring j_group)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IVCard>(nativeRef);
-        auto r = ref->getPMSign();
+        auto r = ref->getPMSign(::djinni::String::toCpp(jniEnv, j_group));
         return ::djinni::release(::ProtonMail::NativeIPMSign::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
@@ -495,12 +458,12 @@ CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024C
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1getPMEncrypt(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1getPMEncrypt(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jstring j_group)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IVCard>(nativeRef);
-        auto r = ref->getPMEncrypt();
+        auto r = ref->getPMEncrypt(::djinni::String::toCpp(jniEnv, j_group));
         return ::djinni::release(::ProtonMail::NativeIPMEncrypt::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
@@ -532,12 +495,12 @@ CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024C
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1getPMScheme(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1getPMScheme(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jstring j_group)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IVCard>(nativeRef);
-        auto r = ref->getPMScheme();
+        auto r = ref->getPMScheme(::djinni::String::toCpp(jniEnv, j_group));
         return ::djinni::release(::ProtonMail::NativeIPMScheme::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
@@ -569,12 +532,12 @@ CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024C
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1getPMMimeType(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1getPMMimeType(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jstring j_group)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IVCard>(nativeRef);
-        auto r = ref->getPMMimeType();
+        auto r = ref->getPMMimeType(::djinni::String::toCpp(jniEnv, j_group));
         return ::djinni::release(::ProtonMail::NativeIPMMimeType::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
@@ -603,6 +566,43 @@ CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024C
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IVCard>(nativeRef);
         ref->clearPMMimeType();
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
+}
+
+CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1getKeys(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jstring j_group)
+{
+    try {
+        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
+        const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IVCard>(nativeRef);
+        auto r = ref->getKeys(::djinni::String::toCpp(jniEnv, j_group));
+        return ::djinni::release(::djinni::List<::ProtonMail::NativeIKey>::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
+}
+
+CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1addKey(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_key)
+{
+    try {
+        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
+        const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IVCard>(nativeRef);
+        ref->addKey(::ProtonMail::NativeIKey::toCpp(jniEnv, j_key));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
+}
+
+CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1setKeys(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_keys)
+{
+    try {
+        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
+        const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IVCard>(nativeRef);
+        ref->setKeys(::djinni::List<::ProtonMail::NativeIKey>::toCpp(jniEnv, j_keys));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
+}
+
+CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1clearKeys(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+{
+    try {
+        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
+        const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IVCard>(nativeRef);
+        ref->clearKeys();
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 

@@ -60,10 +60,13 @@ namespace ezvcard {
             return TextProperty::getValue();
         }
         
-        std::string getGroup() {
+        std::string getGroup() final {
             return TextProperty::getGroup();
         }
         
+        void setGroup(const std::string & g) final {
+            TextProperty::setGroup(g);
+        }
     protected:
         
         //

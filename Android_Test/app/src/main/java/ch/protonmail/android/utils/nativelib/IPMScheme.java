@@ -17,6 +17,8 @@ public abstract class IPMScheme {
     @Nonnull
     public abstract String getGroup();
 
+    public abstract void setGroup(@Nonnull String g);
+
     @CheckForNull
     public static native IPMScheme createInstance(@Nonnull String type, @Nonnull String value);
 
@@ -66,5 +68,13 @@ public abstract class IPMScheme {
             return native_getGroup(this.nativeRef);
         }
         private native String native_getGroup(long _nativeRef);
+
+        @Override
+        public void setGroup(String g)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            native_setGroup(this.nativeRef, g);
+        }
+        private native void native_setGroup(long _nativeRef, String g);
     }
 }

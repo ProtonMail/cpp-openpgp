@@ -63,15 +63,6 @@ public:
 
     virtual void clearEmails() = 0;
 
-    virtual std::vector<std::shared_ptr<IKey>> getKeys() = 0;
-
-    virtual void addKey(const std::shared_ptr<IKey> & key) = 0;
-
-    /**set will replace all exsiting */
-    virtual void setKeys(const std::vector<std::shared_ptr<IKey>> & keys) = 0;
-
-    virtual void clearKeys() = 0;
-
     virtual std::shared_ptr<IUid> getUid() = 0;
 
     virtual void setUid(const std::shared_ptr<IUid> & uuid) = 0;
@@ -126,7 +117,7 @@ public:
 
     virtual void clearCustoms() = 0;
 
-    virtual std::shared_ptr<IPMSign> getPMSign() = 0;
+    virtual std::shared_ptr<IPMSign> getPMSign(const std::string & group) = 0;
 
     virtual void addPMSign(const std::shared_ptr<IPMSign> & sign) = 0;
 
@@ -134,7 +125,7 @@ public:
 
     virtual void clearPMSign() = 0;
 
-    virtual std::shared_ptr<IPMEncrypt> getPMEncrypt() = 0;
+    virtual std::shared_ptr<IPMEncrypt> getPMEncrypt(const std::string & group) = 0;
 
     virtual void addPMEncrypt(const std::shared_ptr<IPMEncrypt> & encrypt) = 0;
 
@@ -142,7 +133,7 @@ public:
 
     virtual void clearPMEncrypt() = 0;
 
-    virtual std::shared_ptr<IPMScheme> getPMScheme() = 0;
+    virtual std::shared_ptr<IPMScheme> getPMScheme(const std::string & group) = 0;
 
     virtual void addPMScheme(const std::shared_ptr<IPMScheme> & scheme) = 0;
 
@@ -150,13 +141,22 @@ public:
 
     virtual void clearPMScheme() = 0;
 
-    virtual std::shared_ptr<IPMMimeType> getPMMimeType() = 0;
+    virtual std::shared_ptr<IPMMimeType> getPMMimeType(const std::string & group) = 0;
 
     virtual void addPMMimeType(const std::shared_ptr<IPMMimeType> & mimetype) = 0;
 
     virtual void setPMMimeType(const std::shared_ptr<IPMMimeType> & mimetype) = 0;
 
     virtual void clearPMMimeType() = 0;
+
+    virtual std::vector<std::shared_ptr<IKey>> getKeys(const std::string & group) = 0;
+
+    virtual void addKey(const std::shared_ptr<IKey> & key) = 0;
+
+    /**set will replace all exsiting */
+    virtual void setKeys(const std::vector<std::shared_ptr<IKey>> & keys) = 0;
+
+    virtual void clearKeys() = 0;
 
     virtual std::vector<std::shared_ptr<IUrl>> getUrls() = 0;
 

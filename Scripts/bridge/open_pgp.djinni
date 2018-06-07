@@ -305,6 +305,7 @@ i_p_m_sign = interface +c {
     getValue() : string;
     getType() : string;
     getGroup() : string;
+    setGroup(g: string);
     static create_instance(type: string, value: string) : i_p_m_sign;
 }
 
@@ -312,6 +313,7 @@ i_p_m_encrypt = interface +c {
     getValue() : string;
     getType() : string;
     getGroup() : string;
+    setGroup(g: string);
     static create_instance(type: string, value: string) : i_p_m_encrypt;
 }
 
@@ -319,6 +321,7 @@ i_p_m_scheme = interface +c {
     getValue() : string;
     getType() : string;
     getGroup() : string;
+    setGroup(g: string);
     static create_instance(type: string, value: string) : i_p_m_scheme;
 }
 
@@ -326,6 +329,7 @@ i_p_m_mime_type = interface +c {
     getValue() : string;
     getType() : string;
     getGroup() : string;
+    setGroup(g: string);
     static create_instance(type: string, value: string) : i_p_m_mime_type;
 }
 
@@ -375,12 +379,6 @@ i_v_card = interface +c {
     setEmails(emails : list<i_email>);
     clearEmails();
 
-    getKeys() : list<i_key>;
-    addKey(key : i_key);
-    #set will replace all exsiting
-    setKeys(keys : list<i_key>);
-    clearKeys();
-
     getUid() : i_uid;
     setUid(uuid : i_uid);
 
@@ -416,25 +414,33 @@ i_v_card = interface +c {
     setCustoms(customs: list<i_p_m_custom>);
     clearCustoms();
 
-    getPMSign() : i_p_m_sign;
+    getPMSign(group: string) : i_p_m_sign;
     addPMSign(sign : i_p_m_sign);
     setPMSign(sign: i_p_m_sign);
     clearPMSign();
 
-    getPMEncrypt() : i_p_m_encrypt;
+    getPMEncrypt(group: string) : i_p_m_encrypt;
     addPMEncrypt(encrypt : i_p_m_encrypt);
     setPMEncrypt(encrypt: i_p_m_encrypt);
     clearPMEncrypt();
 
-    getPMScheme() : i_p_m_scheme;
+    getPMScheme(group: string) : i_p_m_scheme;
     addPMScheme(scheme : i_p_m_scheme);
     setPMScheme(scheme: i_p_m_scheme);
     clearPMScheme();
 
-    getPMMimeType() : i_p_m_mime_type;
+    getPMMimeType(group: string) : i_p_m_mime_type;
     addPMMimeType(mimetype : i_p_m_mime_type);
     setPMMimeType(mimetype: i_p_m_mime_type);
     clearPMMimeType();
+
+
+    getKeys(group: string) : list<i_key>;
+    addKey(key : i_key);
+    #set will replace all exsiting
+    setKeys(keys : list<i_key>);
+    clearKeys();
+
 
     getUrls() : list<i_url>;
     addUrl(url : i_url);
