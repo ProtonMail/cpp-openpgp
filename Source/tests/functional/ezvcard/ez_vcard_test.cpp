@@ -32,8 +32,10 @@ namespace tests {
                     "UID:proton-web-a4a980af-798c-53cd-2e6e-1ceb0e1cfd5f\r\n"
                     "END:VCARD\r\n";
                     auto vcard = Ezvcard::parse(str).first();
-                    auto keys = vcard->getKeys();
-                    auto mime = vcard->getPMScheme();
+                    auto keys = vcard->getKeys("item1");
+                    auto mime = vcard->getPMScheme("item1");
+                    
+                    vcard->clearKeys();
                     for (auto key : keys) {
                         auto pref = key->getPref();
                         auto group = key->getGroup();
@@ -43,7 +45,9 @@ namespace tests {
                         VERIFY_ARE_EQUAL(INT32_MIN, pref);
                         VERIFY_IS_TRUE(group == "item1");
                       //  VERIFY_IS_TRUE(keyData != "");
+                        vcard->addKey(key);
                     }
+                    
                     
                     auto mimetype = mime->getValue();
                     VERIFY_ARE_EQUAL("pgp-mime", mimetype);
@@ -74,7 +78,7 @@ namespace tests {
                     "UID:protonmail-ios-D4B86760-944C-455F-B9B1-B03B9AFD1881\r\n"
                     "END:VCARD";
                     auto vcard = Ezvcard::parse(str).first();
-                    auto keys = vcard->getKeys();
+                    auto keys = vcard->getKeys("item1");
                     auto vcardVersion = std::dynamic_pointer_cast<VCardVersion>(vcard->getVersion());
                     VERIFY_IS_TRUE(VCardVersion::V4_0()->equals(vcardVersion));
                     auto fn = vcard->getFormattedName();
@@ -109,7 +113,7 @@ namespace tests {
                     "UID:protonmail-ios-D4B86760-944C-455F-B9B1-B03B9AFD1881\r\n"
                     "END:VCARD";
                     auto vcard = Ezvcard::parse(str).first();
-                    auto keys = vcard->getKeys();
+                    auto keys = vcard->getKeys("item1");
                     auto vcardVersion = std::dynamic_pointer_cast<VCardVersion>(vcard->getVersion());
                     VERIFY_IS_TRUE(VCardVersion::V4_0()->equals(vcardVersion));
                     auto fn = vcard->getFormattedName();
@@ -125,7 +129,7 @@ namespace tests {
                         // VERIFY_IS_TRUE(keyData != "");
                     }
                     
-                    auto mimeType = vcard->getPMMimeType();
+                    auto mimeType = vcard->getPMMimeType("item1");
                     
                     
                     auto value = mimeType->getValue();

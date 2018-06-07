@@ -139,31 +139,6 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (nonnull NSArray<PMNIKey *> *)getKeys {
-    try {
-        auto objcpp_result_ = _cppRefHandle.get()->getKeys();
-        return ::djinni::List<::OBJ_ProtonMail::IKey>::fromCpp(objcpp_result_);
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (void)addKey:(nullable PMNIKey *)key {
-    try {
-        _cppRefHandle.get()->addKey(::OBJ_ProtonMail::IKey::toCpp(key));
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (void)setKeys:(nonnull NSArray<PMNIKey *> *)keys {
-    try {
-        _cppRefHandle.get()->setKeys(::djinni::List<::OBJ_ProtonMail::IKey>::toCpp(keys));
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (void)clearKeys {
-    try {
-        _cppRefHandle.get()->clearKeys();
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
 - (nullable PMNIUid *)getUid {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->getUid();
@@ -334,9 +309,9 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (nullable PMNIPMSign *)getPMSign {
+- (nullable PMNIPMSign *)getPMSign:(nonnull NSString *)group {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->getPMSign();
+        auto objcpp_result_ = _cppRefHandle.get()->getPMSign(::djinni::String::toCpp(group));
         return ::OBJ_ProtonMail::IPMSign::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
@@ -359,9 +334,9 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (nullable PMNIPMEncrypt *)getPMEncrypt {
+- (nullable PMNIPMEncrypt *)getPMEncrypt:(nonnull NSString *)group {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->getPMEncrypt();
+        auto objcpp_result_ = _cppRefHandle.get()->getPMEncrypt(::djinni::String::toCpp(group));
         return ::OBJ_ProtonMail::IPMEncrypt::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
@@ -384,9 +359,9 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (nullable PMNIPMScheme *)getPMScheme {
+- (nullable PMNIPMScheme *)getPMScheme:(nonnull NSString *)group {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->getPMScheme();
+        auto objcpp_result_ = _cppRefHandle.get()->getPMScheme(::djinni::String::toCpp(group));
         return ::OBJ_ProtonMail::IPMScheme::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
@@ -409,9 +384,9 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (nullable PMNIPMMimeType *)getPMMimeType {
+- (nullable PMNIPMMimeType *)getPMMimeType:(nonnull NSString *)group {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->getPMMimeType();
+        auto objcpp_result_ = _cppRefHandle.get()->getPMMimeType(::djinni::String::toCpp(group));
         return ::OBJ_ProtonMail::IPMMimeType::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
@@ -431,6 +406,31 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
 - (void)clearPMMimeType {
     try {
         _cppRefHandle.get()->clearPMMimeType();
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (nonnull NSArray<PMNIKey *> *)getKeys:(nonnull NSString *)group {
+    try {
+        auto objcpp_result_ = _cppRefHandle.get()->getKeys(::djinni::String::toCpp(group));
+        return ::djinni::List<::OBJ_ProtonMail::IKey>::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (void)addKey:(nullable PMNIKey *)key {
+    try {
+        _cppRefHandle.get()->addKey(::OBJ_ProtonMail::IKey::toCpp(key));
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (void)setKeys:(nonnull NSArray<PMNIKey *> *)keys {
+    try {
+        _cppRefHandle.get()->setKeys(::djinni::List<::OBJ_ProtonMail::IKey>::toCpp(keys));
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (void)clearKeys {
+    try {
+        _cppRefHandle.get()->clearKeys();
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 

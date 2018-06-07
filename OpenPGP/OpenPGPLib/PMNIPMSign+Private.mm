@@ -51,6 +51,12 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
+- (void)setGroup:(nonnull NSString *)g {
+    try {
+        _cppRefHandle.get()->setGroup(::djinni::String::toCpp(g));
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
 + (nullable PMNIPMSign *)createInstance:(nonnull NSString *)type
                                   value:(nonnull NSString *)value {
     try {

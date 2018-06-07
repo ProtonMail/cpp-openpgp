@@ -451,27 +451,27 @@ namespace ezvcard {
         void setGender(const std::shared_ptr<IGender>& gender) final;
         void clearGender() final;
         
-        std::vector<std::shared_ptr<IKey>> getKeys() final;
+        std::vector<std::shared_ptr<IKey>> getKeys(const std::string & group) final;
         void addKey(const std::shared_ptr<IKey> & key) final;
         void setKeys(const std::vector<std::shared_ptr<IKey>> & keys) final;
         void clearKeys() final;
         
-        std::shared_ptr<IPMSign> getPMSign() final;
+        std::shared_ptr<IPMSign> getPMSign(const std::string & group) final;
         void addPMSign(const std::shared_ptr<IPMSign> & sign) final;
         void setPMSign(const std::shared_ptr<IPMSign> & sign) final;
         void clearPMSign();
         
-        std::shared_ptr<IPMEncrypt> getPMEncrypt() final;
+        std::shared_ptr<IPMEncrypt> getPMEncrypt(const std::string & group) final;
         void addPMEncrypt(const std::shared_ptr<IPMEncrypt> & encrypt) final;
         void setPMEncrypt(const std::shared_ptr<IPMEncrypt> & encrypt) final;
         void clearPMEncrypt() final;
         
-        std::shared_ptr<IPMScheme> getPMScheme() final;
+        std::shared_ptr<IPMScheme> getPMScheme(const std::string & group) final;
         void addPMScheme(const std::shared_ptr<IPMScheme> & scheme) final;
         void setPMScheme(const std::shared_ptr<IPMScheme> & scheme) final;
         void clearPMScheme() final;
         
-        std::shared_ptr<IPMMimeType> getPMMimeType() final;
+        std::shared_ptr<IPMMimeType> getPMMimeType(const std::string & group) final;
         void addPMMimeType(const std::shared_ptr<IPMMimeType> & mimetype) final;
         void setPMMimeType(const std::shared_ptr<IPMMimeType> & mimetype) final;
         void clearPMMimeType() final;

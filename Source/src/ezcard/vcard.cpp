@@ -3468,9 +3468,15 @@ namespace ezvcard {
     //    public List<Key> getKeys() {
     //        return getProperties(Key.class);
     //    }
-    std::vector<std::shared_ptr<IKey>> VCard::getKeys() {
+    std::vector<std::shared_ptr<IKey>> VCard::getKeys(const std::string & group) {
+        std::vector<std::shared_ptr<IKey>> out;
         auto found = getProperties<Key, IKey>();
-        return found;
+        for (auto key : found) {
+            if (key->getGroup() == group) {
+                out.push_back(key);
+            }
+        }
+        return out;
     }
     
     void VCard::addKey(const std::shared_ptr<IKey> & key) {
@@ -3485,9 +3491,15 @@ namespace ezvcard {
         clearProperties(Key::CLASSNAME);
     }
     
-    std::shared_ptr<IPMSign> VCard::getPMSign() {
-        auto found = getProperty<PMSign>();
-        return found;
+    std::shared_ptr<IPMSign> VCard::getPMSign(const std::string & group) {
+        std::vector<std::shared_ptr<IPMSign>> out;
+        auto found = getProperties<PMSign, IPMSign>();
+        for (auto sign : found) {
+            if (sign->getGroup() == group) {
+                return sign;
+            }
+        }
+        return nullptr;
     }
     
     void VCard::addPMSign(const std::shared_ptr<IPMSign> & sign) {
@@ -3502,9 +3514,14 @@ namespace ezvcard {
         clearProperties(PMSign::CLASSNAME);
     }
     
-    std::shared_ptr<IPMEncrypt> VCard::getPMEncrypt() {
-        auto found = getProperty<PMEncrypt>();
-        return found;
+    std::shared_ptr<IPMEncrypt> VCard::getPMEncrypt(const std::string & group) {
+        auto found = getProperties<PMEncrypt, IPMEncrypt>();
+        for (auto encrypt : found) {
+            if (encrypt->getGroup() == group) {
+                return encrypt;
+            }
+        }
+        return nullptr;
     }
     void VCard::addPMEncrypt(const std::shared_ptr<IPMEncrypt> & encrypt) {
         addProperty<IPMEncrypt, PMEncrypt>(encrypt);
@@ -3517,9 +3534,14 @@ namespace ezvcard {
         clearProperties(PMEncrypt::CLASSNAME);
     }
     
-    std::shared_ptr<IPMScheme> VCard::getPMScheme() {
-        auto found = getProperty<PMScheme>();
-        return found;
+    std::shared_ptr<IPMScheme> VCard::getPMScheme(const std::string & group) {
+        auto found = getProperties<PMScheme, IPMScheme>();
+        for (auto scheme : found) {
+            if (scheme->getGroup() == group) {
+                return scheme;
+            }
+        }
+        return nullptr;
     }
     
     void VCard::addPMScheme(const std::shared_ptr<IPMScheme> & scheme) {
@@ -3535,9 +3557,14 @@ namespace ezvcard {
     }
     
     
-    std::shared_ptr<IPMMimeType> VCard::getPMMimeType() {
-        auto found = getProperty<PMMimeType>();
-        return found;
+    std::shared_ptr<IPMMimeType> VCard::getPMMimeType(const std::string & group) {
+        auto found = getProperties<PMMimeType, IPMMimeType>();
+        for (auto type : found) {
+            if (type->getGroup() == group) {
+                return type;
+            }
+        }
+        return nullptr;
     }
     
     void VCard::addPMMimeType(const std::shared_ptr<IPMMimeType> & mimetype){

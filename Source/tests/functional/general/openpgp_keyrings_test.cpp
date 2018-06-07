@@ -126,8 +126,8 @@ namespace tests {
             
             
             TEST(generate_key_test) {
-                auto pgp = OpenPgpImpl();
-                pgp.gen
+//                auto pgp = OpenPgpImpl();
+//                pgp.gen
                 
             }
             

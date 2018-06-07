@@ -18,6 +18,8 @@ public:
 
     virtual std::string getGroup() = 0;
 
+    virtual void setGroup(const std::string & g) = 0;
+
     static std::shared_ptr<IPMEncrypt> create_instance(const std::string & type, const std::string & value);
 };
 
