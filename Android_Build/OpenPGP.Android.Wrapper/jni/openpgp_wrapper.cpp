@@ -1592,7 +1592,7 @@ Java_ch_protonmail_android_utils_OpenPGP_GenerateKey(JNIEnv* env, jobject o, jst
 
     std::string priv_key = "";
     std::string pub_key = "";
-    p.generate_new_key(2048, pwd, name, email, comments, pub_key, priv_key);
+    p.generate_new_key(2048, pwd, name, email, comments, pub_key, priv_key, 0);
 
 
     jclass clazz = (*env).FindClass("ch/protonmail/android/utils/OpenPGPKey");

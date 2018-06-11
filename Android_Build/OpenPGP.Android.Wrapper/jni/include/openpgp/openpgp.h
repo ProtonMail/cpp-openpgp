@@ -56,7 +56,7 @@ namespace pgp {
 public:
     openpgp();
     ~openpgp();
-    bool generate_new_key(int bits, std::string passphrase, std::string user_name, std::string email, std::string comments, std::string& pub, std::string& priv);
+    bool generate_new_key(int bits, std::string passphrase, std::string user_name, std::string email, std::string comments, std::string& pub, std::string& priv, int32_t time_custom);
     void encrypt_message();
 };
 

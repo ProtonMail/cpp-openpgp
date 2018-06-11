@@ -35,7 +35,7 @@ namespace ProtonMail {
         static bool m_is_debug_mode;
         
         /**generat new key pair */
-        OpenPgpKey generate_key(const std::string & user_name, const std::string & domain, const std::string & passphrase, int32_t bits);
+        OpenPgpKey generate_key(const std::string & user_name, const std::string & domain, const std::string & passphrase, int32_t bits, int32_t time);
         
         bool add_address(const Address & address) ;
 
