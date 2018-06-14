@@ -88,7 +88,7 @@ namespace ProtonMail {
             //    std::string e = "010001";
         }
         
-        bool openpgp::generate_new_key(int bits, std::string passphrase, std::string user_name, std::string email, std::string comments, std::string& pub, std::string& priv)
+        bool openpgp::generate_new_key(int bits, std::string passphrase, std::string user_name, std::string email, std::string comments, std::string& pub, std::string& priv, int32_t time_custom)
         {
             BN_CTX *ctx= BN_CTX_new();
             BIGNUM* e = BN_new();
@@ -165,7 +165,7 @@ namespace ProtonMail {
 
             
             //Key creation time
-            time_t time = now();
+            time_t time = time_custom > 0 ? time_custom : now();
             
             // Secret Key Packet
             Tag5::Ptr sec = std::make_shared<Tag5>();

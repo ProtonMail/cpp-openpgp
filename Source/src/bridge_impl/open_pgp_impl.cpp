@@ -178,7 +178,8 @@ namespace ProtonMail {
     OpenPgpKey OpenPgpImpl::generate_key(const std::string & user_name,
                                          const std::string & domain,
                                          const std::string & passphrase,
-                                         int32_t bits) {
+                                         int32_t bits,
+                                         int32_t time) {
         ProtonMail::pgp::openpgp p;
         if (user_name.empty()) {
             throw std::runtime_error("Invalid user name format");
@@ -188,7 +189,7 @@ namespace ProtonMail {
         
         std::string priv_key = "";
         std::string pub_key = "";
-        p.generate_new_key(bits, passphrase, email/*user_name*/, email, comments, pub_key, priv_key);
+        p.generate_new_key(bits, passphrase, email/*user_name*/, email, comments, pub_key, priv_key, time);
         
         return OpenPgpKey("", pub_key, priv_key, "", false);
     }

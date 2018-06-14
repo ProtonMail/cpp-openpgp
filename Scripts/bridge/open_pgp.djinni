@@ -74,7 +74,7 @@ open_pgp = interface +c {
 
 
     #generat new key pair
-    generate_key(user_name : string, domain : string, passphrase : string, bits : i32) : open_pgp_key;
+    generate_key(user_name : string, domain : string, passphrase : string, bits : i32, time: i32) : open_pgp_key;
 
     # old functions blow
 

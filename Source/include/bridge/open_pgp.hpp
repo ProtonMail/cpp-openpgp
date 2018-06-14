@@ -71,7 +71,7 @@ public:
     virtual bool clean_addresses() = 0;
 
     /**generat new key pair */
-    virtual OpenPgpKey generate_key(const std::string & user_name, const std::string & domain, const std::string & passphrase, int32_t bits) = 0;
+    virtual OpenPgpKey generate_key(const std::string & user_name, const std::string & domain, const std::string & passphrase, int32_t bits, int32_t time) = 0;
 
     /**
      * old functions blow

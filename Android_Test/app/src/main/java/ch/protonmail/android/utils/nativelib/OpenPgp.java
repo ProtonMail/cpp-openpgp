@@ -29,7 +29,7 @@ public abstract class OpenPgp {
 
     /**generat new key pair */
     @Nonnull
-    public abstract OpenPgpKey generateKey(@Nonnull String userName, @Nonnull String domain, @Nonnull String passphrase, int bits);
+    public abstract OpenPgpKey generateKey(@Nonnull String userName, @Nonnull String domain, @Nonnull String passphrase, int bits, int time);
 
     /**
      * old functions blow
@@ -227,12 +227,12 @@ public abstract class OpenPgp {
         private native boolean native_cleanAddresses(long _nativeRef);
 
         @Override
-        public OpenPgpKey generateKey(String userName, String domain, String passphrase, int bits)
+        public OpenPgpKey generateKey(String userName, String domain, String passphrase, int bits, int time)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_generateKey(this.nativeRef, userName, domain, passphrase, bits);
+            return native_generateKey(this.nativeRef, userName, domain, passphrase, bits, time);
         }
-        private native OpenPgpKey native_generateKey(long _nativeRef, String userName, String domain, String passphrase, int bits);
+        private native OpenPgpKey native_generateKey(long _nativeRef, String userName, String domain, String passphrase, int bits, int time);
 
         @Override
         public void updatePrivateInfo(String privateKey)

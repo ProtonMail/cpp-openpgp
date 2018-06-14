@@ -216,7 +216,7 @@ namespace tests {
                     auto email = "example.com"; //domain
                     auto passphrase = "123"; //pwd
                     auto pgp = ProtonMail::OpenPgpImpl::create_instance();
-                    auto new_key = pgp->generate_key(user_id, email, passphrase, 2048);
+                    auto new_key = pgp->generate_key(user_id, email, passphrase, 2048, 0);
                     
                     VERIFY_IS_FALSE( new_key.private_key.empty());
                     VERIFY_IS_FALSE( new_key.public_key.empty());
