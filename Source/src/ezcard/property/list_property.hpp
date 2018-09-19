@@ -57,6 +57,10 @@ public:
         _values.push_back(value);
     }
     
+    void setValues(std::vector<T> values) {
+        _values = values;
+    }
+    
 protected:
     void _validate(std::list<ValidationWarning::Ptr>& warnings, const VCardVersion::Ptr& version, const std::shared_ptr<VCard>& vcard) {
         if (_values.size() == 0) {

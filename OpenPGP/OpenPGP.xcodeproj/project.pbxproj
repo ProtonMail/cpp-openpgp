@@ -442,6 +442,13 @@
 		753F4AAA1E1DC62D001D8902 /* vinnie_vobject_parameters_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 753F4AA91E1DC62D001D8902 /* vinnie_vobject_parameters_test.cpp */; };
 		7545D3F91C45A990000D2F8D /* open_pgp_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */; };
 		7545D3FA1C45A995000D2F8D /* open_pgp_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */; };
+		754EDC862151CE6B00A919DB /* PMNICategories+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 754EDC842151CE5E00A919DB /* PMNICategories+Private.mm */; };
+		754EDC872151CE6C00A919DB /* PMNICategories+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 754EDC842151CE5E00A919DB /* PMNICategories+Private.mm */; };
+		754EDC882151CE8500A919DB /* PMNICategories.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 754EDC822151CE5D00A919DB /* PMNICategories.h */; };
+		754EDC8B2151D31700A919DB /* categories_scribe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 754EDC892151D31500A919DB /* categories_scribe.cpp */; };
+		754EDC8C2151D31700A919DB /* categories_scribe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 754EDC892151D31500A919DB /* categories_scribe.cpp */; };
+		754EDC8D2151D31700A919DB /* categories_scribe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 754EDC892151D31500A919DB /* categories_scribe.cpp */; };
+		754EDC8E2151D31700A919DB /* categories_scribe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 754EDC892151D31500A919DB /* categories_scribe.cpp */; };
 		75542A271EDF80D6000F4ABA /* ezvcard_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75542A261EDF80D6000F4ABA /* ezvcard_impl.cpp */; };
 		75542A281EDF80D6000F4ABA /* ezvcard_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75542A261EDF80D6000F4ABA /* ezvcard_impl.cpp */; };
 		75542A291EDF80D6000F4ABA /* ezvcard_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75542A261EDF80D6000F4ABA /* ezvcard_impl.cpp */; };
@@ -1593,6 +1600,7 @@
 			dstPath = "$(PROJECT_DIR)/../Bin/include/OpenPGP";
 			dstSubfolderSpec = 0;
 			files = (
+				754EDC882151CE8500A919DB /* PMNICategories.h in CopyFiles */,
 				75873E0820B26F4D00012E28 /* PMNIPMMimeType.h in CopyFiles */,
 				75E637432081C069005FE42E /* PMNIPMScheme.h in CopyFiles */,
 				758180C12075825C00123100 /* PMNIKey.h in CopyFiles */,
@@ -1923,6 +1931,12 @@
 		753F4AA91E1DC62D001D8902 /* vinnie_vobject_parameters_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vinnie_vobject_parameters_test.cpp; path = functional/ezvcard/vinnie_vobject_parameters_test.cpp; sourceTree = "<group>"; };
 		75419F471A97E1A8002A1F25 /* libOpenPGP_i386.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOpenPGP_i386.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7545D3F71C45A964000D2F8D /* open_pgp_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = open_pgp_impl.cpp; sourceTree = "<group>"; };
+		754EDC812151CB8000A919DB /* i_categories.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = i_categories.hpp; sourceTree = "<group>"; };
+		754EDC822151CE5D00A919DB /* PMNICategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PMNICategories.h; path = OpenPGPLib/PMNICategories.h; sourceTree = "<group>"; };
+		754EDC832151CE5D00A919DB /* PMNICategories+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PMNICategories+Private.h"; path = "OpenPGPLib/PMNICategories+Private.h"; sourceTree = "<group>"; };
+		754EDC842151CE5E00A919DB /* PMNICategories+Private.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "PMNICategories+Private.mm"; path = "OpenPGPLib/PMNICategories+Private.mm"; sourceTree = "<group>"; };
+		754EDC892151D31500A919DB /* categories_scribe.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = categories_scribe.cpp; sourceTree = "<group>"; };
+		754EDC8A2151D31600A919DB /* categories_scribe.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = categories_scribe.hpp; sourceTree = "<group>"; };
 		75542A211EDF6922000F4ABA /* i_formatted_name.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = i_formatted_name.hpp; sourceTree = "<group>"; };
 		75542A221EDF701E000F4ABA /* i_ezvcard.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = i_ezvcard.hpp; sourceTree = "<group>"; };
 		75542A241EDF706E000F4ABA /* i_v_card.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = i_v_card.hpp; sourceTree = "<group>"; };
@@ -2977,6 +2991,9 @@
 		7519BBD91A8D868000E0E570 /* OpenPGPLib */ = {
 			isa = PBXGroup;
 			children = (
+				754EDC822151CE5D00A919DB /* PMNICategories.h */,
+				754EDC832151CE5D00A919DB /* PMNICategories+Private.h */,
+				754EDC842151CE5E00A919DB /* PMNICategories+Private.mm */,
 				75873E0220B26F1500012E28 /* PMNIPMMimeType.h */,
 				75873E0320B26F1600012E28 /* PMNIPMMimeType+Private.h */,
 				75873E0420B26F1700012E28 /* PMNIPMMimeType+Private.mm */,
@@ -3508,6 +3525,8 @@
 				750CF2E91ECF9EA300C01E68 /* mailer_scribe.hpp */,
 				75DC26281EFDE671006685AB /* nickname_scribe.cpp */,
 				75DC26291EFDE671006685AB /* nickname_scribe.hpp */,
+				754EDC892151D31500A919DB /* categories_scribe.cpp */,
+				754EDC8A2151D31600A919DB /* categories_scribe.hpp */,
 				753A36101EF0B2E900032667 /* note_scribe.cpp */,
 				753A36111EF0B2E900032667 /* note_scribe.hpp */,
 				75542A901EE28BA8000F4ABA /* organization_scribe.cpp */,
@@ -3848,6 +3867,7 @@
 				75F5B8341EE89B6F004FEE1C /* i_email.hpp */,
 				75F5B8351EE89B6F004FEE1C /* i_mailer.hpp */,
 				75F5B8361EE89B6F004FEE1C /* i_organization.hpp */,
+				754EDC812151CB8000A919DB /* i_categories.hpp */,
 				75F5B8371EE89B6F004FEE1C /* i_photo.hpp */,
 				75F5B8381EE89B6F004FEE1C /* i_product_id.hpp */,
 				75F5B8391EE89B6F004FEE1C /* i_structured_name.hpp */,
@@ -4348,7 +4368,7 @@
 		7519BBCF1A8D868000E0E570 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Yanfeng Zhang";
 				TargetAttributes = {
 					751D429A1DC3F2BC001A3229 = {
@@ -4602,6 +4622,7 @@
 				75E8B8D01E25F72C005BE7F9 /* title.cpp in Sources */,
 				75E637302081BC41005FE42E /* pm_scheme_property.cpp in Sources */,
 				75AE62E91AFBCFED00131986 /* pgpbzip2.cpp in Sources */,
+				754EDC8D2151D31700A919DB /* categories_scribe.cpp in Sources */,
 				75542A461EDF99B3000F4ABA /* PMNIVCard+Private.mm in Sources */,
 				7567843F1ED3F4E800656A1E /* charset.cpp in Sources */,
 				75542AB21EE52E95000F4ABA /* uri_property_scribe.cpp in Sources */,
@@ -4870,6 +4891,7 @@
 				758E7E771E2FF9FE00EBB566 /* character_bitset.cpp in Sources */,
 				7517E7BC1AFABC35007EA967 /* packet.cpp in Sources */,
 				7517E7CC1AFABC35007EA967 /* subpacket.cpp in Sources */,
+				754EDC8B2151D31700A919DB /* categories_scribe.cpp in Sources */,
 				759D35871DF24B4E00BD7F81 /* string_util.cpp in Sources */,
 				7517E7201AFABC35007EA967 /* DES.cpp in Sources */,
 				7517E72C1AFABC35007EA967 /* IDEA.cpp in Sources */,
@@ -5302,6 +5324,7 @@
 				759DA02A1C5C2A3100EB0483 /* PGPDetachedSignature.cpp in Sources */,
 				759DA02B1C5C2A3100EB0483 /* PGPKey.cpp in Sources */,
 				759D35991DF24B4E00BD7F81 /* vcard_version.cpp in Sources */,
+				754EDC872151CE6C00A919DB /* PMNICategories+Private.mm in Sources */,
 				75E637352081BDD2005FE42E /* pm_scheme_scribe.cpp in Sources */,
 				759D35851DF24B4E00BD7F81 /* vcard_property.cpp in Sources */,
 				75B132331F0255CA0071033A /* PMNITitle+Private.mm in Sources */,
@@ -5381,6 +5404,7 @@
 				75E8B7E31E25F259005BE7F9 /* email.cpp in Sources */,
 				759DA0491C5C2A3100EB0483 /* Tag2Sub24.cpp in Sources */,
 				75E8B8F71E25F9C3005BE7F9 /* calscale.cpp in Sources */,
+				754EDC8E2151D31700A919DB /* categories_scribe.cpp in Sources */,
 				75E8B9511E25FBAC005BE7F9 /* vcard_parameter_case_classes.cpp in Sources */,
 				75E8B9451E25FB2A005BE7F9 /* sound_type.cpp in Sources */,
 				759DA04A1C5C2A3100EB0483 /* Tag2Sub25.cpp in Sources */,
@@ -5641,6 +5665,7 @@
 				75AB6B761C5044F100E82A0E /* PGPDetachedSignature.cpp in Sources */,
 				75AB6B771C5044F100E82A0E /* PGPKey.cpp in Sources */,
 				759D35981DF24B4E00BD7F81 /* vcard_version.cpp in Sources */,
+				754EDC862151CE6B00A919DB /* PMNICategories+Private.mm in Sources */,
 				75E637372081BDD2005FE42E /* pm_scheme_scribe.cpp in Sources */,
 				759D35841DF24B4E00BD7F81 /* vcard_property.cpp in Sources */,
 				75B132321F0255CA0071033A /* PMNITitle+Private.mm in Sources */,
@@ -5720,6 +5745,7 @@
 				75E8B7E21E25F259005BE7F9 /* email.cpp in Sources */,
 				75AB6B951C5044F100E82A0E /* Tag2Sub24.cpp in Sources */,
 				75E8B8F61E25F9C3005BE7F9 /* calscale.cpp in Sources */,
+				754EDC8C2151D31700A919DB /* categories_scribe.cpp in Sources */,
 				75E8B9501E25FBAC005BE7F9 /* vcard_parameter_case_classes.cpp in Sources */,
 				75E8B9441E25FB2A005BE7F9 /* sound_type.cpp in Sources */,
 				75AB6B961C5044F100E82A0E /* Tag2Sub25.cpp in Sources */,
@@ -5867,6 +5893,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s";
+				"VALID_ARCHS[sdk=iphonesimulator*]" = "x86_64 i386";
 			};
 			name = Debug;
 		};
@@ -5900,12 +5928,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -5958,12 +5988,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -6038,6 +6070,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s";
+				"VALID_ARCHS[sdk=iphonesimulator*]" = "x86_64 i386";
 			};
 			name = Debug;
 		};
@@ -6074,6 +6108,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s";
+				"VALID_ARCHS[sdk=iphonesimulator*]" = "x86_64 i386";
 			};
 			name = Debug;
 		};
@@ -6134,6 +6170,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s";
+				"VALID_ARCHS[sdk=iphonesimulator*]" = "x86_64 i386";
 			};
 			name = Debug;
 		};
@@ -6152,6 +6190,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Release;
 		};
@@ -6201,6 +6240,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = "arm64 armv7 armv7s";
+				"VALID_ARCHS[sdk=iphonesimulator*]" = "x86_64 i386";
 			};
 			name = Debug;
 		};

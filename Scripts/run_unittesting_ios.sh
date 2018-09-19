@@ -8,5 +8,7 @@ xcodebuild \
     -destination 'platform=iOS Simulator,name=iPhone 8,OS=latest' \
 	-sdk iphonesimulator \
 	test
+	
+	# -verbose
 
 #| xcpretty --test --color

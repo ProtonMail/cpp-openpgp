@@ -151,6 +151,15 @@ public abstract class IVCard {
 
     public abstract void clearKeys();
 
+    @CheckForNull
+    public abstract ICategories getCategories(@Nonnull String group);
+
+    public abstract void addCategories(@CheckForNull ICategories c);
+
+    public abstract void setCategories(@CheckForNull ICategories c);
+
+    public abstract void clearCategories();
+
     @Nonnull
     public abstract ArrayList<IUrl> getUrls();
 
@@ -687,6 +696,38 @@ public abstract class IVCard {
             native_clearKeys(this.nativeRef);
         }
         private native void native_clearKeys(long _nativeRef);
+
+        @Override
+        public ICategories getCategories(String group)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_getCategories(this.nativeRef, group);
+        }
+        private native ICategories native_getCategories(long _nativeRef, String group);
+
+        @Override
+        public void addCategories(ICategories c)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            native_addCategories(this.nativeRef, c);
+        }
+        private native void native_addCategories(long _nativeRef, ICategories c);
+
+        @Override
+        public void setCategories(ICategories c)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            native_setCategories(this.nativeRef, c);
+        }
+        private native void native_setCategories(long _nativeRef, ICategories c);
+
+        @Override
+        public void clearCategories()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            native_clearCategories(this.nativeRef);
+        }
+        private native void native_clearCategories(long _nativeRef);
 
         @Override
         public ArrayList<IUrl> getUrls()

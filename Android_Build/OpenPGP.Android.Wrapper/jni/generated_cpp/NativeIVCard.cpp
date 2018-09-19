@@ -4,6 +4,7 @@
 #include "NativeIVCard.hpp"  // my header
 #include "NativeIAddress.hpp"
 #include "NativeIBirthday.hpp"
+#include "NativeICategories.hpp"
 #include "NativeIEmail.hpp"
 #include "NativeIFormattedName.hpp"
 #include "NativeIGender.hpp"
@@ -603,6 +604,43 @@ CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024C
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IVCard>(nativeRef);
         ref->clearKeys();
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
+}
+
+CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1getCategories(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jstring j_group)
+{
+    try {
+        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
+        const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IVCard>(nativeRef);
+        auto r = ref->getCategories(::djinni::String::toCpp(jniEnv, j_group));
+        return ::djinni::release(::ProtonMail::NativeICategories::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
+}
+
+CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1addCategories(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_c)
+{
+    try {
+        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
+        const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IVCard>(nativeRef);
+        ref->addCategories(::ProtonMail::NativeICategories::toCpp(jniEnv, j_c));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
+}
+
+CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1setCategories(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_c)
+{
+    try {
+        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
+        const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IVCard>(nativeRef);
+        ref->setCategories(::ProtonMail::NativeICategories::toCpp(jniEnv, j_c));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
+}
+
+CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1clearCategories(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+{
+    try {
+        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
+        const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IVCard>(nativeRef);
+        ref->clearCategories();
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 

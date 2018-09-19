@@ -3579,6 +3579,30 @@ namespace ezvcard {
         clearProperties(PMMimeType::CLASSNAME);
     }
     
+    ///
+    std::shared_ptr<ICategories> VCard::getCategories(const std::string & group) {
+        auto found = getProperties<Categories, ICategories>();
+        for (auto type : found) {
+            if (type->getGroup() == group) {
+                return type;
+            }
+        }
+        return nullptr;
+    }
+    
+    void VCard::addCategories(const std::shared_ptr<ICategories> & c) {
+        addProperty<ICategories, Categories>(c);
+    }
+    
+    void VCard::setCategories(const std::shared_ptr<ICategories> & c) {
+         setProperty<ICategories, Categories>(c);
+    }
+    
+    void VCard::clearCategories() {
+        clearProperties(Categories::CLASSNAME);
+    }
+
+    
     
     //    /**
     //     * <p>

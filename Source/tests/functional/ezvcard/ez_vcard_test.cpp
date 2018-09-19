@@ -20,6 +20,58 @@ namespace tests {
             TEST(real_cases_test) {
                 
                 {
+                    auto str =
+                    "BEGIN:VCARD\r\n"
+                    "VERSION:4.0\r\n"
+                    "PRODID:-//ProtonMail//ProtonMail vCard 1.0.0//EN\r\n"
+                    "ITEM1.CATEGORIES:Family,iOS dev team,9\r\n"
+                    "ITEM2.CATEGORIES:Family,10\r\n"
+                    "END:VCARD\r\n";
+                    
+                    auto vcard = Ezvcard::parse(str).first();
+                    
+                    auto c1 = vcard->getCategories("ITEM1");
+                    auto c2 = vcard->getCategories("ITEM2");
+                    
+                    auto c1All = c1->getValues();
+                    auto c2All = c2->getValues();
+
+                    auto check1 = std::vector<std::string>{"Family", "iOS dev team", "9"};
+                    VERIFY_ARE_EQUAL(c1All, check1);
+                    auto check2 = std::vector<std::string> {"Family", "10"};
+                    VERIFY_ARE_EQUAL(c2All, check2);
+                    
+                    auto newVCard = std::make_shared<VCard>();
+                    
+                    newVCard->setVersion(VCardVersion::V4_0());
+                    
+                    auto category1 = Categories::create_instance("item1", check1);
+                    auto category2 = Categories::create_instance("item2", check2);
+                    
+                    newVCard->addCategories(category1);
+                    newVCard->addCategories(category2);
+                    
+                    
+                    auto out = Ezvcard::write(newVCard)->go();
+                    
+                    auto outString =
+                    "BEGIN:VCARD\r\n"
+                    "VERSION:4.0\r\n"
+                    "PRODID:pm-ez-vcard 0.0.1\r\n"
+                    "item1.CATEGORIES:Family,iOS dev team,9\r\n"
+                    "item2.CATEGORIES:Family,10\r\n"
+                    "END:VCARD\r\n";
+                    
+                    VERIFY_ARE_EQUAL(out, outString);
+                    
+                    newVCard->setCategories(category1);
+                    newVCard->addCategories(category2);
+                    
+                    auto out1 = Ezvcard::write(newVCard)->go();
+                    VERIFY_ARE_EQUAL(out1, outString);
+                }
+                
+                {
                     std::string str =
                     "BEGIN:VCARD\r\n"
                     "VERSION:4.0\r\n"
@@ -62,80 +114,6 @@ namespace tests {
                     auto actual = writer->go();
 //                    VERIFY_ARE_EQUAL(actual, str);
                 }
-                
-                
-                {
-                    std::string str =
-                    "BEGIN:VCARD\r\n"
-                    "VERSION:4.0\r\n"
-                    "FN:1 zhj4478\r\n"
-                    "item1.EMAIL:zhj4478@gmail.com\r\n"
-                    "item1.KEY;PREF=1:data\\:application\/pgp-keys\\;base64\\,mQENBFrGVYMBCADNO2\r\n jHzF\/698RKchMmn9OF\/i0w4fkfe+BJPtk5p8L+QUCDl\/uXK3q6G00KUVpCrD35eZChUaXLW\r\n dLVgglRRlSAfXJT6waYtK9PnEJWRKTnaUZlBH89PN7w9rye\/4BQd\/XmmpFDvbJts82oUTQU\r\n b9UtpjneX4xAv2MdRgwQ2JyFoyo2jyvYuzpPCILhn+QshA1pHc5nnWxmPI\/xpYq+ToYvAu4\r\n VtOFJSdbOX\/74GUwCpelwZvhtYo+AZmTzgnkwv2LcSLkjy9DxLgrAXTSpUhs3O9CsLs9Ws7\r\n DYm9oI1\/RAuMuVkZtpwDDi1q\/8HcvG6jagV9ctJnqkmj34I7K1m1\/TABEBAAG0KVlhbmZlb\r\n mcgWmhhbmcgKGtleSAyKSA8emhqNDQ3OEBnbWFpbC5jb20+iQFUBBMBCgA+FiEE7oJYiLnQ\r\n LRTiJ2msWw6U5UeWX9wFAlrGVYMCGwMFCQeGH4AFCwkIBwMFFQoJCAsFFgIDAQACHgECF4A\r\n ACgkQWw6U5UeWX9w3zwf+NMqfL1tz71m76dFVRcSfj16omZ7lxOORPEL\/itafJuXtg6RR\/E\r\n 3oB2PqRTkiYUoEbCJuRxmqtCPDBTL\/EC6t4Dw8yVL5MtyRupWGnmJcwNez047laj1fNC6B1\r\n 8MI6cxdqD\/asU10j\/VhIgP7mGQwPXHJ5BqlXvQajkA9SUhyqPC2vrORy0jIUyUbivFeQ7T2\r\n RjqmTQ3yH9ZvZtE6fu5ueNnyTeu9WrVbkc8uIT8apG\/DTRHY5OadHiwqMUm31ibVDoOrjNg\r\n 3jBPZ3myxb0suCXLVKBFpuRG6b4b0uSAy6+5S+f580\/1RT2MeLZofnvfsJHvKgMPJqTIcd+\r\n O9yc2emrkBDQRaxlWDAQgArUCZ5JhR3vv+lUAUvpSwGxtRdmnDjCoHmQWiF9pEw10416dHv\r\n Qw3ACBBixNmiC1tBfI1GjAg2v7jgs5WRe7eazg62HK4jL\/hkn8LchDE2zhhBg5qhRYqJVQR\r\n kUwMUVVrd0EsG\/wdewKCoN0zHMepZFP7jymReMsnPkVN1vdN+VTKlXqUGROUmNoq+SJ0IMa\r\n ayEbwuZUZhUYo59TYMHaA0HPA+okmfbh0xd9k\/kSzKlporSA6zVrgv3kBkAgjcezu3K2cHH\r\n 2mIuWdObV1JZn5i7qRJXxFtW2Qhg25ByIJ3OSf+ZnPyqQgeFEwfOA8YSVmIemmLTOGJd9Zn\r\n cbPSIr\/6wARAQABiQE8BBgBCgAmFiEE7oJYiLnQLRTiJ2msWw6U5UeWX9wFAlrGVYMCGwwF\r\n CQeGH4AACgkQWw6U5UeWX9z1gQgAy0qQKZXv6+j2sfbsD5CWLZx+FIotXNCWJduQ47gR3Vp\r\n VWrvKm3TKnO1XjcdXom4F62fXxSv+tJ0S9MlDTkLPhCXXMBgloBtHmVN4It2kJcDUlmPe7P\r\n dMyDaLB0ckfZEm9Dl9vKebXMwI74jnwcWJ7BdLCWN7\/qJqZqA1ot\/R2prfcjoSqD6EdTnJr\r\n WzHFZopiRmRS2LiDlwB\/gtmwkfo59CapZhyGboRc2kakKjmMH7kE26XF6kWhOT2bGoAbX5H\r\n wzKrwd8\/IPgcue6SnB9Rsyrp6Mku0zoZoAj1UBZdFLbw8gQLX2002FB1f9XHJCmUNQRnCel\r\n 6Wfq1oIMDj1yqUw==\r\n"
-                    "item1.KEY;PREF=2:data\\:application\/pgp-keys\\;base64\\,mQGNBFrGVawBDAC\/ze\r\n P6KDaEEJNThmCZQaiDxCyCfBtjyjQVC1SSCMjLoT4CWlw2b7f0nw+pUUUeL80XJaeDqIW23\r\n rBCtFUwraC3kCCk0bQ2JpaKAOdBrtvun929Pt99WiV8d43K4h97gSkfFfk7mhNCsI0ljMq4\r\n VijwEB7ROqohe9QgYrn2\/ABvS1KD4xBNr40yyNPrf69mNit+1tIP1UjqYIAingRKKWMZVEk\r\n 4WRjdT+8PQBsnTWCeit+WaRaL0BT+DbV4gdpR3vJSpc5Sgk6NrRjK\/\/ZgqrzM2bxvAjoohj\r\n 3SEzHkl+3YvAvt1vLhtUVTBE8LQBD6g8QS9Xz7qMOmufiLA8czbeMyepj+96m1eStBZ0u9G\r\n Brn7yvIhSmSA+FAwkcE1TsLW84kZCE41xm\/5UH\/H8paTrkzO7VcWNkQgmsL8UEsICj+p4UM\r\n XLUTkISahezEivupfrUJ4c6UeL4eU3jvK7sVDNwc7P34r8EZULG2Yj3+lx1HPJYnSZR2zMV\r\n sptDZxj69aOUAEQEAAbQpWWFuZmVuZyBaaGFuZyAoa2V5IDMpIDx6aGo0NDc4QGdtYWlsLm\r\n NvbT6JAdQEEwEKAD4WIQTs2Oc33uS\/fv9w0HLVYoL2AJrEhwUCWsZVrAIbAwUJB4YfgAULC\r\n QgHAwUVCgkICwUWAgMBAAIeAQIXgAAKCRDVYoL2AJrEh8qsDACddTsuxYfTdUejioTARyxE\r\n +2\/p3PMu9bUaFg\/jdWXbA87wuoxy9tfTJjIzEJq\/U0\/rYkU6dijah5QUjoNQiSxrYipxRJI\r\n BUtD23sES50oaQGPqwFRwvu+DA+8P4oPnDTxz8nFwFSveCV+VjU5iq3o61QblDxZhNF2Yje\r\n piHkR\/3QLYl3CMaLqqRHRLBauEdK\/4bHBBsycipKVlQjUaZj07Fs0ORthVsbzlwTDeaYlKs\r\n 1OjcrFOYPwpMsrrvdobVvjOogJVsp141uLcm2NW2XzByQQ91Xj2HbD6nf1RyuNmTrBp50hy\r\n 2kUP5HtM9vM5I1g\/HQmO8ZoML2Y9TXaNlJHbeqUKj1VeEmRIrfu6R6IyRbL5hHCmi2CIS5h\r\n FiJhw1Fpq5xjS4gIMhM671OEAVmsWlADcRAiik3kzf+F3S8oCIp\/U57PG7MyRfQwHxRi\/OX\r\n BB3nlwqiR9tqBDckF257KWICpFnVh48eu4nnDARl+85CpZlP4HDN1o\/ejpa7VqyEu5AY0EW\r\n sZVrAEMALps20681WyBXwCUdfVM4GVHb6oY5PD0XhGClRmxcbzq+Oy8gW0tO\/F4\/GpfYOkh\r\n 3gCg4i2PYAzJS30gBwQeEtXu9GiR8eUE73dvMcZoLx+VfRBtJNOSwSzBJuDALHLVIfzUikp\r\n k\/nDP1uP\/5QVqiNyrGVppxv9i+0fun0\/ZDAkmmbv+250oxYKnId28q+acSfguVyZfg4aa2B\r\n EUHdI8ONqBo5pnHdOgrZ122orIXKB9NilkolQE0E9YOoqrTjjFa6D1Rqhc2z+QAD3iFPsfH\r\n f1\/J0UL63PJo9EadQpqve3IoigU\/YCh5JNhN5WLSr677upQlrSd7AivtyPDs\/4XjDSn+A3n\r\n UiJ9IIkVFwfD7HggCOScl0FRqpPT\/zk\/DXlV6eYA8B79DpzODcE7USGVhgNiyunpYqRtCqO\r\n eutcO5AtUJdj4AZesx6WjZkvXSzzDkY385blpNGGyGSEnHFlmES5Ack+DMRViSEYvHxGIgB\r\n 2K8Y09mERsGfiqqJ0BSOmLFwARAQABiQG8BBgBCgAmFiEE7NjnN97kv37\/cNBy1WKC9gCax\r\n IcFAlrGVawCGwwFCQeGH4AACgkQ1WKC9gCaxIfYoAwAvlCp+Jj0J6hg4ECyUGCHJI56P\/5r\r\n xKw7PQ299DuFWGLACMk6wBPRek8\/hFgOzm5z7e97suolkNZE0dmVxTdz7JGpkFVFRS\/ci4G\r\n WQZOfUL6riWnM1kzNJ6HARtTjt7ItCg7mBWOJgnwsTV196DFy0tw88B6WN5TYsSyiW2bTe1\r\n PldmDSi37q69+qn65z7GiVChvhGPFBqmFZgYs+OWV9TDmUStyH72IaEbdijt8zUWRRcHxqK\r\n EAgpWGwUArwgRQ0eIoBOmmtbEvWOdKvvicpyDgvep05aVtskWmhSOuH9AsOfPvtOpJ809Z2\r\n 40vamM2tzTensYEMrsQPqeF59M3F0lXIu6ouqqZrV74rLV61IlfqMTP91NXng7+i4rMNaeH\r\n C8Isk3QMit+PfM5FvExa+tpQclB34dmeJLOMC5Nep6YA1pY9c\/rA+2BqHdeSeNJCGJ0mj7t\r\n 2rhPiNhMzBnRW+SXrCIlMmUVB345u3FmeXw030CyArK5z1qch5YiVqr4yd\r\n"
-                    "item1.KEY;PREF=3:data\\:application\/pgp-keys\\;base64\\,mQINBFrGVVQBEADO8l\r\n PUuW1x6vcUVupXRWlNL8rvoKpCykMVDtVbEDo7iKULNEIVzEqQq50Do+tAX4f0JOTHVJ92B\r\n OxQ3IqklpfJvhQnsoxBOvMQnpEH90iFovecC5PCJ25MjExKJFCRsi5QJXFWTI+DvX64prIq\r\n TbQ7GMQWhBGErJch+gaOBsw1+jo3VrCxQRsNxIZz4RbQbllEImB1kT5v50jv3VECAfUg6UL\r\n 8W4IUn+G58vdTzvutDKWqqZn05pnv\/Jey3Q1qOkZPQQ+yvTeAGtUFobK\/e6hpIXr4\/wxvwk\r\n QL9uTdcuZtu1dNs3CyUhlC93QmNQq+zpo07Q8lz8grxaEVknjKUUJsNSWnT7AFY4RlzQEr0\r\n JcvygsgiVQJxiyFlUkzUx5cvkbchwW98egXL0pOn8GKRPpFXWaKCZ2hZpuyxBS5r+oQuS22\r\n zjvh8acnULIMXJNbEq5mR0RW9KW1GfL6nqgotEEQAbQ4kP1VD7JjW2dE+XGWlBlRM9S7Fn8\r\n z2QyDZoMeqb6L78QC1OgdbgWPAzDWiSsXdBBF57CuhVEvTBhXSoKfbcc+JD+8rRjaihMeF7\r\n DhKdQoIvOH7HEv8m\/yGrhPc7uVjO9PXWFn9kUyeAgjMTBy73FmkZSe12YMnz9bppeStp5Lv\r\n vOoZBArvUpcruyqD2E7lzRBrXkfVzdJN1Z788PCyQARAQABtCFZYW5mZW5nIFpoYW5nIDx6\r\n aGo0NDc4QGdtYWlsLmNvbT6JAlQEEwEKAD4WIQQeMhvBVPZ9B1f6MS9g8V30+0KatQUCWsZ\r\n VVAIbAwUJB4YfgAULCQgHAwUVCgkICwUWAgMBAAIeAQIXgAAKCRBg8V30+0KatRiiD\/48d7\r\n mvPRXy1GNGyNnwSAX1BV3qCyvrr2DORRtCMb\/l8Xwt7q3A6k01xLbKEmZDLYgk\/bDNFU\/rq\r\n Y\/E6n2dO4D6X6Gh3dLkOXGGl6hYmtTWyjBRXZ6hxiEJHvNysvPgznBQXX8VuBE4rEte3s3m\r\n uRECpu3P68fBRXy5yx+7c+J1xvZVh9Fd\/CYjCeiq9OYRbolWpyb4wZcTvWb2ts4\/0E8RCU\/\r\n LFlaFxdfgJA3EKaUPrERzwYEvor3eqhH+0V6TIYMYINkxXcsliLlSKMQIQGikL8SZVtLwdi\r\n zA0ClKsflCfAjqc1jSaAj8nZ6aoJGaE2j75zoyTS2T7w2rc3B0xZEPxdp\/iRnSZhD2OKitw\r\n o1wVIt8caH4rKdSbOZY+rFiapHaxllnqDwIgCooLq3qDIhD40eCIiH+OcckNyOjLG+jkOOR\r\n YWO9iOcmkvf\/TboSuKRSuopyNG3c2qgwTzbamWbR8YF7jV+p27x\/IOt4hF507aw3r3Z0duP\r\n U7sCx7zP0w6siELScnfzBJB3MuIl\/b68SgmFefZ16m0V00+xrpMkJk8t9\/\/n8A0zFICCPRg\r\n phVs1FPywjdmIVXE7FJKw2Hrj0crGMWK0Xxt+52btFNS+VWqlLaCNnOhtqNEULWqhf5WEsA\r\n 1QcZsQTis0sn47jtuDanRAAKiw7fOxPG8JZ1i67UbkCDQRaxlVUARAA4VAFZvnSZha+LPuH\r\n liytCdlM3TXW8fbG9KI0P4IhHo8rAQjuzZfaLRrQNyT3BQeHs6DqMdMoOVAUDmDs+DSvpNc\r\n 7XvA+5SLrRkeRtDHRSjXTo9h2gGVJY\/IC+FMNieCtlxb8dN3yCMH9zvRhg2QFO\/EppLJa57\r\n WHvSxVyJEMuJy7mo4oM70PepfXDgilRmY4wDHIFPgFVCROmRJ9VpyoMsfJuoIHFleCWPwJI\r\n noHdXaGRSJoRjpwEbfbrdEN2WqRSe\/GMEg3\/lT8KXPFt+iHM2iotp\/VUBysapPiSDD8\/p4q\r\n NYZsv8b0tU\/xuNZ2eGluftuhj+LOmUjJh8kEPCF3AhdeI9kI6lYTCv+VPMiEKwZNjLlb4Jl\r\n QfPo74PnBxK9oR0hOiA9u5Pbc41Vx9ecdaBzOOf9vygod6zm9WZewDghee8AWHp6ywej4Qe\r\n 1DL1vfM58vhPSVUJHhT09YjWy1DqCDLTuZUKMdDA\/BodPWrQPCYZPx2xlLWrNiE0rdNVWL1\r\n 27tTTwNRf+9WhbdrSoOO3iWmJeqeKFzZ8\/AMQ4ApRDfRYnnQtaUuRCvndJaISVmJeuasPkW\r\n \/6BmsQZmqUi+vvvLNdpiSHjpqZkcbCSgoSZze0QoG0UeXMihzD5S9aT\/vQCDaK0jp6ZbN6H\r\n zagZhKDfZ7r78Rc+QOb4WChaRyDMAEQEAAYkCPAQYAQoAJhYhBB4yG8FU9n0HV\/oxL2DxXf\r\n T7Qpq1BQJaxlVUAhsMBQkHhh+AAAoJEGDxXfT7Qpq1mM4P\/1lRNstt01EQ4TAD48qm5jCuI\r\n gR72jGFe\/mMawuWqvMISI74nVmi9H\/v971C0LZKT5BDBSTAQ3ZRlS1Ieszc0UpPquQtxxvM\r\n L45lDUWmq1FC2ghYfWv+xqeebpPGpfbaoPdmXnv9YhbblYCQPE8Trpunj\/LjSpmgbLuDt6Q\r\n PgYQVNCvOlT0a+1AWGcf5fA+BJmXPEotEFanDCTVIa3wzIxKVAuBB3A3fKHwmjPzYZvFIvi\r\n sR70lq20hOukM+sk\/A3KJuWAheQv5pmQj5TTQ5z+AV+OYdIbW0Jtn55q01Nt9T2yBnegb5v\r\n M9uWMPWT1CtEsaMG4udZ58jWjSeycnWJbI5IpM9uZO6iVJ4pnPs3Jdlm1sEcu0lK+opmFtf\r\n yt\/u07QjztHtVMsho5DazrFohGfCjrFvVjjpBaWf4rHxwtePM7TgltYCMnzkp3cOEYlRser\r\n xp0USZ9s\/8uC2a0EyplODopSy7yIzgPFIT0hJiwlbmDtaLsSqOs02Oi9S+jogl\/T2vj8KWa\r\n E3DqlD50XADQvVZlo\/FuKe9d8PShZaCfTGV5kUY12xWIQ7p+jMIp+XJk9RW2\/SFemhcUYn7\r\n JUYuzzdIFhVk9n0qMvklkacXureuLeSEtgDVW1x+tpA0O41w8L5gkcSxkhPDRa1F2kKWKIK\r\n uv42KhFJHVMS2Bf5Izrg\r\n"
-                    "item1.X-PM-ENCRYPT:true\r\n"
-                    "item1.X-PM-SIGN:true\r\n"
-                    "UID:protonmail-ios-D4B86760-944C-455F-B9B1-B03B9AFD1881\r\n"
-                    "END:VCARD";
-                    auto vcard = Ezvcard::parse(str).first();
-                    auto keys = vcard->getKeys("item1");
-                    auto vcardVersion = std::dynamic_pointer_cast<VCardVersion>(vcard->getVersion());
-                    VERIFY_IS_TRUE(VCardVersion::V4_0()->equals(vcardVersion));
-                    auto fn = vcard->getFormattedName();
-                    VERIFY_IS_NOT_NULL(fn);
-                    VERIFY_ARE_EQUAL("1 zhj4478", fn->getValue());
-                    for (auto key : keys) {
-                        auto pref = key->getPref();
-                        auto group = key->getGroup();
-                       // auto keyData = key->getKey();
-                        
-//                        VERIFY_ARE_EQUAL(INT32_MIN, pref);
-                        VERIFY_IS_TRUE(group == "item1");
-                       // VERIFY_IS_TRUE(keyData != "");
-                    }
-                }
-                
-                
-                {
-                    std::string str =
-                    "BEGIN:VCARD\r\n"
-                    "VERSION:4.0\r\n"
-                    "FN:1 zhj4478\r\n"
-                    "item1.EMAIL:zhj4478@gmail.com\r\n"
-                    "item1.KEY;PREF=1:data\:application/pgp-keys\;base64\,mQEN\r\n"
-                    "item1.KEY;PREF=2:data\:application/pgp-keys\;base64\,mQGNB\r\n"
-                    "item1.KEY;PREF=3:data\:application/pgp-keys\;base64\,mQINB\r\n"
-                    "uv42KhFJHVMS2Bf5Izrg\r\n"
-                    "item1.X-PM-ENCRYPT:true\r\n"
-                    "item1.X-PM-SIGN:true\r\n"
-                    "item1.X-PM-SCHEME:pgp-inline\r\n"
-                    "item1.X-PM-MIMETYPE:text/plain\r\n"
-                    "UID:protonmail-ios-D4B86760-944C-455F-B9B1-B03B9AFD1881\r\n"
-                    "END:VCARD";
-                    auto vcard = Ezvcard::parse(str).first();
-                    auto keys = vcard->getKeys("item1");
-                    auto vcardVersion = std::dynamic_pointer_cast<VCardVersion>(vcard->getVersion());
-                    VERIFY_IS_TRUE(VCardVersion::V4_0()->equals(vcardVersion));
-                    auto fn = vcard->getFormattedName();
-                    VERIFY_IS_NOT_NULL(fn);
-                    VERIFY_ARE_EQUAL("1 zhj4478", fn->getValue());
-                    for (auto key : keys) {
-                        auto pref = key->getPref();
-                        auto group = key->getGroup();
-                        // auto keyData = key->getKey();
-                        
-                        //                        VERIFY_ARE_EQUAL(INT32_MIN, pref);
-                        VERIFY_IS_TRUE(group == "item1");
-                        // VERIFY_IS_TRUE(keyData != "");
-                    }
-                    
-                    auto mimeType = vcard->getPMMimeType("item1");
-                    
-                    
-                    auto value = mimeType->getValue();
-                }
-                
-                
                 
                 {
                     std::string str =

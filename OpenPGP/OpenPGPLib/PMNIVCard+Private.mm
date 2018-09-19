@@ -8,6 +8,7 @@
 #import "DJIMarshal+Private.h"
 #import "PMNIAddress+Private.h"
 #import "PMNIBirthday+Private.h"
+#import "PMNICategories+Private.h"
 #import "PMNIEmail+Private.h"
 #import "PMNIFormattedName+Private.h"
 #import "PMNIGender+Private.h"
@@ -431,6 +432,31 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
 - (void)clearKeys {
     try {
         _cppRefHandle.get()->clearKeys();
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (nullable PMNICategories *)getCategories:(nonnull NSString *)group {
+    try {
+        auto objcpp_result_ = _cppRefHandle.get()->getCategories(::djinni::String::toCpp(group));
+        return ::OBJ_ProtonMail::ICategories::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (void)addCategories:(nullable PMNICategories *)c {
+    try {
+        _cppRefHandle.get()->addCategories(::OBJ_ProtonMail::ICategories::toCpp(c));
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (void)setCategories:(nullable PMNICategories *)c {
+    try {
+        _cppRefHandle.get()->setCategories(::OBJ_ProtonMail::ICategories::toCpp(c));
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (void)clearCategories {
+    try {
+        _cppRefHandle.get()->clearCategories();
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 

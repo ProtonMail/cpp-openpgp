@@ -11,6 +11,7 @@ namespace ProtonMail {
 
 class IAddress;
 class IBirthday;
+class ICategories;
 class IEmail;
 class IFormattedName;
 class IGender;
@@ -157,6 +158,14 @@ public:
     virtual void setKeys(const std::vector<std::shared_ptr<IKey>> & keys) = 0;
 
     virtual void clearKeys() = 0;
+
+    virtual std::shared_ptr<ICategories> getCategories(const std::string & group) = 0;
+
+    virtual void addCategories(const std::shared_ptr<ICategories> & c) = 0;
+
+    virtual void setCategories(const std::shared_ptr<ICategories> & c) = 0;
+
+    virtual void clearCategories() = 0;
 
     virtual std::vector<std::shared_ptr<IUrl>> getUrls() = 0;
 

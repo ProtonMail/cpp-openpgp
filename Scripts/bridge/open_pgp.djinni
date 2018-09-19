@@ -356,6 +356,15 @@ i_key = interface +c {
 
 }
 
+i_categories = interface +c {
+    getValues() : list<string>;
+    addValue(text : string);
+    setValues(values: list<string>);
+    getGroup() : string;
+    setGroup(g: string);
+    static create_instance(group: string, value: list<string>) : i_categories;
+}
+
 
 i_v_card = interface +c {
 
@@ -441,6 +450,10 @@ i_v_card = interface +c {
     setKeys(keys : list<i_key>);
     clearKeys();
 
+    getCategories(group: string) : i_categories;
+    addCategories(c : i_categories);
+    setCategories(c: i_categories);
+    clearCategories();
 
     getUrls() : list<i_url>;
     addUrl(url : i_url);

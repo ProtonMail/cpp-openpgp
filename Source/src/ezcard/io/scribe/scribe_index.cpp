@@ -39,7 +39,7 @@
 #include "pm_sign_scribe.hpp"
 #include "pm_scheme_scribe.hpp"
 #include "pm_mime_type_scribe.hpp"
-
+#include "categories_scribe.hpp"
 ////2.1, RFC 2426, RFC 6350
 //!!!ScribeIndex::registerStandard(new AddressScribe());
 //ScribeIndex::registerStandard(new AgentScribe());
@@ -47,7 +47,6 @@
 //!!!ScribeIndex::registerStandard(new BirthdayScribe());
 //ScribeIndex::registerStandard(new CalendarRequestUriScribe());
 //ScribeIndex::registerStandard(new CalendarUriScribe());
-//ScribeIndex::registerStandard(new CategoriesScribe());
 //ScribeIndex::registerStandard(new ClassificationScribe());
 //ScribeIndex::registerStandard(new ClientPidMapScribe());
 //!!!ScribeIndex::registerStandard(new EmailScribe());
@@ -116,12 +115,14 @@ namespace ezvcard {
         registerStandard(std::make_shared<TitleScribe>());
         registerStandard(std::make_shared<UrlScribe>());
         registerStandard(std::make_shared<UidScribe>());
+        registerStandard(std::make_shared<CategoriesScribe>());
         //
         registerExtended(std::make_shared<PMCustomScribe>());
         registerExtended(std::make_shared<PMEncryptScribe>());
         registerExtended(std::make_shared<PMSignScribe>());
         registerExtended(std::make_shared<PMSchemeScribe>());
         registerExtended(std::make_shared<PMMimeTypeScribe>());
+        
         
     }
     
