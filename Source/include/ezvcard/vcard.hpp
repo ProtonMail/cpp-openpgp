@@ -476,15 +476,12 @@ namespace ezvcard {
         void addPMMimeType(const std::shared_ptr<IPMMimeType> & mimetype) final;
         void setPMMimeType(const std::shared_ptr<IPMMimeType> & mimetype) final;
         void clearPMMimeType() final;
-<<<<<<< HEAD
-        
+
         std::shared_ptr<ICategories> getCategories(const std::string & group) final;
         void addCategories(const std::shared_ptr<ICategories> & c) final;
         void setCategories(const std::shared_ptr<ICategories> & c) final;
         void clearCategories() final;
-
-=======
->>>>>>> 7fed7be57e01412603ddf96988ef780d5a3eff24
+        
     };
     
 }
