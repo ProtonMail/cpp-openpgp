@@ -1469,6 +1469,10 @@ namespace ezvcard {
     //        return getProperties(Photo.class);
     //    }
     
+    std::vector<Photo::Ptr> VCard::getPhotos() {
+        return getProperties<Photo>();
+    }
+    
     /**
      * <p>
      * Adds a photo to the vCard, such as the person's portrait.
@@ -3472,7 +3476,7 @@ namespace ezvcard {
         std::vector<std::shared_ptr<IKey>> out;
         auto found = getProperties<Key, IKey>();
         for (auto key : found) {
-            if (key->getGroup() == group) {
+            if (str_equals(key->getGroup(), group)) {
                 out.push_back(key);
             }
         }
@@ -3495,7 +3499,7 @@ namespace ezvcard {
         std::vector<std::shared_ptr<IPMSign>> out;
         auto found = getProperties<PMSign, IPMSign>();
         for (auto sign : found) {
-            if (sign->getGroup() == group) {
+            if (str_equals(sign->getGroup(), group)) {
                 return sign;
             }
         }
@@ -3517,7 +3521,7 @@ namespace ezvcard {
     std::shared_ptr<IPMEncrypt> VCard::getPMEncrypt(const std::string & group) {
         auto found = getProperties<PMEncrypt, IPMEncrypt>();
         for (auto encrypt : found) {
-            if (encrypt->getGroup() == group) {
+            if (str_equals(encrypt->getGroup(), group)) {
                 return encrypt;
             }
         }
@@ -3537,7 +3541,7 @@ namespace ezvcard {
     std::shared_ptr<IPMScheme> VCard::getPMScheme(const std::string & group) {
         auto found = getProperties<PMScheme, IPMScheme>();
         for (auto scheme : found) {
-            if (scheme->getGroup() == group) {
+            if (str_equals(scheme->getGroup(), group)) {
                 return scheme;
             }
         }
@@ -3560,7 +3564,7 @@ namespace ezvcard {
     std::shared_ptr<IPMMimeType> VCard::getPMMimeType(const std::string & group) {
         auto found = getProperties<PMMimeType, IPMMimeType>();
         for (auto type : found) {
-            if (type->getGroup() == group) {
+            if (str_equals(type->getGroup(), group)) {
                 return type;
             }
         }
@@ -3583,7 +3587,7 @@ namespace ezvcard {
     std::shared_ptr<ICategories> VCard::getCategories(const std::string & group) {
         auto found = getProperties<Categories, ICategories>();
         for (auto type : found) {
-            if (type->getGroup() == group) {
+            if (str_equals(type->getGroup(), group)) {
                 return type;
             }
         }

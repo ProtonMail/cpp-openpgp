@@ -87,15 +87,15 @@
 //                                  return false;
 //                              }
                               
-                              if (pTest->m_properties.Has("Ignore"))
-                                  return false;
-                              if (pTest->m_properties.Has("Ignore:Apple"))
-                                  return false;
-                              if (pTest->m_properties.Has("Ignore:IOS"))
-                                  return false;
-                              if (pTest->m_properties.Has("Requires"))
-                                  return false;
-                              return true;
+//                              if (pTest->m_properties.Has("Ignore"))
+//                                  return false;
+//                              if (pTest->m_properties.Has("Ignore:Apple"))
+//                                  return false;
+//                              if (pTest->m_properties.Has("Ignore:IOS"))
+//                                  return false;
+//                              if (pTest->m_properties.Has("Requires"))
+//                                  return false;
+//                              return true;
                           },
                           60000 * 3);
     

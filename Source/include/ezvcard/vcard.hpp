@@ -147,7 +147,7 @@ namespace ezvcard {
         //    public Role addRole(String role) {
         //    public void addRoleAlt(Role... altRepresentations) {
         
-        //    public List<Photo> getPhotos() {
+        std::vector<Photo::Ptr> getPhotos();
         void addPhoto(Photo::Ptr photo);
         //    public void addPhotoAlt(Photo... altRepresentations) {
         

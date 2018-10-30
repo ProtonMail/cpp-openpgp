@@ -577,6 +577,7 @@ void VCardParameters::setLabel(std::string label) {
      * @see <a href="http://tools.ietf.org/html/rfc6350#page-20">RFC 6350
      * p.20</a>
      */
+    // TODO:: check for empty string
     void VCardParameters::setMediaType(const std::string& mediaType) {
         replace(MEDIATYPE, mediaType);
     }
