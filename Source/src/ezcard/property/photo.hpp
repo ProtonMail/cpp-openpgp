@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "image_property.hpp"
+#include "i_photo.hpp"
 
 namespace ezvcard {
     
@@ -71,7 +72,7 @@ namespace ezvcard {
  * @see <a href="http://tools.ietf.org/html/rfc2426#page-10">RFC 2426 p.10</a>
  * @see <a href="http://www.imc.org/pdi/vcard-21.doc">vCard 2.1 p.10</a>
  */
-class Photo : public ImageProperty {
+class Photo: public ImageProperty, public IPhoto {
     
 public:
     typedef std::shared_ptr<Photo> Ptr;
@@ -105,8 +106,15 @@ protected:
         
     }
     
+public:
+    // from IPhoto
+    std::string getEncodedData() final;
+    std::vector<uint8_t> getRawData() final;
+    std::string getURL() final;
+    std::string getImageType() final;
+    bool getIsBinary() final;
+    void setPhoto(const std::vector<uint8_t> & rawData, const std::string & type, bool isBinary) final;
 };
-
     
 }
 

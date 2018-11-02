@@ -24,6 +24,7 @@ class IPMEncrypt;
 class IPMMimeType;
 class IPMScheme;
 class IPMSign;
+class IPhoto;
 class IStructuredName;
 class ITelephone;
 class ITitle;
@@ -166,6 +167,12 @@ public:
     virtual void setCategories(const std::shared_ptr<ICategories> & c) = 0;
 
     virtual void clearCategories() = 0;
+
+    virtual std::shared_ptr<IPhoto> getPhoto() = 0;
+
+    virtual void setPhoto(const std::shared_ptr<IPhoto> & photo) = 0;
+
+    virtual void clearPhotos() = 0;
 
     virtual std::vector<std::shared_ptr<IUrl>> getUrls() = 0;
 

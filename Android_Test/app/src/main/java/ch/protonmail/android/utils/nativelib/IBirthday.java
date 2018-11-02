@@ -18,7 +18,11 @@ public abstract class IBirthday {
     public abstract String getText();
 
     @CheckForNull
-    public static native IBirthday createInstance(@Nonnull String type, @Nonnull String date);
+    public static IBirthday createInstance(@Nonnull String type, @Nonnull String date)
+    {
+        return CppProxy.createInstance(type,
+                                       date);
+    }
 
     private static final class CppProxy extends IBirthday
     {
@@ -32,14 +36,14 @@ public abstract class IBirthday {
         }
 
         private native void nativeDestroy(long nativeRef);
-        public void destroy()
+        public void _djinni_private_destroy()
         {
             boolean destroyed = this.destroyed.getAndSet(true);
             if (!destroyed) nativeDestroy(this.nativeRef);
         }
         protected void finalize() throws java.lang.Throwable
         {
-            destroy();
+            _djinni_private_destroy();
             super.finalize();
         }
 
@@ -66,5 +70,8 @@ public abstract class IBirthday {
             return native_getText(this.nativeRef);
         }
         private native String native_getText(long _nativeRef);
+
+        @CheckForNull
+        public static native IBirthday createInstance(@Nonnull String type, @Nonnull String date);
     }
 }

@@ -45,7 +45,35 @@ END:VCARD
                 auto out = Ezvcard::write(newVCard)->go();
                 VERIFY_ARE_EQUAL(out, str);
             }
-
+            
+            TEST(correct_vCard4_with_photo_ios_way) {
+                // must have extra line ending
+                std::string str = R"(BEGIN:VCARD
+VERSION:4.0
+PRODID:pm-ez-vcard 0.0.1
+PHOTO:data:image/jpeg;base64,cLaxHfZiBSjwsi5i
+FN:Andrew Smith
+END:VCARD
+)";
+                str = ProtonMail::replaceAll(str, "\n", "\r\n"); // convert line ending for raw string
+                
+                // check and read from input
+                auto vcard = Ezvcard::parse(str).first();
+                auto formattedName = vcard->getFormattedName();
+                VERIFY_ARE_EQUAL(formattedName->getValue(), "Andrew Smith");
+                
+                // clone and verify the new vCard
+                auto newVCard = std::make_shared<VCard>();
+                newVCard->setVersion(VCardVersion::V4_0());
+                newVCard->setFormattedName(std::make_shared<FormattedName>(formattedName->getValue()));
+                
+                auto photo = vcard->getPhoto();
+                auto newPhoto = Photo::create_instance(photo->getRawData(), photo->getImageType(), photo->getIsBinary());
+                newVCard->setPhoto(newPhoto);
+                auto out = Ezvcard::write(newVCard)->go();
+                VERIFY_ARE_EQUAL(out, str);
+            }
+            
             TEST(correct_vCard3_with_photo) {
                 std::string str = R"(BEGIN:VCARD
 VERSION:3.0
@@ -70,6 +98,41 @@ END:VCARD
                     newVCard->addPhoto(photo);
                 auto out = Ezvcard::write(newVCard)->go();
                 VERIFY_ARE_EQUAL(out, str);
+            }
+            
+            TEST(incorrect_v4_with_V3_photo_data_ios_way) {
+                std::string str = R"(BEGIN:VCARD
+VERSION:4.0
+PRODID:pm-ez-vcard 0.0.1
+PHOTO;ENCODING=b:cLaxHfZiBSk=
+FN:Andrew Smith
+END:VCARD
+)";
+                str = ProtonMail::replaceAll(str, "\n", "\r\n");
+                
+                // check and read from input
+                auto vcard = Ezvcard::parse(str).first();
+                auto formattedName = vcard->getFormattedName();
+                VERIFY_ARE_EQUAL(formattedName->getValue(), "Andrew Smith");
+                
+                // clone and verify the new vCard
+                auto newVCard = std::make_shared<VCard>();
+                newVCard->setVersion(VCardVersion::V4_0());
+                newVCard->setFormattedName(std::make_shared<FormattedName>(formattedName->getValue()));
+                auto photo = vcard->getPhoto();
+                auto newPhoto = Photo::create_instance(photo->getRawData(), photo->getImageType(), photo->getIsBinary());
+                newVCard->setPhoto(newPhoto);
+                auto out = Ezvcard::write(newVCard)->go();
+                
+                std::string rightStr = R"(BEGIN:VCARD
+VERSION:4.0
+PRODID:pm-ez-vcard 0.0.1
+PHOTO:data:application/octet-stream;base64,cLaxHfZiBSk=
+FN:Andrew Smith
+END:VCARD
+)";
+                rightStr = ProtonMail::replaceAll(rightStr, "\n", "\r\n");
+                VERIFY_ARE_EQUAL(out, rightStr);
             }
             
             TEST(incorrect_v4_with_V3_photo_data) {

@@ -3606,6 +3606,17 @@ namespace ezvcard {
         clearProperties(Categories::CLASSNAME);
     }
 
+    std::shared_ptr<IPhoto> VCard::getPhoto() {
+        return getProperty<Photo>();
+    }
+    
+    void VCard::setPhoto(const std::shared_ptr<IPhoto> & photo) {
+        setProperty<IPhoto, Photo>(photo);
+    }
+    
+    void VCard::clearPhotos() {
+        clearProperties(Photo::CLASSNAME);
+    }
     
     
     //    /**

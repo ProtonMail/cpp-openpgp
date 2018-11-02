@@ -24,7 +24,12 @@ public abstract class IEmail {
     public abstract void setGroup(@Nonnull String g);
 
     @CheckForNull
-    public static native IEmail createInstance(@Nonnull String type, @Nonnull String email, @Nonnull String group);
+    public static IEmail createInstance(@Nonnull String type, @Nonnull String email, @Nonnull String group)
+    {
+        return CppProxy.createInstance(type,
+                                       email,
+                                       group);
+    }
 
     private static final class CppProxy extends IEmail
     {
@@ -38,14 +43,14 @@ public abstract class IEmail {
         }
 
         private native void nativeDestroy(long nativeRef);
-        public void destroy()
+        public void _djinni_private_destroy()
         {
             boolean destroyed = this.destroyed.getAndSet(true);
             if (!destroyed) nativeDestroy(this.nativeRef);
         }
         protected void finalize() throws java.lang.Throwable
         {
-            destroy();
+            _djinni_private_destroy();
             super.finalize();
         }
 
@@ -88,5 +93,8 @@ public abstract class IEmail {
             native_setGroup(this.nativeRef, g);
         }
         private native void native_setGroup(long _nativeRef, String g);
+
+        @CheckForNull
+        public static native IEmail createInstance(@Nonnull String type, @Nonnull String email, @Nonnull String group);
     }
 }

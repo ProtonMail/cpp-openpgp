@@ -3,11 +3,30 @@
 
 #pragma once
 
+#include <cstdint>
+#include <memory>
+#include <string>
+#include <vector>
+
 namespace ProtonMail {
 
 class IPhoto {
 public:
     virtual ~IPhoto() {}
+
+    static std::shared_ptr<IPhoto> create_instance(const std::vector<uint8_t> & rawData, const std::string & type, bool isBinary);
+
+    virtual std::string getEncodedData() = 0;
+
+    virtual std::vector<uint8_t> getRawData() = 0;
+
+    virtual std::string getURL() = 0;
+
+    virtual std::string getImageType() = 0;
+
+    virtual bool getIsBinary() = 0;
+
+    virtual void setPhoto(const std::vector<uint8_t> & rawData, const std::string & type, bool isBinary) = 0;
 };
 
 }  // namespace ProtonMail

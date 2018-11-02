@@ -29,7 +29,7 @@ CJNIEXPORT jboolean JNICALL Java_ch_protonmail_android_utils_nativelib_IVCardVer
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IVCardVersion_VCard21(JNIEnv* jniEnv, jobject /*this*/)
+CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IVCardVersion_00024CppProxy_VCard21(JNIEnv* jniEnv, jobject /*this*/)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);
@@ -38,7 +38,7 @@ CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IVCardVers
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IVCardVersion_VCard30(JNIEnv* jniEnv, jobject /*this*/)
+CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IVCardVersion_00024CppProxy_VCard30(JNIEnv* jniEnv, jobject /*this*/)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);
@@ -47,7 +47,7 @@ CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IVCardVers
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IVCardVersion_VCard40(JNIEnv* jniEnv, jobject /*this*/)
+CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IVCardVersion_00024CppProxy_VCard40(JNIEnv* jniEnv, jobject /*this*/)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);

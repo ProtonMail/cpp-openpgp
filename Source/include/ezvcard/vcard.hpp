@@ -39,6 +39,7 @@
 #include "pm_mimetype_property.hpp"
 #include "gender.hpp"
 #include "categories.hpp"
+#include "photo.hpp"
 
 
 namespace ezvcard {
@@ -482,6 +483,9 @@ namespace ezvcard {
         void setCategories(const std::shared_ptr<ICategories> & c) final;
         void clearCategories() final;
         
+        std::shared_ptr<IPhoto> getPhoto();
+        void setPhoto(const std::shared_ptr<IPhoto> & photo);
+        void clearPhotos();
     };
     
 }
