@@ -19,7 +19,7 @@ CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_LibVersion_00
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_nativelib_LibVersion_getLibVersion(JNIEnv* jniEnv, jobject /*this*/)
+CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_nativelib_LibVersion_00024CppProxy_getLibVersion(JNIEnv* jniEnv, jobject /*this*/)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);
@@ -28,7 +28,7 @@ CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_nativelib_LibVersion
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_nativelib_LibVersion_getPgpVersion(JNIEnv* jniEnv, jobject /*this*/)
+CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_nativelib_LibVersion_00024CppProxy_getPgpVersion(JNIEnv* jniEnv, jobject /*this*/)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);
@@ -37,7 +37,7 @@ CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_nativelib_LibVersion
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_nativelib_LibVersion_getVcardVersion(JNIEnv* jniEnv, jobject /*this*/)
+CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_nativelib_LibVersion_00024CppProxy_getVcardVersion(JNIEnv* jniEnv, jobject /*this*/)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);

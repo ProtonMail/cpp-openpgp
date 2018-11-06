@@ -10,6 +10,7 @@
 #include <ezvcard/vcard.hpp>
 #include <ezvcard/io/chain/chaining_text_string_parser.hpp>
 #include <regex>
+#include "utility.h"
 
 using namespace ezvcard;
 
@@ -17,6 +18,211 @@ namespace tests {
     namespace ez_vcard_tests {
         SUITE(ez_vcard_test)
         {
+            TEST(correct_vCard4_with_photo) {
+                // must have extra line ending
+                std::string str = R"(BEGIN:VCARD
+VERSION:4.0
+PRODID:pm-ez-vcard 0.0.1
+PHOTO:data:image/jpeg;base64,cLaxHfZiBSjwsi5i
+FN:Andrew Smith
+END:VCARD
+)";
+                str = ProtonMail::replaceAll(str, "\n", "\r\n"); // convert line ending for raw string
+
+                // check and read from input
+                auto vcard = Ezvcard::parse(str).first();
+                auto formattedName = vcard->getFormattedName();
+                VERIFY_ARE_EQUAL(formattedName->getValue(), "Andrew Smith");
+
+                // clone and verify the new vCard
+                auto newVCard = std::make_shared<VCard>();
+                newVCard->setVersion(VCardVersion::V4_0());
+                newVCard->setFormattedName(std::make_shared<FormattedName>(formattedName->getValue()));
+
+                auto photos = vcard->getPhotos();
+                for(auto photo : photos)
+                    newVCard->addPhoto(photo);
+                auto out = Ezvcard::write(newVCard)->go();
+                VERIFY_ARE_EQUAL(out, str);
+            }
+            
+            TEST(correct_vCard4_with_photo_ios_way) {
+                // must have extra line ending
+                std::string str = R"(BEGIN:VCARD
+VERSION:4.0
+PRODID:pm-ez-vcard 0.0.1
+PHOTO:data:image/jpeg;base64,cLaxHfZiBSjwsi5i
+FN:Andrew Smith
+END:VCARD
+)";
+                str = ProtonMail::replaceAll(str, "\n", "\r\n"); // convert line ending for raw string
+                
+                // check and read from input
+                auto vcard = Ezvcard::parse(str).first();
+                auto formattedName = vcard->getFormattedName();
+                VERIFY_ARE_EQUAL(formattedName->getValue(), "Andrew Smith");
+                
+                // clone and verify the new vCard
+                auto newVCard = std::make_shared<VCard>();
+                newVCard->setVersion(VCardVersion::V4_0());
+                newVCard->setFormattedName(std::make_shared<FormattedName>(formattedName->getValue()));
+                
+                auto photo = vcard->getPhoto();
+                auto newPhoto = Photo::create_instance(photo->getRawData(), photo->getImageType(), photo->getIsBinary());
+                newVCard->setPhoto(newPhoto);
+                auto out = Ezvcard::write(newVCard)->go();
+                VERIFY_ARE_EQUAL(out, str);
+            }
+            
+            TEST(correct_vCard3_with_photo) {
+                std::string str = R"(BEGIN:VCARD
+VERSION:3.0
+PRODID:pm-ez-vcard 0.0.1
+PHOTO;ENCODING=b:cLaxHfZiBSjwsi5i+Pu7OGfjmZtXtDavaNE4Sm1e0Nq9o0f/9kk=
+FN:Andrew Smith
+END:VCARD
+)";
+                str = ProtonMail::replaceAll(str, "\n", "\r\n");
+
+                // check and read from input
+                auto vcard = Ezvcard::parse(str).first();
+                auto formattedName = vcard->getFormattedName();
+                VERIFY_ARE_EQUAL(formattedName->getValue(), "Andrew Smith");
+
+                // clone and verify the new vCard
+                auto newVCard = std::make_shared<VCard>();
+                newVCard->setVersion(VCardVersion::V3_0());
+                newVCard->setFormattedName(std::make_shared<FormattedName>(formattedName->getValue()));
+                auto photos = vcard->getPhotos();
+                for(auto photo : photos)
+                    newVCard->addPhoto(photo);
+                auto out = Ezvcard::write(newVCard)->go();
+                VERIFY_ARE_EQUAL(out, str);
+            }
+            
+            TEST(incorrect_v4_with_V3_photo_data_ios_way) {
+                std::string str = R"(BEGIN:VCARD
+VERSION:4.0
+PRODID:pm-ez-vcard 0.0.1
+PHOTO;ENCODING=b:cLaxHfZiBSk=
+FN:Andrew Smith
+END:VCARD
+)";
+                str = ProtonMail::replaceAll(str, "\n", "\r\n");
+                
+                // check and read from input
+                auto vcard = Ezvcard::parse(str).first();
+                auto formattedName = vcard->getFormattedName();
+                VERIFY_ARE_EQUAL(formattedName->getValue(), "Andrew Smith");
+                
+                // clone and verify the new vCard
+                auto newVCard = std::make_shared<VCard>();
+                newVCard->setVersion(VCardVersion::V4_0());
+                newVCard->setFormattedName(std::make_shared<FormattedName>(formattedName->getValue()));
+                auto photo = vcard->getPhoto();
+                auto newPhoto = Photo::create_instance(photo->getRawData(), photo->getImageType(), photo->getIsBinary());
+                newVCard->setPhoto(newPhoto);
+                auto out = Ezvcard::write(newVCard)->go();
+                
+                std::string rightStr = R"(BEGIN:VCARD
+VERSION:4.0
+PRODID:pm-ez-vcard 0.0.1
+PHOTO:data:application/octet-stream;base64,cLaxHfZiBSk=
+FN:Andrew Smith
+END:VCARD
+)";
+                rightStr = ProtonMail::replaceAll(rightStr, "\n", "\r\n");
+                VERIFY_ARE_EQUAL(out, rightStr);
+            }
+            
+            TEST(incorrect_v4_with_V3_photo_data) {
+                std::string str = R"(BEGIN:VCARD
+VERSION:4.0
+PRODID:pm-ez-vcard 0.0.1
+PHOTO;ENCODING=b:cLaxHfZiBSk=
+FN:Andrew Smith
+END:VCARD
+)";
+                str = ProtonMail::replaceAll(str, "\n", "\r\n");
+                
+                // check and read from input
+                auto vcard = Ezvcard::parse(str).first();
+                auto formattedName = vcard->getFormattedName();
+                VERIFY_ARE_EQUAL(formattedName->getValue(), "Andrew Smith");
+                
+                // clone and verify the new vCard
+                auto newVCard = std::make_shared<VCard>();
+                newVCard->setVersion(VCardVersion::V4_0());
+                newVCard->setFormattedName(std::make_shared<FormattedName>(formattedName->getValue()));
+                auto photos = vcard->getPhotos();
+                for(auto photo : photos)
+                    newVCard->addPhoto(photo);
+                auto out = Ezvcard::write(newVCard)->go();
+                
+                std::string rightStr = R"(BEGIN:VCARD
+VERSION:4.0
+PRODID:pm-ez-vcard 0.0.1
+PHOTO:data:application/octet-stream;base64,cLaxHfZiBSk=
+FN:Andrew Smith
+END:VCARD
+)";
+                rightStr = ProtonMail::replaceAll(rightStr, "\n", "\r\n");
+                VERIFY_ARE_EQUAL(out, rightStr);
+            }
+            
+            TEST(case_insensitive_group_string_query_test)
+            {
+                auto str =
+                "BEGIN:VCARD\r\n"
+                "VERSION:4.0\r\n"
+                "PRODID:-//ProtonMail//ProtonMail vCard 1.0.0//EN\r\n"
+                "ITEM1.CATEGORIES:Family,iOS dev team,9\r\n"
+                "ITEM2.CATEGORIES:Family,10\r\n"
+                "END:VCARD\r\n";
+                
+                auto vcard = Ezvcard::parse(str).first();
+                
+                auto c1 = vcard->getCategories("iTeM1");
+                auto c2 = vcard->getCategories("ItEm2");
+                
+                auto c1All = c1->getValues();
+                auto c2All = c2->getValues();
+                
+                auto check1 = std::vector<std::string>{"Family", "iOS dev team", "9"};
+                VERIFY_ARE_EQUAL(c1All, check1);
+                auto check2 = std::vector<std::string> {"Family", "10"};
+                VERIFY_ARE_EQUAL(c2All, check2);
+                
+                auto newVCard = std::make_shared<VCard>();
+                
+                newVCard->setVersion(VCardVersion::V4_0());
+                
+                auto category1 = Categories::create_instance("item1", check1);
+                auto category2 = Categories::create_instance("item2", check2);
+                
+                newVCard->addCategories(category1);
+                newVCard->addCategories(category2);
+                
+                
+                auto out = Ezvcard::write(newVCard)->go();
+                
+                auto outString =
+                "BEGIN:VCARD\r\n"
+                "VERSION:4.0\r\n"
+                "PRODID:pm-ez-vcard 0.0.1\r\n"
+                "item1.CATEGORIES:Family,iOS dev team,9\r\n"
+                "item2.CATEGORIES:Family,10\r\n"
+                "END:VCARD\r\n";
+                
+                VERIFY_ARE_EQUAL(out, outString);
+                
+                newVCard->setCategories(category1);
+                newVCard->addCategories(category2);
+                
+                auto out1 = Ezvcard::write(newVCard)->go();
+                VERIFY_ARE_EQUAL(out1, outString);
+            }
+            
             TEST(real_cases_test) {
                 
                 {

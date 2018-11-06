@@ -12,7 +12,10 @@ public abstract class IUid {
     public abstract String getValue();
 
     @CheckForNull
-    public static native IUid createInstance(@Nonnull String uuid);
+    public static IUid createInstance(@Nonnull String uuid)
+    {
+        return CppProxy.createInstance(uuid);
+    }
 
     private static final class CppProxy extends IUid
     {
@@ -26,14 +29,14 @@ public abstract class IUid {
         }
 
         private native void nativeDestroy(long nativeRef);
-        public void destroy()
+        public void _djinni_private_destroy()
         {
             boolean destroyed = this.destroyed.getAndSet(true);
             if (!destroyed) nativeDestroy(this.nativeRef);
         }
         protected void finalize() throws java.lang.Throwable
         {
-            destroy();
+            _djinni_private_destroy();
             super.finalize();
         }
 
@@ -44,5 +47,8 @@ public abstract class IUid {
             return native_getValue(this.nativeRef);
         }
         private native String native_getValue(long _nativeRef);
+
+        @CheckForNull
+        public static native IUid createInstance(@Nonnull String uuid);
     }
 }

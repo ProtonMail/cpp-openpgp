@@ -15,7 +15,11 @@ public abstract class IAnniversary {
     public abstract String getType();
 
     @CheckForNull
-    public static native IAnniversary createInstance(@Nonnull String type, @Nonnull String date);
+    public static IAnniversary createInstance(@Nonnull String type, @Nonnull String date)
+    {
+        return CppProxy.createInstance(type,
+                                       date);
+    }
 
     private static final class CppProxy extends IAnniversary
     {
@@ -29,14 +33,14 @@ public abstract class IAnniversary {
         }
 
         private native void nativeDestroy(long nativeRef);
-        public void destroy()
+        public void _djinni_private_destroy()
         {
             boolean destroyed = this.destroyed.getAndSet(true);
             if (!destroyed) nativeDestroy(this.nativeRef);
         }
         protected void finalize() throws java.lang.Throwable
         {
-            destroy();
+            _djinni_private_destroy();
             super.finalize();
         }
 
@@ -55,5 +59,8 @@ public abstract class IAnniversary {
             return native_getType(this.nativeRef);
         }
         private native String native_getType(long _nativeRef);
+
+        @CheckForNull
+        public static native IAnniversary createInstance(@Nonnull String type, @Nonnull String date);
     }
 }

@@ -15,7 +15,10 @@ public abstract class IStructuredName {
     public abstract String getGiven();
 
     @CheckForNull
-    public static native IStructuredName createInstance();
+    public static IStructuredName createInstance()
+    {
+        return CppProxy.createInstance();
+    }
 
     private static final class CppProxy extends IStructuredName
     {
@@ -29,14 +32,14 @@ public abstract class IStructuredName {
         }
 
         private native void nativeDestroy(long nativeRef);
-        public void destroy()
+        public void _djinni_private_destroy()
         {
             boolean destroyed = this.destroyed.getAndSet(true);
             if (!destroyed) nativeDestroy(this.nativeRef);
         }
         protected void finalize() throws java.lang.Throwable
         {
-            destroy();
+            _djinni_private_destroy();
             super.finalize();
         }
 
@@ -55,5 +58,8 @@ public abstract class IStructuredName {
             return native_getGiven(this.nativeRef);
         }
         private native String native_getGiven(long _nativeRef);
+
+        @CheckForNull
+        public static native IStructuredName createInstance();
     }
 }

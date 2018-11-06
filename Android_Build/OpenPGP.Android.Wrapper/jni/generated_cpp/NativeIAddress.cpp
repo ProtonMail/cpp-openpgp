@@ -109,7 +109,7 @@ CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IAddress_0
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IAddress_createInstance(JNIEnv* jniEnv, jobject /*this*/, jstring j_type, jstring j_street, jstring j_extendstreet, jstring j_locality, jstring j_region, jstring j_zip, jstring j_country, jstring j_pobox)
+CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IAddress_00024CppProxy_createInstance(JNIEnv* jniEnv, jobject /*this*/, jstring j_type, jstring j_street, jstring j_extendstreet, jstring j_locality, jstring j_region, jstring j_zip, jstring j_country, jstring j_pobox)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);

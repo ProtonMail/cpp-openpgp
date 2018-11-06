@@ -58,7 +58,7 @@ CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IPMMimeType_0
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IPMMimeType_createInstance(JNIEnv* jniEnv, jobject /*this*/, jstring j_type, jstring j_value)
+CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IPMMimeType_00024CppProxy_createInstance(JNIEnv* jniEnv, jobject /*this*/, jstring j_type, jstring j_value)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);

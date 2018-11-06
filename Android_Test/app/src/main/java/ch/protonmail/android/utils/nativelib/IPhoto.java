@@ -8,6 +8,29 @@ import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
 public abstract class IPhoto {
+    @Nonnull
+    public abstract String getEncodedData();
+
+    @Nonnull
+    public abstract byte[] getRawData();
+
+    @Nonnull
+    public abstract String getURL();
+
+    @Nonnull
+    public abstract String getImageType();
+
+    public abstract boolean getIsBinary();
+
+    public abstract void setPhoto(@Nonnull byte[] rawData, @Nonnull String type, boolean isBinary);
+
+    @CheckForNull
+    public static IPhoto createInstance(@Nonnull byte[] rawData, @Nonnull String type, boolean isBinary)
+    {
+        return CppProxy.createInstance(rawData,
+                                       type,
+                                       isBinary);
+    }
 
     private static final class CppProxy extends IPhoto
     {
@@ -21,15 +44,66 @@ public abstract class IPhoto {
         }
 
         private native void nativeDestroy(long nativeRef);
-        public void destroy()
+        public void _djinni_private_destroy()
         {
             boolean destroyed = this.destroyed.getAndSet(true);
             if (!destroyed) nativeDestroy(this.nativeRef);
         }
         protected void finalize() throws java.lang.Throwable
         {
-            destroy();
+            _djinni_private_destroy();
             super.finalize();
         }
+
+        @Override
+        public String getEncodedData()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_getEncodedData(this.nativeRef);
+        }
+        private native String native_getEncodedData(long _nativeRef);
+
+        @Override
+        public byte[] getRawData()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_getRawData(this.nativeRef);
+        }
+        private native byte[] native_getRawData(long _nativeRef);
+
+        @Override
+        public String getURL()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_getURL(this.nativeRef);
+        }
+        private native String native_getURL(long _nativeRef);
+
+        @Override
+        public String getImageType()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_getImageType(this.nativeRef);
+        }
+        private native String native_getImageType(long _nativeRef);
+
+        @Override
+        public boolean getIsBinary()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_getIsBinary(this.nativeRef);
+        }
+        private native boolean native_getIsBinary(long _nativeRef);
+
+        @Override
+        public void setPhoto(byte[] rawData, String type, boolean isBinary)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            native_setPhoto(this.nativeRef, rawData, type, isBinary);
+        }
+        private native void native_setPhoto(long _nativeRef, byte[] rawData, String type, boolean isBinary);
+
+        @CheckForNull
+        public static native IPhoto createInstance(@Nonnull byte[] rawData, @Nonnull String type, boolean isBinary);
     }
 }

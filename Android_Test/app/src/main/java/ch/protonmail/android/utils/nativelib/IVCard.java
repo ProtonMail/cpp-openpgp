@@ -160,6 +160,13 @@ public abstract class IVCard {
 
     public abstract void clearCategories();
 
+    @CheckForNull
+    public abstract IPhoto getPhoto();
+
+    public abstract void setPhoto(@CheckForNull IPhoto photo);
+
+    public abstract void clearPhotos();
+
     @Nonnull
     public abstract ArrayList<IUrl> getUrls();
 
@@ -184,7 +191,10 @@ public abstract class IVCard {
     public abstract void clearStructuredName();
 
     @CheckForNull
-    public static native IVCard createInstance();
+    public static IVCard createInstance()
+    {
+        return CppProxy.createInstance();
+    }
 
     private static final class CppProxy extends IVCard
     {
@@ -198,14 +208,14 @@ public abstract class IVCard {
         }
 
         private native void nativeDestroy(long nativeRef);
-        public void destroy()
+        public void _djinni_private_destroy()
         {
             boolean destroyed = this.destroyed.getAndSet(true);
             if (!destroyed) nativeDestroy(this.nativeRef);
         }
         protected void finalize() throws java.lang.Throwable
         {
-            destroy();
+            _djinni_private_destroy();
             super.finalize();
         }
 
@@ -730,6 +740,30 @@ public abstract class IVCard {
         private native void native_clearCategories(long _nativeRef);
 
         @Override
+        public IPhoto getPhoto()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_getPhoto(this.nativeRef);
+        }
+        private native IPhoto native_getPhoto(long _nativeRef);
+
+        @Override
+        public void setPhoto(IPhoto photo)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            native_setPhoto(this.nativeRef, photo);
+        }
+        private native void native_setPhoto(long _nativeRef, IPhoto photo);
+
+        @Override
+        public void clearPhotos()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            native_clearPhotos(this.nativeRef);
+        }
+        private native void native_clearPhotos(long _nativeRef);
+
+        @Override
         public ArrayList<IUrl> getUrls()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
@@ -808,5 +842,8 @@ public abstract class IVCard {
             native_clearStructuredName(this.nativeRef);
         }
         private native void native_clearStructuredName(long _nativeRef);
+
+        @CheckForNull
+        public static native IVCard createInstance();
     }
 }

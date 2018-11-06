@@ -141,48 +141,99 @@ public abstract class OpenPgp {
      * if want deal with single key should use the static functions
      */
     @CheckForNull
-    public static native OpenPgp createInstance();
+    public static OpenPgp createInstance()
+    {
+        return CppProxy.createInstance();
+    }
 
     /** create and init an instance with addresses */
     @CheckForNull
-    public static native OpenPgp createInstanceWithAddress(@Nonnull Address address);
+    public static OpenPgp createInstanceWithAddress(@Nonnull Address address)
+    {
+        return CppProxy.createInstanceWithAddress(address);
+    }
 
     @CheckForNull
-    public static native OpenPgp createInstanceWithAddresses(@Nonnull ArrayList<Address> address);
+    public static OpenPgp createInstanceWithAddresses(@Nonnull ArrayList<Address> address)
+    {
+        return CppProxy.createInstanceWithAddresses(address);
+    }
 
     /**update single private key password */
     @Nonnull
-    public static native String updateSinglePassphrase(@Nonnull String privateKey, @Nonnull String oldPassphrase, @Nonnull String newPassphrase);
+    public static String updateSinglePassphrase(@Nonnull String privateKey, @Nonnull String oldPassphrase, @Nonnull String newPassphrase)
+    {
+        return CppProxy.updateSinglePassphrase(privateKey,
+                                               oldPassphrase,
+                                               newPassphrase);
+    }
 
     /**disable/enable debug model */
-    public static native void enableDebug(boolean isDebug);
+    public static void enableDebug(boolean isDebug)
+    {
+        CppProxy.enableDebug(isDebug);
+    }
 
     /**check is private key passphrase ok */
-    public static native boolean checkPassphrase(@Nonnull String privateKey, @Nonnull String passphrase);
+    public static boolean checkPassphrase(@Nonnull String privateKey, @Nonnull String passphrase)
+    {
+        return CppProxy.checkPassphrase(privateKey,
+                                        passphrase);
+    }
 
     /**update multiple pgp private keys return are new keys */
     @Nonnull
-    public static native ArrayList<OpenPgpKey> updateKeysPassphrase(@Nonnull ArrayList<OpenPgpKey> privateKeys, @Nonnull String oldPassphrase, @Nonnull String newPassphrase);
+    public static ArrayList<OpenPgpKey> updateKeysPassphrase(@Nonnull ArrayList<OpenPgpKey> privateKeys, @Nonnull String oldPassphrase, @Nonnull String newPassphrase)
+    {
+        return CppProxy.updateKeysPassphrase(privateKeys,
+                                             oldPassphrase,
+                                             newPassphrase);
+    }
 
     /**decrypt message use the address key ring with password */
     @Nonnull
-    public static native String decryptMessageWithAddress(@Nonnull Address address, @Nonnull String encryptText, @Nonnull String passphras);
+    public static String decryptMessageWithAddress(@Nonnull Address address, @Nonnull String encryptText, @Nonnull String passphras)
+    {
+        return CppProxy.decryptMessageWithAddress(address,
+                                                  encryptText,
+                                                  passphras);
+    }
 
     /**decrypt attachment use the address key ring with password */
     @Nonnull
-    public static native byte[] decryptAttachmentWithAddress(@Nonnull Address address, @Nonnull byte[] key, @Nonnull byte[] data, @Nonnull String passphras);
+    public static byte[] decryptAttachmentWithAddress(@Nonnull Address address, @Nonnull byte[] key, @Nonnull byte[] data, @Nonnull String passphras)
+    {
+        return CppProxy.decryptAttachmentWithAddress(address,
+                                                     key,
+                                                     data,
+                                                     passphras);
+    }
 
     /**Random bits */
     @Nonnull
-    public static native byte[] randomBits(int bits);
+    public static byte[] randomBits(int bits)
+    {
+        return CppProxy.randomBits(bits);
+    }
 
-    public static native boolean findKeyid(@Nonnull String encryptText, @Nonnull String privateKey);
+    public static boolean findKeyid(@Nonnull String encryptText, @Nonnull String privateKey)
+    {
+        return CppProxy.findKeyid(encryptText,
+                                  privateKey);
+    }
 
     @Nonnull
-    public static native EncryptPackage splitMessage(@Nonnull String encrypted);
+    public static EncryptPackage splitMessage(@Nonnull String encrypted)
+    {
+        return CppProxy.splitMessage(encrypted);
+    }
 
     @Nonnull
-    public static native String combinePackages(@Nonnull byte[] key, @Nonnull byte[] data);
+    public static String combinePackages(@Nonnull byte[] key, @Nonnull byte[] data)
+    {
+        return CppProxy.combinePackages(key,
+                                        data);
+    }
 
     private static final class CppProxy extends OpenPgp
     {
@@ -196,14 +247,14 @@ public abstract class OpenPgp {
         }
 
         private native void nativeDestroy(long nativeRef);
-        public void destroy()
+        public void _djinni_private_destroy()
         {
             boolean destroyed = this.destroyed.getAndSet(true);
             if (!destroyed) nativeDestroy(this.nativeRef);
         }
         protected void finalize() throws java.lang.Throwable
         {
-            destroy();
+            _djinni_private_destroy();
             super.finalize();
         }
 
@@ -510,5 +561,41 @@ public abstract class OpenPgp {
             return native_decryptHashCbc(this.nativeRef, encryptedText, password);
         }
         private native String native_decryptHashCbc(long _nativeRef, String encryptedText, String password);
+
+        @CheckForNull
+        public static native OpenPgp createInstance();
+
+        @CheckForNull
+        public static native OpenPgp createInstanceWithAddress(@Nonnull Address address);
+
+        @CheckForNull
+        public static native OpenPgp createInstanceWithAddresses(@Nonnull ArrayList<Address> address);
+
+        @Nonnull
+        public static native String updateSinglePassphrase(@Nonnull String privateKey, @Nonnull String oldPassphrase, @Nonnull String newPassphrase);
+
+        public static native void enableDebug(boolean isDebug);
+
+        public static native boolean checkPassphrase(@Nonnull String privateKey, @Nonnull String passphrase);
+
+        @Nonnull
+        public static native ArrayList<OpenPgpKey> updateKeysPassphrase(@Nonnull ArrayList<OpenPgpKey> privateKeys, @Nonnull String oldPassphrase, @Nonnull String newPassphrase);
+
+        @Nonnull
+        public static native String decryptMessageWithAddress(@Nonnull Address address, @Nonnull String encryptText, @Nonnull String passphras);
+
+        @Nonnull
+        public static native byte[] decryptAttachmentWithAddress(@Nonnull Address address, @Nonnull byte[] key, @Nonnull byte[] data, @Nonnull String passphras);
+
+        @Nonnull
+        public static native byte[] randomBits(int bits);
+
+        public static native boolean findKeyid(@Nonnull String encryptText, @Nonnull String privateKey);
+
+        @Nonnull
+        public static native EncryptPackage splitMessage(@Nonnull String encrypted);
+
+        @Nonnull
+        public static native String combinePackages(@Nonnull byte[] key, @Nonnull byte[] data);
     }
 }

@@ -256,7 +256,15 @@ i_nickname = interface +c {
 }
 
 i_photo = interface +c {
+    static create_instance(rawData: binary, type: string, isBinary: bool) : i_photo;
 
+    getEncodedData() : string;
+    getRawData() : binary;
+    getURL(): string;
+    getImageType() : string;
+    getIsBinary() : bool;
+
+    setPhoto(rawData: binary, type: string, isBinary: bool);
 }
 
 i_product_id = interface +c {
@@ -454,6 +462,10 @@ i_v_card = interface +c {
     addCategories(c : i_categories);
     setCategories(c: i_categories);
     clearCategories();
+
+    getPhoto() : i_photo;
+    setPhoto(photo: i_photo);
+    clearPhotos();
 
     getUrls() : list<i_url>;
     addUrl(url : i_url);

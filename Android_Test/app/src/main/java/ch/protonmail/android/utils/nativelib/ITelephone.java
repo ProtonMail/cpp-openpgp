@@ -16,7 +16,11 @@ public abstract class ITelephone {
     public abstract String getText();
 
     @CheckForNull
-    public static native ITelephone createInstance(@Nonnull String type, @Nonnull String number);
+    public static ITelephone createInstance(@Nonnull String type, @Nonnull String number)
+    {
+        return CppProxy.createInstance(type,
+                                       number);
+    }
 
     private static final class CppProxy extends ITelephone
     {
@@ -30,14 +34,14 @@ public abstract class ITelephone {
         }
 
         private native void nativeDestroy(long nativeRef);
-        public void destroy()
+        public void _djinni_private_destroy()
         {
             boolean destroyed = this.destroyed.getAndSet(true);
             if (!destroyed) nativeDestroy(this.nativeRef);
         }
         protected void finalize() throws java.lang.Throwable
         {
-            destroy();
+            _djinni_private_destroy();
             super.finalize();
         }
 
@@ -56,5 +60,8 @@ public abstract class ITelephone {
             return native_getText(this.nativeRef);
         }
         private native String native_getText(long _nativeRef);
+
+        @CheckForNull
+        public static native ITelephone createInstance(@Nonnull String type, @Nonnull String number);
     }
 }

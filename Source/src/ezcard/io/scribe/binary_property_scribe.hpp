@@ -14,6 +14,7 @@
 #include "vobject_property_values.hpp"
 #include "base64.h"
 #include "data_uri.hpp"
+#include "messages.hpp"
 
 namespace ezvcard {
     
@@ -113,12 +114,12 @@ namespace ezvcard {
                 
                 if (version == VCardVersion::V2_1()) {
                     copy->setType(contentType->getValue());
-                    //copy.setMediaType(null);
+//                    copy->setMediaType(nullptr);
                 }
                 
                 if (version == VCardVersion::V3_0()) {
                     copy->setType(contentType->getValue());
-                    //copy.setMediaType(null);
+//                    copy->setMediaType(nullptr);
                 }
                 
                 if (version == VCardVersion::V4_0()) {
@@ -128,7 +129,7 @@ namespace ezvcard {
             }
             
             if (!property->getData().empty()) {
-                //                copy.setMediaType(null);
+//                copy->setMediaType(nullptr);
                 
                 if (version == VCardVersion::V2_1()) {
                     copy->setEncoding(Encoding::BASE64);
@@ -141,8 +142,8 @@ namespace ezvcard {
                 }
                 
                 if (version == VCardVersion::V4_0()) {
-                    //copy.setEncoding(null);
-                    ////don't null out TYPE, it could be set to "home", "work", etc
+                    copy->setEncoding(nullptr);
+                    //don't null out TYPE, it could be set to "home", "work", etc
                 }
                 return;
             }
@@ -203,31 +204,47 @@ namespace ezvcard {
             return "";
         }
         
-        std::shared_ptr<T> parse(std::string value, VCardDataType::Ptr dataType, VCardParameters::Ptr parameters, VCardVersion::Ptr version) {
+        std::shared_ptr<T> parserForNoneV4_0(std::string value, VCardDataType::Ptr dataType, VCardParameters::Ptr parameters, VCardVersion::Ptr version) {
             auto contentType = parseContentType(value, parameters, version);
             
-            if (version == VCardVersion::V2_1() || version == VCardVersion::V3_0()) {
-                //parse as URL
-                if (dataType == VCardDataType::URL || dataType == VCardDataType::URI) {
-                    return _newInstance(value, contentType, false);
-                }
-                
-                //parse as binary
-                auto encodingSubType = parameters->getEncoding();
-                if (encodingSubType == Encoding::BASE64 || encodingSubType == Encoding::B) {
-                    return _newInstance(base64_decode(value), contentType, true);
-                }
-            } else if (version == VCardVersion::V4_0()) {
- //               try {
-                    //parse as data URI
-                auto uri = DataUri::parse(value);
-                contentType = _mediaTypeFromMediaTypeParameter(uri->getContentType());
-                return _newInstance(uri->getData(), contentType, true);
-//                } catch (IllegalArgumentException e) {
-//                    //not a data URI
-//                }
+            //parse as URL
+            if (dataType == VCardDataType::URL || dataType == VCardDataType::URI) {
+                return _newInstance(value, contentType, false);
             }
+            
+            //parse as binary
+            auto encodingSubType = parameters->getEncoding();
+            if (encodingSubType == Encoding::BASE64 || encodingSubType == Encoding::B) {
+                return _newInstance(base64_decode(value), contentType, true);
+            }
+            
+            return cannotUnmarshalValue(value, version, contentType);
+        }
         
+        std::shared_ptr<T> parse(std::string value, VCardDataType::Ptr dataType, VCardParameters::Ptr parameters, VCardVersion::Ptr version) {
+            if (version == VCardVersion::V2_1() || version == VCardVersion::V3_0()) {
+                return parserForNoneV4_0(value, dataType, parameters, version);
+            } else if (version == VCardVersion::V4_0()) {
+                // because the server might return V3.0 formatted photo data for V4.0 vCard
+                // we need to attempted to recover from this kind of situation
+                
+                try { // attempt to parse as 4.0 (data URI)
+                    auto uri = DataUri::parse(value);
+                    auto contentType = _mediaTypeFromMediaTypeParameter(uri->getContentType());
+                    return _newInstance(uri->getData(), contentType, true);
+                } catch (std::invalid_argument& e) {
+                    // if error is exception.20 (Data portion of data URI is missing.), then we attempt to use none 4.0 way to parse photo
+                    std::string exceptionMsg = e.what();
+                    auto exception20 = Messages::getInstance()->getMessage("exception.20");
+                    if(exceptionMsg.find(exception20) != std::string::npos) {
+                        return parserForNoneV4_0(value, dataType, parameters, version);
+                    }
+                    
+                    // not a data URI
+                }
+            }
+            
+            auto contentType = parseContentType(value, parameters, version);
             return cannotUnmarshalValue(value, version, contentType);
         }
         

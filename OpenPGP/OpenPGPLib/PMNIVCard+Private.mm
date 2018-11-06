@@ -21,6 +21,7 @@
 #import "PMNIPMMimeType+Private.h"
 #import "PMNIPMScheme+Private.h"
 #import "PMNIPMSign+Private.h"
+#import "PMNIPhoto+Private.h"
 #import "PMNIStructuredName+Private.h"
 #import "PMNITelephone+Private.h"
 #import "PMNITitle+Private.h"
@@ -457,6 +458,25 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
 - (void)clearCategories {
     try {
         _cppRefHandle.get()->clearCategories();
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (nullable PMNIPhoto *)getPhoto {
+    try {
+        auto objcpp_result_ = _cppRefHandle.get()->getPhoto();
+        return ::OBJ_ProtonMail::IPhoto::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (void)setPhoto:(nullable PMNIPhoto *)photo {
+    try {
+        _cppRefHandle.get()->setPhoto(::OBJ_ProtonMail::IPhoto::toCpp(photo));
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (void)clearPhotos {
+    try {
+        _cppRefHandle.get()->clearPhotos();
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 

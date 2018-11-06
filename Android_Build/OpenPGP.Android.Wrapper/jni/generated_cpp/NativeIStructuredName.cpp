@@ -39,7 +39,7 @@ CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_nativelib_IStructure
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IStructuredName_createInstance(JNIEnv* jniEnv, jobject /*this*/)
+CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IStructuredName_00024CppProxy_createInstance(JNIEnv* jniEnv, jobject /*this*/)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);

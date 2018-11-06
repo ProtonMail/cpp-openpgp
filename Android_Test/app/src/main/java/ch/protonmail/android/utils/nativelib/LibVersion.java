@@ -10,15 +10,24 @@ import javax.annotation.Nonnull;
 public abstract class LibVersion {
     /**get lib version */
     @Nonnull
-    public static native String getLibVersion();
+    public static String getLibVersion()
+    {
+        return CppProxy.getLibVersion();
+    }
 
     /**get pgp version */
     @Nonnull
-    public static native String getPgpVersion();
+    public static String getPgpVersion()
+    {
+        return CppProxy.getPgpVersion();
+    }
 
     /**get vcard version */
     @Nonnull
-    public static native String getVcardVersion();
+    public static String getVcardVersion()
+    {
+        return CppProxy.getVcardVersion();
+    }
 
     private static final class CppProxy extends LibVersion
     {
@@ -32,15 +41,24 @@ public abstract class LibVersion {
         }
 
         private native void nativeDestroy(long nativeRef);
-        public void destroy()
+        public void _djinni_private_destroy()
         {
             boolean destroyed = this.destroyed.getAndSet(true);
             if (!destroyed) nativeDestroy(this.nativeRef);
         }
         protected void finalize() throws java.lang.Throwable
         {
-            destroy();
+            _djinni_private_destroy();
             super.finalize();
         }
+
+        @Nonnull
+        public static native String getLibVersion();
+
+        @Nonnull
+        public static native String getPgpVersion();
+
+        @Nonnull
+        public static native String getVcardVersion();
     }
 }

@@ -21,7 +21,10 @@ public abstract class IFormattedName {
     public abstract String getValue();
 
     @CheckForNull
-    public static native IFormattedName createInstance(@Nonnull String name);
+    public static IFormattedName createInstance(@Nonnull String name)
+    {
+        return CppProxy.createInstance(name);
+    }
 
     private static final class CppProxy extends IFormattedName
     {
@@ -35,14 +38,14 @@ public abstract class IFormattedName {
         }
 
         private native void nativeDestroy(long nativeRef);
-        public void destroy()
+        public void _djinni_private_destroy()
         {
             boolean destroyed = this.destroyed.getAndSet(true);
             if (!destroyed) nativeDestroy(this.nativeRef);
         }
         protected void finalize() throws java.lang.Throwable
         {
-            destroy();
+            _djinni_private_destroy();
             super.finalize();
         }
 
@@ -77,5 +80,8 @@ public abstract class IFormattedName {
             return native_getValue(this.nativeRef);
         }
         private native String native_getValue(long _nativeRef);
+
+        @CheckForNull
+        public static native IFormattedName createInstance(@Nonnull String name);
     }
 }

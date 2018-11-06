@@ -15,7 +15,11 @@ public abstract class INote {
     public abstract String getNote();
 
     @CheckForNull
-    public static native INote createInstance(@Nonnull String type, @Nonnull String note);
+    public static INote createInstance(@Nonnull String type, @Nonnull String note)
+    {
+        return CppProxy.createInstance(type,
+                                       note);
+    }
 
     private static final class CppProxy extends INote
     {
@@ -29,14 +33,14 @@ public abstract class INote {
         }
 
         private native void nativeDestroy(long nativeRef);
-        public void destroy()
+        public void _djinni_private_destroy()
         {
             boolean destroyed = this.destroyed.getAndSet(true);
             if (!destroyed) nativeDestroy(this.nativeRef);
         }
         protected void finalize() throws java.lang.Throwable
         {
-            destroy();
+            _djinni_private_destroy();
             super.finalize();
         }
 
@@ -55,5 +59,8 @@ public abstract class INote {
             return native_getNote(this.nativeRef);
         }
         private native String native_getNote(long _nativeRef);
+
+        @CheckForNull
+        public static native INote createInstance(@Nonnull String type, @Nonnull String note);
     }
 }
