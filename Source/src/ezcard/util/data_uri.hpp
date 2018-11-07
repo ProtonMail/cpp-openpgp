@@ -186,16 +186,13 @@ namespace ezvcard {
             std::string text = "";
             std::string data = "";
             if (base64) {
-                std::cout << dataStr << std::endl;
+                //std::cout << dataStr << std::endl;
                 dataStr = ProtonMail::replaceAll(dataStr, "\\s", "");
-                
-                std::cout << dataStr << std::endl;
+                //std::cout << dataStr << std::endl;
                 data = base64_decode(dataStr);
                 
-                
                 auto check = base64_encode(data);
-                std::cout << check << std::endl;
-                
+                //std::cout << check << std::endl;
                 if (charset != "") {
                     // try {
                     text = data;//new String(data, charset);
@@ -266,7 +263,7 @@ namespace ezvcard {
                 ss << ";base64,";
                 
                 auto check = base64_encode(_data);
-                std::cout << check << std::endl;
+                //std::cout << check << std::endl;
                 ss << base64_encode(_data);
             } else if (_text != "") {
                 if (charset == "") {

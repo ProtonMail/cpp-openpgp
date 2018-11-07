@@ -280,7 +280,7 @@ std::vector<Packet::Ptr> encrypt(const std::string & session_key,
 std::string encrypt_pm_pka(const PGPPublicKey & pub, const std::string & data)
 {
     std::string body = "<div><br></div><div><br></div><div>Sent from <a href=\"https://protonmail.ch\">ProtonMail</a>, encrypted email based in Switzerland.<br></div>";
-    std::cout << body << std::endl;
+    //std::cout << body << std::endl;
     std::string session_key = base64_decode("IsKORjNGw7HCsVY1QXHCscOZQsKGDsKywpjCtHfCol4FasOfIGUXw7DDssOqw50=");
     std::string encoded_msg_body = base64_encode(reinterpret_cast<const unsigned char*>(body.c_str()), static_cast<int>(body.length()));
     
@@ -290,7 +290,7 @@ std::string encrypt_pm_pka(const PGPPublicKey & pub, const std::string & data)
             encoded_msg_body = encoded_msg_body + " ";
         }
     }
-    std::cout << encoded_msg_body << std::endl;
+    //std::cout << encoded_msg_body << std::endl;
     int sym_alg = 9;
     uint16_t BS = Symmetric_Algorithm_Block_Length.at(Symmetric_Algorithms.at(sym_alg)) >> 3;
     std::string prefix = unhexlify(zfill(bintohex(BBS().rand_byts(BS << 3)), BS << 1, '0'));
