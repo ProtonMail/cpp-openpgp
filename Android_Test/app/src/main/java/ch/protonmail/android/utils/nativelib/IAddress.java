@@ -37,7 +37,17 @@ public abstract class IAddress {
     public abstract ArrayList<String> getPoBoxes();
 
     @CheckForNull
-    public static native IAddress createInstance(@Nonnull String type, @Nonnull String street, @Nonnull String extendstreet, @Nonnull String locality, @Nonnull String region, @Nonnull String zip, @Nonnull String country, @Nonnull String pobox);
+    public static IAddress createInstance(@Nonnull String type, @Nonnull String street, @Nonnull String extendstreet, @Nonnull String locality, @Nonnull String region, @Nonnull String zip, @Nonnull String country, @Nonnull String pobox)
+    {
+        return CppProxy.createInstance(type,
+                                       street,
+                                       extendstreet,
+                                       locality,
+                                       region,
+                                       zip,
+                                       country,
+                                       pobox);
+    }
 
     private static final class CppProxy extends IAddress
     {
@@ -51,14 +61,14 @@ public abstract class IAddress {
         }
 
         private native void nativeDestroy(long nativeRef);
-        public void destroy()
+        public void _djinni_private_destroy()
         {
             boolean destroyed = this.destroyed.getAndSet(true);
             if (!destroyed) nativeDestroy(this.nativeRef);
         }
         protected void finalize() throws java.lang.Throwable
         {
-            destroy();
+            _djinni_private_destroy();
             super.finalize();
         }
 
@@ -133,5 +143,8 @@ public abstract class IAddress {
             return native_getPoBoxes(this.nativeRef);
         }
         private native ArrayList<String> native_getPoBoxes(long _nativeRef);
+
+        @CheckForNull
+        public static native IAddress createInstance(@Nonnull String type, @Nonnull String street, @Nonnull String extendstreet, @Nonnull String locality, @Nonnull String region, @Nonnull String zip, @Nonnull String country, @Nonnull String pobox);
     }
 }

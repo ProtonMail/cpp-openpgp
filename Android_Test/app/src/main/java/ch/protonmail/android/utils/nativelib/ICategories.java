@@ -22,7 +22,11 @@ public abstract class ICategories {
     public abstract void setGroup(@Nonnull String g);
 
     @CheckForNull
-    public static native ICategories createInstance(@Nonnull String group, @Nonnull ArrayList<String> value);
+    public static ICategories createInstance(@Nonnull String group, @Nonnull ArrayList<String> value)
+    {
+        return CppProxy.createInstance(group,
+                                       value);
+    }
 
     private static final class CppProxy extends ICategories
     {
@@ -36,14 +40,14 @@ public abstract class ICategories {
         }
 
         private native void nativeDestroy(long nativeRef);
-        public void destroy()
+        public void _djinni_private_destroy()
         {
             boolean destroyed = this.destroyed.getAndSet(true);
             if (!destroyed) nativeDestroy(this.nativeRef);
         }
         protected void finalize() throws java.lang.Throwable
         {
-            destroy();
+            _djinni_private_destroy();
             super.finalize();
         }
 
@@ -86,5 +90,8 @@ public abstract class ICategories {
             native_setGroup(this.nativeRef, g);
         }
         private native void native_setGroup(long _nativeRef, String g);
+
+        @CheckForNull
+        public static native ICategories createInstance(@Nonnull String group, @Nonnull ArrayList<String> value);
     }
 }

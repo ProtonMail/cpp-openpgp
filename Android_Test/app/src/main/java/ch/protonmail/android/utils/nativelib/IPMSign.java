@@ -20,7 +20,11 @@ public abstract class IPMSign {
     public abstract void setGroup(@Nonnull String g);
 
     @CheckForNull
-    public static native IPMSign createInstance(@Nonnull String type, @Nonnull String value);
+    public static IPMSign createInstance(@Nonnull String type, @Nonnull String value)
+    {
+        return CppProxy.createInstance(type,
+                                       value);
+    }
 
     private static final class CppProxy extends IPMSign
     {
@@ -34,14 +38,14 @@ public abstract class IPMSign {
         }
 
         private native void nativeDestroy(long nativeRef);
-        public void destroy()
+        public void _djinni_private_destroy()
         {
             boolean destroyed = this.destroyed.getAndSet(true);
             if (!destroyed) nativeDestroy(this.nativeRef);
         }
         protected void finalize() throws java.lang.Throwable
         {
-            destroy();
+            _djinni_private_destroy();
             super.finalize();
         }
 
@@ -76,5 +80,8 @@ public abstract class IPMSign {
             native_setGroup(this.nativeRef, g);
         }
         private native void native_setGroup(long _nativeRef, String g);
+
+        @CheckForNull
+        public static native IPMSign createInstance(@Nonnull String type, @Nonnull String value);
     }
 }

@@ -15,7 +15,11 @@ public abstract class ITitle {
     public abstract String getType();
 
     @CheckForNull
-    public static native ITitle createInstance(@Nonnull String type, @Nonnull String value);
+    public static ITitle createInstance(@Nonnull String type, @Nonnull String value)
+    {
+        return CppProxy.createInstance(type,
+                                       value);
+    }
 
     private static final class CppProxy extends ITitle
     {
@@ -29,14 +33,14 @@ public abstract class ITitle {
         }
 
         private native void nativeDestroy(long nativeRef);
-        public void destroy()
+        public void _djinni_private_destroy()
         {
             boolean destroyed = this.destroyed.getAndSet(true);
             if (!destroyed) nativeDestroy(this.nativeRef);
         }
         protected void finalize() throws java.lang.Throwable
         {
-            destroy();
+            _djinni_private_destroy();
             super.finalize();
         }
 
@@ -55,5 +59,8 @@ public abstract class ITitle {
             return native_getType(this.nativeRef);
         }
         private native String native_getType(long _nativeRef);
+
+        @CheckForNull
+        public static native ITitle createInstance(@Nonnull String type, @Nonnull String value);
     }
 }

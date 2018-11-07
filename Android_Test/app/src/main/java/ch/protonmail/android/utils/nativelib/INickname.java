@@ -19,7 +19,11 @@ public abstract class INickname {
     public abstract ArrayList<String> getValues();
 
     @CheckForNull
-    public static native INickname createInstance(@Nonnull String type, @Nonnull String value);
+    public static INickname createInstance(@Nonnull String type, @Nonnull String value)
+    {
+        return CppProxy.createInstance(type,
+                                       value);
+    }
 
     private static final class CppProxy extends INickname
     {
@@ -33,14 +37,14 @@ public abstract class INickname {
         }
 
         private native void nativeDestroy(long nativeRef);
-        public void destroy()
+        public void _djinni_private_destroy()
         {
             boolean destroyed = this.destroyed.getAndSet(true);
             if (!destroyed) nativeDestroy(this.nativeRef);
         }
         protected void finalize() throws java.lang.Throwable
         {
-            destroy();
+            _djinni_private_destroy();
             super.finalize();
         }
 
@@ -67,5 +71,8 @@ public abstract class INickname {
             return native_getValues(this.nativeRef);
         }
         private native ArrayList<String> native_getValues(long _nativeRef);
+
+        @CheckForNull
+        public static native INickname createInstance(@Nonnull String type, @Nonnull String value);
     }
 }

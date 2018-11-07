@@ -10,16 +10,28 @@ import javax.annotation.Nonnull;
 
 public abstract class IEzvcard {
     @CheckForNull
-    public static native IVCard parseFirst(@Nonnull String value);
+    public static IVCard parseFirst(@Nonnull String value)
+    {
+        return CppProxy.parseFirst(value);
+    }
 
     @Nonnull
-    public static native ArrayList<IVCard> parseAll(@Nonnull String value);
+    public static ArrayList<IVCard> parseAll(@Nonnull String value)
+    {
+        return CppProxy.parseAll(value);
+    }
 
     @Nonnull
-    public static native String write(@CheckForNull IVCard vcard);
+    public static String write(@CheckForNull IVCard vcard)
+    {
+        return CppProxy.write(vcard);
+    }
 
     @Nonnull
-    public static native String writeAll(@Nonnull ArrayList<IVCard> vcards);
+    public static String writeAll(@Nonnull ArrayList<IVCard> vcards)
+    {
+        return CppProxy.writeAll(vcards);
+    }
 
     private static final class CppProxy extends IEzvcard
     {
@@ -33,15 +45,27 @@ public abstract class IEzvcard {
         }
 
         private native void nativeDestroy(long nativeRef);
-        public void destroy()
+        public void _djinni_private_destroy()
         {
             boolean destroyed = this.destroyed.getAndSet(true);
             if (!destroyed) nativeDestroy(this.nativeRef);
         }
         protected void finalize() throws java.lang.Throwable
         {
-            destroy();
+            _djinni_private_destroy();
             super.finalize();
         }
+
+        @CheckForNull
+        public static native IVCard parseFirst(@Nonnull String value);
+
+        @Nonnull
+        public static native ArrayList<IVCard> parseAll(@Nonnull String value);
+
+        @Nonnull
+        public static native String write(@CheckForNull IVCard vcard);
+
+        @Nonnull
+        public static native String writeAll(@Nonnull ArrayList<IVCard> vcards);
     }
 }

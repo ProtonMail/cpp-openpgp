@@ -18,7 +18,11 @@ public abstract class IPMCustom {
     public abstract String getGroup();
 
     @CheckForNull
-    public static native IPMCustom createInstance(@Nonnull String type, @Nonnull String value);
+    public static IPMCustom createInstance(@Nonnull String type, @Nonnull String value)
+    {
+        return CppProxy.createInstance(type,
+                                       value);
+    }
 
     private static final class CppProxy extends IPMCustom
     {
@@ -32,14 +36,14 @@ public abstract class IPMCustom {
         }
 
         private native void nativeDestroy(long nativeRef);
-        public void destroy()
+        public void _djinni_private_destroy()
         {
             boolean destroyed = this.destroyed.getAndSet(true);
             if (!destroyed) nativeDestroy(this.nativeRef);
         }
         protected void finalize() throws java.lang.Throwable
         {
-            destroy();
+            _djinni_private_destroy();
             super.finalize();
         }
 
@@ -66,5 +70,8 @@ public abstract class IPMCustom {
             return native_getGroup(this.nativeRef);
         }
         private native String native_getGroup(long _nativeRef);
+
+        @CheckForNull
+        public static native IPMCustom createInstance(@Nonnull String type, @Nonnull String value);
     }
 }

@@ -10,14 +10,28 @@ import javax.annotation.Nonnull;
 public abstract class SrpClient {
     /**ExpandHash */
     @Nonnull
-    public static native byte[] expandHash(@Nonnull byte[] input);
+    public static byte[] expandHash(@Nonnull byte[] input)
+    {
+        return CppProxy.expandHash(input);
+    }
 
     /**SRP */
     @Nonnull
-    public static native SrpProofs generateProofs(int bitLength, @Nonnull byte[] modulusRepr, @Nonnull byte[] serverEphemeralRepr, @Nonnull byte[] hashedPasswordRepr);
+    public static SrpProofs generateProofs(int bitLength, @Nonnull byte[] modulusRepr, @Nonnull byte[] serverEphemeralRepr, @Nonnull byte[] hashedPasswordRepr)
+    {
+        return CppProxy.generateProofs(bitLength,
+                                       modulusRepr,
+                                       serverEphemeralRepr,
+                                       hashedPasswordRepr);
+    }
 
     @Nonnull
-    public static native byte[] generateVerifier(int bitLength, @Nonnull byte[] modulusRepr, @Nonnull byte[] hashedPasswordRepr);
+    public static byte[] generateVerifier(int bitLength, @Nonnull byte[] modulusRepr, @Nonnull byte[] hashedPasswordRepr)
+    {
+        return CppProxy.generateVerifier(bitLength,
+                                         modulusRepr,
+                                         hashedPasswordRepr);
+    }
 
     private static final class CppProxy extends SrpClient
     {
@@ -31,15 +45,24 @@ public abstract class SrpClient {
         }
 
         private native void nativeDestroy(long nativeRef);
-        public void destroy()
+        public void _djinni_private_destroy()
         {
             boolean destroyed = this.destroyed.getAndSet(true);
             if (!destroyed) nativeDestroy(this.nativeRef);
         }
         protected void finalize() throws java.lang.Throwable
         {
-            destroy();
+            _djinni_private_destroy();
             super.finalize();
         }
+
+        @Nonnull
+        public static native byte[] expandHash(@Nonnull byte[] input);
+
+        @Nonnull
+        public static native SrpProofs generateProofs(int bitLength, @Nonnull byte[] modulusRepr, @Nonnull byte[] serverEphemeralRepr, @Nonnull byte[] hashedPasswordRepr);
+
+        @Nonnull
+        public static native byte[] generateVerifier(int bitLength, @Nonnull byte[] modulusRepr, @Nonnull byte[] hashedPasswordRepr);
     }
 }

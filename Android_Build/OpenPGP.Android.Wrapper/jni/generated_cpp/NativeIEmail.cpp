@@ -68,7 +68,7 @@ CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IEmail_00024C
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IEmail_createInstance(JNIEnv* jniEnv, jobject /*this*/, jstring j_type, jstring j_email, jstring j_group)
+CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IEmail_00024CppProxy_createInstance(JNIEnv* jniEnv, jobject /*this*/, jstring j_type, jstring j_email, jstring j_group)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);

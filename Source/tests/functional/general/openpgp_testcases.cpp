@@ -207,7 +207,6 @@ namespace tests {
                     "-----END PGP MESSAGE-----";
                     
                     std::string privKey = priv_key;
-                    bool retVerify = false;
                     PGPSecretKey pk (privKey);
                     PGPMessage msg(mdc_messae);
 //                    auto out = decrypt_pka(pk, msg, passphrase, retVerify);

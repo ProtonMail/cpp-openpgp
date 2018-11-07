@@ -20,7 +20,7 @@ CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IEzvcard_0002
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IEzvcard_parseFirst(JNIEnv* jniEnv, jobject /*this*/, jstring j_value)
+CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IEzvcard_00024CppProxy_parseFirst(JNIEnv* jniEnv, jobject /*this*/, jstring j_value)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);
@@ -29,7 +29,7 @@ CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IEzvcard_p
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IEzvcard_parseAll(JNIEnv* jniEnv, jobject /*this*/, jstring j_value)
+CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IEzvcard_00024CppProxy_parseAll(JNIEnv* jniEnv, jobject /*this*/, jstring j_value)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);
@@ -38,7 +38,7 @@ CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IEzvcard_p
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_nativelib_IEzvcard_write(JNIEnv* jniEnv, jobject /*this*/, jobject j_vcard)
+CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_nativelib_IEzvcard_00024CppProxy_write(JNIEnv* jniEnv, jobject /*this*/, jobject j_vcard)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);
@@ -47,7 +47,7 @@ CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_nativelib_IEzvcard_w
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_nativelib_IEzvcard_writeAll(JNIEnv* jniEnv, jobject /*this*/, jobject j_vcards)
+CJNIEXPORT jstring JNICALL Java_ch_protonmail_android_utils_nativelib_IEzvcard_00024CppProxy_writeAll(JNIEnv* jniEnv, jobject /*this*/, jobject j_vcards)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);

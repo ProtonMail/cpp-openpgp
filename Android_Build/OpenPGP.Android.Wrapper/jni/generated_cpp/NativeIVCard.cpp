@@ -17,6 +17,7 @@
 #include "NativeIPMMimeType.hpp"
 #include "NativeIPMScheme.hpp"
 #include "NativeIPMSign.hpp"
+#include "NativeIPhoto.hpp"
 #include "NativeIStructuredName.hpp"
 #include "NativeITelephone.hpp"
 #include "NativeITitle.hpp"
@@ -644,6 +645,34 @@ CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024C
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
+CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1getPhoto(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+{
+    try {
+        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
+        const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IVCard>(nativeRef);
+        auto r = ref->getPhoto();
+        return ::djinni::release(::ProtonMail::NativeIPhoto::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
+}
+
+CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1setPhoto(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_photo)
+{
+    try {
+        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
+        const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IVCard>(nativeRef);
+        ref->setPhoto(::ProtonMail::NativeIPhoto::toCpp(jniEnv, j_photo));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
+}
+
+CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1clearPhotos(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+{
+    try {
+        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
+        const auto& ref = ::djinni::objectFromHandleAddress<::ProtonMail::IVCard>(nativeRef);
+        ref->clearPhotos();
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
+}
+
 CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_native_1getUrls(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
@@ -737,7 +766,7 @@ CJNIEXPORT void JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024C
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_createInstance(JNIEnv* jniEnv, jobject /*this*/)
+CJNIEXPORT jobject JNICALL Java_ch_protonmail_android_utils_nativelib_IVCard_00024CppProxy_createInstance(JNIEnv* jniEnv, jobject /*this*/)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);

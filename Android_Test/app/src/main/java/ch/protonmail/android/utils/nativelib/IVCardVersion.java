@@ -11,13 +11,22 @@ public abstract class IVCardVersion {
     public abstract boolean equals(@CheckForNull IVCardVersion rhs);
 
     @CheckForNull
-    public static native IVCardVersion VCard21();
+    public static IVCardVersion VCard21()
+    {
+        return CppProxy.VCard21();
+    }
 
     @CheckForNull
-    public static native IVCardVersion VCard30();
+    public static IVCardVersion VCard30()
+    {
+        return CppProxy.VCard30();
+    }
 
     @CheckForNull
-    public static native IVCardVersion VCard40();
+    public static IVCardVersion VCard40()
+    {
+        return CppProxy.VCard40();
+    }
 
     private static final class CppProxy extends IVCardVersion
     {
@@ -31,14 +40,14 @@ public abstract class IVCardVersion {
         }
 
         private native void nativeDestroy(long nativeRef);
-        public void destroy()
+        public void _djinni_private_destroy()
         {
             boolean destroyed = this.destroyed.getAndSet(true);
             if (!destroyed) nativeDestroy(this.nativeRef);
         }
         protected void finalize() throws java.lang.Throwable
         {
-            destroy();
+            _djinni_private_destroy();
             super.finalize();
         }
 
@@ -49,5 +58,14 @@ public abstract class IVCardVersion {
             return native_equals(this.nativeRef, rhs);
         }
         private native boolean native_equals(long _nativeRef, IVCardVersion rhs);
+
+        @CheckForNull
+        public static native IVCardVersion VCard21();
+
+        @CheckForNull
+        public static native IVCardVersion VCard30();
+
+        @CheckForNull
+        public static native IVCardVersion VCard40();
     }
 }

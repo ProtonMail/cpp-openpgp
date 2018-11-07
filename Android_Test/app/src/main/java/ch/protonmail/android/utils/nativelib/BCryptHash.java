@@ -14,7 +14,11 @@ public abstract class BCryptHash {
      *hash
      */
     @Nonnull
-    public static native String hashString(@Nonnull String password, @Nonnull String salt);
+    public static String hashString(@Nonnull String password, @Nonnull String salt)
+    {
+        return CppProxy.hashString(password,
+                                   salt);
+    }
 
     private static final class CppProxy extends BCryptHash
     {
@@ -28,15 +32,18 @@ public abstract class BCryptHash {
         }
 
         private native void nativeDestroy(long nativeRef);
-        public void destroy()
+        public void _djinni_private_destroy()
         {
             boolean destroyed = this.destroyed.getAndSet(true);
             if (!destroyed) nativeDestroy(this.nativeRef);
         }
         protected void finalize() throws java.lang.Throwable
         {
-            destroy();
+            _djinni_private_destroy();
             super.finalize();
         }
+
+        @Nonnull
+        public static native String hashString(@Nonnull String password, @Nonnull String salt);
     }
 }
