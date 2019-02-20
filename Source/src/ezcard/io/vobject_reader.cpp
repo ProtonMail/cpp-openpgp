@@ -570,7 +570,7 @@ namespace vinnie {
             _leftOver = -1;
             return ch;
         }
-        auto d = _reader.str();
+        //auto d = _reader.str();
         auto out = _reader.get();
         return out;
     }
