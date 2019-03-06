@@ -100,6 +100,28 @@ END:VCARD
                 VERIFY_ARE_EQUAL(out, str);
             }
             
+            TEST(test_vcard_with_bad_notes) {
+                // must have extra line ending
+                std::string str = R"(BEGIN:VCARD
+VERSION:4.0
+PRODID:pm-ez-vcard 0.0.1
+NOTE:Поротата уште во декември едногласно го прогласи за виновен по пет точки за сексуална злоупотреба на деца помлади од 16 години. Самата пресуда и деталите на целиот случај остануваат тајна сè до следниот вторник поради правни причини.\n\n
+END:VCARD
+)";
+                str = ProtonMail::replaceAll(str, "\n", "\r\n"); // convert line ending for raw string
+                
+                // clone and verify the new vCard
+                auto newVCard = std::make_shared<VCard>();
+                newVCard->setVersion(VCardVersion::V4_0());
+                
+                std::string note = "Поротата уште во декември едногласно го прогласи за виновен по пет точки за сексуална злоупотреба на деца помлади од 16 години. Самата пресуда и деталите на целиот случај остануваат тајна сè до следниот вторник поради правни причини.\n\n";
+                Note::Ptr newNote = std::make_shared<ezvcard::Note>(note);
+                newNote->setType("");
+                newVCard->setNote(newNote);
+                auto out = Ezvcard::write(newVCard)->go();
+                VERIFY_ARE_EQUAL(out, str);
+            }
+            
             TEST(incorrect_v4_with_V3_photo_data_ios_way) {
                 std::string str = R"(BEGIN:VCARD
 VERSION:4.0

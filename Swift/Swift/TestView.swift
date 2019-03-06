@@ -36,6 +36,74 @@ class TestView: UIViewController {
     
     
     @IBAction func large_test_clicked(_ sender: AnyObject) {
+        
+        let str = """
+        BEGIN:VCARD
+        VERSION:4.0
+        PRODID:test 111.00
+        END:VCARD
+        """
+//        PHOTO:data:image/jpeg;base64,cLaxHfZiBSjwsi5i
+//        FN:Andrew Smith
+//        URL:SJSU.com
+//        NOTE:Wuaues
+//        ORG:Is kid
+        guard let vcard = PMNIEzvcard.parseFirst(str) else {
+            return
+        }
+//        let newNotes = "По секоја од петте точки за кои е прогласен за виновен, австралискиот кардинал Џорџ Пел би можел да добие до максимални 10 години затвор, објави судот.\n\nКардиналот, кој по едномесечно судење во декември 2018 година, е прогласен за виновен за сексуални злоупотрби на две малолетни момчиња. Тој ќе остане во затвор бидејќи судот му ја отфрли кауцијата.\n\nТретиот човек на Ватикан е осуден за сексуална злоупотреба за што тој тврди дека е невин, а неговиот адвокат поднесе жалба на пресудата. Изрекувањето на должината на казната се очекува на 13 март.\n\nПоротата уште во декември едногласно го прогласи за виновен по пет точки за сексуална злоупотреба на деца помлади од 16 години. Самата пресуда и деталите на целиот случај остануваат тајна сè до следниот вторник поради правни причини.\n\nПо секоја од петте точки за кои е прогласен виновен, Пел би можел да добие до максимални 10 години затвор."
+
+        let newNotes = "Поротата уште во декември едногласно го прогласи за виновен по пет точки за сексуална злоупотреба на деца помлади од 16 години. Самата пресуда и деталите на целиот случај остануваат тајна сè до следниот вторник поради правни причини.\n\n"
+        
+        
+//         let newNotes = "случај остануваат тајна сè до test \n\nПоротата у \r\n,  't' 'e' 's' 't' \n \\x"
+//        print(newNotes)
+        let n = PMNINote.createInstance("", note: newNotes)!
+//        vcard3.setNote(n)
+//        isCard3Set = true
+//
+//        let testnote = n.getNote()
+//
+//        let testnobj = vcard3.getNote()
+//        let testnote2 = testnobj?.getNote()
+//        let note =
+        vcard.setNote(n)
+        
+        let out = PMNIEzvcard.write(vcard)
+        
+        guard let vcard1 = PMNIEzvcard.parseFirst(out) else {
+            return
+        }
+        let n2 = vcard1.getNote()
+        
+        let noteout = n2?.getNote()
+        print(noteout!)
+        print(out)
+        
+        
+        
+//        auto vcard = Ezvcard::parse(str).first();
+//        auto formattedName = vcard->getFormattedName();
+//        VERIFY_ARE_EQUAL(formattedName->getValue(), "Andrew Smith");
+//
+//        // clone and verify the new vCard
+//        auto newVCard = std::make_shared<VCard>();
+//        newVCard->setVersion(VCardVersion::V4_0());
+//        newVCard->setFormattedName(std::make_shared<FormattedName>(formattedName->getValue()));
+//
+//        auto photos = vcard->getPhotos();
+//        for(auto photo : photos)
+//            newVCard->addPhoto(photo);
+//
+//        std::string note = "По секоја од петте точки за кои е прогласен за виновен, австралискиот кардинал Џорџ Пел би можел да добие до максимални 10 години затвор, објави судот.\n\nКардиналот, кој по едномесечно судење во декември 2018 година, е прогласен за виновен за сексуални злоупотрби на две малолетни момчиња. Тој ќе остане во затвор бидејќи судот му ја отфрли кауцијата.\n\nТретиот човек на Ватикан е осуден за сексуална злоупотреба за што тој тврди дека е невин, а неговиот адвокат поднесе жалба на пресудата. Изрекувањето на должината на казната се очекува на 13 март.\n\nПоротата уште во декември едногласно го прогласи за виновен по пет точки за сексуална злоупотреба на деца помлади од 16 години. Самата пресуда и деталите на целиот случај остануваат тајна сè до следниот вторник поради правни причини.\n\nПо секоја од петте точки за кои е прогласен виновен, Пел би можел да добие до максимални 10 години затвор.";
+//        Note::Ptr newNote = std::make_shared<ezvcard::Note>(note);
+//        newNote->setType("");
+//        newVCard->setNote(newNote);
+//        auto out = Ezvcard::write(newVCard)->go();
+//        VERIFY_ARE_EQUAL(out, str);
+        
+        
+        
 //        let button:UIButton = sender as! UIButton;
 //        
 //        button.isEnabled = false;

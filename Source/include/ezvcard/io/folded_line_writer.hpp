@@ -30,7 +30,7 @@ namespace vinnie {
         std::shared_ptr<std::stringstream> _writer;
         
         int8_t _lineLength = 75;
-        bool _lineLengthEnabled = true;
+        bool _lineLengthEnabled = false;
         
         std::string _indent = " ";
         int8_t _curLineLength = 0;
