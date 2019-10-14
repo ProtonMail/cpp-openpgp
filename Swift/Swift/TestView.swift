@@ -37,6 +37,10 @@ class TestView: UIViewController {
     
     @IBAction func large_test_clicked(_ sender: AnyObject) {
         
+        
+        
+        PMNOpenPgp.createInstance()?.generateKey("feng@pm.me", domain: "", passphrase: "123", bits: 2048, time: 0)
+        
         let str = """
         BEGIN:VCARD
         VERSION:4.0

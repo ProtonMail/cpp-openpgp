@@ -316,7 +316,115 @@ namespace ProtonMail {
             //rsa_sub_key->n = rsa_sub_key->e = rsa_sub_key->d = rsa_sub_key->p = rsa_sub_key->q = NULL;
             RSA_free(rsa_sub_key);
             
-            
+            {
+                std::string datakey =
+                "-----BEGIN PGP PUBLIC KEY BLOCK-----\r\n"
+                "Version: Pmcrypto Golang 0.0.1 (ddacebe0)\r\n"
+                "Comment: https://protonmail.com\r\n"
+                "\r\n"
+                "xsFNBFomLW8BEADU8JWF/GpsMT3YsAXaJQ0VIMqRi9p3TXIdyzW2y7Pk4c/UMr/T\r\n"
+                "A6Rtqrj71vrAKK/43whNb6ibUkSslJGUNUjYOV1lBwB0+X86Eq8PvhdAF4uqGFRR\r\n"
+                "UOfworW8ZiEgCOjBcr+xo1CiCd5MfxGoDN4YRRkdijPuRB8FfdreSPUBYeBhNQPN\r\n"
+                "Md6n7/odzGa3PgbrGT2y0+jiCx/+uHB0BwNoXE66RdfH0eYZQMK7jhb536g7hfOu\r\n"
+                "Iaakw1uLuMWEcjgIQKvN5WA/pIU1vLhHjOlStZC9LKrkCQ0mQFuxTfYuEL/r7f6x\r\n"
+                "/Ojt2TWgW0x0AfV9/29i1JUtWyazrkPJcrM55yUF8/8u03IYLSdfncCFCt/kiQZs\r\n"
+                "pyBHZsHEfT/j8rB8Qw6SsGjxFWCJHL9zU4WbP8Jjg8etw4tlRCfoIladUWHJomSM\r\n"
+                "35gSHi+StLyvkTLhvWlYaKRnbVzVmpxgmnyfriKpigwNjjnQfLX97l18RJxoxU8R\r\n"
+                "QfXqPRuTvh3Vqa2EaqZuxBUp+lJT3bU8eGAr+g69osHd0KKPJia2HJimoaNwQNOX\r\n"
+                "IPEVDuO+l5vEPmtoKq5z9fo9Px+6BSRJvdxZsBpszEBTaXxlfHM/lqQyD4tABICY\r\n"
+                "5wGJMQh1/CClF+DccoSFfAtQGVfeeGue0pvDr2xC63D74Tm5oBmIvA/56QARAQAB\r\n"
+                "zStKb2huIEJyZWVzZSAocGhvbmUpIDxqZWJyZWVzZTJAaG90bWFpbC5jb20+wsF1\r\n"
+                "BBMBCAAfBQJaJi1vAhsDBAsJCAcGFQgCCQoLAxYBAgIeAQIXgAAKCRABUoLbaNH+\r\n"
+                "UgABD/9wUDYkulOCtX4jpRRCaAtm6T+moclhOUvxPV5vj7jP5GYkNRHrlSD3NUpj\r\n"
+                "yTROfZbtetryAcnoCoh2aeIwTA3Tnirt/xj7h8ho2GQYLzfPWWBwobF+5UYvZcwG\r\n"
+                "CZXbVIw1UiVVPdBy8jWM1MNnSHNfWY8sqZvRIH2SiRFk745Lif9w+ENmiODqfYiX\r\n"
+                "sUqQZDjDVDFORJqlXacPB3kJ7WyUnzyA02D0zSGS36VK6jKtRbfotcxshjeWB/EQ\r\n"
+                "YEasDtoif/5xtaaiofUWcoazOTbN/QKonQuECW1OQTMazo8RCeQ7gOaT3z51HHMO\r\n"
+                "SB/booXM/xXSscSXcNYo5UfPfYt2hJQESFbgtJTnxCKaJxKgUXMi+qukjuNhJIrQ\r\n"
+                "DFF39CEPYQmMtLqe84gIvCVj2lL1imRtW9Jm3/GHH7g+JrB1MRyO1Z9oAl7EX27J\r\n"
+                "pq1yH1l05JT5ZrXyq7/iVGUGjGjT1IWhv5ICRuEvZd0KLi7E3IgwiA1zp1fQxBP3\r\n"
+                "/ZzidApKDVquBqelb1CnDzJHqbcbi5W32S1DSp0c4KUlMUPPT+bmvYLSLWUB35xu\r\n"
+                "kh3iNY5Q2I8rD17ZP26XzoYjfcfbRkEQgKRBIITTkYZNvN6yL6rS/ZkMCYhjxTcS\r\n"
+                "enbPM8ym2scBZFF4lmxVsLH2QiPu1qCBTHbW52p/D/a/uWJEYc7BTQRaJi1wARAA\r\n"
+                "wrsTYTkhBzk0BdE2N8Qy8EdKBPKNzfepPLFLfxVkyKINOBP7i7lJCtcz/6VhIdL1\r\n"
+                "NHNRuvvX0lGdmGaY21yial0MIRdTYl9EG4DbHXxb3XW5EHIb/Nt9Ywj2MvwCKZjq\r\n"
+                "lRMFNL22J4EreFrcitKnRNRxtATGKyEmsQtZgB9brm/uy96Z+M3yyhvCGq/WRiEc\r\n"
+                "8+qSRGPAR+E6teBhMZ0/gX6a3MvnViA5qbPd5O4eVtfceYW1m25Ll3VYbapzu0Bg\r\n"
+                "sWi02yDzRWpx7sIIK2ysFuVXzfNiBSVsntjEgkGcSVFWUEvX1Mk8jB78T9rmW499\r\n"
+                "CWnUPI3tUbBtVbvFUDpZxTH6oYCuKlQpwx/BGAXWd+yXpb7Zbm7N2ozwXianPWYQ\r\n"
+                "OpYWfRIU3lRHnNJwVt9l/Y+D3YA2YZWjOKMBbyvKJuEPAqohaxVGIJP3ynBoArLT\r\n"
+                "mx8lxWcn9qWw8WgFoxHPaR8XzS85lELXQky2u6mLfN5psYkzcHTaAp/8B/Ny+RGn\r\n"
+                "WjkrBs090ychK0fjQnep+uJv842rlrIUT1eU81nsmmoyagmTgIznRkgvH0vrKRaf\r\n"
+                "2no1qXtavS6+3eNai+wbGsCyztcT4E2FzWA2xgJSI3zeT55IE3xhYXyrfJUL+c+x\r\n"
+                "Xkxjf3I7OJZkvIZMwBz6QqZDFQ0qUcSHCeIqp879tEkAEQEAAcLBagQYAQgAFAUC\r\n"
+                "WiYtcAIbDAUJBaOagAQLCQgHAAoJEAFSgtto0f5SAAEP/RsBvjAo9m7DEWahQTq2\r\n"
+                "QBpJ6DBsWjjgg8OcbSqtCrzR/J29NAJ2yO3Q34dpUVwswFKSB3JnkU/5Vehe2/zF\r\n"
+                "I1T/JECy8JopWBqJk8n8mqZZtmbA4nalvSenZg8MTkmEfT7XlqE3iGkbWZebZZdP\r\n"
+                "vLrOiScyCiDBmzNTEiRBxTrfxFGudJxLyIHAF4EdKPVu/m93449MHXThQxF8yxPN\r\n"
+                "yIoBKOsh7IXsw1WbKrz2poUVdZWOle+ICk7N9PQ1Jd83HGncWP3HDAWI9LM/q/hi\r\n"
+                "LHgC5uMafUxP0CkLVMHzFBaq17lqivXWZ6u+4dCURgYOe+OfqlkhOWyUTcB8On81\r\n"
+                "5XEpsnodY+ddWgQJjrsVbu0pPJNDpT8me/mpJT2SbPdLRjfvsKY0DvDNvLcfIWYZ\r\n"
+                "vzPTpsE68yMPIAqUYVcfnBIQCJZT8zYlSmTWzMIBLRicfrK1+eWP5dBTBz8ajeUs\r\n"
+                "neWeh/0V2gcCnJA69krnp759+3kjg3KKxKG12Ny7gE9OsHDg/TXaoBomInv/OSBp\r\n"
+                "3/kr6oVqYj4ogQ7AnuG3kakgEnrPblimKixebm8Col0QQkZqZWNPekN453VVSwJD\r\n"
+                "sJUbA8UIyzH0Gblrm53z8hpUIU8OicTdPcVdtDV9LoP4HJS8xTvUEu4YuYY1jOV6\r\n"
+                "DBY2sED/ZLd7CLReEeMNdiGf\r\n"
+                "=lgls\r\n"
+                "-----END PGP PUBLIC KEY BLOCK-----\r\n";
+                Tag13::Ptr id;
+                Tag2::Ptr sig;
+                Tag6::Ptr sec;
+                
+                PGPPublicKey pbkey = PGPPublicKey(datakey);
+                for(auto packet : pbkey.get_packets()) {
+                    if (packet->get_tag() == 2) {
+                        std::string raw = packet -> raw();
+                        sig = std::make_shared<Tag2>(raw);
+                        break;
+                    }
+                }
+                
+                for(auto packet : pbkey.get_packets()) {
+                    if (packet->get_tag() == 6) {
+                        
+                        std::string raw = packet -> raw();
+                        sec = std::make_shared<Tag6>(raw);
+                        break;
+                    }
+                }
+                
+                for(auto packet : pbkey.get_packets()) {
+                    if (packet->get_tag() == 13) {
+                        std::string raw = packet -> raw();
+                        id = std::make_shared<Tag13>(raw);
+                        break;
+                    }
+                }
+                
+                std::string sig_hash = to_sign_10(sec, id, sig);
+                std::cout << hexlify(sig_hash) << std::endl;
+                std::cout << hexlify(sig->get_mpi()[0]) << std::endl;
+                
+                auto test = sig_hash.substr(0, 2);
+                std::cout << hexlify(test) << std::endl;
+                
+                
+               std::cout << hexlify( sig->get_left16()) << std::endl;
+                
+                auto signing = sec->get_mpi();
+                
+                ProtonMail::crypto::rsa key(signing[0], signing[1]);
+                auto hash = sig -> get_hash();
+                
+                std::string encoded = EMSA_PKCS1_v1_5(hash, sig_hash, bitsize(signing[0]) >> 3);
+                auto verify = key.verify(rawtompi(encoded), sig->get_mpi()[0]);
+                
+                
+                
+//                auto ISOK = RSA_verify(sig_hash, sig->get_mpi(), sec->get_mpi());
+                std::cout << verify << std::endl;
+                
+            }
             return true;
             
         }
