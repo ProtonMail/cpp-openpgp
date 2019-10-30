@@ -105,6 +105,7 @@ namespace ProtonMail {
         std::vector<uint8_t> get_symmetric_session_key(const std::vector<uint8_t> & keyPackage, const std::string & password);
 
         std::vector<uint8_t> get_new_public_key_package(const std::vector<uint8_t> & session, const std::string & publicKey);
+        std::vector<uint8_t> get_new_public_key_package_binary(const std::vector<uint8_t> & session, const std::vector<uint8_t> & publicKey);
 
         std::vector<uint8_t> get_new_symmetric_key_package(const std::vector<uint8_t> & session, const std::string & password);
 

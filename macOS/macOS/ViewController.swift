@@ -18,6 +18,7 @@ class ViewController: NSViewController {
     }
     
     @IBOutlet weak var test_change_pwd: NSButton!
+    @IBOutlet weak var vcard_write_test: NSButton!
     
     @IBAction func test_change_pwd_clicked(_ sender: AnyObject) {
         //let pgp:OpenPGP = OpenPGP()
@@ -185,37 +186,37 @@ class ViewController: NSViewController {
         //        let pubkey = NSString(contentsOfFile: pub_location, encoding: NSUTF8StringEncoding, error: nil) as! String
         //        let privkey = NSString(contentsOfFile: priv_location, encoding: NSUTF8StringEncoding, error: nil) as! String
         //        let key_package = NSString(contentsOfFile: key_package_location, encoding: NSUTF8StringEncoding, error: nil) as! String
-//        do {
-//            var privateKey = ""
-//            var publicKey = ""
-//            
-//            let privatePassphrase = "123"
-//            
-//            let bundleInstance : Bundle = Bundle(for: type(of: self))
-//            
-//            if let localFile = bundleInstance.path(forResource: "privatekey", ofType: "txt") {
-//                if let content = try? String(contentsOfFile:localFile, encoding:String.Encoding.utf8) {
-//                    privateKey = content
-//                }
-//            }
-//            
-//            if let localFile = bundleInstance.path(forResource: "publickey", ofType: "txt") {
-//                if let content = try?  String(contentsOfFile:localFile, encoding:String.Encoding.utf8) {
-//                    publicKey = content
-//                }
-//            }
-//            
-//            try pgp.setupKeys(privateKey, pubKey: publicKey, pass: privatePassphrase)
-//            
-//            let data_package = try? Data(contentsOf: URL(fileURLWithPath: tet_att))
-//            let decrypted_data = try pgp.decrypt_attachment(data_package, data: data_package)
-//            
-//            try? decrypted_data.write(to: URL(fileURLWithPath: "/Users/Yanfeng/Downloads/2step.pdf"), options: [])
-//            
-//        } catch let ex as NSError {
-//            print(ex)
-//        }
-//        
+        //        do {
+        //            var privateKey = ""
+        //            var publicKey = ""
+        //
+        //            let privatePassphrase = "123"
+        //
+        //            let bundleInstance : Bundle = Bundle(for: type(of: self))
+        //
+        //            if let localFile = bundleInstance.path(forResource: "privatekey", ofType: "txt") {
+        //                if let content = try? String(contentsOfFile:localFile, encoding:String.Encoding.utf8) {
+        //                    privateKey = content
+        //                }
+        //            }
+        //
+        //            if let localFile = bundleInstance.path(forResource: "publickey", ofType: "txt") {
+        //                if let content = try?  String(contentsOfFile:localFile, encoding:String.Encoding.utf8) {
+        //                    publicKey = content
+        //                }
+        //            }
+        //
+        //            try pgp.setupKeys(privateKey, pubKey: publicKey, pass: privatePassphrase)
+        //
+        //            let data_package = try? Data(contentsOf: URL(fileURLWithPath: tet_att))
+        //            let decrypted_data = try pgp.decrypt_attachment(data_package, data: data_package)
+        //
+        //            try? decrypted_data.write(to: URL(fileURLWithPath: "/Users/Yanfeng/Downloads/2step.pdf"), options: [])
+        //
+        //        } catch let ex as NSError {
+        //            print(ex)
+        //        }
+        //
         
         
         //
@@ -380,6 +381,14 @@ class ViewController: NSViewController {
         if expected == hashed {
             NSLog("expected == hashed")
         }
+        //        if let openPgp : PMNOpenPgp = PMNOpenPgp.createInstance() {
+        //            //openPgp.encryptHashCbc("asdfsdfasdfsaf", "")
+        //        }
+        //
+        let data = Data()
+        //
+        //
+        //let out = PMNSrpClient.expandHash(data)
         
 //        
 //       let data = Data()
@@ -456,7 +465,7 @@ class ViewController: NSViewController {
         //                        }
         //                    }
         //                }
-        //                
+        //
         //                for i in 0 ..< 200 {
         //                    print(" start \(i)");
         //                    let tmp_out = openPgp.decryptMessage(test, passphras: "123");
@@ -468,11 +477,11 @@ class ViewController: NSViewController {
         
         
         //        let keys = [ PMNOpenPgpKey(publicKey: "publickey_1", privateKey: "privatekey_1"), PMNOpenPgpKey(publicKey: "publickey_2", privateKey: "privatekey_2"),PMNOpenPgpKey(publicKey: "publickey_3", privateKey: "privatekey_3"),PMNOpenPgpKey(publicKey: "publickey_4", privateKey: "privatekey_4") ]
-        //        
+        //
         //        var address = PMNAddress(addressId: "1", addressName: "feng@protonmail.blue", keys: keys)
         
         //        let pgp:PMNOpenPgp = PMNOpenPgp.createInstance()!
-        //        
+        //
         ////
         ////        SwiftTryCatch.tryBlock({ () -> Void in
         ////            pgp.throwAnException()
@@ -481,25 +490,331 @@ class ViewController: NSViewController {
         ////        }) { () -> Void in
         ////            //
         ////        }
-        ////        
-        //        
+        ////
+        //
         //        let newKey = pgp.generateKey("feng_test", domain: "protonmail.com", passphrase: "123");
-        //        
+        //
         //         print(newKey.publicKey)
         //         print(newKey.privateKey)
         //        //                    String test_encrypt = OpenPGP.EncryptMailboxPWD("thisisatestmailbox", "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
         //        //                    String test_plain_text = OpenPGP.DecryptMailboxPWD(test_encrypt, "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
         //        //let en_pwd = pgp?.encryptMailboxPwd("thisisatestmailbox", salt: "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
         //        //let plain_pwd = pgp?.decryptMailboxPwd(en_pwd!, salt: "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
-        //        
-        //        
+        //
+        //
         //        let openpgp_old = OpenPGP();
         //        let en_pwd = pgp.encryptMailboxPwd("thisisatestmailbox", salt: "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
         //        let plain_pwd = pgp.decryptMailboxPwd(en_pwd, salt: "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
         ////        let en_pwd_old = openpgp_old.encrypt_mailbox_pwd("thisisatestmailbox", slat: "4428c82a118a2dc76f53dab507d3b1d69850ebb9" );
-        ////        
+        ////
         ////         let plain_pwd_old = openpgp_old.decrypt_mailbox_pwd(en_pwd_old!, slat: "4428c82a118a2dc76f53dab507d3b1d69850ebb9");
         //        print("");
+    }
+    @IBAction func test_vcard_action(_ sender: NSButtonCell) {
+        
+        let str  : String =
+            "BEGIN:VCARD\r\n" +
+                "VERSION:3.0\r\n" +
+                "N:1\\;&\\;1\r\n" +
+                "FN:1 & 1\r\n" +
+                "EMAIL;TYPE=Email:test@example.com\r\n" +
+                "EMAIL;TYPE=Home:test1@example.com\r\n" +
+                "EMAIL;TYPE=Work:test3@example.com\r\n" +
+        "END:VCARD\r\n"
+        
+        var vcard = PMNIEzvcard.parseFirst(str)
+        assert(vcard != nil)
+        var fn = vcard!.getFormattedName()
+        assert(fn != nil)
+        var name = fn!.getValue()
+        assert("1 & 1" == name)
+        var sn = vcard!.getStructuredName()
+        assert(sn != nil)
+        var f = sn!.getFamily()
+        assert(f == "1;&;1")
+        let ems = vcard!.getEmails()
+        assert(ems.count == 3)
+        
+        let e1 = ems[0]
+        assert(e1.getTypes() == ["Email"])
+        assert(e1.getValue() == "test@example.com")
+        let e2 = ems[1]
+        assert(e2.getTypes() == ["Home"])
+        assert(e2.getValue() == "test1@example.com")
+        let e3 = ems[2]
+        assert(e3.getTypes() == ["Work"])
+        assert(e3.getValue() == "test3@example.com")
+        
+        let rfc2426_str : String =
+            "BEGIN:vCard\r\n" +
+                "VERSION:3.0\r\n" +
+                "FN:Frank Dawson\r\n" +
+                "ORG:Lotus Development Corporation\r\n" +
+                "ADR;TYPE=Work,POSTAL,PARCEL:;;6544 Battleford Drive\r\n" +
+                " ;Raleigh;NC;27613-3502;U.S.A.\r\n" +
+                "TEL;TYPE=VOICE,MSG,WORK:+1-919-676-9515\r\n" +
+                "TEL;TYPE=FAX,WORK:+1-919-676-9564\r\n" +
+                "EMAIL;TYPE=INTERNET,PREF:Frank_Dawson@Lotus.com\r\n" +
+                "EMAIL;TYPE=INTERNET:fdawson@earthlink.net\r\n" +
+                "URL:http://home.earthlink.net/~fdawson\r\n" +
+                "END:vCard\r\n" +
+                "BEGIN:vCard\r\n" +
+                "VERSION:3.0\r\n" +
+                "FN:Tim Howes\r\n" +
+                "ORG:Netscape Communications Corp.\r\n" +
+                "ADR;TYPE=WORK:;;501 E. Middlefield Rd.;Mountain View;\r\n" +
+                " CA; 94043;U.S.A.\r\n" +
+                "TEL;TYPE=VOICE,MSG,WORK:+1-415-937-3419\r\n" +
+                "TEL;TYPE=FAX,WORK:+1-415-528-4164\r\n" +
+                "EMAIL;TYPE=INTERNET:howes@netscape.com\r\n" +
+        "END:vCard\r\n";
+        
+        var vcards = PMNIEzvcard.parseAll(rfc2426_str)
+        assert(vcards.count == 2)
+        let vcardOne = vcards[0]
+        var version = vcardOne.getVersion()
+        let d = PMNIVCardVersion.vCard30()?.equals(version)
+        assert(d!)
+        fn = vcardOne.getFormattedName()
+        assert(fn != nil)
+        name = fn!.getValue()
+        assert(name == "Frank Dawson")
+        var org = vcardOne.getOrganization();
+        assert(org?.getValues()[0] == "Lotus Development Corporation")
+        var addresses = vcardOne.getAddresses()
+        assert(addresses.count == 1)
+        var address = addresses[0]
+        assert(address.getStreetAddress() == "6544 Battleford Drive")
+        assert(address.getLocality() == "Raleigh")
+        assert(address.getRegion() == "NC");
+        assert(address.getPostalCode() == "27613-3502");
+        assert(address.getCountry() == "U.S.A.")
+        assert(address.getTypes() == ["Work","POSTAL","PARCEL"])
+        
+        var telephones = vcardOne.getTelephoneNumbers()
+        assert(telephones.count == 2)
+        var tel1 = telephones[0]
+        assert(tel1.getTypes() == ["VOICE","MSG","WORK"])
+        assert(tel1.getText() == "+1-919-676-9515")
+        var tel2 = telephones[1]
+        assert(tel2.getTypes() == ["FAX","WORK"])
+        assert(tel2.getText() == "+1-919-676-9564")
+        
+        var emails = vcardOne.getEmails()
+        assert(emails.count == 2)
+        let email1 = emails[0];
+        assert(email1.getTypes() == ["INTERNET","PREF"])
+        assert(email1.getValue() == "Frank_Dawson@Lotus.com")
+        let email2 = emails[1];
+        assert(email2.getTypes() == ["INTERNET"])
+        assert(email2.getValue() == "fdawson@earthlink.net")
+        let urls = vcardOne.getUrls()
+        assert(urls.count == 1)
+        let url = urls[0];
+        assert(url.getValue() == "http://home.earthlink.net/~fdawson");
+    
+        let vcardTwo = vcards[1]
+        version = vcardTwo.getVersion()
+        assert(PMNIVCardVersion.vCard30()!.equals(version))
+        fn = vcardTwo.getFormattedName();
+        assert(fn != nil)
+        assert(fn!.getValue() == "Tim Howes")
+        org = vcardTwo.getOrganization()
+        assert(org != nil)
+        assert(org!.getValues() == ["Netscape Communications Corp."])
+        addresses = vcardTwo.getAddresses()
+        assert(addresses.count == 1)
+        address = addresses[0]
+        assert(address.getStreetAddress() == "501 E. Middlefield Rd.")
+        assert(address.getLocality() == "Mountain View")
+        assert(address.getRegion() == "CA");
+        assert(address.getPostalCode() == " 94043")
+        assert(address.getCountry() == "U.S.A.")
+        assert(address.getTypes() == ["WORK"])
+        telephones = vcardTwo.getTelephoneNumbers()
+        assert(telephones.count == 2)
+        tel1 = telephones[0]
+        assert(tel1.getTypes() == ["VOICE","MSG","WORK"])
+        assert(tel1.getText() == "+1-415-937-3419")
+        tel2 = telephones[1]
+        assert(tel2.getTypes() == ["FAX","WORK"])
+        assert(tel2.getText() == "+1-415-528-4164")
+        emails = vcardTwo.getEmails()
+        assert(emails.count == 1)
+        var email = emails[0];
+        assert(email.getTypes() == ["INTERNET"])
+        assert(email.getValue() == "howes@netscape.com");
+        
+        let str_protonmail_web =
+        "BEGIN:VCARD\r\n" +
+        "VERSION:3.0\r\n" +
+        "N:1\\;&\\;1\r\n" +
+        "FN:1 & 1\r\n" +
+        "EMAIL;TYPE=Email:test@example.com\r\n" +
+        "EMAIL;TYPE=Home:test1@example.com\r\n" +
+        "EMAIL;TYPE=Work:test3@example.com\r\n" +
+        "TEL;TYPE=Cell:6176767087\r\n" +
+        "TEL;TYPE=Fax:6414551782\r\n" +
+        "ADR;TYPE=Home:500 King Dr Daly City CA\\, 94080\r\n" +
+        "ORG;TYPE=Org:TestOrg\r\n" +
+        "TITLE;TYPE=Title:TestTitle\r\n" +
+        "NICKNAME:TestNickName\r\n" +
+        "BDAY;TYPE=Bday:19841007\r\n" +
+        "ITEM1.CUSTOM:TestCustomField1\r\n" +
+        "ITEM1.X-ABLABEL:Custom\r\n" +
+        "ITEM2.CUSTOM:TestCustomField2\r\n" +
+        "ITEM2.X-ABLABEL:Custom\r\n" +
+        "ITEM3.CUSTOM:333333\r\n" +
+        "ITEM3.X-ABLABEL:Custom\r\n" +
+        "NOTE;TYPE=Note:test notes 11\r\n" +
+        "END:VCARD\r\n"
+        
+        vcards = PMNIEzvcard.parseAll(str_protonmail_web)
+        assert(vcards.count == 1)
+        vcard = vcards[0]
+        
+        version = vcard!.getVersion()
+        let check = PMNIVCardVersion.vCard30()?.equals(version)
+        assert(check!)
+        
+        fn = vcard!.getFormattedName()
+        assert(fn != nil)
+        name = fn!.getValue()
+        assert(name == "1 & 1")
+        
+        sn = vcard!.getStructuredName()
+        assert(sn != nil)
+        f = sn!.getFamily()
+        assert(f == "1;&;1")
+        
+        emails = vcard!.getEmails()
+        assert(emails.count == 3)
+        
+        email = emails[0]
+        assert(email.getTypes() == ["Email"])
+        assert(email.getValue() == "test@example.com")
+
+        email = emails[1]
+        assert(email.getTypes() == ["Home"])
+        assert(email.getValue() == "test1@example.com")
+        
+        email = emails[2]
+        assert(email.getTypes() == ["Work"])
+        assert(email.getValue() == "test3@example.com")
+        
+        telephones = vcard!.getTelephoneNumbers()
+        assert(telephones.count == 2)
+        
+        var tel = telephones[0]
+        assert(tel.getTypes() == ["Cell"])
+        assert(tel.getText() == "6176767087")
+        tel = telephones[1];
+        assert(tel.getTypes() == ["Fax"])
+        assert(tel.getText() == "6414551782")
+        
+        addresses = vcard!.getAddresses()
+        assert(addresses.count == 1)
+        let addr = addresses[0]
+        let pobox = addr.getPoBox()
+        assert(pobox == "500 King Dr Daly City CA, 94080")
+        
+        org = vcard!.getOrganization()
+        assert(org!.getValues()[0] == "TestOrg")
+        
+        let title = vcard!.getTitle()
+        assert(title!.getType() == "Title")
+        assert(title!.getTitle() == "TestTitle")
+
+        let nickName = vcard?.getNickname()
+        assert(nickName!.getType() == "")
+        assert(nickName!.getNickname() == "TestNickName")
+
+        let birthday = vcard!.getBirthday()    
+        assert(birthday!.getType() == "Bday")
+        assert(birthday!.getDate() == "19841007")
+        
+        let note = vcard!.getNote()
+        assert(note!.getType() == "Note")
+        assert(note!.getNote() == "test notes 11")
+        
+        let customs = vcard!.getPMCustoms()
+        let custom0 = customs[0];
+        assert(custom0.getType() == "")
+        assert(custom0.getValue() == "TestCustomField1")
+        assert(custom0.getGroup() == "ITEM1")
+        
+        let custom1 = customs[1];
+        assert(custom1.getType() == "")
+        assert(custom1.getValue() == "TestCustomField2")
+        assert(custom1.getGroup() == "ITEM2")
+        
+        let custom2 = customs[2];
+        assert(custom2.getType() == "")
+        assert(custom2.getValue() == "333333")
+        assert(custom2.getGroup() == "ITEM3")
+    }
+    
+    @IBAction func vcard_write_test_action(_ sender: Any) {
+        
+        
+        let _  : String =
+            "BEGIN:VCARD\r\n" +
+                "VERSION:3.0\r\n" +
+                "N:1\\;&\\;1\r\n" +
+                "FN:1 & 1\r\n" +
+                "EMAIL;TYPE=Email:test@example.com\r\n" +
+                "EMAIL;TYPE=Home:test1@example.com\r\n" +
+                "EMAIL;TYPE=Work:test3@example.com\r\n" +
+        "END:VCARD\r\n"
+        
+        
+        let vcard = PMNIVCard.createInstance()!
+        vcard.setVersion(PMNIVCardVersion.vCard30())
+        let fn = PMNIFormattedName.createInstance("John Doe")
+        vcard.setFormattedName(fn)
+        let email1 = PMNIEmail.createInstance("Home", email: "feng@protonmail.com")
+        vcard.add(email1)
+        let email2 = PMNIEmail.createInstance("Work", email: "zh4478@protonmail.com")
+        vcard.add(email2)
+        _ = PMNIEzvcard.write(vcard)
+
+        
+//        VCard::Ptr vcard1 = std::make_shared<VCard>();
+//        vcard1->setVersion(VCardVersion::V2_1);
+//        vcard1->setFormattedName(std::make_shared<FormattedName>("John Doe"));
+//        VCard::Ptr vcard2 = std::make_shared<VCard>();
+//        vcard2->setVersion(VCardVersion::V3_0);
+//        vcard2->setFormattedName(std::make_shared<FormattedName>("Jane Doe"));
+//        VCard::Ptr vcard3 = std::make_shared<VCard>();
+//        vcard3->setVersion(VCardVersion::V4_0);
+//        vcard3->setFormattedName(std::make_shared<FormattedName>("Janet Doe"));
+        
+//        auto actual = Ezvcard::write( { vcard1, vcard2, vcard3 })->go();
+        
+        
+//        let vcard = PMNIEzvcard.parseFirst(str)
+//        assert(vcard != nil)
+//        var fn = vcard!.getFormattedName()
+//        assert(fn != nil)
+//        var name = fn!.getValue()
+//        assert("1 & 1" == name)
+//        let sn = vcard!.getStructuredName()
+//        assert(sn != nil)
+//        let f = sn!.getFamily()
+//        assert(f == "1;&;1")
+//        let ems = vcard!.getEmails()
+//        assert(ems.count == 3)
+//        
+//        let e1 = ems[0]
+//        assert(e1.getTypes() == ["Email"])
+//        assert(e1.getValue() == "test@example.com")
+//        let e2 = ems[1]
+//        assert(e2.getTypes() == ["Home"])
+//        assert(e2.getValue() == "test1@example.com")
+//        let e3 = ems[2]
+//        assert(e3.getTypes() == ["Work"])
+//        assert(e3.getValue() == "test3@example.com")
+        
     }
 }
 

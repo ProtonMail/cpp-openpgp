@@ -181,6 +181,66 @@ namespace tests {
             auto password2 = "I am another password";
             
             
+            TEST(private_key_2_public_key_test) {
+                std::string key = priv_key_de;
+                PGPSecretKey priv(key);
+                auto pubkey = priv.pub();
+            }
+            
+            TEST(mdc_test) {
+                
+                {
+                    std::string mdc_messae = "-----BEGIN PGP MESSAGE-----\r\n"
+                    "Version: OpenPGP.js v3.0.9\r\n"
+                    "Comment: https://openpgpjs.org\r\n"
+                    "\r\n"
+                    "wYwD4IT3RGwgLJcBA/99QQ/P/MP3Ne0ZJxHfkDHHv8OO44tAKgprKIpCpj2l\r\n"
+                    "MuMa4D3LfTuDNjt5STCfQ9R2DNWIVxmKKFA/Gv8GiFY39S0slpLrkvB65bPs\r\n"
+                    "PeO253PgJxTvzqA5NzC566fxbSYF0iVejpEf85ZMT0DTklDiVFXFMFHHIN6+\r\n"
+                    "BCOTc6IpSsnAG5V4w3Mh/3lTQWjdU468wnKHOvKGjHae3KZ2Qg3tqPCOHD0N\r\n"
+                    "ltJPjs2pQ7mrhWzpG7/GyBcau2F59xsD4AmE/Z/HFD6rZrUjaMk7nRwjtl2s\r\n"
+                    "KxrgXau38kJcrldt1mtO55PwgQArtCb8TsW7bbHGu5OlXFrHtK154wsHDlkX\r\n"
+                    "rjX2LtmZnnerWbSRu4tpAi9ot5kejFXWsUm5E9exAdjcg5fnFq2dpZ/Oc57B\r\n"
+                    "gqUn5Zn7to2kVsOEv1emmS0YoKaRiwozXuwUPcD2pwF85EBpPMCut4/mRFex\r\n"
+                    "3BHJyA==\r\n"
+                    "=kV/J\r\n"
+                    "-----END PGP MESSAGE-----";
+                    
+                    std::string privKey = priv_key;
+                    PGPSecretKey pk (privKey);
+                    PGPMessage msg(mdc_messae);
+//                    auto out = decrypt_pka(pk, msg, passphrase, retVerify);
+//                    VERIFY_ARE_EQUAL(out, "");
+                    
+                }
+                
+                {
+                    std::string mdc_messae = "-----BEGIN PGP MESSAGE-----\r\n"
+                    "Version: OpenPGP.js VERSION\r\n"
+                    "Comment: https://openpgpjs.org\r\n"
+                    "\r\n"
+                    "wYwD4IT3RGwgLJcBBADRn2rWzydBXbQUMFruybN9afSa0QA1UZAjsja0hHgF\r\n"
+                    "xHlkagsp4WLadOd2DzByv5szcNly2ywZrRjfyFkFVCuexYwmzCUEou4FfxRh\r\n"
+                    "X2zHTc+56JhLBPedH6q2iVW2OOC9EisLWD9lnofsvgaCwagXxdFCqj3XCSk1\r\n"
+                    "i8Wcln3PZcnAGxzZfGCEzZg+K1JolYX+dQZ4g424XJL4nI5ozUm5ZcQEq0An\r\n"
+                    "9jwgUEFz3HK2ccEHOHXfs7c0w7Xopy/rseGgAbFsVDTbgqYcNPRJt1ii5tTF\r\n"
+                    "ezLuEPyM7cokjREWnCY9jUIx2U2DSaym/bfnHtrb8j2Vd0MG8bQbPLJP2gCD\r\n"
+                    "w0a3vmb2Mxp1PIDmH42sVsy5obbObvIkwPJjI5zQTv0EANGoHPp4uWTcnNK9\r\n"
+                    "lgaWly1BWEv2+XZicAzrgxVlY/Z19gVXv36PVCF3yrnp6mxGhk0F41WD5yJB\r\n"
+                    "CIyfPw==\r\n"
+                    "=uHa0\r\n"
+                    "-----END PGP MESSAGE-----";
+                    
+                    std::string privKey = priv_key;
+                    bool retVerify = false;
+                    PGPSecretKey pk (privKey);
+                    PGPMessage msg(mdc_messae);
+                    auto out = decrypt_pka(pk, msg, passphrase, retVerify);
+                    VERIFY_IS_TRUE(out != "");
+                }
+                
+            }
+            
             TEST(generate_key_test) {
                 //TODO::fix the new interface
                 { // invalid user name input

@@ -281,6 +281,105 @@ namespace tests {
         SUITE(openpgo_signature_test)
         {//Testing signature checking on CAST5-enciphered message
             
+            TEST(real_case_test_one) {
+                std::string sign = ""
+                "-----BEGIN PGP SIGNATURE-----" "\n"
+                "" "\n"
+                "iQIzBAEBCgAdFiEEHjIbwVT2fQdX+jEvYPFd9PtCmrUFAlrVEz4ACgkQYPFd9PtC" "\n"
+                "mrUrsBAAxygsNW9esPUoSaELykdWXhthwVdK+mhdKILNz0bsybBX3ku8ktvApUoj" "\n"
+                "4qhZbfNu3QnqM7MquG/eEIQUl74URso8BZfFlH3UWssVT6x/hLr2a2ZrItaBkcXg" "\n"
+                "Ni/RQkzlliFMhv4ENmk/yApLNyrDCuruB12TE8tt0DMuszzr0dw3Tx7IFZxl4zwx" "\n"
+                "icXJXwNRnEH+FrJLzxUdzsHGPZMbIkSY5eMWoECSobgSTvQxRPhLlgKLuRTdHLZI" "\n"
+                "S8TPGNU5vZWLDxdXV8Vkx+IHQJfdvY94iHrw/y+xFN112yMjQgL/km6LM8ERlkkf" "\n"
+                "57kGGDYOsyKqd+8dEH7KSzUkh+nnpi/84R0OAIfcEvuEIyUqr7HGey4Ymc2UniIG" "\n"
+                "BJQ8VJ5GHh5g+AqYogxU1JQv8/3mejg5+s2kQcQ2SHlr2myBK2F+4W1knMuNLi58" "\n"
+                "oEtA9hbYWxjE3LnE0oF8Ut+/qikF9UiEUhToe/Ir0m5VV6gr/GplhEQOWpm6cvpS" "\n"
+                "Vp3lgRdXJ+umgErKD5yLPBxFZwi+PSIQSS6dDabeyLgPOrF5S1lPWp7EfqGaGDgg" "\n"
+                "1QAf7QBQZkHYBHBGCaXQ2nvYSIs4Qtq/KK0kfQgUmuqwqBfDglWiqiAC4hOGc4SD" "\n"
+                "Sx74YU5b3Z+l2Ba8gZmhUOk2qKfzkPpjGXKk+6c1v8pDqatSPa0=" "\n"
+                "=DfFm" "\n"
+                "-----END PGP SIGNATURE-----" "\n";
+                
+                std::string pubKey = ""
+                "-----BEGIN PGP PUBLIC KEY BLOCK-----" "\n"
+                "" "\n"
+                "mQINBFrGVVQBEADO8lPUuW1x6vcUVupXRWlNL8rvoKpCykMVDtVbEDo7iKULNEIV" "\n"
+                "zEqQq50Do+tAX4f0JOTHVJ92BOxQ3IqklpfJvhQnsoxBOvMQnpEH90iFovecC5PC" "\n"
+                "J25MjExKJFCRsi5QJXFWTI+DvX64prIqTbQ7GMQWhBGErJch+gaOBsw1+jo3VrCx" "\n"
+                "QRsNxIZz4RbQbllEImB1kT5v50jv3VECAfUg6UL8W4IUn+G58vdTzvutDKWqqZn0" "\n"
+                "5pnv/Jey3Q1qOkZPQQ+yvTeAGtUFobK/e6hpIXr4/wxvwkQL9uTdcuZtu1dNs3Cy" "\n"
+                "UhlC93QmNQq+zpo07Q8lz8grxaEVknjKUUJsNSWnT7AFY4RlzQEr0JcvygsgiVQJ" "\n"
+                "xiyFlUkzUx5cvkbchwW98egXL0pOn8GKRPpFXWaKCZ2hZpuyxBS5r+oQuS22zjvh" "\n"
+                "8acnULIMXJNbEq5mR0RW9KW1GfL6nqgotEEQAbQ4kP1VD7JjW2dE+XGWlBlRM9S7" "\n"
+                "Fn8z2QyDZoMeqb6L78QC1OgdbgWPAzDWiSsXdBBF57CuhVEvTBhXSoKfbcc+JD+8" "\n"
+                "rRjaihMeF7DhKdQoIvOH7HEv8m/yGrhPc7uVjO9PXWFn9kUyeAgjMTBy73FmkZSe" "\n"
+                "12YMnz9bppeStp5LvvOoZBArvUpcruyqD2E7lzRBrXkfVzdJN1Z788PCyQARAQAB" "\n"
+                "tCFZYW5mZW5nIFpoYW5nIDx6aGo0NDc4QGdtYWlsLmNvbT6JAlQEEwEKAD4WIQQe" "\n"
+                "MhvBVPZ9B1f6MS9g8V30+0KatQUCWsZVVAIbAwUJB4YfgAULCQgHAwUVCgkICwUW" "\n"
+                "AgMBAAIeAQIXgAAKCRBg8V30+0KatRiiD/48d7mvPRXy1GNGyNnwSAX1BV3qCyvr" "\n"
+                "r2DORRtCMb/l8Xwt7q3A6k01xLbKEmZDLYgk/bDNFU/rqY/E6n2dO4D6X6Gh3dLk" "\n"
+                "OXGGl6hYmtTWyjBRXZ6hxiEJHvNysvPgznBQXX8VuBE4rEte3s3muRECpu3P68fB" "\n"
+                "RXy5yx+7c+J1xvZVh9Fd/CYjCeiq9OYRbolWpyb4wZcTvWb2ts4/0E8RCU/LFlaF" "\n"
+                "xdfgJA3EKaUPrERzwYEvor3eqhH+0V6TIYMYINkxXcsliLlSKMQIQGikL8SZVtLw" "\n"
+                "dizA0ClKsflCfAjqc1jSaAj8nZ6aoJGaE2j75zoyTS2T7w2rc3B0xZEPxdp/iRnS" "\n"
+                "ZhD2OKitwo1wVIt8caH4rKdSbOZY+rFiapHaxllnqDwIgCooLq3qDIhD40eCIiH+" "\n"
+                "OcckNyOjLG+jkOORYWO9iOcmkvf/TboSuKRSuopyNG3c2qgwTzbamWbR8YF7jV+p" "\n"
+                "27x/IOt4hF507aw3r3Z0duPU7sCx7zP0w6siELScnfzBJB3MuIl/b68SgmFefZ16" "\n"
+                "m0V00+xrpMkJk8t9//n8A0zFICCPRgphVs1FPywjdmIVXE7FJKw2Hrj0crGMWK0X" "\n"
+                "xt+52btFNS+VWqlLaCNnOhtqNEULWqhf5WEsA1QcZsQTis0sn47jtuDanRAAKiw7" "\n"
+                "fOxPG8JZ1i67UbkCDQRaxlVUARAA4VAFZvnSZha+LPuHliytCdlM3TXW8fbG9KI0" "\n"
+                "P4IhHo8rAQjuzZfaLRrQNyT3BQeHs6DqMdMoOVAUDmDs+DSvpNc7XvA+5SLrRkeR" "\n"
+                "tDHRSjXTo9h2gGVJY/IC+FMNieCtlxb8dN3yCMH9zvRhg2QFO/EppLJa57WHvSxV" "\n"
+                "yJEMuJy7mo4oM70PepfXDgilRmY4wDHIFPgFVCROmRJ9VpyoMsfJuoIHFleCWPwJ" "\n"
+                "InoHdXaGRSJoRjpwEbfbrdEN2WqRSe/GMEg3/lT8KXPFt+iHM2iotp/VUBysapPi" "\n"
+                "SDD8/p4qNYZsv8b0tU/xuNZ2eGluftuhj+LOmUjJh8kEPCF3AhdeI9kI6lYTCv+V" "\n"
+                "PMiEKwZNjLlb4JlQfPo74PnBxK9oR0hOiA9u5Pbc41Vx9ecdaBzOOf9vygod6zm9" "\n"
+                "WZewDghee8AWHp6ywej4Qe1DL1vfM58vhPSVUJHhT09YjWy1DqCDLTuZUKMdDA/B" "\n"
+                "odPWrQPCYZPx2xlLWrNiE0rdNVWL127tTTwNRf+9WhbdrSoOO3iWmJeqeKFzZ8/A" "\n"
+                "MQ4ApRDfRYnnQtaUuRCvndJaISVmJeuasPkW/6BmsQZmqUi+vvvLNdpiSHjpqZkc" "\n"
+                "bCSgoSZze0QoG0UeXMihzD5S9aT/vQCDaK0jp6ZbN6HzagZhKDfZ7r78Rc+QOb4W" "\n"
+                "ChaRyDMAEQEAAYkCPAQYAQoAJhYhBB4yG8FU9n0HV/oxL2DxXfT7Qpq1BQJaxlVU" "\n"
+                "AhsMBQkHhh+AAAoJEGDxXfT7Qpq1mM4P/1lRNstt01EQ4TAD48qm5jCuIgR72jGF" "\n"
+                "e/mMawuWqvMISI74nVmi9H/v971C0LZKT5BDBSTAQ3ZRlS1Ieszc0UpPquQtxxvM" "\n"
+                "L45lDUWmq1FC2ghYfWv+xqeebpPGpfbaoPdmXnv9YhbblYCQPE8Trpunj/LjSpmg" "\n"
+                "bLuDt6QPgYQVNCvOlT0a+1AWGcf5fA+BJmXPEotEFanDCTVIa3wzIxKVAuBB3A3f" "\n"
+                "KHwmjPzYZvFIvisR70lq20hOukM+sk/A3KJuWAheQv5pmQj5TTQ5z+AV+OYdIbW0" "\n"
+                "Jtn55q01Nt9T2yBnegb5vM9uWMPWT1CtEsaMG4udZ58jWjSeycnWJbI5IpM9uZO6" "\n"
+                "iVJ4pnPs3Jdlm1sEcu0lK+opmFtfyt/u07QjztHtVMsho5DazrFohGfCjrFvVjjp" "\n"
+                "BaWf4rHxwtePM7TgltYCMnzkp3cOEYlRserxp0USZ9s/8uC2a0EyplODopSy7yIz" "\n"
+                "gPFIT0hJiwlbmDtaLsSqOs02Oi9S+jogl/T2vj8KWaE3DqlD50XADQvVZlo/FuKe" "\n"
+                "9d8PShZaCfTGV5kUY12xWIQ7p+jMIp+XJk9RW2/SFemhcUYn7JUYuzzdIFhVk9n0" "\n"
+                "qMvklkacXureuLeSEtgDVW1x+tpA0O41w8L5gkcSxkhPDRa1F2kKWKIKuv42KhFJ" "\n"
+                "HVMS2Bf5Izrg" "\n"
+                "=S20O" "\n"
+                "-----END PGP PUBLIC KEY BLOCK-----";
+                
+                auto pgp = ProtonMail::OpenPgp::create_instance();
+                
+                std::string raw = ""
+                "Content-Type: multipart/mixed; boundary=\"qE44QJXjqRN1NRR77dHRTmjgQ65qJIQwR\"; protected-headers=\"v1\"" "\r\n"
+                "From: Yanfeng Zhang <zhj4478@gmail.com>" "\r\n"
+                "To: zhj4478@gmail.com" "\r\n"
+                "Message-ID: <c2ad78f4-3cf1-1c05-f907-e6a78f4dca70@gmail.com>" "\r\n"
+                "Subject: 2211" "\r\n"
+                "" "\r\n"
+                "--qE44QJXjqRN1NRR77dHRTmjgQ65qJIQwR" "\r\n"
+                "Content-Type: text/plain; charset=utf-8" "\r\n"
+                "Content-Transfer-Encoding: quoted-printable" "\r\n"
+                "Content-Language: en-US" "\r\n"
+                "" "\r\n"
+                "123123123123123123123" "\r\n"
+                "" "\r\n"
+                "" "\r\n"
+                "" "\r\n"
+                "--qE44QJXjqRN1NRR77dHRTmjgQ65qJIQwR--" ;// "\r\n";
+                
+//                auto check2 = pgp->sign_detached_verify(pubKey, sign, raw);
+//                VERIFY_IS_TRUE(check2);
+
+
+            }
+            
             TEST(checkint_cast5_enciphered_message) {  //doesnt support yet
                 auto pgp = ProtonMail::OpenPgpImpl::create_instance();
                 //decrypt message
@@ -517,19 +616,42 @@ namespace tests {
                 
                 auto encrypted_pgp = encrypt_pka(*pubKey, plaintext, "", 9, 2, true, privKey, "XE1AdSmjIXJCz0yI3r9gL6viA251TLG");
                 
-                std::string encrypt_message = encrypted_pgp.write();
-                std::cout << encrypt_message << std::endl;
-                
-                PGPMessage esMsg(encrypt_message);
-                bool verify = false;
-                std::string plain_text = decrypt_pka(*privKey, esMsg, "XE1AdSmjIXJCz0yI3r9gL6viA251TLG", verify, false, pubKey);
-                
-                std::cout << plain_text << std::endl;
-                
-                
-                std::cout << plaintext << std::endl;
-                
-                VERIFY_ARE_EQUAL(plain_text, plaintext);
+                {
+                    
+                    std::string encrypt_message = encrypted_pgp.write();
+                    std::cout << encrypt_message << std::endl;
+                    
+                    PGPMessage esMsg(encrypt_message);
+                    bool verify = false;
+                    std::string plain_text = decrypt_pka(*privKey, esMsg, "XE1AdSmjIXJCz0yI3r9gL6viA251TLG", verify, false, pubKey);
+                    
+                    std::cout << plain_text << std::endl;
+                    
+                    
+                    std::cout << plaintext << std::endl;
+                    
+                    VERIFY_ARE_EQUAL(plain_text, plaintext);
+                }
+                {
+                    std::string keyPackage = encrypted_pgp.write(1, 0, 1);
+                    std::string dataPackage = encrypted_pgp.write(1, 0, 18);
+                    
+                    auto keyData = std::vector<uint8_t>(keyPackage.begin(), keyPackage.end());
+                    auto dataData = std::vector<uint8_t>(dataPackage.begin(), dataPackage.end());
+                    
+                    std::string str_key_package(keyData.begin(), keyData.end());
+                    std::string str_data_package (dataPackage.begin(), dataPackage.end());
+                    
+                    ProtonMail::PMPGPMessage esMsg(str_key_package, true);
+                    bool verify = false;
+                    esMsg.append(str_data_package, true);
+                    std::string plain_text = decrypt_pka(*privKey, esMsg, "XE1AdSmjIXJCz0yI3r9gL6viA251TLG", verify, false, pubKey);
+                    
+                    std::cout << plain_text << std::endl;
+                    std::cout << plaintext << std::endl;
+                    
+                    VERIFY_ARE_EQUAL(plain_text, plaintext);
+                }
             }
             
             TEST(Verify_signature_of_signed_and_encrypted_message) {

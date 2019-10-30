@@ -111,7 +111,7 @@ bool verify_detachedsig(const PGPPublicKey & pub, const std::string & data, cons
         default:
             throw std::runtime_error("Error: The detached signature type is not supported.");
     }
-    std::cout <<  signature -> get_left16() << ":" << digest.substr(0, 2) << std::endl;
+    //std::cout <<  signature -> get_left16() << ":" << digest.substr(0, 2) << std::endl;
     if (digest.substr(0, 2) != signature -> get_left16()){
         throw std::runtime_error("Error: Hash digest and given left 16 bits of hash do not match.");
         // return false;

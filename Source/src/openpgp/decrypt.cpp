@@ -104,8 +104,7 @@ PGPMessage decrypt_data(const uint8_t sym, const PGPMessage & m, const std::stri
     return PGPMessage(data, true);
 }
 
-std::string decrypt_pm_pka(const PGPSecretKey & pri, const std::string & passphrase, const std::string & msg)
-{
+std::string decrypt_pm_pka(const PGPSecretKey & pri, const std::string & passphrase, const std::string & msg) {
     return "";
 }
 

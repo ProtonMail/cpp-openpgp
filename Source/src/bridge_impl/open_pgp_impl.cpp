@@ -149,6 +149,34 @@ namespace ProtonMail {
         return updated_keys;
     }
     
+    bool OpenPgp::findKeyid(const std::string &encrypt_text, const std::string & private_key) {
+        std::string encrypted = encrypt_text;
+        std::string privateKey = private_key;
+        
+        PGPMessage m(encrypted);
+        PGPSecretKey pri(privateKey);
+        
+        for(Packet::Ptr const & p : m.get_packets()) {
+            if ((p -> get_tag() == 1) || (p -> get_tag() == 3)) {
+                auto data = p -> raw();
+                auto packet = p -> get_tag();
+                if (packet == 1) {
+                    if (p -> get_tag() == 1) {
+                        Tag1 tag1(data);
+                        auto keyid = tag1.get_keyid();
+                        auto sec = pgp::find_decrypting_key(pri, keyid, false);
+                        if (sec){
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        
+        return false;
+    }
+    
+    
     //
     //
     OpenPgpImpl::OpenPgpImpl() {
@@ -300,7 +328,7 @@ namespace ProtonMail {
             privKey = std::make_shared<PGPSecretKey>(user_priv_key);
         }
         
-        PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg, "", 9, 2, true, privKey, passphras, 0x01);
+        PGPMessage encrypted_pgp = encrypt_pka(pub, unencrypt_msg, "", 9, 0, true, privKey, passphras, 0x01);
         std::string encrypt_message = encrypted_pgp.write();
         
         return encrypt_message;
@@ -568,6 +596,25 @@ namespace ProtonMail {
         
         return out_vector;
     }
+    
+    std::vector<uint8_t> OpenPgpImpl::get_new_public_key_package_binary(const std::vector<uint8_t> & session, const std::vector<uint8_t> & publicKey) {
+        
+        
+        std::string str_sessionKey (session.begin(), session.end());
+        
+        std::string user_pub_key = std::string(publicKey.begin(), publicKey.end());
+        
+        PGPPublicKey pub(user_pub_key);
+        
+        PGPMessage out_msg = encrypt_pka_only_session(pub, str_sessionKey);
+        
+        std::string encrypted_data = out_msg.write(1);
+        
+        std::vector<uint8_t> out_vector(encrypted_data.begin(), encrypted_data.end());
+        
+        return out_vector;
+    }
+    
     
     std::vector<uint8_t> OpenPgpImpl::get_new_symmetric_key_package(const std::vector<uint8_t> & session,
                                                                     const std::string & password) {
