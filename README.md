@@ -6,6 +6,12 @@ This is the main crypto library on mobile since 2015. we have migrated to [gopen
 
 VCard is currently in used in the iOS-mail application.
 
+## License
+
+Copyright (c) 2019 Proton Technologies AG
+
+Please see [LICENSE](LICENSE.txt) file for the license.
+
 ### OpenPGP
 
 OpenPGP part originally forked from https://github.com/calccrypto/OpenPGP. 
