@@ -22,8 +22,8 @@ class ViewController: NSViewController {
     
     @IBAction func test_change_pwd_clicked(_ sender: AnyObject) {
         //let pgp:OpenPGP = OpenPGP()
-        //        let location = "/Users/Yanfeng/Desktop/testpub.txt"
-        //        let location_1 = "/Users/Yanfeng/Desktop/testprivat.txt"
+        //        let location = "testpub.txt"
+        //        let location_1 = "testprivat.txt"
         //        let fileContent = NSString(contentsOfFile: location, encoding: NSUTF8StringEncoding, error: nil) as! String
         //        let fileContent_1 = NSString(contentsOfFile: location_1, encoding: NSUTF8StringEncoding, error: nil) as! String
         //
@@ -58,9 +58,9 @@ class ViewController: NSViewController {
         //        NSLog(un_enc_msg)
         //
         //
-        //        let location = "/Users/Yanfeng/Desktop/testpub.txt"
+        //        let location = "testpub.txt"
         //
-        //        let location_1 = "/Users/Yanfeng/Desktop/testprivat.txt"//"/Users/Yanfeng/Desktop/old/sample/private_key.txt"//
+        //        let location_1 = "testprivat.txt"
         //
         //        let fileContent = NSString(contentsOfFile: location, encoding: NSUTF8StringEncoding, error: nil) as! String
         //        let fileContent_1 = NSString(contentsOfFile: location_1, encoding: NSUTF8StringEncoding, error: nil) as! String
@@ -78,7 +78,7 @@ class ViewController: NSViewController {
         
         //        let pgp:OpenPGP = OpenPGP();
         //
-        //        let test_file = "/Users/Yanfeng/Desktop/aestest.txt"
+        //        let test_file = "aestest.txt"
         //
         //        let testStr = NSString(contentsOfFile: test_file, encoding: NSUTF8StringEncoding, error: nil) as! String
         //
@@ -125,15 +125,15 @@ class ViewController: NSViewController {
     
     @IBAction func test_bad_message(_ sender: AnyObject) {
         
-        //        let location = "/Users/Yanfeng/Desktop/publickey.txt"
-        //        let location_1 = "/Users/Yanfeng/Desktop/privatekey.txt"
-        //        let location_2 = "/Users/Yanfeng/Desktop/bad_feng_email_fb.txt"
-        //        let location_3 = "/Users/Yanfeng/Desktop/bad_feng_email_tool.txt"
-        //        let location_4 = "/Users/Yanfeng/Desktop/bad_feng_email_emoji.txt"
-        //        let bad_location_1 = "/Users/Yanfeng/Desktop/bad_fengt_zhj4478_message.txt"
+        //        let location = "publickey.txt"
+        //        let location_1 = "privatekey.txt"
+        //        let location_2 = "bad_feng_email_fb.txt"
+        //        let location_3 = "bad_feng_email_tool.txt"
+        //        let location_4 = "bad_feng_email_emoji.txt"
+        //        let bad_location_1 = bad_fengt_zhj4478_message.txt"
         //
-        //        let fengtPublicKeyLocation = "/Users/Yanfeng/Desktop/fengt_publickey.txt"
-        //        let fengtPrivateKeyLocation = "/Users/Yanfeng/Desktop/fengt_privatekey.txt"
+        //        let fengtPublicKeyLocation = "fengt_publickey.txt"
+        //        let fengtPrivateKeyLocation = "fengt_privatekey.txt"
         //
         //        let fileContent = NSString(contentsOfFile: location, encoding: NSUTF8StringEncoding, error: nil) as! String
         //        let fileContent_1 = NSString(contentsOfFile: location_1, encoding: NSUTF8StringEncoding, error: nil) as! String
@@ -174,14 +174,14 @@ class ViewController: NSViewController {
         //        let pgp:OpenPGP = OpenPGP()
         //
         //
-        //        let tet_att = "/Users/Yanfeng/Downloads/2step.pdf.pgp"
+        //        let tet_att = "2step.pdf.pgp"
         //
         //        // pgp.Test_Attachment("", data: "")
         //
-        //        let pub_location = "/Users/Yanfeng/Desktop/publickey.net.txt"
-        //        let priv_location = "/Users/Yanfeng/Desktop/privatekey.net.txt"
-        //        let key_package_location = "/Users/Yanfeng/Desktop/keypackage.txt"
-        //        let data_package_location = "/Users/Yanfeng/Desktop/dataPack.txt"
+        //        let pub_location = "publickey.net.txt"
+        //        let priv_location = "privatekey.net.txt"
+        //        let key_package_location = "keypackage.txt"
+        //        let data_package_location = "dataPack.txt"
         //
         //        let pubkey = NSString(contentsOfFile: pub_location, encoding: NSUTF8StringEncoding, error: nil) as! String
         //        let privkey = NSString(contentsOfFile: priv_location, encoding: NSUTF8StringEncoding, error: nil) as! String
@@ -211,7 +211,7 @@ class ViewController: NSViewController {
         //            let data_package = try? Data(contentsOf: URL(fileURLWithPath: tet_att))
         //            let decrypted_data = try pgp.decrypt_attachment(data_package, data: data_package)
         //
-        //            try? decrypted_data.write(to: URL(fileURLWithPath: "/Users/Yanfeng/Downloads/2step.pdf"), options: [])
+        //            try? decrypted_data.write(to: URL(fileURLWithPath: "2step.pdf"), options: [])
         //
         //        } catch let ex as NSError {
         //            print(ex)
@@ -224,20 +224,20 @@ class ViewController: NSViewController {
         //
         //
         //
-        //        let armored_key_package_location = "/Users/Yanfeng/Desktop/new_att_key.txt"
-        //        let armored_data_package_location = "/Users/Yanfeng/Desktop/new_att_data.txt"
+        //        let armored_key_package_location = "new_att_key.txt"
+        //        let armored_data_package_location = "new_att_data.txt"
         //        let armored_key_package = NSString(contentsOfFile: armored_key_package_location, encoding: NSUTF8StringEncoding, error: nil) as! String
         //        let armored_data_package = NSString(contentsOfFile: armored_data_package_location, encoding: NSUTF8StringEncoding, error: nil) as! String
         //  let decrypted_data = pgp.decrypt_attachment_armored(armored_key_package, data: armored_data_package, error:nil)
-        //        decrypted_data.writeToFile("/Users/Yanfeng/Desktop/new_unencrypted.png", atomically: false)
+        //        decrypted_data.writeToFile("new_unencrypted.png", atomically: false)
         //
         //
         //
         //        let data = pgp.Test_Attachment(key_package, data: data_package)
         //
-        //        data.writeToFile("/Users/Yanfeng/Desktop/1.png", atomically: false)
+        //        data.writeToFile("1.png", atomically: false)
         //
-        //        let un_encrypt_attachment = "/Users/Yanfeng/Desktop/2.png"
+        //        let un_encrypt_attachment = "2.png"
         //        let un_encrypt_attachment_data_package = NSData(contentsOfFile: un_encrypt_attachment)
         //
         //        //println(un_encrypt_attachment_data_package)
@@ -248,7 +248,7 @@ class ViewController: NSViewController {
         //        //        let d = dictOut["DataPacket"] as! String
         //        //
         //        //        let test_data = pgp.decrypt_attachment_armored(key, data: d, error:nil)
-        //        //        test_data.writeToFile("/Users/Yanfeng/Desktop/3.png", atomically: false)
+        //        //        test_data.writeToFile("3.png", atomically: false)
         //
         //
         //        println("Done");
@@ -258,10 +258,10 @@ class ViewController: NSViewController {
         
         //        let pgp:OpenPGP = OpenPGP()
         //
-        //        let pub_location = "/Users/Yanfeng/Desktop/publickey.net.txt"
-        //        let priv_location = "/Users/Yanfeng/Desktop/privatekey.net.txt"
-        //        let key_package_location = "/Users/Yanfeng/Desktop/keypackage.txt"
-        //        let data_package_location = "/Users/Yanfeng/Desktop/dataPack.txt"
+        //        let pub_location = "publickey.net.txt"
+        //        let priv_location = "privatekey.net.txt"
+        //        let key_package_location = "keypackage.txt"
+        //        let data_package_location = "dataPack.txt"
         //
         //        let pubkey = NSString(contentsOfFile: pub_location, encoding: NSUTF8StringEncoding, error: nil) as! String
         //        let privkey = NSString(contentsOfFile: priv_location, encoding: NSUTF8StringEncoding, error: nil) as! String
@@ -283,7 +283,7 @@ class ViewController: NSViewController {
         //        let Start:CFTimeInterval  = CACurrentMediaTime();
         //        let StartEncryptTime:CFTimeInterval  = CACurrentMediaTime();
         //
-        //        let un_encrypt_attachment = "/Users/Yanfeng/Desktop/19691487.jpg"
+        //        let un_encrypt_attachment = "19691487.jpg"
         //        let un_encrypt_attachment_data_package = NSData(contentsOfFile: un_encrypt_attachment)
         //
         //        let LoadFile:CFTimeInterval  = CACurrentMediaTime()
@@ -307,7 +307,7 @@ class ViewController: NSViewController {
         //
         //        let DecryptTime:CFTimeInterval  = CACurrentMediaTime();
         //
-        //        test_data.writeToFile("/Users/Yanfeng/Desktop/img_0147.png.bak", atomically: false)
+        //        test_data.writeToFile("img_0147.png.bak", atomically: false)
         //
         //        let WriteTime:CFTimeInterval  = CACurrentMediaTime();
         //
@@ -362,7 +362,7 @@ class ViewController: NSViewController {
         //                    }
         //                }
         //
-        //                let test_body = "/Users/Yanfeng/Desktop/test_new_key.txt"
+        //                let test_body = "test_new_key.txt"
         //
         //                let test = NSString(contentsOfFile: test_body, encoding: NSUTF8StringEncoding, error: nil) as! String
         //
@@ -432,7 +432,7 @@ class ViewController: NSViewController {
         //                    }
         //                }
         //
-        //                let test_body = "/Users/Yanfeng/Desktop/test_new_key.txt"
+        //                let test_body = "test_new_key.txt"
         //                let test = NSString(contentsOfFile: test_body, encoding: NSUTF8StringEncoding, error: nil) as! String
         //
         //                for i in 0 ..< 200 {

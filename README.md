@@ -1,9 +1,22 @@
-# OpenPGP
+# cpp-openpgp
 
+## Introduction
+
+This is the main crypto library on mobile since 2015. we have migrated to [gopenpgp]() start from 2018-q4. The OpenPGP part is deprecated now. we use this library to generate RSA key only.
+
+VCard is currently in used in the iOS-mail application.
+
+### OpenPGP
+
+OpenPGP part originally forked from https://github.com/calccrypto/OpenPGP. 
+
+### VCard
+
+The VCard parser is porting from https://github.com/mangstadt/ez-vcard which is java based. 
 
 ## Building 
 
-Must always use `test` for building!
+user the build scripts in `Scripts` folder
 
 ### iOS 
 
@@ -11,7 +24,11 @@ Simply use xcode.
 
 ### Android
 
-Go to Android folder and run `sh build_android.sh`
+Go to `Android_Build` folder and run `sh build_android.sh`
+
+## Usage
+
+Please check sample projects in the `OpenPGP.xcworkspace`.
 
 ## Commit
 
@@ -45,7 +62,7 @@ Make sure you have `djinni` installed
 1. In the `Build phase` tab, add the newly generated files in `copy file` list
 2. In folder `OpenPGPlib/ezvcard`, add those new documents to the target
 
-### In ProtonMail iOS repo
+### In [ProtonMail iOS](https://github.com/ProtonMail/ios-mail) repo
 
 1. Run `pod install --no-repo-update`
 
@@ -55,4 +72,6 @@ Make sure you have `djinni` installed
 - [ ] add generic compare function
 - [ ] add a base class called cloneable
 - [ ] add a base class called compareable 
-
+- [ ] split this libaray to 3 different libaraies: OpenPGP, Vinnie, VCard
+- [ ] refactore OpenPGP part
+- [ ] Catalyst supporting (in Beta)

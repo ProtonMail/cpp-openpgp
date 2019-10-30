@@ -216,6 +216,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -383,7 +384,7 @@
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/Bin/libs/Debug,
+					"$(PROJECT_DIR)/../Bin/libs/Debug",
 					/usr/lib,
 					"$(PROJECT_DIR)/../ThirdLibs/openssl_macos",
 				);
@@ -409,7 +410,7 @@
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					/Users/Yanfeng/Documents/ProtonMailGit/OpenPGP/Bin/libs/Debug,
+					"$(PROJECT_DIR)/../Bin/libs/Debug",
 					/usr/lib,
 					"$(PROJECT_DIR)/../ThirdLibs/openssl_macos",
 				);

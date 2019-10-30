@@ -3,10 +3,11 @@
 //  OpenPGP
 //
 //  Created by Yanfeng Zhang on 3/28/17.
-//  Copyright © 2017 Yanfeng Zhang. All rights reserved.
 //
-
-
+//  The MIT License
+// 
+//  Copyright (c) 2019 Proton Technologies AG
+//
 // Copyright (c) 2006 Damien Miller <djm@mindrot.org>
 //
 // Permission to use, copy, modify, and distribute this software for any
